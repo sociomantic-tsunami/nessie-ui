@@ -7,14 +7,14 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                        from 'react';
+import PropTypes                    from 'prop-types';
 
-import { IconButton, Text } from '..';
+import { IconButton, Text }         from '..';
 
-import { generateId }       from '../utils';
-import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming';
+import { attachEvents, generateId } from '../utils';
+import ThemeContext                 from '../Theming/ThemeContext';
+import { createCssMap }             from '../Theming';
 
 
 export default class Tooltip extends React.Component
@@ -114,6 +114,7 @@ export default class Tooltip extends React.Component
 
         return (
             <div
+                { ...attachEvents( this.props ) }
                 className = { cssMap.main }
                 id        = { id }
                 role      = "tooltip">
@@ -124,12 +125,12 @@ export default class Tooltip extends React.Component
                 </div>
                 { isDismissible &&
                     <IconButton
-                        className    = { cssMap.close }
-                        iconSize     = "S"
-                        iconTheme    = "button"
-                        iconType     = "close"
-                        label        = "Close"
-                        onClick      = { onClickClose } />
+                        className = { cssMap.close }
+                        iconSize  = "S"
+                        iconTheme = "button"
+                        iconType  = "close"
+                        label     = "Close"
+                        onClick   = { onClickClose } />
                 }
             </div>
         );

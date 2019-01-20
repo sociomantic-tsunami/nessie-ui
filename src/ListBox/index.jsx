@@ -10,13 +10,18 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 
-import React                              from 'react';
-import PropTypes                          from 'prop-types';
+import React                           from 'react';
+import PropTypes                       from 'prop-types';
 
-import { buildOptions, updateOptions }    from './utils';
-import { generateId, killFocus, mapAria } from '../utils';
-import ThemeContext                       from '../Theming/ThemeContext';
-import { createCssMap }                   from '../Theming';
+import { buildOptions, updateOptions } from './utils';
+import {
+    attachEvents,
+    generateId,
+    killFocus,
+    mapAria,
+} from '../utils';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming';
 
 
 export default class ListBox extends React.Component
@@ -109,6 +114,7 @@ export default class ListBox extends React.Component
         }
         return (
             <ul
+                { ...attachEvents( this.props ) }
                 { ...mapAria( {
                     ...aria,
                     activeDescendant : isFocusable ? activeOption : null,

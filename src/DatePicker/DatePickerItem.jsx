@@ -7,14 +7,14 @@
  *
  */
 
-import React                   from 'react';
-import PropTypes               from 'prop-types';
+import React             from 'react';
+import PropTypes         from 'prop-types';
 
-import { Text }                from '..';
+import { Text }          from '..';
 
-import ThemeContext            from '../Theming/ThemeContext';
-import { createCssMap }        from '../Theming';
-import { createEventHandler }  from '../utils';
+import ThemeContext      from '../Theming/ThemeContext';
+import { createCssMap }  from '../Theming';
+import { attachEvents }  from '../utils';
 
 
 export default class DatePickerItem extends React.Component
@@ -55,16 +55,17 @@ export default class DatePickerItem extends React.Component
             isDisabled,
             isSelected,
             label,
-            onClick,
             value,
         } = this.props;
 
         return (
             <button
+                { ...attachEvents( this.props, {
+                    onClick : { value },
+                } ) }
                 aria-pressed = { isSelected }
                 className    = { cssMap.main }
                 disabled     = { isDisabled }
-                onClick      = { createEventHandler( onClick, { value } ) }
                 type         = "button"
                 value        = { value }>
                 <Text className = { cssMap.text }>{ children || label }</Text>

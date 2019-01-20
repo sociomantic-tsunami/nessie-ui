@@ -7,13 +7,12 @@
  *
  */
 
-import React                                       from 'react';
-import PropTypes                                   from 'prop-types';
+import React                                 from 'react';
+import PropTypes                             from 'prop-types';
 
-import { createEventHandler, mapAria, generateId } from '../utils';
-import ThemeContext
-    from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming';
+import { attachEvents, mapAria, generateId } from '../utils';
+import ThemeContext                          from '../Theming/ThemeContext';
+import { createCssMap }                      from '../Theming';
 
 export default class InputField extends React.Component
 {
@@ -69,7 +68,7 @@ export default class InputField extends React.Component
          */
         hasError     : PropTypes.bool,
         /**
-         *  HTML id attribute
+         *  Component id
          */
         id           : PropTypes.string,
         /**
@@ -88,18 +87,6 @@ export default class InputField extends React.Component
          *  HTML name attribute
          */
         name         : PropTypes.string,
-        /**
-         *  Input change callback function
-         */
-        onChange     : PropTypes.func,
-        /**
-         *  Input click callback function
-         */
-        onClick      : PropTypes.func,
-        /**
-         *  Key down callback function
-         */
-        onKeyDown    : PropTypes.func,
         /**
          *  Placeholder text
          */
@@ -142,15 +129,12 @@ export default class InputField extends React.Component
         isReadOnly     : false,
         isResizable    : undefined,
         name           : undefined,
-        onChange       : undefined,
-        onClick        : undefined,
-        onKeyDown      : undefined,
         placeholder    : undefined,
         rows           : undefined,
         spellCheck     : undefined,
         textAlign      : 'left',
         type           : 'text',
-        value          : undefined,
+        value          : '',
     };
 
     static displayName = 'InputField';
@@ -175,9 +159,6 @@ export default class InputField extends React.Component
             isDisabled,
             isReadOnly,
             name,
-            onChange,
-            onClick,
-            onKeyDown,
             placeholder,
             rows,
             spellCheck,
@@ -190,6 +171,7 @@ export default class InputField extends React.Component
         return (
             <InputElement
                 { ...mapAria( aria ) }
+                { ...attachEvents( this.props ) }
                 autoCapitalize = { autoCapitalize }
                 autoComplete   = { autoComplete }
                 autoCorrect    = { autoCorrect }
@@ -197,9 +179,6 @@ export default class InputField extends React.Component
                 disabled       = { isDisabled }
                 id             = { id }
                 name           = { name }
-                onChange       = { createEventHandler( onChange, { id } ) }
-                onClick        = { createEventHandler( onClick, { id } ) }
-                onKeyDown      = { createEventHandler( onKeyDown, { id } ) }
                 placeholder    = { placeholder }
                 readOnly       = { isReadOnly }
                 ref            = { this.inputRef }

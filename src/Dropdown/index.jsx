@@ -7,11 +7,12 @@
  *
  */
 
-import React              from 'react';
-import PropTypes          from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import ThemeContext       from '../Theming/ThemeContext';
-import { createCssMap }   from '../Theming';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming';
+import { attachEvents } from '../utils';
 
 export default class Dropdown extends React.Component
 {
@@ -45,8 +46,7 @@ export default class Dropdown extends React.Component
         } = this.props;
 
         return (
-            <div
-                className = { cssMap.main }>
+            <div { ...attachEvents( this.props ) } className = { cssMap.main }>
                 { children }
             </div>
         );

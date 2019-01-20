@@ -168,14 +168,14 @@ export default class ComboBox extends Component
             selectedOption  : undefined,
         };
 
+        this.handleBlur            = this.handleBlur.bind( this );
         this.handleChangeInput     = this.handleChangeInput.bind( this );
+        this.handleClick           = this.handleClick.bind( this );
         this.handleClickIcon       = this.handleClickIcon.bind( this );
-        this.handleClick      = this.handleClick.bind( this );
         this.handleClickOption     = this.handleClickOption.bind( this );
         this.handleKeyDown         = this.handleKeyDown.bind( this );
         this.handleMouseOutOption  = this.handleMouseOutOption.bind( this );
         this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
-        this.handleBlur            = this.handleBlur.bind( this );
     }
 
     static getDerivedStateFromProps( props, state )
@@ -198,7 +198,7 @@ export default class ComboBox extends Component
         return {
             flatOptions,
             filteredOptions : state.filteredOptions,
-            id              : props.id || state.id || generateId( 'Select' ),
+            id              : props.id || state.id || generateId( 'ComboBox' ),
             options         : props.options,
             searchValue     : state.searchValue,
             selectedOption  : optionId,
@@ -242,9 +242,9 @@ export default class ComboBox extends Component
         this.inputRef.current.focus();
     }
 
-    handleChangeInput( e )
+    handleChangeInput( { value } )
     {
-        const searchValue = ( e.target.value || '' ).toLowerCase();
+        const searchValue = ( value || '' ).toLowerCase();
 
         const filteredOptions = this.state.flatOptions.filter( ( { text } ) =>
             !searchValue || text.toLowerCase().indexOf( searchValue ) > -1 );
@@ -270,7 +270,7 @@ export default class ComboBox extends Component
         this.setState( { isOpen: true  } );
     }
 
-    handleClickOption( e, optId )
+    handleClickOption( { id: optId } )
     {
         const { isReadOnly, onChange } = this.props;
         const { id } = this.state;
@@ -284,7 +284,7 @@ export default class ComboBox extends Component
 
             if ( !isReadOnly && typeof onChange === 'function' )
             {
-                onChange( { selectedOption }, e );
+                onChange( { id, selectedOption } );
             }
 
             return {
@@ -297,13 +297,11 @@ export default class ComboBox extends Component
         } );
     }
 
-    handleKeyDown( e )
+    handleKeyDown( { key, preventNessieDefault } )
     {
-        const { key } = e;
-
         if ( key === 'ArrowUp' || key === 'ArrowDown' )
         {
-            e.preventDefault();
+            preventNessieDefault();
 
             this.setState( prevState => {
                 const options = prevState.filteredOptions
@@ -343,15 +341,15 @@ export default class ComboBox extends Component
         else if ( key === 'Enter' )
         {
             const { isReadOnly, onChange } = this.props;
+            const { id } = this.state;
 
             this.setState( prevState => {
-
                 const selectedOption = !isReadOnly && prevState.activeOption ?
                     prevState.activeOption : prevState.selectedOption;
 
                 if ( !isReadOnly && typeof onChange === 'function' )
                 {
-                    onChange( { selectedOption }, e );
+                    onChange( { id, selectedOption } );
                 }
                 return {
                     activeOption    : prevState.activeOption,
@@ -370,7 +368,7 @@ export default class ComboBox extends Component
         this.setState( { activeOption: undefined } );
     }
 
-    handleMouseOverOption( e, optId )
+    handleMouseOverOption( { id : optId } )
     {
         const { id } = this.state;
         const unprefixedId = removePrefix( optId, id );
@@ -488,20 +486,20 @@ export default class ComboBox extends Component
                     hasError,
                     padding  : optionsToShow.length ? 'none' : 'S',
                 } }
-                hasError        = { hasError }
-                iconType        = { isOpen ? 'up' : 'down' }
-                id              = { id }
-                inputRef        = { this.inputRef }
-                isDisabled      = { isDisabled }
-                isReadOnly      = { !isSearchable || !isOpen }
-                onBlur          = { this.handleBlur }
-                onChangeInput   = { this.handleChangeInput }
-                onClick         = { this.handleClick }
-                onClickIcon     = { this.handleClickIcon }
-                onKeyDownInput  = { this.handleKeyDown }
-                placeholder     = { inputPlaceholder }
-                spellCheck      = { false }
-                value           = { ( isOpen && isSearchable ) ?
+                hasError      = { hasError }
+                iconType      = { isOpen ? 'up' : 'down' }
+                id            = { id }
+                inputRef      = { this.inputRef }
+                isDisabled    = { isDisabled }
+                isReadOnly    = { !isSearchable || !isOpen }
+                onBlur        = { this.handleBlur }
+                onChangeInput = { this.handleChangeInput }
+                onClick       = { this.handleClick }
+                onClickIcon   = { this.handleClickIcon }
+                onKeyDown     = { this.handleKeyDown }
+                placeholder   = { inputPlaceholder }
+                spellCheck    = { false }
+                value         = { ( isOpen && isSearchable ) ?
                     searchValue : optionVal
                 }
                 wrapperRef = { this.wrapperRef } />

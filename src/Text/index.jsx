@@ -12,6 +12,7 @@ import PropTypes          from 'prop-types';
 
 import ThemeContext       from '../Theming/ThemeContext';
 import { createCssMap }   from '../Theming';
+import { attachEvents }   from '../utils';
 
 
 export default class Text extends React.Component
@@ -143,6 +144,7 @@ export default class Text extends React.Component
 
         return (
             <div
+                { ...attachEvents( this.props ) }
                 className = { cssMap.main }
                 ref       = { textRef }
                 style     = { { color, letterSpacing, lineHeight } }>

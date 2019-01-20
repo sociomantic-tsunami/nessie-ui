@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2018-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -12,6 +12,8 @@ import PropTypes          from 'prop-types';
 
 import ThemeContext       from '../Theming/ThemeContext';
 import { createCssMap }   from '../Theming';
+import { attachEvents }   from '../utils';
+
 
 export default class GridItem extends React.Component
 {
@@ -22,8 +24,7 @@ export default class GridItem extends React.Component
         /**
          * Vertical alignment of the GridItem content
          */
-        align : PropTypes.oneOf( [
-            'start', 'center', 'end', 'stretch' ] ),
+        align     : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
         /**
          *  GridItem content
          */
@@ -72,6 +73,7 @@ export default class GridItem extends React.Component
 
         return (
             <div
+                { ...attachEvents( this.props ) }
                 className = { cssMap.main }
                 style     = { {
                     gridColumn : `span ${colSpan}`,

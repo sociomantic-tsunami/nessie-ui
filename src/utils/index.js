@@ -7,8 +7,31 @@
  *
  */
 
-import React, { Component } from 'react';
+import eventsList from './eventsList';
 
+
+/**
+ * attachEvents( props )
+ *
+ * Returns a set of Nessie standardized event handlers based on props provided
+ *
+ * @param   {Object}    props       component props
+ * @param   {Object}    customizers explicitly defined payloads and/or actions
+ *
+ * @return  {Object}    event handlers
+ */
+function attachEvents( props, customizers = {} )
+{
+    const handlers = {};
+    Object.entries( props ).forEach( ( [ propName, propValue ] ) => {
+        if ( eventsList.includes( propName ) )
+        {
+            handlers[ propName ] =
+                createEventHandler( propValue, customizers[ propName ] );
+        }
+    } );
+    return handlers;
+}
 
 const buildDisplayName = ( WrapperComponent, WrappedComponent ) =>
 {
@@ -33,25 +56,52 @@ const clamp = ( val, min, max ) => Math.min( Math.max( val, min ), max );
  *    target; not when moving between descendent elements.
  *  - Stops propagation of all handled events
  *
- * @param {Function} func - consumer event handler
- * @param {Object} payload - values to include in payload
+ * @param   {Function}  func        consumer event handler
+ * @param   {Object}    customizer  explicitly defined payload and/or action
  *
- * @return {Function}
+ * @return  {Function}
  */
-function createEventHandler( func, payload )
+function createEventHandler( func, customizer )
 {
-    if ( typeof func !== 'function' )
+    if ( customizer === false )
     {
-        return; // event is not handled
+        return; // explicitly disabled; do nothing!
     }
 
+    let payload = null;
+    let defaultAction = null;
+
+    if ( Array.isArray( customizer ) ) // custom payload *and* default action
+    {
+        ( [ payload, defaultAction ] = customizer );
+    }
+    else if ( typeof customizer === 'object' ) // custom payload only
+    {
+        payload = customizer;
+    }
+    else if ( typeof customizer === 'function' ) // default action only
+    {
+        defaultAction = customizer;
+    }
+
+    if ( typeof func !== 'function' ) // no consumer event handler
+    {
+        return defaultAction;
+    }
+
+    // construct standardized payload for consumer’s handler...
     return function eventHandler( e )
     {
         const { currentTarget, relatedTarget, target, type } = e;
 
-        const eventPayload = { preventNessieDefault() { e.preventDefault(); } };
+        const eventPayload = {
+            preventNessieDefault()
+            {
+                e.preventDefault();
+            }
+        };
 
-        e.stopPropagation(); // (TODO: find a way to flag event as “handled” without stopping propagation)
+        e.stopPropagation(); // (TODO: find a way to flag event as “handled” without stopping propagation!)
 
         if ( [ 'blur', 'focus', 'mouseout', 'mouseover' ].includes( type ) &&
             currentTarget.contains( relatedTarget ) )
@@ -76,7 +126,13 @@ function createEventHandler( func, payload )
             eventPayload.scroll = [ target.scrollLeft, target.scrollTop ];
         }
 
+        // invoke consumer’s event handler
         func( { ...eventPayload, ...payload }, ...arguments );
+
+        if ( defaultAction && !e.defaultPrevented )
+        {
+            defaultAction( e ); // perform default action
+        }
     };
 }
 
@@ -105,6 +161,7 @@ const mapAria = ( ariaObj = {} ) =>
 
 
 export {
+    attachEvents,
     buildDisplayName,
     clamp,
     createEventHandler,
@@ -114,6 +171,7 @@ export {
 };
 
 export default {
+    attachEvents,
     buildDisplayName,
     clamp,
     createEventHandler,

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -7,7 +7,7 @@
  *
  */
 
-import { IconButton, InputField, Tooltip } from 'nessie-ui';
+import { IconButton, InputField } from 'nessie-ui';
 
 const ERR = {
     PASS_ERR : ( event, state ) => `PasswordInput cannot simulate ${event} \
@@ -91,18 +91,6 @@ export default class PasswordInput
         }
 
         this.wrapper.find( IconButton ).driver().click();
-        return this;
-    }
-
-    mouseOverIcon()
-    {
-        this.wrapper.find( Tooltip ).driver().mouseOver();
-        return this;
-    }
-
-    mouseOutIcon()
-    {
-        this.wrapper.find( Tooltip ).driver().mouseOut();
         return this;
     }
 }

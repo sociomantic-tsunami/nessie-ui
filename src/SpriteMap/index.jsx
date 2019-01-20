@@ -24,7 +24,7 @@ const SpriteMap = ( {
 SpriteMap.propTypes =
 {
     /**
-     * HTML id attribute
+     * Component id
      */
     id             : PropTypes.string,
     /**

@@ -14,12 +14,12 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                   from 'react';
+import PropTypes               from 'prop-types';
 
-import { clamp }        from '../utils';
-import ThemeContext     from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming';
+import { attachEvents, clamp } from '../utils';
+import ThemeContext            from '../Theming/ThemeContext';
+import { createCssMap }        from '../Theming';
 
 
 export default class ScrollBar extends React.Component
@@ -110,6 +110,7 @@ export default class ScrollBar extends React.Component
 
         return (
             <div
+                { ...attachEvents( this.props ) }
                 aria-controls    = { scrollBoxId }
                 aria-orientation = { orientation }
                 aria-valuemax    = { scrollMax }

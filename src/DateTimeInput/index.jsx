@@ -218,7 +218,7 @@ export default class DateTimeInput extends Component
          */
         hourPlaceholder   : PropTypes.string,
         /**
-         *  HTML id attribute
+         *  Component id
          */
         id                : PropTypes.string,
         /**
@@ -308,7 +308,7 @@ export default class DateTimeInput extends Component
     static getDerivedStateFromProps( props, state )
     {
         return {
-            id        : props.id || state.id || generateId( 'Select' ),
+            id        : props.id || state.id || generateId( 'DateTimeInput' ),
             isOpen    : Boolean( state.gridStartTimestamp ),
             timestamp : props.value || displayTimestamp(
                 state.editingTimestamp,
@@ -487,9 +487,10 @@ export default class DateTimeInput extends Component
             this.setState( { timestamp: value } );
 
             const { onChange } = this.props;
+            const { id } = this.state;
             if ( typeof onChange === 'function' )
             {
-                onChange( { value } );
+                onChange( { id, value } );
             }
         }
 
@@ -548,16 +549,32 @@ export default class DateTimeInput extends Component
     {
         const trimmed = value.trim().replace( /\s+/g, ' ' );
 
-        if ( target === 'hour' )
+        let digits = Number( trimmed );
+
+        this.setState( { editingHourInputValue: value } );
+
+        if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 23 )
         {
-            let digits = Number( trimmed );
+            const timestamp = $m( this.state.timestamp ).set( 'hour', digits )
+                .valueOf();
 
-            this.setState( { editingHourInputValue: value } );
+            this.setState( {
+                editingTimestamp      : timestamp,
+                editingMainInputValue : formatDateTime(
+                    timestamp,
+                    setPrecision( this.props.mode ),
+                ),
+            } );
+        }
+        else
+        {
+            digits = _.isNumber( this.state.timestamp )
+                && $m( this.state.timestamp ).hour();
 
-            if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 23 )
+            if ( !_.isNaN( digits ) )
             {
-                const timestamp = $m( this.state.timestamp ).set( 'hour', digits )
-                    .valueOf();
+                const timestamp = $m( this.state.timestamp )
+                    .set( 'hour', digits ).valueOf();
 
                 this.setState( {
                     editingTimestamp      : timestamp,
@@ -566,25 +583,6 @@ export default class DateTimeInput extends Component
                         setPrecision( this.props.mode ),
                     ),
                 } );
-            }
-            else
-            {
-                digits = _.isNumber( this.state.timestamp )
-                    && $m( this.state.timestamp ).hour();
-
-                if ( !_.isNaN( digits ) )
-                {
-                    const timestamp = $m( this.state.timestamp )
-                        .set( 'hour', digits ).valueOf();
-
-                    this.setState( {
-                        editingTimestamp      : timestamp,
-                        editingMainInputValue : formatDateTime(
-                            timestamp,
-                            setPrecision( this.props.mode ),
-                        ),
-                    } );
-                }
             }
         }
     }

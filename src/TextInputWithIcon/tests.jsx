@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -16,9 +16,8 @@ import {
     IconButton,
     InputField,
     TextInputWithIcon,
-    TextInputWithIcon as WrappedTextInputWithIcon,
-    Tooltip,
-} from '../index';
+} from '..';
+
 
 describe( 'TextInputWithIcon', () =>
 {
@@ -39,13 +38,6 @@ describe( 'TextInputWithIcon', () =>
     {
         wrapper.setProps( { iconType: 'add' } );
         expect( wrapper.find( IconButton ) ).toHaveLength( 1 );
-    } );
-
-    test( 'should contain exactly one Tooltipwhen iconType is not \
-\'none\'', () =>
-    {
-        wrapper.setProps( { iconType: 'add' } );
-        expect( wrapper.find( Tooltip ) ).toHaveLength( 1 );
     } );
 
 
@@ -79,11 +71,6 @@ describe( 'TextInputWithIcon', () =>
             test( 'should remove the IconButton when value is "none"', () =>
             {
                 expect( wrapper.find( IconButton ) ).toHaveLength( 0 );
-            } );
-
-            test( 'should remove the Tooltip when value is "none"', () =>
-            {
-                expect( wrapper.find( Tooltip ) ).toHaveLength( 0 );
             } );
 
             test( 'should be passed to the IconButton', () =>
@@ -141,72 +128,6 @@ describe( 'TextInputWithIcon', () =>
 
                 expect( wrapper.find( InputField ).prop( 'textAlign' ) )
                     .toBe( 'right' );
-            } );
-        } );
-
-        describe( 'iconTooltipPosition', () =>
-        {
-            beforeEach( () =>
-            {
-                wrapper.setProps( { iconType: 'add' } );
-            } );
-
-            test( 'should be "top" by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.iconTooltipPosition )
-                    .toBe( 'top' );
-            } );
-
-            test( 'should be passed to the Tooltip as position', () =>
-            {
-                wrapper.setProps( { iconTooltipPosition: 'bottom' } );
-
-                expect( wrapper.find( Tooltip ).prop( 'position' ) )
-                    .toBe( 'bottom' );
-            } );
-        } );
-
-        describe( 'iconTooltipIsVisible', () =>
-        {
-            beforeEach( () =>
-            {
-                wrapper.setProps( { iconType: 'add' } );
-            } );
-
-            test( 'should be false by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.iconTooltipIsVisible )
-                    .toBe( false );
-            } );
-
-            test( 'should be passed to the Tooltip as isVisible', () =>
-            {
-                wrapper.setProps( { iconTooltipIsVisible: true } );
-
-                expect( wrapper.find( Tooltip ).prop( 'isVisible' ) )
-                    .toBe( true );
-            } );
-        } );
-
-        describe( 'iconTooltipMessage', () =>
-        {
-            beforeEach( () =>
-            {
-                wrapper.setProps( { iconType: 'add' } );
-            } );
-
-            test( 'should be undefined by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.iconTooltipMessage )
-                    .toBeUndefined();
-            } );
-
-            test( 'should be passed to the Tooltip', () =>
-            {
-                wrapper.setProps( { iconTooltipMessage: 'yes!' } );
-
-                expect( wrapper.find( Tooltip ).prop( 'message' ) )
-                    .toBe( 'yes!' );
             } );
         } );
 
@@ -412,19 +333,6 @@ describe( 'TextInputWithIcon', () =>
                     .toBe( undefined );
             } );
 
-            test( 'should not be passed to the Tooltip', () =>
-            {
-                const onMouseOver = () => undefined;
-
-                wrapper.setProps( {
-                    iconType : 'add',
-                    onMouseOver,
-                } );
-
-                expect( wrapper.find( Tooltip ).prop( 'onMouseOver' ) )
-                    .not.toBe( onMouseOver );
-            } );
-
             test( 'should not be passed to the IconButton', () =>
             {
                 const onMouseOver = () => undefined;
@@ -457,19 +365,6 @@ describe( 'TextInputWithIcon', () =>
                     .not.toBe( onMouseOut );
             } );
 
-            test( 'should not be passed to the Tooltip', () =>
-            {
-                const onMouseOut = () => undefined;
-
-                wrapper.setProps( {
-                    iconType : 'add',
-                    onMouseOut,
-                } );
-
-                expect( wrapper.find( Tooltip ).prop( 'onMouseOut' ) )
-                    .not.toBe( onMouseOut );
-            } );
-
             test( 'should not be passed to the IconButton', () =>
             {
                 const onMouseOut = () => undefined;
@@ -481,24 +376,6 @@ describe( 'TextInputWithIcon', () =>
 
                 expect( wrapper.find( IconButton ).prop( 'onMouseOut' ) )
                     .not.toBe( onMouseOut );
-            } );
-        } );
-
-        describe( 'onMouseOverIcon', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.onMouseOverIcon )
-                    .toBeUndefined();
-            } );
-        } );
-
-        describe( 'onMouseOutIcon', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.onMouseOutIcon )
-                    .toBeUndefined();
             } );
         } );
 
@@ -529,7 +406,7 @@ describe( 'TextInputWithIconDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <WrappedTextInputWithIcon /> );
+        wrapper = mount( <TextInputWithIcon /> );
         driver  = wrapper.driver();
     } );
 
@@ -660,32 +537,6 @@ describe( 'TextInputWithIconDriver', () =>
 
             driver.clickIcon();
             expect( onClickIcon ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-
-    describe( 'mouseOverIcon()', () =>
-    {
-        test( 'should trigger onMouseOverIcon callback prop once', () =>
-        {
-            const onMouseOverIcon = jest.fn();
-            wrapper.setProps( { onMouseOverIcon, iconType: 'add' } );
-
-            driver.mouseOverIcon();
-            expect( onMouseOverIcon ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-
-    describe( 'mouseOutIcon()', () =>
-    {
-        test( 'should trigger onMouseOutIcon callback prop once', () =>
-        {
-            const onMouseOutIcon = jest.fn();
-            wrapper.setProps( { onMouseOutIcon, iconType: 'add' } );
-
-            driver.mouseOutIcon();
-            expect( onMouseOutIcon ).toBeCalledTimes( 1 );
         } );
     } );
 } );

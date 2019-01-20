@@ -7,15 +7,19 @@
  *
  */
 
-import React                              from 'react';
-import PropTypes                          from 'prop-types';
-import { isEqual }                        from 'lodash';
+import React                     from 'react';
+import PropTypes                 from 'prop-types';
+import { isEqual }               from 'lodash';
 
-import { IconButton, ScrollBar }          from '..';
+import { IconButton, ScrollBar } from '..';
 
-import ThemeContext                       from '../Theming/ThemeContext';
-import { createCssMap }                   from '../Theming';
-import { createEventHandler, generateId } from '../utils';
+import ThemeContext              from '../Theming/ThemeContext';
+import { createCssMap }          from '../Theming';
+import {
+    attachEvents,
+    createEventHandler,
+    generateId,
+} from '../utils';
 
 
 export default class ScrollBox extends React.Component
@@ -329,7 +333,12 @@ export default class ScrollBox extends React.Component
         }
     }
 
-    handleRenderScrollButton( dir )
+    handleScroll()
+    {
+        this.forceUpdate();
+    }
+
+    canScroll( dir )
     {
         const {
             scrollTop,
@@ -363,19 +372,6 @@ export default class ScrollBox extends React.Component
         }
 
         return true;
-    }
-
-    handleScroll( e )
-    {
-        this.forceUpdate();
-
-        const { onScroll } = this.props;
-        const { id } = this.state;
-
-        if ( onScroll )
-        {
-            createEventHandler( onScroll, { id } )( e );
-        }
     }
 
     renderScrollBars()
@@ -446,25 +442,26 @@ export default class ScrollBox extends React.Component
         const { props } = this;
         const {
             cssMap = createCssMap( this.context.ScrollBox, this.props ),
+            scrollIndicatorVariant,
         } = props;
         const scrollButtons = [];
 
         [ 'Up', 'Down', 'Left', 'Right' ].forEach( dir => {
-            if ( props[ `scroll${dir}IsVisible` ] )
+            if ( props[ `scroll${dir}IsVisible` ] && this.canScroll( dir ) )
             {
-                if ( this.handleRenderScrollButton( dir ) )
-                {
-                    scrollButtons.push( <IconButton
+                scrollButtons.push(
+                    <IconButton
                         className     = { cssMap[ `icon${dir}` ] }
                         hasBackground = {
-                            props.scrollIndicatorVariant === 'circle' }
-                        iconSize      = "S"
-                        iconType      = { dir.toLowerCase() }
-                        key           = { dir }
-                        onClick       = { e => (
+                            scrollIndicatorVariant === 'circle'
+                        }
+                        iconSize = "S"
+                        iconType = { dir.toLowerCase() }
+                        key      = { dir }
+                        onClick  = { e => (
                             this.handleClickScrollButton( dir, e )
-                        ) } /> );
-                }
+                        ) } />
+                );
             }
         } );
 
@@ -478,18 +475,25 @@ export default class ScrollBox extends React.Component
             contentWidth,
             cssMap = createCssMap( this.context.ScrollBox, this.props ),
             height,
+            onScroll,
             scrollBarsAreVisible,
         } = this.props;
 
         return (
             <div
-                className   = { cssMap.main }
-                style       = { { maxHeight: height } }>
+                { ...attachEvents( this.props, {
+                    onScroll : false,
+                } ) }
+                className = { cssMap.main }
+                style     = { { maxHeight: height } }>
                 <div
                     className = { cssMap.inner }
-                    onScroll  = { this.handleScroll }
-                    ref       = { this.handleRef }
-                    style     = { this.getInnerStyle() }>
+                    onScroll  = { createEventHandler(
+                        onScroll,
+                        this.handleScroll,
+                    ) }
+                    ref   = { this.handleRef }
+                    style = { this.getInnerStyle() }>
                     <div
                         className = { cssMap.content }
                         style     = { contentWidth && { width: contentWidth } }>

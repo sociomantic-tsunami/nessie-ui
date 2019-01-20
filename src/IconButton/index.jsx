@@ -7,14 +7,14 @@
  *
  */
 
-import React                                from 'react';
-import PropTypes                            from 'prop-types';
+import React                        from 'react';
+import PropTypes                    from 'prop-types';
 
-import { Icon }                             from '..';
+import { Icon }                     from '..';
 
-import { createEventHandler, generateId }   from '../utils';
-import ThemeContext                         from '../Theming/ThemeContext';
-import { createCssMap }                     from '../Theming';
+import { attachEvents, generateId } from '../utils';
+import ThemeContext                 from '../Theming/ThemeContext';
+import { createCssMap }             from '../Theming';
 
 const killFocus = e => e.preventDefault();
 
@@ -113,7 +113,7 @@ export default class IconButton extends React.Component
             'none',
         ] ),
         /**
-         * HTML id attribute
+         * Component id
          */
         id          : PropTypes.string,
         /**
@@ -175,16 +175,17 @@ export default class IconButton extends React.Component
             isDisabled,
             isFocusable,
             label,
-            onClick,
             value,
         } = this.props;
 
         return (
             <button
+                { ...attachEvents( this.props, {
+                    onClick : { value },
+                } ) }
                 className   = { cssMap.main }
                 disabled    = { isDisabled }
                 id          = { id }
-                onClick     = { createEventHandler( onClick, { id } ) }
                 onMouseDown = { !isFocusable ? killFocus : undefined }
                 ref         = { buttonRef }
                 tabIndex    = { isFocusable ? '0' : '-1' }

@@ -14,6 +14,7 @@ import DatePickerItem       from './DatePickerItem';
 import DatePickerHeader     from './DatePickerHeader';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming';
+import { attachEvents }     from '../utils';
 
 
 export default class DatePicker extends React.Component
@@ -41,7 +42,8 @@ export default class DatePicker extends React.Component
         minuteValue       : PropTypes.string,
         month             : PropTypes.string,
         nextIsDisabled    : PropTypes.bool,
-        onChange          : PropTypes.func,
+        onChangeHour      : PropTypes.func,
+        onChangeMinute    : PropTypes.func,
         onClickItem       : PropTypes.func,
         onClickNext       : PropTypes.func,
         onClickPrev       : PropTypes.func,
@@ -69,7 +71,8 @@ export default class DatePicker extends React.Component
         minuteValue       : undefined,
         month             : undefined,
         nextIsDisabled    : false,
-        onChange          : undefined,
+        onChangeHour      : undefined,
+        onChangeMinute    : undefined,
         onClickItem       : undefined,
         onClickNext       : undefined,
         onClickPrev       : undefined,
@@ -100,7 +103,8 @@ export default class DatePicker extends React.Component
             minuteValue,
             month,
             nextIsDisabled,
-            onChange,
+            onChangeHour,
+            onChangeMinute,
             onClickItem,
             onClickNext,
             onClickPrev,
@@ -110,7 +114,7 @@ export default class DatePicker extends React.Component
         } = this.props;
 
         return (
-            <div className = { cssMap.main }>
+            <div { ...attachEvents( this.props ) } className = { cssMap.main }>
                 <DatePickerHeader
                     hasTimeInput      = { hasTimeInput }
                     hourIsDisabled    = { hourIsDisabled }
@@ -126,7 +130,8 @@ export default class DatePicker extends React.Component
                     minuteValue       = { minuteValue }
                     month             = { month }
                     nextIsDisabled    = { nextIsDisabled }
-                    onChange          = { onChange }
+                    onChangeHour      = { onChangeHour }
+                    onChangeMinute    = { onChangeMinute }
                     onClickNext       = { onClickNext }
                     onClickPrev       = { onClickPrev }
                     prevIsDisabled    = { prevIsDisabled }

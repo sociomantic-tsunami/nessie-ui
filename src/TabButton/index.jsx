@@ -7,12 +7,12 @@
  *
  */
 
-import React                  from 'react';
-import PropTypes              from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import { createEventHandler } from '../utils';
-import ThemeContext           from '../Theming/ThemeContext';
-import { createCssMap }       from '../Theming';
+import { attachEvents } from '../utils';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming';
 
 export default class TabButton extends React.Component
 {
@@ -45,7 +45,7 @@ export default class TabButton extends React.Component
          */
         label      : PropTypes.string,
         /**
-         *  Click callback function: ( e ) => { ... }
+         *  Click callback function: ( { tabIndex } ) => ...
          */
         onClick    : PropTypes.func,
         /**
@@ -80,16 +80,17 @@ export default class TabButton extends React.Component
             cssMap = createCssMap( this.context.TabButton, this.props ),
             isDisabled,
             label,
-            onClick,
             subtitle,
             tabIndex,
         } = this.props;
 
         return (
             <button
+                { ...attachEvents( this.props, {
+                    onClick : { tabIndex },
+                } ) }
                 className = { cssMap.main }
                 disabled  = { isDisabled }
-                onClick   = { createEventHandler( onClick, { tabIndex } ) }
                 ref       = { buttonRef }
                 role      = "tab"
                 type      = "button">

@@ -7,15 +7,15 @@
  *
  */
 
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React                        from 'react';
+import PropTypes                    from 'prop-types';
 
-import { createEventHandler, generateId }  from '../utils';
+import { attachEvents, generateId } from '../utils';
 
-import { IconButton, InputField }          from '..';
+import { IconButton, InputField }   from '..';
 
-import ThemeContext                        from '../Theming/ThemeContext';
-import { createCssMap }                    from '../Theming';
+import ThemeContext                 from '../Theming/ThemeContext';
+import { createCssMap }             from '../Theming';
 
 
 export default class TextInputWithIcon extends React.Component
@@ -134,7 +134,7 @@ export default class TextInputWithIcon extends React.Component
             'none',
         ] ),
         /**
-         *  HTML id attribute
+         *  Component id
          */
         id             : PropTypes.string,
         /**
@@ -261,14 +261,9 @@ export default class TextInputWithIcon extends React.Component
             isDisabled,
             isReadOnly,
             name,
-            onBlur,
             onChangeInput,
             onClickIcon,
-            onClick,
-            onFocus,
             onKeyDownInput,
-            onMouseOut,
-            onMouseOver,
             placeholder,
             spellCheck,
             textAlign,
@@ -284,13 +279,7 @@ export default class TextInputWithIcon extends React.Component
         }
 
         return (
-            <div
-                className     = { cssMap.main }
-                onBlur        = { createEventHandler( onBlur, { id } ) }
-                onClick       = { createEventHandler( onClick, { id } ) }
-                onFocus       = { createEventHandler( onFocus, { id } ) }
-                onMouseOut    = { createEventHandler( onMouseOut, { id } ) }
-                onMouseOver   = { createEventHandler( onMouseOver, { id } ) }>
+            <div { ...attachEvents( this.props ) } className = { cssMap.main }>
                 <InputField
                     aria           = { aria }
                     autocapitalize = { autoCapitalize }
@@ -303,8 +292,8 @@ export default class TextInputWithIcon extends React.Component
                     isDisabled     = { isDisabled }
                     isReadOnly     = { isReadOnly }
                     name           = { name }
-                    onChangeInput  = { onChangeInput }
-                    onKeyDownInput = { onKeyDownInput }
+                    onChange       = { onChangeInput }
+                    onKeyDown      = { onKeyDownInput }
                     placeholder    = { placeholder }
                     ref            = { inputRef }
                     spellcheck     = { spellCheck }
@@ -313,12 +302,12 @@ export default class TextInputWithIcon extends React.Component
                     value          = { value } />
                 { ( iconType && iconType !== 'none' ) &&
                     <IconButton
-                        className       = { cssMap.icon }
-                        hasError        = { hasError }
-                        iconType        = { iconType }
-                        isDisabled      = { isDisabled || iconButtonIsDisabled }
-                        isFocusable     = { false }
-                        onClick         = { onClickIcon } />
+                        className   = { cssMap.icon }
+                        hasError    = { hasError }
+                        iconType    = { iconType }
+                        isDisabled  = { isDisabled || iconButtonIsDisabled }
+                        isFocusable = { false }
+                        onClick     = { onClickIcon } />
                 }
             </div>
         );

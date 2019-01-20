@@ -11,15 +11,14 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 
-import React                                       from 'react';
-import PropTypes                                   from 'prop-types';
+import React                                 from 'react';
+import PropTypes                             from 'prop-types';
 
-import { Icon, Text }                              from '..';
+import { Icon, Text }                        from '..';
 
-import { createEventHandler, generateId, mapAria } from '../utils';
-import ThemeContext
-    from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming';
+import { attachEvents, generateId, mapAria } from '../utils';
+import ThemeContext                          from '../Theming/ThemeContext';
+import { createCssMap }                      from '../Theming';
 
 
 export default class ListBoxOption extends React.Component
@@ -130,9 +129,6 @@ export default class ListBoxOption extends React.Component
             iconType,
             id = generateId( 'ListBoxOption' ),
             isSelected,
-            onClick,
-            onMouseOut,
-            onMouseOver,
             text,
             value,
         } = this.props;
@@ -156,16 +152,18 @@ export default class ListBoxOption extends React.Component
 
         return (
             <li
+                { ...attachEvents( this.props, {
+                    onClick     : { id },
+                    onMouseOut  : { id },
+                    onMouseOver : { id },
+                } ) }
                 { ...mapAria( {
                     ...aria,
                     selected : isSelected,
                     role     : 'option',
                 } ) }
                 className   = { cssMap.main }
-                id          = { id }
-                onClick     = { createEventHandler( onClick, id ) }
-                onMouseOut  = { createEventHandler( onMouseOut, id ) }
-                onMouseOver = { createEventHandler( onMouseOver, id ) }>
+                id          = { id }>
                 { ( iconType && iconType !== 'none' ) &&
                     <Icon
                         className = { cssMap.icon }

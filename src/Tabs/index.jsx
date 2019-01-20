@@ -14,6 +14,7 @@ import { ScrollBox, TabButton } from '..';
 
 import ThemeContext             from '../Theming/ThemeContext';
 import { createCssMap }         from '../Theming';
+import { attachEvents }         from '../utils';
 
 
 export default class Tabs extends React.Component
@@ -149,7 +150,7 @@ export default class Tabs extends React.Component
         } );
 
         return (
-            <div className = { cssMap.main }>
+            <div { ...attachEvents( this.props ) } className = { cssMap.main }>
                 <div className = { cssMap.header }>
                     <ScrollBox
                         className = { cssMap.tabsContainer }
