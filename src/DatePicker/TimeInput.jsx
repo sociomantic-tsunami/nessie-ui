@@ -34,10 +34,8 @@ export default class TimeInput extends React.Component
         minuteIsReadOnly  : PropTypes.bool,
         minutePlaceholder : PropTypes.string,
         minuteValue       : PropTypes.string,
-        onBlur            : PropTypes.func,
-        onChange          : PropTypes.func,
-        onFocus           : PropTypes.func,
-        onKeyPress        : PropTypes.func,
+        onChangeHour      : PropTypes.func,
+        onChangeMinute    : PropTypes.func,
     };
 
     static defaultProps = {
@@ -53,12 +51,10 @@ export default class TimeInput extends React.Component
         isReadOnly        : false,
         minuteIsDisabled  : false,
         minuteIsReadOnly  : false,
-        minutePlaceholder : 'MM',
+        minutePlaceholder : 'mm',
         minuteValue       : undefined,
-        onBlur            : undefined,
-        onChange          : undefined,
-        onFocus           : undefined,
-        onKeyPress        : undefined,
+        onChangeHour      : undefined,
+        onChangeMinute    : undefined,
     };
 
     render()
@@ -76,25 +72,17 @@ export default class TimeInput extends React.Component
             minuteIsReadOnly,
             minutePlaceholder,
             minuteValue,
-            onBlur,
-            onChange,
-            onFocus,
-            onKeyPress,
+            onChangeHour,
+            onChangeMinute,
         } = this.props;
-
-        const hourId = `${id}-hour`;
-        const minId = `${id}-minute`;
 
         return (
             <div className = { cssMap.main }>
                 <input
                     className   = { cssMap.hour }
                     disabled    = { isDisabled || hourIsDisabled }
-                    id          = { hourId }
-                    onBlur      = { createEventHandler( onBlur, { id: hourId } ) }
-                    onChange    = { createEventHandler( onChange, { id: hourId } ) }
-                    onFocus     = { createEventHandler( onFocus, { id: hourId } ) }
-                    onKeyPress  = { createEventHandler( onKeyPress, { id: hourId } ) }
+                    id          = { `${id}-hour` }
+                    onChange    = { createEventHandler( onChangeHour ) }
                     placeholder = { hourPlaceholder }
                     readOnly    = { isReadOnly || hourIsReadOnly }
                     type        = "text"
@@ -103,11 +91,8 @@ export default class TimeInput extends React.Component
                 <input
                     className   = { cssMap.min }
                     disabled    = { isDisabled || minuteIsDisabled }
-                    id          = { minId }
-                    onBlur      = { createEventHandler( onBlur, { id: minId } ) }
-                    onChange    = { createEventHandler( onChange, { id: minId } ) }
-                    onFocus     = { createEventHandler( onFocus, { id: minId } ) }
-                    onKeyPress  = { createEventHandler( onKeyPress, { id: minId } ) }
+                    id          = { `${id}-minute` }
+                    onChange    = { createEventHandler( onChangeMinute ) }
                     placeholder = { minutePlaceholder }
                     readOnly    = { isReadOnly || minuteIsReadOnly }
                     type        = "text"

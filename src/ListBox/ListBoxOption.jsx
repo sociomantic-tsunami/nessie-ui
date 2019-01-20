@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -14,7 +14,8 @@
 import React                                       from 'react';
 import PropTypes                                   from 'prop-types';
 
-import { Icon, Text }                              from '../index';
+import { Icon, Text }                              from '..';
+
 import { createEventHandler, generateId, mapAria } from '../utils';
 import ThemeContext
     from '../Theming/ThemeContext';
@@ -135,7 +136,6 @@ export default class ListBoxOption extends React.Component
             text,
             value,
         } = this.props;
-
 
         let label;
 

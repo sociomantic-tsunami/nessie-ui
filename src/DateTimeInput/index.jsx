@@ -295,13 +295,14 @@ export default class DateTimeInput extends Component
             timestamp               : undefined,
         };
 
-        this.handleChangeDatePicker = this.handleChangeDatePicker.bind( this );
-        this.handleChangeInput      = this.handleChangeInput.bind( this );
-        this.handleClickCell        = this.handleClickCell.bind( this );
-        this.handleClickIcon        = this.handleClickIcon.bind( this );
-        this.handleClickNext        = this.handleClickNext.bind( this );
-        this.handleClickOutSide     = this.handleClickOutSide.bind( this );
-        this.handleClickPrev        = this.handleClickPrev.bind( this );
+        this.handleChangeHour   = this.handleChangeHour.bind( this );
+        this.handleChangeInput  = this.handleChangeInput.bind( this );
+        this.handleChangeMinute = this.handleChangeMinute.bind( this );
+        this.handleClickCell    = this.handleClickCell.bind( this );
+        this.handleClickIcon    = this.handleClickIcon.bind( this );
+        this.handleClickNext    = this.handleClickNext.bind( this );
+        this.handleClickOutSide = this.handleClickOutSide.bind( this );
+        this.handleClickPrev    = this.handleClickPrev.bind( this );
     }
 
     static getDerivedStateFromProps( props, state )
@@ -724,7 +725,7 @@ export default class DateTimeInput extends Component
                 iconType        = "calendar"
                 id              = { id }
                 isDisabled      = { isDisabled }
-                onChange        = { this.handleChangeInput }
+                onChangeInput   = { this.handleChangeInput }
                 onClickIcon     = { this.handleClickIcon }
                 placeholder     = { inputPlaceholder }
                 spellCheck      = { false }

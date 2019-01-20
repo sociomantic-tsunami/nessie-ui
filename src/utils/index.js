@@ -48,9 +48,10 @@ function createEventHandler( func, payload )
     return function eventHandler( e )
     {
         const { currentTarget, relatedTarget, target, type } = e;
-        const eventPayload = {};
 
-        e.stopPropagation(); // encapsulate handled events
+        const eventPayload = { preventNessieDefault() { e.preventDefault(); } };
+
+        e.stopPropagation(); // (TODO: find a way to flag event as “handled” without stopping propagation)
 
         if ( [ 'blur', 'focus', 'mouseout', 'mouseover' ].includes( type ) &&
             currentTarget.contains( relatedTarget ) )
@@ -63,7 +64,7 @@ function createEventHandler( func, payload )
         }
         else if ( type === 'change' )
         {
-            eventPayload.value = e.target.value;
+            eventPayload.value = target.value;
         }
         else if ( type === 'scroll' )
         {

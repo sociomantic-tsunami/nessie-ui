@@ -57,7 +57,7 @@
 {
     .input
     {
-        padding-right:   var( --inputPadding );
+        padding-right:  var( --inputPadding );
     }
 
     .icon

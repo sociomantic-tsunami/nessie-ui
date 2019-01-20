@@ -11,8 +11,9 @@ import React                                       from 'react';
 import PropTypes                                   from 'prop-types';
 
 import { createEventHandler, mapAria, generateId } from '../utils';
-import ThemeContext                                from '../Theming/ThemeContext';
-import { createCssMap }                            from '../Theming';
+import ThemeContext
+    from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming';
 
 export default class InputField extends React.Component
 {
@@ -88,10 +89,6 @@ export default class InputField extends React.Component
          */
         name         : PropTypes.string,
         /**
-         *  Blur callback function
-         */
-        onBlur       : PropTypes.func,
-        /**
          *  Input change callback function
          */
         onChange     : PropTypes.func,
@@ -100,33 +97,9 @@ export default class InputField extends React.Component
          */
         onClick      : PropTypes.func,
         /**
-         *  Icon click callback function
-         */
-        onClickIcon  : PropTypes.func,
-        /**
-         *  Focus callback function
-         */
-        onFocus      : PropTypes.func,
-        /**
          *  Key down callback function
          */
         onKeyDown    : PropTypes.func,
-        /**
-         *  Key press callback function
-         */
-        onKeyPress   : PropTypes.func,
-        /**
-         *  Key up callback function
-         */
-        onKeyUp      : PropTypes.func,
-        /**
-         *  Mouse out callback function
-         */
-        onMouseOut   : PropTypes.func,
-        /**
-         *  Mouse over  callback function
-         */
-        onMouseOver  : PropTypes.func,
         /**
          *  Placeholder text
          */
@@ -169,22 +142,15 @@ export default class InputField extends React.Component
         isReadOnly     : false,
         isResizable    : undefined,
         name           : undefined,
-        onBlur         : undefined,
         onChange       : undefined,
         onClick        : undefined,
-        onClickIcon    : undefined,
-        onFocus        : undefined,
         onKeyDown      : undefined,
-        onKeyPress     : undefined,
-        onKeyUp        : undefined,
-        onMouseOut     : undefined,
-        onMouseOver    : undefined,
         placeholder    : undefined,
         rows           : undefined,
         spellCheck     : undefined,
         textAlign      : 'left',
         type           : 'text',
-        value          : '',
+        value          : undefined,
     };
 
     static displayName = 'InputField';
@@ -209,15 +175,9 @@ export default class InputField extends React.Component
             isDisabled,
             isReadOnly,
             name,
-            onBlur,
             onChange,
             onClick,
-            onFocus,
             onKeyDown,
-            onKeyPress,
-            onKeyUp,
-            onMouseOut,
-            onMouseOver,
             placeholder,
             rows,
             spellCheck,
@@ -237,15 +197,9 @@ export default class InputField extends React.Component
                 disabled       = { isDisabled }
                 id             = { id }
                 name           = { name }
-                onBlur         = { createEventHandler( onBlur, { id } ) }
                 onChange       = { createEventHandler( onChange, { id } ) }
                 onClick        = { createEventHandler( onClick, { id } ) }
-                onFocus        = { createEventHandler( onFocus, { id } ) }
                 onKeyDown      = { createEventHandler( onKeyDown, { id } ) }
-                onKeyPress     = { createEventHandler( onKeyPress, { id } ) }
-                onKeyUp        = { createEventHandler( onKeyUp, { id } ) }
-                onMouseOut     = { createEventHandler( onMouseOut, { id } ) }
-                onMouseOver    = { createEventHandler( onMouseOver, { id } ) }
                 placeholder    = { placeholder }
                 readOnly       = { isReadOnly }
                 ref            = { this.inputRef }

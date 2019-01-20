@@ -129,25 +129,9 @@ export default class IconButton extends React.Component
          */
         label       : PropTypes.string,
         /**
-         *  Button blur callback function
-         */
-        onBlur      : PropTypes.func,
-        /**
          *  Button click callback function: ( e ) => { ... }
          */
         onClick     : PropTypes.func,
-        /**
-         *  Button focus callback function
-         */
-        onFocus     : PropTypes.func,
-        /**
-         *  onMouseOut callback function : ( e ) => { ... }
-         */
-        onMouseOut  : PropTypes.func,
-        /**
-         *  onMouseOver callback function : ( e ) => { ... }
-         */
-        onMouseOver : PropTypes.func,
         /**
          *  HTML value attribute
          */
@@ -172,11 +156,7 @@ export default class IconButton extends React.Component
         isDisabled    : false,
         isFocusable   : true,
         label         : undefined,
-        onBlur        : undefined,
         onClick       : undefined,
-        onFocus       : undefined,
-        onMouseOut    : undefined,
-        onMouseOver   : undefined,
         role          : 'default',
         value         : undefined,
     };
@@ -195,11 +175,7 @@ export default class IconButton extends React.Component
             isDisabled,
             isFocusable,
             label,
-            onBlur,
             onClick,
-            onFocus,
-            onMouseOut,
-            onMouseOver,
             value,
         } = this.props;
 
@@ -208,12 +184,8 @@ export default class IconButton extends React.Component
                 className   = { cssMap.main }
                 disabled    = { isDisabled }
                 id          = { id }
-                onBlur      = { createEventHandler( onBlur, { id } ) }
                 onClick     = { createEventHandler( onClick, { id } ) }
-                onFocus     = { createEventHandler( onFocus, { id } ) }
                 onMouseDown = { !isFocusable ? killFocus : undefined }
-                onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
-                onMouseOver = { createEventHandler( onMouseOver, { id } ) }
                 ref         = { buttonRef }
                 tabIndex    = { isFocusable ? '0' : '-1' }
                 type        = "button"

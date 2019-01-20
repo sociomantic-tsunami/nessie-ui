@@ -170,7 +170,7 @@ export default class ComboBox extends Component
 
         this.handleChangeInput     = this.handleChangeInput.bind( this );
         this.handleClickIcon       = this.handleClickIcon.bind( this );
-        this.handleClickInput      = this.handleClickInput.bind( this );
+        this.handleClick      = this.handleClick.bind( this );
         this.handleClickOption     = this.handleClickOption.bind( this );
         this.handleKeyDown         = this.handleKeyDown.bind( this );
         this.handleMouseOutOption  = this.handleMouseOutOption.bind( this );
@@ -265,7 +265,7 @@ export default class ComboBox extends Component
         this.setState( prevState => ( { isOpen: !prevState.isOpen } ) );
     }
 
-    handleClickInput()
+    handleClick()
     {
         this.setState( { isOpen: true  } );
     }
@@ -495,10 +495,10 @@ export default class ComboBox extends Component
                 isDisabled      = { isDisabled }
                 isReadOnly      = { !isSearchable || !isOpen }
                 onBlur          = { this.handleBlur }
-                onChange        = { this.handleChangeInput }
-                onClick         = { this.handleClickInput }
+                onChangeInput   = { this.handleChangeInput }
+                onClick         = { this.handleClick }
                 onClickIcon     = { this.handleClickIcon }
-                onKeyDown       = { this.handleKeyDown }
+                onKeyDownInput  = { this.handleKeyDown }
                 placeholder     = { inputPlaceholder }
                 spellCheck      = { false }
                 value           = { ( isOpen && isSearchable ) ?

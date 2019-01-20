@@ -7,14 +7,13 @@
  *
  */
 
-import React                                    from 'react';
-import PropTypes                                from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { Dropdown }                             from '../..';
-import { buildDisplayName, createEventHandler } from '../../utils';
-import ThemeContext
-    from '../../Theming/ThemeContext';
-import { createCssMap } from '../../Theming';
+import { Dropdown }         from '../..';
+import { buildDisplayName } from '../../utils';
+import ThemeContext         from '../../Theming/ThemeContext';
+import { createCssMap }     from '../../Theming';
 
 
 const withDropdown = Component =>
@@ -58,18 +57,14 @@ const withDropdown = Component =>
                 dropdownIsOpen,
                 dropdownPosition,
                 dropdownProps,
-                onMouseOut,
-                onMouseOver,
                 wrapperRef,
                 ...componentProps
             } = this.props;
 
             return (
                 <div
-                    className   = { cssMap.main }
-                    onMouseOut  = { createEventHandler( onMouseOver, { id } ) }
-                    onMouseOver = { createEventHandler( onMouseOut, { id } ) }
-                    ref         = { wrapperRef }>
+                    className = { cssMap.main }
+                    ref       = { wrapperRef }>
                     <Component { ...componentProps } />
                     <Dropdown
                         { ...dropdownProps }

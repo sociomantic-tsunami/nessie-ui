@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -10,9 +10,11 @@
 import React                    from 'react';
 import PropTypes                from 'prop-types';
 
-import { ScrollBox, TabButton } from '../';
+import { ScrollBox, TabButton } from '..';
+
 import ThemeContext             from '../Theming/ThemeContext';
 import { createCssMap }         from '../Theming';
+
 
 export default class Tabs extends React.Component
 {
@@ -37,7 +39,11 @@ export default class Tabs extends React.Component
          */
         cssMap         : PropTypes.objectOf( PropTypes.string ),
         /**
-         *  Tab button click callback function: ( e, newProps ) => { ... }
+         *  Change callback function: ( { activeTabIndex } ) => ...
+         */
+        onChange       : PropTypes.func,
+        /**
+         *  Click tab callback function: ( { tabIndex } ) => ...
          */
         onClickTab     : PropTypes.func,
         /**
@@ -66,6 +72,7 @@ export default class Tabs extends React.Component
         children          : undefined,
         className         : undefined,
         cssMap            : undefined,
+        onChange          : undefined,
         onClickTab        : undefined,
         padding           : [ 'none', 'M' ],
         secondaryControls : undefined,
@@ -82,15 +89,33 @@ export default class Tabs extends React.Component
         this.handleClickTab = this.handleClickTab.bind( this );
     }
 
-    handleClickTab( { value : tabIndex }, e )
+    handleClickTab( { tabIndex }, e )
     {
-        const { onClickTab } = this.props;
-        if ( onClickTab )
+        const { onClickTab, onChange } = this.props;
+        let nessieDefaultPrevented = false;
+
+        if ( typeof onClickTab === 'function' )
         {
-            onClickTab( { tabIndex }, e );
+            onClickTab(
+                {
+                    preventNessieDefault()
+                    {
+                        nessieDefaultPrevented = true;
+                    },
+                    tabIndex,
+                },
+                e,
+            );
         }
 
-        this.setState( { activeTabIndex: tabIndex } );
+        if ( !nessieDefaultPrevented )
+        {
+            this.setState( { activeTabIndex: tabIndex } );
+            if ( typeof onChange === 'function' )
+            {
+                onChange( { activeTabIndex: tabIndex } );
+            }
+        }
     }
 
     render()
@@ -116,7 +141,8 @@ export default class Tabs extends React.Component
                     isDisabled = { isDisabled || isActive }
                     key        = { label || tabIndex }
                     label      = { label }
-                    onClick    = { this.handleClickTab }
+                    onClick    = { !this.props.activeTabIndex ?
+                        this.handleClickTab : null }
                     tabIndex   = { tabIndex }
                     value      = { tabIndex } />
             );

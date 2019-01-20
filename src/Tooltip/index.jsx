@@ -7,13 +7,14 @@
  *
  */
 
-import React                              from 'react';
-import PropTypes                          from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { createEventHandler, generateId } from '../utils';
-import { IconButton, Text }               from '../index';
-import ThemeContext                       from '../Theming/ThemeContext';
-import { createCssMap }                   from '../Theming';
+import { IconButton, Text } from '..';
+
+import { generateId }       from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming';
 
 
 export default class Tooltip extends React.Component
@@ -35,7 +36,7 @@ export default class Tooltip extends React.Component
          */
         cssMap        : PropTypes.objectOf( PropTypes.string ),
         /**
-         * HTML id attribute
+         * Component id
          */
         id            : PropTypes.string,
         /**
@@ -50,14 +51,6 @@ export default class Tooltip extends React.Component
          *  Function to call on “Close” button click: ( e ) => { ... }
          */
         onClickClose  : PropTypes.func,
-        /**
-         *  onMouseOver callback function: ( e ) => { ... }
-         */
-        onMouseOver   : PropTypes.func,
-        /**
-         *  onMouseOut callback function: ( e ) => { ... }
-         */
-        onMouseOut    : PropTypes.func,
         /**
          *  Tooltip position relative to associated component
          */
@@ -95,8 +88,6 @@ export default class Tooltip extends React.Component
         isDismissible : undefined,
         message       : undefined,
         onClickClose  : undefined,
-        onMouseOut    : undefined,
-        onMouseOver   : undefined,
         position      : 'top',
         role          : 'default',
     };
@@ -117,19 +108,15 @@ export default class Tooltip extends React.Component
             isDismissible,
             message,
             onClickClose,
-            onMouseOut,
-            onMouseOver,
         } = this.props;
 
         const { id } = this.state;
 
         return (
             <div
-                className    = { cssMap.main }
-                id           = { id }
-                onMouseEnter = { createEventHandler( onMouseOut, { id } ) }
-                onMouseLeave = { createEventHandler( onMouseOver, { id } ) }
-                role         = "tooltip">
+                className = { cssMap.main }
+                id        = { id }
+                role      = "tooltip">
                 <div className = { cssMap.message }>
                     { children || ( typeof message === 'string' ?
                         <Text>{ message }</Text> : message )
