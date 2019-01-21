@@ -14,6 +14,7 @@ import PropTypes                        from 'prop-types';
 import { generateId, buildClassName }   from '../utils';
 import IconWithTooltip                  from '../IconWithTooltip';
 import Label                            from '../Label';
+import EventListener, {withOptions} from 'react-event-listener';
 
 
 export default class Slider extends React.Component
@@ -800,65 +801,68 @@ export default class Slider extends React.Component
         );
 
         return (
-            <div
-                className = { buildClassName( className, cssMap, {
-                    disabled            : isDisabled,
-                    error               : !isDisabled && hasError,
-                    grabbing            : this.state.isGrabbing,
-                    handleLabelPosition : hasHandleLabels &&
-                        handleLabelPosition,
-                        hasHandleLabels,
-                        orientation,
-                } ) }
-                onMouseEnter = { onMouseOver }
-                onMouseLeave = { onMouseOut }>
+            <EventListener
+                target={this.track}
+                onTouchStart={ withOptions(this.handleDown, { passive: false } ) }>
                 <div
-                    className = { cssMap.inputContainer }
-                    ref       = { this.setInputContainerRef }>
-                    { values.map( ( val, i ) => (
-                        <input
-                            data-index  = { i }
-                            disabled    = { isDisabled || isReadOnly }
-                            id          = { `${id}_${i}` }
-                            key         = { i } // eslint-disable-line react/no-array-index-key, max-len
-                            max         = { maxValue }
-                            min         = { minValue }
-                            onBlur      = { this.handleBlur }
-                            onChange    = { onChange }
-                            onClick     = { onClick }
-                            onFocus     = { this.handleFocus }
-                            onKeyDown   = { onKeyDown }
-                            onKeyUp     = { onKeyUp }
-                            onMouseDown = { onMouseDown }
-                            onMouseUp   = { onMouseUp }
-                            step        = { step }
-                            type        = "range"
-                            value       = { val } />
-                    ) ) }
-                </div>
-
-                { sliderLabelMarkUp }
-
-                <div className = { cssMap.trackContainer }>
-                    { ( stepLabelsTrack && !stepLabelsTrackEnd ) &&
-                        stepLabelsTrack
-                    }
+                    className = { buildClassName( className, cssMap, {
+                        disabled            : isDisabled,
+                        error               : !isDisabled && hasError,
+                        grabbing            : this.state.isGrabbing,
+                        handleLabelPosition : hasHandleLabels &&
+                            handleLabelPosition,
+                            hasHandleLabels,
+                            orientation,
+                    } ) }
+                    onMouseEnter = { onMouseOver }
+                    onMouseLeave = { onMouseOut }>
                     <div
-                        aria-hidden
-                        className    = { cssMap.track }
-                        onClick      = { this.handleClick }
-                        onMouseDown  = { this.handleDown }
-                        onTouchStart = { this.handleDown }
-                        ref          = { this.setTrackRef }>
-                        { trackFillMarkUp }
-                        { values.map( buildHandle ) }
-                        { ticksMarkUp }
+                        className = { cssMap.inputContainer }
+                        ref       = { this.setInputContainerRef }>
+                        { values.map( ( val, i ) => (
+                            <input
+                                data-index  = { i }
+                                disabled    = { isDisabled || isReadOnly }
+                                id          = { `${id}_${i}` }
+                                key         = { i } // eslint-disable-line react/no-array-index-key, max-len
+                                max         = { maxValue }
+                                min         = { minValue }
+                                onBlur      = { this.handleBlur }
+                                onChange    = { onChange }
+                                onClick     = { onClick }
+                                onFocus     = { this.handleFocus }
+                                onKeyDown   = { onKeyDown }
+                                onKeyUp     = { onKeyUp }
+                                onMouseDown = { onMouseDown }
+                                onMouseUp   = { onMouseUp }
+                                step        = { step }
+                                type        = "range"
+                                value       = { val } />
+                        ) ) }
                     </div>
-                    { ( stepLabelsTrack && stepLabelsTrackEnd ) &&
-                        stepLabelsTrack
-                    }
+
+                    { sliderLabelMarkUp }
+
+                    <div className = { cssMap.trackContainer }>
+                        { ( stepLabelsTrack && !stepLabelsTrackEnd ) &&
+                            stepLabelsTrack
+                        }
+                        <div
+                            aria-hidden
+                            className    = { cssMap.track }
+                            onClick      = { this.handleClick }
+                            onMouseDown  = { this.handleDown }
+                            ref          = { this.setTrackRef }>
+                            { trackFillMarkUp }
+                            { values.map( buildHandle ) }
+                            { ticksMarkUp }
+                        </div>
+                        { ( stepLabelsTrack && stepLabelsTrackEnd ) &&
+                            stepLabelsTrack
+                        }
+                    </div>
                 </div>
-            </div>
+            </EventListener>
         );
     }
 }
