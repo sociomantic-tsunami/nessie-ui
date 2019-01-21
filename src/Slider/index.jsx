@@ -234,6 +234,7 @@ export default class Slider extends React.Component
     componentDidMount()
     {
         this.attachInputRefs();
+        this.track.addEventListener( 'touchstart', this.handleDown );
     }
 
     componentWillUpdate( nextProps )
@@ -258,6 +259,7 @@ export default class Slider extends React.Component
     componentWillUnmount()
     {
         this.detachInputRefs();
+        this.track.removeEventListener( 'touchstart', this.handleDown );
     }
 
     /* eslint-disable react/sort-comp */
@@ -848,7 +850,6 @@ export default class Slider extends React.Component
                         className    = { cssMap.track }
                         onClick      = { this.handleClick }
                         onMouseDown  = { this.handleDown }
-                        onTouchStart = { this.handleDown }
                         ref          = { this.setTrackRef }>
                         { trackFillMarkUp }
                         { values.map( buildHandle ) }
