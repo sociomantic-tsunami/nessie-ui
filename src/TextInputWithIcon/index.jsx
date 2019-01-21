@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -7,13 +7,15 @@
  *
  */
 
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React                      from 'react';
+import PropTypes                  from 'prop-types';
 
-import { generateId }                      from '../utils';
-import { IconButton, InputField, Tooltip } from '../index';
-import ThemeContext                        from '../Theming/ThemeContext';
-import { createCssMap }                    from '../Theming';
+import { IconButton, InputField } from '..';
+
+import ThemeContext               from '../Theming/ThemeContext';
+import { generateId }             from '../utils';
+import { createCssMap }           from '../Theming';
+
 
 export default class TextInputWithIcon extends React.Component
 {
@@ -72,25 +74,6 @@ export default class TextInputWithIcon extends React.Component
          *  Alignment of the icon
          */
         iconPosition         : PropTypes.oneOf( [ 'left', 'right' ] ),
-        /**
-         *  Display the icon tooltip
-         */
-        iconTooltipIsVisible : PropTypes.bool,
-        /**
-         *  icon Tooltip message text (string or JSX)
-         */
-        iconTooltipMessage   : PropTypes.node,
-        /**
-         *  Icon Tooltip position relative to icon
-         */
-        iconTooltipPosition  : PropTypes.oneOf( [
-            'left',
-            'right',
-            'top',
-            'bottom',
-            'topLeft',
-            'topRight',
-        ] ),
         /**
          *  Icon type to display (overrides customIcon)
          */
@@ -259,9 +242,6 @@ export default class TextInputWithIcon extends React.Component
         hasError             : false,
         iconButtonIsDisabled : false,
         iconPosition         : 'right',
-        iconTooltipIsVisible : false,
-        iconTooltipMessage   : undefined,
-        iconTooltipPosition  : 'top',
         iconType             : 'none',
         id                   : undefined,
         inputRef             : undefined,
@@ -303,9 +283,6 @@ export default class TextInputWithIcon extends React.Component
             hasError,
             iconButtonIsDisabled,
             iconPosition,
-            iconTooltipIsVisible,
-            iconTooltipMessage,
-            iconTooltipPosition,
             iconType,
             id = generateId( 'TextInputWithIcon' ),
             inputRef,
@@ -372,24 +349,16 @@ export default class TextInputWithIcon extends React.Component
                     type           = { inputType }
                     value          = { value } />
                 { ( iconType && iconType !== 'none' ) &&
-                    <Tooltip
+                    <IconButton
                         className   = { cssMap.icon }
                         hasError    = { hasError }
-                        isDisabled  = { isDisabled }
-                        isReadOnly  = { isReadOnly }
-                        isVisible   = { iconTooltipIsVisible }
-                        message     = { iconTooltipMessage }
+                        iconType    = { iconType }
+                        isDisabled  = { isDisabled || iconButtonIsDisabled }
+                        isFocusable = { false }
+                        isReadOnly  = { isReadOnlyButton || isReadOnly }
+                        onClick     = { onClickIcon }
                         onMouseOut  = { onMouseOutIcon }
-                        onMouseOver = { onMouseOverIcon }
-                        position    = { iconTooltipPosition } >
-                        <IconButton
-                            hasError    = { hasError }
-                            iconType    = { iconType }
-                            isDisabled  = { isDisabled || iconButtonIsDisabled }
-                            isFocusable = { false }
-                            isReadOnly  = { isReadOnlyButton || isReadOnly }
-                            onClick     = { onClickIcon } />
-                    </Tooltip>
+                        onMouseOver = { onMouseOverIcon } />
                 }
             </div>
         );
