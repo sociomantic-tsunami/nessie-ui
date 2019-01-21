@@ -12,7 +12,7 @@
 import React            from 'react';
 import { mount }        from 'enzyme';
 
-import { DatePicker }   from '../index';
+import { DatePicker }   from '..';
 
 describe( 'DatePickerDriver', () =>
 {

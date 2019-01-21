@@ -54,7 +54,7 @@ function prefixOptions( options = [], prefix )
 
         return {
             ...option,
-            id : addPrefix( option.id, prefix )
+            id : addPrefix( option.id, prefix ),
         };
     } );
 }

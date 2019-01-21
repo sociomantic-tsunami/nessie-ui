@@ -10,7 +10,8 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { Text }             from '../index';
+import { Text }             from '..';
+
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming';
 
@@ -56,7 +57,7 @@ export default class DatePickerItem extends React.Component
     handleClick( e )
     {
         e.preventDefault();
-        
+
         const { isReadOnly, onClick } = this.props;
         if ( !isReadOnly && onClick )
         {

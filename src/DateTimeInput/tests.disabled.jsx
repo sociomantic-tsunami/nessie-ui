@@ -12,7 +12,7 @@
 // import React                from 'react';
 // import { mount }            from 'enzyme';
 //
-// import { DateTimeInput }    from '../index';
+// import { DateTimeInput }    from '..';
 //
 // describe( 'DateTimeInputDriver', () =>
 // {
