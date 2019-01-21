@@ -14,7 +14,6 @@ import PropTypes                        from 'prop-types';
 import { generateId, buildClassName }   from '../utils';
 import IconWithTooltip                  from '../IconWithTooltip';
 import Label                            from '../Label';
-import EventListener, {withOptions}     from 'react-event-listener';
 
 
 export default class Slider extends React.Component
@@ -235,7 +234,7 @@ export default class Slider extends React.Component
     componentDidMount()
     {
         this.attachInputRefs();
-        this.track.addEventListener('touchstart', this.handleDown);
+        this.track.addEventListener( 'touchstart', this.handleDown );
     }
 
     componentWillUpdate( nextProps )
@@ -260,8 +259,7 @@ export default class Slider extends React.Component
     componentWillUnmount()
     {
         this.detachInputRefs();
-        this.track.removeEventListener('touchstart', this.handleDown);
-
+        this.track.removeEventListener( 'touchstart', this.handleDown );
     }
 
     /* eslint-disable react/sort-comp */
