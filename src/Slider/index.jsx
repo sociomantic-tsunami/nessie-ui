@@ -14,7 +14,7 @@ import PropTypes                        from 'prop-types';
 import { generateId, buildClassName }   from '../utils';
 import IconWithTooltip                  from '../IconWithTooltip';
 import Label                            from '../Label';
-import EventListener, {withOptions} from 'react-event-listener';
+import EventListener, {withOptions}     from 'react-event-listener';
 
 
 export default class Slider extends React.Component
@@ -235,6 +235,7 @@ export default class Slider extends React.Component
     componentDidMount()
     {
         this.attachInputRefs();
+        this.track.addEventListener('touchstart', this.handleDown);
     }
 
     componentWillUpdate( nextProps )
@@ -259,6 +260,8 @@ export default class Slider extends React.Component
     componentWillUnmount()
     {
         this.detachInputRefs();
+        this.track.removeEventListener('touchstart', this.handleDown);
+
     }
 
     /* eslint-disable react/sort-comp */
@@ -801,68 +804,64 @@ export default class Slider extends React.Component
         );
 
         return (
-            <EventListener
-                target={this.track}
-                onTouchStart={ withOptions(this.handleDown, { passive: false } ) }>
+            <div
+                className = { buildClassName( className, cssMap, {
+                    disabled            : isDisabled,
+                    error               : !isDisabled && hasError,
+                    grabbing            : this.state.isGrabbing,
+                    handleLabelPosition : hasHandleLabels &&
+                        handleLabelPosition,
+                        hasHandleLabels,
+                        orientation,
+                } ) }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }>
                 <div
-                    className = { buildClassName( className, cssMap, {
-                        disabled            : isDisabled,
-                        error               : !isDisabled && hasError,
-                        grabbing            : this.state.isGrabbing,
-                        handleLabelPosition : hasHandleLabels &&
-                            handleLabelPosition,
-                            hasHandleLabels,
-                            orientation,
-                    } ) }
-                    onMouseEnter = { onMouseOver }
-                    onMouseLeave = { onMouseOut }>
-                    <div
-                        className = { cssMap.inputContainer }
-                        ref       = { this.setInputContainerRef }>
-                        { values.map( ( val, i ) => (
-                            <input
-                                data-index  = { i }
-                                disabled    = { isDisabled || isReadOnly }
-                                id          = { `${id}_${i}` }
-                                key         = { i } // eslint-disable-line react/no-array-index-key, max-len
-                                max         = { maxValue }
-                                min         = { minValue }
-                                onBlur      = { this.handleBlur }
-                                onChange    = { onChange }
-                                onClick     = { onClick }
-                                onFocus     = { this.handleFocus }
-                                onKeyDown   = { onKeyDown }
-                                onKeyUp     = { onKeyUp }
-                                onMouseDown = { onMouseDown }
-                                onMouseUp   = { onMouseUp }
-                                step        = { step }
-                                type        = "range"
-                                value       = { val } />
-                        ) ) }
-                    </div>
-
-                    { sliderLabelMarkUp }
-
-                    <div className = { cssMap.trackContainer }>
-                        { ( stepLabelsTrack && !stepLabelsTrackEnd ) &&
-                            stepLabelsTrack
-                        }
-                        <div
-                            aria-hidden
-                            className    = { cssMap.track }
-                            onClick      = { this.handleClick }
-                            onMouseDown  = { this.handleDown }
-                            ref          = { this.setTrackRef }>
-                            { trackFillMarkUp }
-                            { values.map( buildHandle ) }
-                            { ticksMarkUp }
-                        </div>
-                        { ( stepLabelsTrack && stepLabelsTrackEnd ) &&
-                            stepLabelsTrack
-                        }
-                    </div>
+                    className = { cssMap.inputContainer }
+                    ref       = { this.setInputContainerRef }>
+                    { values.map( ( val, i ) => (
+                        <input
+                            data-index  = { i }
+                            disabled    = { isDisabled || isReadOnly }
+                            id          = { `${id}_${i}` }
+                            key         = { i } // eslint-disable-line react/no-array-index-key, max-len
+                            max         = { maxValue }
+                            min         = { minValue }
+                            onBlur      = { this.handleBlur }
+                            onChange    = { onChange }
+                            onClick     = { onClick }
+                            onFocus     = { this.handleFocus }
+                            onKeyDown   = { onKeyDown }
+                            onKeyUp     = { onKeyUp }
+                            onMouseDown = { onMouseDown }
+                            onMouseUp   = { onMouseUp }
+                            step        = { step }
+                            type        = "range"
+                            value       = { val } />
+                    ) ) }
                 </div>
-            </EventListener>
+
+                { sliderLabelMarkUp }
+
+                <div className = { cssMap.trackContainer }>
+                    { ( stepLabelsTrack && !stepLabelsTrackEnd ) &&
+                        stepLabelsTrack
+                    }
+                    <div
+                        aria-hidden
+                        className    = { cssMap.track }
+                        onClick      = { this.handleClick }
+                        onMouseDown  = { this.handleDown }
+                        ref          = { this.setTrackRef }>
+                        { trackFillMarkUp }
+                        { values.map( buildHandle ) }
+                        { ticksMarkUp }
+                    </div>
+                    { ( stepLabelsTrack && stepLabelsTrackEnd ) &&
+                        stepLabelsTrack
+                    }
+                </div>
+            </div>
         );
     }
 }
