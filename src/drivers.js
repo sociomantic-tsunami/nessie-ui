@@ -9,9 +9,7 @@
 
 import { ComponentDriver } from 'componentDriver';
 import {
-    // ComboBox,
     DatePicker,
-    // DateTimeInput,
     IconButton,
     InputField,
     ListBox,
@@ -25,9 +23,7 @@ import {
     Tooltip,
 } from 'nessie-ui';
 
-// import ComboBoxDriver          from './ComboBox/driver';
 import DatePickerDriver        from './DatePicker/driver';
-// import DateTimeInputDriver     from './DateTimeInput/driver';
 import IconButtonDriver        from './IconButton/driver';
 import InputFieldDriver        from './InputField/driver';
 import ListBoxDriver           from './ListBox/driver';
@@ -43,18 +39,10 @@ import TooltipDriver           from './Tooltip/driver';
 
 const drivers =
 [
-    // {
-    //     Component : ComboBox,
-    //     Driver    : ComboBoxDriver,
-    // },
     {
         Component : DatePicker,
         Driver    : DatePickerDriver,
     },
-    // {
-    //     Component : DateTimeInput,
-    //     Driver    : DateTimeInputDriver,
-    // },
     {
         Component : IconButton,
         Driver    : IconButtonDriver,
