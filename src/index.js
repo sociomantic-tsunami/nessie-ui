@@ -8,33 +8,31 @@
  */
 
 
-import ComboBox                 from './ComboBox';
-import DatePicker               from './DatePicker';
-import DatePickerStateful       from './DatePickerStateful';
-import DateTimeInput            from './DateTimeInput';
-import Dropdown                 from './Dropdown';
-import Grid                     from './Grid';
-import GridItem                 from './GridItem';
-import Icon                     from './Icon';
-import IconButton               from './IconButton';
-import InputField               from './InputField';
-import ListBox                  from './ListBox';
-import PasswordInput            from './PasswordInput';
-import ScrollBar                from './ScrollBar';
-import ScrollBox                from './ScrollBox';
-import SpriteMap                from './SpriteMap';
-import Tab                      from './Tab';
-import TabButton                from './TabButton';
-import Tabs                     from './Tabs';
-import Text                     from './Text';
-import TextInputWithIcon        from './TextInputWithIcon';
-import Tooltip                  from './Tooltip';
+import ComboBox              from './ComboBox';
+import DatePicker            from './DatePicker';
+import DateTimeInput         from './DateTimeInput';
+import Dropdown              from './Dropdown';
+import Grid                  from './Grid';
+import GridItem              from './GridItem';
+import Icon                  from './Icon';
+import IconButton            from './IconButton';
+import InputField            from './InputField';
+import ListBox               from './ListBox';
+import PasswordInput         from './PasswordInput';
+import ScrollBar             from './ScrollBar';
+import ScrollBox             from './ScrollBox';
+import SpriteMap             from './SpriteMap';
+import Tab                   from './Tab';
+import TabButton             from './TabButton';
+import Tabs                  from './Tabs';
+import Text                  from './Text';
+import TextInputWithIcon     from './TextInputWithIcon';
+import Tooltip               from './Tooltip';
 
 
 export {
     ComboBox,
     DatePicker,
-    DatePickerStateful,
     DateTimeInput,
     Dropdown,
     Grid,
@@ -59,7 +57,6 @@ export {
 export default {
     ComboBox,
     DatePicker,
-    DatePickerStateful,
     DateTimeInput,
     Dropdown,
     Grid,

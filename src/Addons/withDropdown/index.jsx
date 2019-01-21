@@ -37,9 +37,9 @@ const withDropdown = Component =>
              */
             dropdownProps    : PropTypes.objectOf( PropTypes.any ),
             /**
-             *  Callback function that receives a ref to the outer wrapper div
+             *  Ref object to receive a ref to the outer wrapper div
              */
-            wrapperRef       : PropTypes.func,
+            wrapperRef       : PropTypes.object,
         };
 
         static defaultProps = {
