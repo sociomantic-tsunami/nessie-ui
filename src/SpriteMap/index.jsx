@@ -38,4 +38,6 @@ SpriteMap.defaultProps =
     id : undefined,
 };
 
+SpriteMap.displayName = 'SpriteMap';
+
 export default SpriteMap;

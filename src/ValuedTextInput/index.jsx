@@ -10,13 +10,15 @@
 import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
-import InputField                       from '../InputField';
+import { InputField }                   from '../index';
 import { generateId, buildClassName }   from '../utils';
-import styles                           from './valuedTextInput.css';
-
+import ThemeContext                     from '../Theming/ThemeContext';
+import { createCssMap }                 from '../Theming/createCss';
 
 export default class ValuedTextInput extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -66,10 +68,6 @@ export default class ValuedTextInput extends React.Component
          *  HTML id attribute
          */
         id                 : PropTypes.string,
-        /**
-         *  Callback that receives the native <input>: ( ref ) => { ... }
-         */
-        inputRef           : PropTypes.func,
         /**
          *  Display as disabled
          */
@@ -151,11 +149,9 @@ export default class ValuedTextInput extends React.Component
         autoComplete       : undefined,
         autoCorrect        : undefined,
         className          : undefined,
-        cssMap             : styles,
         forceHover         : false,
         hasError           : false,
         id                 : undefined,
-        inputRef           : undefined,
         isDisabled         : false,
         isReadOnly         : false,
         name               : undefined,
@@ -175,6 +171,8 @@ export default class ValuedTextInput extends React.Component
         valueLabel         : undefined,
         valueLabelPosition : 'left',
     };
+
+    static displayName = 'ValuedTextInput';
 
     constructor( props )
     {
@@ -206,11 +204,18 @@ export default class ValuedTextInput extends React.Component
         }
     }
 
+    inputRef = React.createRef();
+
+    focus()
+    {
+        this.inputRef.current.focus();
+    }
+
     render()
     {
         const {
             className,
-            cssMap,
+            cssMap = createCssMap( this.context.ValuedTextInput, this.props ),
             forceHover,
             hasError,
             id = generateId( 'ValuedTextInput' ),
@@ -240,14 +245,15 @@ export default class ValuedTextInput extends React.Component
                     fakeHovered : forceHover || isFocused,
                     position    : valueLabelPosition,
                 }  ) }
-                onMouseOut  = { onMouseOut }
-                onMouseOver = { onMouseOver }>
+                onMouseLeave = { onMouseOut }
+                onMouseEnter = { onMouseOver }>
                 <InputField
                     { ...props }
                     className    = { cssMap.input }
                     id           = { id }
                     onBlur       = { this.handleBlur }
                     onFocus      = { this.handleFocus }
+                    ref          = { this.inputRef }
                     textAlign    = { alignText } />
                 <label
                     className = { cssMap.valueLabel }

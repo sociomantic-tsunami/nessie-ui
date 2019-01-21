@@ -25,7 +25,6 @@
         color:                  var( --PC-GREY--D15 );
         font-variant-numeric:   lining-nums tabular-nums;
         font-size:              var( --typo-3 );
-        font-weight:            300;
         line-height:            var( --line-height-s );
     }
 
@@ -51,11 +50,6 @@
     min-width:          var( --spacing-4 ); /* IE fix */
     border-radius:      50%;
     margin:             4px;
-
-    &:last-child
-    {
-        margin-bottom:  4px;
-    }
 }
 
 .type__month
@@ -64,11 +58,6 @@
     width:                  68px;
     border-radius:          3px;
     margin:                 1px;
-
-    &:last-child
-    {
-        margin-bottom:      1px;
-    }
 }
 
 
@@ -82,7 +71,8 @@
 
     .text
     {
-        color:      var( --PC-WHITE );
+        color:       var( --PC-WHITE );
+        font-weight: 700;
     }
 }
 

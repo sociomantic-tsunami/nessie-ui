@@ -18,200 +18,209 @@ import React                     from 'react';
 import PropTypes                 from 'prop-types';
 
 import { clamp, buildClassName } from '../utils';
-import styles                    from './scrollBar.css';
+import ThemeContext              from '../Theming/ThemeContext';
+import { createCssMap }          from '../Theming/createCss';
 
-
-const ScrollBar = ( {
-    className,
-    cssMap,
-    onChange,
-    onClickTrack,
-    onThumbDragStart,
-    onThumbDragEnd,
-    onMouseOut,
-    onMouseOver,
-    orientation,
-    scrollBoxId,
-    scrollMax,
-    scrollMin,
-    scrollPos,
-    thumbSize,
-} ) =>
+export default class ScrollBar extends React.Component
 {
-    const isVertical = orientation === 'vertical';
-    const scrollLength = Math.abs( scrollMax - scrollMin );
-    const thumbOffset =
-        `calc( ${scrollPos / scrollLength} * ( 100% - ${thumbSize} ) )`;
+    static contextType = ThemeContext;
 
-    let trackRef = null;
-    let thumbRef = null;
+    static propTypes =
+    {
+        /**
+         *  Extra CSS class name
+         */
+        className        : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap           : PropTypes.objectOf( PropTypes.string ),
+        /**
+         *  orientation of the ScrollBar
+         */
+        orientation      : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
+        /**
+         *  scroll position change callback function:
+         *  ( scrollPos, e ) => { ... }
+         */
+        onChange         : PropTypes.func,
+        /**
+         *  scroll track click callback function: ( scrollPos, e ) => { ... }
+         */
+        onClickTrack     : PropTypes.func,
+        /**
+         *  mouse out callback function: e => { ... }
+         */
+        onMouseOut       : PropTypes.func,
+        /**
+         *  mouse over callback function: e => { ... }
+         */
+        onMouseOver      : PropTypes.func,
+        /**
+         *  Thumb drag start callback function: e => { ... }
+         */
+        onThumbDragStart : PropTypes.func,
+        /**
+         *  Thumb drag end callback function: e => { ... }
+         */
+        onThumbDragEnd   : PropTypes.func,
+        /**
+         *  id of the ScrollBox controlled by this ScrollBar
+         */
+        scrollBoxId      : PropTypes.string,
+        /**
+         *  Max scroll value
+         */
+        scrollMax        : PropTypes.number,
+        /**
+         *  Min scroll value
+         */
+        scrollMin        : PropTypes.number,
+        /**
+         *  Current scroll position
+         */
+        scrollPos        : PropTypes.number,
+        /**
+         *  Scroll thumb size (CSS unit)
+         */
+        thumbSize        : PropTypes.string,
+    };
 
-    return (
-        <div
-            aria-controls    = { scrollBoxId }
-            aria-orientation = { orientation }
-            aria-valuenow    = { scrollPos }
-            aria-valuemin    = { scrollMin }
-            aria-valuemax    = { scrollMax }
-            className = { buildClassName( className, cssMap, {
-                orientation,
-            } ) }
-            onClick = { e =>
-            {
-                if ( e.target !== e.currentTarget || !onClickTrack )
-                {
-                    return;
-                }
+    static defaultProps =
+    {
+        className        : undefined,
+        onChange         : undefined,
+        onMouseOut       : undefined,
+        onMouseOver      : undefined,
+        orientation      : 'horizontal',
+        onThumbDragStart : undefined,
+        onThumbDragEnd   : undefined,
+        scrollBoxId      : undefined,
+        scrollMax        : 0,
+        scrollMin        : 0,
+        scrollPos        : 0,
+        thumbSize        : '20px',
+    };
 
-                const trackLength = isVertical ?
-                    trackRef.clientHeight : trackRef.clientWidth;
-                const clickOffset = isVertical ?
-                    e.nativeEvent.offsetY : e.nativeEvent.offsetX;
+    static displayName = 'ScrollBar';
 
-                const scale = scrollLength / trackLength;
-                const newPos = clickOffset * scale;
+    render()
+    {
+        const {
+            className,
+            cssMap = createCssMap( this.context.ScrollBar, this.props ),
+            onChange,
+            onClickTrack,
+            onThumbDragStart,
+            onThumbDragEnd,
+            onMouseOut,
+            onMouseOver,
+            orientation,
+            scrollBoxId,
+            scrollMax,
+            scrollMin,
+            scrollPos,
+            thumbSize,
+        } = this.props;
 
-                onClickTrack( newPos );
-            } }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }
-            ref          = { ref => trackRef = ref }
-            role         = "scrollbar">
+        const isVertical = orientation === 'vertical';
+        const scrollLength = Math.abs( scrollMax - scrollMin );
+        const thumbOffset =
+            `calc( ${scrollPos / scrollLength} * ( 100% - ${thumbSize} ) )`;
+
+        let trackRef = null;
+        let thumbRef = null;
+
+        return (
             <div
-                className   = { cssMap.thumb }
-                onMouseDown = { md =>
+                aria-controls    = { scrollBoxId }
+                aria-orientation = { orientation }
+                aria-valuenow    = { scrollPos }
+                aria-valuemin    = { scrollMin }
+                aria-valuemax    = { scrollMax }
+                className = { buildClassName( className, cssMap, {
+                    orientation,
+                } ) }
+                onClick = { e =>
                 {
-                    if ( onThumbDragStart )
-                    {
-                        onThumbDragStart();
-                    }
-
-                    if ( !onChange )
+                    if ( e.target !== e.currentTarget || !onClickTrack )
                     {
                         return;
                     }
 
-                    md.preventDefault();
-
-                    const initialMouse = isVertical ? md.clientY : md.clientX;
                     const trackLength = isVertical ?
                         trackRef.clientHeight : trackRef.clientWidth;
+                    const clickOffset = isVertical ?
+                        e.nativeEvent.offsetY : e.nativeEvent.offsetX;
 
-                    const thumbLength = isVertical ?
-                        thumbRef.clientHeight : thumbRef.clientWidth;
+                    const scale = scrollLength / trackLength;
+                    const newPos = clickOffset * scale;
 
-                    const scale = scrollLength / ( trackLength - thumbLength );
-
-                    const handleMouseMove = mv =>
+                    onClickTrack( newPos );
+                } }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }
+                ref          = { ref => trackRef = ref }
+                role         = "scrollbar">
+                <div
+                    className   = { cssMap.thumb }
+                    onMouseDown = { md =>
                     {
-                        const mouse = isVertical ? mv.clientY : mv.clientX;
-                        const mouseDiff = mouse - initialMouse;
-                        const scrollDiff = mouseDiff * scale;
-
-                        const newPos = clamp(
-                            scrollPos + scrollDiff,
-                            scrollMin, scrollMax,
-                        );
-
-                        onChange( newPos );
-                    };
-
-                    addEventListener( 'mousemove', handleMouseMove );
-                    addEventListener( 'mouseup', function handleMouseUp()
-                    {
-                        if ( onThumbDragEnd )
+                        if ( onThumbDragStart )
                         {
-                            onThumbDragEnd();
+                            onThumbDragStart();
                         }
 
-                        removeEventListener( 'mousemove', handleMouseMove );
-                        removeEventListener( 'mouseup', handleMouseUp );
-                    } );
-                } }
-                ref   = { ref => thumbRef = ref }
-                style = { {
-                    [ isVertical ? 'height' : 'width' ] : thumbSize,
-                    [ isVertical ? 'top'    : 'left'  ] : thumbOffset,
-                } } />
-        </div>
-    );
-};
+                        if ( !onChange )
+                        {
+                            return;
+                        }
 
-ScrollBar.propTypes =
-{
-    /**
-     *  Extra CSS class name
-     */
-    className        : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap           : PropTypes.objectOf( PropTypes.string ),
-    /**
-     *  orientation of the ScrollBar
-     */
-    orientation      : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
-    /**
-     *  scroll position change callback function: ( scrollPos, e ) => { ... }
-     */
-    onChange         : PropTypes.func,
-    /**
-     *  scroll track click callback function: ( scrollPos, e ) => { ... }
-     */
-    onClickTrack     : PropTypes.func,
-    /**
-     *  mouse out callback function: e => { ... }
-     */
-    onMouseOut       : PropTypes.func,
-    /**
-     *  mouse over callback function: e => { ... }
-     */
-    onMouseOver      : PropTypes.func,
-    /**
-     *  Thumb drag start callback function: e => { ... }
-     */
-    onThumbDragStart : PropTypes.func,
-    /**
-     *  Thumb drag end callback function: e => { ... }
-     */
-    onThumbDragEnd   : PropTypes.func,
-    /**
-     *  id of the ScrollBox controlled by this ScrollBar
-     */
-    scrollBoxId      : PropTypes.string,
-    /**
-     *  Max scroll value
-     */
-    scrollMax        : PropTypes.number,
-    /**
-     *  Min scroll value
-     */
-    scrollMin        : PropTypes.number,
-    /**
-     *  Current scroll position
-     */
-    scrollPos        : PropTypes.number,
-    /**
-     *  Scroll thumb size (CSS unit)
-     */
-    thumbSize        : PropTypes.string,
-};
+                        md.preventDefault();
 
-ScrollBar.defaultProps =
-{
-    className        : undefined,
-    cssMap           : styles,
-    onChange         : undefined,
-    onMouseOut       : undefined,
-    onMouseOver      : undefined,
-    orientation      : 'horizontal',
-    onThumbDragStart : undefined,
-    onThumbDragEnd   : undefined,
-    scrollBoxId      : undefined,
-    scrollMax        : 0,
-    scrollMin        : 0,
-    scrollPos        : 0,
-    thumbSize        : '20px',
-};
+                        const initialMouse = isVertical ?
+                            md.clientY : md.clientX;
+                        const trackLength = isVertical ?
+                            trackRef.clientHeight : trackRef.clientWidth;
 
-export default ScrollBar;
+                        const thumbLength = isVertical ?
+                            thumbRef.clientHeight : thumbRef.clientWidth;
+
+                        const scale =
+                            scrollLength / ( trackLength - thumbLength );
+
+                        const handleMouseMove = mv =>
+                        {
+                            const mouse = isVertical ? mv.clientY : mv.clientX;
+                            const mouseDiff = mouse - initialMouse;
+                            const scrollDiff = mouseDiff * scale;
+
+                            const newPos = clamp(
+                                scrollPos + scrollDiff,
+                                scrollMin, scrollMax,
+                            );
+
+                            onChange( newPos );
+                        };
+
+                        addEventListener( 'mousemove', handleMouseMove );
+                        addEventListener( 'mouseup', function handleMouseUp()
+                        {
+                            if ( onThumbDragEnd )
+                            {
+                                onThumbDragEnd();
+                            }
+
+                            removeEventListener( 'mousemove', handleMouseMove );
+                            removeEventListener( 'mouseup', handleMouseUp );
+                        } );
+                    } }
+                    ref   = { ref => thumbRef = ref }
+                    style = { {
+                        [ isVertical ? 'height' : 'width' ] : thumbSize,
+                        [ isVertical ? 'top'    : 'left'  ] : thumbOffset,
+                    } } />
+            </div>
+        );
+    }
+}

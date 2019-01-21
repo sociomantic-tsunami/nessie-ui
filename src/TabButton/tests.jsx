@@ -7,13 +7,12 @@
  *
  */
 
-/* global test jest */
+/* eslint-disable no-magic-numbers */
 
 import React            from 'react';
 import { mount }        from 'enzyme';
 
 import { TabButton }    from '../index';
-
 
 describe( 'TabButton', () =>
 {
@@ -21,7 +20,7 @@ describe( 'TabButton', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <TabButton /> );
+        wrapper = mount( <TabButton /> );
     } );
 
     describe( 'render()', () =>
@@ -36,31 +35,38 @@ describe( 'TabButton', () =>
 describe( 'TabButton Driver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <TabButton /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'click()', () =>
     {
-        test( 'should trigger onClick', () =>
+        test( 'should trigger onClick callback prop once', () =>
         {
             const onClick = jest.fn();
-            wrapper.setProps( { onClick } );
+            wrapper.setProps( {
+                onClick,
+            } );
 
-            wrapper.driver().click();
+            driver.click();
 
-            expect( onClick ).toBeCalled();
+            expect( onClick ).toBeCalledTimes( 1 );
         } );
 
         test( 'should return error if disabled', () =>
         {
             const onClick = jest.fn();
-            wrapper.setProps( { isDisabled: true, onClick } );
+            wrapper.setProps( {
+                onClick,
+                isDisabled : true,
+            } );
 
-            expect( () => wrapper.driver().click() ).toThrowError( 'Button \
-cannot be clicked because it is disabled' );
+            expect( () => driver.click() ).toThrowError( 'TabButton cannot be \
+clicked because it is disabled' );
         } );
     } );
 } );

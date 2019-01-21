@@ -7,17 +7,6 @@
  *
  */
 
-const ERRORS =
-    {
-        CANNOT_SELECT_ITEMS : ( byWhat, index ) => `Item(s) not found by \
-${byWhat}: ${index}. item(s) cannot selected.`,
-        CANNOT_DESELECT_TAGS : 'Cannot deselect tags when flounder dropdown is \
-not configured with multipleTags',
-        DROPDOWN_DISABLED : 'Cannot change the flounder dropdown value since \
-it is disabled',
-        DROPDOWN_READ_ONLY : 'Cannot change the flounder dropdown value since \
-it is read-only'
-    };
 
 /**
  * Driver for flounder dropdown driver. The flounder dropdown uses currently
@@ -31,6 +20,7 @@ it is read-only'
  * otherwise I think it's possible to change the elements through
  * this.flounderControl.refs and re-render the wrapper.
  */
+
 export default class FlounderDropdownDriver
 {
     constructor( wrapper )
@@ -41,138 +31,44 @@ export default class FlounderDropdownDriver
         this.innerFlounderComponent = wrapper.instance().flounderInstance;
     }
 
-    /**
-     * Choosing Item in an opened Dropdown.
-     * @param {String|String[]} value - value or array of values of the selected
-     * items
-     * @return {Object} wrapper
-     */
-    chooseItemByValue( value )
-    {
-        return chooseItem( ( ...params ) =>
-            this.innerFlounderComponent.clickByValue( ...params ),
-            value,
-            'value',
-            this.wrapper
-        );
-    }
-
-    /**
-     * Choosing Item in an opened Dropdown.
-     * @param {String|String[]} text - text or array of texts of the selected
-     * items
-     * @return {Object} wrapper
-     */
-    chooseItemByText( text )
-    {
-        return chooseItem( ( ...params ) =>
-            this.innerFlounderComponent.clickByText( ...params ),
-            text,
-            'text',
-            this.wrapper
-        );
-    }
-
-     /**
-     * Click dropdown option(s) by index
-     * @param {int|int[]} index - index or array of indexes of the selected
-     * items
-     * @return {Object} wrapper
-     */
-    chooseItemByIndex( index )
-    {
-        /* since the placeholder is always at index 0 in Flounder’s internal
-         * representation we increment the index (or indices) by 1
-         */
-        const internalIndex = Array.isArray( index ) ?
-            index.map( i => i + 1 ) : index + 1;
-
-        return chooseItem( ( ...params ) =>
-            this.innerFlounderComponent.clickByIndex( ...params ),
-            internalIndex,
-            'index',
-            this.wrapper
-        );
-    }
-
-    /**
-     * Removes all tags by clicking on them (only for flounder configured for
-     * tags)
-     * @return {Object} wrapper
-     */
-    removeAllTags()
-    {
-        if ( this.wrapper.prop( 'isDisabled' ) )
-        {
-            throw new Error( ERRORS.DROPDOWN_DISABLED );
-        }
-
-        if ( this.wrapper.prop( 'isReadOnly' ) )
-        {
-            throw new Error( ERRORS.DROPDOWN_READ_ONLY );
-        }
-
-        if ( !this.wrapper.prop( 'multipleTags' ) )
-        {
-            throw new Error( ERRORS.CANNOT_DESELECT_TAGS );
-        }
-
-        const tagWrapper = this.innerFlounderComponent.refs.multiTagWrapper;
-
-        const tags = Array.prototype.slice.call( tagWrapper.children, 0, -1 );
-
-        tags.forEach( el =>
-        {
-            el.children[ 0 ].click();
-        } );
-
-        return this;
-    }
-
     getFlounderAPI()
     {
         return this.innerFlounderComponent;
     }
 
-    getSelectedValues()
+    change( val )
     {
-        return this.innerFlounderComponent.getSelectedValues();
+        this.innerFlounderComponent.onChange( val );
+        return this;
     }
 
-    getSelectedItems()
+    close()
     {
-        return this.innerFlounderComponent.getSelected();
-    }
-}
-
-/**
- * General Method for selecting items
- * @param {Function} method - The flounder method to choose items with
- * @param {String|String[]|Number|Number[]} searchTerm - index/text/value
- * @param {String} errorByWhat - string representation of index/text/value
- * @param {Object} wrapper - the Enzyme ReactWrapper
- * @return {Object} wrapper
- */
-function chooseItem( method, searchTerm, errorByWhat, wrapper )
-{
-    if ( wrapper.prop( 'isDisabled' ) )
-    {
-        throw new Error( ERRORS.DROPDOWN_DISABLED );
+        this.innerFlounderComponent.onClose();
+        return this;
     }
 
-    if ( wrapper.prop( 'isReadOnly' ) )
+    open()
     {
-        throw new Error( ERRORS.DROPDOWN_READ_ONLY );
+        this.innerFlounderComponent.onOpen();
+        return this;
     }
 
-    const multiple = Array.isArray( searchTerm );
-    const selected = method( searchTerm, multiple );
-
-    if ( selected == null ||
-         ( selected instanceof Array && selected.indexOf( null ) >= 0 ) )
+    firstTouch()
     {
-        throw new Error(
-            ERRORS.CANNOT_SELECT_ITEMS( errorByWhat, searchTerm ) );
+        this.innerFlounderComponent.onFirstTouch();
+        return this;
     }
-    return this;
+
+    mouseOver()
+    {
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
+    }
 }

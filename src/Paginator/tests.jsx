@@ -7,20 +7,22 @@
  *
  */
 
-/* global test jest */
+/* eslint-disable no-magic-numbers */
 
-import React                    from 'react';
-import { mount }                from 'enzyme';
+import React            from 'react';
+import { mount }        from 'enzyme';
 
-import { Paginator }            from '../index';
+import { Paginator }    from '../index';
 
 describe( 'PaginatorDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
-        wrapper  = mount( <Paginator /> );
+        wrapper = mount( <Paginator /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'clickPrev()', () =>
@@ -35,8 +37,7 @@ describe( 'PaginatorDriver', () =>
                 showPrev : true,
             } );
 
-            wrapper.driver().clickPrev();
-
+            driver.clickPrev();
             expect( onClickPrev ).toBeCalledTimes( 1 );
         } );
     } );
@@ -53,8 +54,7 @@ describe( 'PaginatorDriver', () =>
                 showNext : true,
             } );
 
-            wrapper.driver().clickNext();
-
+            driver.clickNext();
             expect( onClickNext ).toBeCalledTimes( 1 );
         } );
     } );
@@ -71,8 +71,7 @@ describe( 'PaginatorDriver', () =>
                 shownPages : [ 10, 11, 12 ],
             } );
 
-            wrapper.driver().clickPage( 1 );
-
+            driver.clickPage( 1 );
             expect( onClickPage ).toBeCalledTimes( 1 );
         } );
     } );

@@ -76,6 +76,7 @@
         "no-multi-assign"          : "off",
         "no-multi-spaces"          : "off",
         "no-multi-str"             : "off",
+        "no-restricted-globals"    : "off",
         "no-sparse-arrays"         : "warn",
         "no-underscore-dangle"     : "off",
         "no-unreachable"           : "warn",
@@ -152,9 +153,8 @@
         "describe"   : true,
         "expect"     : true,
         "fetch"      : true,
-        "it"         : true,
-        "sinon"      : true,
-        "xit"        : true
+        "test"       : true,
+        "jest"       : true
     },
     "plugins" : [
         "arca",

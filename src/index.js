@@ -7,8 +7,6 @@
  *
  */
 
-import 'normalize.css';
-
 import Button                   from './Button';
 import Card                     from './Card';
 import CheckableGroup           from './CheckableGroup';
@@ -18,12 +16,14 @@ import Column                   from './Column';
 import ComboBox                 from './ComboBox';
 import ComboBoxStateful         from './ComboBoxStateful';
 import DatePicker               from './DatePicker';
+import DatePickerStateful       from './DatePickerStateful';
 import DateTimeInput            from './DateTimeInput';
 import DimensionsInput          from './DimensionsInput';
 import DragNDrop                from './DragNDrop';
 import Dropdown                 from './Dropdown';
 import Fieldset                 from './Fieldset';
 import Grid                     from './Grid';
+import GridItem                 from './GridItem';
 import H1                       from './H1';
 import H2                       from './H2';
 import H3                       from './H3';
@@ -50,6 +50,7 @@ import PageFooter               from './PageFooter';
 import PageHeader               from './PageHeader';
 import Paginator                from './Paginator';
 import PasswordInput            from './PasswordInput';
+import PasswordInputStateful    from './PasswordInputStateful';
 import ProgressBar              from './ProgressBar';
 import ProgressIndicator        from './ProgressIndicator';
 import Radio                    from './Radio';
@@ -84,6 +85,7 @@ import Tooltip                  from './Tooltip';
 import Uploader                 from './Uploader';
 import ValuedTextInput          from './ValuedTextInput';
 
+
 export {
     Button,
     Card,
@@ -94,12 +96,14 @@ export {
     ComboBox,
     ComboBoxStateful,
     DatePicker,
+    DatePickerStateful,
     DateTimeInput,
     DimensionsInput,
     DragNDrop,
     Dropdown,
     Fieldset,
     Grid,
+    GridItem,
     H1,
     H2,
     H3,
@@ -126,6 +130,7 @@ export {
     PageHeader,
     Paginator,
     PasswordInput,
+    PasswordInputStateful,
     ProgressBar,
     ProgressIndicator,
     Radio,
@@ -161,6 +166,7 @@ export {
     ValuedTextInput,
 };
 
+
 export default {
     Button,
     Card,
@@ -171,12 +177,14 @@ export default {
     ComboBox,
     ComboBoxStateful,
     DatePicker,
+    DatePickerStateful,
     DateTimeInput,
     DimensionsInput,
     DragNDrop,
     Dropdown,
     Fieldset,
     Grid,
+    GridItem,
     H1,
     H2,
     H3,
@@ -203,6 +211,7 @@ export default {
     PageHeader,
     Paginator,
     PasswordInput,
+    PasswordInputStateful,
     ProgressBar,
     ProgressIndicator,
     Radio,
@@ -237,6 +246,11 @@ export default {
     Uploader,
     ValuedTextInput,
 };
+
+
+// Theme context
+export ThemeContext     from './Theming/ThemeContext';
+export DefaultTheme     from './DefaultTheme';
 
 // Addons
 export CodeEditor       from './Addons/CodeEditor';

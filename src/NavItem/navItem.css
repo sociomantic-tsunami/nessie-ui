@@ -14,7 +14,6 @@
     display:        block;
     list-style:     none;
     width:          auto;
-    margin-bottom:  0;
     background:     var( --PC-WHITE );
 
     &:hover,

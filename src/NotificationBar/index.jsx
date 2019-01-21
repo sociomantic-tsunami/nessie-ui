@@ -7,87 +7,95 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                        from 'react';
+import PropTypes                    from 'prop-types';
 
-import { buildClassName }   from '../utils';
-import Icon                 from '../Icon';
-import Text                 from '../Text';
-import IconButton           from '../IconButton';
+import { buildClassName }           from '../utils';
+import { Icon, IconButton, Text }   from '../index';
+import ThemeContext                 from '../Theming/ThemeContext';
+import { createCssMap }             from '../Theming/createCss';
 
-const NotificationBar = ( {
-    children,
-    className,
-    cssMap,
-    isDismissible,
-    isFixed,
-    message,
-    messageType,
-    onClickClose,
-} ) =>
-    (
-        <div
-            className = { buildClassName( className, cssMap, {
-                top  : isFixed,
-                type : messageType,
-            } ) }>
-            <Icon
-                className = { cssMap.icon }
-                type      = "info" />
-            { ( children || message ) &&
-                <Text className = { cssMap.message }>
-                    { children || message }
-                </Text>
-            }
-            { isDismissible &&
-                <IconButton
-                    className = { cssMap.close }
-                    iconType  = "close"
-                    onClick   = { onClickClose }
-                    role      = "inverted" />
-            }
-        </div>
-    );
-
-NotificationBar.propTypes =
+export default class NotificationBar extends React.Component
 {
-    /**
-    *  Message text
-    */
-    message     : PropTypes.string,
-    /**
-     *  NotificationBar content
-     */
-    children    : PropTypes.node,
-    /**
-    *  Message type
-    */
-    messageType : PropTypes.oneOf( [
-        'alert',
-        'error',
-        'info',
-        'success',
-    ] ),
-    /**
-     *  Close button onClick callback function
-     */
-    onClickClose  : PropTypes.func,
-    /**
-    *  Message text
-    */
-    isDismissible : PropTypes.bool,
-    /**
-    *  Change position to fixed top in the viewport
-    */
-    isFixed       : PropTypes.bool,
-};
+    static contextType = ThemeContext;
 
-NotificationBar.defaultProps =
-{
-    cssMap        : require( './notificationBar.css' ),
-    isDismissible : true,
-    isFixed       : false,
-    messageType   : 'info',
-};
+    static propTypes =
+    {
+        /**
+        *  Message text
+        */
+        message     : PropTypes.string,
+        /**
+         *  NotificationBar content
+         */
+        children    : PropTypes.node,
+        /**
+        *  Message type
+        */
+        messageType : PropTypes.oneOf( [
+            'alert',
+            'error',
+            'info',
+            'success',
+        ] ),
+        /**
+         *  Close button onClick callback function
+         */
+        onClickClose  : PropTypes.func,
+        /**
+        *  Message text
+        */
+        isDismissible : PropTypes.bool,
+        /**
+        *  Change position to fixed top in the viewport
+        */
+        isFixed       : PropTypes.bool,
+    };
 
-export default NotificationBar;
+    static defaultProps =
+    {
+        isDismissible : true,
+        isFixed       : false,
+        messageType   : 'info',
+    };
+
+    static displayName = 'NotificationBar';
+
+    render()
+    {
+        const {
+            children,
+            className,
+            cssMap = createCssMap( this.context.NotificationBar, this.props ),
+            isDismissible,
+            isFixed,
+            message,
+            messageType,
+            onClickClose,
+        } = this.props;
+
+        return (
+            <div
+                className = { buildClassName( className, cssMap, {
+                    top  : isFixed,
+                    type : messageType,
+                } ) }>
+                <Icon
+                    className = { cssMap.icon }
+                    type      = "info" />
+                { ( children || message ) &&
+                    <Text className = { cssMap.message }>
+                        { children || message }
+                    </Text>
+                }
+                { isDismissible &&
+                    <IconButton
+                        className = { cssMap.close }
+                        iconType  = "close"
+                        onClick   = { onClickClose }
+                        role      = "inverted" />
+                }
+            </div>
+        );
+    }
+}

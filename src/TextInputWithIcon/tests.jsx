@@ -7,20 +7,18 @@
  *
  */
 
-/* global test */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React       from 'react';
-import { shallow } from 'enzyme';
+import React               from 'react';
+import { shallow, mount }  from 'enzyme';
 
 import {
     IconButton,
     InputField,
+    TextInputWithIcon,
+    TextInputWithIcon as WrappedTextInputWithIcon,
     Tooltip,
 } from '../index';
-
-import TextInputWithIcon from './index';
-
 
 describe( 'TextInputWithIcon', () =>
 {
@@ -30,12 +28,6 @@ describe( 'TextInputWithIcon', () =>
     {
         wrapper  = shallow( <TextInputWithIcon /> );
     } );
-
-    test( 'should be a stateless functional component', () =>
-    {
-        expect( wrapper.instance() ).toBe( null );
-    } );
-
 
     test( 'should contain exactly one InputField', () =>
     {
@@ -682,6 +674,175 @@ describe( 'TextInputWithIcon', () =>
                 expect( wrapper.find( InputField ).prop( 'forceHover' ) )
                     .toBe( true );
             } );
+        } );
+    } );
+} );
+
+
+describe( 'TextInputWithIconDriver', () =>
+{
+    let wrapper;
+    let driver;
+
+    beforeEach( () =>
+    {
+        wrapper = mount( <WrappedTextInputWithIcon /> );
+        driver  = wrapper.driver();
+    } );
+
+
+    describe( 'change( val )', () =>
+    {
+        test( 'should trigger onChange callback prop once', () =>
+        {
+            const onChange = jest.fn();
+            wrapper.setProps( { onChange } );
+
+            driver.change( 'dfg' );
+            expect( onChange ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'click()', () =>
+    {
+        test( 'should trigger onClick callback prop once', () =>
+        {
+            const onClick = jest.fn();
+            wrapper.setProps( { onClick } );
+
+            driver.click();
+            expect( onClick ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'keyDown()', () =>
+    {
+        test( 'should trigger onKeyDown callback prop once', () =>
+        {
+            const onKeyDown = jest.fn();
+            wrapper.setProps( { onKeyDown } );
+
+            driver.keyDown();
+            expect( onKeyDown ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'keyPress()', () =>
+    {
+        test( 'should trigger onKeyPress callback prop once', () =>
+        {
+            const onKeyPress = jest.fn();
+            wrapper.setProps( { onKeyPress } );
+
+            driver.keyPress();
+            expect( onKeyPress ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'keyUp()', () =>
+    {
+        test( 'should trigger onKeyUp callback prop once', () =>
+        {
+            const onKeyUp = jest.fn();
+            wrapper.setProps( { onKeyUp } );
+
+            driver.keyUp();
+            expect( onKeyUp ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'focus()', () =>
+    {
+        test( 'should trigger onFocus callback prop once', () =>
+        {
+            const onFocus = jest.fn();
+            wrapper.setProps( { onFocus } );
+
+            driver.focus();
+            expect( onFocus ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'blur()', () =>
+    {
+        test( 'should trigger onBlur callback prop once', () =>
+        {
+            const onBlur = jest.fn();
+            wrapper.setProps( { onBlur } );
+
+            driver.blur();
+            expect( onBlur ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOver()', () =>
+    {
+        test( 'should trigger onMouseOver callback prop once', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( { onMouseOver } );
+
+            driver.mouseOver();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOut()', () =>
+    {
+        test( 'should trigger onMouseOut callback prop once', () =>
+        {
+            const onMouseOut = jest.fn();
+            wrapper.setProps( { onMouseOut } );
+
+            driver.mouseOut();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'clickIcon()', () =>
+    {
+        test( 'should trigger onClickIcon callback prop once', () =>
+        {
+            const onClickIcon = jest.fn();
+            wrapper.setProps( { onClickIcon, iconType: 'add' } );
+
+            driver.clickIcon();
+            expect( onClickIcon ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOverIcon()', () =>
+    {
+        test( 'should trigger onMouseOverIcon callback prop once', () =>
+        {
+            const onMouseOverIcon = jest.fn();
+            wrapper.setProps( { onMouseOverIcon, iconType: 'add' } );
+
+            driver.mouseOverIcon();
+            expect( onMouseOverIcon ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOutIcon()', () =>
+    {
+        test( 'should trigger onMouseOutIcon callback prop once', () =>
+        {
+            const onMouseOutIcon = jest.fn();
+            wrapper.setProps( { onMouseOutIcon, iconType: 'add' } );
+
+            driver.mouseOutIcon();
+            expect( onMouseOutIcon ).toBeCalledTimes( 1 );
         } );
     } );
 } );
