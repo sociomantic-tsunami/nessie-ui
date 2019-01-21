@@ -12342,6 +12342,7 @@ span.CodeMirror-selectedtext { background: none; }
     {
         position:       absolute;
         top:            0;
+        left:           0;
 
         -webkit-box-sizing:     border-box;
 
