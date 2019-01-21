@@ -1,4 +1,8 @@
 {
+	"Button" :
+    {
+        "label" : "Click me!"
+    },
 	"ComboBox": {
 		"dropdownPlaceholder": "No Results",
 		"options": [{
