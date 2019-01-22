@@ -408,7 +408,6 @@ export default class ComboBox extends Component
             hasError,
             inputPlaceholder,
             isDisabled,
-            isReadOnly,
             isSearchable,
             options,
         } = this.props;
@@ -499,8 +498,7 @@ export default class ComboBox extends Component
                 id              = { id }
                 inputRef        = { this.inputRef }
                 isDisabled      = { isDisabled }
-                isReadOnly      = { isReadOnly }
-                isReadOnlyInput = { !isSearchable || !isOpen }
+                isReadOnly      = { !isSearchable || !isOpen }
                 onBlur          = { this.handleBlur }
                 onChange        = { this.handleChangeInput }
                 onClick         = { this.handleClickInput }

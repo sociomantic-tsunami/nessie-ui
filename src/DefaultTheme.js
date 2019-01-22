@@ -9,6 +9,7 @@
 
 import classNames                from 'classnames/bind';
 
+import buttonClasses             from './Button/button.css';
 import datePickerClasses         from './DatePicker/datePicker.css';
 import datePickerHeaderClasses   from './DatePicker/datePickerHeader.css';
 import datePickerItemClasses     from './DatePicker/datePickerItem.css';
@@ -23,6 +24,7 @@ import listBoxOptionClasses      from './ListBox/listBoxOption.css';
 import listBoxOptionGroupClasses from './ListBox/listBoxOptionGroup.css';
 import scrollBarClasses          from './ScrollBar/scrollBar.css';
 import scrollBoxClasses          from './ScrollBox/scrollBox.css';
+import spinnerClasses            from './Spinner/spinner.css';
 import tabClasses                from './Tab/tab.css';
 import tabButtonClasses          from './TabButton/tabButton.css';
 import tabsClasses               from './Tabs/tabs.css';
@@ -34,6 +36,20 @@ import withDropdownClasses       from './Addons/withDropdown/withDropdown.css';
 
 
 export default {
+    Button : props => ( {
+        main : classNames.bind( buttonClasses )(
+            'default',
+            {
+                disabled    : props.isDisabled,
+                fakeHovered : props.forceHover,
+                loading     : props.isLoading && !props.isDisabled,
+            },
+            `iconPosition__${props.iconPosition}`,
+            `role__${props.role}`,
+            props.className,
+        ),
+        ...buttonClasses,
+    } ),
     DatePicker : {
         main : classNames.bind( datePickerClasses )( 'default' ),
         ...datePickerClasses,
@@ -176,6 +192,10 @@ export default {
         ),
         ...scrollBoxClasses,
     } ),
+    Spinner : {
+        main : classNames.bind( spinnerClasses )( 'default' ),
+        ...spinnerClasses,
+    },
     Tab : {
         main : classNames.bind( tabClasses )( 'default' ),
         ...tabClasses,

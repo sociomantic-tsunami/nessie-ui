@@ -7,7 +7,7 @@
  *
  */
 
-
+import Button                from './Button';
 import ComboBox              from './ComboBox';
 import DatePicker            from './DatePicker';
 import DateTimeInput         from './DateTimeInput';
@@ -21,6 +21,7 @@ import ListBox               from './ListBox';
 import PasswordInput         from './PasswordInput';
 import ScrollBar             from './ScrollBar';
 import ScrollBox             from './ScrollBox';
+import Spinner               from './Spinner';
 import SpriteMap             from './SpriteMap';
 import Tab                   from './Tab';
 import TabButton             from './TabButton';
@@ -31,6 +32,7 @@ import Tooltip               from './Tooltip';
 
 
 export {
+    Button,
     ComboBox,
     DatePicker,
     DateTimeInput,
@@ -44,6 +46,7 @@ export {
     PasswordInput,
     ScrollBar,
     ScrollBox,
+    Spinner,
     SpriteMap,
     Tab,
     TabButton,
@@ -55,6 +58,7 @@ export {
 
 
 export default {
+    Button,
     ComboBox,
     DatePicker,
     DateTimeInput,
@@ -68,6 +72,7 @@ export default {
     PasswordInput,
     ScrollBar,
     ScrollBox,
+    Spinner,
     SpriteMap,
     Tab,
     TabButton,

@@ -358,34 +358,6 @@ since it is disabled';
                 }
             } );
         } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError = 'PasswordInput cannot simulate clickIcon \
-since it is read only';
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.clickIcon() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onClickIcon when isReadOnly', () =>
-            {
-                const onClickIcon = jest.fn();
-                wrapper.setProps( { onClickIcon, isReadOnly: true } );
-
-                try
-                {
-                    driver.clickIcon();
-                }
-                catch ( error )
-                {
-                    expect( onClickIcon ).not.toBeCalled();
-                }
-            } );
-        } );
     } );
 
 

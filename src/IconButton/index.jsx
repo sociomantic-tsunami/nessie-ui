@@ -124,10 +124,6 @@ export default class IconButton extends React.Component
          */
         isFocusable : PropTypes.bool,
         /**
-         *  Display as read-only
-         */
-        isReadOnly  : PropTypes.bool,
-        /**
          *  Label text
          */
         label       : PropTypes.string,
@@ -174,7 +170,6 @@ export default class IconButton extends React.Component
         id            : undefined,
         isDisabled    : false,
         isFocusable   : true,
-        isReadOnly    : false,
         label         : undefined,
         onBlur        : undefined,
         onClick       : undefined,
@@ -198,7 +193,6 @@ export default class IconButton extends React.Component
             id = generateId( 'IconButton' ),
             isDisabled,
             isFocusable,
-            isReadOnly,
             label,
             onBlur,
             onClick,
@@ -214,7 +208,7 @@ export default class IconButton extends React.Component
                 disabled     = { isDisabled }
                 id           = { id }
                 onBlur       = { onBlur }
-                onClick      = { !isReadOnly ? onClick : undefined }
+                onClick      = { onClick }
                 onFocus      = { onFocus }
                 onMouseDown  = { !isFocusable ? killFocus : undefined }
                 onMouseEnter = { onMouseOver }

@@ -297,54 +297,6 @@ describe( 'TextInputWithIcon', () =>
                 expect( wrapper.find( Tooltip ).prop( 'isReadOnly' ) )
                     .toBe( true );
             } );
-
-            test( 'should be passed to the IconButton', () =>
-            {
-                wrapper.setProps( {
-                    iconType   : 'add',
-                    isReadOnly : true,
-                } );
-
-                expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
-                    .toBe( true );
-            } );
-        } );
-
-        describe( 'isReadOnlyInput', () =>
-        {
-            test( 'should be false by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.isReadOnlyInput )
-                    .toBe( false );
-            } );
-
-            test( 'should be passed to the InputField', () =>
-            {
-                wrapper.setProps( { isReadOnlyInput: true } );
-
-                expect( wrapper.find( InputField ).prop( 'isReadOnly' ) )
-                    .toBe( true );
-            } );
-        } );
-
-        describe( 'isReadOnlyButton', () =>
-        {
-            test( 'should be false by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.isReadOnlyButton )
-                    .toBe( false );
-            } );
-
-            test( 'should be passed to the IconButton', () =>
-            {
-                wrapper.setProps( {
-                    iconType         : 'add',
-                    isReadOnlyButton : true,
-                } );
-
-                expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
-                    .toBe( true );
-            } );
         } );
 
         describe( 'hasError', () =>
