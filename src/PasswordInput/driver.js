@@ -51,8 +51,7 @@ export default class PasswordInput
             throw new Error( ERR.PASS_ERR( 'change', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly ||
-            this.wrapper.props().isReadOnlyInput )
+        if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR.PASS_ERR( 'change', 'read only' ) );
         }
@@ -89,12 +88,6 @@ export default class PasswordInput
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.PASS_ERR( 'clickIcon', 'disabled' ) );
-        }
-
-        if ( this.wrapper.props().isReadOnly ||
-            this.wrapper.props().isReadOnlyButton )
-        {
-            throw new Error( ERR.PASS_ERR( 'clickIcon', 'read only' ) );
         }
 
         this.wrapper.find( IconButton ).simulate( 'click' );

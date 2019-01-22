@@ -170,14 +170,6 @@ export default class TextInputWithIcon extends React.Component
          */
         isReadOnly       : PropTypes.bool,
         /**
-         *  Display as read-only for IconButton
-         */
-        isReadOnlyButton : PropTypes.bool,
-        /**
-         *  is read only
-         */
-        isReadOnlyInput  : PropTypes.bool,
-        /**
          *  HTML name attribute
          */
         name             : PropTypes.string,
@@ -268,8 +260,6 @@ export default class TextInputWithIcon extends React.Component
         inputType            : 'text',
         isDisabled           : false,
         isReadOnly           : false,
-        isReadOnlyButton     : false,
-        isReadOnlyInput      : false,
         name                 : undefined,
         onBlur               : undefined,
         onChange             : undefined,
@@ -312,8 +302,6 @@ export default class TextInputWithIcon extends React.Component
             inputType,
             isDisabled,
             isReadOnly,
-            isReadOnlyButton,
-            isReadOnlyInput,
             name,
             onBlur,
             onChange,
@@ -356,7 +344,7 @@ export default class TextInputWithIcon extends React.Component
                     hasError       = { hasError }
                     id             = { id }
                     isDisabled     = { isDisabled }
-                    isReadOnly     = { isReadOnlyInput || isReadOnly }
+                    isReadOnly     = { isReadOnly }
                     name           = { name }
                     onBlur         = { onBlur }
                     onChange       = { onChange }
@@ -387,7 +375,6 @@ export default class TextInputWithIcon extends React.Component
                             iconType    = { iconType }
                             isDisabled  = { isDisabled || iconButtonIsDisabled }
                             isFocusable = { false }
-                            isReadOnly  = { isReadOnlyButton || isReadOnly }
                             onClick     = { onClickIcon } />
                     </Tooltip>
                 }

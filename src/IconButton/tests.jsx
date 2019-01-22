@@ -126,38 +126,6 @@ click since it is disabled';
                 }
             } );
         } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError = 'Button \'Tekeli-li\' cannot simulate \
-click since it is read only';
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.click() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onClick when isReadOnly', () =>
-            {
-                const onClick = jest.fn();
-                wrapper.setProps( {
-                    onClick,
-                    isReadOnly : true,
-                    label      : 'Tekeli-li',
-                } );
-
-                try
-                {
-                    driver.click();
-                }
-                catch ( error )
-                {
-                    expect( onClick ).not.toBeCalled();
-                }
-            } );
-        } );
     } );
 
 

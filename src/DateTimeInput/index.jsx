@@ -675,7 +675,6 @@ export default class DateTimeInput extends Component
             id = generateId( 'DateTimeInput' ),
             inputPlaceholder,
             isDisabled,
-            isReadOnly,
             minutePlaceholder,
             mode,
         } = this.props;
@@ -698,7 +697,6 @@ export default class DateTimeInput extends Component
                     formatHours( timestamp )
                 }
                 isDisabled = { isDisabled }
-                isReadOnly = { isReadOnly }
                 items      = { mode === 'month' ?
                     this.monthMatrix() : this.dayMatrix()
                 }
@@ -739,7 +737,6 @@ export default class DateTimeInput extends Component
                 iconType        = "calendar"
                 id              = { id }
                 isDisabled      = { isDisabled }
-                isReadOnlyInput = { isReadOnly }
                 onChange        = { this.handleChangeInput }
                 onClickIcon     = { this.handleClickIcon }
                 placeholder     = { inputPlaceholder }
