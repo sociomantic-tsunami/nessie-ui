@@ -225,9 +225,7 @@ export default class TagInputStateful extends React.Component
             value           : props.value,
         };
 
-        this.inputRef     = React.createRef();
-        this.wrapperRef   = React.createRef();
-        this.scrollBoxRef = React.createRef();
+        this.inputRef = React.createRef();
 
         this.handleBlur            = this.handleBlur.bind( this );
         this.handleChange          = this.handleChange.bind( this );
@@ -237,6 +235,8 @@ export default class TagInputStateful extends React.Component
         this.handleKeyDown         = this.handleKeyDown.bind( this );
         this.handleMouseOutOption  = this.handleMouseOutOption.bind( this );
         this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
+        this.scrollBoxRef          = this.setScrollBoxRef( this );
+        this.wrapperRef            = this.setWrapperRef.bind( this );
     }
 
     componentDidMount()
@@ -277,6 +277,22 @@ export default class TagInputStateful extends React.Component
                     scrollBox.scrollTop = pos - ( contHeight - elHeight );
                 }
             }
+        }
+    }
+
+    setScrollBoxRef( ref )
+    {
+        if ( ref )
+        {
+            this.scrollBox = ref;
+        }
+    }
+
+    setWrapperRef( ref )
+    {
+        if ( ref )
+        {
+            this.wrapperRef = ref;
         }
     }
 
