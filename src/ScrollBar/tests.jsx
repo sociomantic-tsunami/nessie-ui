@@ -12,7 +12,7 @@
 import React               from 'react';
 import { mount, shallow }  from 'enzyme';
 
-import { ScrollBar }       from '../index';
+import { ScrollBar }       from '..';
 
 describe( 'ScrollBar', () =>
 {

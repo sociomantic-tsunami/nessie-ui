@@ -12,7 +12,7 @@
 import React        from 'react';
 import { shallow }  from 'enzyme';
 
-import { Dropdown } from '../index';
+import { Dropdown } from '..';
 
 
 describe( 'Dropdown', () =>

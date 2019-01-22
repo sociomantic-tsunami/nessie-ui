@@ -77,6 +77,7 @@ const withDropdown = Component =>
             );
         }
     }
+
     ComponentWithDropdown.displayName =
         buildDisplayName( ComponentWithDropdown, Component );
 

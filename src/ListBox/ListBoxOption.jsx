@@ -14,7 +14,8 @@
 import React                                 from 'react';
 import PropTypes                             from 'prop-types';
 
-import { Icon, Text }                        from '../index';
+import { Icon, Text }                        from '..';
+
 import { eventHandler, generateId, mapAria } from '../utils';
 import ThemeContext                          from '../Theming/ThemeContext';
 import { createCssMap }                      from '../Theming';

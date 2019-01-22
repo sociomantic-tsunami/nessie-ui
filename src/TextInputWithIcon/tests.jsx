@@ -18,7 +18,7 @@ import {
     TextInputWithIcon,
     TextInputWithIcon as WrappedTextInputWithIcon,
     Tooltip,
-} from '../index';
+} from '..';
 
 describe( 'TextInputWithIcon', () =>
 {

@@ -12,7 +12,7 @@
 import React                                from 'react';
 import { mount, shallow }                   from 'enzyme';
 
-import { PasswordInput, TextInputWithIcon } from '../index';
+import { PasswordInput, TextInputWithIcon } from '..';
 
 describe( 'PasswordInput', () =>
 {

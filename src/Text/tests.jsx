@@ -12,7 +12,7 @@
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
-import { Text }           from '../index';
+import { Text }           from '..';
 
 
 describe( 'Text', () =>

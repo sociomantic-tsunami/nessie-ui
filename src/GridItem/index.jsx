@@ -23,7 +23,11 @@ export default class GridItem extends React.Component
          * Vertical alignment of the GridItem content
          */
         align : PropTypes.oneOf( [
-            'start', 'center', 'end', 'stretch' ] ),
+            'start',
+            'center',
+            'end',
+            'stretch',
+        ] ),
         /**
          *  GridItem content
          */

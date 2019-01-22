@@ -10,7 +10,8 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { Text }             from '../index';
+import { Text }             from '..';
+
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming';
 

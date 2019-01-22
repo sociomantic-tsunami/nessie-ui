@@ -12,7 +12,7 @@
 import React            from 'react';
 import { shallow }      from 'enzyme';
 
-import { SpriteMap }    from '../index';
+import { SpriteMap }    from '..';
 
 
 describe( 'SpriteMap', () =>
