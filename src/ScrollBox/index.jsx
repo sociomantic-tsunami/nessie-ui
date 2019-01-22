@@ -406,7 +406,7 @@ export default class ScrollBox extends React.Component
                         scrollPos    = { scrollLeft }
                         thumbSize    = {
                             `${( clientWidth / scrollWidth ) * 100}%`
-                        } />
+                        } />,
                 );
             }
         }
@@ -429,7 +429,7 @@ export default class ScrollBox extends React.Component
                         scrollPos    = { scrollTop }
                         thumbSize    = {
                             `${( clientHeight / scrollHeight ) * 100}%`
-                        } />
+                        } />,
                 );
             }
         }
@@ -446,7 +446,8 @@ export default class ScrollBox extends React.Component
         } = props;
         const scrollButtons = [];
 
-        [ 'Up', 'Down', 'Left', 'Right' ].forEach( dir => {
+        [ 'Up', 'Down', 'Left', 'Right' ].forEach( dir =>
+        {
             if ( props[ `scroll${dir}IsVisible` ] && this.canScroll( dir ) )
             {
                 scrollButtons.push(
@@ -460,7 +461,7 @@ export default class ScrollBox extends React.Component
                         key      = { dir }
                         onClick  = { e => (
                             this.handleClickScrollButton( dir, e )
-                        ) } />
+                        ) } />,
                 );
             }
         } );

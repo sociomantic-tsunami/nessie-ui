@@ -52,7 +52,7 @@ const PARSE_FORMATTING = [
 const PRECISIONS = [ 'minute', 'hour', 'day', 'month' ];
 
 const DAY_LABELS = _.range( 0, 7 ).map( day => ( {
-    label : copy.dayHeaders[ day ]
+    label : copy.dayHeaders[ day ],
 } ) );
 
 
@@ -109,8 +109,8 @@ function tryParseInputValue( inputValue, timestamp )
         predicate.test( inputValue ) &&
             PRECISIONS.includes( requirePrecision ) );
 
-    if ( !parser
-        || _.isNaN( moment.utc( inputValue, parser.format ).valueOf() ) )
+    if ( !parser ||
+        _.isNaN( moment.utc( inputValue, parser.format ).valueOf() ) )
     {
         return timestamp;
     }
@@ -332,22 +332,22 @@ export default class DateTimeInput extends Component
     {
         if ( !this.canGotoNext() ) return;
 
-        this.setState( {
-            gridStartTimestamp : $m( this.state.gridStartTimestamp )
+        this.setState( prevState => ( {
+            gridStartTimestamp : $m( prevState.gridStartTimestamp )
                 .add( 1, this.props.mode === 'month' ? 'year' : 'month' )
                 .valueOf(),
-        } );
+        } ) );
     }
 
     handleClickPrev()
     {
         if ( !this.canGotoPrev() ) return;
 
-        this.setState( {
-            gridStartTimestamp : $m( this.state.gridStartTimestamp )
+        this.setState( prevState => ( {
+            gridStartTimestamp : $m( prevState.gridStartTimestamp )
                 .add( -1, this.props.mode === 'month' ? 'year' : 'month' )
                 .valueOf(),
-        } );
+        } ) );
     }
 
     handleClickOutSide( e )
@@ -378,8 +378,8 @@ export default class DateTimeInput extends Component
             .add( 1, this.props.mode === 'month' ? 'year' : 'month' )
             .valueOf();
 
-        return !_.isNumber( minDateSelectable )
-            || endOfPrev > minDateSelectable;
+        return !_.isNumber( minDateSelectable ) ||
+            endOfPrev > minDateSelectable;
     }
 
     canEditHourOrMinute()
@@ -410,7 +410,8 @@ export default class DateTimeInput extends Component
         const offset = ( $m( startMonth ).weekday() + 6 ) % 7;
         const daysInMonth = $m( startMonth ).daysInMonth();
 
-        const days = _.range( -offset, daysInMonth ).map( dayIndex => {
+        const days = _.range( -offset, daysInMonth ).map( dayIndex =>
+        {
             const hasDate = dayIndex >= 0 && dayIndex < daysInMonth;
             const label = hasDate ? String( dayIndex + 1 ) : '';
             const value = hasDate ?
@@ -422,10 +423,10 @@ export default class DateTimeInput extends Component
                 this.props.mode === 'default',
             );
 
-            const isCurrent = hasDate
-                && isTimestampEqual( value, now(), 'day' );
-            const isSelected = hasDate && _.isNumber( timestamp )
-                && isTimestampEqual( timestamp, value, 'day' );
+            const isCurrent = hasDate &&
+                isTimestampEqual( value, now(), 'day' );
+            const isSelected = hasDate && _.isNumber( timestamp ) &&
+                isTimestampEqual( timestamp, value, 'day' );
             return {
                 label,
                 value,
@@ -446,15 +447,16 @@ export default class DateTimeInput extends Component
 
         const { timestamp } = this.state;
 
-        const months = _.range( 0, 12 ).map( month => {
+        const months = _.range( 0, 12 ).map( month =>
+        {
             const label = copy.shortMonths[ month ];
             const value = $m( startYear ).add( month, 'month' ).valueOf();
 
             const isDisabled = !this.isUnitSelectable( value, 'month' );
 
             const isCurrent = isTimestampEqual( value, now(), 'month' );
-            const isSelected = _.isNumber( timestamp )
-                && isTimestampEqual( timestamp, value, 'month' );
+            const isSelected = _.isNumber( timestamp ) &&
+                isTimestampEqual( timestamp, value, 'month' );
             return {
                 label,
                 value,
@@ -524,24 +526,27 @@ export default class DateTimeInput extends Component
         const trimmed = value.replace( /\s+/g, ' ' );
         const min = this.props.minDateSelectable || now();
 
-        let timestamp = tryParseInputValue( trimmed, this.state.timestamp );
-
-        if ( timestamp < min )
+        this.setState( prevState =>
         {
-            timestamp = min;
-        }
+            let timestamp = tryParseInputValue( trimmed, prevState.timestamp );
 
-        if ( this.props.maxDateSelectable &&
-            timestamp > this.props.maxDateSelectable )
-        {
-            timestamp = this.props.maxDateSelectable;
-        }
+            if ( timestamp < min )
+            {
+                timestamp = min;
+            }
 
-        this.setState( {
-            editingHourInputValue   : formatHours( timestamp ),
-            editingMainInputValue   : value,
-            editingMinuteInputValue : formatMinutes( timestamp ),
-            editingTimestamp        : timestamp,
+            if ( this.props.maxDateSelectable &&
+                timestamp > this.props.maxDateSelectable )
+            {
+                timestamp = this.props.maxDateSelectable;
+            }
+
+            return {
+                editingHourInputValue   : formatHours( value ),
+                editingMainInputValue   : value,
+                editingMinuteInputValue : formatMinutes( value ),
+                editingTimestamp        : timestamp,
+            };
         } );
     }
 
@@ -555,33 +560,39 @@ export default class DateTimeInput extends Component
 
         if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 23 )
         {
-            const timestamp = $m( this.state.timestamp ).set( 'hour', digits )
-                .valueOf();
-
-            this.setState( {
-                editingTimestamp      : timestamp,
-                editingMainInputValue : formatDateTime(
-                    timestamp,
-                    setPrecision( this.props.mode ),
-                ),
-            } );
-        }
-        else
-        {
-            digits = _.isNumber( this.state.timestamp )
-                && $m( this.state.timestamp ).hour();
-
-            if ( !_.isNaN( digits ) )
+            this.setState( prevState =>
             {
-                const timestamp = $m( this.state.timestamp )
+                const timestamp = $m( prevState.timestamp )
                     .set( 'hour', digits ).valueOf();
 
-                this.setState( {
+                return {
                     editingTimestamp      : timestamp,
                     editingMainInputValue : formatDateTime(
                         timestamp,
                         setPrecision( this.props.mode ),
                     ),
+                };
+            } );
+        }
+        else
+        {
+            digits = _.isNumber( this.state.timestamp ) &&
+                $m( this.state.timestamp ).hour();
+
+            if ( !_.isNaN( digits ) )
+            {
+                this.setState( prevState =>
+                {
+                    const timestamp = $m( prevState.timestamp )
+                        .set( 'hour', digits ).valueOf();
+
+                    return {
+                        editingTimestamp      : timestamp,
+                        editingMainInputValue : formatDateTime(
+                            timestamp,
+                            setPrecision( this.props.mode ),
+                        ),
+                    };
                 } );
             }
         }
@@ -595,33 +606,39 @@ export default class DateTimeInput extends Component
 
         if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 59 )
         {
-            const timestamp = $m( this.state.timestamp ).set( 'minute', digits )
-                .valueOf();
-
-            this.setState( {
-                editingTimestamp      : timestamp,
-                editingMainInputValue : formatDateTime(
-                    timestamp,
-                    setPrecision( this.props.mode ),
-                ),
-            } );
-        }
-        else
-        {
-            digits = _.isNumber( this.state.timestamp )
-                && $m( this.state.timestamp ).minute();
-
-            if ( !_.isNaN( digits ) )
+            this.setState( prevState =>
             {
-                const timestamp = $m( this.state.timestamp )
+                const timestamp = $m( prevState.timestamp )
                     .set( 'minute', digits ).valueOf();
 
-                this.setState( {
+                return {
                     editingTimestamp      : timestamp,
                     editingMainInputValue : formatDateTime(
                         timestamp,
                         setPrecision( this.props.mode ),
                     ),
+                };
+            } );
+        }
+        else
+        {
+            digits = _.isNumber( this.state.timestamp ) &&
+                $m( this.state.timestamp ).minute();
+
+            if ( !_.isNaN( digits ) )
+            {
+                this.setState( prevState =>
+                {
+                    const timestamp = $m( prevState.timestamp )
+                        .set( 'minute', digits ).valueOf();
+
+                    return {
+                        editingTimestamp      : timestamp,
+                        editingMainInputValue : formatDateTime(
+                            timestamp,
+                            setPrecision( this.props.mode ),
+                        ),
+                    };
                 } );
             }
         }
@@ -634,8 +651,8 @@ export default class DateTimeInput extends Component
 
         timestamp = _.isNumber( timestamp ) ? timestamp : now();
 
-        timestamp = _.isNumber( minDateSelectable )
-            && minDateSelectable > timestamp ? minDateSelectable : timestamp;
+        timestamp = ( _.isNumber( minDateSelectable ) &&
+            minDateSelectable > timestamp ) ? minDateSelectable : timestamp;
 
         this.setState( {
             gridStartTimestamp : $m( timestamp )
@@ -727,9 +744,11 @@ export default class DateTimeInput extends Component
                 onClickIcon     = { this.handleClickIcon }
                 placeholder     = { inputPlaceholder }
                 spellCheck      = { false }
-                value           = { typeof editingMainInputValue === 'undefined'
-                    ? formatDateTime( timestamp, setPrecision( mode ) ) :
-                    editingMainInputValue }
+                value           = {
+                    typeof editingMainInputValue === 'undefined' ?
+                        formatDateTime( timestamp, setPrecision( mode ) ) :
+                        editingMainInputValue
+                }
                 wrapperRef = { this.wrapperRef } />
         );
     }

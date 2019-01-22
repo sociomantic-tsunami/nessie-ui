@@ -17,6 +17,7 @@ import { createCssMap }         from '../Theming';
 import { attachEvents }         from '../utils';
 
 
+
 export default class Tabs extends React.Component
 {
     static contextType = ThemeContext;
@@ -132,7 +133,8 @@ export default class Tabs extends React.Component
 
         const tabs = React.Children.toArray( children );
 
-        const tabButtons = tabs.map( ( tab, tabIndex ) => {
+        const tabButtons = tabs.map( ( tab, tabIndex ) =>
+        {
             const { isDisabled, label } = tab.props;
             const isActive = ( activeTabIndex === tabIndex );
 

@@ -10,7 +10,8 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { IconButton, Text } from '../index';
+import { IconButton, Text } from '..';
+
 import TimeInput            from './TimeInput';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming';

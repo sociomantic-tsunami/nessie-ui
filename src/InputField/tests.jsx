@@ -12,7 +12,7 @@
 import React          from 'react';
 import { mount }      from 'enzyme';
 
-import { InputField } from '../index';
+import { InputField } from '..';
 
 describe( 'InputField', () =>
 {

@@ -547,7 +547,8 @@
 		]
 	},
 	"Dropdown": {
-		"children": "Dropdown content"
+		"children": "Dropdown content",
+        "padding": "M"
 	},
 	"Grid": {
 		"children": "{<GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem>}"
