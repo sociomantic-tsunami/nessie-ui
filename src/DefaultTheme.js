@@ -22,6 +22,7 @@ import inputFieldClasses         from './InputField/inputField.css';
 import listBoxClasses            from './ListBox/listBox.css';
 import listBoxOptionClasses      from './ListBox/listBoxOption.css';
 import listBoxOptionGroupClasses from './ListBox/listBoxOptionGroup.css';
+import modalClasses              from './Modal/modal.css';
 import scrollBarClasses          from './ScrollBar/scrollBar.css';
 import scrollBoxClasses          from './ScrollBox/scrollBox.css';
 import spinnerClasses            from './Spinner/spinner.css';
@@ -168,6 +169,10 @@ export default {
         main : classNames.bind( listBoxOptionGroupClasses )( 'default' ),
         ...listBoxOptionGroupClasses,
     },
+    Modal : props => ( {
+        main : classNames.bind( modalClasses )( 'default', props.className ),
+        ...modalClasses,
+    } ),
     ScrollBar : props => ( {
         main : classNames.bind( scrollBarClasses )(
             'default',
