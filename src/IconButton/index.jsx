@@ -54,7 +54,7 @@ export default class IconButton extends React.Component
          */
         iconSize      : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
         /**
-         *  Icon type to display (overrides customIcon)
+         *  Icon type to display
          */
         iconType      : PropTypes.oneOf( [
             'account',
@@ -62,9 +62,9 @@ export default class IconButton extends React.Component
             'add',
             'alert',
             'approved',
-            'arrow',
-            'arrow-up',
             'arrow-down',
+            'arrow-up',
+            'arrow',
             'bell',
             'board',
             'calendar',
@@ -102,9 +102,9 @@ export default class IconButton extends React.Component
             'right',
             'search',
             'show',
+            'sociomantic',
             'star-stroke',
             'star',
-            'sociomantic',
             'swap',
             'table',
             'up',

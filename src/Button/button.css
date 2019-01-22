@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -54,13 +54,6 @@
         white-space:    nowrap;
     }
 
-    .iconContainer
-    {
-        display:            flex;
-        justify-content:    center;
-        align-items:        center;
-    }
-
     .loadingOverlay
     {
         display:            flex;
@@ -99,7 +92,7 @@
         flex-direction: row-reverse;
     }
 
-    .iconContainer
+    .icon
     {
         margin-left:    calc( var( --spacing-1 ) / 2 ); /* space between icon and text */
         margin-right:   calc( -1 * var( --spacing-1 ) ); /* half of content padding */
@@ -109,7 +102,7 @@
 
 .iconPosition__left
 {
-    .iconContainer
+    .icon
     {
         margin-right:   calc( var( --spacing-1 ) / 2 ); /* space between icon and text */
         margin-left:    calc( -1 * var( --spacing-1 ) ); /* half of content padding */
@@ -301,7 +294,7 @@
         padding: 0 var( --spacing-1 );
     }
 
-    .iconContainer
+    .icon
     {
         .iconPosition__left&
         {
@@ -366,8 +359,7 @@
 
 .loading
 {
-    .label,
-    .iconContainer
+    .content
     {
         opacity:    0;
     }

@@ -7,11 +7,13 @@
  *
  */
 
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import ThemeContext     from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming';
+import { attachEvents }     from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming';
+
 
 export default class Spinner extends React.Component
 {
@@ -20,24 +22,19 @@ export default class Spinner extends React.Component
     static propTypes =
     {
         /**
-         *  Extra CSS class name
+         *  Size of the Spinner
          */
-        className : PropTypes.string,
-        /**
-         *  CSS class map
-         */
-        cssMap    : PropTypes.objectOf( PropTypes.string ),
+        cssMap : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Size of the Spinner
          */
-        size      : PropTypes.oneOf( [ 'small', 'big' ] ),
+        size   : PropTypes.oneOf( [ 'small', 'big' ] ),
     };
 
     static defaultProps =
     {
-        className : undefined,
-        cssMap    : undefined,
-        size      : 'small',
+        cssMap : undefined,
+        size   : 'small',
     };
 
     static displayName = 'Spinner';
@@ -48,6 +45,10 @@ export default class Spinner extends React.Component
             cssMap = createCssMap( this.context.Spinner, this.props ),
         } = this.props;
 
-        return <div className = { cssMap.main } />;
+        return (
+            <div
+                { ...attachEvents( this.props ) }
+                className = { cssMap.main } />
+        );
     }
 }
