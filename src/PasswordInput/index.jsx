@@ -10,7 +10,8 @@
 import React                 from 'react';
 import PropTypes             from 'prop-types';
 
-import { TextInputWithIcon } from '../';
+import { TextInputWithIcon } from '..';
+
 import { generateId }        from '../utils';
 
 

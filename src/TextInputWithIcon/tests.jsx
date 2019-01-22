@@ -16,7 +16,7 @@ import {
     IconButton,
     InputField,
     TextInputWithIcon,
-} from '../index';
+} from '..';
 
 
 describe( 'TextInputWithIcon', () =>

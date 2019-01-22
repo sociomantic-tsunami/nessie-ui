@@ -11,7 +11,7 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { generateId }       from '../utils';
-import { IconButton, Text } from '../index';
+import { IconButton, Text } from '..';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming';
 

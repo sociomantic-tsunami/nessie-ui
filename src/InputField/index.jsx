@@ -14,6 +14,7 @@ import { mapAria, generateId } from '../utils';
 import ThemeContext            from '../Theming/ThemeContext';
 import { createCssMap }        from '../Theming';
 
+
 export default class InputField extends React.Component
 {
     static contextType = ThemeContext;

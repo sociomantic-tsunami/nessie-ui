@@ -105,6 +105,7 @@ export default class TabButton extends React.Component
                 onClick   = { this.handleClick }
                 ref       = { buttonRef }
                 role      = "tab"
+                type      = "button"
                 value     = { tabIndex }>
                 <div className = { cssMap.content }>
                     <div className = { cssMap.label }>

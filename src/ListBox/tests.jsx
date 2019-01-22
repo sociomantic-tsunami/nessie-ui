@@ -12,7 +12,7 @@
 import React                 from 'react';
 import { shallow, mount }    from 'enzyme';
 
-import { ListBox }           from '../index';
+import { ListBox }           from '..';
 
 describe( 'ListBox', () =>
 {
