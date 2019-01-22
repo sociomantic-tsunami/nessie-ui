@@ -9,6 +9,7 @@
 
 import { IconButton, InputField } from 'nessie-ui';
 
+
 export default class TextInputWithIconDriver
 {
     constructor( wrapper )
@@ -73,6 +74,18 @@ export default class TextInputWithIconDriver
     clickIcon()
     {
         this.wrapper.find( IconButton ).driver().click();
+        return this;
+    }
+
+    mouseOverIcon()
+    {
+        this.wrapper.find( IconButton ).driver().mouseOver();
+        return this;
+    }
+
+    mouseOutIcon()
+    {
+        this.wrapper.find( IconButton ).driver().mouseOut();
         return this;
     }
 }

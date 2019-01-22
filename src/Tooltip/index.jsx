@@ -24,6 +24,23 @@ export default class Tooltip extends React.Component
     static propTypes =
     {
         /**
+         *  Position of the tooltip’s arrow
+         */
+        arrowPosition : PropTypes.oneOf( [
+            'top',
+            'topLeft',
+            'topRight',
+            'bottom',
+            'bottomLeft',
+            'bottomRight',
+            'left',
+            'leftTop',
+            'leftBottom',
+            'right',
+            'rightTop',
+            'rightBottom',
+        ] ),
+        /**
          *  Tooltip message (JSX node; overrides message prop)
          */
         children      : PropTypes.node,
@@ -52,22 +69,14 @@ export default class Tooltip extends React.Component
          */
         onClickClose  : PropTypes.func,
         /**
-         *  Tooltip position relative to associated component
+         *  onMouseOver callback function: ( e ) => { ... }
          */
-        position      : PropTypes.oneOf( [
-            'top',
-            'topLeft',
-            'topRight',
-            'bottom',
-            'bottomLeft',
-            'bottomRight',
-            'left',
-            'leftTop',
-            'leftBottom',
-            'right',
-            'rightTop',
-            'rightBottom',
-        ] ),
+        onMouseOver   : PropTypes.func,
+        /**
+         *  onMouseOut callback function: ( e ) => { ... }
+         */
+        onMouseOut    : PropTypes.func,
+
         /**
          *  Tooltip role/style
          */
@@ -81,6 +90,7 @@ export default class Tooltip extends React.Component
 
     static defaultProps =
     {
+        arrowPosition : 'bottom',
         children      : undefined,
         className     : undefined,
         cssMap        : undefined,
@@ -88,7 +98,8 @@ export default class Tooltip extends React.Component
         isDismissible : undefined,
         message       : undefined,
         onClickClose  : undefined,
-        position      : 'top',
+        onMouseOut    : undefined,
+        onMouseOver   : undefined,
         role          : 'default',
     };
 

@@ -10,5 +10,5 @@ library such as [Popper.js](https://popper.js.org/) instead.**
 ## Example Usage
 
 ```
-<Tooltip message="There’s an error!" position="top"/>
+<Tooltip message="There’s an error!" arrowPosition="top" />
 ```

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2018-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -80,6 +80,10 @@ export default class PasswordInput extends React.Component
          */
         onClickIcon          : PropTypes.func,
         /**
+         *  Show password as plain text
+         */
+        passwordIsVisible    : PropTypes.func,
+        /**
          *  Placeholder text
          */
         placeholder          : PropTypes.string,
@@ -109,6 +113,7 @@ export default class PasswordInput extends React.Component
         name                 : undefined,
         onChangeInput        : undefined,
         onClickIcon          : undefined,
+        passwordIsVisible    : false,
         placeholder          : undefined,
         textAlign            : 'auto',
         value                : '',
@@ -142,7 +147,7 @@ export default class PasswordInput extends React.Component
                     preventNessieDefault()
                     {
                         nessieDefaultPrevented = true;
-                    }
+                    },
                 },
                 e,
             );
@@ -167,14 +172,14 @@ export default class PasswordInput extends React.Component
         return (
             <TextInputWithIcon
                 { ...props }
-                autoCapitalize    = "off"
-                autoComplete      = "off"
-                autoCorrect       = "off"
-                iconType          = { passwordIsVisible ? 'hide' : 'show' }
-                id                = { id }
-                inputType         = { passwordIsVisible ? 'text' : 'password' }
-                onClickIcon       = { this.handleClickIcon }
-                spellCheck        = { false } />
+                autoCapitalize = "off"
+                autoComplete   = "off"
+                autoCorrect    = "off"
+                iconType       = { passwordIsVisible ? 'hide' : 'show' }
+                id             = { id }
+                inputType      = { passwordIsVisible ? 'text' : 'password' }
+                onClickIcon    = { this.handleClickIcon }
+                spellCheck     = { false } />
         );
     }
 }

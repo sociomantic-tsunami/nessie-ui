@@ -14,7 +14,7 @@ const ERR = {
 since it is ${state}`,
 };
 
-export default class PasswordInput
+export default class PasswordInputDriver
 {
     constructor( wrapper )
     {
@@ -91,6 +91,18 @@ export default class PasswordInput
         }
 
         this.wrapper.find( IconButton ).driver().click();
+        return this;
+    }
+
+    mouseOverIcon()
+    {
+        this.wrapper.find( IconButton ).driver().mouseOver();
+        return this;
+    }
+
+    mouseOutIcon()
+    {
+        this.wrapper.find( IconButton ).driver().mouseOut();
         return this;
     }
 }
