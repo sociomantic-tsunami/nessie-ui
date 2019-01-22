@@ -75,6 +75,7 @@ import Tabs                     from './Tabs';
 import TabsStateful             from './TabsStateful';
 import Tag                      from './Tag';
 import TagInput                 from './TagInput';
+import TagInputStateful         from './TagInputStateful';
 import Text                     from './Text';
 import TextArea                 from './TextArea';
 import TextInput                from './TextInput';
@@ -154,6 +155,7 @@ export {
     TabsStateful,
     Tag,
     TagInput,
+    TagInputStateful,
     Text,
     TextArea,
     TextInput,
@@ -234,6 +236,7 @@ export default {
     TabsStateful,
     Tag,
     TagInput,
+    TagInputStateful,
     Text,
     TextArea,
     TextInput,
