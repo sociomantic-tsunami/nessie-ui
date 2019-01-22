@@ -10,8 +10,9 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { generateId }       from '../utils';
 import { IconButton, Text } from '..';
+
+import { generateId }       from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming';
 
@@ -22,6 +23,23 @@ export default class Tooltip extends React.Component
 
     static propTypes =
     {
+        /**
+         *  Position of the tooltip’s arrow
+         */
+        arrowPosition : PropTypes.oneOf( [
+            'top',
+            'topLeft',
+            'topRight',
+            'bottom',
+            'bottomLeft',
+            'bottomRight',
+            'left',
+            'leftTop',
+            'leftBottom',
+            'right',
+            'rightTop',
+            'rightBottom',
+        ] ),
         /**
          *  Tooltip message (JSX node; overrides message prop)
          */
@@ -58,23 +76,7 @@ export default class Tooltip extends React.Component
          *  onMouseOut callback function: ( e ) => { ... }
          */
         onMouseOut    : PropTypes.func,
-        /**
-         *  Tooltip position relative to associated component
-         */
-        position      : PropTypes.oneOf( [
-            'top',
-            'topLeft',
-            'topRight',
-            'bottom',
-            'bottomLeft',
-            'bottomRight',
-            'left',
-            'leftTop',
-            'leftBottom',
-            'right',
-            'rightTop',
-            'rightBottom',
-        ] ),
+
         /**
          *  Tooltip role/style
          */
@@ -83,11 +85,12 @@ export default class Tooltip extends React.Component
             'critical',
             'promoted',
             'warning',
-         ] ),
+        ] ),
     };
 
     static defaultProps =
     {
+        arrowPosition : 'bottom',
         children      : undefined,
         className     : undefined,
         cssMap        : undefined,
@@ -97,7 +100,6 @@ export default class Tooltip extends React.Component
         onClickClose  : undefined,
         onMouseOut    : undefined,
         onMouseOver   : undefined,
-        position      : 'top',
         role          : 'default',
     };
 

@@ -22,8 +22,8 @@
 
     --messageLineHeight:    var( --line-height-m );
 
-    --caretSize:            10px;
-    --carretOffset: /* center the caret to the first line of message text */
+    --arrowSize:            10px;
+    --arrowOffset: /* center the arrow to the first line of message text */
         calc( var( --tooltipPadding ) + ( var( --messageLineHeight ) / 2 ) );
 }
 
@@ -56,15 +56,15 @@
         display:    block;
     }
 
-    &::after /* caret */
+    &::after /* arrow */
     {
         content:                "";
         display:                block;
         position:               absolute;
 
         box-sizing:             inherit;
-        width:                  var( --caretSize );
-        height:                 var( --caretSize );
+        width:                  var( --arrowSize );
+        height:                 var( --arrowSize );
 
         border:                 inherit;
         border-top-color:       transparent;
@@ -108,12 +108,12 @@
 }
 
 
-.position__top,
-.position__topLeft,
-.position__topRight,
-.position__bottom,
-.position__bottomLeft,
-.position__bottomRight
+.arrowPosition__top,
+.arrowPosition__topLeft,
+.arrowPosition__topRight,
+.arrowPosition__bottom,
+.arrowPosition__bottomLeft,
+.arrowPosition__bottomRight
 {
     &::before
     {
@@ -123,25 +123,9 @@
     }
 }
 
-.position__top,
-.position__topLeft,
-.position__topRight
-{
-    &::before,
-    &::after
-    {
-        top:    calc( 100% + var( --tooltipBorderWidth ) );
-    }
-
-    &::after
-    {
-        transform:  translateX( -50% ) translateY( -50% ) rotate( 45deg );
-    }
-}
-
-.position__bottom,
-.position__bottomLeft,
-.position__bottomRight
+.arrowPosition__top,
+.arrowPosition__topLeft,
+.arrowPosition__topRight
 {
     &::before,
     &::after
@@ -155,8 +139,24 @@
     }
 }
 
-.position__top,
-.position__bottom
+.arrowPosition__bottom,
+.arrowPosition__bottomLeft,
+.arrowPosition__bottomRight
+{
+    &::before,
+    &::after
+    {
+        top:    calc( 100% + var( --tooltipBorderWidth ) );
+    }
+
+    &::after
+    {
+        transform:  translateX( -50% ) translateY( -50% ) rotate( 45deg );
+    }
+}
+
+.arrowPosition__top,
+.arrowPosition__bottom
 {
     &::after
     {
@@ -164,31 +164,31 @@
     }
 }
 
-.position__topLeft,
-.position__bottomLeft
+.arrowPosition__topLeft,
+.arrowPosition__bottomLeft
 {
     &::after
     {
-        left:  calc( 100% - var( --carretOffset ) );
+        left:   var( --arrowOffset );
     }
 }
 
-.position__topRight,
-.position__bottomRight
+.arrowPosition__topRight,
+.arrowPosition__bottomRight
 {
     &::after
     {
-        left:   var( --carretOffset );
+        left:  calc( 100% - var( --arrowOffset ) );
     }
 }
 
 
-.position__left,
-.position__leftTop,
-.position__leftBottom,
-.position__right
-.position__rightTop,
-.position__rightBottom
+.arrowPosition__left,
+.arrowPosition__leftTop,
+.arrowPosition__leftBottom,
+.arrowPosition__right
+.arrowPosition__rightTop,
+.arrowPosition__rightBottom
 {
     &::before
     {
@@ -198,20 +198,9 @@
     }
 }
 
-.position__left,
-.position__leftTop,
-.position__leftBottom
-{
-    &::before,
-    &::after
-    {
-        left:   calc( 100% + var( --tooltipBorderWidth ) );
-    }
-}
-
-.position__right,
-.position__rightTop,
-.position__rightBottom
+.arrowPosition__left,
+.arrowPosition__leftTop,
+.arrowPosition__leftBottom
 {
     &::before,
     &::after
@@ -220,8 +209,19 @@
     }
 }
 
-.position__left,
-.position__right
+.arrowPosition__right,
+.arrowPosition__rightTop,
+.arrowPosition__rightBottom
+{
+    &::before,
+    &::after
+    {
+        left:   calc( 100% + var( --tooltipBorderWidth ) );
+    }
+}
+
+.arrowPosition__left,
+.arrowPosition__right
 {
     &::after
     {
@@ -229,20 +229,9 @@
     }
 }
 
-.position__left,
-.position__leftTop,
-.position__leftBottom
-{
-    &::after
-    {
-        left:       100%;
-        transform:  translateX( -50% ) translateY( -50% ) rotate( 320deg );
-    }
-}
-
-.position__right,
-.position__rightTop,
-.position__rightBottom
+.arrowPosition__left,
+.arrowPosition__leftTop,
+.arrowPosition__leftBottom
 {
     &::after
     {
@@ -251,21 +240,32 @@
     }
 }
 
-.position__leftTop,
-.position__rightTop
+.arrowPosition__right,
+.arrowPosition__rightTop,
+.arrowPosition__rightBottom
 {
     &::after
     {
-        top:    calc( 100% - var( --carretOffset ) );
+        left:       100%;
+        transform:  translateX( -50% ) translateY( -50% ) rotate( 320deg );
     }
 }
 
-.position__leftBottom,
-.position__rightBottom
+.arrowPosition__leftTop,
+.arrowPosition__rightTop
 {
     &::after
     {
-        top:    var( --carretOffset );
+        top:    var( --arrowOffset );
+    }
+}
+
+.arrowPosition__leftBottom,
+.arrowPosition__rightBottom
+{
+    &::after
+    {
+        top:    calc( 100% - var( --arrowOffset ) );
     }
 }
 
