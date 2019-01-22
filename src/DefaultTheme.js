@@ -10,6 +10,7 @@
 import classNames                from 'classnames/bind';
 
 import buttonClasses             from './Button/button.css';
+import checkboxClasses           from './Checkbox/checkbox.css';
 import datePickerClasses         from './DatePicker/datePicker.css';
 import datePickerHeaderClasses   from './DatePicker/datePickerHeader.css';
 import datePickerItemClasses     from './DatePicker/datePickerItem.css';
@@ -49,6 +50,18 @@ export default {
             props.className,
         ),
         ...buttonClasses,
+    } ),
+    Checkbox : props => ( {
+        main : classNames.bind( checkboxClasses )(
+            'default',
+            {
+                disabled    : props.isDisabled,
+                error       : !props.isDisabled && props.hasError,
+                fakeHovered : !props.isDisabled && props.forceHover,
+            },
+            props.className,
+        ),
+        ...checkboxClasses,
     } ),
     DatePicker : {
         main : classNames.bind( datePickerClasses )( 'default' ),
