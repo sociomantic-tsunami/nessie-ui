@@ -251,7 +251,7 @@ export default {
         main : classNames.bind( tooltipClasses )(
             'default',
             { dismissible: props.isDismissible },
-            `position__${props.position}`,
+            `arrowPosition__${props.arrowPosition}`,
             `role__${props.role}`,
             props.className,
         ),

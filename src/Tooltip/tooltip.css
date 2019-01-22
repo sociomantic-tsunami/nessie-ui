@@ -22,76 +22,57 @@
 
     --messageLineHeight:    var( --line-height-m );
 
-    --caretSize:            10px;
-    --carretOffset: /* center the caret to the first line of message text */
+    --arrowSize:            10px;
+    --arrowOffset: /* center the arrow to the first line of message text */
         calc( var( --tooltipPadding ) + ( var( --messageLineHeight ) / 2 ) );
 }
 
 
+
+
 .default
 {
-    position:   relative;
-    display:    inline-block;
-    max-width:  100%;
+    visibility:     visible;
+    position:       relative;
+    display:        inline-block;
 
-    .content
+    box-sizing:     border-box;
+    min-width:      var( --tooltipMinSize );
+    min-height:     var( --tooltipMinSize);
+    max-width:      var( --tooltipMaxWidth );
+
+    border:         var( --tooltipBorderWidth ) solid;
+    border-radius:  var( --tooltipBorderRadius );
+    box-shadow:     var( --tooltipBoxShadow );
+
+    padding:        var( --spacing-2 );
+
+    text-align:     left;
+
+    &::before /* hover area */
     {
-        display:        flex;
-        flex-direction: column;
+        content:    "";
+        position:   absolute;
+        display:    block;
     }
 
-    .tooltipContainer
+    &::after /* arrow */
     {
-        visibility:     hidden;
-        position:       absolute;
-        width:          var( --tooltipMaxWidth );
-        line-height:    0;
-        z-index:        99999;
+        content:                "";
+        display:                block;
+        position:               absolute;
+
+        box-sizing:             inherit;
+        width:                  var( --arrowSize );
+        height:                 var( --arrowSize );
+
+        border:                 inherit;
+        border-top-color:       transparent;
+        border-left-color:      transparent;
+
+        background:             inherit;
     }
 
-    .tooltip
-    {
-        visibility:     visible;
-        position:       relative;
-        display:        inline-block;
-
-        box-sizing:     border-box;
-        min-width:      var( --tooltipMinSize );
-        min-height:     var( --tooltipMinSize);
-        max-width:      var( --tooltipMaxWidth );
-
-        border:         var( --tooltipBorderWidth ) solid;
-        border-radius:  var( --tooltipBorderRadius );
-        box-shadow:     var( --tooltipBoxShadow );
-
-        padding:        var( --spacing-2 );
-
-        text-align:     left;
-
-        &::before /* hover area */
-        {
-            content:    "";
-            position:   absolute;
-            display:    block;
-        }
-
-        &::after /* caret */
-        {
-            content:                "";
-            display:                block;
-            position:               absolute;
-
-            box-sizing:             inherit;
-            width:                  var( --caretSize );
-            height:                 var( --caretSize );
-
-            border:                 inherit;
-            border-top-color:       transparent;
-            border-left-color:      transparent;
-
-            background:             inherit;
-        }
-    }
 
     .message
     {
@@ -123,143 +104,93 @@
 
 .dismissible
 {
-    .tooltip
+    padding-right:  var( --spacing-6 );
+}
+
+
+.arrowPosition__top,
+.arrowPosition__topLeft,
+.arrowPosition__topRight,
+.arrowPosition__bottom,
+.arrowPosition__bottomLeft,
+.arrowPosition__bottomRight
+{
+    &::before
     {
-        padding-right:  var( --spacing-6 );
+        left:   0;
+        right:  0;
+        height: var( --tooltipOffset );
+    }
+}
+
+.arrowPosition__top,
+.arrowPosition__topLeft,
+.arrowPosition__topRight
+{
+    &::before,
+    &::after
+    {
+        bottom: calc( 100% + var( --tooltipBorderWidth ) );
+    }
+
+    &::after
+    {
+        transform:  translateX( -50% ) translateY( 50% ) rotate( 225deg );
+    }
+}
+
+.arrowPosition__bottom,
+.arrowPosition__bottomLeft,
+.arrowPosition__bottomRight
+{
+    &::before,
+    &::after
+    {
+        top:    calc( 100% + var( --tooltipBorderWidth ) );
+    }
+
+    &::after
+    {
+        transform:  translateX( -50% ) translateY( -50% ) rotate( 45deg );
+    }
+}
+
+.arrowPosition__top,
+.arrowPosition__bottom
+{
+    &::after
+    {
+        left:   50%;
+    }
+}
+
+.arrowPosition__topLeft,
+.arrowPosition__bottomLeft
+{
+    &::after
+    {
+        left:   var( --arrowOffset );
+    }
+}
+
+.arrowPosition__topRight,
+.arrowPosition__bottomRight
+{
+    &::after
+    {
+        left:  calc( 100% - var( --arrowOffset ) );
     }
 }
 
 
-.position__top,
-.position__topLeft,
-.position__topRight,
-.position__bottom,
-.position__bottomLeft,
-.position__bottomRight
+.arrowPosition__left,
+.arrowPosition__leftTop,
+.arrowPosition__leftBottom,
+.arrowPosition__right
+.arrowPosition__rightTop,
+.arrowPosition__rightBottom
 {
-    .tooltip
-    {
-        &::before
-        {
-            left:   0;
-            right:  0;
-            height: var( --tooltipOffset );
-        }
-    }
-}
-
-.position__top,
-.position__topLeft,
-.position__topRight
-{
-    .tooltipContainer
-    {
-        bottom: calc( 100% + var( --tooltipOffset ) );
-    }
-
-    .tooltip
-    {
-        &::before,
-        &::after
-        {
-            top:    calc( 100% + var( --tooltipBorderWidth ) );
-        }
-
-        &::after
-        {
-            transform:  translateX( -50% ) translateY( -50% ) rotate( 45deg );
-        }
-    }
-}
-
-.position__bottom,
-.position__bottomLeft,
-.position__bottomRight
-{
-    .tooltipContainer
-    {
-        top:    calc( 100% + var( --tooltipOffset ) );
-    }
-
-    .tooltip
-    {
-        &::before,
-        &::after
-        {
-            bottom: calc( 100% + var( --tooltipBorderWidth ) );
-        }
-
-        &::after
-        {
-            transform:  translateX( -50% ) translateY( 50% ) rotate( 225deg );
-        }
-    }
-}
-
-.position__top,
-.position__bottom
-{
-    .tooltipContainer
-    {
-        left:       50%;
-        text-align: center;
-        transform:  translateX( -50% );
-    }
-
-    .tooltip
-    {
-        &::after
-        {
-            left:   50%;
-        }
-    }
-}
-
-.position__topLeft,
-.position__bottomLeft
-{
-    .tooltipContainer
-    {
-        right:      calc( 50% - var( --carretOffset ) );
-        text-align: right;
-    }
-
-    .tooltip
-    {
-        &::after
-        {
-            left:  calc( 100% - var( --carretOffset ) );
-        }
-    }
-}
-
-.position__topRight,
-.position__bottomRight
-{
-    .tooltipContainer
-    {
-        left:       calc( 50% - var( --carretOffset ) );
-        text-align: left;
-    }
-
-    .tooltip
-    {
-        &::after
-        {
-            left:   var( --carretOffset );
-        }
-    }
-}
-
-
-.position__left,
-.position__leftTop,
-.position__leftBottom,
-.position__right
-.position__rightTop,
-.position__rightBottom
-{
-    .tooltip::before
+    &::before
     {
         top:    0;
         bottom: 0;
@@ -267,153 +198,98 @@
     }
 }
 
-.position__left,
-.position__leftTop,
-.position__leftBottom
+.arrowPosition__left,
+.arrowPosition__leftTop,
+.arrowPosition__leftBottom
 {
-    .tooltipContainer
+    &::before,
+    &::after
     {
-        right:      calc( 100% + var( --tooltipOffset ) );
-        text-align: right;
-    }
-
-    .tooltip
-    {
-        &::before,
-        &::after
-        {
-            left:   calc( 100% + var( --tooltipBorderWidth ) );
-        }
+        right:  calc( 100% + var( --tooltipBorderWidth ) );
     }
 }
 
-.position__right,
-.position__rightTop,
-.position__rightBottom
+.arrowPosition__right,
+.arrowPosition__rightTop,
+.arrowPosition__rightBottom
 {
-    .tooltipContainer
+    &::before,
+    &::after
     {
-        left:       calc( 100% + var( --tooltipOffset ) );
-        text-align: left;
-    }
-
-    .tooltip
-    {
-        &::before,
-        &::after
-        {
-            right:  calc( 100% + var( --tooltipBorderWidth ) );
-        }
+        left:   calc( 100% + var( --tooltipBorderWidth ) );
     }
 }
 
-.position__left,
-.position__right
+.arrowPosition__left,
+.arrowPosition__right
 {
-    .tooltipContainer
+    &::after
     {
-        top:        50%;
-        transform:  translateY( -50% );
-    }
-
-    .tooltip
-    {
-        &::after
-        {
-            top:   50%;
-        }
+        top:   50%;
     }
 }
 
-.position__left,
-.position__leftTop,
-.position__leftBottom
+.arrowPosition__left,
+.arrowPosition__leftTop,
+.arrowPosition__leftBottom
 {
-    .tooltip
+    &::after
     {
-        &::after
-        {
-            left:       100%;
-            transform:  translateX( -50% ) translateY( -50% ) rotate( 320deg );
-        }
+        right:      100%;
+        transform:  translateX( 50% ) translateY( -50% ) rotate( 135deg );
     }
 }
 
-.position__right,
-.position__rightTop,
-.position__rightBottom
+.arrowPosition__right,
+.arrowPosition__rightTop,
+.arrowPosition__rightBottom
 {
-    .tooltip
+    &::after
     {
-        &::after
-        {
-            right:      100%;
-            transform:  translateX( 50% ) translateY( -50% ) rotate( 135deg );
-        }
+        left:       100%;
+        transform:  translateX( -50% ) translateY( -50% ) rotate( 320deg );
     }
 }
 
-.position__leftTop,
-.position__rightTop
+.arrowPosition__leftTop,
+.arrowPosition__rightTop
 {
-    .tooltipContainer
+    &::after
     {
-        bottom: calc( 50% - var( --carretOffset) );
-    }
-
-    .tooltip::after
-    {
-        top:    calc( 100% - var( --carretOffset ) );
+        top:    var( --arrowOffset );
     }
 }
 
-.position__leftBottom,
-.position__rightBottom
+.arrowPosition__leftBottom,
+.arrowPosition__rightBottom
 {
-    .tooltipContainer
+    &::after
     {
-        top:    calc( 50% - var( --carretOffset) );
-    }
-
-    .tooltip::after
-    {
-        top:    var( --carretOffset );
+        top:    calc( 100% - var( --arrowOffset ) );
     }
 }
 
 
 .role__default
 {
-    .tooltip
-    {
-        background:     var( --PC-GREY--D45 );
-        border-color:   var( --PC-GREY--D75 );
-    }
+    background:     var( --PC-GREY--D45 );
+    border-color:   var( --PC-GREY--D75 );
 }
 
 .role__critical
 {
-    .tooltip
-    {
-        background:     var( --PC-RED );
-        border-color:   var( --PC-RED--D15 );
-    }
+    background:     var( --PC-RED );
+    border-color:   var( --PC-RED--D15 );
 }
 
 .role__promoted
 {
-    .tooltip
-    {
-        background:     var( --PC-GREEN );
-        border-color:   var( --PC-GREEN--D15 );
-    }
+    background:     var( --PC-GREEN );
+    border-color:   var( --PC-GREEN--D15 );
 }
 
 .role__warning
 {
-    .tooltip
-    {
-        background:     var( --PC-ORANGE );
-        border-color:   var( --PC-ORANGE--D15 );
-    }
+    background:     var( --PC-ORANGE );
+    border-color:   var( --PC-ORANGE--D15 );
 }

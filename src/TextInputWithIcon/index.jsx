@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -7,13 +7,15 @@
  *
  */
 
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React                      from 'react';
+import PropTypes                  from 'prop-types';
 
-import { generateId }                      from '../utils';
-import { IconButton, InputField, Tooltip } from '..';
-import ThemeContext                        from '../Theming/ThemeContext';
-import { createCssMap }                    from '../Theming';
+import { IconButton, InputField } from '..';
+
+import ThemeContext               from '../Theming/ThemeContext';
+import { generateId }             from '../utils';
+import { createCssMap }           from '../Theming';
+
 
 export default class TextInputWithIcon extends React.Component
 {
@@ -73,28 +75,9 @@ export default class TextInputWithIcon extends React.Component
          */
         iconPosition         : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
-         *  Display the icon tooltip
-         */
-        iconTooltipIsVisible : PropTypes.bool,
-        /**
-         *  icon Tooltip message text (string or JSX)
-         */
-        iconTooltipMessage   : PropTypes.node,
-        /**
-         *  Icon Tooltip position relative to icon
-         */
-        iconTooltipPosition  : PropTypes.oneOf( [
-            'left',
-            'right',
-            'top',
-            'bottom',
-            'topLeft',
-            'topRight',
-        ] ),
-        /**
          *  Icon type to display (overrides customIcon)
          */
-        iconType : PropTypes.oneOf( [
+        iconType             : PropTypes.oneOf( [
             'account',
             'add-circle',
             'add',
@@ -152,91 +135,91 @@ export default class TextInputWithIcon extends React.Component
         /**
          *  HTML id attribute
          */
-        id               : PropTypes.string,
+        id              : PropTypes.string,
         /**
          *  Callback that receives the native <input>: ( ref ) => { ... }
          */
-        inputRef         : PropTypes.func,
+        inputRef        : PropTypes.func,
         /**
          *  HTML input type
          */
-        inputType        : PropTypes.oneOf( [ 'text', 'password' ] ),
+        inputType       : PropTypes.oneOf( [ 'text', 'password' ] ),
         /**
          *  Display as disabled
          */
-        isDisabled       : PropTypes.bool,
+        isDisabled      : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly       : PropTypes.bool,
+        isReadOnly      : PropTypes.bool,
         /**
          *  HTML name attribute
          */
-        name             : PropTypes.string,
+        name            : PropTypes.string,
         /**
          *  Blur callback function
          */
-        onBlur           : PropTypes.func,
+        onBlur          : PropTypes.func,
         /**
          *  Input change callback function
          */
-        onChange         : PropTypes.func,
+        onChange        : PropTypes.func,
         /**
          *  Input click callback function
          */
-        onClick          : PropTypes.func,
+        onClick         : PropTypes.func,
         /**
          *  Icon click callback function
          */
-        onClickIcon      : PropTypes.func,
+        onClickIcon     : PropTypes.func,
         /**
          *  Focus callback function
          */
-        onFocus          : PropTypes.func,
+        onFocus         : PropTypes.func,
         /**
          *  Key down callback function
          */
-        onKeyDown        : PropTypes.func,
+        onKeyDown       : PropTypes.func,
         /**
          *  Key press callback function
          */
-        onKeyPress       : PropTypes.func,
+        onKeyPress      : PropTypes.func,
         /**
          *  Key up callback function
          */
-        onKeyUp          : PropTypes.func,
+        onKeyUp         : PropTypes.func,
         /**
          *  Mouse out callback function
          */
-        onMouseOut       : PropTypes.func,
+        onMouseOut      : PropTypes.func,
         /**
          *  Icon mouse out callback function
          */
-        onMouseOutIcon   : PropTypes.func,
+        onMouseOutIcon  : PropTypes.func,
         /**
          *  Mouse over  callback function
          */
-        onMouseOver      : PropTypes.func,
+        onMouseOver     : PropTypes.func,
         /**
          *  Icon mouse over callback function
          */
-        onMouseOverIcon  : PropTypes.func,
+        onMouseOverIcon : PropTypes.func,
         /**
          *  Placeholder text
          */
-        placeholder      : PropTypes.string,
+        placeholder     : PropTypes.string,
         /**
          *  HTML attribute controlling input spell check
          */
-        spellCheck       : PropTypes.bool,
+        spellCheck      : PropTypes.bool,
         /**
          *  Input text alignment
          */
-        textAlign        : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+        textAlign       : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
         /**
          *  Input string value
          */
-        value            : PropTypes.string,
+        value           : PropTypes.string,
     };
 
     static defaultProps =
@@ -251,9 +234,6 @@ export default class TextInputWithIcon extends React.Component
         hasError             : false,
         iconButtonIsDisabled : false,
         iconPosition         : 'right',
-        iconTooltipIsVisible : false,
-        iconTooltipMessage   : undefined,
-        iconTooltipPosition  : 'top',
         iconType             : 'none',
         id                   : undefined,
         inputRef             : undefined,
@@ -293,9 +273,6 @@ export default class TextInputWithIcon extends React.Component
             hasError,
             iconButtonIsDisabled,
             iconPosition,
-            iconTooltipIsVisible,
-            iconTooltipMessage,
-            iconTooltipPosition,
             iconType,
             id = generateId( 'TextInputWithIcon' ),
             inputRef,
@@ -360,23 +337,15 @@ export default class TextInputWithIcon extends React.Component
                     type           = { inputType }
                     value          = { value } />
                 { ( iconType && iconType !== 'none' ) &&
-                    <Tooltip
+                    <IconButton
                         className   = { cssMap.icon }
                         hasError    = { hasError }
-                        isDisabled  = { isDisabled }
-                        isReadOnly  = { isReadOnly }
-                        isVisible   = { iconTooltipIsVisible }
-                        message     = { iconTooltipMessage }
+                        iconType    = { iconType }
+                        isDisabled  = { isDisabled || iconButtonIsDisabled }
+                        isFocusable = { false }
+                        onClick     = { onClickIcon }
                         onMouseOut  = { onMouseOutIcon }
-                        onMouseOver = { onMouseOverIcon }
-                        position    = { iconTooltipPosition }>
-                        <IconButton
-                            hasError    = { hasError }
-                            iconType    = { iconType }
-                            isDisabled  = { isDisabled || iconButtonIsDisabled }
-                            isFocusable = { false }
-                            onClick     = { onClickIcon } />
-                    </Tooltip>
+                        onMouseOver = { onMouseOverIcon } />
                 }
             </div>
         );

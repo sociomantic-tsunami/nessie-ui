@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2018-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -52,104 +52,89 @@ export default class PasswordInput extends React.Component
          */
         iconPosition         : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
-         *  Display the icon tooltip
-         */
-        iconTooltipIsVisible : PropTypes.bool,
-        /**
-         *  Icon Tooltip message text (string or JSX)
-         */
-        iconTooltipMessage   : PropTypes.node,
-        /**
-         *  Icon Tooltip position relative to icon
-         */
-        iconTooltipPosition  : PropTypes.oneOf( [
-            'left',
-            'right',
-            'top',
-            'bottom',
-            'topLeft',
-            'topRight',
-        ] ),
-        /**
          *  HTML id attribute
          */
-        id               : PropTypes.string,
+        id                   : PropTypes.string,
         /**
          *  Callback that receives the native <input>: ( ref ) => { ... }
          */
-        inputRef         : PropTypes.func,
+        inputRef             : PropTypes.func,
         /**
          *  Display as disabled
          */
-        isDisabled       : PropTypes.bool,
+        isDisabled           : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly       : PropTypes.bool,
+        isReadOnly           : PropTypes.bool,
         /**
          *  HTML name attribute
          */
-        name             : PropTypes.string,
+        name                 : PropTypes.string,
         /**
          *  Blur callback function
          */
-        onBlur           : PropTypes.func,
+        onBlur               : PropTypes.func,
         /**
          *  Input change callback function
          */
-        onChange         : PropTypes.func,
+        onChange             : PropTypes.func,
         /**
          *  Input click callback function
          */
-        onClick          : PropTypes.func,
+        onClick              : PropTypes.func,
         /**
          *  Icon click callback function
          */
-        onClickIcon      : PropTypes.func,
+        onClickIcon          : PropTypes.func,
         /**
          *  Focus callback function
          */
-        onFocus          : PropTypes.func,
+        onFocus              : PropTypes.func,
         /**
          *  Key down callback function
          */
-        onKeyDown        : PropTypes.func,
+        onKeyDown            : PropTypes.func,
         /**
          *  Key press callback function
          */
-        onKeyPress       : PropTypes.func,
+        onKeyPress           : PropTypes.func,
         /**
          *  Key up callback function
          */
-        onKeyUp          : PropTypes.func,
+        onKeyUp              : PropTypes.func,
         /**
          *  Mouse out callback function
          */
-        onMouseOut       : PropTypes.func,
+        onMouseOut           : PropTypes.func,
         /**
          *  Icon mouse out callback function
          */
-        onMouseOutIcon   : PropTypes.func,
+        onMouseOutIcon       : PropTypes.func,
         /**
          *  Mouse over  callback function
          */
-        onMouseOver      : PropTypes.func,
+        onMouseOver          : PropTypes.func,
         /**
          *  Icon mouse over callback function
          */
-        onMouseOverIcon  : PropTypes.func,
+        onMouseOverIcon      : PropTypes.func,
+        /**
+         *  Show password as plain text
+         */
+        passwordIsVisible    : PropTypes.func,
         /**
          *  Placeholder text
          */
-        placeholder      : PropTypes.string,
+        placeholder          : PropTypes.string,
         /**
          *  Input text alignment
          */
-        textAlign        : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+        textAlign            : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
         /**
          *  Input string value
          */
-        value            : PropTypes.string,
+        value                : PropTypes.string,
     };
 
     static defaultProps =
@@ -161,9 +146,6 @@ export default class PasswordInput extends React.Component
         hasError             : false,
         iconButtonIsDisabled : undefined,
         iconPosition         : 'right',
-        iconTooltipIsVisible : undefined,
-        iconTooltipMessage   : undefined,
-        iconTooltipPosition  : undefined,
         id                   : undefined,
         inputRef             : undefined,
         isDisabled           : false,
@@ -181,6 +163,7 @@ export default class PasswordInput extends React.Component
         onMouseOutIcon       : undefined,
         onMouseOver          : undefined,
         onMouseOverIcon      : undefined,
+        passwordIsVisible    : false,
         placeholder          : undefined,
         textAlign            : 'auto',
         value                : '',
@@ -223,14 +206,14 @@ export default class PasswordInput extends React.Component
         return (
             <TextInputWithIcon
                 { ...props }
-                autoCapitalize    = "off"
-                autoComplete      = "off"
-                autoCorrect       = "off"
-                iconType          = { passwordIsVisible ? 'hide' : 'show' }
-                id                = { id }
-                inputType         = { passwordIsVisible ? 'text' : 'password' }
-                onClickIcon       = { this.handleClickIcon }
-                spellCheck        = { false } />
+                autoCapitalize = "off"
+                autoComplete   = "off"
+                autoCorrect    = "off"
+                iconType       = { passwordIsVisible ? 'hide' : 'show' }
+                id             = { id }
+                inputType      = { passwordIsVisible ? 'text' : 'password' }
+                onClickIcon    = { this.handleClickIcon }
+                spellCheck     = { false } />
         );
     }
 }

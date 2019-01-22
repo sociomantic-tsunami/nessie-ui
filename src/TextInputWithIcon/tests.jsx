@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -16,9 +16,8 @@ import {
     IconButton,
     InputField,
     TextInputWithIcon,
-    TextInputWithIcon as WrappedTextInputWithIcon,
-    Tooltip,
 } from '..';
+
 
 describe( 'TextInputWithIcon', () =>
 {
@@ -39,13 +38,6 @@ describe( 'TextInputWithIcon', () =>
     {
         wrapper.setProps( { iconType: 'add' } );
         expect( wrapper.find( IconButton ) ).toHaveLength( 1 );
-    } );
-
-    test( 'should contain exactly one Tooltipwhen iconType is not \
-\'none\'', () =>
-    {
-        wrapper.setProps( { iconType: 'add' } );
-        expect( wrapper.find( Tooltip ) ).toHaveLength( 1 );
     } );
 
 
@@ -79,11 +71,6 @@ describe( 'TextInputWithIcon', () =>
             test( 'should remove the IconButton when value is "none"', () =>
             {
                 expect( wrapper.find( IconButton ) ).toHaveLength( 0 );
-            } );
-
-            test( 'should remove the Tooltip when value is "none"', () =>
-            {
-                expect( wrapper.find( Tooltip ) ).toHaveLength( 0 );
             } );
 
             test( 'should be passed to the IconButton', () =>
@@ -144,72 +131,6 @@ describe( 'TextInputWithIcon', () =>
             } );
         } );
 
-        describe( 'iconTooltipPosition', () =>
-        {
-            beforeEach( () =>
-            {
-                wrapper.setProps( { iconType: 'add' } );
-            } );
-
-            test( 'should be "top" by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.iconTooltipPosition )
-                    .toBe( 'top' );
-            } );
-
-            test( 'should be passed to the Tooltip as position', () =>
-            {
-                wrapper.setProps( { iconTooltipPosition: 'bottom' } );
-
-                expect( wrapper.find( Tooltip ).prop( 'position' ) )
-                    .toBe( 'bottom' );
-            } );
-        } );
-
-        describe( 'iconTooltipIsVisible', () =>
-        {
-            beforeEach( () =>
-            {
-                wrapper.setProps( { iconType: 'add' } );
-            } );
-
-            test( 'should be false by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.iconTooltipIsVisible )
-                    .toBe( false );
-            } );
-
-            test( 'should be passed to the Tooltip as isVisible', () =>
-            {
-                wrapper.setProps( { iconTooltipIsVisible: true } );
-
-                expect( wrapper.find( Tooltip ).prop( 'isVisible' ) )
-                    .toBe( true );
-            } );
-        } );
-
-        describe( 'iconTooltipMessage', () =>
-        {
-            beforeEach( () =>
-            {
-                wrapper.setProps( { iconType: 'add' } );
-            } );
-
-            test( 'should be undefined by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.iconTooltipMessage )
-                    .toBeUndefined();
-            } );
-
-            test( 'should be passed to the Tooltip', () =>
-            {
-                wrapper.setProps( { iconTooltipMessage: 'yes!' } );
-
-                expect( wrapper.find( Tooltip ).prop( 'message' ) )
-                    .toBe( 'yes!' );
-            } );
-        } );
-
         describe( 'isDisabled', () =>
         {
             test( 'should be false by default', () =>
@@ -223,17 +144,6 @@ describe( 'TextInputWithIcon', () =>
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( wrapper.find( InputField ).prop( 'isDisabled' ) )
-                    .toBe( true );
-            } );
-
-            test( 'should be passed to the Tooltip', () =>
-            {
-                wrapper.setProps( {
-                    iconType   : 'add',
-                    isDisabled : true,
-                } );
-
-                expect( wrapper.find( Tooltip ).prop( 'isDisabled' ) )
                     .toBe( true );
             } );
 
@@ -286,17 +196,6 @@ describe( 'TextInputWithIcon', () =>
                 expect( wrapper.find( InputField ).prop( 'isReadOnly' ) )
                     .toBe( true );
             } );
-
-            test( 'should be passed to the Tooltip', () =>
-            {
-                wrapper.setProps( {
-                    iconType   : 'add',
-                    isReadOnly : true,
-                } );
-
-                expect( wrapper.find( Tooltip ).prop( 'isReadOnly' ) )
-                    .toBe( true );
-            } );
         } );
 
         describe( 'hasError', () =>
@@ -311,17 +210,6 @@ describe( 'TextInputWithIcon', () =>
                 wrapper.setProps( { hasError: true } );
 
                 expect( wrapper.find( InputField ).prop( 'hasError' ) )
-                    .toBe( true );
-            } );
-
-            test( 'should be passed to the Tooltip', () =>
-            {
-                wrapper.setProps( {
-                    iconType : 'add',
-                    hasError : true,
-                } );
-
-                expect( wrapper.find( Tooltip ).prop( 'hasError' ) )
                     .toBe( true );
             } );
 
@@ -521,19 +409,6 @@ describe( 'TextInputWithIcon', () =>
                     .toBe( undefined );
             } );
 
-            test( 'should not be passed to the Tooltip', () =>
-            {
-                const onMouseOver = () => undefined;
-
-                wrapper.setProps( {
-                    iconType : 'add',
-                    onMouseOver,
-                } );
-
-                expect( wrapper.find( Tooltip ).prop( 'onMouseOver' ) )
-                    .not.toBe( onMouseOver );
-            } );
-
             test( 'should not be passed to the IconButton', () =>
             {
                 const onMouseOver = () => undefined;
@@ -566,18 +441,6 @@ describe( 'TextInputWithIcon', () =>
                     .not.toBe( onMouseOut );
             } );
 
-            test( 'should not be passed to the Tooltip', () =>
-            {
-                const onMouseOut = () => undefined;
-
-                wrapper.setProps( {
-                    iconType : 'add',
-                    onMouseOut,
-                } );
-
-                expect( wrapper.find( Tooltip ).prop( 'onMouseOut' ) )
-                    .not.toBe( onMouseOut );
-            } );
 
             test( 'should not be passed to the IconButton', () =>
             {
@@ -638,7 +501,7 @@ describe( 'TextInputWithIconDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <WrappedTextInputWithIcon /> );
+        wrapper = mount( <TextInputWithIcon /> );
         driver  = wrapper.driver();
     } );
 
