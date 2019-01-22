@@ -15,7 +15,7 @@ import ThemeContext                          from '../Theming/ThemeContext';
 import { createCssMap }                      from '../Theming';
 
 
-export default class InputField extends React.Component
+export default class TextInput extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -57,19 +57,11 @@ export default class InputField extends React.Component
          */
         cssMap       : PropTypes.objectOf( PropTypes.string ),
         /**
-         *  HTML element
-         */
-        element      : PropTypes.oneOf( [ 'input', 'textarea' ] ),
-        /**
-         *  Display as hover when required from another component
-         */
-        forceHover   : PropTypes.bool,
-        /**
          *  Display as error/invalid
          */
         hasError     : PropTypes.bool,
         /**
-         *  Component id
+         *  HTML id attribute
          */
         id           : PropTypes.string,
         /**
@@ -81,21 +73,49 @@ export default class InputField extends React.Component
          */
         isReadOnly   : PropTypes.bool,
         /**
-         * Sets the input to be vertically resizable (textarea element only)
+         *  Blur callback function
          */
-        isResizable  : PropTypes.bool,
+        onBlur       : PropTypes.func,
         /**
-         *  HTML name attribute
+         *  Input change callback function
          */
-        name         : PropTypes.string,
+        onChange     : PropTypes.func,
+        /**
+         *  Input click callback function
+         */
+        onClick      : PropTypes.func,
+        /**
+         *  Icon click callback function
+         */
+        onClickIcon  : PropTypes.func,
+        /**
+         *  Focus callback function
+         */
+        onFocus      : PropTypes.func,
+        /**
+         *  Key down callback function
+         */
+        onKeyDown    : PropTypes.func,
+        /**
+         *  Key press callback function
+         */
+        onKeyPress   : PropTypes.func,
+        /**
+         *  Key up callback function
+         */
+        onKeyUp      : PropTypes.func,
+        /**
+         *  Mouse out callback function
+         */
+        onMouseOut   : PropTypes.func,
+        /**
+         *  Mouse over  callback function
+         */
+        onMouseOver  : PropTypes.func,
         /**
          *  Placeholder text
          */
         placeholder  : PropTypes.string,
-        /**
-         *  Number of rows (textarea element only)
-         */
-        rows         : PropTypes.number,
         /**
          *  HTML attribute controlling input spell check
          */
@@ -104,10 +124,6 @@ export default class InputField extends React.Component
          *  Input text alignment
          */
         textAlign    : PropTypes.oneOf( [ 'left', 'right' ] ),
-        /**
-         *  HTML type attribute (input element only)
-         */
-        type         : PropTypes.oneOf( [ 'text', 'password', 'number' ] ),
         /**
          *  Input string value
          */
@@ -122,23 +138,27 @@ export default class InputField extends React.Component
         autoCorrect    : undefined,
         className      : undefined,
         cssMap         : undefined,
-        element        : 'input',
-        forceHover     : false,
         hasError       : false,
         id             : undefined,
         isDisabled     : false,
         isReadOnly     : false,
-        isResizable    : undefined,
-        name           : undefined,
+        onBlur         : undefined,
+        onChange       : undefined,
+        onClick        : undefined,
+        onClickIcon    : undefined,
+        onFocus        : undefined,
+        onKeyDown      : undefined,
+        onKeyPress     : undefined,
+        onKeyUp        : undefined,
+        onMouseOut     : undefined,
+        onMouseOver    : undefined,
         placeholder    : undefined,
-        rows           : undefined,
         spellCheck     : undefined,
         textAlign      : 'left',
-        type           : 'text',
         value          : '',
     };
 
-    static displayName = 'InputField';
+    static displayName = 'TextInput';
 
     inputRef = React.createRef();
 
@@ -154,23 +174,17 @@ export default class InputField extends React.Component
             autoCapitalize,
             autoComplete,
             autoCorrect,
-            cssMap = createCssMap( this.context.InputField, this.props ),
-            element,
-            id = generateId( 'InputField' ),
+            cssMap = createCssMap( this.context.TextInput, this.props ),
+            id = generateId( 'TextInput' ),
             isDisabled,
             isReadOnly,
-            name,
             placeholder,
-            rows,
             spellCheck,
-            type,
             value,
         } = this.props;
 
-        const InputElement = element || 'input';
-
         return (
-            <InputElement
+            <input
                 { ...mapAria( aria ) }
                 { ...attachEvents( this.props ) }
                 autoCapitalize = { autoCapitalize }
@@ -179,13 +193,10 @@ export default class InputField extends React.Component
                 className      = { cssMap.main }
                 disabled       = { isDisabled }
                 id             = { id }
-                name           = { name }
                 placeholder    = { placeholder }
                 readOnly       = { isReadOnly }
                 ref            = { this.inputRef }
-                rows           = { element === 'textarea' ? rows : null }
                 spellCheck     = { spellCheck }
-                type           = { element === 'input' ? type : null }
                 value          = { value } />
         );
     }

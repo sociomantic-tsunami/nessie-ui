@@ -9,25 +9,26 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React          from 'react';
-import { mount }      from 'enzyme';
+import React         from 'react';
+import { mount }     from 'enzyme';
 
-import { InputField } from '..';
+import { TextInput } from '..';
 
-describe( 'InputField', () =>
+
+describe( 'TextInput', () =>
 {
     let wrapper;
     let instance;
 
     beforeEach( () =>
     {
-        wrapper  = mount( <InputField /> );
+        wrapper  = mount( <TextInput /> );
         instance = wrapper.instance();
     } );
 
     describe( 'render()', () =>
     {
-        test( 'should contain exactly one InputField', () =>
+        test( 'should contain exactly one TextInput', () =>
         {
             expect( wrapper ).toHaveLength( 1 );
         } );
@@ -49,11 +50,11 @@ describe( 'InputField', () =>
                 expect( props.defaultValue ).toBeUndefined();
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { defaultValue: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'defaultValue' ) )
+                expect( wrapper.find( TextInput ).prop( 'defaultValue' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -65,7 +66,7 @@ describe( 'InputField', () =>
                 expect( props.element ).toBe( 'input' );
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { element: 'textarea' } );
 
@@ -80,11 +81,11 @@ describe( 'InputField', () =>
                 expect( props.forceHover ).toBeFalsy();
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { forceHover: true } );
 
-                expect( wrapper.find( InputField ).prop( 'forceHover' ) )
+                expect( wrapper.find( TextInput ).prop( 'forceHover' ) )
                     .toBeTruthy();
             } );
         } );
@@ -96,22 +97,22 @@ describe( 'InputField', () =>
                 expect( props.hasError ).toBeFalsy();
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { hasError: true } );
 
-                expect( wrapper.find( InputField ).prop( 'hasError' ) )
+                expect( wrapper.find( TextInput ).prop( 'hasError' ) )
                     .toBeTruthy();
             } );
         } );
 
         describe( 'id', () =>
         {
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { id: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'id' ) )
+                expect( wrapper.find( TextInput ).prop( 'id' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -123,11 +124,11 @@ describe( 'InputField', () =>
                 expect( props.isDisabled ).toBe( false );
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
-                expect( wrapper.find( InputField ).prop( 'isDisabled' ) )
+                expect( wrapper.find( TextInput ).prop( 'isDisabled' ) )
                     .toBeTruthy();
             } );
         } );
@@ -139,7 +140,7 @@ describe( 'InputField', () =>
                 expect( props.isReadOnly ).toBeFalsy();
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
@@ -154,11 +155,11 @@ describe( 'InputField', () =>
                 expect( props.name ).toBeUndefined();
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { name: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'name' ) )
+                expect( wrapper.find( TextInput ).prop( 'name' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -178,12 +179,12 @@ describe( 'InputField', () =>
                 expect( props.onChange ).toBeUndefined();
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 const onChange = () => undefined;
                 wrapper.setProps( { onChange } );
 
-                expect( wrapper.find( InputField ).prop( 'onChange' ) )
+                expect( wrapper.find( TextInput ).prop( 'onChange' ) )
                     .toBe( onChange );
             } );
         } );
@@ -203,12 +204,12 @@ describe( 'InputField', () =>
                 expect( props.onKeyPress ).toBeUndefined();
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 const onKeyPress = () => undefined;
                 wrapper.setProps( { onKeyPress } );
 
-                expect( wrapper.find( InputField ).prop( 'onKeyPress' ) )
+                expect( wrapper.find( TextInput ).prop( 'onKeyPress' ) )
                     .toBe( onKeyPress );
             } );
         } );
@@ -220,12 +221,12 @@ describe( 'InputField', () =>
                 expect( props.onMouseOut ).toBeUndefined();
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 const onMouseOut = () => undefined;
                 wrapper.setProps( { onMouseOut } );
 
-                expect( wrapper.find( InputField ).prop( 'onMouseOut' ) )
+                expect( wrapper.find( TextInput ).prop( 'onMouseOut' ) )
                     .toBe( onMouseOut );
             } );
         } );
@@ -237,12 +238,12 @@ describe( 'InputField', () =>
                 expect( props.onMouseOver ).toBeUndefined();
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 const onMouseOver = () => undefined;
                 wrapper.setProps( { onMouseOver } );
 
-                expect( wrapper.find( InputField ).prop( 'onMouseOver' ) )
+                expect( wrapper.find( TextInput ).prop( 'onMouseOver' ) )
                     .toBe( onMouseOver );
             } );
         } );
@@ -254,11 +255,11 @@ describe( 'InputField', () =>
                 expect( props.placeholder ).toBeUndefined();
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { placeholder: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'placeholder' ) )
+                expect( wrapper.find( TextInput ).prop( 'placeholder' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -270,11 +271,11 @@ describe( 'InputField', () =>
                 expect( props.textAlign ).toBe( 'left' );
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { textAlign: 'right' } );
 
-                expect( wrapper.find( InputField ).prop( 'textAlign' ) )
+                expect( wrapper.find( TextInput ).prop( 'textAlign' ) )
                     .toBe( 'right' );
             } );
         } );
@@ -286,11 +287,11 @@ describe( 'InputField', () =>
                 expect( props.type ).toBe( 'text' );
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { type: 'number' } );
 
-                expect( wrapper.find( InputField ).prop( 'type' ) )
+                expect( wrapper.find( TextInput ).prop( 'type' ) )
                     .toBe( 'number' );
             } );
         } );
@@ -299,14 +300,14 @@ describe( 'InputField', () =>
         {
             test( 'should be empty string by default', () =>
             {
-                expect( InputField.defaultProps.value ).toBe( '' );
+                expect( TextInput.defaultProps.value ).toBe( '' );
             } );
 
             test( 'should be passed to the input element', () =>
             {
                 wrapper.setProps( { value: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'value' ) )
+                expect( wrapper.find( TextInput ).prop( 'value' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -314,14 +315,14 @@ describe( 'InputField', () =>
 } );
 
 
-describe( 'InputFieldDriver', () =>
+describe( 'TextInputDriver', () =>
 {
     let wrapper;
     let driver;
 
     beforeEach( () =>
     {
-        wrapper = mount( <InputField /> );
+        wrapper = mount( <TextInput /> );
         driver  = wrapper.driver();
     } );
 
@@ -343,7 +344,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'InputField cannot simulate blur since it is disabled';
+                    'TextInput cannot simulate blur since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -384,7 +385,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'InputField cannot simulate focus since it is disabled';
+                    'TextInput cannot simulate focus since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
@@ -425,7 +426,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'InputField cannot simulate change since it is disabled';
+                    'TextInput cannot simulate change since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -453,7 +454,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'InputField cannot simulate change since it is read only';
+                    'TextInput cannot simulate change since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -494,7 +495,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'InputField cannot simulate click since it is disabled';
+                    'TextInput cannot simulate click since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
@@ -535,7 +536,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'InputField cannot simulate keyPress since it is disabled';
+                    'TextInput cannot simulate keyPress since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
@@ -576,7 +577,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'InputField cannot simulate keyDown since it is disabled';
+                    'TextInput cannot simulate keyDown since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyDown() ).toThrow( expectedError );
@@ -617,7 +618,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'InputField cannot simulate keyUp since it is disabled';
+                    'TextInput cannot simulate keyUp since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyUp() ).toThrow( expectedError );

@@ -12,7 +12,7 @@ import {
     Button,
     DatePicker,
     IconButton,
-    InputField,
+    TextInput,
     ListBox,
     PasswordInput,
     ScrollBar,
@@ -27,7 +27,6 @@ import {
 import ButtonDriver            from './Button/driver';
 import DatePickerDriver        from './DatePicker/driver';
 import IconButtonDriver        from './IconButton/driver';
-import InputFieldDriver        from './InputField/driver';
 import ListBoxDriver           from './ListBox/driver';
 import PasswordInputDriver     from './PasswordInput/driver';
 import ScrollBarDriver         from './ScrollBar/driver';
@@ -35,6 +34,7 @@ import ScrollBoxDriver         from './ScrollBox/driver';
 import TabButtonDriver         from './TabButton/driver';
 import TabsDriver              from './Tabs/driver';
 import TextDriver              from './Text/driver';
+import TextInputDriver         from './TextInput/driver';
 import TextInputWithIconDriver from './TextInputWithIcon/driver';
 import TooltipDriver           from './Tooltip/driver';
 
@@ -52,10 +52,6 @@ const drivers =
     {
         Component : IconButton,
         Driver    : IconButtonDriver,
-    },
-    {
-        Component : InputField,
-        Driver    : InputFieldDriver,
     },
     {
         Component : ListBox,
@@ -84,6 +80,10 @@ const drivers =
     {
         Component : Text,
         Driver    : TextDriver,
+    },
+    {
+        Component : TextInput,
+        Driver    : TextInputDriver,
     },
     {
         Component : TextInputWithIcon,

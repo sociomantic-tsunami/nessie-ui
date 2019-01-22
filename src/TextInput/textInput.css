@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -32,11 +32,7 @@
     @extend %Nessie-Regular;
 
     /* removes clear and reveal password icons from IE */
-    &::-ms-reveal
-    {
-        display: none;
-    }
-
+    &::-ms-reveal,
     &::-ms-clear
     {
         display: none;
@@ -62,11 +58,6 @@
         {
             color: transparent !important;
         }
-    }
-
-    textarea&
-    {
-        resize: none;
     }
 }
 
@@ -110,12 +101,4 @@
 .align__right
 {
     text-align: right;
-}
-
-.resizable
-{
-    textarea&
-    {
-        resize: vertical;
-    }
 }

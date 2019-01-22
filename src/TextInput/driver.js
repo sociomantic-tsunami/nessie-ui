@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2018-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -8,11 +8,11 @@
  */
 
 const ERR = {
-    INPUTFIELD_ERROR : ( event, state ) =>
+    TEXTINPUT_ERROR : ( event, state ) =>
         `InputField cannot simulate ${event} since it is ${state}`,
 };
 
-export default class InputFieldDriver
+export default class TextInputDriver
 {
     constructor( wrapper )
     {
@@ -23,7 +23,7 @@ export default class InputFieldDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUTFIELD_ERROR( 'blur', 'disabled' ) );
+            throw new Error( ERR.TEXTINPUT_ERROR( 'blur', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'blur' );
@@ -34,7 +34,7 @@ export default class InputFieldDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUTFIELD_ERROR( 'focus', 'disabled' ) );
+            throw new Error( ERR.TEXTINPUT_ERROR( 'focus', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'focus' );
@@ -47,12 +47,12 @@ export default class InputFieldDriver
 
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUTFIELD_ERROR( 'change', 'disabled' ) );
+            throw new Error( ERR.TEXTINPUT_ERROR( 'change', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.INPUTFIELD_ERROR( 'change', 'read only' ) );
+            throw new Error( ERR.TEXTINPUT_ERROR( 'change', 'read only' ) );
         }
 
         node.value = val;
@@ -65,7 +65,7 @@ export default class InputFieldDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUTFIELD_ERROR( 'click', 'disabled' ) );
+            throw new Error( ERR.TEXTINPUT_ERROR( 'click', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'click' );
@@ -76,7 +76,7 @@ export default class InputFieldDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUTFIELD_ERROR( 'keyPress', 'disabled' ) );
+            throw new Error( ERR.TEXTINPUT_ERROR( 'keyPress', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'keyPress', { keyCode, which: keyCode } );
@@ -87,7 +87,7 @@ export default class InputFieldDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUTFIELD_ERROR( 'keyDown', 'disabled' ) );
+            throw new Error( ERR.TEXTINPUT_ERROR( 'keyDown', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'keyDown', { keyCode, which: keyCode } );
@@ -98,7 +98,7 @@ export default class InputFieldDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUTFIELD_ERROR( 'keyUp', 'disabled' ) );
+            throw new Error( ERR.TEXTINPUT_ERROR( 'keyUp', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'keyUp', { keyCode, which: keyCode } );
@@ -107,13 +107,13 @@ export default class InputFieldDriver
 
     mouseOver()
     {
-        this.wrapper.simulate( 'mouseOver' );
+        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.wrapper.simulate( 'mouseOut' );
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }

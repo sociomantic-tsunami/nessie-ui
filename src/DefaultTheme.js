@@ -18,7 +18,6 @@ import gridClasses               from './Grid/grid.css';
 import gridItemClasses           from './GridItem/gridItem.css';
 import iconButtonClasses         from './IconButton/iconButton.css';
 import iconClasses               from './Icon/icon.css';
-import inputFieldClasses         from './InputField/inputField.css';
 import listBoxClasses            from './ListBox/listBox.css';
 import listBoxOptionClasses      from './ListBox/listBoxOption.css';
 import listBoxOptionGroupClasses from './ListBox/listBoxOptionGroup.css';
@@ -29,6 +28,7 @@ import tabButtonClasses          from './TabButton/tabButton.css';
 import tabClasses                from './Tab/tab.css';
 import tabsClasses               from './Tabs/tabs.css';
 import textClasses               from './Text/text.css';
+import textInputClasses          from './TextInput/textInput.css';
 import textInputWithIconClasses  from './TextInputWithIcon/textInputWithIcon.css';
 import timeInputClasses          from './DatePicker/timeInput.css';
 import tooltipClasses            from './Tooltip/tooltip.css';
@@ -133,20 +133,6 @@ export default {
         ),
         ...iconButtonClasses,
     } ),
-    InputField : props => ( {
-        main : classNames.bind( inputFieldClasses )(
-            'default',
-            {
-                disabled    : props.isDisabled,
-                error       : !props.isDisabled && props.hasError,
-                fakeHovered : !props.isDisabled && props.forceHover,
-                resizable   : props.element === 'textarea' && props.isResizable,
-            },
-            `align__${props.textAlign}`,
-            props.className,
-        ),
-        ...inputFieldClasses,
-    } ),
     ListBox : {
         main : classNames.bind( listBoxClasses )( 'default' ),
         ...listBoxClasses,
@@ -234,6 +220,18 @@ export default {
             props.className,
         ),
         ...textClasses,
+    } ),
+    TextInput : props => ( {
+        main : classNames.bind( textInputClasses )(
+            'default',
+            {
+                disabled : props.isDisabled,
+                error    : !props.isDisabled && props.hasError,
+            },
+            `align__${props.textAlign}`,
+            props.className,
+        ),
+        ...textInputClasses,
     } ),
     TextInputWithIcon : props => ( {
         main : classNames.bind( textInputWithIconClasses )(
