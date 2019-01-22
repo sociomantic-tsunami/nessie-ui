@@ -8,6 +8,7 @@
  */
 
 import Button            from './Button';
+import Card              from './Card';
 import ComboBox          from './ComboBox';
 import DatePicker        from './DatePicker';
 import DateTimeInput     from './DateTimeInput';
@@ -33,6 +34,7 @@ import Tooltip           from './Tooltip';
 
 export {
     Button,
+    Card,
     ComboBox,
     DatePicker,
     DateTimeInput,
@@ -59,6 +61,7 @@ export {
 
 export default {
     Button,
+    Card,
     ComboBox,
     DatePicker,
     DateTimeInput,

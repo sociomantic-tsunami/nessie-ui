@@ -10,6 +10,7 @@
 import classNames                from 'classnames/bind';
 
 import buttonClasses             from './Button/button.css';
+import cardClasses               from './Card/card.css';
 import datePickerClasses         from './DatePicker/datePicker.css';
 import datePickerHeaderClasses   from './DatePicker/datePickerHeader.css';
 import datePickerItemClasses     from './DatePicker/datePickerItem.css';
@@ -49,6 +50,17 @@ export default {
             props.className,
         ),
         ...buttonClasses,
+    } ),
+    Card : props => ( {
+        main : classNames.bind( cardClasses )(
+            'default',
+            `paddingX__${Array.isArray( props.padding ) ?
+                props.padding[ 0 ] : props.padding}`,
+            `paddingY__${Array.isArray( props.padding ) ?
+                props.padding[ 1 ] : props.padding}`,
+            props.className,
+        ),
+        ...cardClasses,
     } ),
     DatePicker : {
         main : classNames.bind( datePickerClasses )( 'default' ),
