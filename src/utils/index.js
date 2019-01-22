@@ -1,14 +1,11 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
  * in the root directory of this source tree.
  *
  */
-
-import React, { Component } from 'react';
-import { isEqual }          from 'lodash';
 
 
 const buildDisplayName = ( WrapperComponent, WrappedComponent ) =>
@@ -21,17 +18,6 @@ const buildDisplayName = ( WrapperComponent, WrappedComponent ) =>
 
 const clamp = ( val, min, max ) => Math.min( Math.max( val, min ), max );
 
-const deepPure = Comp => class DeepPure extends Component
-{
-    shouldComponentUpdate( nextProps )
-    {
-        return !isEqual( this.props, nextProps );
-    }
-    render()
-    {
-        return <Comp { ...this.props } />;
-    }
-};
 
 const eventHandler = ( func, ...rest ) => func && ( e => func( e, ...rest ) );
 
@@ -65,7 +51,6 @@ const mapAria = ( ariaObj = {} ) =>
 export {
     buildDisplayName,
     clamp,
-    deepPure,
     eventHandler,
     generateId,
     killFocus,
@@ -75,7 +60,6 @@ export {
 export default {
     buildDisplayName,
     clamp,
-    deepPure,
     eventHandler,
     generateId,
     killFocus,
