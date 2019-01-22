@@ -183,10 +183,10 @@ export default {
                 scrollBarsAreVisible   : props.scrollBarsAreVisible,
                 scrollIndicatorVariant : props.scrollIndicatorVariant,
             },
-            `paddingX__${Array.isArray( props.padding )
-                ? props.padding[ 0 ] : props.padding}`,
-            `paddingY__${Array.isArray( props.padding )
-                ? props.padding[ 1 ] : props.padding}`,
+            `paddingX__${Array.isArray( props.padding ) ?
+                props.padding[ 0 ] : props.padding}`,
+            `paddingY__${Array.isArray( props.padding ) ?
+                props.padding[ 1 ] : props.padding}`,
             `scroll__${props.scroll}`,
             props.className,
         ),
@@ -211,10 +211,10 @@ export default {
     Tabs : props =>  ( {
         main : classNames.bind( tabsClasses )(
             'default',
-            `paddingX__${Array.isArray( props.padding )
-                ? props.padding[ 0 ] : props.padding}`,
-            `paddingY__${Array.isArray( props.padding )
-                ? props.padding[ 1 ] : props.padding}`,
+            `paddingX__${Array.isArray( props.padding ) ?
+                props.padding[ 0 ] : props.padding}`,
+            `paddingY__${Array.isArray( props.padding ) ?
+                props.padding[ 1 ] : props.padding}`,
             props.className,
         ),
         ...tabsClasses,

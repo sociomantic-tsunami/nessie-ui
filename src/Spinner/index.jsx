@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -7,11 +7,11 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming';
 
 export default class Spinner extends React.Component
 {

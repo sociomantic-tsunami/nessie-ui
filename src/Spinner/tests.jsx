@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -12,7 +12,7 @@
 import React       from 'react';
 import { shallow } from 'enzyme';
 
-import { Spinner } from '../index';
+import { Spinner } from '..';
 
 describe( 'Spinner', () =>
 {

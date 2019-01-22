@@ -10,7 +10,7 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { Dropdown }         from '../../index';
+import { Dropdown }         from '../..';
 import { buildDisplayName } from '../../utils';
 import ThemeContext         from '../../Theming/ThemeContext';
 import { createCssMap }     from '../../Theming';

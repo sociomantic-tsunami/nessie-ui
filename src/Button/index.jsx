@@ -7,13 +7,14 @@
  *
  */
 
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React             from 'react';
+import PropTypes         from 'prop-types';
 
-import { generateId } from '../utils';
-import { Icon, Spinner }              from '../index';
-import ThemeContext                   from '../Theming/ThemeContext';
-import { createCssMap }               from '../Theming';
+import { Icon, Spinner } from '..';
+
+import { generateId }    from '../utils';
+import ThemeContext      from '../Theming/ThemeContext';
+import { createCssMap }  from '../Theming';
 
 export default class Button extends React.Component
 {

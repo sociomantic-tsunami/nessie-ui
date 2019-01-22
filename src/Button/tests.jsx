@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -9,10 +9,10 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React                      from 'react';
-import { mount, shallow }         from 'enzyme';
+import React                     from 'react';
+import { mount, shallow }        from 'enzyme';
 
-import { Button, Icon, Spinner }  from '../index';
+import { Button, Icon, Spinner } from '..';
 
 describe( 'Button', () =>
 {
