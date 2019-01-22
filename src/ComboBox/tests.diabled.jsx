@@ -12,7 +12,7 @@
 // import React        from 'react';
 // import { mount }    from 'enzyme';
 //
-// import { ComboBox } from '../index';
+// import { ComboBox } from '..';
 //
 // describe( 'ComboBoxDriver', () =>
 // {

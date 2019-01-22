@@ -57,7 +57,8 @@ function getOption( id, options = [] )
  */
 function optionsFormatted( filteredOptionsIds, originalOptions )
 {
-    return originalOptions.reduce( ( formattedOptions, option ) => {
+    return originalOptions.reduce( ( formattedOptions, option ) =>
+    {
         if ( option.options )
         {
             const sectionOptions = optionsFormatted(
@@ -191,8 +192,8 @@ export default class ComboBox extends Component
 
         if ( optionId )
         {
-            optionId = getOption( optionId, flatOptions )
-                ? getOption( optionId, flatOptions ).id : undefined;
+            optionId = getOption( optionId, flatOptions ) ?
+                getOption( optionId, flatOptions ).id : undefined;
         }
 
         return {
@@ -246,16 +247,17 @@ export default class ComboBox extends Component
     {
         const searchValue = ( e.target.value || '' ).toLowerCase();
 
-        const filteredOptions = this.state.flatOptions.filter( ( { text } ) =>
-            !searchValue || text.toLowerCase().indexOf( searchValue ) > -1 );
+        this.setState( prevState =>
+        {
+            const filteredOptions =
+                prevState.flatOptions.filter( ( { text } ) =>
+                    !searchValue ||
+                    text.toLowerCase().indexOf( searchValue ) > -1 );
 
-        const activeOption = ( searchValue && filteredOptions.length )
-            ? filteredOptions[ 0 ].id : undefined;
+            const activeOption = ( searchValue && filteredOptions.length ) ?
+                filteredOptions[ 0 ].id : undefined;
 
-        this.setState( {
-            activeOption,
-            filteredOptions,
-            searchValue,
+            return { activeOption, filteredOptions, searchValue };
         } );
     }
 
@@ -276,7 +278,8 @@ export default class ComboBox extends Component
         const { id } = this.state;
         const unprefixedId = removePrefix( optId, id );
 
-        this.setState( prevState => {
+        this.setState( prevState =>
+        {
             const selectedOption = !isReadOnly ? getOption(
                 unprefixedId,
                 prevState.flatOptions,
@@ -305,9 +308,10 @@ export default class ComboBox extends Component
         {
             e.preventDefault();
 
-            this.setState( prevState => {
-                const options = prevState.filteredOptions
-                || prevState.flatOptions;
+            this.setState( prevState =>
+            {
+                const options = prevState.filteredOptions ||
+                    prevState.flatOptions;
 
                 if ( prevState.isOpen && options.length )
                 {
@@ -319,9 +323,9 @@ export default class ComboBox extends Component
                         options,
                     );
 
-                    activeIndex = key === 'ArrowUp'
-                        ? Math.max( activeIndex - 1, minIndex )
-                        : Math.min( activeIndex + 1, maxIndex );
+                    activeIndex = key === 'ArrowUp' ?
+                        Math.max( activeIndex - 1, minIndex ) :
+                        Math.min( activeIndex + 1, maxIndex );
 
                     return {
                         activeOption : options[ activeIndex ].id,
@@ -344,8 +348,8 @@ export default class ComboBox extends Component
         {
             const { isReadOnly, onChange } = this.props;
 
-            this.setState( prevState => {
-
+            this.setState( prevState =>
+            {
                 const selectedOption = !isReadOnly && prevState.activeOption ?
                     prevState.activeOption : prevState.selectedOption;
 
@@ -357,10 +361,10 @@ export default class ComboBox extends Component
                     activeOption    : prevState.activeOption,
                     filteredOptions : undefined,
                     isOpen          : typeof isOpen === 'boolean' ?
-                        this.state.isOpen : !prevState.isOpen,
+                        prevState.isOpen : !prevState.isOpen,
                     searchValue : undefined,
                     selectedOption,
-                }
+                };
             } );
         }
     }
@@ -375,7 +379,8 @@ export default class ComboBox extends Component
         const { id } = this.state;
         const unprefixedId = removePrefix( optId, id );
 
-        this.setState( prevState => {
+        this.setState( prevState =>
+        {
             const activeOption = getOption(
                 unprefixedId,
                 prevState.flatOptions,
@@ -418,8 +423,8 @@ export default class ComboBox extends Component
             selectedOption,
         } = this.state;
 
-        const optionVal = getOption( selectedOption, flatOptions )
-            ? getOption( selectedOption, flatOptions ).text : undefined;
+        const optionVal = getOption( selectedOption, flatOptions ) ?
+            getOption( selectedOption, flatOptions ).text : undefined;
 
         let optionsToShow = options;
 

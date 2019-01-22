@@ -10,8 +10,9 @@
 import React            from 'react';
 import PropTypes        from 'prop-types';
 
+import { Icon }         from '..';
+
 import { generateId }   from '../utils';
-import { Icon }         from '../index';
 import ThemeContext     from '../Theming/ThemeContext';
 import { createCssMap } from '../Theming';
 

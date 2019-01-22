@@ -12,7 +12,7 @@
 import React              from 'react';
 import { shallow }        from 'enzyme';
 
-import { Grid, GridItem } from '../index';
+import { Grid, GridItem } from '..';
 
 
 describe( 'Grid', () =>

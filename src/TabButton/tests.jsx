@@ -12,7 +12,7 @@
 import React            from 'react';
 import { mount }        from 'enzyme';
 
-import { TabButton }    from '../index';
+import { TabButton }    from '..';
 
 describe( 'TabButton', () =>
 {

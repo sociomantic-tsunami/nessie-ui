@@ -19,6 +19,7 @@
         "func-call-spacing"         : [ "error", "never" ],
         "generator-star-spacing"    : "off",
         "global-require"            : "off",
+        "implicit-arrow-linebreak"  : "off",
         "import/first"              : "off",
         "import/no-unresolved"      : "error",
         "import/order"              : [
@@ -38,9 +39,10 @@
         "jsx-a11y/aria-role"                : [
             "error", { "ignoreNonDOM": true }
         ],
+        "jsx-a11y/click-events-have-key-events"   : "off",
         "jsx-a11y/label-has-for"                  : "warn",
         "jsx-a11y/mouse-events-have-key-events"   : "off",
-        "jsx-a11y/no-static-element-interactions" : "warn",
+        "jsx-a11y/no-static-element-interactions" : "off",
         "key-spacing"                             : [
             "error",
             {
@@ -55,8 +57,13 @@
                 }
             }
         ],
-        "keyword-spacing"          : "error",
-        "linebreak-style"          : [ "error", "unix" ],
+        "keyword-spacing"             : "error",
+        "linebreak-style"             : [ "error", "unix" ],
+        "lines-between-class-members" : [
+            "error",
+            "always",
+            { "exceptAfterSingleLine": true }
+        ],
         "max-len"                  : [ "error", 80, 4 ],
         "no-console"               : ["warn", { allow: ["warn"] } ],
         "no-constant-condition"    : "warn",
@@ -84,6 +91,7 @@
         "no-unused-vars"           : "error",
         "no-use-before-define"     : "off",
         "no-with"                  : "error",
+        "operator-linebreak"       : [ "error", "after" ],
         "promise/always-return"    : "warn",
         "promise/catch-or-return"  : "error",
         "promise/no-native"        : "off",
@@ -92,7 +100,9 @@
             "error", "as-needed", { "keywords": true, "unnecessary": false }
         ],
         "quotes"                             : [ "error", "single" ],
-        "radix"                              : ["off"],
+        "radix"                              : "off",
+        "react/destructuring-assignment"     : "off",
+        "react/forbid-prop-types"            : "off",
         "react/jsx-closing-bracket-location" : "off",
         "react/jsx-curly-spacing"            : [ "error", "always" ],
         "react/jsx-equals-spacing"           : [ "error", "always" ],
@@ -101,6 +111,7 @@
         "react/jsx-indent"                   : [ "error", 4 ],
         "react/jsx-wrap-multilines"          : [ "error", { "arrow": false } ],
         "react/no-unused-prop-types"         : "warn",
+        "react/jsx-one-expression-per-line"  : "off",
         "require-jsdoc"                      : [
             "error",
             {

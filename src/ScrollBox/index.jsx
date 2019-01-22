@@ -12,7 +12,9 @@ import PropTypes                 from 'prop-types';
 import { isEqual }               from 'lodash';
 
 import { createScrollHandler }   from './utils';
-import { IconButton, ScrollBar } from '../index';
+
+import { IconButton, ScrollBar } from '..';
+
 import ThemeContext              from '../Theming/ThemeContext';
 import { createCssMap }          from '../Theming';
 

@@ -11,7 +11,7 @@ import React                               from 'react';
 import PropTypes                           from 'prop-types';
 
 import { generateId }                      from '../utils';
-import { IconButton, InputField, Tooltip } from '../index';
+import { IconButton, InputField, Tooltip } from '..';
 import ThemeContext                        from '../Theming/ThemeContext';
 import { createCssMap }                    from '../Theming';
 
@@ -381,7 +381,7 @@ export default class TextInputWithIcon extends React.Component
                         message     = { iconTooltipMessage }
                         onMouseOut  = { onMouseOutIcon }
                         onMouseOver = { onMouseOverIcon }
-                        position    = { iconTooltipPosition } >
+                        position    = { iconTooltipPosition }>
                         <IconButton
                             hasError    = { hasError }
                             iconType    = { iconType }
