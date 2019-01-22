@@ -77,7 +77,7 @@ export default class TextInputWithIcon extends React.Component
         /**
          *  Icon type to display (overrides customIcon)
          */
-        iconType : PropTypes.oneOf( [
+        iconType             : PropTypes.oneOf( [
             'account',
             'add-circle',
             'add',
@@ -135,99 +135,91 @@ export default class TextInputWithIcon extends React.Component
         /**
          *  HTML id attribute
          */
-        id               : PropTypes.string,
+        id              : PropTypes.string,
         /**
          *  Callback that receives the native <input>: ( ref ) => { ... }
          */
-        inputRef         : PropTypes.func,
+        inputRef        : PropTypes.func,
         /**
          *  HTML input type
          */
-        inputType        : PropTypes.oneOf( [ 'text', 'password' ] ),
+        inputType       : PropTypes.oneOf( [ 'text', 'password' ] ),
         /**
          *  Display as disabled
          */
-        isDisabled       : PropTypes.bool,
+        isDisabled      : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly       : PropTypes.bool,
-        /**
-         *  Display as read-only for IconButton
-         */
-        isReadOnlyButton : PropTypes.bool,
-        /**
-         *  is read only
-         */
-        isReadOnlyInput  : PropTypes.bool,
+        isReadOnly      : PropTypes.bool,
         /**
          *  HTML name attribute
          */
-        name             : PropTypes.string,
+        name            : PropTypes.string,
         /**
          *  Blur callback function
          */
-        onBlur           : PropTypes.func,
+        onBlur          : PropTypes.func,
         /**
          *  Input change callback function
          */
-        onChange         : PropTypes.func,
+        onChange        : PropTypes.func,
         /**
          *  Input click callback function
          */
-        onClick          : PropTypes.func,
+        onClick         : PropTypes.func,
         /**
          *  Icon click callback function
          */
-        onClickIcon      : PropTypes.func,
+        onClickIcon     : PropTypes.func,
         /**
          *  Focus callback function
          */
-        onFocus          : PropTypes.func,
+        onFocus         : PropTypes.func,
         /**
          *  Key down callback function
          */
-        onKeyDown        : PropTypes.func,
+        onKeyDown       : PropTypes.func,
         /**
          *  Key press callback function
          */
-        onKeyPress       : PropTypes.func,
+        onKeyPress      : PropTypes.func,
         /**
          *  Key up callback function
          */
-        onKeyUp          : PropTypes.func,
+        onKeyUp         : PropTypes.func,
         /**
          *  Mouse out callback function
          */
-        onMouseOut       : PropTypes.func,
+        onMouseOut      : PropTypes.func,
         /**
          *  Icon mouse out callback function
          */
-        onMouseOutIcon   : PropTypes.func,
+        onMouseOutIcon  : PropTypes.func,
         /**
          *  Mouse over  callback function
          */
-        onMouseOver      : PropTypes.func,
+        onMouseOver     : PropTypes.func,
         /**
          *  Icon mouse over callback function
          */
-        onMouseOverIcon  : PropTypes.func,
+        onMouseOverIcon : PropTypes.func,
         /**
          *  Placeholder text
          */
-        placeholder      : PropTypes.string,
+        placeholder     : PropTypes.string,
         /**
          *  HTML attribute controlling input spell check
          */
-        spellCheck       : PropTypes.bool,
+        spellCheck      : PropTypes.bool,
         /**
          *  Input text alignment
          */
-        textAlign        : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+        textAlign       : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
         /**
          *  Input string value
          */
-        value            : PropTypes.string,
+        value           : PropTypes.string,
     };
 
     static defaultProps =
@@ -248,8 +240,6 @@ export default class TextInputWithIcon extends React.Component
         inputType            : 'text',
         isDisabled           : false,
         isReadOnly           : false,
-        isReadOnlyButton     : false,
-        isReadOnlyInput      : false,
         name                 : undefined,
         onBlur               : undefined,
         onChange             : undefined,
@@ -289,8 +279,6 @@ export default class TextInputWithIcon extends React.Component
             inputType,
             isDisabled,
             isReadOnly,
-            isReadOnlyButton,
-            isReadOnlyInput,
             name,
             onBlur,
             onChange,
@@ -333,7 +321,7 @@ export default class TextInputWithIcon extends React.Component
                     hasError       = { hasError }
                     id             = { id }
                     isDisabled     = { isDisabled }
-                    isReadOnly     = { isReadOnlyInput || isReadOnly }
+                    isReadOnly     = { isReadOnly }
                     name           = { name }
                     onBlur         = { onBlur }
                     onChange       = { onChange }
@@ -355,7 +343,6 @@ export default class TextInputWithIcon extends React.Component
                         iconType    = { iconType }
                         isDisabled  = { isDisabled || iconButtonIsDisabled }
                         isFocusable = { false }
-                        isReadOnly  = { isReadOnlyButton || isReadOnly }
                         onClick     = { onClickIcon }
                         onMouseOut  = { onMouseOutIcon }
                         onMouseOver = { onMouseOverIcon } />

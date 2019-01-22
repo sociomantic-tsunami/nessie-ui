@@ -150,8 +150,7 @@
 //             throw new Error( ERR.INPUT_ERR( 'change', 'disabled' ) );
 //         }
 //
-//         if ( this.wrapper.props().isReadOnly ||
-//             this.wrapper.props().isReadOnlyInput )
+//         if ( this.wrapper.props().isReadOnly )
 //         {
 //             throw new Error( ERR.INPUT_ERR( 'change', 'read only' ) );
 //         }

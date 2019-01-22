@@ -30,12 +30,6 @@ export default class IconButtonDriver
                 .ICONBUTTON_ERR( label, 'click', 'disabled' ) );
         }
 
-        if ( props.isReadOnly )
-        {
-            throw new Error( ERR
-                .ICONBUTTON_ERR( label, 'click', 'read only' ) );
-        }
-
         this.wrapper.simulate( 'click' );
         return this;
     }
