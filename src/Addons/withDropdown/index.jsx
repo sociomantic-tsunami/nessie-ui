@@ -7,13 +7,13 @@
  *
  */
 
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React                              from 'react';
+import PropTypes                          from 'prop-types';
 
-import { Dropdown }                        from '../..';
-import { attachEvents,  buildDisplayName } from '../../utils';
-import ThemeContext                        from '../../Theming/ThemeContext';
-import { createCssMap }                    from '../../Theming';
+import { Dropdown }                       from '../..';
+import { attachEvents, buildDisplayName } from '../../utils';
+import ThemeContext                       from '../../Theming/ThemeContext';
+import { createCssMap }                   from '../../Theming';
 
 
 const withDropdown = Component =>

@@ -1,0 +1,450 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+@import "../proto/base.css";
+
+.default
+{
+    appearance:     none !important;
+
+    position:       relative;
+    display:        table; /* flex doesn’t work here */
+
+    width:          auto;
+    height:         auto;
+
+    padding:        0;
+
+    border:         none;
+    border-radius:  2px;
+
+    background:     transparent;
+    cursor:         pointer;
+
+    @extend %Nessie-Bold;
+
+    .content
+    {
+        /* Firefox doesn’t properly support flex directly
+         * on button so we need to set it here
+         */
+        display:            flex;
+        justify-content:    center;
+        align-items:        center;
+        box-sizing:         border-box;
+        height:             40px;
+        padding:            0 var( --spacing-2 );
+        text-align:         center;
+    }
+
+    .label
+    {
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-s );
+        letter-spacing: 0.5px;
+
+        overflow:       hidden;
+        text-overflow:  ellipsis;
+        white-space:    nowrap;
+    }
+
+    .iconContainer
+    {
+        display:            flex;
+        justify-content:    center;
+        align-items:        center;
+    }
+
+    .loadingOverlay
+    {
+        display:            flex;
+        flex-direction:     row;
+        justify-content:    center;
+        align-items:        center;
+
+        position:           absolute;
+
+        top:                0;
+        bottom:             0;
+
+        left:               0;
+        right:              0;
+
+        width:              100%;
+        height:             100%;
+
+        .spinner
+        {
+            border-color:   color( var( --PC-WHITE ) a( 50% ) );
+
+            &::after
+            {
+                border-top-color:   var( --PC-WHITE );
+            }
+        }
+    }
+}
+
+
+.iconPosition__right
+{
+    .content
+    {
+        flex-direction: row-reverse;
+    }
+
+    .iconContainer
+    {
+        margin-left:    calc( var( --spacing-1 ) / 2 ); /* space between icon and text */
+        margin-right:   calc( -1 * var( --spacing-1 ) ); /* half of content padding */
+    }
+}
+
+
+.iconPosition__left
+{
+    .iconContainer
+    {
+        margin-right:   calc( var( --spacing-1 ) / 2 ); /* space between icon and text */
+        margin-left:    calc( -1 * var( --spacing-1 ) ); /* half of content padding */
+    }
+}
+
+
+.role__default
+{
+    background: var( --PC-BLUE );
+    color:      var( --PC-WHITE );
+
+    .icon
+    {
+        fill:   var( --PC-WHITE );
+    }
+
+    &.fakeHovered,
+    &:hover
+    {
+        background: var( --PC-BLUE--L10 );
+        color:      var( --PC-WHITE );
+    }
+
+    &:focus
+    {
+        outline:    none;
+        box-shadow: 0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+    }
+}
+
+
+.role__secondary
+{
+    background: var( --PC-GREY--L90 );
+    color:      var( --PC-GREY--L25 );
+
+    &.fakeHovered,
+    &:hover
+    {
+        background: var( --PC-GREY--L75 );
+        color:      var( --PC-GREY--L25 );
+    }
+
+    &:focus
+    {
+        outline:    none;
+        box-shadow: 0 0 0 2px color( var( --PC-GREY ) a( 30% ) );
+    }
+
+    .icon
+    {
+        fill:   var( --PC-GREY--L25 );
+    }
+
+    .loadingOverlay
+    {
+        .spinner
+        {
+            border-color:   color( var( --PC-GREY--L25 ) a( 25% ) );
+
+            &::after
+            {
+                border-top-color:   var( --PC-GREY--L25 );
+            }
+        }
+    }
+}
+
+
+.role__promoted
+{
+    background: var( --PC-GREEN );
+    color:      var( --PC-WHITE );
+
+    .icon
+    {
+        fill:   var( --PC-WHITE );
+    }
+
+    &.fakeHovered,
+    &:hover
+    {
+        background: var( --PC-GREEN--L10 );
+        color:      var( --PC-WHITE );
+    }
+
+    &:focus
+    {
+        outline:    none;
+        box-shadow: 0 0 0 2px color( var( --PC-GREEN ) a( 30% ) );
+    }
+}
+
+
+.role__critical
+{
+    background: var( --PC-RED );
+    color:      var( --PC-WHITE );
+
+    .icon
+    {
+        fill:   var( --PC-WHITE );
+    }
+
+    &.fakeHovered,
+    &:hover
+    {
+        background: var( --PC-RED--L10 );
+        color:      var( --PC-WHITE );
+    }
+
+    &:focus
+    {
+        outline:    none;
+        box-shadow: 0 0 0 2px color( var( --PC-RED ) a( 30% ) );
+    }
+}
+
+
+.role__subtle
+{
+    height:         auto;
+    background:     transparent;
+    border-radius:  20px;
+
+    .content
+    {
+        height:         32px;
+        border-radius:  20px;
+        border:         1px solid var( --PC-BLUE );
+
+        box-sizing:     border-box;
+
+        color:          var( --PC-BLUE );
+    }
+
+    .icon
+    {
+        fill:   var( --PC-BLUE );
+    }
+
+    .loadingOverlay
+    {
+        .spinner
+        {
+            border-color:   color( var( --PC-BLUE  ) a( 25% ) );
+
+            &::after
+            {
+                border-top-color:   var( --PC-BLUE );
+            }
+        }
+    }
+
+    &.fakeHovered,
+    &:hover
+    {
+        .content
+        {
+            background-color:   var( --PC-BLUE );
+            color:              var( --PC-WHITE );
+        }
+
+        .icon
+        {
+            fill:   var( --PC-WHITE );
+        }
+    }
+
+    &:focus
+    {
+        outline:    none;
+        box-shadow: 0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+    }
+}
+
+
+.role__control
+{
+    height: auto;
+    color:  var( --PC-GREY--D15 );
+
+    .content
+    {
+        height:         32px;
+        border:         1px solid transparent;
+        border-radius:  2px;
+        padding: 0 var( --spacing-1 );
+    }
+
+    .iconContainer
+    {
+        .iconPosition__left&
+        {
+            margin-left:    calc( -1 * ( var( --spacing-1 ) / 2 ) );
+        }
+
+        .iconPosition__right&
+        {
+            margin-right:   calc( -1 * ( var( --spacing-1 ) / 2 ) );
+        }
+    }
+
+    .icon
+    {
+        fill:   var( --PC-GREY--D15 );
+    }
+
+    &.fakeHovered,
+    &:hover
+    {
+        color:  var( --PC-BLUE );
+
+        .icon
+        {
+            fill:   var( --PC-BLUE );
+        }
+    }
+
+    .loadingOverlay
+    {
+        .spinner
+        {
+            border-color:   color( var( --PC-GREY--D15 ) a( 25% ) );
+
+            &::after
+            {
+                border-top-color:   var( --PC-GREY--D15 );
+            }
+        }
+    }
+
+    &:focus
+    {
+        outline:    none;
+
+        .content
+        {
+            border-color:   var( --PC-BLUE );
+            box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+        }
+    }
+}
+
+
+.loading,
+.disabled
+{
+    cursor:         default;
+    pointer-events: none;
+}
+
+
+.loading
+{
+    .label,
+    .iconContainer
+    {
+        opacity:    0;
+    }
+}
+
+
+.disabled
+{
+    &.role__default
+    {
+        background: var( --PC-BLUE--L70 );
+        color:      var( --PC-BLUE--L25 );
+
+        .icon
+        {
+            fill:   color( var( --PC-BLUE ) tint( 25% ) );
+        }
+    }
+
+    &.role__secondary
+    {
+        color:      var( --PC-GREY--L55 );
+        background: transparent;
+
+        .icon
+        {
+            fill:   var( --PC-GREY--L55 );
+        }
+    }
+
+    &.role__promoted
+    {
+        background: var( --PC-GREEN--L70 );
+        color:      var( --PC-GREEN--L25 );
+
+        .icon
+        {
+            fill:   color( var( --PC-GREEN ) tint( 25% ) );
+        }
+    }
+
+    &.role__critical
+    {
+        background: var( --PC-RED--L70 );
+        color:      var( --PC-RED--L25 );
+
+        .icon
+        {
+            fill:   color( var( --PC-RED ) tint( 25% ) );
+        }
+    }
+
+    &.role__subtle
+    {
+        .content
+        {
+            color:          var( --PC-BLUE--L40 );
+            background:     var( --PC-WHITE );
+            border-color:   var( --PC-BLUE--L40 );
+        }
+
+        .icon
+        {
+            fill:   var( --PC-BLUE--L40 );
+        }
+    }
+
+    &.role__control
+    {
+        .content
+        {
+            color:  var( --PC-GREY--L40 );
+        }
+
+        .icon
+        {
+            fill:   var( --PC-GREY--L40 );
+        }
+    }
+}
