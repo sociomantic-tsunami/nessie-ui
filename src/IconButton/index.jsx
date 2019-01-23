@@ -204,7 +204,7 @@ export default class IconButton extends React.Component
 
         return (
             <button
-                className = { cssMap.main }
+                className    = { cssMap.main }
                 disabled     = { isDisabled }
                 id           = { id }
                 onBlur       = { onBlur }
