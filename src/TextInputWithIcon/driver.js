@@ -7,7 +7,7 @@
  *
  */
 
-import { IconButton, InputField } from 'nessie-ui';
+import { IconButton, TextInput } from 'nessie-ui';
 
 
 export default class TextInputWithIconDriver
@@ -19,43 +19,43 @@ export default class TextInputWithIconDriver
 
     change( val )
     {
-        this.wrapper.find( InputField ).driver().change( val );
+        this.wrapper.find( TextInput ).driver().change( val );
         return this;
     }
 
     click()
     {
-        this.wrapper.find( InputField ).driver().click();
+        this.wrapper.find( TextInput ).driver().click();
         return this;
     }
 
     keyDown( keyCode )
     {
-        this.wrapper.find( InputField ).driver().keyDown( keyCode );
+        this.wrapper.find( TextInput ).driver().keyDown( keyCode );
         return this;
     }
 
     keyPress( keyCode )
     {
-        this.wrapper.find( InputField ).driver().keyPress( keyCode );
+        this.wrapper.find( TextInput ).driver().keyPress( keyCode );
         return this;
     }
 
     keyUp( keyCode )
     {
-        this.wrapper.find( InputField ).driver().keyUp( keyCode );
+        this.wrapper.find( TextInput ).driver().keyUp( keyCode );
         return this;
     }
 
     focus()
     {
-        this.wrapper.find( InputField ).driver().focus();
+        this.wrapper.find( TextInput ).driver().focus();
         return this;
     }
 
     blur()
     {
-        this.wrapper.find( InputField ).driver().blur();
+        this.wrapper.find( TextInput ).driver().blur();
         return this;
     }
 

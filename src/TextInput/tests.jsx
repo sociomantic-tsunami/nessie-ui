@@ -59,21 +59,6 @@ describe( 'TextInput', () =>
             } );
         } );
 
-        describe( 'element', () =>
-        {
-            test( 'should be "input" by default', () =>
-            {
-                expect( props.element ).toBe( 'input' );
-            } );
-
-            test( 'should be passed to the TextInput', () =>
-            {
-                wrapper.setProps( { element: 'textarea' } );
-
-                expect( wrapper.prop( 'element' ) ).toBe( 'textarea' );
-            } );
-        } );
-
         describe( 'forceHover', () =>
         {
             test( 'should be false by default', () =>
@@ -277,22 +262,6 @@ describe( 'TextInput', () =>
 
                 expect( wrapper.find( TextInput ).prop( 'textAlign' ) )
                     .toBe( 'right' );
-            } );
-        } );
-
-        describe( 'type', () =>
-        {
-            test( 'should be "text" by default', () =>
-            {
-                expect( props.type ).toBe( 'text' );
-            } );
-
-            test( 'should be passed to the TextInput', () =>
-            {
-                wrapper.setProps( { type: 'number' } );
-
-                expect( wrapper.find( TextInput ).prop( 'type' ) )
-                    .toBe( 'number' );
             } );
         } );
 

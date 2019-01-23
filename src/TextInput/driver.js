@@ -9,7 +9,7 @@
 
 const ERR = {
     TEXTINPUT_ERROR : ( event, state ) =>
-        `InputField cannot simulate ${event} since it is ${state}`,
+        `TextInput cannot simulate ${event} since it is ${state}`,
 };
 
 export default class TextInputDriver
@@ -107,13 +107,13 @@ export default class TextInputDriver
 
     mouseOver()
     {
-        this.wrapper.simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseover' );
         return this;
     }
 
     mouseOut()
     {
-        this.wrapper.simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseout' );
         return this;
     }
 }

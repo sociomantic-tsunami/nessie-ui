@@ -7,7 +7,7 @@
 //  *
 //  */
 //
-// import { DatePicker, IconButton, InputField } from 'nessie-ui';
+// import { DatePicker, IconButton, TextInput } from 'nessie-ui';
 //
 // import { createCssMap }                       from '../Theming';
 //
@@ -39,7 +39,7 @@
 //
 //     get mainInput()
 //     {
-//         return this.wrapper.find( InputField );
+//         return this.wrapper.find( TextInput );
 //     }
 //
 //     get calendar()
