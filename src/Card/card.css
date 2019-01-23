@@ -1,0 +1,80 @@
+/*
+ * Copyright (c) 2018-2019 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+@import "../proto/base.css";
+
+.default
+{
+    background:     var( --PC-WHITE );
+    border-radius:  3px;
+    border:         1px solid color( var( --PC-GREY ) a(12%) );
+}
+
+/* padding X */
+.paddingX__S
+{
+    padding-left:   var( --spacing-1 );
+    padding-right:  var( --spacing-1 );
+}
+
+.paddingX__M
+{
+    padding-left:   var( --spacing-2 );
+    padding-right:  var( --spacing-2 );
+}
+
+.paddingX__L
+{
+    padding-left:   var( --spacing-3 );
+    padding-right:  var( --spacing-3 );
+}
+
+.paddingX__XL
+{
+    padding-left:   var( --spacing-4 );
+    padding-right:  var( --spacing-4 );
+}
+
+.paddingX__XXL
+{
+    padding-left:   var( --spacing-5 );
+    padding-right:  var( --spacing-5 );
+}
+
+
+/* padding Y */
+.paddingY__S
+{
+    padding-top:     var( --spacing-1 );
+    padding-bottom:  var( --spacing-1 );
+}
+
+.paddingY__M
+{
+    padding-top:     var( --spacing-2 );
+    padding-bottom:  var( --spacing-2 );
+}
+
+.paddingY__L
+{
+    padding-top:     var( --spacing-3 );
+    padding-bottom:  var( --spacing-3 );
+}
+
+.paddingY__XL
+{
+    padding-top:     var( --spacing-4 );
+    padding-bottom:  var( --spacing-4 );
+}
+
+.paddingY__XXL
+{
+    padding-top:     var( --spacing-5 );
+    padding-bottom:  var( --spacing-5 );
+}

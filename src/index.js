@@ -8,6 +8,7 @@
  */
 
 import Button            from './Button';
+import Card              from './Card';
 import Checkbox          from './Checkbox';
 import ComboBox          from './ComboBox';
 import DatePicker        from './DatePicker';
@@ -35,6 +36,7 @@ import Tooltip           from './Tooltip';
 
 export {
     Button,
+    Card,
     Checkbox,
     ComboBox,
     DatePicker,
@@ -63,6 +65,7 @@ export {
 
 export default {
     Button,
+    Card,
     Checkbox,
     ComboBox,
     DatePicker,
