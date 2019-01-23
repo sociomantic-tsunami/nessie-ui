@@ -25,7 +25,7 @@ export default class CheckboxDriver
 
     get instance()
     {
-        return this.wrapper.children().instance();
+        return this.wrapper.instance();
     }
 
     get cssMap()
@@ -50,11 +50,6 @@ export default class CheckboxDriver
             throw new Error( ERR.CHECKBOX_ERR( label, 'blur', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.CHECKBOX_ERR( label, 'blur', 'read only' ) );
-        }
-
         this.control.simulate( 'blur' );
         return this;
     }
@@ -68,11 +63,6 @@ export default class CheckboxDriver
             throw new Error( ERR.CHECKBOX_ERR( label, 'focus', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.CHECKBOX_ERR( label, 'focus', 'read only' ) );
-        }
-
         this.control.simulate( 'focus' );
         return this;
     }
@@ -80,16 +70,11 @@ export default class CheckboxDriver
     change()
     {
         const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
-        const node   = this.control.instance();
+        const node = this.wrapper.find( `.${this.cssMap.input}` ).instance();
 
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.CHECKBOX_ERR( label, 'change', 'disabled' ) );
-        }
-
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.CHECKBOX_ERR( label, 'change', 'read only' ) );
         }
 
         node.checked = !node.checked;
@@ -107,11 +92,6 @@ export default class CheckboxDriver
             throw new Error( ERR.CHECKBOX_ERR( label, 'click', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.CHECKBOX_ERR( label, 'click', 'read only' ) );
-        }
-
         this.control.simulate( 'click' );
         return this;
     }
@@ -126,7 +106,7 @@ export default class CheckboxDriver
                 .CHECKBOX_ERR( label, 'mouseOver', 'disabled' ) );
         }
 
-        this.wrapper.simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseover' );
         return this;
     }
 
@@ -140,7 +120,7 @@ export default class CheckboxDriver
                 .CHECKBOX_ERR( label, 'mouseOut', 'disabled' ) );
         }
 
-        this.wrapper.simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseout' );
         return this;
     }
 }

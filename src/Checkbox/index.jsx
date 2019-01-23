@@ -52,13 +52,11 @@ export default class Checkbox extends React.Component
          */
         isDisabled : PropTypes.bool,
         /**
-         *  Display as read-only
-         */
-        isReadOnly : PropTypes.bool,
-        /**
          *  Label content (string)
          */
         label      : PropTypes.string,
+        onClick      : PropTypes.func,
+        onChange      : PropTypes.func,
     };
 
     static defaultProps =
@@ -70,7 +68,6 @@ export default class Checkbox extends React.Component
         id         : undefined,
         isChecked  : undefined,
         isDisabled : false,
-        isReadOnly : false,
         label      : undefined,
     };
 
@@ -84,7 +81,6 @@ export default class Checkbox extends React.Component
             id = generateId( 'Checkbox' ),
             isChecked,
             isDisabled,
-            isReadOnly,
             label,
         } = this.props;
 
@@ -97,11 +93,13 @@ export default class Checkbox extends React.Component
         }
 
         return (
-            <div { ...attachEvents( this.props ) } className = { cssMap.main }>
+            <div
+                { ...attachEvents( this.props ) }
+                className = { cssMap.main }>
                 <input
                     checked   = { isChecked }
                     className = { cssMap.input }
-                    disabled  = { isDisabled || isReadOnly }
+                    disabled  = { isDisabled }
                     id        = { id }
                     type      =  "checkbox" />
                 <label className = { cssMap.label } htmlFor = { id }>

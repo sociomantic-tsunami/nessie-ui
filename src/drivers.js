@@ -10,6 +10,7 @@
 import { ComponentDriver } from 'componentDriver';
 import {
     Button,
+    Checkbox,
     DatePicker,
     IconButton,
     InputField,
@@ -25,6 +26,7 @@ import {
 } from 'nessie-ui';
 
 import ButtonDriver            from './Button/driver';
+import CheckboxDriver          from './Checkbox/driver';
 import DatePickerDriver        from './DatePicker/driver';
 import IconButtonDriver        from './IconButton/driver';
 import InputFieldDriver        from './InputField/driver';
@@ -44,6 +46,10 @@ const drivers =
     {
         Component : Button,
         Driver    : ButtonDriver,
+    },
+    {
+        Component : Checkbox,
+        Driver    : CheckboxDriver,
     },
     {
         Component : DatePicker,

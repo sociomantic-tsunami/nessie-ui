@@ -114,7 +114,14 @@ function createEventHandler( func, customizer )
         }
         else if ( type === 'change' )
         {
-            eventPayload.value = target.value;
+            if ( typeof target.checked === 'boolean' )
+            {
+                eventPayload.isChecked = target.checked;
+            }
+            else if ( target.value )
+            {
+                eventPayload.value = target.value;
+            }
         }
         else if ( type === 'scroll' )
         {
