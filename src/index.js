@@ -17,6 +17,7 @@ import GridItem          from './GridItem';
 import Icon              from './Icon';
 import IconButton        from './IconButton';
 import ListBox           from './ListBox';
+import Modal             from './Modal';
 import PasswordInput     from './PasswordInput';
 import ScrollBar         from './ScrollBar';
 import ScrollBox         from './ScrollBox';
@@ -42,6 +43,7 @@ export {
     Icon,
     IconButton,
     ListBox,
+    Modal,
     PasswordInput,
     ScrollBar,
     ScrollBox,
@@ -68,6 +70,7 @@ export default {
     Icon,
     IconButton,
     ListBox,
+    Modal,
     PasswordInput,
     ScrollBar,
     ScrollBox,

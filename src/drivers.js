@@ -14,6 +14,7 @@ import {
     IconButton,
     TextInput,
     ListBox,
+    Modal,
     PasswordInput,
     ScrollBar,
     ScrollBox,
@@ -28,6 +29,7 @@ import ButtonDriver            from './Button/driver';
 import DatePickerDriver        from './DatePicker/driver';
 import IconButtonDriver        from './IconButton/driver';
 import ListBoxDriver           from './ListBox/driver';
+import ModalDriver             from './Modal/driver';
 import PasswordInputDriver     from './PasswordInput/driver';
 import ScrollBarDriver         from './ScrollBar/driver';
 import ScrollBoxDriver         from './ScrollBox/driver';
@@ -56,6 +58,10 @@ const drivers =
     {
         Component : ListBox,
         Driver    : ListBoxDriver,
+    },
+    {
+        Component : Modal,
+        Driver    : ModalDriver,
     },
     {
         Component : PasswordInput,

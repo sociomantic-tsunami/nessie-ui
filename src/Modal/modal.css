@@ -1,0 +1,43 @@
+/*
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+@import "../proto/definitions/variables.css";
+
+
+.default
+{
+    position:           fixed;
+
+    top:                0;
+    bottom:             0;
+    left:               0;
+    right:              0;
+
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+
+    overflow-y:         auto;
+
+    z-index:            9999;
+    background:         color( var( --PC-GREY--D45 ) a( 53% ) );
+
+    .content
+    {
+        box-sizing:     border-box;
+        width:          500px;
+
+        padding:        var( --spacing-3 );
+        border:         1px solid color( var( --PC-GREY ) a(12%) );
+        border-radius:  4px;
+        box-shadow:     var( --boxShadow );
+
+        background:     var( --PC-WHITE );
+    }
+}
