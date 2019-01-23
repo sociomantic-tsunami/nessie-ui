@@ -107,13 +107,13 @@ export default class InputFieldDriver
 
     mouseOver()
     {
-        this.wrapper.simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseOver' );
         return this;
     }
 
     mouseOut()
     {
-        this.wrapper.simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseOut' );
         return this;
     }
 }

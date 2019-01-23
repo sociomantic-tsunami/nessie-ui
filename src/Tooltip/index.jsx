@@ -7,14 +7,14 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                        from 'react';
+import PropTypes                    from 'prop-types';
 
-import { IconButton, Text } from '..';
+import { IconButton, Text }         from '..';
 
-import { generateId }       from '../utils';
-import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming';
+import { attachEvents, generateId } from '../utils';
+import ThemeContext                 from '../Theming/ThemeContext';
+import { createCssMap }             from '../Theming';
 
 
 export default class Tooltip extends React.Component
@@ -53,7 +53,7 @@ export default class Tooltip extends React.Component
          */
         cssMap        : PropTypes.objectOf( PropTypes.string ),
         /**
-         * HTML id attribute
+         * Component id
          */
         id            : PropTypes.string,
         /**
@@ -119,19 +119,16 @@ export default class Tooltip extends React.Component
             isDismissible,
             message,
             onClickClose,
-            onMouseOut,
-            onMouseOver,
         } = this.props;
 
         const { id } = this.state;
 
         return (
             <div
-                className    = { cssMap.main }
-                id           = { id }
-                onMouseEnter = { onMouseOver }
-                onMouseLeave = { onMouseOut }
-                role         = "tooltip">
+                { ...attachEvents( this.props ) }
+                className = { cssMap.main }
+                id        = { id }
+                role      = "tooltip">
                 <div className = { cssMap.message }>
                     { children || ( typeof message === 'string' ?
                         <Text>{ message }</Text> : message )

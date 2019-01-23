@@ -7,14 +7,15 @@
  *
  */
 
-import React                      from 'react';
-import PropTypes                  from 'prop-types';
+import React                        from 'react';
+import PropTypes                    from 'prop-types';
 
-import { IconButton, InputField } from '..';
+import { attachEvents, generateId } from '../utils';
 
-import ThemeContext               from '../Theming/ThemeContext';
-import { generateId }             from '../utils';
-import { createCssMap }           from '../Theming';
+import { IconButton, InputField }   from '..';
+
+import ThemeContext                 from '../Theming/ThemeContext';
+import { createCssMap }             from '../Theming';
 
 
 export default class TextInputWithIcon extends React.Component
@@ -133,93 +134,77 @@ export default class TextInputWithIcon extends React.Component
             'none',
         ] ),
         /**
-         *  HTML id attribute
+         *  Component id
          */
-        id              : PropTypes.string,
+        id             : PropTypes.string,
         /**
          *  Callback that receives the native <input>: ( ref ) => { ... }
          */
-        inputRef        : PropTypes.func,
+        inputRef       : PropTypes.func,
         /**
          *  HTML input type
          */
-        inputType       : PropTypes.oneOf( [ 'text', 'password' ] ),
+        inputType      : PropTypes.oneOf( [ 'text', 'password' ] ),
         /**
          *  Display as disabled
          */
-        isDisabled      : PropTypes.bool,
+        isDisabled     : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly      : PropTypes.bool,
+        isReadOnly     : PropTypes.bool,
         /**
          *  HTML name attribute
          */
-        name            : PropTypes.string,
+        name           : PropTypes.string,
         /**
          *  Blur callback function
          */
-        onBlur          : PropTypes.func,
+        onBlur         : PropTypes.func,
         /**
          *  Input change callback function
          */
-        onChange        : PropTypes.func,
+        onChangeInput  : PropTypes.func,
         /**
-         *  Input click callback function
+         *  Click callback function
          */
-        onClick         : PropTypes.func,
+        onClick        : PropTypes.func,
         /**
          *  Icon click callback function
          */
-        onClickIcon     : PropTypes.func,
+        onClickIcon    : PropTypes.func,
         /**
          *  Focus callback function
          */
-        onFocus         : PropTypes.func,
+        onFocus        : PropTypes.func,
         /**
-         *  Key down callback function
+         *  Input key down callback function
          */
-        onKeyDown       : PropTypes.func,
-        /**
-         *  Key press callback function
-         */
-        onKeyPress      : PropTypes.func,
-        /**
-         *  Key up callback function
-         */
-        onKeyUp         : PropTypes.func,
+        onKeyDownInput : PropTypes.func,
         /**
          *  Mouse out callback function
          */
-        onMouseOut      : PropTypes.func,
-        /**
-         *  Icon mouse out callback function
-         */
-        onMouseOutIcon  : PropTypes.func,
+        onMouseOut     : PropTypes.func,
         /**
          *  Mouse over  callback function
          */
-        onMouseOver     : PropTypes.func,
-        /**
-         *  Icon mouse over callback function
-         */
-        onMouseOverIcon : PropTypes.func,
+        onMouseOver    : PropTypes.func,
         /**
          *  Placeholder text
          */
-        placeholder     : PropTypes.string,
+        placeholder    : PropTypes.string,
         /**
          *  HTML attribute controlling input spell check
          */
-        spellCheck      : PropTypes.bool,
+        spellCheck     : PropTypes.bool,
         /**
          *  Input text alignment
          */
-        textAlign       : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+        textAlign      : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
         /**
          *  Input string value
          */
-        value           : PropTypes.string,
+        value          : PropTypes.string,
     };
 
     static defaultProps =
@@ -242,17 +227,13 @@ export default class TextInputWithIcon extends React.Component
         isReadOnly           : false,
         name                 : undefined,
         onBlur               : undefined,
-        onChange             : undefined,
+        onChangeInput        : undefined,
         onClick              : undefined,
         onClickIcon          : undefined,
         onFocus              : undefined,
-        onKeyDown            : undefined,
-        onKeyPress           : undefined,
-        onKeyUp              : undefined,
+        onKeyDownInput       : undefined,
         onMouseOut           : undefined,
-        onMouseOutIcon       : undefined,
         onMouseOver          : undefined,
-        onMouseOverIcon      : undefined,
         placeholder          : undefined,
         spellCheck           : undefined,
         textAlign            : 'auto',
@@ -280,18 +261,9 @@ export default class TextInputWithIcon extends React.Component
             isDisabled,
             isReadOnly,
             name,
-            onBlur,
-            onChange,
-            onClick,
+            onChangeInput,
             onClickIcon,
-            onFocus,
-            onKeyDown,
-            onKeyPress,
-            onKeyUp,
-            onMouseOut,
-            onMouseOutIcon,
-            onMouseOver,
-            onMouseOverIcon,
+            onKeyDownInput,
             placeholder,
             spellCheck,
             textAlign,
@@ -307,10 +279,7 @@ export default class TextInputWithIcon extends React.Component
         }
 
         return (
-            <div
-                className    = { cssMap.main }
-                onMouseEnter = { onMouseOver }
-                onMouseLeave = { onMouseOut }>
+            <div { ...attachEvents( this.props ) } className = { cssMap.main }>
                 <InputField
                     aria           = { aria }
                     autocapitalize = { autoCapitalize }
@@ -323,13 +292,8 @@ export default class TextInputWithIcon extends React.Component
                     isDisabled     = { isDisabled }
                     isReadOnly     = { isReadOnly }
                     name           = { name }
-                    onBlur         = { onBlur }
-                    onChange       = { onChange }
-                    onClick        = { onClick }
-                    onFocus        = { onFocus }
-                    onKeyDown      = { onKeyDown }
-                    onKeyPress     = { onKeyPress }
-                    onKeyUp        = { onKeyUp }
+                    onChange       = { onChangeInput }
+                    onKeyDown      = { onKeyDownInput }
                     placeholder    = { placeholder }
                     ref            = { inputRef }
                     spellcheck     = { spellCheck }
@@ -343,9 +307,7 @@ export default class TextInputWithIcon extends React.Component
                         iconType    = { iconType }
                         isDisabled  = { isDisabled || iconButtonIsDisabled }
                         isFocusable = { false }
-                        onClick     = { onClickIcon }
-                        onMouseOut  = { onMouseOutIcon }
-                        onMouseOver = { onMouseOverIcon } />
+                        onClick     = { onClickIcon } />
                 }
             </div>
         );

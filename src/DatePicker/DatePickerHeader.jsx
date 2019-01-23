@@ -37,12 +37,10 @@ export default class DatePickerHeader extends React.Component
         minuteValue       : PropTypes.string,
         month             : PropTypes.string,
         nextIsDisabled    : PropTypes.bool,
-        onBlur            : PropTypes.func,
-        onChange          : PropTypes.func,
+        onChangeHour      : PropTypes.func,
+        onChangeMinute    : PropTypes.func,
         onClickNext       : PropTypes.func,
         onClickPrev       : PropTypes.func,
-        onFocus           : PropTypes.func,
-        onKeyPress        : PropTypes.func,
         prevIsDisabled    : PropTypes.bool,
         year              : PropTypes.string,
     };
@@ -63,12 +61,10 @@ export default class DatePickerHeader extends React.Component
         minuteValue       : undefined,
         month             : undefined,
         nextIsDisabled    : undefined,
-        onBlur            : undefined,
-        onChange          : undefined,
+        onChangeHour      : undefined,
+        onChangeMinute    : undefined,
         onClickNext       : undefined,
         onClickPrev       : undefined,
-        onFocus           : undefined,
-        onKeyPress        : undefined,
         prevIsDisabled    : undefined,
         year              : undefined,
     };
@@ -90,12 +86,10 @@ export default class DatePickerHeader extends React.Component
             minuteValue,
             month,
             nextIsDisabled,
-            onBlur,
-            onChange,
+            onChangeHour,
+            onChangeMinute,
             onClickNext,
             onClickPrev,
-            onFocus,
-            onKeyPress,
             prevIsDisabled,
             year,
         } = this.props;
@@ -132,10 +126,8 @@ export default class DatePickerHeader extends React.Component
                         minuteIsReadOnly  = { minuteIsReadOnly }
                         minutePlaceholder = { minutePlaceholder }
                         minuteValue       = { minuteValue }
-                        onBlur            = { onBlur }
-                        onChange          = { onChange }
-                        onFocus           = { onFocus }
-                        onKeyPress        = { onKeyPress } />
+                        onChangeHour      = { onChangeHour }
+                        onChangeMinute    = { onChangeMinute } />
                 }
             </div>
         );

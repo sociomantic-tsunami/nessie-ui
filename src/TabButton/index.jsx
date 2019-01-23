@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -7,11 +7,12 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming';
+import { attachEvents } from '../utils';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming';
 
 export default class TabButton extends React.Component
 {
@@ -44,7 +45,7 @@ export default class TabButton extends React.Component
          */
         label      : PropTypes.string,
         /**
-         *  Click callback function: ( e ) => { ... }
+         *  Click callback function: ( { tabIndex } ) => ...
          */
         onClick    : PropTypes.func,
         /**
@@ -72,21 +73,6 @@ export default class TabButton extends React.Component
 
     static displayName = 'TabButton';
 
-    constructor()
-    {
-        super();
-        this.handleClick = this.handleClick.bind( this );
-    }
-
-    handleClick( e )
-    {
-        const { onClick } = this.props;
-        if ( onClick )
-        {
-            onClick( { value: parseInt( e.currentTarget.value ) }, e );
-        }
-    }
-
     render()
     {
         const {
@@ -100,13 +86,14 @@ export default class TabButton extends React.Component
 
         return (
             <button
+                { ...attachEvents( this.props, {
+                    onClick : { tabIndex },
+                } ) }
                 className = { cssMap.main }
                 disabled  = { isDisabled }
-                onClick   = { this.handleClick }
                 ref       = { buttonRef }
                 role      = "tab"
-                type      = "button"
-                value     = { tabIndex }>
+                type      = "button">
                 <div className = { cssMap.content }>
                     <div className = { cssMap.label }>
                         { label }

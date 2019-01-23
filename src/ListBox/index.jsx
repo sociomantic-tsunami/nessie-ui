@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -9,20 +9,20 @@
 
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React        from 'react';
-import PropTypes    from 'prop-types';
 
+import React                           from 'react';
+import PropTypes                       from 'prop-types';
+
+import { buildOptions, updateOptions } from './utils';
 import {
-    buildOptions,
-    updateOptions,
-} from './utils';
-import {
+    attachEvents,
     generateId,
     killFocus,
     mapAria,
 } from '../utils';
 import ThemeContext     from '../Theming/ThemeContext';
 import { createCssMap } from '../Theming';
+
 
 export default class ListBox extends React.Component
 {
@@ -65,10 +65,6 @@ export default class ListBox extends React.Component
          *  onMouseOverOption callback function ( e ) => { ... }
          */
         onMouseOverOption : PropTypes.func,
-        /**
-         *  onKeyPress callback function ( e ) => { ... }
-         */
-        onKeyPress        : PropTypes.func,
         selection         : PropTypes.oneOfType( [
             PropTypes.string,
             PropTypes.arrayOf( PropTypes.string ),
@@ -85,7 +81,6 @@ export default class ListBox extends React.Component
         isFocusable       : true,
         isMultiselect     : false,
         onClickOption     : undefined,
-        onKeyPress        : undefined,
         onMouseOutOption  : undefined,
         onMouseOverOption : undefined,
         options           : undefined,
@@ -107,7 +102,6 @@ export default class ListBox extends React.Component
             onClickOption,
             onMouseOutOption,
             onMouseOverOption,
-            onKeyPress,
             options,
             selection,
         } = this.props;
@@ -120,6 +114,7 @@ export default class ListBox extends React.Component
         }
         return (
             <ul
+                { ...attachEvents( this.props ) }
                 { ...mapAria( {
                     ...aria,
                     activeDescendant : isFocusable ? activeOption : null,
@@ -128,7 +123,6 @@ export default class ListBox extends React.Component
                 } ) }
                 className   = { cssMap.main }
                 id          = { id }
-                onKeyPress  = { onKeyPress }
                 onMouseDown = { !isFocusable ? killFocus : undefined }
                 tabIndex    = { isFocusable ? '0' : '-1' }>
                 { updateOptions(

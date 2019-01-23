@@ -73,13 +73,13 @@ export default class PasswordInputDriver
 
     mouseOver()
     {
-        this.wrapper.simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseOver' );
         return this;
     }
 
     mouseOut()
     {
-        this.wrapper.simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseOut' );
         return this;
     }
 
@@ -90,7 +90,7 @@ export default class PasswordInputDriver
             throw new Error( ERR.PASS_ERR( 'clickIcon', 'disabled' ) );
         }
 
-        this.wrapper.find( IconButton ).simulate( 'click' );
+        this.wrapper.find( IconButton ).driver().click();
         return this;
     }
 

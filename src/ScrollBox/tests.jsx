@@ -13,11 +13,9 @@ import React                    from 'react';
 import { mount }                from 'enzyme';
 
 import { ScrollBar, ScrollBox } from '..';
-import * as utils               from './utils';
 
 
-describe( 'ScrollBox', () =>
-{
+describe( 'ScrollBox', () => {
     let wrapper;
     let instance;
 
@@ -92,23 +90,6 @@ describe( 'ScrollBox', () =>
             jest.spyOn( instance, 'forceUpdate' );
             instance.handleScroll();
             expect( instance.forceUpdate ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'calls createScrollHandler if onScroll prop is defined', () =>
-        {
-            scrollHandler = jest.fn();
-            jest.spyOn( utils, 'createScrollHandler' )
-                .mockImplementation( () => scrollHandler );
-
-            wrapper.setProps( { onScroll: jest.fn() } );
-            instance.handleScroll();
-            expect( utils.createScrollHandler ).toBeCalledTimes( 1 );
-        } );
-
-        test( '...then calls the resulting function', () =>
-        {
-            expect( scrollHandler ).toBeCalledTimes( 1 );
-            utils.createScrollHandler.mockRestore();
         } );
     } );
 } );

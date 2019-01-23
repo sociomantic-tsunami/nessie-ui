@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -12,6 +12,8 @@ import PropTypes          from 'prop-types';
 
 import ThemeContext       from '../Theming/ThemeContext';
 import { createCssMap }   from '../Theming';
+import { attachEvents }   from '../utils';
+
 
 export default class Text extends React.Component
 {
@@ -51,10 +53,6 @@ export default class Text extends React.Component
          *  Don’t wrap text to the next line
          */
         noWrap           : PropTypes.bool,
-        /**
-         *  click callback function
-         */
-        onClick          : PropTypes.func,
         /**
          *  Clip overflow
          */
@@ -121,7 +119,6 @@ export default class Text extends React.Component
         letterSpacing    : undefined,
         lineHeight       : undefined,
         noWrap           : false,
-        onClick          : undefined,
         overflowIsHidden : false,
         role             : 'default',
         size             : 'M',
@@ -141,15 +138,14 @@ export default class Text extends React.Component
             cssMap = createCssMap( this.context.Text, this.props ),
             letterSpacing,
             lineHeight,
-            onClick,
             text,
             textRef,
         } = this.props;
 
         return (
             <div
+                { ...attachEvents( this.props ) }
                 className = { cssMap.main }
-                onClick   = { onClick }
                 ref       = { textRef }
                 style     = { { color, letterSpacing, lineHeight } }>
                 { children || text }

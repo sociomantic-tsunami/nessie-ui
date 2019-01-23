@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -7,12 +7,12 @@
  *
  */
 
-import React                        from 'react';
-import PropTypes                    from 'prop-types';
+import React                              from 'react';
+import PropTypes                          from 'prop-types';
 
-import { eventHandler, generateId } from '../utils';
-import ThemeContext                 from '../Theming/ThemeContext';
-import { createCssMap }             from '../Theming';
+import { createEventHandler, generateId } from '../utils';
+import ThemeContext                       from '../Theming/ThemeContext';
+import { createCssMap }                   from '../Theming';
 
 
 export default class TimeInput extends React.Component
@@ -34,10 +34,8 @@ export default class TimeInput extends React.Component
         minuteIsReadOnly  : PropTypes.bool,
         minutePlaceholder : PropTypes.string,
         minuteValue       : PropTypes.string,
-        onBlur            : PropTypes.func,
-        onChange          : PropTypes.func,
-        onFocus           : PropTypes.func,
-        onKeyPress        : PropTypes.func,
+        onChangeHour      : PropTypes.func,
+        onChangeMinute    : PropTypes.func,
     };
 
     static defaultProps = {
@@ -53,12 +51,10 @@ export default class TimeInput extends React.Component
         isReadOnly        : false,
         minuteIsDisabled  : false,
         minuteIsReadOnly  : false,
-        minutePlaceholder : 'MM',
+        minutePlaceholder : 'mm',
         minuteValue       : undefined,
-        onBlur            : undefined,
-        onChange          : undefined,
-        onFocus           : undefined,
-        onKeyPress        : undefined,
+        onChangeHour      : undefined,
+        onChangeMinute    : undefined,
     };
 
     render()
@@ -76,10 +72,8 @@ export default class TimeInput extends React.Component
             minuteIsReadOnly,
             minutePlaceholder,
             minuteValue,
-            onBlur,
-            onChange,
-            onFocus,
-            onKeyPress,
+            onChangeHour,
+            onChangeMinute,
         } = this.props;
 
         return (
@@ -87,11 +81,8 @@ export default class TimeInput extends React.Component
                 <input
                     className   = { cssMap.hour }
                     disabled    = { isDisabled || hourIsDisabled }
-                    id          = { `${id}-input-hour` }
-                    onBlur      = { eventHandler( onBlur, 'hour' ) }
-                    onChange    = { eventHandler( onChange, 'hour' ) }
-                    onFocus     = { eventHandler( onFocus, 'hour' ) }
-                    onKeyPress  = { eventHandler( onKeyPress, 'hour' ) }
+                    id          = { `${id}-hour` }
+                    onChange    = { createEventHandler( onChangeHour ) }
                     placeholder = { hourPlaceholder }
                     readOnly    = { isReadOnly || hourIsReadOnly }
                     type        = "text"
@@ -100,11 +91,8 @@ export default class TimeInput extends React.Component
                 <input
                     className   = { cssMap.min }
                     disabled    = { isDisabled || minuteIsDisabled }
-                    id          = { `${id}-input-minute` }
-                    onBlur      = { eventHandler( onBlur, 'minute' ) }
-                    onChange    = { eventHandler( onChange, 'minute' ) }
-                    onFocus     = { eventHandler( onFocus, 'minute' ) }
-                    onKeyPress  = { eventHandler( onKeyPress, 'minute' ) }
+                    id          = { `${id}-minute` }
+                    onChange    = { createEventHandler( onChangeMinute ) }
                     placeholder = { minutePlaceholder }
                     readOnly    = { isReadOnly || minuteIsReadOnly }
                     type        = "text"

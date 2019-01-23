@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -7,14 +7,15 @@
  *
  */
 
-import React             from 'react';
-import PropTypes         from 'prop-types';
+import React                        from 'react';
+import PropTypes                    from 'prop-types';
 
-import { Icon, Spinner } from '..';
+import { Icon, Spinner }            from '..';
 
-import { generateId }    from '../utils';
-import ThemeContext      from '../Theming/ThemeContext';
-import { createCssMap }  from '../Theming';
+import { attachEvents, generateId } from '../utils';
+import ThemeContext                 from '../Theming/ThemeContext';
+import { createCssMap }             from '../Theming';
+
 
 export default class Button extends React.Component
 {
@@ -23,40 +24,29 @@ export default class Button extends React.Component
     static propTypes =
     {
         /**
+         *  Label text (React node; overrides label prop)
+         */
+        children     : PropTypes.node,
+        /**
          *  CSS class map
          */
-        cssMap : PropTypes.objectOf( PropTypes.string ),
+        cssMap       : PropTypes.objectOf( PropTypes.string ),
         /**
-         *  Label text
+         *  Icon position relative to label
          */
-        label  : PropTypes.string,
+        iconPosition : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
-         *  HTML type attribute
+         *  Icon type to display
          */
-        type   : PropTypes.oneOf( [ 'button', 'reset', 'submit' ] ),
-        /**
-         *  Button role/style
-         */
-        role   : PropTypes.oneOf( [
-            'default',
-            'secondary',
-            'subtle',
-            'promoted',
-            'critical',
-            'control',
-        ] ),
-        /**
-         *  Icon type to display (overrides customIcon)
-         */
-        iconType : PropTypes.oneOf( [
+        iconType     : PropTypes.oneOf( [
             'account',
             'add-circle',
             'add',
             'alert',
             'approved',
-            'arrow',
-            'arrow-up',
             'arrow-down',
+            'arrow-up',
+            'arrow',
             'bell',
             'board',
             'calendar',
@@ -65,6 +55,7 @@ export default class Button extends React.Component
             'close',
             'dash',
             'dashboard',
+            'deactivated',
             'declined',
             'delete',
             'down',
@@ -93,9 +84,9 @@ export default class Button extends React.Component
             'right',
             'search',
             'show',
+            'sociomantic',
             'star-stroke',
             'star',
-            'sociomantic',
             'swap',
             'table',
             'up',
@@ -104,121 +95,113 @@ export default class Button extends React.Component
             'none',
         ] ),
         /**
-         *  Icon position relative to Button text
+         * Component identifier
          */
-        iconPosition : PropTypes.oneOf( [ 'left', 'right' ] ),
+        id          : PropTypes.string,
         /**
          *  Display as disabled
          */
-        isDisabled   : PropTypes.bool,
+        isDisabled  : PropTypes.bool,
         /**
-         *  Display loading state
+         *  Display as loading
          */
-        isLoading    : PropTypes.bool,
+        isLoading   : PropTypes.bool,
         /**
-         *  Initial HTML value attribute
+         *  Label text
          */
-        defaultValue : PropTypes.string,
+        label       : PropTypes.string,
         /**
-         *  HTML value attribute
+         *  click callback function: ( { id } ) => ...
          */
-        value        : PropTypes.string,
+        onClick     : PropTypes.func,
         /**
-         * HTML id attribute
+         *  mouse out callback function: ( { id } ) => ...
          */
-        id           : PropTypes.string,
+        onMouseOut  : PropTypes.func,
         /**
-         *  Button click callback function: ( e ) => { ... }
+         *  mouse over callback function: ( { id } ) => ...
          */
-        onClick      : PropTypes.func,
+        onMouseOver : PropTypes.func,
         /**
-         *  Mouse over callback function: ( e ) => { ... }
+         *  Role/style
          */
-        onMouseOver  : PropTypes.func,
-        /**
-         *  Mouse out callback function: ( e ) => { ... }
-         */
-        onMouseOut   : PropTypes.func,
-        /**
-         * Display as hover when required from another component
-         */
-        forceHover   : PropTypes.bool,
-        /**
-         * Callback that receives the native <button>: ( ref ) => { ... }
-         */
-        buttonRef    : PropTypes.func,
+        role        : PropTypes.oneOf( [
+            'default',
+            'secondary',
+            'subtle',
+            'promoted',
+            'critical',
+            'control',
+        ] ),
     };
 
     static defaultProps =
     {
-        forceHover   : false,
+        children     : undefined,
+        cssMap       : undefined,
         iconPosition : 'left',
         iconType     : 'none',
         id           : undefined,
         isDisabled   : false,
         isLoading    : false,
+        label        : undefined,
+        onClick      : undefined,
+        onMouseOut   : undefined,
+        onMouseOver  : undefined,
         role         : 'default',
-        type         : 'button',
     };
 
     static displayName = 'Button';
 
+    buttonRef = React.createRef();
+
+    constructor( props )
+    {
+        super();
+        this.state = { id: props.id || generateId( 'Button' ) };
+    }
+
+    focus()
+    {
+        this.buttonRef.current.focus();
+    }
+
     render()
     {
         const {
-            buttonRef,
             children,
-            className,
             cssMap = createCssMap( this.context.Button, this.props ),
-            defaultValue,
-            forceHover,
-            iconPosition,
             iconType,
-            id = generateId( 'Button' ),
             isDisabled,
             isLoading,
             label,
-            onClick,
-            onMouseOut,
-            onMouseOver,
-            role,
-            type,
-            value,
         } = this.props;
 
-        const content = (
-            <div className = { cssMap.content }>
-                { ( iconType !== 'none' ) &&
-                <div className = { cssMap.iconContainer }>
-                    <Icon
-                        className  = { cssMap.icon }
-                        type       = { iconType }
-                        size       = "S" />
-                </div>
-                }
-                <div className = { cssMap.label }>
-                    { children || label }
-                </div>
-            </div>
-        );
+        const { id } = this.state;
 
         return (
             <button
-                className      = { cssMap.main }
-                defaultValue   = { defaultValue }
-                disabled       = { isDisabled || isLoading }
-                id             = { id }
-                onClick        = { onClick }
-                onMouseEnter   = { onMouseOver }
-                onMouseLeave   = { onMouseOut }
-                ref            = { buttonRef }
-                type           = { type }
-                value          = { value }>
-                { content }
-                { ( isLoading && !isDisabled ) &&
-                <div className = { cssMap.loadingOverlay }>
-                    <Spinner className = { cssMap.spinner } />
+                { ...attachEvents( this.props ) }
+                className = { cssMap.main }
+                disabled  = { isDisabled }
+                id        = { id }
+                ref       = { this.buttonRef }
+                type      = "button">
+                <div className = { cssMap.content }>
+                    { ( iconType && iconType !== 'none' ) &&
+                        <Icon
+                            className = { cssMap.icon }
+                            size      = "S"
+                            type      = { iconType } />
+                    }
+                    <div className = { cssMap.label }>
+                        { children || label }
+                    </div>
                 </div>
+                { ( isLoading && !isDisabled ) &&
+                    <div className = { cssMap.loadingOverlay }>
+                        <Spinner className = { cssMap.spinner } />
+                    </div>
                 }
             </button>
         );

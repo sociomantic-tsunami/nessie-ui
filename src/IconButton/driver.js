@@ -45,7 +45,7 @@ export default class IconButtonDriver
                 .ICONBUTTON_ERR( label, 'mouseOver', 'disabled' ) );
         }
 
-        this.wrapper.simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseOver' );
         return this;
     }
 
@@ -60,7 +60,7 @@ export default class IconButtonDriver
                 .ICONBUTTON_ERR( label, 'mouseOut', 'disabled' ) );
         }
 
-        this.wrapper.simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseOut' );
         return this;
     }
 

@@ -359,30 +359,4 @@ since it is disabled';
             } );
         } );
     } );
-
-
-    describe( 'mouseOverIcon()', () =>
-    {
-        test( 'should trigger onMouseOverIcon callback once', () =>
-        {
-            const onMouseOverIcon = jest.fn();
-            wrapper.setProps( { onMouseOverIcon } );
-
-            driver.mouseOverIcon();
-            expect( onMouseOverIcon ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-
-    describe( 'mouseOutIcon()', () =>
-    {
-        test( 'should trigger onMouseOutIcon callback once', () =>
-        {
-            const onMouseOutIcon = jest.fn();
-            wrapper.setProps( { onMouseOutIcon } );
-
-            driver.mouseOutIcon();
-            expect( onMouseOutIcon ).toBeCalledTimes( 1 );
-        } );
-    } );
 } );

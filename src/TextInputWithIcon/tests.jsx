@@ -273,25 +273,6 @@ describe( 'TextInputWithIcon', () =>
             } );
         } );
 
-        describe( 'onChange', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.onChange )
-                    .toBeUndefined();
-            } );
-
-            test( 'should be passed to the InputField', () =>
-            {
-                const onChange = () => undefined;
-
-                wrapper.setProps( { onChange } );
-
-                expect( wrapper.find( InputField ).prop( 'onChange' ) )
-                    .toBe( onChange );
-            } );
-        } );
-
         describe( 'onClickIcon', () =>
         {
             beforeEach( () =>
@@ -331,63 +312,6 @@ describe( 'TextInputWithIcon', () =>
             {
                 expect( TextInputWithIcon.defaultProps.onBlur )
                     .toBeUndefined();
-            } );
-        } );
-
-        describe( 'onKeyDown', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.onKeyDown )
-                    .toBeUndefined();
-            } );
-
-            test( 'should be passed to the InputField', () =>
-            {
-                const onKeyDown = () => undefined;
-
-                wrapper.setProps( { onKeyDown } );
-
-                expect( wrapper.find( InputField ).prop( 'onKeyDown' ) )
-                    .toBe( onKeyDown );
-            } );
-        } );
-
-        describe( 'onKeyUp', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.onKeyUp )
-                    .toBeUndefined();
-            } );
-
-            test( 'should be passed to the InputField', () =>
-            {
-                const onKeyUp = () => undefined;
-
-                wrapper.setProps( { onKeyUp } );
-
-                expect( wrapper.find( InputField ).prop( 'onKeyUp' ) )
-                    .toBe( onKeyUp );
-            } );
-        } );
-
-        describe( 'onKeyPress', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.onKeyPress )
-                    .toBeUndefined();
-            } );
-
-            test( 'should be passed to the InputField', () =>
-            {
-                const onKeyPress = () => undefined;
-
-                wrapper.setProps( { onKeyPress } );
-
-                expect( wrapper.find( InputField ).prop( 'onKeyPress' ) )
-                    .toBe( onKeyPress );
             } );
         } );
 
@@ -441,7 +365,6 @@ describe( 'TextInputWithIcon', () =>
                     .not.toBe( onMouseOut );
             } );
 
-
             test( 'should not be passed to the IconButton', () =>
             {
                 const onMouseOut = () => undefined;
@@ -453,24 +376,6 @@ describe( 'TextInputWithIcon', () =>
 
                 expect( wrapper.find( IconButton ).prop( 'onMouseOut' ) )
                     .not.toBe( onMouseOut );
-            } );
-        } );
-
-        describe( 'onMouseOverIcon', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.onMouseOverIcon )
-                    .toBeUndefined();
-            } );
-        } );
-
-        describe( 'onMouseOutIcon', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.onMouseOutIcon )
-                    .toBeUndefined();
             } );
         } );
 
@@ -632,32 +537,6 @@ describe( 'TextInputWithIconDriver', () =>
 
             driver.clickIcon();
             expect( onClickIcon ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-
-    describe( 'mouseOverIcon()', () =>
-    {
-        test( 'should trigger onMouseOverIcon callback prop once', () =>
-        {
-            const onMouseOverIcon = jest.fn();
-            wrapper.setProps( { onMouseOverIcon, iconType: 'add' } );
-
-            driver.mouseOverIcon();
-            expect( onMouseOverIcon ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-
-    describe( 'mouseOutIcon()', () =>
-    {
-        test( 'should trigger onMouseOutIcon callback prop once', () =>
-        {
-            const onMouseOutIcon = jest.fn();
-            wrapper.setProps( { onMouseOutIcon, iconType: 'add' } );
-
-            driver.mouseOutIcon();
-            expect( onMouseOutIcon ).toBeCalledTimes( 1 );
         } );
     } );
 } );

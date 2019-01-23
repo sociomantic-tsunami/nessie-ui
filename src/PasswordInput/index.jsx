@@ -52,7 +52,7 @@ export default class PasswordInput extends React.Component
          */
         iconPosition         : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
-         *  HTML id attribute
+         *  Component id
          */
         id                   : PropTypes.string,
         /**
@@ -72,53 +72,13 @@ export default class PasswordInput extends React.Component
          */
         name                 : PropTypes.string,
         /**
-         *  Blur callback function
-         */
-        onBlur               : PropTypes.func,
-        /**
          *  Input change callback function
          */
-        onChange             : PropTypes.func,
-        /**
-         *  Input click callback function
-         */
-        onClick              : PropTypes.func,
+        onChangeInput        : PropTypes.func,
         /**
          *  Icon click callback function
          */
         onClickIcon          : PropTypes.func,
-        /**
-         *  Focus callback function
-         */
-        onFocus              : PropTypes.func,
-        /**
-         *  Key down callback function
-         */
-        onKeyDown            : PropTypes.func,
-        /**
-         *  Key press callback function
-         */
-        onKeyPress           : PropTypes.func,
-        /**
-         *  Key up callback function
-         */
-        onKeyUp              : PropTypes.func,
-        /**
-         *  Mouse out callback function
-         */
-        onMouseOut           : PropTypes.func,
-        /**
-         *  Icon mouse out callback function
-         */
-        onMouseOutIcon       : PropTypes.func,
-        /**
-         *  Mouse over  callback function
-         */
-        onMouseOver          : PropTypes.func,
-        /**
-         *  Icon mouse over callback function
-         */
-        onMouseOverIcon      : PropTypes.func,
         /**
          *  Show password as plain text
          */
@@ -151,18 +111,8 @@ export default class PasswordInput extends React.Component
         isDisabled           : false,
         isReadOnly           : false,
         name                 : undefined,
-        onBlur               : undefined,
-        onChange             : undefined,
-        onClick              : undefined,
+        onChangeInput        : undefined,
         onClickIcon          : undefined,
-        onFocus              : undefined,
-        onKeyDown            : undefined,
-        onKeyPress           : undefined,
-        onKeyUp              : undefined,
-        onMouseOut           : undefined,
-        onMouseOutIcon       : undefined,
-        onMouseOver          : undefined,
-        onMouseOverIcon      : undefined,
         passwordIsVisible    : false,
         placeholder          : undefined,
         textAlign            : 'auto',
@@ -181,18 +131,34 @@ export default class PasswordInput extends React.Component
         this.handleClickIcon = this.handleClickIcon.bind( this );
     }
 
-    handleClickIcon( e )
+    handleClickIcon( payload, e )
     {
         const { onClickIcon } = this.props;
 
-        if ( onClickIcon )
+        let nessieDefaultPrevented = false;
+
+        if ( typeof onClickIcon === 'function' )
         {
-            onClickIcon( e );
+            const { id } = this.state;
+
+            onClickIcon(
+                {
+                    id,
+                    preventNessieDefault()
+                    {
+                        nessieDefaultPrevented = true;
+                    },
+                },
+                e,
+            );
         }
 
-        this.setState( prevState => ( {
-            passwordIsVisible : !prevState.passwordIsVisible,
-        } ) );
+        if ( !nessieDefaultPrevented )
+        {
+            this.setState( prevState => ( {
+                passwordIsVisible : !prevState.passwordIsVisible,
+            } ) );
+        }
     }
 
     render()

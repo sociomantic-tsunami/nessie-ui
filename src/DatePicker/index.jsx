@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -14,6 +14,8 @@ import DatePickerItem       from './DatePickerItem';
 import DatePickerHeader     from './DatePickerHeader';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming';
+import { attachEvents }     from '../utils';
+
 
 export default class DatePicker extends React.Component
 {
@@ -40,13 +42,11 @@ export default class DatePicker extends React.Component
         minuteValue       : PropTypes.string,
         month             : PropTypes.string,
         nextIsDisabled    : PropTypes.bool,
-        onBlur            : PropTypes.func,
-        onChange          : PropTypes.func,
+        onChangeHour      : PropTypes.func,
+        onChangeMinute    : PropTypes.func,
         onClickItem       : PropTypes.func,
         onClickNext       : PropTypes.func,
         onClickPrev       : PropTypes.func,
-        onFocus           : PropTypes.func,
-        onKeyPress        : PropTypes.func,
         prevIsDisabled    : PropTypes.bool,
         type              : PropTypes.oneOf( [ 'day', 'month' ] ),
         year              : PropTypes.string,
@@ -71,13 +71,11 @@ export default class DatePicker extends React.Component
         minuteValue       : undefined,
         month             : undefined,
         nextIsDisabled    : false,
-        onBlur            : undefined,
-        onChange          : undefined,
+        onChangeHour      : undefined,
+        onChangeMinute    : undefined,
         onClickItem       : undefined,
         onClickNext       : undefined,
         onClickPrev       : undefined,
-        onFocus           : undefined,
-        onKeyPress        : undefined,
         prevIsDisabled    : false,
         type              : 'day',
         year              : undefined,
@@ -105,20 +103,18 @@ export default class DatePicker extends React.Component
             minuteValue,
             month,
             nextIsDisabled,
-            onBlur,
-            onChange,
+            onChangeHour,
+            onChangeMinute,
             onClickItem,
             onClickNext,
             onClickPrev,
-            onFocus,
-            onKeyPress,
             prevIsDisabled,
             type,
             year,
         } = this.props;
 
         return (
-            <div className = { cssMap.main }>
+            <div { ...attachEvents( this.props ) } className = { cssMap.main }>
                 <DatePickerHeader
                     hasTimeInput      = { hasTimeInput }
                     hourIsDisabled    = { hourIsDisabled }
@@ -134,12 +130,10 @@ export default class DatePicker extends React.Component
                     minuteValue       = { minuteValue }
                     month             = { month }
                     nextIsDisabled    = { nextIsDisabled }
-                    onBlur            = { onBlur }
-                    onChange          = { onChange }
+                    onChangeHour      = { onChangeHour }
+                    onChangeMinute    = { onChangeMinute }
                     onClickNext       = { onClickNext }
                     onClickPrev       = { onClickPrev }
-                    onFocus           = { onFocus }
-                    onKeyPress        = { onKeyPress }
                     prevIsDisabled    = { prevIsDisabled }
                     year              = { year } />
 

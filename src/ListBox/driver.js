@@ -30,7 +30,7 @@ export default class ListBoxDriver
     {
         const option = this.wrapper.find( ListBoxOption ).at( index );
 
-        option.simulate( 'mouseenter' );
+        option.simulate( 'mouseOver' );
         return this;
     }
 
@@ -38,7 +38,7 @@ export default class ListBoxDriver
     {
         const option = this.wrapper.find( ListBoxOption ).at( index );
 
-        option.simulate( 'mouseleave' );
+        option.simulate( 'mouseOut' );
         return this;
     }
 

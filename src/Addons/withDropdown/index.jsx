@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -7,13 +7,13 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                              from 'react';
+import PropTypes                          from 'prop-types';
 
-import { Dropdown }         from '../..';
-import { buildDisplayName } from '../../utils';
-import ThemeContext         from '../../Theming/ThemeContext';
-import { createCssMap }     from '../../Theming';
+import { Dropdown }                       from '../..';
+import { attachEvents, buildDisplayName } from '../../utils';
+import ThemeContext                       from '../../Theming/ThemeContext';
+import { createCssMap }                   from '../../Theming';
 
 
 const withDropdown = Component =>
@@ -57,18 +57,15 @@ const withDropdown = Component =>
                 dropdownIsOpen,
                 dropdownPosition,
                 dropdownProps,
-                onMouseOut,
-                onMouseOver,
                 wrapperRef,
                 ...componentProps
             } = this.props;
 
             return (
                 <div
-                    className    = { cssMap.main }
-                    onMouseEnter = { onMouseOver }
-                    onMouseLeave = { onMouseOut }
-                    ref          = { wrapperRef }>
+                    { ...attachEvents( this.props ) }
+                    className = { cssMap.main }
+                    ref       = { wrapperRef }>
                     <Component { ...componentProps } />
                     <Dropdown
                         { ...dropdownProps }

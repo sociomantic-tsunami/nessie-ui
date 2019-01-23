@@ -218,7 +218,7 @@ export default class DateTimeInput extends Component
          */
         hourPlaceholder   : PropTypes.string,
         /**
-         *  HTML id attribute
+         *  Component id
          */
         id                : PropTypes.string,
         /**
@@ -295,19 +295,20 @@ export default class DateTimeInput extends Component
             timestamp               : undefined,
         };
 
-        this.handleChangeDatePicker = this.handleChangeDatePicker.bind( this );
-        this.handleChangeInput      = this.handleChangeInput.bind( this );
-        this.handleClickCell        = this.handleClickCell.bind( this );
-        this.handleClickIcon        = this.handleClickIcon.bind( this );
-        this.handleClickNext        = this.handleClickNext.bind( this );
-        this.handleClickOutSide     = this.handleClickOutSide.bind( this );
-        this.handleClickPrev        = this.handleClickPrev.bind( this );
+        this.handleChangeHour   = this.handleChangeHour.bind( this );
+        this.handleChangeInput  = this.handleChangeInput.bind( this );
+        this.handleChangeMinute = this.handleChangeMinute.bind( this );
+        this.handleClickCell    = this.handleClickCell.bind( this );
+        this.handleClickIcon    = this.handleClickIcon.bind( this );
+        this.handleClickNext    = this.handleClickNext.bind( this );
+        this.handleClickOutSide = this.handleClickOutSide.bind( this );
+        this.handleClickPrev    = this.handleClickPrev.bind( this );
     }
 
     static getDerivedStateFromProps( props, state )
     {
         return {
-            id        : props.id || state.id || generateId( 'Select' ),
+            id        : props.id || state.id || generateId( 'DateTimeInput' ),
             isOpen    : Boolean( state.gridStartTimestamp ),
             timestamp : props.value || displayTimestamp(
                 state.editingTimestamp,
@@ -488,9 +489,10 @@ export default class DateTimeInput extends Component
             this.setState( { timestamp: value } );
 
             const { onChange } = this.props;
+            const { id } = this.state;
             if ( typeof onChange === 'function' )
             {
-                onChange( { value } );
+                onChange( { id, value } );
             }
         }
 
@@ -519,125 +521,125 @@ export default class DateTimeInput extends Component
         }
     }
 
-    handleChangeInput( event )
+    handleChangeInput( { value } )
     {
-        const trimmed = event.target.value.trim().replace( /\s+/g, ' ' );
+        const trimmed = value.replace( /\s+/g, ' ' );
         const min = this.props.minDateSelectable || now();
 
         this.setState( prevState =>
         {
-            let value = tryParseInputValue( trimmed, prevState.timestamp );
+            let timestamp = tryParseInputValue( trimmed, prevState.timestamp );
 
-            if ( value < min )
+            if ( timestamp < min )
             {
-                value = min;
+                timestamp = min;
             }
 
             if ( this.props.maxDateSelectable &&
-                value > this.props.maxDateSelectable )
+                timestamp > this.props.maxDateSelectable )
             {
-                value = this.props.maxDateSelectable;
+                timestamp = this.props.maxDateSelectable;
             }
 
             return {
                 editingHourInputValue   : formatHours( value ),
-                editingMainInputValue   : event.target.value,
+                editingMainInputValue   : value,
                 editingMinuteInputValue : formatMinutes( value ),
-                editingTimestamp        : value,
+                editingTimestamp        : timestamp,
             };
         } );
     }
 
-    handleChangeDatePicker( event, sender )
+    handleChangeHour( { value } )
     {
-        const trimmed = event.target.value.trim().replace( /\s+/g, ' ' );
+        const trimmed = value.trim().replace( /\s+/g, ' ' );
 
-        if ( sender === 'hour' )
+        let digits = Number( trimmed );
+
+        this.setState( { editingHourInputValue: value } );
+
+        if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 23 )
         {
-            let digits = Number( trimmed );
+            this.setState( prevState =>
+            {
+                const timestamp = $m( prevState.timestamp )
+                    .set( 'hour', digits ).valueOf();
 
-            this.setState( { editingHourInputValue: event.target.value } );
+                return {
+                    editingTimestamp      : timestamp,
+                    editingMainInputValue : formatDateTime(
+                        timestamp,
+                        setPrecision( this.props.mode ),
+                    ),
+                };
+            } );
+        }
+        else
+        {
+            digits = _.isNumber( this.state.timestamp ) &&
+                $m( this.state.timestamp ).hour();
 
-            if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 23 )
+            if ( !_.isNaN( digits ) )
             {
                 this.setState( prevState =>
                 {
-                    const value = $m( prevState.timestamp )
+                    const timestamp = $m( prevState.timestamp )
                         .set( 'hour', digits ).valueOf();
 
                     return {
-                        editingTimestamp      : value,
+                        editingTimestamp      : timestamp,
                         editingMainInputValue : formatDateTime(
-                            value,
+                            timestamp,
                             setPrecision( this.props.mode ),
                         ),
                     };
                 } );
             }
-            else
-            {
-                digits = _.isNumber( this.state.timestamp ) &&
-                    $m( this.state.timestamp ).hour();
-
-                if ( !_.isNaN( digits ) )
-                {
-                    this.setState( prevState =>
-                    {
-                        const value = $m( prevState.timestamp )
-                            .set( 'hour', digits ).valueOf();
-                        return {
-                            editingTimestamp      : value,
-                            editingMainInputValue : formatDateTime(
-                                value,
-                                setPrecision( this.props.mode ),
-                            ),
-                        };
-                    } );
-                }
-            }
         }
-        else if ( sender === 'minute' )
-        {
-            let digits = Number( trimmed );
-            this.setState( { editingMinuteInputValue: event.target.value } );
+    }
 
-            if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 59 )
+    handleChangeMinute( { value } )
+    {
+        const trimmed = value.trim().replace( /\s+/g, ' ' );
+        let digits = Number( trimmed );
+        this.setState( { editingMinuteInputValue: value } );
+
+        if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 59 )
+        {
+            this.setState( prevState =>
+            {
+                const timestamp = $m( prevState.timestamp )
+                    .set( 'minute', digits ).valueOf();
+
+                return {
+                    editingTimestamp      : timestamp,
+                    editingMainInputValue : formatDateTime(
+                        timestamp,
+                        setPrecision( this.props.mode ),
+                    ),
+                };
+            } );
+        }
+        else
+        {
+            digits = _.isNumber( this.state.timestamp ) &&
+                $m( this.state.timestamp ).minute();
+
+            if ( !_.isNaN( digits ) )
             {
                 this.setState( prevState =>
                 {
-                    const value = $m( prevState.timestamp )
+                    const timestamp = $m( prevState.timestamp )
                         .set( 'minute', digits ).valueOf();
 
                     return {
-                        editingTimestamp      : value,
+                        editingTimestamp      : timestamp,
                         editingMainInputValue : formatDateTime(
-                            value,
+                            timestamp,
                             setPrecision( this.props.mode ),
                         ),
                     };
                 } );
-            }
-            else
-            {
-                digits = _.isNumber( this.state.timestamp ) &&
-                    $m( this.state.timestamp ).minute();
-
-                if ( !_.isNaN( digits ) )
-                {
-                    this.setState( prevState =>
-                    {
-                        const value = $m( prevState.timestamp )
-                            .set( 'minute', digits ).valueOf();
-
-                        return {
-                            editingTimestamp      : value,
-                            editingMainInputValue : formatDateTime(
-                                value,
-                                setPrecision( this.props.mode ),
-                            ),
-                        };
-                    } );
-                }
             }
         }
     }
@@ -708,7 +710,8 @@ export default class DateTimeInput extends Component
                 mode           = { mode }
                 month          = { mode !== 'month' && this.monthLabel() }
                 nextIsDisabled = { !this.canGotoNext() }
-                onChange       = { this.handleChangeDatePicker }
+                onChangeHour   = { this.handleChangeHour }
+                onChangeMinute = { this.handleChangeMinute }
                 onClickItem    = { this.handleClickCell }
                 onClickNext    = { this.handleClickNext }
                 onClickPrev    = { this.handleClickPrev }
@@ -737,7 +740,7 @@ export default class DateTimeInput extends Component
                 iconType        = "calendar"
                 id              = { id }
                 isDisabled      = { isDisabled }
-                onChange        = { this.handleChangeInput }
+                onChangeInput   = { this.handleChangeInput }
                 onClickIcon     = { this.handleClickIcon }
                 placeholder     = { inputPlaceholder }
                 spellCheck      = { false }

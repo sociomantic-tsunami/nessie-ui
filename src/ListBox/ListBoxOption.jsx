@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -16,7 +16,7 @@ import PropTypes                             from 'prop-types';
 
 import { Icon, Text }                        from '..';
 
-import { eventHandler, generateId, mapAria } from '../utils';
+import { attachEvents, generateId, mapAria } from '../utils';
 import ThemeContext                          from '../Theming/ThemeContext';
 import { createCssMap }                      from '../Theming';
 
@@ -129,13 +129,9 @@ export default class ListBoxOption extends React.Component
             iconType,
             id = generateId( 'ListBoxOption' ),
             isSelected,
-            onClick,
-            onMouseOut,
-            onMouseOver,
             text,
             value,
         } = this.props;
-
 
         let label;
 
@@ -156,16 +152,18 @@ export default class ListBoxOption extends React.Component
 
         return (
             <li
+                { ...attachEvents( this.props, {
+                    onClick     : { id },
+                    onMouseOut  : { id },
+                    onMouseOver : { id },
+                } ) }
                 { ...mapAria( {
                     ...aria,
                     selected : isSelected,
                     role     : 'option',
                 } ) }
-                className    = { cssMap.main }
-                id           = { id }
-                onClick      = { eventHandler( onClick, id ) }
-                onMouseEnter = { eventHandler( onMouseOver, id ) }
-                onMouseLeave = { eventHandler( onMouseOut, id ) }>
+                className   = { cssMap.main }
+                id          = { id }>
                 { ( iconType && iconType !== 'none' ) &&
                     <Icon
                         className = { cssMap.icon }

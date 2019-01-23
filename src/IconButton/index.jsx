@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -7,16 +7,17 @@
  *
  */
 
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                        from 'react';
+import PropTypes                    from 'prop-types';
 
-import { Icon }         from '..';
+import { Icon }                     from '..';
 
-import { generateId }   from '../utils';
-import ThemeContext     from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming';
+import { attachEvents, generateId } from '../utils';
+import ThemeContext                 from '../Theming/ThemeContext';
+import { createCssMap }             from '../Theming';
 
 const killFocus = e => e.preventDefault();
+
 
 export default class IconButton extends React.Component
 {
@@ -53,7 +54,7 @@ export default class IconButton extends React.Component
          */
         iconSize      : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
         /**
-         *  Icon type to display (overrides customIcon)
+         *  Icon type to display
          */
         iconType      : PropTypes.oneOf( [
             'account',
@@ -61,9 +62,9 @@ export default class IconButton extends React.Component
             'add',
             'alert',
             'approved',
-            'arrow',
-            'arrow-up',
             'arrow-down',
+            'arrow-up',
+            'arrow',
             'bell',
             'board',
             'calendar',
@@ -101,9 +102,9 @@ export default class IconButton extends React.Component
             'right',
             'search',
             'show',
+            'sociomantic',
             'star-stroke',
             'star',
-            'sociomantic',
             'swap',
             'table',
             'up',
@@ -112,7 +113,7 @@ export default class IconButton extends React.Component
             'none',
         ] ),
         /**
-         * HTML id attribute
+         * Component id
          */
         id          : PropTypes.string,
         /**
@@ -128,25 +129,9 @@ export default class IconButton extends React.Component
          */
         label       : PropTypes.string,
         /**
-         *  Button blur callback function
-         */
-        onBlur      : PropTypes.func,
-        /**
          *  Button click callback function: ( e ) => { ... }
          */
         onClick     : PropTypes.func,
-        /**
-         *  Button focus callback function
-         */
-        onFocus     : PropTypes.func,
-        /**
-         *  onMouseOut callback function : ( e ) => { ... }
-         */
-        onMouseOut  : PropTypes.func,
-        /**
-         *  onMouseOver callback function : ( e ) => { ... }
-         */
-        onMouseOver : PropTypes.func,
         /**
          *  HTML value attribute
          */
@@ -171,11 +156,7 @@ export default class IconButton extends React.Component
         isDisabled    : false,
         isFocusable   : true,
         label         : undefined,
-        onBlur        : undefined,
         onClick       : undefined,
-        onFocus       : undefined,
-        onMouseOut    : undefined,
-        onMouseOver   : undefined,
         role          : 'default',
         value         : undefined,
     };
@@ -194,29 +175,22 @@ export default class IconButton extends React.Component
             isDisabled,
             isFocusable,
             label,
-            onBlur,
-            onClick,
-            onFocus,
-            onMouseOut,
-            onMouseOver,
             value,
         } = this.props;
 
         return (
             <button
-                className    = { cssMap.main }
-                disabled     = { isDisabled }
-                id           = { id }
-                onBlur       = { onBlur }
-                onClick      = { onClick }
-                onFocus      = { onFocus }
-                onMouseDown  = { !isFocusable ? killFocus : undefined }
-                onMouseEnter = { onMouseOver }
-                onMouseLeave = { onMouseOut }
-                ref          = { buttonRef }
-                tabIndex     = { isFocusable ? '0' : '-1' }
-                type         = "button"
-                value        = { value }>
+                { ...attachEvents( this.props, {
+                    onClick : { value },
+                } ) }
+                className   = { cssMap.main }
+                disabled    = { isDisabled }
+                id          = { id }
+                onMouseDown = { !isFocusable ? killFocus : undefined }
+                ref         = { buttonRef }
+                tabIndex    = { isFocusable ? '0' : '-1' }
+                type        = "button"
+                value       = { value }>
                 <Icon
                     className  = { cssMap.icon }
                     isDisabled = { isDisabled }

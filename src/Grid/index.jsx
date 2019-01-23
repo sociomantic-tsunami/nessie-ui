@@ -7,11 +7,13 @@
  *
  */
 
-import React              from 'react';
-import PropTypes          from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import ThemeContext       from '../Theming/ThemeContext';
-import { createCssMap }   from '../Theming';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming';
+import { attachEvents } from '../utils';
+
 
 
 export default class Grid extends React.Component
@@ -116,14 +118,15 @@ export default class Grid extends React.Component
             autoRows,
             children,
             columns,
+            cssMap = createCssMap( this.context.Grid, this.props ),
             customColumns,
             customRows,
-            cssMap = createCssMap( this.context.Grid, this.props ),
             rows,
         } = this.props;
 
         return (
             <div
+                { ...attachEvents( this.props ) }
                 className = { cssMap.main }
                 style     = { {
                     gridAutoColumns     : autoCols || '1fr',

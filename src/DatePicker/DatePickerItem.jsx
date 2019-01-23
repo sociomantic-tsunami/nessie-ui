@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -7,13 +7,14 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React             from 'react';
+import PropTypes         from 'prop-types';
 
-import { Text }             from '..';
+import { Text }          from '..';
 
-import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming';
+import ThemeContext      from '../Theming/ThemeContext';
+import { createCssMap }  from '../Theming';
+import { attachEvents }  from '../utils';
 
 
 export default class DatePickerItem extends React.Component
@@ -46,21 +47,6 @@ export default class DatePickerItem extends React.Component
         type       : 'day',
     };
 
-    constructor()
-    {
-        super();
-        this.handleClick = this.handleClick.bind( this );
-    }
-
-    handleClick( e )
-    {
-        const { onClick } = this.props;
-        if ( onClick )
-        {
-            onClick( { value: parseInt( e.currentTarget.value ) }, e );
-        }
-    }
-
     render()
     {
         const {
@@ -74,10 +60,12 @@ export default class DatePickerItem extends React.Component
 
         return (
             <button
+                { ...attachEvents( this.props, {
+                    onClick : { value },
+                } ) }
                 aria-pressed = { isSelected }
                 className    = { cssMap.main }
                 disabled     = { isDisabled }
-                onClick      = { this.handleClick }
                 type         = "button"
                 value        = { value }>
                 <Text className = { cssMap.text }>{ children || label }</Text>

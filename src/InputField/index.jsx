@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -7,12 +7,12 @@
  *
  */
 
-import React                   from 'react';
-import PropTypes               from 'prop-types';
+import React                                 from 'react';
+import PropTypes                             from 'prop-types';
 
-import { mapAria, generateId } from '../utils';
-import ThemeContext            from '../Theming/ThemeContext';
-import { createCssMap }        from '../Theming';
+import { attachEvents, mapAria, generateId } from '../utils';
+import ThemeContext                          from '../Theming/ThemeContext';
+import { createCssMap }                      from '../Theming';
 
 
 export default class InputField extends React.Component
@@ -69,7 +69,7 @@ export default class InputField extends React.Component
          */
         hasError     : PropTypes.bool,
         /**
-         *  HTML id attribute
+         *  Component id
          */
         id           : PropTypes.string,
         /**
@@ -88,46 +88,6 @@ export default class InputField extends React.Component
          *  HTML name attribute
          */
         name         : PropTypes.string,
-        /**
-         *  Blur callback function
-         */
-        onBlur       : PropTypes.func,
-        /**
-         *  Input change callback function
-         */
-        onChange     : PropTypes.func,
-        /**
-         *  Input click callback function
-         */
-        onClick      : PropTypes.func,
-        /**
-         *  Icon click callback function
-         */
-        onClickIcon  : PropTypes.func,
-        /**
-         *  Focus callback function
-         */
-        onFocus      : PropTypes.func,
-        /**
-         *  Key down callback function
-         */
-        onKeyDown    : PropTypes.func,
-        /**
-         *  Key press callback function
-         */
-        onKeyPress   : PropTypes.func,
-        /**
-         *  Key up callback function
-         */
-        onKeyUp      : PropTypes.func,
-        /**
-         *  Mouse out callback function
-         */
-        onMouseOut   : PropTypes.func,
-        /**
-         *  Mouse over  callback function
-         */
-        onMouseOver  : PropTypes.func,
         /**
          *  Placeholder text
          */
@@ -170,16 +130,6 @@ export default class InputField extends React.Component
         isReadOnly     : false,
         isResizable    : undefined,
         name           : undefined,
-        onBlur         : undefined,
-        onChange       : undefined,
-        onClick        : undefined,
-        onClickIcon    : undefined,
-        onFocus        : undefined,
-        onKeyDown      : undefined,
-        onKeyPress     : undefined,
-        onKeyUp        : undefined,
-        onMouseOut     : undefined,
-        onMouseOver    : undefined,
         placeholder    : undefined,
         rows           : undefined,
         spellCheck     : undefined,
@@ -210,15 +160,6 @@ export default class InputField extends React.Component
             isDisabled,
             isReadOnly,
             name,
-            onBlur,
-            onChange,
-            onClick,
-            onFocus,
-            onKeyDown,
-            onKeyPress,
-            onKeyUp,
-            onMouseOut,
-            onMouseOver,
             placeholder,
             rows,
             spellCheck,
@@ -231,6 +172,7 @@ export default class InputField extends React.Component
         return (
             <InputElement
                 { ...mapAria( aria ) }
+                { ...attachEvents( this.props ) }
                 autoCapitalize = { autoCapitalize }
                 autoComplete   = { autoComplete }
                 autoCorrect    = { autoCorrect }
@@ -238,15 +180,6 @@ export default class InputField extends React.Component
                 disabled       = { isDisabled }
                 id             = { id }
                 name           = { name }
-                onBlur         = { onBlur }
-                onChange       = { onChange }
-                onClick        = { onClick }
-                onFocus        = { onFocus }
-                onKeyDown      = { onKeyDown }
-                onKeyPress     = { onKeyPress }
-                onKeyUp        = { onKeyUp }
-                onMouseEnter   = { onMouseOver }
-                onMouseLeave   = { onMouseOut }
                 placeholder    = { placeholder }
                 readOnly       = { isReadOnly }
                 ref            = { this.inputRef }
