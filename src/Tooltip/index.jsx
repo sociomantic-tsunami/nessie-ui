@@ -141,7 +141,8 @@ export default class Tooltip extends React.Component
                         iconTheme = "button"
                         iconType  = "close"
                         label     = "Close"
-                        onClick   = { onClickClose } />
+                        onClick   = { onClickClose }
+                        role      = "inverted" />
                 }
             </div>
         );

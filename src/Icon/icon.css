@@ -44,20 +44,20 @@
 
 .role__default
 {
-    fill:   var( --PC-GREY--D25 );
+    color:  var( --PC-GREY--D25 );
 }
 
 .role__critical
 {
-    fill:   var( --PC-RED );
+    color:  var( --PC-RED );
 }
 
 .role__promoted
 {
-    fill:   var( --PC-GREEN );
+    color:  var( --PC-GREEN );
 }
 
 .role__warning
 {
-    fill:   var( --PC-ORANGE );
+    color:  var( --PC-ORANGE );
 }
