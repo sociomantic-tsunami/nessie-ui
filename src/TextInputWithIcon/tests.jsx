@@ -14,7 +14,7 @@ import { shallow, mount }  from 'enzyme';
 
 import {
     IconButton,
-    InputField,
+    TextInput,
     TextInputWithIcon,
 } from '..';
 
@@ -28,9 +28,9 @@ describe( 'TextInputWithIcon', () =>
         wrapper  = shallow( <TextInputWithIcon /> );
     } );
 
-    test( 'should contain exactly one InputField', () =>
+    test( 'should contain exactly one TextInput', () =>
     {
-        expect( wrapper.find( InputField ) ).toHaveLength( 1 );
+        expect( wrapper.find( TextInput ) ).toHaveLength( 1 );
     } );
 
     test( 'should contain exactly one IconButton when iconType is not \
@@ -51,11 +51,11 @@ describe( 'TextInputWithIcon', () =>
                     .toBeUndefined();
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { placeholder: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'placeholder' ) )
+                expect( wrapper.find( TextInput ).prop( 'placeholder' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -95,21 +95,21 @@ describe( 'TextInputWithIcon', () =>
                     .toBe( 'right' );
             } );
 
-            test( 'should pass textAlign "left" to Inputfield when value is \
+            test( 'should pass textAlign "left" to TextInput when value is \
 "right"', () =>
             {
                 wrapper.setProps( { iconPosition: 'right' } );
 
-                expect( wrapper.find( InputField ).prop( 'textAlign' ) )
+                expect( wrapper.find( TextInput ).prop( 'textAlign' ) )
                     .toBe( 'left' );
             } );
 
-            test( 'should pass textAlign "right" to Inputfield when value is \
+            test( 'should pass textAlign "right" to TextInput when value is \
 "left"', () =>
             {
                 wrapper.setProps( { iconPosition: 'left' } );
 
-                expect( wrapper.find( InputField ).prop( 'textAlign' ) )
+                expect( wrapper.find( TextInput ).prop( 'textAlign' ) )
                     .toBe( 'right' );
             } );
         } );
@@ -122,11 +122,11 @@ describe( 'TextInputWithIcon', () =>
                     .toBe( 'auto' );
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { textAlign: 'right' } );
 
-                expect( wrapper.find( InputField ).prop( 'textAlign' ) )
+                expect( wrapper.find( TextInput ).prop( 'textAlign' ) )
                     .toBe( 'right' );
             } );
         } );
@@ -139,11 +139,11 @@ describe( 'TextInputWithIcon', () =>
                     .toBe( false );
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
-                expect( wrapper.find( InputField ).prop( 'isDisabled' ) )
+                expect( wrapper.find( TextInput ).prop( 'isDisabled' ) )
                     .toBe( true );
             } );
 
@@ -189,11 +189,11 @@ describe( 'TextInputWithIcon', () =>
                     .toBe( false );
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
-                expect( wrapper.find( InputField ).prop( 'isReadOnly' ) )
+                expect( wrapper.find( TextInput ).prop( 'isReadOnly' ) )
                     .toBe( true );
             } );
         } );
@@ -205,11 +205,11 @@ describe( 'TextInputWithIcon', () =>
                 expect( TextInputWithIcon.defaultProps.hasError ).toBe( false );
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { hasError: true } );
 
-                expect( wrapper.find( InputField ).prop( 'hasError' ) )
+                expect( wrapper.find( TextInput ).prop( 'hasError' ) )
                     .toBe( true );
             } );
 
@@ -232,11 +232,11 @@ describe( 'TextInputWithIcon', () =>
                 expect( TextInputWithIcon.defaultProps.value ).toBe( '' );
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { value: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'value' ) )
+                expect( wrapper.find( TextInput ).prop( 'value' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -248,11 +248,11 @@ describe( 'TextInputWithIcon', () =>
                 expect( TextInputWithIcon.defaultProps.id ).toBeUndefined();
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { id: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'id' ) )
+                expect( wrapper.find( TextInput ).prop( 'id' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -264,11 +264,11 @@ describe( 'TextInputWithIcon', () =>
                 expect( TextInputWithIcon.defaultProps.name ).toBeUndefined();
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { name: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'name' ) )
+                expect( wrapper.find( TextInput ).prop( 'name' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -323,13 +323,13 @@ describe( 'TextInputWithIcon', () =>
                     .toBeUndefined();
             } );
 
-            test( 'should not be passed to the InputField', () =>
+            test( 'should not be passed to the TextInput', () =>
             {
                 const onMouseOver = () => undefined;
 
                 wrapper.setProps( { onMouseOver } );
 
-                expect( wrapper.find( InputField ).prop( 'onMouseOver' ) )
+                expect( wrapper.find( TextInput ).prop( 'onMouseOver' ) )
                     .toBe( undefined );
             } );
 
@@ -355,13 +355,13 @@ describe( 'TextInputWithIcon', () =>
                     .toBeUndefined();
             } );
 
-            test( 'should not be passed to the InputField', () =>
+            test( 'should not be passed to the TextInput', () =>
             {
                 const onMouseOut = () => undefined;
 
                 wrapper.setProps( { onMouseOut } );
 
-                expect( wrapper.find( InputField ).prop( 'onMouseOut' ) )
+                expect( wrapper.find( TextInput ).prop( 'onMouseOut' ) )
                     .not.toBe( onMouseOut );
             } );
 
@@ -387,11 +387,11 @@ describe( 'TextInputWithIcon', () =>
                     .toBe( false );
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { forceHover: true } );
 
-                expect( wrapper.find( InputField ).prop( 'forceHover' ) )
+                expect( wrapper.find( TextInput ).prop( 'forceHover' ) )
                     .toBe( true );
             } );
         } );

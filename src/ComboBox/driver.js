@@ -7,7 +7,7 @@
 //  *
 //  */
 //
-// import { IconButton, InputField, ListBox, ScrollBox } from 'nessie-ui';
+// import { IconButton, TextInput, ListBox, ScrollBox } from 'nessie-ui';
 //
 // export default class ComboBoxDriver
 // {
@@ -18,13 +18,13 @@
 //
 //     blur()
 //     {
-//         this.wrapper.find( InputField ).driver().blur();
+//         this.wrapper.find( TextInput ).driver().blur();
 //         return this;
 //     }
 //
 //     changeInput( val )
 //     {
-//         this.wrapper.find( InputField ).driver().change( val );
+//         this.wrapper.find( TextInput ).driver().change( val );
 //         return this;
 //     }
 //
@@ -36,7 +36,7 @@
 //
 //     clickInput()
 //     {
-//         this.wrapper.find( InputField ).driver().click();
+//         this.wrapper.find( TextInput ).driver().click();
 //         return this;
 //     }
 //
@@ -48,25 +48,25 @@
 //
 //     focus()
 //     {
-//         this.wrapper.find( InputField ).driver().focus();
+//         this.wrapper.find( TextInput ).driver().focus();
 //         return this;
 //     }
 //
 //     keyPress( keyCode )
 //     {
-//         this.wrapper.find( InputField ).driver().keyPress( keyCode );
+//         this.wrapper.find( TextInput ).driver().keyPress( keyCode );
 //         return this;
 //     }
 //
 //     keyDown( keyCode )
 //     {
-//         this.wrapper.find( InputField ).driver().keyDown( keyCode );
+//         this.wrapper.find( TextInput ).driver().keyDown( keyCode );
 //         return this;
 //     }
 //
 //     keyUp( keyCode )
 //     {
-//         this.wrapper.find( InputField ).driver().keyUp( keyCode );
+//         this.wrapper.find( TextInput ).driver().keyUp( keyCode );
 //         return this;
 //     }
 //

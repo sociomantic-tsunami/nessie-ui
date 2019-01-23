@@ -7,7 +7,7 @@
  *
  */
 
-import { IconButton, InputField } from 'nessie-ui';
+import { IconButton, TextInput } from 'nessie-ui';
 
 const ERR = {
     PASS_ERR : ( event, state ) => `PasswordInput cannot simulate ${event} \
@@ -29,7 +29,7 @@ export default class PasswordInputDriver
             throw new Error( ERR.PASS_ERR( 'blur', 'disabled' ) );
         }
 
-        this.wrapper.find( InputField ).driver().blur();
+        this.wrapper.find( TextInput ).driver().blur();
         return this;
     }
 
@@ -40,7 +40,7 @@ export default class PasswordInputDriver
             throw new Error( ERR.PASS_ERR( 'focus', 'disabled' ) );
         }
 
-        this.wrapper.find( InputField ).driver().focus();
+        this.wrapper.find( TextInput ).driver().focus();
         return this;
     }
 
@@ -56,7 +56,7 @@ export default class PasswordInputDriver
             throw new Error( ERR.PASS_ERR( 'change', 'read only' ) );
         }
 
-        this.wrapper.find( InputField ).driver().change( val );
+        this.wrapper.find( TextInput ).driver().change( val );
         return this;
     }
 
@@ -67,7 +67,7 @@ export default class PasswordInputDriver
             throw new Error( ERR.PASS_ERR( 'keyPress', 'disabled' ) );
         }
 
-        this.wrapper.find( InputField ).driver().keyPress( keyCode );
+        this.wrapper.find( TextInput ).driver().keyPress( keyCode );
         return this;
     }
 

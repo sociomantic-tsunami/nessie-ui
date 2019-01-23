@@ -16,7 +16,6 @@ import Grid              from './Grid';
 import GridItem          from './GridItem';
 import Icon              from './Icon';
 import IconButton        from './IconButton';
-import InputField        from './InputField';
 import ListBox           from './ListBox';
 import PasswordInput     from './PasswordInput';
 import ScrollBar         from './ScrollBar';
@@ -27,6 +26,7 @@ import Tab               from './Tab';
 import TabButton         from './TabButton';
 import Tabs              from './Tabs';
 import Text              from './Text';
+import TextInput         from './TextInput';
 import TextInputWithIcon from './TextInputWithIcon';
 import Tooltip           from './Tooltip';
 
@@ -41,7 +41,6 @@ export {
     GridItem,
     Icon,
     IconButton,
-    InputField,
     ListBox,
     PasswordInput,
     ScrollBar,
@@ -52,6 +51,7 @@ export {
     TabButton,
     Tabs,
     Text,
+    TextInput,
     TextInputWithIcon,
     Tooltip,
 };
@@ -67,7 +67,6 @@ export default {
     GridItem,
     Icon,
     IconButton,
-    InputField,
     ListBox,
     PasswordInput,
     ScrollBar,
@@ -78,6 +77,7 @@ export default {
     TabButton,
     Tabs,
     Text,
+    TextInput,
     TextInputWithIcon,
     Tooltip,
 };

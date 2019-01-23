@@ -12,7 +12,7 @@ import PropTypes                    from 'prop-types';
 
 import { attachEvents, generateId } from '../utils';
 
-import { IconButton, InputField }   from '..';
+import { IconButton, TextInput }    from '..';
 
 import ThemeContext                 from '../Theming/ThemeContext';
 import { createCssMap }             from '../Theming';
@@ -280,7 +280,7 @@ export default class TextInputWithIcon extends React.Component
 
         return (
             <div { ...attachEvents( this.props ) } className = { cssMap.main }>
-                <InputField
+                <TextInput
                     aria           = { aria }
                     autocapitalize = { autoCapitalize }
                     autoComplete   = { autoComplete }
