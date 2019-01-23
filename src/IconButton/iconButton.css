@@ -65,7 +65,7 @@
 {
     .icon
     {
-        fill:   var( --PC-GREY--D25 );
+        color:  var( --PC-GREY--D25 );
     }
 
     &:hover,
@@ -74,7 +74,7 @@
     {
         .icon
         {
-            fill:   var( --PC-BLUE );
+            color:  var( --PC-BLUE );
         }
     }
 
@@ -89,7 +89,7 @@
 {
     .icon
     {
-        fill:   var( --PC-WHITE );
+        color:  var( --PC-WHITE );
     }
 
     &:hover,
@@ -98,7 +98,7 @@
     {
         .icon
         {
-            fill:   var( --PC-WHITE );
+            color:  var( --PC-WHITE );
         }
     }
 
@@ -140,14 +140,14 @@
     {
         .icon
         {
-            fill:   var( --PC-GREY--L70 );
+            color:  var( --PC-GREY--L70 );
         }
     }
     &.role__inverted
     {
         .icon
         {
-            fill:   var( --PC-BLUE--L25 );
+            color:  var( --PC-BLUE--L25 );
         }
     }
 }
