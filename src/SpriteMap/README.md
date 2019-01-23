@@ -1,10 +1,23 @@
-Component Description
----------------------
+## Component Description
 
-A Nessie SpriteMap is a wrapper around the sprite.html containing the SVG symbols for the Nessie Icon component.
+You’ll be needing this if you wanna use the Icon component...
 
+## Example Usage
 
-Example Usage
--------------
+You should create a separate React mountpoint for the SpriteMap, e.g:
+```
+<html>
+    <head>
+        ...
+    </head>
+    <body>
+        <div id="myApp"></div>
+        <div id="spriteMap"></div>
+    </body>
+</html>
+```
 
-	<SpriteMap/>
+```
+ReactDOM.render( <App />, document.getElementById( 'myApp' ) );
+ReactDOM.render( <SpriteMap />, document.getElementById( 'spriteMap' ) );
+```
