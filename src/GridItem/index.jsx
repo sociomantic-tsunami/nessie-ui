@@ -7,85 +7,86 @@
  *
  */
 
-import React              from 'react';
-import PropTypes          from 'prop-types';
+import React, { useContext }    from 'react';
+import PropTypes                from 'prop-types';
 
-import ThemeContext       from '../Theming/ThemeContext';
-import { createCssMap }   from '../Theming';
-import { attachEvents }   from '../utils';
+import ThemeContext             from '../Theming/ThemeContext';
+import { createCssMap }         from '../Theming';
+import { attachEvents }         from '../utils';
 
 
-export default class GridItem extends React.Component
+const GridItem = props =>
 {
-    static contextType = ThemeContext;
+    const context = useContext( ThemeContext );
 
-    static propTypes =
-    {
-        /**
-         * Vertical alignment of the GridItem content
-         */
-        align : PropTypes.oneOf( [
-            'start',
-            'center',
-            'end',
-            'stretch',
-        ] ),
-        /**
-         *  GridItem content
-         */
-        children  : PropTypes.node,
-        /**
-         *  CSS class name
-         */
-        className : PropTypes.string,
-        /**
-         *  GridItem column span - should be an integer > 0
-         */
-        colSpan   : PropTypes.number,
-        /**
-         *  CSS class map
-         */
-        cssMap    : PropTypes.objectOf( PropTypes.string ),
-        /**
-         * Horizontal alignment of the GridItem content
-         */
-        justify   : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
-        /**
-         * GridItem row span - should be an integer > 0
-         */
-        rowSpan   : PropTypes.number,
-    };
+    const {
+        children,
+        colSpan,
+        cssMap = createCssMap( context.GridItem, props ),
+        rowSpan,
+    } = props;
 
-    static defaultProps =
-    {
-        align     : 'start',
-        children  : undefined,
-        className : undefined,
-        colSpan   : undefined,
-        cssMap    : undefined,
-        justify   : 'start',
-        rowSpan   : undefined,
-    };
+    return (
+        <div
+            { ...attachEvents( props ) }
+            className = { cssMap.main }
+            style     = { {
+                gridColumn : `span ${colSpan}`,
+                gridRow    : `span ${rowSpan}`,
+            } }>
+            { children }
+        </div>
+    );
+};
 
-    render()
-    {
-        const {
-            children,
-            colSpan,
-            cssMap = createCssMap( this.context.GridItem, this.props ),
-            rowSpan,
-        } = this.props;
+GridItem.propTypes =
+{
+    /**
+     * Vertical alignment of the GridItem content
+     */
+    align : PropTypes.oneOf( [
+        'start',
+        'center',
+        'end',
+        'stretch',
+    ] ),
+    /**
+     *  GridItem content
+     */
+    children  : PropTypes.node,
+    /**
+     *  CSS class name
+     */
+    className : PropTypes.string,
+    /**
+     *  GridItem column span - should be an integer > 0
+     */
+    colSpan   : PropTypes.number,
+    /**
+     *  CSS class map
+     */
+    cssMap    : PropTypes.objectOf( PropTypes.string ),
+    /**
+     * Horizontal alignment of the GridItem content
+     */
+    justify   : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
+    /**
+     * GridItem row span - should be an integer > 0
+     */
+    rowSpan   : PropTypes.number,
+};
 
-        return (
-            <div
-                { ...attachEvents( this.props ) }
-                className = { cssMap.main }
-                style     = { {
-                    gridColumn : `span ${colSpan}`,
-                    gridRow    : `span ${rowSpan}`,
-                } }>
-                { children }
-            </div>
-        );
-    }
-}
+GridItem.defaultProps =
+{
+    align     : 'start',
+    children  : undefined,
+    className : undefined,
+    colSpan   : undefined,
+    cssMap    : undefined,
+    justify   : 'start',
+    rowSpan   : undefined,
+};
+
+GridItem.displayName = 'GridItem';
+
+export default GridItem;
