@@ -28,12 +28,12 @@ const PasswordInput = forwardRef( ( props, ref ) =>
 
     const passwordRef = useRef();
 
-        useImperativeHandle( ref, () => ( {
-            focus : () =>
-            {
-                passwordRef.current.focus();
-            }
-        } ) );
+    useImperativeHandle( ref, () => ( {
+        focus : () =>
+        {
+            passwordRef.current.focus();
+        }
+    } ) );
 
     const {
         id = generateId( 'PasswordInput' )
@@ -50,7 +50,6 @@ const PasswordInput = forwardRef( ( props, ref ) =>
 
         if ( typeof onClickIcon === 'function' )
         {
-
             onClickIcon(
                 {
                     id,
@@ -81,7 +80,6 @@ const PasswordInput = forwardRef( ( props, ref ) =>
             onClickIcon    = { handleClickIcon }
             spellCheck     = { false } />
     );
-
 } );
 
 PasswordInput.propTypes =
