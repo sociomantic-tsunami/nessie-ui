@@ -7,7 +7,14 @@
  *
  */
 
-import React, { useContext }        from 'react';
+
+ import React, {
+     useContext,
+     useImperativeHandle,
+     useRef,
+     forwardRef
+ } from 'react';
+
 import PropTypes                    from 'prop-types';
 
 import { Text }                     from '..';
@@ -17,9 +24,18 @@ import ThemeContext                 from '../Theming/ThemeContext';
 import { createCssMap }             from '../Theming';
 
 
-const Checkbox = ( props ) =>
+const Checkbox = forwardRef( ( props, ref ) =>
 {
     const context = useContext( ThemeContext );
+
+    const CheckboxRef = useRef();
+
+    useImperativeHandle( ref, () => ( {
+        focus : () =>
+        {
+            CheckboxRef.current.focus();
+        }
+    } ) );
 
     const {
         children,
@@ -58,7 +74,7 @@ const Checkbox = ( props ) =>
             </label>
         </div>
     );
-};
+} );
 
 
 Checkbox.propTypes =
