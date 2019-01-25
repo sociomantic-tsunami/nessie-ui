@@ -196,9 +196,9 @@ export default {
         main : classNames.bind( scrollBoxClasses )(
             'default',
             {
-                scrollBarsAreVisible   : props.scrollBarsAreVisible,
-                scrollIndicatorVariant : props.scrollIndicatorVariant,
+                scrollBarsAreVisible : props.scrollBarsAreVisible,
             },
+            `scrollIndicatorVariant__${props.scrollIndicatorVariant}`,
             `paddingX__${Array.isArray( props.padding ) ?
                 props.padding[ 0 ] : props.padding}`,
             `paddingY__${Array.isArray( props.padding ) ?
