@@ -9,7 +9,7 @@
 
 import { useContext }     from 'react';
 
-import { ThemeProvider }  from '../Theming';
+import ThemeContext       from '../Theming/ThemeContext';
 
 /**
  * Builds class names from theme
@@ -21,7 +21,7 @@ import { ThemeProvider }  from '../Theming';
  */
 function useTheme( displayName, props )
 {
-    const { [ displayName ] : theme } = useContext( ThemeProvider );
+    const { [ displayName ] : theme } = useContext( ThemeContext );
 
     return props.cssMap ||
         ( typeof theme === 'function' ? theme( props ) : theme );
