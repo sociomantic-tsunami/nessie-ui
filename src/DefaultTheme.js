@@ -7,35 +7,36 @@
  *
  */
 
-import classNames                from 'classnames/bind';
+import classNames                     from 'classnames/bind';
 
-import buttonClasses             from './Button/button.css';
-import cardClasses               from './Card/card.css';
-import checkboxClasses           from './Checkbox/checkbox.css';
-import datePickerClasses         from './DatePicker/datePicker.css';
-import datePickerHeaderClasses   from './DatePicker/datePickerHeader.css';
-import datePickerItemClasses     from './DatePicker/datePickerItem.css';
-import dropdownClasses           from './Dropdown/dropdown.css';
-import gridClasses               from './Grid/grid.css';
-import gridItemClasses           from './GridItem/gridItem.css';
-import iconButtonClasses         from './IconButton/iconButton.css';
-import iconClasses               from './Icon/icon.css';
-import listBoxClasses            from './ListBox/listBox.css';
-import listBoxOptionClasses      from './ListBox/listBoxOption.css';
-import listBoxOptionGroupClasses from './ListBox/listBoxOptionGroup.css';
-import modalClasses              from './Modal/modal.css';
-import scrollBarClasses          from './ScrollBar/scrollBar.css';
-import scrollBoxClasses          from './ScrollBox/scrollBox.css';
-import spinnerClasses            from './Spinner/spinner.css';
-import tabButtonClasses          from './TabButton/tabButton.css';
-import tabClasses                from './Tab/tab.css';
-import tabsClasses               from './Tabs/tabs.css';
-import textClasses               from './Text/text.css';
-import textInputClasses          from './TextInput/textInput.css';
-import textInputWithIconClasses  from './TextInputWithIcon/textInputWithIcon.css';
-import timeInputClasses          from './DatePicker/timeInput.css';
-import tooltipClasses            from './Tooltip/tooltip.css';
-import withDropdownClasses       from './Addons/withDropdown/withDropdown.css';
+import buttonClasses                  from './Button/button.css';
+import cardClasses                    from './Card/card.css';
+import checkboxClasses                from './Checkbox/checkbox.css';
+import currencyInputClasses           from './CurrencyInput/currencyInput.css';
+import datePickerClasses              from './DatePicker/datePicker.css';
+import datePickerHeaderClasses        from './DatePicker/datePickerHeader.css';
+import datePickerItemClasses          from './DatePicker/datePickerItem.css';
+import dropdownClasses                from './Dropdown/dropdown.css';
+import gridClasses                    from './Grid/grid.css';
+import gridItemClasses                from './GridItem/gridItem.css';
+import iconButtonClasses              from './IconButton/iconButton.css';
+import iconClasses                    from './Icon/icon.css';
+import listBoxClasses                 from './ListBox/listBox.css';
+import listBoxOptionClasses           from './ListBox/listBoxOption.css';
+import listBoxOptionGroupClasses      from './ListBox/listBoxOptionGroup.css';
+import modalClasses                   from './Modal/modal.css';
+import scrollBarClasses               from './ScrollBar/scrollBar.css';
+import scrollBoxClasses               from './ScrollBox/scrollBox.css';
+import spinnerClasses                 from './Spinner/spinner.css';
+import tabButtonClasses               from './TabButton/tabButton.css';
+import tabClasses                     from './Tab/tab.css';
+import tabsClasses                    from './Tabs/tabs.css';
+import textClasses                    from './Text/text.css';
+import textInputClasses               from './TextInput/textInput.css';
+import textInputWithIconClasses       from './TextInputWithIcon/textInputWithIcon.css';
+import timeInputClasses               from './DatePicker/timeInput.css';
+import tooltipClasses                 from './Tooltip/tooltip.css';
+import withDropdownClasses            from './Addons/withDropdown/withDropdown.css';
 
 
 export default {
@@ -75,6 +76,18 @@ export default {
             props.className,
         ),
         ...checkboxClasses,
+    } ),
+    CurrencyInput : props => ( {
+        main : classNames.bind( textInputClasses )(
+            'default',
+            {
+                disabled : props.isDisabled,
+                error    : !props.isDisabled && props.hasError,
+            },
+            `align__${props.textAlign}`,
+            props.className,
+        ),
+        ...currencyInputClasses,
     } ),
     DatePicker : {
         main : classNames.bind( datePickerClasses )( 'default' ),

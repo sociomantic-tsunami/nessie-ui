@@ -7,28 +7,25 @@
  *
  */
 
-import React                                 from 'react';
-import PropTypes                             from 'prop-types';
+import React                                     from 'react';
+import PropTypes                                 from 'prop-types';
 
-import { attachEvents, mapAria, generateId } from '../utils';
-import ThemeContext                          from '../Theming/ThemeContext';
-import { createCssMap }                      from '../Theming';
+import { attachEvents, mapAria, generateId }     from '../utils';
 
+import { TextInput }                             from '..';
 
-export default class TextInput extends React.Component
+import ThemeContext                              from '../Theming/ThemeContext';
+import { createCssMap }                          from '../Theming';
+
+const currencyFormat = ( number, currency, language = navigator.language ) =>
+    number.toLocaleString( language, currency ? { style: 'currency', currency } : {} );
+
+export default class CurrencyInput extends React.Component
 {
     static contextType = ThemeContext;
 
     static propTypes =
     {
-        /**
-         *  ARIA properties
-         */
-        aria : PropTypes.objectOf( PropTypes.oneOfType( [
-            PropTypes.bool,
-            PropTypes.number,
-            PropTypes.string,
-        ] ) ),
         /**
          *  HTML attribute controlling input auto capitalize
          */
@@ -56,6 +53,10 @@ export default class TextInput extends React.Component
          *  CSS class map
          */
         cssMap       : PropTypes.objectOf( PropTypes.string ),
+        /**
+         *  Currencies
+         */
+        currency     : PropTypes.oneOf( [ 'USD', 'EUR', 'GBP' ] ),
         /**
          *  Display as error/invalid
          */
@@ -132,12 +133,13 @@ export default class TextInput extends React.Component
 
     static defaultProps =
     {
-        aria           : undefined,
+
         autoCapitalize : undefined,
         autoComplete   : undefined,
         autoCorrect    : undefined,
         className      : undefined,
         cssMap         : undefined,
+        currency       : 'USD',
         hasError       : false,
         id             : undefined,
         isDisabled     : false,
@@ -158,37 +160,50 @@ export default class TextInput extends React.Component
         value          : '',
     };
 
-    static displayName = 'TextInput';
 
-    inputRef = React.createRef();
+    static displayName = 'CurrencyInput';
 
-    focus()
+    constructor( props )
     {
-        this.inputRef.current.focus();
+        super( props );
+        this.state = {
+            value          : '',
+            valueFormatted : ''
+        };
+        this.handleBlur   = this.handleBlur.bind( this );
+        this.handleChange = this.handleChange.bind( this );
+    }
+
+    handleBlur( e )
+    {
+        const newVal = Number( e.target.value.replace( /[^0-9\.-]/g, '' ) );
+        this.setState( { value: newVal } );
+        this.setState( { valueFormatted: currencyFormat( newVal, this.props.currency ) } );
+    }
+
+    handleChange( e )
+    {
+        this.setState( { valueFormatted:  e.target.value } );
     }
 
     render()
     {
+
         const {
-            aria,
             autoCapitalize,
             autoComplete,
-            onBlur,
-            onChange,
             autoCorrect,
-            cssMap = createCssMap( this.context.TextInput, this.props ),
-            id = generateId( 'TextInput' ),
+            cssMap = createCssMap( this.context.CurrencyInput, this.props ),
+            currency,
+            id = generateId( 'CurrencyInput' ),
             isDisabled,
             isReadOnly,
             placeholder,
             spellCheck,
-            value,
         } = this.props;
 
         return (
-            <input
-                { ...mapAria( aria ) }
-                { ...attachEvents( this.props ) }
+            <TextInput
                 autoCapitalize = { autoCapitalize }
                 autoComplete   = { autoComplete }
                 autoCorrect    = { autoCorrect }
@@ -198,10 +213,10 @@ export default class TextInput extends React.Component
                 placeholder    = { placeholder }
                 readOnly       = { isReadOnly }
                 ref            = { this.inputRef }
-                onBlur         = { onBlur }
-                onChange       = { onChange }
                 spellCheck     = { spellCheck }
-                value          = { value } />
+                onBlur         = { this.handleBlur }
+                onChange       = { this.handleChange }
+                value          = { currencyFormat( this.state.valueFormatted, currency )} />
         );
     }
 }
