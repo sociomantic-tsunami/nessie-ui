@@ -46,7 +46,7 @@ const Modal = ( props ) =>
     );
 };
 
-Modal.displayName = 'Modal';
+Modal.displayName = componentName;
 
 Modal.propTypes =
 {
