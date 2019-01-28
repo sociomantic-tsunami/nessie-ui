@@ -7,28 +7,27 @@
  *
  */
 
-import React, { useContext }    from 'react';
-import PropTypes                from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import ThemeContext             from '../Theming/ThemeContext';
-import { createCssMap }         from '../Theming';
-import { attachEvents }         from '../utils';
+import { useTheme }     from '../Theming';
+import { attachEvents } from '../utils';
 
+const componentName = 'Grid';
 
 const Grid = props =>
 {
-    const context = useContext( ThemeContext );
-
     const {
         autoCols,
         autoRows,
         children,
         columns,
-        cssMap = createCssMap( context.Grid, props ),
         customColumns,
         customRows,
         rows,
     } = props;
+
+    const cssMap = useTheme( componentName, props );
 
     return (
         <div
@@ -135,6 +134,6 @@ Grid.defaultProps =
     rows          : undefined,
 };
 
-Grid.displayName = 'Grid';
+Grid.displayName = componentName;
 
 export default Grid;
