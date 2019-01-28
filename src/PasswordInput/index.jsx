@@ -19,6 +19,7 @@ import { TextInputWithIcon } from '..';
 
 import { generateId }        from '../utils';
 
+const componentName = 'PasswordInput';
 
 const PasswordInput = forwardRef( ( props, ref ) =>
 {
@@ -36,7 +37,7 @@ const PasswordInput = forwardRef( ( props, ref ) =>
     } ) );
 
     const {
-        id = generateId( 'PasswordInput' )
+        id = generateId( componentName )
     } = props;
 
     const passwordIsVisible =
