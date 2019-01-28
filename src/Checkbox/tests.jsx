@@ -195,7 +195,7 @@ focus since it is disabled';
 //             expect( onChange ).toBeCalledTimes( 1 );
 //         } );
 //
-//         test.only( 'should change the value of target.checked to false', () =>
+//         test( 'should change the value of target.checked to false', () =>
 //         {
 //             const onChange = jest.fn();
 //             wrapper.setProps( { onChange, isChecked: true } );
