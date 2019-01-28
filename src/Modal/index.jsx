@@ -17,7 +17,6 @@ const componentName = 'Modal';
 
 const Modal = ( props ) =>
 {
-
     const handleClickOverlay = ( { target, currentTarget } ) =>
     {
         if ( target !== currentTarget ) return;
@@ -47,7 +46,7 @@ const Modal = ( props ) =>
     );
 };
 
-Modal.displayName = componentName;
+Modal.displayName = 'Modal';
 
 Modal.propTypes =
 {
