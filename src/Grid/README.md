@@ -108,8 +108,8 @@ The props accept one of four values: `"S"`, `"M"` (default), `"L"` and `"none"`
 
 #### Horizontal alignment
 
-The Grid’s `justify` prop accepts one of four values: `"stretch"`,
-`"start"` (default), `"end"` and `"center"`.
+The Grid’s `justify` prop accepts one of four values: `"stretch"` (default),
+`"start"`, `"end"` and `"center"`.
 
 Aligns grid items along the inline (row) axis. This value applies to all grid
 items inside the container.
@@ -117,8 +117,8 @@ items inside the container.
 
 #### Vertical alignment
 
-The Grid’s `align` prop accepts one of four values: `"stretch"`, `"start"`
-(default), `"center"` and `"end"`.
+The Grid’s `align` prop accepts one of four values: `"stretch"` (default),
+`"start"`, `"center"` and `"end"`.
 
 Aligns grid items along the block (column) axis. This value applies to all grid
 items inside the container.
