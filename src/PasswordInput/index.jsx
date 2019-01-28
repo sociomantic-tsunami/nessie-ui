@@ -9,8 +9,6 @@
 
 import React, {
     useState,
-    useImperativeHandle,
-    useRef,
     forwardRef
 }  from 'react';
 import PropTypes             from 'prop-types';
@@ -26,15 +24,6 @@ const PasswordInput = forwardRef( ( props, ref ) =>
 
     const [ passwordIsVisibleState,
         setPasswordIsVisibleState ] = useState( false );
-
-    const passwordRef = useRef();
-
-    useImperativeHandle( ref, () => ( {
-        focus : () =>
-        {
-            passwordRef.current.focus();
-        }
-    } ) );
 
     const {
         id = generateId( componentName )
@@ -79,6 +68,7 @@ const PasswordInput = forwardRef( ( props, ref ) =>
             id             = { id }
             inputType      = { passwordIsVisible ? 'text' : 'password' }
             onClickIcon    = { handleClickIcon }
+            ref            = { ref }
             spellCheck     = { false } />
     );
 } );
