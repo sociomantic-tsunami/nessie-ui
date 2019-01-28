@@ -93,7 +93,7 @@ export default class Grid extends React.Component
 
     static defaultProps =
     {
-        align         : 'start',
+        align         : 'stretch',
         autoCols      : undefined,
         autoFlow      : 'row',
         autoRows      : undefined,
@@ -104,7 +104,7 @@ export default class Grid extends React.Component
         cssMap        : undefined,
         customColumns : undefined,
         customRows    : undefined,
-        justify       : 'start',
+        justify       : 'stretch',
         rowGap        : 'M',
         rows          : undefined,
     };
@@ -129,8 +129,8 @@ export default class Grid extends React.Component
                 { ...attachEvents( this.props ) }
                 className = { cssMap.main }
                 style     = { {
-                    gridAutoColumns     : autoCols || '1fr',
-                    gridAutoRows        : autoRows || '1fr',
+                    gridAutoColumns     : autoCols,
+                    gridAutoRows        : autoRows,
                     gridTemplateColumns : customColumns ||
                         `repeat( ${columns}, 1fr )`,
                     gridTemplateRows : customRows || `repeat( ${rows}, 1fr )`,
