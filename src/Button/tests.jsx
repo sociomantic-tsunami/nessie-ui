@@ -14,7 +14,7 @@ import { mount, shallow }        from 'enzyme';
 
 import { Button, Icon, Spinner } from '..';
 
-describe.only( 'Button', () =>
+describe( 'Button', () =>
 {
     let wrapper;
 
