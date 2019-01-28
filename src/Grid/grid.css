@@ -18,14 +18,7 @@
 
 .default
 {
-    display:        grid;
-    max-width:      100%;
-
-    > *
-    {
-        overflow:   hidden;
-        min-width:  0;
-    }
+    display:    grid;
 }
 
 
