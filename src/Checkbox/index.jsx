@@ -9,7 +9,6 @@
 
 
  import React, {
-     useContext,
      useImperativeHandle,
      useRef,
      forwardRef
@@ -20,14 +19,12 @@ import PropTypes                    from 'prop-types';
 import { Text }                     from '..';
 
 import { attachEvents, generateId } from '../utils';
-import ThemeContext                 from '../Theming/ThemeContext';
-import { createCssMap }             from '../Theming';
+import { useTheme }                 from '../Theming';
 
+const componentName = 'Checkbox';
 
 const Checkbox = forwardRef( ( props, ref ) =>
 {
-    const context = useContext( ThemeContext );
-
     const CheckboxRef = useRef();
 
     useImperativeHandle( ref, () => ( {
@@ -39,13 +36,13 @@ const Checkbox = forwardRef( ( props, ref ) =>
 
     const {
         children,
-        cssMap = createCssMap( context.Checkbox, props ),
-        id = generateId( 'Checkbox' ),
+        id = generateId( componentName ),
         isChecked,
         isDisabled,
         label,
     } = props;
 
+    const cssMap = useTheme( componentName, props );
 
     let labelContent = children || label;
 
@@ -127,6 +124,6 @@ Checkbox.defaultProps =
     label      : undefined,
 };
 
-Checkbox.displayName = 'Checkbox';
+Checkbox.displayName = componentName;
 
 export default Checkbox;
