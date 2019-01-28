@@ -83,6 +83,8 @@ const PasswordInput = forwardRef( ( props, ref ) =>
     );
 } );
 
+PasswordInput.displayComponent = componentName;
+
 PasswordInput.propTypes =
 {
     /**
