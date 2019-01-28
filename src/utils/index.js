@@ -115,7 +115,6 @@ function createEventHandler( func, customizer )
         else if ( type === 'change' )
         {
             const inputType = target.getAttribute( 'type' );
-            console.log( target, inputType )
             if ( inputType === 'checkbox' || inputType === 'radio' )
             {
                 eventPayload.isChecked = target.checked;
