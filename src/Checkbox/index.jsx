@@ -55,8 +55,15 @@ export default class Checkbox extends React.Component
          *  Label content (string)
          */
         label      : PropTypes.string,
-        onClick      : PropTypes.func,
-        onChange      : PropTypes.func,
+        /**
+         *  change callback prop
+         */
+        onChange   : PropTypes.func,
+        /**
+         *  click callback prop
+         */
+        onClick    : PropTypes.func,
+
     };
 
     static defaultProps =
@@ -69,6 +76,8 @@ export default class Checkbox extends React.Component
         isChecked  : undefined,
         isDisabled : false,
         label      : undefined,
+        onChange   : undefined,
+        onClick    : undefined,
     };
 
     static displayName = 'Checkbox';
