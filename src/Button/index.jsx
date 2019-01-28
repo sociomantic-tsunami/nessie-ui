@@ -18,14 +18,13 @@ import PropTypes                                         from 'prop-types';
 import { Icon, Spinner }                                 from '..';
 
 import { attachEvents, generateId }                      from '../utils';
-import ThemeContext                                      from '../Theming/ThemeContext';
-import { createCssMap }                                  from '../Theming';
+import { useTheme }                                      from '../Theming';
 
+const componentName = 'Button';
 
 const Button = forwardRef( ( props, ref ) =>
 {
 
-    const context = useContext( ThemeContext );
     const buttonRef = useRef();
 
     useImperativeHandle( ref, () => ( {
@@ -38,8 +37,8 @@ const Button = forwardRef( ( props, ref ) =>
     const {
         children,
         iconType,
-        cssMap = createCssMap( context.Button, props ),
-        id = generateId( 'Button' ),
+        cssMap = useTheme( componentName, props ),
+        id = generateId( componentName ),
         isDisabled,
         isLoading,
         label,
@@ -74,7 +73,7 @@ const Button = forwardRef( ( props, ref ) =>
     );
 } );
 
-Button.displayName = 'Button';
+Button.displayName = componentName;
 
 Button.propTypes =
 {
