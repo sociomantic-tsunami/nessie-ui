@@ -7,17 +7,15 @@
  *
  */
 
-import React, { useContext }            from 'react';
+import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
 import { attachEvents }                 from '../utils';
-import ThemeContext                     from '../Theming/ThemeContext';
-import { createCssMap }                 from '../Theming';
+import { useTheme }                     from '../Theming';
 
 
 const Modal = ( props ) =>
 {
-    const context = useContext( ThemeContext );
 
     const handleClickOverlay = ( { target, currentTarget } ) =>
     {
@@ -29,12 +27,13 @@ const Modal = ( props ) =>
             onClickOverlay();
         }
     };
-
+    const componentName = 'Modal'
     const {
-        children,
-        cssMap = createCssMap( context.Modal, props ),
+        children
     } = props;
 
+    const cssMap = useTheme( componentName, props );
+    
     return (
         <div
             { ...attachEvents( props, { onClick: false } ) }
