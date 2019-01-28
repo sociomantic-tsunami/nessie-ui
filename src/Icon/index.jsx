@@ -7,24 +7,23 @@
  *
  */
 
-import React, { useContext }    from 'react';
-import PropTypes                from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import ThemeContext             from '../Theming/ThemeContext';
-import { createCssMap }         from '../Theming';
-import { attachEvents }         from '../utils';
+import { useTheme }     from '../Theming';
+import { attachEvents } from '../utils';
 
+const componentName = 'Icon';
 
 const Icon = props =>
 {
-    const context = useContext( ThemeContext );
-
     const {
         children,
-        cssMap = createCssMap( context.Icon, props ),
         label,
         type,
     } = props;
+
+    const cssMap = useTheme( componentName, props );
 
     return (
         <svg
@@ -139,6 +138,6 @@ Icon.defaultProps =
     type      : 'none',
 };
 
-Icon.displayName = 'Icon';
+Icon.displayName = componentName;
 
 export default Icon;
