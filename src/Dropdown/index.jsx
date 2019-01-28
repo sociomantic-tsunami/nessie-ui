@@ -7,21 +7,19 @@
  *
  */
 
-import React, { useContext }    from 'react';
-import PropTypes                from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import ThemeContext             from '../Theming/ThemeContext';
-import { createCssMap }         from '../Theming';
-import { attachEvents }         from '../utils';
+import { useTheme }     from '../Theming';
+import { attachEvents } from '../utils';
+
+const componentName = 'Dropdown';
 
 const Dropdown = props =>
 {
-    const context = useContext( ThemeContext );
+    const { children } = props;
 
-    const {
-        children,
-        cssMap = createCssMap( context.Dropdown, props ),
-    } = props;
+    const cssMap = useTheme( componentName, props );
 
     return (
         <div
@@ -50,6 +48,6 @@ Dropdown.defaultProps = {
     size      : 'default',
 };
 
-Dropdown.displayName = 'Dropdown';
+Dropdown.displayName = componentName;
 
 export default Dropdown;
