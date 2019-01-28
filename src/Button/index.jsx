@@ -36,13 +36,13 @@ const Button = forwardRef( ( props, ref ) =>
     const {
         children,
         iconType,
-        cssMap = useTheme( componentName, props ),
         id = generateId( componentName ),
         isDisabled,
         isLoading,
         label,
     } = props;
 
+    const cssMap = useTheme( componentName, props );
 
     return (
         <button
