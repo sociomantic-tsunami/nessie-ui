@@ -56,9 +56,6 @@ const distConfig = merge( {}, baseConfig, {
         mode         : 'production',
         optimization : {
             minimizer : [
-                new OptimizeCSSAssetsPlugin( {
-                    cssProcessorOptions : { map: { inline: false } },
-                } ),
                 new UglifyJsPlugin( {
                     cache     : true,
                     parallel  : true,
@@ -89,6 +86,9 @@ const componentsJS = merge( {}, distConfig, {
             allChunks : true,
             filename  : 'styles.css',
         } ),
+        new OptimizeCSSAssetsPlugin( {
+            cssProcessorOptions : { map: { inline: false } },
+        } ),
     ],
 } );
 
@@ -99,6 +99,9 @@ const driverSuite = merge( {}, distConfig, {
         new MiniCssExtractPlugin( {
             allChunks : true,
             filename  : 'driverSuite.css',
+        } ),
+        new OptimizeCSSAssetsPlugin( {
+            cssProcessorOptions : { map: { inline: false } },
         } ),
     ],
 } );
