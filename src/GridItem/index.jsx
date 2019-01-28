@@ -7,24 +7,23 @@
  *
  */
 
-import React, { useContext }    from 'react';
-import PropTypes                from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import ThemeContext             from '../Theming/ThemeContext';
-import { createCssMap }         from '../Theming';
-import { attachEvents }         from '../utils';
+import { useTheme }     from '../Theming';
+import { attachEvents } from '../utils';
 
+const componentName = 'GridItem';
 
 const GridItem = props =>
 {
-    const context = useContext( ThemeContext );
-
     const {
         children,
         colSpan,
-        cssMap = createCssMap( context.GridItem, props ),
         rowSpan,
     } = props;
+
+    const cssMap = useTheme( componentName, props );
 
     return (
         <div
@@ -87,6 +86,6 @@ GridItem.defaultProps =
     rowSpan   : undefined,
 };
 
-GridItem.displayName = 'GridItem';
+GridItem.displayName = componentName;
 
 export default GridItem;
