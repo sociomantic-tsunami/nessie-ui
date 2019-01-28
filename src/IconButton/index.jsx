@@ -7,25 +7,23 @@
  *
  */
 
-import React, { useContext }        from 'react';
+import React                        from 'react';
 import PropTypes                    from 'prop-types';
 
 import { Icon }                     from '..';
 
 import { attachEvents, generateId } from '../utils';
-import ThemeContext                 from '../Theming/ThemeContext';
-import { createCssMap }             from '../Theming';
+import { useTheme }                 from '../Theming';
+
+const componentName = 'IconButton';
 
 const killFocus = e => e.preventDefault();
 
 const IconButton = props =>
 {
-    const context = useContext( ThemeContext );
-
     const {
         buttonRef,
         children,
-        cssMap = createCssMap( context.IconButton, props ),
         iconSize,
         iconType,
         id = generateId( 'IconButton' ),
@@ -34,6 +32,8 @@ const IconButton = props =>
         label,
         value,
     } = props;
+
+    const cssMap = useTheme( componentName, props );
 
     return (
         <button
@@ -197,6 +197,6 @@ IconButton.defaultProps =
     value         : undefined,
 };
 
-IconButton.displayName = 'IconButton';
+IconButton.displayName = componentName;
 
 export default IconButton;
