@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2018-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -12,4 +12,4 @@ import ThemeContext from './ThemeContext';
 const { Consumer : ThemeConsumer, Provider : ThemeProvider } = ThemeContext;
 export { ThemeConsumer, ThemeProvider };
 
-export createCssMap from './createCssMap';
+export useTheme from '../utils/customHooks';
