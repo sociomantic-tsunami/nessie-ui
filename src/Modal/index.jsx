@@ -13,6 +13,7 @@ import PropTypes                        from 'prop-types';
 import { attachEvents }                 from '../utils';
 import { useTheme }                     from '../Theming';
 
+const componentName = 'Modal';
 
 const Modal = ( props ) =>
 {
@@ -27,13 +28,13 @@ const Modal = ( props ) =>
             onClickOverlay();
         }
     };
-    const componentName = 'Modal'
+
     const {
         children
     } = props;
 
     const cssMap = useTheme( componentName, props );
-    
+
     return (
         <div
             { ...attachEvents( props, { onClick: false } ) }
@@ -46,7 +47,7 @@ const Modal = ( props ) =>
     );
 };
 
-Modal.displayName = 'Modal';
+Modal.displayName = componentName;
 
 Modal.propTypes =
 {
