@@ -8,12 +8,11 @@
  */
 
 
- import React, {
-     useImperativeHandle,
-     useRef,
-     forwardRef
- } from 'react';
-
+import React, {
+    useImperativeHandle,
+    useRef,
+    forwardRef,
+} from 'react';
 import PropTypes                    from 'prop-types';
 
 import { Text }                     from '..';
@@ -23,15 +22,13 @@ import { useTheme }                 from '../Theming';
 
 const componentName = 'Checkbox';
 
+
 const Checkbox = forwardRef( ( props, ref ) =>
 {
-    const CheckboxRef = useRef();
+    const checkBoxRef = useRef();
 
     useImperativeHandle( ref, () => ( {
-        focus : () =>
-        {
-            CheckboxRef.current.focus();
-        }
+        focus : () => checkBoxRef.current.focus(),
     } ) );
 
     const {
@@ -108,8 +105,14 @@ Checkbox.propTypes =
      *  Label content (string)
      */
     label      : PropTypes.string,
-    onClick    : PropTypes.func,
+    /**
+     *  change callback prop
+     */
     onChange   : PropTypes.func,
+    /**
+     *  click callback prop
+     */
+    onClick    : PropTypes.func,
 };
 
 Checkbox.defaultProps =
@@ -122,6 +125,8 @@ Checkbox.defaultProps =
     isChecked  : undefined,
     isDisabled : false,
     label      : undefined,
+    onChange   : undefined,
+    onClick    : undefined,
 };
 
 Checkbox.displayName = componentName;
