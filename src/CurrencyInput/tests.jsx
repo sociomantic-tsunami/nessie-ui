@@ -12,23 +12,23 @@
 import React         from 'react';
 import { mount }     from 'enzyme';
 
-import { TextInput } from '..';
+import { CurrencyInput } from '..';
 
 
-describe( 'TextInput', () =>
+describe( 'CurrencyInput', () =>
 {
     let wrapper;
     let instance;
 
     beforeEach( () =>
     {
-        wrapper  = mount( <TextInput /> );
+        wrapper  = mount( <CurrencyInput /> );
         instance = wrapper.instance();
     } );
 
     describe( 'render()', () =>
     {
-        test( 'should contain exactly one TextInput', () =>
+        test( 'should contain exactly one CurrencyInput', () =>
         {
             expect( wrapper ).toHaveLength( 1 );
         } );
@@ -50,11 +50,11 @@ describe( 'TextInput', () =>
                 expect( props.defaultValue ).toBeUndefined();
             } );
 
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the CurrencyInput', () =>
             {
                 wrapper.setProps( { defaultValue: 'yes!' } );
 
-                expect( wrapper.find( TextInput ).prop( 'defaultValue' ) )
+                expect( wrapper.find( CurrencyInput ).prop( 'defaultValue' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -66,11 +66,11 @@ describe( 'TextInput', () =>
                 expect( props.forceHover ).toBeFalsy();
             } );
 
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the CurrencyInput', () =>
             {
                 wrapper.setProps( { forceHover: true } );
 
-                expect( wrapper.find( TextInput ).prop( 'forceHover' ) )
+                expect( wrapper.find( CurrencyInput ).prop( 'forceHover' ) )
                     .toBeTruthy();
             } );
         } );
@@ -82,22 +82,22 @@ describe( 'TextInput', () =>
                 expect( props.hasError ).toBeFalsy();
             } );
 
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the CurrencyInput', () =>
             {
                 wrapper.setProps( { hasError: true } );
 
-                expect( wrapper.find( TextInput ).prop( 'hasError' ) )
+                expect( wrapper.find( CurrencyInput ).prop( 'hasError' ) )
                     .toBeTruthy();
             } );
         } );
 
         describe( 'id', () =>
         {
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the CurrencyInput', () =>
             {
                 wrapper.setProps( { id: 'yes!' } );
 
-                expect( wrapper.find( TextInput ).prop( 'id' ) )
+                expect( wrapper.find( CurrencyInput ).prop( 'id' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -109,11 +109,11 @@ describe( 'TextInput', () =>
                 expect( props.isDisabled ).toBe( false );
             } );
 
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the CurrencyInput', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
-                expect( wrapper.find( TextInput ).prop( 'isDisabled' ) )
+                expect( wrapper.find( CurrencyInput ).prop( 'isDisabled' ) )
                     .toBeTruthy();
             } );
         } );
@@ -125,7 +125,7 @@ describe( 'TextInput', () =>
                 expect( props.isReadOnly ).toBeFalsy();
             } );
 
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the CurrencyInput', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
@@ -140,11 +140,11 @@ describe( 'TextInput', () =>
                 expect( props.name ).toBeUndefined();
             } );
 
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the CurrencyInput', () =>
             {
                 wrapper.setProps( { name: 'yes!' } );
 
-                expect( wrapper.find( TextInput ).prop( 'name' ) )
+                expect( wrapper.find( CurrencyInput ).prop( 'name' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -164,12 +164,12 @@ describe( 'TextInput', () =>
                 expect( props.onChange ).toBeUndefined();
             } );
 
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the CurrencyInput', () =>
             {
                 const onChange = () => undefined;
                 wrapper.setProps( { onChange } );
 
-                expect( wrapper.find( TextInput ).prop( 'onChange' ) )
+                expect( wrapper.find( CurrencyInput ).prop( 'onChange' ) )
                     .toBe( onChange );
             } );
         } );
@@ -189,12 +189,12 @@ describe( 'TextInput', () =>
                 expect( props.onKeyPress ).toBeUndefined();
             } );
 
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the CurrencyInput', () =>
             {
                 const onKeyPress = () => undefined;
                 wrapper.setProps( { onKeyPress } );
 
-                expect( wrapper.find( TextInput ).prop( 'onKeyPress' ) )
+                expect( wrapper.find( CurrencyInput ).prop( 'onKeyPress' ) )
                     .toBe( onKeyPress );
             } );
         } );
@@ -206,12 +206,12 @@ describe( 'TextInput', () =>
                 expect( props.onMouseOut ).toBeUndefined();
             } );
 
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the CurrencyInput', () =>
             {
                 const onMouseOut = () => undefined;
                 wrapper.setProps( { onMouseOut } );
 
-                expect( wrapper.find( TextInput ).prop( 'onMouseOut' ) )
+                expect( wrapper.find( CurrencyInput ).prop( 'onMouseOut' ) )
                     .toBe( onMouseOut );
             } );
         } );
@@ -223,12 +223,12 @@ describe( 'TextInput', () =>
                 expect( props.onMouseOver ).toBeUndefined();
             } );
 
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the CurrencyInput', () =>
             {
                 const onMouseOver = () => undefined;
                 wrapper.setProps( { onMouseOver } );
 
-                expect( wrapper.find( TextInput ).prop( 'onMouseOver' ) )
+                expect( wrapper.find( CurrencyInput ).prop( 'onMouseOver' ) )
                     .toBe( onMouseOver );
             } );
         } );
@@ -240,11 +240,11 @@ describe( 'TextInput', () =>
                 expect( props.placeholder ).toBeUndefined();
             } );
 
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the CurrencyInput', () =>
             {
                 wrapper.setProps( { placeholder: 'yes!' } );
 
-                expect( wrapper.find( TextInput ).prop( 'placeholder' ) )
+                expect( wrapper.find( CurrencyInput ).prop( 'placeholder' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -256,11 +256,11 @@ describe( 'TextInput', () =>
                 expect( props.textAlign ).toBe( 'left' );
             } );
 
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the CurrencyInput', () =>
             {
                 wrapper.setProps( { textAlign: 'right' } );
 
-                expect( wrapper.find( TextInput ).prop( 'textAlign' ) )
+                expect( wrapper.find( CurrencyInput ).prop( 'textAlign' ) )
                     .toBe( 'right' );
             } );
         } );
@@ -269,14 +269,14 @@ describe( 'TextInput', () =>
         {
             test( 'should be empty string by default', () =>
             {
-                expect( TextInput.defaultProps.value ).toBe( '' );
+                expect( CurrencyInput.defaultProps.value ).toBe( '' );
             } );
 
             test( 'should be passed to the input element', () =>
             {
                 wrapper.setProps( { value: 'yes!' } );
 
-                expect( wrapper.find( TextInput ).prop( 'value' ) )
+                expect( wrapper.find( CurrencyInput ).prop( 'value' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -284,14 +284,14 @@ describe( 'TextInput', () =>
 } );
 
 
-describe( 'TextInputDriver', () =>
+describe( 'CurrencyInputDriver', () =>
 {
     let wrapper;
     let driver;
 
     beforeEach( () =>
     {
-        wrapper = mount( <TextInput /> );
+        wrapper = mount( <CurrencyInput /> );
         driver  = wrapper.driver();
     } );
 
@@ -313,7 +313,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate blur since it is disabled';
+                    'CurrencyInput cannot simulate blur since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -354,7 +354,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate focus since it is disabled';
+                    'CurrencyInput cannot simulate focus since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
@@ -395,7 +395,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate change since it is disabled';
+                    'CurrencyInput cannot simulate change since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -423,7 +423,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate change since it is read only';
+                    'CurrencyInput cannot simulate change since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -464,7 +464,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate click since it is disabled';
+                    'CurrencyInput cannot simulate click since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
@@ -505,7 +505,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate keyPress since it is disabled';
+                    'CurrencyInput cannot simulate keyPress since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
@@ -546,7 +546,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate keyDown since it is disabled';
+                    'CurrencyInput cannot simulate keyDown since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyDown() ).toThrow( expectedError );
@@ -587,7 +587,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate keyUp since it is disabled';
+                    'CurrencyInput cannot simulate keyUp since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyUp() ).toThrow( expectedError );

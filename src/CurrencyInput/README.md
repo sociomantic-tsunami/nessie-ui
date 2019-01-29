@@ -1,9 +1,9 @@
 ## Component Description
 
-A text input field.
+A currency input field.
 
 ## Example Usage
 
 ```
-<TextInput placeholder = "Max Mustermann"/>
+<CurrencyInput/>
 ```
