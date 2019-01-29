@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -79,13 +79,12 @@
             color:         var( --PC-GREY--L80 );
         }
     }
-}
 
-
-.fakeHovered
-{
-    border-color:   var( --PC-BLUE );
-    box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+    &:focus-within
+    {
+        border-color:   var( --PC-BLUE );
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+    }
 }
 
 
@@ -104,10 +103,4 @@
 {
     border-color:   var( --PC-RED ) !important; /* yes, always override other states */
     box-shadow:     0 0 0 2px color( var( --PC-RED ) a( 30% ) );
-}
-
-
-.resizable
-{
-    resize: vertical;
 }

@@ -36,11 +36,7 @@ export default class Tag extends React.Component
          */
         cssMap     : PropTypes.objectOf( PropTypes.string ),
         /**
-         * Display as hover when required from another component
-         */
-        forceHover : PropTypes.bool,
-        /**
-         *  component id
+         *  Component id
          */
         id         : PropTypes.string,
         /**
@@ -65,7 +61,7 @@ export default class Tag extends React.Component
     {
         children   : undefined,
         className  : undefined,
-        forceHover : false,
+        cssMap     : undefined,
         id         : undefined,
         isDisabled : false,
         isReadOnly : false,
@@ -79,9 +75,7 @@ export default class Tag extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.Tag, this.props ),
-            forceHover,
             id = generateId( 'Tag' ),
             isDisabled,
             isReadOnly,
@@ -105,13 +99,13 @@ export default class Tag extends React.Component
                 { labelText }
                 <IconButton
                     className  = { cssMap.delete }
-                    forceHover = { forceHover }
                     iconSize   = "S"
                     iconType   = "close"
                     isDisabled = { isDisabled }
                     isReadOnly = { isReadOnly }
-                    onClick    = { onClick }
-                    value      = { id } />
+                    onClick    = { () =>
+                        onClick && onClick( { value: id } )
+                    } />
             </div>
         );
     }

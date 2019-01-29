@@ -30,7 +30,6 @@ import TabButton         from './TabButton';
 import Tabs              from './Tabs';
 import Tag               from './Tag';
 import TagInput          from './TagInput';
-import TagInputStateful  from './TagInputStateful';
 import Text              from './Text';
 import TextInput         from './TextInput';
 import TextInputWithIcon from './TextInputWithIcon';
@@ -61,7 +60,6 @@ export {
     Tabs,
     Tag,
     TagInput,
-    TagInputStateful,
     Text,
     TextInput,
     TextInputWithIcon,
@@ -93,7 +91,6 @@ export default {
     Tabs,
     Tag,
     TagInput,
-    TagInputStateful,
     Text,
     TextInput,
     TextInputWithIcon,

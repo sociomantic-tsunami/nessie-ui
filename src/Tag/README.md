@@ -1,9 +1,9 @@
-Component Description
----------------------
+## Component Description
 
-A Nessie Tag component is the internal tags used in the TagInput component
+A tag containing some text and a _close_ button.
 
-Example Usage
--------------
+## Example Usage
 
-    <Tag>Tag Label</Tag>
+```
+<Tag>Tag label</Tag>
+```

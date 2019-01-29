@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
+ * Copyright (c) 2018-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -7,272 +7,357 @@
  *
  */
 
-import React, { Children }     from 'react';
-import PropTypes               from 'prop-types';
+import React        from 'react';
+import PropTypes    from 'prop-types';
 
-import { generateId }          from '../utils';
-import { buildTagsFromValues } from './utils';
-import ThemeContext            from '../Theming/ThemeContext';
-import { createCssMap }        from '../Theming';
+import {
+    ListBox,
+    ScrollBox,
+} from '../index';
+import withDropdown   from '../Addons/withDropdown';
+import { generateId } from '../utils';
+import { addPrefix }  from '../ComboBox/utils';
+import DumbTagInput   from './dumb';
 
 
-export default class TagInput extends React.Component
+/**
+ * gets the index of the option by the passed id
+ *
+ * @param {String} id id of the option
+ * @param {Array} options Array of options
+ *
+ * @return {Number} index of the option
+ */
+function getIndex( id, options = [] )
 {
-    static contextType = ThemeContext;
+    return options.findIndex( opt => opt.id === id );
+}
 
+/**
+ * gets the option by the passed id
+ *
+ * @param {String} id id of the option
+ * @param {Array} options Array of options
+ *
+ * @return {Object} option Object.
+ */
+function getOption( id, options = [] )
+{
+    return options.find( opt => opt.id === id );
+}
+
+/**
+ * normalize array of options or tags
+ *
+ * @param   {Array} options options to normalize
+ *
+ * @return  {Array} normalized options
+ */
+function normalizeOptions( options )
+{
+    if ( !Array.isArray( options ) ) return;
+
+    return options.map( opt => ( typeof opt === 'object' ?
+        opt : { id: opt, text: opt } ) );
+}
+
+const TagInputwithDropdown = withDropdown( DumbTagInput );
+
+export default class TagInputStateful extends React.Component
+{
     static propTypes =
     {
         /**
-         * Node containing Tag components ( overrides tags prop )
-         */
-        children     : PropTypes.node,
-        /**
          *  CSS class name
          */
-        className    : PropTypes.string,
+        className        : PropTypes.string,
         /**
          *  CSS class map
          */
-        cssMap       : PropTypes.objectOf( PropTypes.string ),
+        cssMap           : PropTypes.objectOf( PropTypes.string ),
         /**
-         * Display as hover when required from another component
+         *  Position of the dropdown relative to the input
          */
-        forceHover   : PropTypes.bool,
-        /**
-        *  specifies the height for the tag input (CSS length value)
-        */
-        height       : PropTypes.string,
+        dropdownPosition : PropTypes.oneOf( [ 'top', 'bottom' ] ),
         /**
          *  Display as error/invalid
          */
-        hasError     : PropTypes.bool,
+        hasError         : PropTypes.bool,
         /**
-         *  HTML id attribute
+         *  Component id
          */
-        id           : PropTypes.string,
+        id               : PropTypes.string,
         /**
          *  Display as disabled
          */
-        isDisabled   : PropTypes.bool,
+        isDisabled       : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly   : PropTypes.bool,
+        isReadOnly       : PropTypes.bool,
         /**
-        *  Allows container to be resize by the user
-        */
-        isResizable  : PropTypes.bool,
-        /**
-         *  HTML name attribute
+         *  Change callback function
          */
-        name         : PropTypes.string,
-        /**
-         * onBlur callback function
-         */
-        onBlur       : PropTypes.func,
-        /**
-         *  Input change callback function
-         */
-        onChange     : PropTypes.func,
-        /**
-         *  Button click callback function: ( e ) => { ... }
-         */
-        onClickClose : PropTypes.func,
-        /**
-         * onFocus callback function
-         */
-        onFocus      : PropTypes.func,
-        /**
-         * onKeyDown callback function
-         */
-        onKeyDown    : PropTypes.func,
-        /**
-         * onKeyPress callback function
-         */
-        onKeyUp      : PropTypes.func,
-        /**
-         * onKeyUp callback function
-         */
-        onKeyPress   : PropTypes.func,
-        /**
-         *  Input mouseOut callback function
-         */
-        onMouseOut   : PropTypes.func,
-        /**
-         *  Input mouseOver callback function
-         */
-        onMouseOver  : PropTypes.func,
+        onChange         : PropTypes.func,
         /**
          *  Placeholder text
          */
-        placeholder  : PropTypes.string,
+        placeholder      : PropTypes.string,
         /**
-         * Array of strings to build Tag components
+         *  Tag suggestions
          */
-        tags         : PropTypes.arrayOf( PropTypes.oneOfType( [
-            PropTypes.string,
-            PropTypes.object,
-        ] ) ),
+        suggestions      : PropTypes.arrayOf( PropTypes.string ),
         /**
-         * Input's value
+         *  Current tags
          */
-        value : PropTypes.string,
+        tags             : PropTypes.arrayOf( PropTypes.string ),
     };
 
     static defaultProps =
     {
-        children     : undefined,
-        className    : undefined,
-        forceHover   : false,
-        hasError     : false,
-        height       : undefined,
-        id           : undefined,
-        isDisabled   : false,
-        isReadOnly   : false,
-        isResizable  : false,
-        name         : undefined,
-        onBlur       : undefined,
-        onChange     : undefined,
-        onClickClose : undefined,
-        onFocus      : undefined,
-        onKeyDown    : undefined,
-        onKeyPress   : undefined,
-        onKeyUp      : undefined,
-        onMouseOut   : undefined,
-        onMouseOver  : undefined,
-        placeholder  : undefined,
-        tags         : undefined,
-        value        : undefined,
+        className        : undefined,
+        cssMap           : undefined,
+        dropdownPosition : 'bottom',
+        hasError         : false,
+        id               : undefined,
+        isDisabled       : false,
+        isReadOnly       : false,
+        onChange         : undefined,
+        placeholder      : undefined,
+        suggestions      : undefined,
+        tags             : undefined,
     };
 
-    static displayName = 'TagInput';
-
-    constructor()
+    constructor( props )
     {
-        super();
+        super( props );
 
-        this.state = { isFocused: false };
+        this.state = {
+            activeOption    : undefined,
+            filteredOptions : undefined,
+            id              : undefined,
+            inputValue      : '',
+            isOpen          : false,
+            tags            : undefined,
+        };
 
-        this.handleBlur  = this.handleBlur.bind( this );
-        this.handleFocus = this.handleFocus.bind( this );
+        this.handleBlur            = this.handleBlur.bind( this );
+        this.handleChangeInput     = this.handleChangeInput.bind( this );
+        this.handleClickClose      = this.handleClickClose.bind( this );
+        this.handleClickOption     = this.handleClickOption.bind( this );
+        this.handleFocus           = this.handleFocus.bind( this );
+        this.handleKeyDown         = this.handleKeyDown.bind( this );
+        this.handleMouseOutOption  = this.handleMouseOutOption.bind( this );
+        this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
     }
 
-    handleBlur( event )
+    static getDerivedStateFromProps( props, state )
     {
-        const { onBlur } = this.props;
+        const options =
+            normalizeOptions( props.suggestions ) || state.options || [];
 
-        if ( onBlur )
+        return {
+            filteredOptions : state.inputValue ?
+                state.filteredOptions : options,
+            id   : props.id || state.id || generateId( 'TagInput' ),
+            options,
+            tags : props.tags || state.tags || [],
+        };
+    }
+
+    handleBlur()
+    {
+        this.setState( { isOpen: false } );
+    }
+
+    handleChangeInput( { value } )
+    {
+        this.setState( ( { options } ) =>
         {
-            onBlur( event );
-        }
+            const filteredOptions = options.filter( ( { text } ) =>
+                text.match( new RegExp( value, 'i' ) ) );
 
-        this.setState( { isFocused: false } );
+            const activeOption = ( value && filteredOptions.length ) ?
+                filteredOptions[ 0 ].id : undefined;
+
+            return {
+                activeOption,
+                filteredOptions,
+                inputValue : value,
+            };
+        } );
     }
 
-    handleFocus( event )
+    handleClickClose( { value } )
     {
-        const { onFocus } = this.props;
+        this.setState( ( { tags } ) => ( {
+            tags : tags.filter( tag => tag !== value ),
+        } ) );
+    }
 
-        if ( onFocus )
+    handleClickOption( { id } )
+    {
+        this.setState( ( { filteredOptions, tags } ) =>
         {
-            onFocus( event );
-        }
+            const option = getOption( id, filteredOptions );
+            const newTags = [ ...tags, option.text ];
 
-        this.setState( { isFocused: true } );
+            const { onChange } = this.props;
+            if ( typeof onChange === 'function' )
+            {
+                onChange( { tags: newTags } );
+            }
+
+            return {
+                activeOption    : undefined,
+                filteredOptions : undefined,
+                inputValue      : '',
+                tags            : newTags,
+            };
+        } );
     }
 
-    inputRef = React.createRef();
-
-    focus()
+    handleFocus()
     {
-        this.inputRef.current.focus();
+        this.setState( { isOpen: true } );
+    }
+
+    handleKeyDown( { preventNessieDefault, key } )
+    {
+        if ( key === 'Backspace' )
+        {
+            this.setState( ( { inputValue, tags } ) => ( {
+                tags : !inputValue ? tags.slice( 0, -1 ) : tags,
+            } ) );
+        }
+        else if ( key === 'Enter' )
+        {
+            this.setState( ( {
+                activeOption,
+                filteredOptions,
+                inputValue,
+                tags,
+            } ) =>
+            {
+                let newTag;
+
+                if ( !tags.find( tag => tag === inputValue ) )
+                {
+                    if ( activeOption )
+                    {
+                        const option =
+                            getOption( activeOption, filteredOptions );
+
+                        newTag = option.text;
+                    }
+                    else if ( inputValue )
+                    {
+                        newTag = inputValue;
+                    }
+                }
+
+                const newTags = newTag ? [ ...tags, newTag ] : tags;
+
+                const { onChange } = this.props;
+                if ( typeof onChange === 'function' )
+                {
+                    onChange( { tags: newTags } );
+                }
+
+                return {
+                    activeOption    : undefined,
+                    filteredOptions : undefined,
+                    inputValue      : '',
+                    tags            : newTags,
+                };
+            } );
+        }
+        else if ( key === 'ArrowUp' || key === 'ArrowDown' )
+        {
+            preventNessieDefault();
+
+            this.setState( ( { activeOption, isOpen } ) =>
+            {
+                const { filteredOptions } = this.state;
+
+                if ( isOpen && filteredOptions.length )
+                {
+                    const minIndex = 0;
+                    const maxIndex = filteredOptions.length - 1;
+
+                    let activeIndex = getIndex( activeOption, filteredOptions );
+
+                    activeIndex = key === 'ArrowUp' ?
+                        Math.max( activeIndex - 1, minIndex ) :
+                        Math.min( activeIndex + 1, maxIndex );
+
+                    return {
+                        activeOption : filteredOptions[ activeIndex ].id,
+                    };
+                }
+
+                return { isOpen: true };
+            } );
+        }
+    }
+
+    handleMouseOutOption()
+    {
+        this.setState( { activeOption: undefined } );
+    }
+
+    handleMouseOverOption( { id } )
+    {
+        this.setState( { activeOption: id } );
     }
 
     render()
     {
         const {
-            children,
-            className,
-            cssMap = createCssMap( this.context.TagInput, this.props ),
-            forceHover,
-            hasError,
-            height,
-            id = generateId( 'TagInput' ),
-            isDisabled,
-            isReadOnly,
-            isResizable,
-            name,
-            onChange,
-            onClickClose,
-            onKeyDown,
-            onKeyPress,
-            onKeyUp,
-            onMouseOut,
-            onMouseOver,
-            placeholder,
+            activeOption,
+            filteredOptions,
+            id,
+            inputValue,
+            isOpen,
             tags,
-            value,
-        } = this.props;
+        } = this.state;
 
-        const { isFocused } = this.state;
-
-        let items = children ?
-            Children.toArray( children ) : buildTagsFromValues( tags );
-
-        items = items.map( tag =>
+        const listBoxOptions = filteredOptions.reduce( ( result, opt ) =>
         {
-            let handleClick;
+            if ( !tags.find( tag => tag === opt.id  ) )
+            {
+                result.push( opt );
+            }
+            return result;
+        }, [] );
 
-            if ( !onClickClose )
-            {
-                handleClick = tag.props.onClick;
-            }
-            else if ( !tag.props.onClick )
-            {
-                handleClick =  onClickClose;
-            }
-            else
-            {
-                handleClick = ( ...args ) =>
-                {
-                    onClickClose( args );
-                    tag.props.onClick( args );
-                };
-            }
+        const dropdownContent = listBoxOptions.length > 0 && (
+            <ScrollBox height = "50vh" scroll = "vertical">
+                <ListBox
+                    activeOption      = { activeOption }
+                    id                = { addPrefix( 'listbox', id ) }
+                    isFocusable       = { false }
+                    onClickOption     = { this.handleClickOption }
+                    onMouseOutOption  = { this.handleMouseOutOption }
+                    onMouseOverOption = { this.handleMouseOverOption }
+                    options           = { listBoxOptions } />
+            </ScrollBox>
+        );
 
-            return React.cloneElement( tag, {
-                ...tag.props,
-                isDisabled : isDisabled || tag.props.isDisabled,
-                isReadOnly : isReadOnly || tag.props.isReadOnly,
-                onClick    : handleClick,
-            } );
-        } );
 
         return (
-            <label
-                className    = { cssMap.main }
-                htmlFor      = { id }
-                onMouseEnter = { onMouseOver }
-                onMouseLeave = { onMouseOut }
-                style        = { { height } }>
-                { items }
-                <input
-                    className   = { cssMap.input }
-                    disabled    = { isDisabled }
-                    id          = { id }
-                    name        = { name }
-                    onBlur      = { this.handleBlur }
-                    onChange    = { onChange }
-                    onFocus     = { this.handleFocus }
-                    onKeyDown   = { onKeyDown }
-                    onKeyPress  = { onKeyPress }
-                    onKeyUp     = { onKeyUp }
-                    placeholder = { placeholder }
-                    readOnly    = { isReadOnly }
-                    ref         = { this.inputRef }
-                    type        = "text"
-                    value       = { value } />
-            </label>
+            <TagInputwithDropdown
+                { ...this.props }
+                dropdownIsOpen   = { listBoxOptions.length > 0 && isOpen }
+                dropdownProps    = { { children: dropdownContent } }
+                id               = { id }
+                inputValue       = { inputValue }
+                onBlur           = { this.handleBlur }
+                onChangeInput    = { this.handleChangeInput }
+                onClickClose     = { this.handleClickClose }
+                onFocus          = { this.handleFocus }
+                onKeyDown        = { this.handleKeyDown }
+                tags             = { tags } />
         );
     }
 }

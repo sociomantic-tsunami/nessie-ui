@@ -9,10 +9,11 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React                from 'react';
-import { mount }            from 'enzyme';
+import React                      from 'react';
+import { mount, shallow }         from 'enzyme';
 
-import { IconButton, Tag }  from '../index';
+import { IconButton, Tag, Text }  from '../index';
+
 
 describe( 'Tag', () =>
 {
@@ -20,18 +21,12 @@ describe( 'Tag', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Tag /> );
+        wrapper = shallow( <Tag /> );
     } );
 
-    test( 'should render <Tag/>', () =>
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper.find( Tag ) ).toHaveLength( 1 );
-    } );
-
-    test( 'should have its component name as default className', () =>
-    {
-        expect( wrapper.find( `.${wrapper.instance().context.Switch.default}` )
-            .first() ).toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 
     test( 'should have an IconButton as a child', () =>
@@ -64,7 +59,7 @@ child', () =>
             label,
         } );
 
-        expect( wrapper.text() ).toBe( label );
+        expect( wrapper.find( Text ).prop( 'children' ) ).toBe( label );
     } );
 } );
 

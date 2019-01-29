@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2018-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -14,12 +14,19 @@ const ERR = {
         `TagInput cannot simulate ${event} since it is ${state}`,
 };
 
+import { createCssMap } from '../Theming';
+
+
 export default class TagInputDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.instance().context.TagInput;
+        this.instance = wrapper.instance()
+        this.cssMap = createCssMap(
+            this.wrapper.childAt( 0 ).context.TagInput,
+            this.instance.props,
+        );
     }
 
     clickClose( index = 0 )
@@ -63,8 +70,7 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'change', 'read only' ) );
         }
 
-        this.wrapper.find( `.${this.cssMap.input}` )
-            .simulate( 'change', { 'target': { val } } );
+        this.wrapper.find( `.${this.cssMap.input}` ).simulate( 'change' );
         return this;
     }
 
@@ -117,13 +123,13 @@ export default class TagInputDriver
 
     mouseOver()
     {
-        this.wrapper.simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseOver' );
         return this;
     }
 
     mouseOut()
     {
-        this.wrapper.simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseOut' );
         return this;
     }
 }

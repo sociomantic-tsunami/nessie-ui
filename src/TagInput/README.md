@@ -1,12 +1,10 @@
 ## Component Description
 
-TagInput is a text input where we can add different values as tags.
+An input for entering an array of string values (displayed as “tags”), with
+optional auto-suggestions.
 
 ## Example Usage
 
 ```
-<TagInput label="Categories">
-    <Tag>Category 1</Tag>
-    <Tag>Category 2</Tag>
-</TagInput>
+<TagInput suggestions = { [ 'cool', 'hot' ] } />
 ```
