@@ -139,7 +139,7 @@ export default class CurrencyInput extends React.Component
         autoCorrect    : undefined,
         className      : undefined,
         cssMap         : undefined,
-        currency       : 'USD',
+        currency       : undefined,
         hasError       : false,
         id             : undefined,
         isDisabled     : false,
