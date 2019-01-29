@@ -76,6 +76,10 @@ export default class TagInputStateful extends React.Component
          */
         cssMap           : PropTypes.objectOf( PropTypes.string ),
         /**
+         *  Initial tags (when component is uncontrolled)
+         */
+        defaultTags      : PropTypes.arrayOf( PropTypes.string ),
+        /**
          *  Position of the dropdown relative to the input
          */
         dropdownPosition : PropTypes.oneOf( [ 'top', 'bottom' ] ),
@@ -117,6 +121,7 @@ export default class TagInputStateful extends React.Component
     {
         className        : undefined,
         cssMap           : undefined,
+        defaultTags      : undefined,
         dropdownPosition : 'bottom',
         hasError         : false,
         id               : undefined,
@@ -138,7 +143,7 @@ export default class TagInputStateful extends React.Component
             id              : undefined,
             inputValue      : '',
             isOpen          : false,
-            tags            : undefined,
+            tags            : props.defaultTags,
         };
 
         this.handleBlur            = this.handleBlur.bind( this );
