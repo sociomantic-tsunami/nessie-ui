@@ -11,7 +11,7 @@ import { useContext, useMemo }  from 'react';
 
 import ThemeContext             from '../Theming/ThemeContext';
 
-import { generateId }           from './';
+import { generateId }           from '.';
 
 
 /**
@@ -47,4 +47,5 @@ function useId( displayName, props )
     );
 }
 
+export { useId, useTheme };
 export default { useId, useTheme };
