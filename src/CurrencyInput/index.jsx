@@ -14,37 +14,15 @@ import { attachEvents, mapAria, generateId }     from '../utils';
 
 import { TextInput }                             from '..';
 
-import ThemeContext                              from '../Theming/ThemeContext';
-import { createCssMap }                          from '../Theming';
 
 const currencyFormat = ( number, currency, language = navigator.language ) =>
     number.toLocaleString( language, currency ? { style: 'currency', currency } : {} );
 
 export default class CurrencyInput extends React.Component
 {
-    static contextType = ThemeContext;
 
     static propTypes =
     {
-        /**
-         *  HTML attribute controlling input auto capitalize
-         */
-        autoCapitalize : PropTypes.oneOf( [
-            'on',
-            'off',
-            'none',
-            'sentences',
-            'words',
-            'characters',
-        ] ),
-        /**
-         *  HTML attribute controlling input auto complete
-         */
-        autoComplete : PropTypes.string,
-        /**
-         *  HTML attribute controlling input auto correct (Safari-specific)
-         */
-        autoCorrect  : PropTypes.oneOf( [ 'on', 'off' ] ),
         /**
          *  Extra CSS class name
          */
@@ -118,10 +96,6 @@ export default class CurrencyInput extends React.Component
          */
         placeholder  : PropTypes.string,
         /**
-         *  HTML attribute controlling input spell check
-         */
-        spellCheck   : PropTypes.bool,
-        /**
          *  Input text alignment
          */
         textAlign    : PropTypes.oneOf( [ 'left', 'right' ] ),
@@ -133,10 +107,6 @@ export default class CurrencyInput extends React.Component
 
     static defaultProps =
     {
-
-        autoCapitalize : undefined,
-        autoComplete   : undefined,
-        autoCorrect    : undefined,
         className      : undefined,
         cssMap         : undefined,
         currency       : undefined,
@@ -155,7 +125,6 @@ export default class CurrencyInput extends React.Component
         onMouseOut     : undefined,
         onMouseOver    : undefined,
         placeholder    : undefined,
-        spellCheck     : undefined,
         textAlign      : 'left',
         value          : '',
     };
@@ -198,31 +167,24 @@ export default class CurrencyInput extends React.Component
     {
 
         const {
-            autoCapitalize,
-            autoComplete,
-            autoCorrect,
             cssMap = createCssMap( this.context.TextInput, this.props ),
             currency,
             id = generateId( 'CurrencyInput' ),
             isDisabled,
             isReadOnly,
             placeholder,
-            spellCheck,
         } = this.props;
 
         return (
             <TextInput
                 { ...this.props }
-                autoCapitalize = { autoCapitalize }
-                autoComplete   = { autoComplete }
-                autoCorrect    = { autoCorrect }
+                autoCapitalize = "off"
+                autoComplete   = "off"
+                autoCorrect    = "off"
+                spellCheck     = { false }
                 className      = { cssMap.main }
-                disabled       = { isDisabled }
                 id             = { id }
-                placeholder    = { placeholder }
                 readOnly       = { isReadOnly }
-                ref            = { this.inputRef }
-                spellCheck     = { spellCheck }
                 onBlur         = { this.handleBlur }
                 onChange       = { this.handleChange }
                 value          = { currencyFormat( this.state.valueFormatted, currency ) } />
