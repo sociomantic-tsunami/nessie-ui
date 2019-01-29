@@ -57,10 +57,6 @@ export default class TextArea extends React.Component
          */
         cssMap       : PropTypes.objectOf( PropTypes.string ),
         /**
-         *  The visible width of a text area
-         */
-        cols         : PropTypes.number,
-        /**
          *  Display as error/invalid
          */
         hasError     : PropTypes.bool,
@@ -157,7 +153,6 @@ export default class TextArea extends React.Component
         autoCorrect    : undefined,
         className      : undefined,
         cssMap         : undefined,
-        cols           : undefined,
         hasError       : false,
         id             : undefined,
         isDisabled     : false,
@@ -174,7 +169,7 @@ export default class TextArea extends React.Component
         onMouseOver    : undefined,
         placeholder    : undefined,
         resize         : undefined,
-        rows           : undefined,
+        rows           : 2,
         spellCheck     : undefined,
         textAlign      : 'left',
         value          : '',
@@ -197,7 +192,6 @@ export default class TextArea extends React.Component
             autoComplete,
             autoCorrect,
             cssMap = createCssMap( this.context.TextArea, this.props ),
-            cols,
             id = generateId( 'TextArea' ),
             isDisabled,
             isReadOnly,
@@ -211,7 +205,6 @@ export default class TextArea extends React.Component
             <textarea
                 { ...mapAria( aria ) }
                 { ...attachEvents( this.props ) }
-                cols           = { cols }
                 autoCapitalize = { autoCapitalize }
                 autoComplete   = { autoComplete }
                 autoCorrect    = { autoCorrect }
