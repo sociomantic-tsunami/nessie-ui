@@ -9,6 +9,7 @@
 
 import React, {
     useState,
+    useCallback,
     forwardRef
 }  from 'react';
 import PropTypes             from 'prop-types';
@@ -32,10 +33,9 @@ const PasswordInput = forwardRef( ( props, ref ) =>
     const passwordIsVisible =
         props.passwordIsVisible || passwordIsVisibleState;
 
-    const handleClickIcon = ( payload, e ) =>
+    const { onClickIcon } = props;
+    const handleClickIcon = useCallback( ( payload, e ) =>
     {
-        const { onClickIcon } = props;
-
         let nessieDefaultPrevented = false;
 
         if ( typeof onClickIcon === 'function' )
@@ -56,7 +56,7 @@ const PasswordInput = forwardRef( ( props, ref ) =>
         {
             setPasswordIsVisibleState( !passwordIsVisibleState )
         }
-    }
+    }, [ id, onClickIcon, passwordIsVisibleState ] )
 
     return (
         <TextInputWithIcon
