@@ -29,6 +29,7 @@ import Tab               from './Tab';
 import TabButton         from './TabButton';
 import Tabs              from './Tabs';
 import Text              from './Text';
+import TextArea          from './TextArea';
 import TextInput         from './TextInput';
 import TextInputWithIcon from './TextInputWithIcon';
 import Tooltip           from './Tooltip';
@@ -57,6 +58,7 @@ export {
     TabButton,
     Tabs,
     Text,
+    TextArea,
     TextInput,
     TextInputWithIcon,
     Tooltip,
@@ -86,6 +88,7 @@ export default {
     TabButton,
     Tabs,
     Text,
+    TextArea,
     TextInput,
     TextInputWithIcon,
     Tooltip,

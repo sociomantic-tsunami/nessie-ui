@@ -31,6 +31,7 @@ import tabButtonClasses          from './TabButton/tabButton.css';
 import tabClasses                from './Tab/tab.css';
 import tabsClasses               from './Tabs/tabs.css';
 import textClasses               from './Text/text.css';
+import textAreaClasses           from './TextArea/textArea.css';
 import textInputClasses          from './TextInput/textInput.css';
 import textInputWithIconClasses  from './TextInputWithIcon/textInputWithIcon.css';
 import timeInputClasses          from './DatePicker/timeInput.css';
@@ -250,6 +251,19 @@ export default {
             props.className,
         ),
         ...textClasses,
+    } ),
+    TextArea : props => ( {
+        main : classNames.bind( textAreaClasses )(
+            'default',
+            {
+                disabled : props.isDisabled,
+                error    : !props.isDisabled && props.hasError
+            },
+            `align__${props.textAlign}`,
+            `resize__${props.resize}`,
+            props.className,
+        ),
+        ...textAreaClasses
     } ),
     TextInput : props => ( {
         main : classNames.bind( textInputClasses )(
