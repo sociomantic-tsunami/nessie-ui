@@ -7,17 +7,18 @@
  *
  */
 
-import React        from 'react';
-import PropTypes    from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
+import { escapeRegExp } from 'lodash';
 
 import {
     ListBox,
     ScrollBox,
 } from '../index';
-import withDropdown   from '../Addons/withDropdown';
-import { generateId } from '../utils';
-import { addPrefix }  from '../ComboBox/utils';
-import DumbTagInput   from './dumb';
+import withDropdown    from '../Addons/withDropdown';
+import { generateId }  from '../utils';
+import { addPrefix }   from '../ComboBox/utils';
+import DumbTagInput    from './dumb';
 
 
 /**
@@ -180,7 +181,7 @@ export default class TagInputStateful extends React.Component
         this.setState( ( { options } ) =>
         {
             const filteredOptions = options.filter( ( { text } ) =>
-                text.match( new RegExp( value, 'i' ) ) );
+                text.match( new RegExp( escapeRegExp( value ), 'i' ) ) );
 
             const activeOption = ( value && filteredOptions.length ) ?
                 filteredOptions[ 0 ].id : undefined;
