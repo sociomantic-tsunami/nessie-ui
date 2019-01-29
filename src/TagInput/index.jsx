@@ -190,9 +190,18 @@ export default class TagInputStateful extends React.Component
 
     handleClickClose( { value } )
     {
-        this.setState( ( { tags } ) => ( {
-            tags : tags.filter( tag => tag !== value ),
-        } ) );
+        this.setState( ( { tags } ) =>
+        {
+            const newTags = tags.filter( tag => tag !== value );
+
+            const { onChange } = this.props;
+            if ( typeof onChange === 'function' )
+            {
+                onChange( { tags: newTags } );
+            }
+
+            return { tags: newTags };
+        } );
     }
 
     handleClickOption( { id } )
@@ -226,9 +235,22 @@ export default class TagInputStateful extends React.Component
     {
         if ( key === 'Backspace' )
         {
-            this.setState( ( { inputValue, tags } ) => ( {
-                tags : !inputValue ? tags.slice( 0, -1 ) : tags,
-            } ) );
+            this.setState( ( { inputValue, tags } ) =>
+            {
+                let newTags = tags;
+                if ( !inputValue )
+                {
+                    newTags = tags.slice( 0, -1 );
+
+                    const { onChange } = this.props;
+                    if ( typeof onChange === 'function' )
+                    {
+                        onChange( { tags: newTags } );
+                    }
+                }
+
+                return { tags: newTags };
+            } );
         }
         else if ( key === 'Enter' )
         {
@@ -256,12 +278,16 @@ export default class TagInputStateful extends React.Component
                     }
                 }
 
-                const newTags = newTag ? [ ...tags, newTag ] : tags;
-
-                const { onChange } = this.props;
-                if ( typeof onChange === 'function' )
+                let newTags = tags;
+                if ( newTag )
                 {
-                    onChange( { tags: newTags } );
+                    newTags = [ ...tags, newTag ];
+
+                    const { onChange } = this.props;
+                    if ( typeof onChange === 'function' )
+                    {
+                        onChange( { tags: newTags } );
+                    }
                 }
 
                 return {
