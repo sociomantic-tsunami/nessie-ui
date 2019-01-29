@@ -339,6 +339,8 @@ export default class TagInputStateful extends React.Component
 
     render()
     {
+        const { onChange, ...props } = this.props;
+
         const {
             activeOption,
             filteredOptions,
@@ -373,7 +375,7 @@ export default class TagInputStateful extends React.Component
 
         return (
             <TagInputwithDropdown
-                { ...this.props }
+                { ...props }
                 dropdownIsOpen   = { listBoxOptions.length > 0 && isOpen }
                 dropdownProps    = { { children: dropdownContent } }
                 id               = { id }
