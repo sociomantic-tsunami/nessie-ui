@@ -21,6 +21,7 @@ import IconButton        from './IconButton';
 import ListBox           from './ListBox';
 import Modal             from './Modal';
 import PasswordInput     from './PasswordInput';
+import PopperTooltip     from './PopperTooltip';
 import ScrollBar         from './ScrollBar';
 import ScrollBox         from './ScrollBox';
 import Spinner           from './Spinner';
@@ -49,6 +50,7 @@ export {
     ListBox,
     Modal,
     PasswordInput,
+    PopperTooltip,
     ScrollBar,
     ScrollBox,
     Spinner,
@@ -78,6 +80,7 @@ export default {
     ListBox,
     Modal,
     PasswordInput,
+    PopperTooltip,
     ScrollBar,
     ScrollBox,
     Spinner,

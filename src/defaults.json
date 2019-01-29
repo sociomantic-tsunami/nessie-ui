@@ -299,6 +299,10 @@
 			}
 		]
 	},
+	"NessiePopper": {
+		"children": "{<Button label=\"Click me!\" />}",
+		"popper": "{<Tooltip message=\"Pro tip Pro tip! Pro tip! Pro tip!!\" />}"
+	},
 	"PasswordInput": {
 		"label": "Tell me your secrets",
 		"errorMessage": "Please enter a dark secret"
