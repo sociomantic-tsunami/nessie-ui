@@ -12,7 +12,6 @@ import classNames                     from 'classnames/bind';
 import buttonClasses                  from './Button/button.css';
 import cardClasses                    from './Card/card.css';
 import checkboxClasses                from './Checkbox/checkbox.css';
-import currencyInputClasses           from './CurrencyInput/currencyInput.css';
 import datePickerClasses              from './DatePicker/datePicker.css';
 import datePickerHeaderClasses        from './DatePicker/datePickerHeader.css';
 import datePickerItemClasses          from './DatePicker/datePickerItem.css';
@@ -76,18 +75,6 @@ export default {
             props.className,
         ),
         ...checkboxClasses,
-    } ),
-    CurrencyInput : props => ( {
-        main : classNames.bind( textInputClasses )(
-            'default',
-            {
-                disabled : props.isDisabled,
-                error    : !props.isDisabled && props.hasError,
-            },
-            `align__${props.textAlign}`,
-            props.className,
-        ),
-        ...currencyInputClasses,
     } ),
     DatePicker : {
         main : classNames.bind( datePickerClasses )( 'default' ),

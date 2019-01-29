@@ -193,7 +193,7 @@ export default class CurrencyInput extends React.Component
             autoCapitalize,
             autoComplete,
             autoCorrect,
-            cssMap = createCssMap( this.context.CurrencyInput, this.props ),
+            cssMap = createCssMap( this.context.TextInput, this.props ),
             currency,
             id = generateId( 'CurrencyInput' ),
             isDisabled,
