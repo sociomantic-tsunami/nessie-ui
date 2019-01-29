@@ -173,8 +173,6 @@ export default class TextInput extends React.Component
             aria,
             autoCapitalize,
             autoComplete,
-            onBlur,
-            onChange,
             autoCorrect,
             cssMap = createCssMap( this.context.TextInput, this.props ),
             id = generateId( 'TextInput' ),
@@ -198,8 +196,6 @@ export default class TextInput extends React.Component
                 placeholder    = { placeholder }
                 readOnly       = { isReadOnly }
                 ref            = { this.inputRef }
-                onBlur         = { onBlur }
-                onChange       = { onChange }
                 spellCheck     = { spellCheck }
                 value          = { value } />
         );
