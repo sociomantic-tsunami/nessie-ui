@@ -183,7 +183,7 @@ export default class CurrencyInput extends React.Component
 
     handleChange( e )
     {
-        this.setState( { valueFormatted:  e.target.value } );
+        this.setState( { valueFormatted: e.target.value } );
     }
 
     render()
