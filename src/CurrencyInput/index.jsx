@@ -167,12 +167,9 @@ export default class CurrencyInput extends React.Component
     {
 
         const {
-            cssMap = createCssMap( this.context.TextInput, this.props ),
             currency,
             id = generateId( 'CurrencyInput' ),
-            isDisabled,
             isReadOnly,
-            placeholder,
         } = this.props;
 
         return (
@@ -182,7 +179,6 @@ export default class CurrencyInput extends React.Component
                 autoComplete   = "off"
                 autoCorrect    = "off"
                 spellCheck     = { false }
-                className      = { cssMap.main }
                 id             = { id }
                 readOnly       = { isReadOnly }
                 onBlur         = { this.handleBlur }
