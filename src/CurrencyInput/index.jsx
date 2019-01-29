@@ -179,6 +179,10 @@ export default class CurrencyInput extends React.Component
         this.setState( {
             valueFormatted: newVal
         } );
+        if ( typeof this.props.onBlur === 'function' )
+        {
+            this.props.onBlur();
+        }
     }
 
     handleChange( { value } )
@@ -208,6 +212,7 @@ export default class CurrencyInput extends React.Component
 
         return (
             <TextInput
+                { ...this.props }
                 autoCapitalize = { autoCapitalize }
                 autoComplete   = { autoComplete }
                 autoCorrect    = { autoCorrect }

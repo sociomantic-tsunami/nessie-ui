@@ -11,6 +11,7 @@ import { ComponentDriver } from 'componentDriver';
 import {
     Button,
     Checkbox,
+    CurrencyInput,
     DatePicker,
     IconButton,
     TextInput,
@@ -26,21 +27,22 @@ import {
     Tooltip,
 } from 'nessie-ui';
 
-import ButtonDriver            from './Button/driver';
-import CheckboxDriver          from './Checkbox/driver';
-import DatePickerDriver        from './DatePicker/driver';
-import IconButtonDriver        from './IconButton/driver';
-import ListBoxDriver           from './ListBox/driver';
-import ModalDriver             from './Modal/driver';
-import PasswordInputDriver     from './PasswordInput/driver';
-import ScrollBarDriver         from './ScrollBar/driver';
-import ScrollBoxDriver         from './ScrollBox/driver';
-import TabButtonDriver         from './TabButton/driver';
-import TabsDriver              from './Tabs/driver';
-import TextDriver              from './Text/driver';
-import TextInputDriver         from './TextInput/driver';
-import TextInputWithIconDriver from './TextInputWithIcon/driver';
-import TooltipDriver           from './Tooltip/driver';
+import ButtonDriver                 from './Button/driver';
+import CheckboxDriver               from './Checkbox/driver';
+import CurrencyInputDriver          from './CurrencyInput/driver';
+import DatePickerDriver             from './DatePicker/driver';
+import IconButtonDriver             from './IconButton/driver';
+import ListBoxDriver                from './ListBox/driver';
+import ModalDriver                  from './Modal/driver';
+import PasswordInputDriver          from './PasswordInput/driver';
+import ScrollBarDriver              from './ScrollBar/driver';
+import ScrollBoxDriver              from './ScrollBox/driver';
+import TabButtonDriver              from './TabButton/driver';
+import TabsDriver                   from './Tabs/driver';
+import TextDriver                   from './Text/driver';
+import TextInputDriver              from './TextInput/driver';
+import TextInputWithIconDriver      from './TextInputWithIcon/driver';
+import TooltipDriver                from './Tooltip/driver';
 
 
 const drivers =
@@ -52,6 +54,10 @@ const drivers =
     {
         Component : Checkbox,
         Driver    : CheckboxDriver,
+    },
+    {
+        Component : CurrencyInput,
+        Driver    : CurrencyInputDriver,
     },
     {
         Component : DatePicker,

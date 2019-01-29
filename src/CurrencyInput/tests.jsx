@@ -13,6 +13,7 @@ import React         from 'react';
 import { mount }     from 'enzyme';
 
 import { CurrencyInput } from '..';
+import { attachEvents } from '../utils';
 
 
 describe( 'CurrencyInput', () =>
