@@ -15,7 +15,6 @@ import checkboxClasses           from './Checkbox/checkbox.css';
 import datePickerClasses         from './DatePicker/datePicker.css';
 import datePickerHeaderClasses   from './DatePicker/datePickerHeader.css';
 import datePickerItemClasses     from './DatePicker/datePickerItem.css';
-import dropdownClasses           from './Dropdown/dropdown.css';
 import gridClasses               from './Grid/grid.css';
 import gridItemClasses           from './GridItem/gridItem.css';
 import iconButtonClasses         from './IconButton/iconButton.css';
@@ -24,6 +23,7 @@ import listBoxClasses            from './ListBox/listBox.css';
 import listBoxOptionClasses      from './ListBox/listBoxOption.css';
 import listBoxOptionGroupClasses from './ListBox/listBoxOptionGroup.css';
 import modalClasses              from './Modal/modal.css';
+import popupClasses              from './Popup/popup.css';
 import scrollBarClasses          from './ScrollBar/scrollBar.css';
 import scrollBoxClasses          from './ScrollBox/scrollBox.css';
 import spinnerClasses            from './Spinner/spinner.css';
@@ -100,24 +100,6 @@ export default {
         ),
         ...datePickerItemClasses,
     } ),
-    TimeInput : props => ( {
-        main : classNames.bind( timeInputClasses )(
-            'default',
-            { fakeHovered: props.forceHover },
-            props.className,
-        ),
-        ...timeInputClasses,
-    } ),
-    Dropdown : props => ( {
-        main : classNames.bind( dropdownClasses )(
-            'default',
-            { error: props.hasError },
-            `padding__${props.padding}`,
-            `size__${props.size}`,
-            props.className,
-        ),
-        ...dropdownClasses,
-    } ),
     Grid : props => ( {
         main : classNames.bind( gridClasses )(
             'default',
@@ -186,6 +168,16 @@ export default {
     Modal : props => ( {
         main : classNames.bind( modalClasses )( 'default', props.className ),
         ...modalClasses,
+    } ),
+    Popup : props => ( {
+        main : classNames.bind( popupClasses )(
+            'default',
+            { error: props.hasError },
+            `padding__${props.padding}`,
+            `size__${props.size}`,
+            props.className,
+        ),
+        ...popupClasses,
     } ),
     ScrollBar : props => ( {
         main : classNames.bind( scrollBarClasses )(
@@ -310,6 +302,14 @@ export default {
             props.className,
         ),
         ...textInputWithIconClasses,
+    } ),
+    TimeInput : props => ( {
+        main : classNames.bind( timeInputClasses )(
+            'default',
+            { fakeHovered: props.forceHover },
+            props.className,
+        ),
+        ...timeInputClasses,
     } ),
     Tooltip : props => ( {
         main : classNames.bind( tooltipClasses )(
