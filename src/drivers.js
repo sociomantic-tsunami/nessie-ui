@@ -13,7 +13,6 @@ import {
     Checkbox,
     DatePicker,
     IconButton,
-    TextInput,
     ListBox,
     Modal,
     PasswordInput,
@@ -21,7 +20,10 @@ import {
     ScrollBox,
     TabButton,
     Tabs,
+    Tag,
+    TagInput,
     Text,
+    TextInput,
     TextInputWithIcon,
     Tooltip,
 } from 'nessie-ui';
@@ -37,6 +39,8 @@ import ScrollBarDriver         from './ScrollBar/driver';
 import ScrollBoxDriver         from './ScrollBox/driver';
 import TabButtonDriver         from './TabButton/driver';
 import TabsDriver              from './Tabs/driver';
+import TagDriver               from './Tag/driver';
+import TagInputDriver          from './TagInput/driver';
 import TextDriver              from './Text/driver';
 import TextInputDriver         from './TextInput/driver';
 import TextInputWithIconDriver from './TextInputWithIcon/driver';
@@ -88,6 +92,14 @@ const drivers =
     {
         Component : Tabs,
         Driver    : TabsDriver,
+    },
+    {
+        Component : Tag,
+        Driver    : TagDriver,
+    },
+    {
+        Component : TagInput,
+        Driver    : TagInputDriver,
     },
     {
         Component : Text,
