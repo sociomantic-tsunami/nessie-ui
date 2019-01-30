@@ -6,6 +6,7 @@
  * in the root directory of this source tree.
  *
  */
+import { TextInput } from 'nessie-ui';
 
 const ERR = {
     CURRENCYINPUT_ERROR : ( event, state ) =>
@@ -26,7 +27,7 @@ export default class CurrencyInputDriver
             throw new Error( ERR.CURRENCYINPUT_ERROR( 'blur', 'disabled' ) );
         }
 
-        this.wrapper.simulate( 'blur' );
+        this.wrapper.find( TextInput ).driver().blur();
         return this;
     }
 
@@ -37,7 +38,7 @@ export default class CurrencyInputDriver
             throw new Error( ERR.CURRENCYINPUT_ERROR( 'focus', 'disabled' ) );
         }
 
-        this.wrapper.simulate( 'focus' );
+        this.wrapper.find( TextInput ).driver().focus();
         return this;
     }
 
@@ -56,8 +57,8 @@ export default class CurrencyInputDriver
         }
 
         node.value = val;
-        this.wrapper.simulate( 'change' );
-        this.wrapper.simulate( 'blur' );
+        this.wrapper.find( TextInput ).driver().change( val );
+        this.wrapper.find( TextInput ).driver().blur();
 
         return this;
     }
@@ -69,7 +70,7 @@ export default class CurrencyInputDriver
             throw new Error( ERR.CURRENCYINPUT_ERROR( 'click', 'disabled' ) );
         }
 
-        this.wrapper.simulate( 'click' );
+        this.wrapper.find( TextInput ).driver().click();
         return this;
     }
 
@@ -80,7 +81,7 @@ export default class CurrencyInputDriver
             throw new Error( ERR.CURRENCYINPUT_ERROR( 'keyPress', 'disabled' ) );
         }
 
-        this.wrapper.simulate( 'keyPress', { keyCode, which: keyCode } );
+        this.wrapper.find( TextInput ).driver().keyPress( { keyCode, which: keyCode } );
         return this;
     }
 
@@ -91,7 +92,7 @@ export default class CurrencyInputDriver
             throw new Error( ERR.CURRENCYINPUT_ERROR( 'keyDown', 'disabled' ) );
         }
 
-        this.wrapper.simulate( 'keyDown', { keyCode, which: keyCode } );
+        this.wrapper.find( TextInput ).driver().keyDown( { keyCode, which: keyCode } );
         return this;
     }
 
@@ -102,7 +103,7 @@ export default class CurrencyInputDriver
             throw new Error( ERR.CURRENCYINPUT_ERROR( 'keyUp', 'disabled' ) );
         }
 
-        this.wrapper.simulate( 'keyUp', { keyCode, which: keyCode } );
+        this.wrapper.find( TextInput ).driver().keyUp( { keyCode, which: keyCode } );
         return this;
     }
 
