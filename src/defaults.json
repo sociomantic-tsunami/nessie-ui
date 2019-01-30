@@ -305,7 +305,7 @@
 	},
 	"PopperWrapper": {
 		"children": "{<Button label=\"Click me!\" />}",
-		"popper": "{<Tooltip message=\"Pro tip Pro tip! Pro tip! Pro tip!!\" />}"
+		"popper": "{<PopUp padding=\"M\">PopUp content</PopUp>}"
 	},
 	"ScrollBar": {
 		"scrollMax": 100
