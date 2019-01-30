@@ -5,5 +5,5 @@ A currency input field.
 ## Example Usage
 
 ```
-<CurrencyInput/>
+<CurrencyInput currency="EUR"/>
 ```
