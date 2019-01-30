@@ -10,7 +10,6 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { attachEvents }     from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming';
 import { Icon }             from '..';
@@ -54,7 +53,6 @@ export default class Spinner extends React.Component
 
         return (
             <Icon
-                { ...attachEvents( this.props ) }
                 className = { cssMap.main }
                 type = "loader"
                 size = { size } />
