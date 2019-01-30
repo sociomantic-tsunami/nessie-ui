@@ -10,45 +10,44 @@
 import React            from 'react';
 import PropTypes        from 'prop-types';
 
-import ThemeContext     from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming';
+import { useTheme }     from '../Theming';
 import { attachEvents } from '../utils';
 
-export default class Dropdown extends React.Component
+const componentName = 'Dropdown';
+
+const Dropdown = props =>
 {
-    static contextType = ThemeContext;
+    const { children } = props;
 
-    static propTypes = {
-        children  : PropTypes.node,
-        className : PropTypes.string,
-        cssMap    : PropTypes.objectOf( PropTypes.string ),
-        hasError  : PropTypes.bool,
-        padding   : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
-        size      : PropTypes.oneOf( [ 'content', 'default' ] ),
-    };
+    const cssMap = useTheme( componentName, props );
 
-    static defaultProps = {
-        children  : undefined,
-        className : undefined,
-        cssMap    : undefined,
-        hasError  : false,
-        padding   : 'none',
-        size      : 'default',
-    };
+    return (
+        <div
+            { ...attachEvents( props ) }
+            className = { cssMap.main }>
+            { children }
+        </div>
+    );
+};
 
-    static displayName = 'Dropdown';
+Dropdown.propTypes = {
+    children  : PropTypes.node,
+    className : PropTypes.string,
+    cssMap    : PropTypes.objectOf( PropTypes.string ),
+    hasError  : PropTypes.bool,
+    padding   : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    size      : PropTypes.oneOf( [ 'content', 'default' ] ),
+};
 
-    render()
-    {
-        const {
-            children,
-            cssMap = createCssMap( this.context.Dropdown, this.props ),
-        } = this.props;
+Dropdown.defaultProps = {
+    children  : undefined,
+    className : undefined,
+    cssMap    : undefined,
+    hasError  : false,
+    padding   : 'none',
+    size      : 'default',
+};
 
-        return (
-            <div { ...attachEvents( this.props ) } className = { cssMap.main }>
-                { children }
-            </div>
-        );
-    }
-}
+Dropdown.displayName = componentName;
+
+export default Dropdown;
