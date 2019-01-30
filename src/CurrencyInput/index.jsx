@@ -7,10 +7,12 @@
  *
  */
 
+/* global navigator */
+
 import React                                     from 'react';
 import PropTypes                                 from 'prop-types';
 
-import { attachEvents, mapAria, generateId }     from '../utils';
+import { generateId }                            from '../utils';
 
 import { TextInput }                             from '..';
 
@@ -112,7 +114,6 @@ export default class CurrencyInput extends React.Component
         onBlur      : undefined,
         onChange    : undefined,
         onClick     : undefined,
-        onClickIcon : undefined,
         onFocus     : undefined,
         onKeyDown   : undefined,
         onKeyPress  : undefined,
@@ -131,7 +132,7 @@ export default class CurrencyInput extends React.Component
     {
         super( props );
         this.state = {
-            value : ''
+            value : this.props.value,
         };
         this.handleBlur   = this.handleBlur.bind( this );
         this.handleChange = this.handleChange.bind( this );
@@ -141,7 +142,7 @@ export default class CurrencyInput extends React.Component
     {
         const newVal = Number( String( this.state.value ).replace( /[^0-9\.-]/g, '' ) );
         this.setState( {
-            value: newVal
+            value : newVal,
         } );
 
         if ( typeof this.props.onBlur === 'function' )
