@@ -235,6 +235,26 @@ export default {
         ),
         ...tabsClasses,
     } ),
+    Tag : props =>  ( {
+        main : classNames.bind( tagClasses )(
+            'default',
+            { disabled: props.isDisabled },
+            props.className,
+        ),
+        ...tagClasses,
+    } ),
+    TagInput : props =>  ( {
+        main : classNames.bind( tagInputClasses )(
+            'default',
+            {
+                disabled  : props.isDisabled,
+                error     : !props.isDisabled && props.hasError,
+                resizable : props.isResizable,
+            },
+            props.className,
+        ),
+        ...tagInputClasses,
+    } ),
     Text : props => ( {
         main : classNames.bind( textClasses )(
             'default',
