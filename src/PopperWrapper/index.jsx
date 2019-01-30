@@ -75,7 +75,7 @@ const PopperWrapper = props =>
 PopperWrapper.propTypes =
 {
     /**
-     *  Dom element to attach popper
+     *  Reference node to attach popper
      */
     children       : PropTypes.node,
     /**
@@ -83,15 +83,15 @@ PopperWrapper.propTypes =
      */
     container      : PropTypes.string,
     /**
-     *  popper element
+     *  Popper content node
      */
     popper         : PropTypes.node,
     /**
-     *  popper offset
+     *  Popper offset
      */
     popperOffset   : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
     /**
-     *  popper position
+     *  Popper position
      */
     popperPosition : PropTypes.oneOf( [
         'auto',
@@ -121,6 +121,6 @@ PopperWrapper.defaultProps =
     popperPosition : 'auto',
 };
 
-PopperWrapper.displayName = 'PopperTooltip';
+PopperWrapper.displayName = 'PopperWrapper';
 
 export default PopperWrapper;
