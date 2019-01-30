@@ -57,6 +57,7 @@ export default class CurrencyInputDriver
 
         node.value = val;
         this.wrapper.simulate( 'change' );
+        this.wrapper.simulate( 'blur' );
 
         return this;
     }

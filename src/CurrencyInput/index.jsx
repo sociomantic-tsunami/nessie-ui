@@ -131,7 +131,7 @@ export default class CurrencyInput extends React.Component
     {
         super( props );
         this.state = {
-            valueFormatted : '',
+            value : ''
         };
         this.handleBlur   = this.handleBlur.bind( this );
         this.handleChange = this.handleChange.bind( this );
@@ -139,23 +139,25 @@ export default class CurrencyInput extends React.Component
 
     handleBlur()
     {
-        const newVal = Number( this.state.valueFormatted.replace( /[^0-9\.-]/g, '' ) );
+        const newVal = Number( String( this.state.value ).replace( /[^0-9\.-]/g, '' ) );
         this.setState( {
-            valueFormatted : newVal,
+            value: newVal
         } );
+
         if ( typeof this.props.onBlur === 'function' )
         {
-            this.props.onBlur();
+            this.props.onBlur( { } );
+        }
+
+        if ( typeof this.props.onChange === 'function' )
+        {
+            this.props.onChange( { value: newVal } );
         }
     }
 
     handleChange( { value } )
     {
-        this.setState( { valueFormatted: value } );
-        if ( typeof this.props.onChange === 'function' )
-        {
-            this.props.onChange( { value } );
-        }
+        this.setState( { value } );
     }
 
     render()
@@ -175,7 +177,7 @@ export default class CurrencyInput extends React.Component
                 id             = { id }
                 onBlur         = { this.handleBlur }
                 onChange       = { this.handleChange }
-                value          = { currencyFormat( this.state.valueFormatted, currency ) } />
+                value          = { currencyFormat( this.state.value, currency ) } />
         );
     }
 }
