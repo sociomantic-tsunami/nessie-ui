@@ -31,7 +31,7 @@ export default class CurrencyInput extends React.Component
          */
         cssMap      : PropTypes.objectOf( PropTypes.string ),
         /**
-         *  Currencies
+         *  Currency to display
          */
         currency    : PropTypes.oneOf( [ 'USD', 'EUR', 'GBP' ] ),
         /**
@@ -62,10 +62,6 @@ export default class CurrencyInput extends React.Component
          *  Input click callback function
          */
         onClick     : PropTypes.func,
-        /**
-         *  Icon click callback function
-         */
-        onClickIcon : PropTypes.func,
         /**
          *  Focus callback function
          */

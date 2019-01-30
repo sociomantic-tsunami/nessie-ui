@@ -7,32 +7,35 @@
  *
  */
 
-import Button                 from './Button';
-import Card                   from './Card';
-import Checkbox               from './Checkbox';
-import ComboBox               from './ComboBox';
-import CurrencyInput          from './CurrencyInput';
-import DatePicker             from './DatePicker';
-import DateTimeInput          from './DateTimeInput';
-import Dropdown               from './Dropdown';
-import Grid                   from './Grid';
-import GridItem               from './GridItem';
-import Icon                   from './Icon';
-import IconButton             from './IconButton';
-import ListBox                from './ListBox';
-import Modal                  from './Modal';
-import PasswordInput          from './PasswordInput';
-import ScrollBar              from './ScrollBar';
-import ScrollBox              from './ScrollBox';
-import Spinner                from './Spinner';
-import SpriteMap              from './SpriteMap';
-import Tab                    from './Tab';
-import TabButton              from './TabButton';
-import Tabs                   from './Tabs';
-import Text                   from './Text';
-import TextInput              from './TextInput';
-import TextInputWithIcon      from './TextInputWithIcon';
-import Tooltip                from './Tooltip';
+
+import Button            from './Button';
+import Card              from './Card';
+import Checkbox          from './Checkbox';
+import CurrencyInput     from './CurrencyInput';
+import ComboBox          from './ComboBox';
+import DatePicker        from './DatePicker';
+import DateTimeInput     from './DateTimeInput';
+import Dropdown          from './Dropdown';
+import Grid              from './Grid';
+import GridItem          from './GridItem';
+import Icon              from './Icon';
+import IconButton        from './IconButton';
+import ListBox           from './ListBox';
+import Modal             from './Modal';
+import PasswordInput     from './PasswordInput';
+import ScrollBar         from './ScrollBar';
+import ScrollBox         from './ScrollBox';
+import Spinner           from './Spinner';
+import SpriteMap         from './SpriteMap';
+import Tab               from './Tab';
+import TabButton         from './TabButton';
+import Tabs              from './Tabs';
+import Tag               from './Tag';
+import TagInput          from './TagInput';
+import Text              from './Text';
+import TextInput         from './TextInput';
+import TextInputWithIcon from './TextInputWithIcon';
+import Tooltip           from './Tooltip';
 
 
 export {
