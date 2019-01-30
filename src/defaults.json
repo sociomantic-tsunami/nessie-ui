@@ -301,7 +301,7 @@
 	},
 	"Popup": {
 		"children": "Popup content",
-    "padding": "M"
+		"padding": "M"
 	},
 	"PopperWrapper": {
 		"children": "{<Button label=\"Click me!\" />}",
