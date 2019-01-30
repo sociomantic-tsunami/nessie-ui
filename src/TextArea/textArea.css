@@ -109,6 +109,11 @@
     resize: both;
 }
 
+.resize__none
+{
+    resize: none;
+}
+
 .align__left
 {
     text-align: left;
