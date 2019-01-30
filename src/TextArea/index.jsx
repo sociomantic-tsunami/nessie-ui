@@ -164,6 +164,7 @@ export default class TextArea extends React.Component
             cssMap = createCssMap( this.context.TextArea, this.props ),
             id = generateId( 'TextArea' ),
             rows,
+            placeholder,
             value,
         } = this.props;
 
@@ -178,6 +179,7 @@ export default class TextArea extends React.Component
                 spellCheck     = { false }
                 className      = { cssMap.main }
                 id             = { id }
+                placeholder    = { placeholder }
                 ref            = { this.textAreaRef }
                 rows           = { rows }
                 value          = { value } />
