@@ -251,10 +251,6 @@
 			}]
 		]
 	},
-	"Dropdown": {
-		"children": "Dropdown content",
-        "padding": "M"
-	},
 	"Grid": {
 		"children": "{<GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem>}"
 	},
@@ -302,6 +298,14 @@
 	"PasswordInput": {
 		"label": "Tell me your secrets",
 		"errorMessage": "Please enter a dark secret"
+	},
+	"Popup": {
+		"children": "Popup content",
+		"padding": "M"
+	},
+	"PopperWrapper": {
+		"children": "{<Button label=\"Click me!\" />}",
+		"popper": "{<Popup padding=\"M\">Popup content</Popup>}"
 	},
 	"ScrollBar": {
 		"scrollMax": 100
