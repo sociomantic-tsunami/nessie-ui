@@ -14,17 +14,35 @@ import ReactDOM                                   from 'react-dom';
 import { Manager, Reference, Popper }             from 'react-popper';
 import PropTypes                                  from 'prop-types';
 
-const NessiePopper = props =>
+const PopperWrapper = props =>
 {
     const {
         children,
         container,
         popper,
+        popperOffset,
         popperPosition,
     } = props;
 
-    const setContainer = container ? document.querySelector( container ) :
-        document.body;
+    let offset = '';
+
+    switch ( popperOffset )
+    {
+    case 'S':
+        offset = '8px';
+        break;
+    case 'M':
+        offset = '16px';
+        break;
+    case 'L':
+        offset = '24px';
+        break;
+    case 'XL':
+        offset = '32px';
+        break;
+    default:
+        offset = '16px';
+    }
 
     return (
         <Manager>
@@ -36,22 +54,25 @@ const NessiePopper = props =>
                 ) }
             </Reference>
             { ReactDOM.createPortal(
-                <Popper placement = { popperPosition }>
+                <Popper
+                    placement = { popperPosition }
+                    modifiers = { { offset: { offset: `0, ${offset}` } } }>
                     { ( { ref, style } ) => (
                         <div
-                            ref = { ref }
+                            ref   = { ref }
                             style = { style }>
                             { popper }
                         </div>
                     ) }
                 </Popper>,
-                setContainer,
+                container ? document.querySelector( container ) :
+                    document.body,
             ) }
         </Manager>
     );
 };
 
-NessiePopper.propTypes =
+PopperWrapper.propTypes =
 {
     /**
      *  Dom element to attach popper
@@ -66,9 +87,16 @@ NessiePopper.propTypes =
      */
     popper         : PropTypes.node,
     /**
-     *  Position of the popper
+     *  popper offset
+     */
+    popperOffset   : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
+    /**
+     *  popper position
      */
     popperPosition : PropTypes.oneOf( [
+        'auto',
+        'auto-start',
+        'auto-end',
         'top',
         'top-start',
         'top-end',
@@ -84,14 +112,15 @@ NessiePopper.propTypes =
     ] ),
 };
 
-NessiePopper.defaultProps =
+PopperWrapper.defaultProps =
 {
     children       : undefined,
     container      : undefined,
     popper         : undefined,
-    popperPosition : 'top',
+    popperOffset   : 'M',
+    popperPosition : 'auto',
 };
 
-NessiePopper.displayName = 'PopperTooltip';
+PopperWrapper.displayName = 'PopperTooltip';
 
-export default NessiePopper;
+export default PopperWrapper;
