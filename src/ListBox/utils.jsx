@@ -49,19 +49,31 @@ function buildOptions( options = [] )
 {
     return options.map( ( option = {} ) =>
     {
-        if ( option.header )
+        if ( typeof option === 'object' )
         {
-            const { options: groupOptions, ...groupProps } = option;
+            if ( option.header )
+            {
+                const { options: groupOptions, ...groupProps } = option;
+
+                return (
+                    <ListBoxOptionGroup
+                        { ...groupProps }
+                        key = { option.header }>
+                        { buildOptions( groupOptions ) }
+                    </ListBoxOptionGroup>
+                );
+            }
 
             return (
-                <ListBoxOptionGroup { ...groupProps } key = { option.header }>
-                    { buildOptions( groupOptions ) }
-                </ListBoxOptionGroup>
+                <ListBoxOption { ...option } key = { option.id } />
             );
         }
 
         return (
-            <ListBoxOption { ...option } key = { option.id } />
+            <ListBoxOption
+                id   = { option }
+                key  = { option }
+                text = { option } />
         );
     } );
 }
