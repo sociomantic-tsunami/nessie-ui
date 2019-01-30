@@ -28,6 +28,8 @@ import SpriteMap         from './SpriteMap';
 import Tab               from './Tab';
 import TabButton         from './TabButton';
 import Tabs              from './Tabs';
+import Tag               from './Tag';
+import TagInput          from './TagInput';
 import Text              from './Text';
 import TextArea          from './TextArea';
 import TextInput         from './TextInput';
@@ -57,6 +59,8 @@ export {
     Tab,
     TabButton,
     Tabs,
+    Tag,
+    TagInput,
     Text,
     TextArea,
     TextInput,
@@ -87,6 +91,8 @@ export default {
     Tab,
     TabButton,
     Tabs,
+    Tag,
+    TagInput,
     Text,
     TextArea,
     TextInput,

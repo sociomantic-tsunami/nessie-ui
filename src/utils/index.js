@@ -134,6 +134,7 @@ function createEventHandler( func, customizer )
             eventPayload.scroll = [ target.scrollLeft, target.scrollTop ];
         }
 
+
         // invoke consumer’s event handler
         func( { ...eventPayload, ...payload }, ...arguments );
 

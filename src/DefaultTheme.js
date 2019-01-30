@@ -30,6 +30,8 @@ import spinnerClasses            from './Spinner/spinner.css';
 import tabButtonClasses          from './TabButton/tabButton.css';
 import tabClasses                from './Tab/tab.css';
 import tabsClasses               from './Tabs/tabs.css';
+import tagClasses                from './Tag/tag.css';
+import tagInputClasses           from './TagInput/tagInput.css';
 import textClasses               from './Text/text.css';
 import textAreaClasses           from './TextArea/textArea.css';
 import textInputClasses          from './TextInput/textInput.css';
@@ -235,6 +237,26 @@ export default {
             props.className,
         ),
         ...tabsClasses,
+    } ),
+    Tag : props =>  ( {
+        main : classNames.bind( tagClasses )(
+            'default',
+            { disabled: props.isDisabled },
+            props.className,
+        ),
+        ...tagClasses,
+    } ),
+    TagInput : props =>  ( {
+        main : classNames.bind( tagInputClasses )(
+            'default',
+            {
+                disabled  : props.isDisabled,
+                error     : !props.isDisabled && props.hasError,
+                resizable : props.isResizable,
+            },
+            props.className,
+        ),
+        ...tagInputClasses,
     } ),
     Text : props => ( {
         main : classNames.bind( textClasses )(

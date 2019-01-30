@@ -1,0 +1,106 @@
+/*
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+@import "../proto/base.css";
+
+.default
+{
+    display:            flex;
+    flex-wrap:          wrap;
+    align-items:        flex-start;
+    align-content:      flex-start;
+
+    box-sizing:         border-box;
+    width:              100%;
+
+    border:             1px solid var( --PC-GREY--L70 );
+    border-radius:      2px;
+
+    padding-top:        3px;
+    padding-right:      3px;
+    padding-bottom:     0;
+    padding-left:       3px;
+
+    background-color:   var( --PC-WHITE );
+    outline:            none;
+
+    overflow-x:         hidden;
+
+    & > *
+    {
+        margin-right:   4px;
+        margin-bottom:  3px;
+    }
+
+    .input
+    {
+        flex:           1 0 0%;
+
+        box-sizing:     border-box;
+        min-width:      5ch;
+        min-height:     32px;
+
+        padding:        0;
+        padding-top:    1px;
+
+        border:         none;
+        margin-right:   0;
+
+        background:     transparent;
+
+        @extend         %Nessie-Regular;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-m );
+        letter-spacing: 0.4px;
+        text-indent:    5px;
+        color:          var( --PC-GREY--D5 );
+
+        resize:         none; /* required for Safari */
+
+        &:focus
+        {
+            outline:    none;
+
+            &::placeholder
+            {
+                color: transparent !important;
+            }
+        }
+
+        &::placeholder
+        {
+            @extend %Nessie-RegularIt;
+            color:         var( --PC-GREY--L80 );
+        }
+    }
+
+    &:focus-within
+    {
+        border-color:   var( --PC-BLUE );
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+    }
+}
+
+
+.disabled
+{
+    pointer-events: none;
+
+    &:hover
+    {
+        border-color:   ( --PC-GREY--L70 );
+    }
+}
+
+
+.error
+{
+    border-color:   var( --PC-RED ) !important; /* yes, always override other states */
+    box-shadow:     0 0 0 2px color( var( --PC-RED ) a( 30% ) );
+}
