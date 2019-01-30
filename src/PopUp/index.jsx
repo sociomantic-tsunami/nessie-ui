@@ -14,7 +14,7 @@ import ThemeContext     from '../Theming/ThemeContext';
 import { createCssMap } from '../Theming';
 import { attachEvents } from '../utils';
 
-export default class PopUp extends React.Component
+export default class Popup extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -42,7 +42,7 @@ export default class PopUp extends React.Component
     {
         const {
             children,
-            cssMap = createCssMap( this.context.PopUp, this.props ),
+            cssMap = createCssMap( this.context.Popup, this.props ),
         } = this.props;
 
         return (

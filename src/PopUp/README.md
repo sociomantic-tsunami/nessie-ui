@@ -1,3 +1,3 @@
 ## Component description
 
-A PopUp container. Literally just the container
+A Popup container. Literally just the container

@@ -23,7 +23,7 @@ import listBoxClasses            from './ListBox/listBox.css';
 import listBoxOptionClasses      from './ListBox/listBoxOption.css';
 import listBoxOptionGroupClasses from './ListBox/listBoxOptionGroup.css';
 import modalClasses              from './Modal/modal.css';
-import popUpClasses              from './PopUp/popUp.css';
+import popupClasses              from './Popup/popup.css';
 import scrollBarClasses          from './ScrollBar/scrollBar.css';
 import scrollBoxClasses          from './ScrollBox/scrollBox.css';
 import spinnerClasses            from './Spinner/spinner.css';
@@ -168,15 +168,15 @@ export default {
         main : classNames.bind( modalClasses )( 'default', props.className ),
         ...modalClasses,
     } ),
-    PopUp : props => ( {
-        main : classNames.bind( popUpClasses )(
+    Popup : props => ( {
+        main : classNames.bind( popupClasses )(
             'default',
             { error: props.hasError },
             `padding__${props.padding}`,
             `size__${props.size}`,
             props.className,
         ),
-        ...popUpClasses,
+        ...popupClasses,
     } ),
     ScrollBar : props => ( {
         main : classNames.bind( scrollBarClasses )(

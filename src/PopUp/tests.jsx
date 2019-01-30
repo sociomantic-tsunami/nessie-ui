@@ -12,16 +12,16 @@
 import React        from 'react';
 import { shallow }  from 'enzyme';
 
-import { PopUp }    from '..';
+import { Popup }    from '..';
 
 
-describe( 'PopUp', () =>
+describe( 'Popup', () =>
 {
     let wrapper;
 
     beforeEach( () =>
     {
-        wrapper = shallow( <PopUp /> );
+        wrapper = shallow( <Popup /> );
     } );
 
     test( 'should have “main” as default className', () =>
@@ -29,7 +29,7 @@ describe( 'PopUp', () =>
         expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 
-    test( 'should render the children of the PopUp', () =>
+    test( 'should render the children of the Popup', () =>
     {
         wrapper.setProps( { children: 'Lightning Strike' } );
         expect( wrapper.children().text() ).toBe( 'Lightning Strike' );

@@ -20,7 +20,7 @@ import IconButton        from './IconButton';
 import ListBox           from './ListBox';
 import Modal             from './Modal';
 import PasswordInput     from './PasswordInput';
-import PopUp             from './PopUp';
+import Popup             from './Popup';
 import PopperWrapper     from './PopperWrapper';
 import ScrollBar         from './ScrollBar';
 import ScrollBox         from './ScrollBox';
@@ -51,7 +51,7 @@ export {
     ListBox,
     Modal,
     PasswordInput,
-    PopUp,
+    Popup,
     PopperWrapper,
     ScrollBar,
     ScrollBox,
@@ -83,7 +83,7 @@ export default {
     ListBox,
     Modal,
     PasswordInput,
-    PopUp,
+    Popup,
     PopperWrapper,
     ScrollBar,
     ScrollBox,

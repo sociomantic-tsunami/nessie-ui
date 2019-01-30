@@ -299,13 +299,13 @@
 		"label": "Tell me your secrets",
 		"errorMessage": "Please enter a dark secret"
 	},
-	"PopUp": {
-		"children": "PopUp content",
+	"Popup": {
+		"children": "Popup content",
     "padding": "M"
 	},
 	"PopperWrapper": {
 		"children": "{<Button label=\"Click me!\" />}",
-		"popper": "{<PopUp padding=\"M\">PopUp content</PopUp>}"
+		"popper": "{<Popup padding=\"M\">Popup content</Popup>}"
 	},
 	"ScrollBar": {
 		"scrollMax": 100
