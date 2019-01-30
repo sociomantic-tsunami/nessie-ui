@@ -114,11 +114,12 @@ function createEventHandler( func, customizer )
         }
         else if ( type === 'change' )
         {
-            if ( typeof target.checked === 'boolean' )
+            const inputType = target.getAttribute( 'type' );
+            if ( inputType === 'checkbox' || inputType === 'radio' )
             {
                 eventPayload.isChecked = target.checked;
             }
-            else if ( target.value )
+            else
             {
                 eventPayload.value = target.value;
             }
@@ -132,6 +133,7 @@ function createEventHandler( func, customizer )
 
             eventPayload.scroll = [ target.scrollLeft, target.scrollTop ];
         }
+
 
         // invoke consumer’s event handler
         func( { ...eventPayload, ...payload }, ...arguments );

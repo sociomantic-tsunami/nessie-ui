@@ -15,6 +15,7 @@ import { attachEvents } from '../utils';
 
 const componentName = 'Grid';
 
+
 const Grid = props =>
 {
     const {
@@ -34,8 +35,8 @@ const Grid = props =>
             { ...attachEvents( props ) }
             className = { cssMap.main }
             style     = { {
-                gridAutoColumns     : autoCols || '1fr',
-                gridAutoRows        : autoRows || '1fr',
+                gridAutoColumns     : autoCols,
+                gridAutoRows        : autoRows,
                 gridTemplateColumns : customColumns ||
                     `repeat( ${columns}, 1fr )`,
                 gridTemplateRows : customRows || `repeat( ${rows}, 1fr )`,
@@ -50,12 +51,7 @@ Grid.propTypes =
     /**
      * Vertical alignment of the grid items
      */
-    align : PropTypes.oneOf( [
-        'start',
-        'center',
-        'end',
-        'stretch',
-    ] ),
+    align         : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
     /**
      * Defines the size of implicitly set columns
      */
@@ -100,25 +96,20 @@ Grid.propTypes =
     /**
      * Horizontal alignment of the grid items
      */
-    justify       : PropTypes.oneOf( [
-        'start',
-        'center',
-        'end',
-        'stretch',
-    ] ),
+    justify       : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
     /**
      *  Row gap
      */
-    rowGap : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    rowGap        : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
      *  Number of rows - should be an integer > 0
      */
-    rows   : PropTypes.number,
+    rows          : PropTypes.number,
 };
 
 Grid.defaultProps =
 {
-    align         : 'start',
+    align         : 'stretch',
     autoCols      : undefined,
     autoFlow      : 'row',
     autoRows      : undefined,
@@ -129,7 +120,7 @@ Grid.defaultProps =
     cssMap        : undefined,
     customColumns : undefined,
     customRows    : undefined,
-    justify       : 'start',
+    justify       : 'stretch',
     rowGap        : 'M',
     rows          : undefined,
 };
