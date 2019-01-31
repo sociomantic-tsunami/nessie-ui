@@ -30,7 +30,7 @@ describe( 'CurrencyInput', () =>
     {
         test( 'check that the component renders exactly one TextInput', () =>
         {
-            expect( wrapper ).toHaveLength( 1 );
+            expect( wrapper.find( TextInput ) ).toHaveLength( 1 );
         } );
     } );
 
@@ -55,7 +55,7 @@ describe( 'CurrencyInput', () =>
                 wrapper.setProps( { hasError: true } );
 
                 expect( wrapper.find( TextInput ).prop( 'hasError' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
         } );
 
@@ -82,7 +82,7 @@ describe( 'CurrencyInput', () =>
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( wrapper.find( TextInput ).prop( 'isDisabled' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
         } );
 
@@ -97,7 +97,8 @@ describe( 'CurrencyInput', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
-                expect( wrapper.prop( 'isReadOnly' ) ).toBeTruthy();
+                expect( wrapper.find( TextInput ).prop( 'isReadOnly' ) )
+                    .toBe( true );
             } );
         } );
 
