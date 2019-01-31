@@ -191,7 +191,6 @@ export default class TextArea extends React.Component
             isDisabled,
             isReadOnly,
             placeholder,
-            textAlign,
             rows,
             spellCheck,
             value
@@ -210,7 +209,6 @@ export default class TextArea extends React.Component
                 placeholder    = { placeholder }
                 readOnly       = { isReadOnly }
                 ref            = { this.textAreaRef }
-                textAlign      = { textAlign }
                 rows           = { rows }
                 spellCheck     = { spellCheck }
                 value          = { value } />

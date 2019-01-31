@@ -9,10 +9,10 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React         from 'react';
+import React                  from 'react';
 import { shallow, mount }     from 'enzyme';
 
-import { TextArea }  from '..';
+import { TextArea }           from '..';
 
 
 describe( 'TextArea', () =>
@@ -114,22 +114,6 @@ describe( 'TextArea', () =>
 
                 expect( wrapper.find( 'textarea' ).prop( 'placeholder' ) )
                     .toBe( 'yes!' );
-            } );
-        } );
-
-        describe( 'textAlign', () =>
-        {
-            test( 'should be "left" by default', () =>
-            {
-                expect( props.textAlign ).toBe( 'left' );
-            } );
-
-            test( 'should be passed to the <textarea>', () =>
-            {
-                wrapper.setProps( { textAlign: 'right' } );
-
-                expect( wrapper.find( 'textarea' ).prop( 'textAlign' ) )
-                    .toBe( 'right' );
             } );
         } );
 
