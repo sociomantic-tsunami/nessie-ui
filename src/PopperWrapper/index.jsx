@@ -128,7 +128,7 @@ PopperWrapper.defaultProps =
 {
     children       : undefined,
     container      : undefined,
-    isVisible      : true,
+    isVisible      : false,
     popper         : undefined,
     popperOffset   : 'M',
     popperPosition : 'auto',
