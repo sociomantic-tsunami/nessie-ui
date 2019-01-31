@@ -30,77 +30,96 @@ export default class TextArea extends React.Component
             PropTypes.string,
         ] ) ),
         /**
+         *  HTML attribute controlling input auto capitalize
+         */
+        autoCapitalize : PropTypes.oneOf( [
+            'on',
+            'off',
+            'none',
+            'sentences',
+            'words',
+            'characters',
+        ] ),
+        /**
+         *  HTML attribute controlling input auto complete
+         */
+        autoComplete : PropTypes.string,
+        /**
+         *  HTML attribute controlling input auto correct (Safari-specific)
+         */
+        autoCorrect  : PropTypes.oneOf( [ 'on', 'off' ] ),
+        /**
          *  Extra CSS class name
          */
-        className   : PropTypes.string,
+        className    : PropTypes.string,
         /**
          *  CSS class map
          */
-        cssMap      : PropTypes.objectOf( PropTypes.string ),
+        cssMap       : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Display as error/invalid
          */
-        hasError    : PropTypes.bool,
+        hasError     : PropTypes.bool,
         /**
          *  HTML id attribute
          */
-        id          : PropTypes.string,
+        id           : PropTypes.string,
         /**
          *  Display as disabled
          */
-        isDisabled  : PropTypes.bool,
+        isDisabled   : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly  : PropTypes.bool,
+        isReadOnly   : PropTypes.bool,
         /**
          *  Blur callback function
          */
-        onBlur      : PropTypes.func,
+        onBlur       : PropTypes.func,
         /**
          *  Input change callback function
          */
-        onChange    : PropTypes.func,
+        onChange     : PropTypes.func,
         /**
          *  Input click callback function
          */
-        onClick     : PropTypes.func,
+        onClick      : PropTypes.func,
         /**
          *  Icon click callback function
          */
-        onClickIcon : PropTypes.func,
+        onClickIcon  : PropTypes.func,
         /**
          *  Focus callback function
          */
-        onFocus     : PropTypes.func,
+        onFocus      : PropTypes.func,
         /**
          *  Key down callback function
          */
-        onKeyDown   : PropTypes.func,
+        onKeyDown    : PropTypes.func,
         /**
          *  Key press callback function
          */
-        onKeyPress  : PropTypes.func,
+        onKeyPress   : PropTypes.func,
         /**
          *  Key up callback function
          */
-        onKeyUp     : PropTypes.func,
+        onKeyUp      : PropTypes.func,
         /**
          *  Mouse out callback function
          */
-        onMouseOut  : PropTypes.func,
+        onMouseOut   : PropTypes.func,
         /**
          *  Mouse over  callback function
          */
-        onMouseOver : PropTypes.func,
+        onMouseOver  : PropTypes.func,
         /**
          *  Placeholder text
          */
-        placeholder : PropTypes.string,
+        placeholder  : PropTypes.string,
         /**
          *  TextArea resize handle
          */
-        resize      : PropTypes.oneOf(
+        resize       : PropTypes.oneOf(
             [
                 'horizontal',
                 'vertical',
@@ -111,41 +130,49 @@ export default class TextArea extends React.Component
         /**
          *  The visible number of lines in a text area
          */
-        rows      : PropTypes.number,
+        rows       : PropTypes.number,
+        /**
+         *  HTML attribute controlling input spell check
+         */
+        spellCheck : PropTypes.bool,
         /**
          *  Input text alignment
          */
-        textAlign : PropTypes.oneOf( [ 'left', 'right' ] ),
+        textAlign  : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
          *  Input string value
          */
-        value     : PropTypes.string,
+        value      : PropTypes.string,
     };
 
     static defaultProps =
     {
-        aria        : undefined,
-        className   : undefined,
-        cssMap      : undefined,
-        hasError    : false,
-        id          : undefined,
-        isDisabled  : false,
-        isReadOnly  : false,
-        onBlur      : undefined,
-        onChange    : undefined,
-        onClick     : undefined,
-        onClickIcon : undefined,
-        onFocus     : undefined,
-        onKeyDown   : undefined,
-        onKeyPress  : undefined,
-        onKeyUp     : undefined,
-        onMouseOut  : undefined,
-        onMouseOver : undefined,
-        placeholder : undefined,
-        resize      : undefined,
-        rows        : 2,
-        textAlign   : 'left',
-        value       : '',
+        aria           : undefined,
+        autoCapitalize : undefined,
+        autoComplete   : undefined,
+        autoCorrect    : undefined,
+        className      : undefined,
+        cssMap         : undefined,
+        hasError       : false,
+        id             : undefined,
+        isDisabled     : false,
+        isReadOnly     : false,
+        onBlur         : undefined,
+        onChange       : undefined,
+        onClick        : undefined,
+        onClickIcon    : undefined,
+        onFocus        : undefined,
+        onKeyDown      : undefined,
+        onKeyPress     : undefined,
+        onKeyUp        : undefined,
+        onMouseOut     : undefined,
+        onMouseOver    : undefined,
+        placeholder    : undefined,
+        resize         : undefined,
+        rows           : 2,
+        spellCheck     : undefined,
+        textAlign      : 'left',
+        value          : '',
     };
 
     static displayName = 'TextArea';
@@ -161,10 +188,16 @@ export default class TextArea extends React.Component
     {
         const {
             aria,
+            autoCapitalize,
+            autoComplete,
+            autoCorrect,
             cssMap = createCssMap( this.context.TextArea, this.props ),
             id = generateId( 'TextArea' ),
-            rows,
+            isDisabled,
+            isReadOnly,
             placeholder,
+            rows,
+            spellCheck,
             value,
         } = this.props;
 
@@ -172,16 +205,17 @@ export default class TextArea extends React.Component
             <textarea
                 { ...mapAria( aria ) }
                 { ...attachEvents( this.props ) }
-                { ...this.props }
-                autoCapitalize = "off"
-                autoComplete   = "off"
-                autoCorrect    = "off"
-                spellCheck     = { false }
+                autoCapitalize = { autoCapitalize }
+                autoComplete   = { autoComplete }
+                autoCorrect    = { autoCorrect }
                 className      = { cssMap.main }
+                disabled       = { isDisabled }
                 id             = { id }
                 placeholder    = { placeholder }
+                readOnly       = { isReadOnly }
                 ref            = { this.textAreaRef }
                 rows           = { rows }
+                spellCheck     = { spellCheck }
                 value          = { value } />
         );
     }
