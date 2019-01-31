@@ -15,11 +15,11 @@ import PropTypes                                  from 'prop-types';
 import { ListBox, ScrollBox, Text }               from '..';
 
 import TextInputWithIcon                          from '../TextInputWithIcon';
-import withDropdown                               from '../Addons/withDropdown';
+import Popup                                      from '../Popup';
+import PopperWrapper                              from '../PopperWrapper';
 import { generateId }                             from '../utils';
 import { addPrefix, prefixOptions, removePrefix } from './utils';
 
-const InputWithDropdown = withDropdown( TextInputWithIcon );
 
 /**
  * gets the index of the option by the passed id
@@ -470,8 +470,8 @@ export default class ComboBox extends Component
             );
         }
 
-        return (
-            <InputWithDropdown
+        const popperChildren = (
+            <TextInputWithIcon
                 aria = { {
                     activeDescendant :
                         activeOption && addPrefix( activeOption, id ),
@@ -481,34 +481,42 @@ export default class ComboBox extends Component
                     owns         : addPrefix( 'listbox', id ),
                     role         : 'combobox',
                 } }
-                autoCapitalize   = "off"
-                autoComplete     = "off"
-                autoCorrect      = "off"
-                className        = { className }
-                dropdownIsOpen   = { isOpen }
-                dropdownPosition = { dropdownPosition }
-                dropdownProps    = { {
-                    children : dropdownContent,
-                    hasError,
-                    padding  : optionsToShow.length ? 'none' : 'S',
-                } }
-                hasError      = { hasError }
-                iconType      = { isOpen ? 'up' : 'down' }
-                id            = { id }
-                inputRef      = { this.inputRef }
-                isDisabled    = { isDisabled }
-                isReadOnly    = { !isSearchable || !isOpen }
-                onBlur        = { this.handleBlur }
-                onChangeInput = { this.handleChangeInput }
-                onClick       = { this.handleClick }
-                onClickIcon   = { this.handleClickIcon }
-                onKeyDown     = { this.handleKeyDown }
-                placeholder   = { inputPlaceholder }
-                spellCheck    = { false }
-                value         = { ( isOpen && isSearchable ) ?
+                autoCapitalize = "off"
+                autoComplete   = "off"
+                autoCorrect    = "off"
+                className      = { className }
+                hasError       = { hasError }
+                iconType       = { isOpen ? 'up' : 'down' }
+                id             = { id }
+                inputRef       = { this.inputRef }
+                isDisabled     = { isDisabled }
+                isReadOnly     = { !isSearchable || !isOpen }
+                onBlur         = { this.handleBlur }
+                onChangeInput  = { this.handleChangeInput }
+                onClick        = { this.handleClick }
+                onClickIcon    = { this.handleClickIcon }
+                onKeyDown      = { this.handleKeyDown }
+                placeholder    = { inputPlaceholder }
+                spellCheck     = { false }
+                value          = { ( isOpen && isSearchable ) ?
                     searchValue : optionVal
                 }
                 wrapperRef = { this.wrapperRef } />
+        );
+
+        const popperPopup = (
+            <Popup
+                children = { dropdownContent }
+                hasError = { hasError }
+                padding  = { optionsToShow.length ? 'none' : 'S' } />
+        );
+
+        return (
+            <PopperWrapper
+                children       = { popperChildren }
+                popper         = { popperPopup }
+                isVisible      = { isOpen }
+                popperPosition = { dropdownPosition } />
         );
     }
 }
