@@ -10,7 +10,7 @@
 /* eslint-disable no-magic-numbers */
 
 import React         from 'react';
-import { mount }     from 'enzyme';
+import { shallow, mount }     from 'enzyme';
 
 import { TextArea }  from '..';
 
@@ -22,16 +22,8 @@ describe( 'TextArea', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <TextArea /> );
+        wrapper  = shallow( <TextArea /> );
         instance = wrapper.instance();
-    } );
-
-    describe( 'render()', () =>
-    {
-        test( 'should contain exactly one TextArea', () =>
-        {
-            expect( wrapper ).toHaveLength( 1 );
-        } );
     } );
 
     describe( 'props', () =>
@@ -43,61 +35,21 @@ describe( 'TextArea', () =>
             ( { props } = instance );
         } );
 
-        describe( 'defaultValue', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( props.defaultValue ).toBeUndefined();
-            } );
-
-            test( 'should be passed to the TextArea', () =>
-            {
-                wrapper.setProps( { defaultValue: 'yes!' } );
-
-                expect( wrapper.find( TextArea ).prop( 'defaultValue' ) )
-                    .toBe( 'yes!' );
-            } );
-        } );
-
-        describe( 'forceHover', () =>
-        {
-            test( 'should be false by default', () =>
-            {
-                expect( props.forceHover ).toBeFalsy();
-            } );
-
-            test( 'should be passed to the TextArea', () =>
-            {
-                wrapper.setProps( { forceHover: true } );
-
-                expect( wrapper.find( TextArea ).prop( 'forceHover' ) )
-                    .toBeTruthy();
-            } );
-        } );
-
         describe( 'hasError', () =>
         {
             test( 'should be false by default', () =>
             {
                 expect( props.hasError ).toBeFalsy();
             } );
-
-            test( 'should be passed to the TextArea', () =>
-            {
-                wrapper.setProps( { hasError: true } );
-
-                expect( wrapper.find( TextArea ).prop( 'hasError' ) )
-                    .toBeTruthy();
-            } );
         } );
 
         describe( 'id', () =>
         {
-            test( 'should be passed to the TextArea', () =>
+            test( 'should be passed to the <textarea>', () =>
             {
                 wrapper.setProps( { id: 'yes!' } );
 
-                expect( wrapper.find( TextArea ).prop( 'id' ) )
+                expect( wrapper.find( 'textarea' ).prop( 'id' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -109,11 +61,11 @@ describe( 'TextArea', () =>
                 expect( props.isDisabled ).toBe( false );
             } );
 
-            test( 'should be passed to the TextArea', () =>
+            test( 'should be passed to the <textarea> as disabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
-                expect( wrapper.find( TextArea ).prop( 'isDisabled' ) )
+                expect( wrapper.find( 'textarea' ).prop( 'disabled' ) )
                     .toBeTruthy();
             } );
         } );
@@ -125,27 +77,11 @@ describe( 'TextArea', () =>
                 expect( props.isReadOnly ).toBeFalsy();
             } );
 
-            test( 'should be passed to the TextArea', () =>
+            test( 'should be passed to the <textarea> as readOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
-                expect( wrapper.prop( 'isReadOnly' ) ).toBeTruthy();
-            } );
-        } );
-
-        describe( 'name', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( props.name ).toBeUndefined();
-            } );
-
-            test( 'should be passed to the TextArea', () =>
-            {
-                wrapper.setProps( { name: 'yes!' } );
-
-                expect( wrapper.find( TextArea ).prop( 'name' ) )
-                    .toBe( 'yes!' );
+                expect( wrapper.find( 'textarea' ).prop( 'readOnly' ) ).toBeTruthy();
             } );
         } );
 
@@ -157,79 +93,11 @@ describe( 'TextArea', () =>
             } );
         } );
 
-        describe( 'onChange', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( props.onChange ).toBeUndefined();
-            } );
-
-            test( 'should be passed to the TextArea', () =>
-            {
-                const onChange = () => undefined;
-                wrapper.setProps( { onChange } );
-
-                expect( wrapper.find( TextArea ).prop( 'onChange' ) )
-                    .toBe( onChange );
-            } );
-        } );
-
         describe( 'onFocus', () =>
         {
             test( 'should be undefined by default', () =>
             {
                 expect( props.onFocus ).toBeUndefined();
-            } );
-        } );
-
-        describe( 'onKeyPress', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( props.onKeyPress ).toBeUndefined();
-            } );
-
-            test( 'should be passed to the TextArea', () =>
-            {
-                const onKeyPress = () => undefined;
-                wrapper.setProps( { onKeyPress } );
-
-                expect( wrapper.find( TextArea ).prop( 'onKeyPress' ) )
-                    .toBe( onKeyPress );
-            } );
-        } );
-
-        describe( 'onMouseOut', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( props.onMouseOut ).toBeUndefined();
-            } );
-
-            test( 'should be passed to the TextArea', () =>
-            {
-                const onMouseOut = () => undefined;
-                wrapper.setProps( { onMouseOut } );
-
-                expect( wrapper.find( TextArea ).prop( 'onMouseOut' ) )
-                    .toBe( onMouseOut );
-            } );
-        } );
-
-        describe( 'onMouseOver', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( props.onMouseOver ).toBeUndefined();
-            } );
-
-            test( 'should be passed to the TextArea', () =>
-            {
-                const onMouseOver = () => undefined;
-                wrapper.setProps( { onMouseOver } );
-
-                expect( wrapper.find( TextArea ).prop( 'onMouseOver' ) )
-                    .toBe( onMouseOver );
             } );
         } );
 
@@ -240,11 +108,11 @@ describe( 'TextArea', () =>
                 expect( props.placeholder ).toBeUndefined();
             } );
 
-            test( 'should be passed to the TextArea', () =>
+            test( 'should be passed to the <textarea>', () =>
             {
                 wrapper.setProps( { placeholder: 'yes!' } );
 
-                expect( wrapper.find( TextArea ).prop( 'placeholder' ) )
+                expect( wrapper.find( 'textarea' ).prop( 'placeholder' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -256,11 +124,11 @@ describe( 'TextArea', () =>
                 expect( props.textAlign ).toBe( 'left' );
             } );
 
-            test( 'should be passed to the TextArea', () =>
+            test( 'should be passed to the <textarea>', () =>
             {
                 wrapper.setProps( { textAlign: 'right' } );
 
-                expect( wrapper.find( TextArea ).prop( 'textAlign' ) )
+                expect( wrapper.find( 'textarea' ).prop( 'textAlign' ) )
                     .toBe( 'right' );
             } );
         } );
@@ -276,7 +144,7 @@ describe( 'TextArea', () =>
             {
                 wrapper.setProps( { value: 'yes!' } );
 
-                expect( wrapper.find( TextArea ).prop( 'value' ) )
+                expect( wrapper.find( 'textarea' ).prop( 'value' ) )
                     .toBe( 'yes!' );
             } );
         } );

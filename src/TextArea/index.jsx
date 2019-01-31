@@ -43,7 +43,7 @@ export default class TextArea extends React.Component
         /**
          *  HTML attribute controlling input auto complete
          */
-        autoComplete : PropTypes.string,
+        autoComplete : PropTypes.oneOf( [ 'on', 'off' ] ),
         /**
          *  HTML attribute controlling input auto correct (Safari-specific)
          */
@@ -84,10 +84,6 @@ export default class TextArea extends React.Component
          *  Input click callback function
          */
         onClick      : PropTypes.func,
-        /**
-         *  Icon click callback function
-         */
-        onClickIcon  : PropTypes.func,
         /**
          *  Focus callback function
          */
@@ -160,7 +156,6 @@ export default class TextArea extends React.Component
         onBlur         : undefined,
         onChange       : undefined,
         onClick        : undefined,
-        onClickIcon    : undefined,
         onFocus        : undefined,
         onKeyDown      : undefined,
         onKeyPress     : undefined,
@@ -196,9 +191,10 @@ export default class TextArea extends React.Component
             isDisabled,
             isReadOnly,
             placeholder,
+            textAlign,
             rows,
             spellCheck,
-            value,
+            value
         } = this.props;
 
         return (
@@ -214,6 +210,7 @@ export default class TextArea extends React.Component
                 placeholder    = { placeholder }
                 readOnly       = { isReadOnly }
                 ref            = { this.textAreaRef }
+                textAlign      = { textAlign }
                 rows           = { rows }
                 spellCheck     = { spellCheck }
                 value          = { value } />
