@@ -14,7 +14,7 @@ import ThemeContext     from '../Theming/ThemeContext';
 import { createCssMap } from '../Theming';
 import { attachEvents } from '../utils';
 
-export default class Dropdown extends React.Component
+export default class Popup extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -36,13 +36,13 @@ export default class Dropdown extends React.Component
         size      : 'default',
     };
 
-    static displayName = 'Dropdown';
+    static displayName = 'Popup';
 
     render()
     {
         const {
             children,
-            cssMap = createCssMap( this.context.Dropdown, this.props ),
+            cssMap = createCssMap( this.context.Popup, this.props ),
         } = this.props;
 
         return (
