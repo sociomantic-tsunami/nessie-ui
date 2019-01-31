@@ -7,9 +7,11 @@
  *
  */
 
+
 import Button            from './Button';
 import Card              from './Card';
 import Checkbox          from './Checkbox';
+import CurrencyInput     from './CurrencyInput';
 import ComboBox          from './ComboBox';
 import DatePicker        from './DatePicker';
 import DateTimeInput     from './DateTimeInput';
@@ -43,6 +45,7 @@ export {
     Card,
     Checkbox,
     ComboBox,
+    CurrencyInput,
     DatePicker,
     DateTimeInput,
     Grid,
@@ -76,6 +79,7 @@ export default {
     Card,
     Checkbox,
     ComboBox,
+    CurrencyInput,
     DatePicker,
     DateTimeInput,
     Grid,

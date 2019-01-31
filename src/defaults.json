@@ -31,6 +31,10 @@
 			"text": "Option 6"
 		}]
 	},
+	"CurrencyInput" :
+    {
+        "currency" : "USD"
+    },
 	"DatePicker": {
 		"month": "February",
 		"year": "2018",

@@ -7,7 +7,7 @@
  *
  */
 
-import classNames                from 'classnames/bind';
+import classNames                     from 'classnames/bind';
 
 import buttonClasses             from './Button/button.css';
 import cardClasses               from './Card/card.css';
