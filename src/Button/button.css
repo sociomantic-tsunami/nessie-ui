@@ -72,15 +72,6 @@
         width:              100%;
         height:             100%;
 
-        .spinner
-        {
-            border-color:   color( var( --PC-WHITE ) a( 50% ) );
-
-            &::after
-            {
-                border-top-color:   var( --PC-WHITE );
-            }
-        }
     }
 }
 
@@ -157,19 +148,6 @@
     {
         fill:   var( --PC-GREY--L25 );
     }
-
-    .loadingOverlay
-    {
-        .spinner
-        {
-            border-color:   color( var( --PC-GREY--L25 ) a( 25% ) );
-
-            &::after
-            {
-                border-top-color:   var( --PC-GREY--L25 );
-            }
-        }
-    }
 }
 
 
@@ -245,19 +223,6 @@
         fill:   var( --PC-BLUE );
     }
 
-    .loadingOverlay
-    {
-        .spinner
-        {
-            border-color:   color( var( --PC-BLUE  ) a( 25% ) );
-
-            &::after
-            {
-                border-top-color:   var( --PC-BLUE );
-            }
-        }
-    }
-
     &.fakeHovered,
     &:hover
     {
@@ -320,19 +285,6 @@
         .icon
         {
             fill:   var( --PC-BLUE );
-        }
-    }
-
-    .loadingOverlay
-    {
-        .spinner
-        {
-            border-color:   color( var( --PC-GREY--D15 ) a( 25% ) );
-
-            &::after
-            {
-                border-top-color:   var( --PC-GREY--D15 );
-            }
         }
     }
 
