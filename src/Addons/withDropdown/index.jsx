@@ -10,7 +10,7 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { Dropdown }         from '../..';
+import { Popup }            from '../..';
 import { buildDisplayName } from '../../utils';
 import ThemeContext         from '../../Theming/ThemeContext';
 import { createCssMap }     from '../../Theming';
@@ -64,7 +64,7 @@ const withDropdown = Component =>
             return (
                 <div className = { cssMap.main } ref = { wrapperRef }>
                     <Component { ...componentProps } />
-                    <Dropdown
+                    <Popup
                         { ...dropdownProps }
                         className = { cssMap.dropdown } />
                 </div>
