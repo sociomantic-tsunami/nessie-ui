@@ -19,6 +19,7 @@ const PopperWrapper = props =>
     const {
         children,
         container,
+        isVisible,
         popper,
         popperOffset,
         popperPosition,
@@ -44,32 +45,39 @@ const PopperWrapper = props =>
         offset = '16px';
     }
 
-    return (
-        <Manager>
-            <Reference>
-                { ( { ref } ) => (
-                    <div ref = { ref }>
-                        { children }
-                    </div>
-                ) }
-            </Reference>
-            { ReactDOM.createPortal(
-                <Popper
-                    placement = { popperPosition }
-                    modifiers = { { offset: { offset: `0, ${offset}` } } }>
-                    { ( { ref, style } ) => (
-                        <div
-                            ref   = { ref }
-                            style = { style }>
-                            { popper }
+    let popperComponent = children;
+
+    if ( isVisible )
+    {
+        popperComponent = (
+            <Manager>
+                <Reference>
+                    { ( { ref } ) => (
+                        <div ref = { ref }>
+                            { children }
                         </div>
                     ) }
-                </Popper>,
-                container ? document.querySelector( container ) :
-                    document.body,
-            ) }
-        </Manager>
-    );
+                </Reference>
+                { ReactDOM.createPortal(
+                    <Popper
+                        placement = { popperPosition }
+                        modifiers = { { offset: { offset: `0, ${offset}` } } }>
+                        { ( { ref, style } ) => (
+                            <div
+                                ref   = { ref }
+                                style = { style }>
+                                { popper }
+                            </div>
+                        ) }
+                    </Popper>,
+                    container ? document.querySelector( container ) :
+                        document.body,
+                ) }
+            </Manager>
+        );
+    }
+
+    return popperComponent;
 };
 
 PopperWrapper.propTypes =
@@ -82,6 +90,10 @@ PopperWrapper.propTypes =
      *  id of the DOM element used as container
      */
     container      : PropTypes.string,
+    /**
+     *  Show / Hide popper
+     */
+    isVisible      : PropTypes.bool,
     /**
      *  Popper content node
      */
@@ -116,6 +128,7 @@ PopperWrapper.defaultProps =
 {
     children       : undefined,
     container      : undefined,
+    isVisible      : true,
     popper         : undefined,
     popperOffset   : 'M',
     popperPosition : 'auto',
