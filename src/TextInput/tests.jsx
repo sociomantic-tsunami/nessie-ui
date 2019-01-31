@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2018-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -9,10 +9,10 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React         from 'react';
-import { mount }     from 'enzyme';
+import React              from 'react';
+import { mount, shallow } from 'enzyme';
 
-import { TextInput } from '..';
+import { TextInput }      from '..';
 
 
 describe( 'TextInput', () =>
@@ -22,16 +22,8 @@ describe( 'TextInput', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <TextInput /> );
+        wrapper = shallow( <TextInput /> );
         instance = wrapper.instance();
-    } );
-
-    describe( 'render()', () =>
-    {
-        test( 'should contain exactly one TextInput', () =>
-        {
-            expect( wrapper ).toHaveLength( 1 );
-        } );
     } );
 
     describe( 'props', () =>
@@ -43,62 +35,21 @@ describe( 'TextInput', () =>
             ( { props } = instance );
         } );
 
-        describe( 'defaultValue', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( props.defaultValue ).toBeUndefined();
-            } );
-
-            test( 'should be passed to the TextInput', () =>
-            {
-                wrapper.setProps( { defaultValue: 'yes!' } );
-
-                expect( wrapper.find( TextInput ).prop( 'defaultValue' ) )
-                    .toBe( 'yes!' );
-            } );
-        } );
-
-        describe( 'forceHover', () =>
-        {
-            test( 'should be false by default', () =>
-            {
-                expect( props.forceHover ).toBeFalsy();
-            } );
-
-            test( 'should be passed to the TextInput', () =>
-            {
-                wrapper.setProps( { forceHover: true } );
-
-                expect( wrapper.find( TextInput ).prop( 'forceHover' ) )
-                    .toBeTruthy();
-            } );
-        } );
-
         describe( 'hasError', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( props.hasError ).toBeFalsy();
-            } );
-
-            test( 'should be passed to the TextInput', () =>
-            {
-                wrapper.setProps( { hasError: true } );
-
-                expect( wrapper.find( TextInput ).prop( 'hasError' ) )
-                    .toBeTruthy();
+                expect( props.hasError ).toBe( false );
             } );
         } );
 
         describe( 'id', () =>
         {
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the <input>', () =>
             {
                 wrapper.setProps( { id: 'yes!' } );
 
-                expect( wrapper.find( TextInput ).prop( 'id' ) )
-                    .toBe( 'yes!' );
+                expect( wrapper.find( 'input' ).prop( 'id' ) ).toBe( 'yes!' );
             } );
         } );
 
@@ -109,12 +60,12 @@ describe( 'TextInput', () =>
                 expect( props.isDisabled ).toBe( false );
             } );
 
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the <input> as disabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
-                expect( wrapper.find( TextInput ).prop( 'isDisabled' ) )
-                    .toBeTruthy();
+                expect( wrapper.find( 'input' ).prop( 'disabled' ) )
+                    .toBe( true );
             } );
         } );
 
@@ -122,30 +73,15 @@ describe( 'TextInput', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( props.isReadOnly ).toBeFalsy();
+                expect( props.isReadOnly ).toBe( false );
             } );
 
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the <input> as readOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
-                expect( wrapper.prop( 'isReadOnly' ) ).toBeTruthy();
-            } );
-        } );
-
-        describe( 'name', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( props.name ).toBeUndefined();
-            } );
-
-            test( 'should be passed to the TextInput', () =>
-            {
-                wrapper.setProps( { name: 'yes!' } );
-
-                expect( wrapper.find( TextInput ).prop( 'name' ) )
-                    .toBe( 'yes!' );
+                expect( wrapper.find( 'input' ).prop( 'readOnly' ) )
+                    .toBe( true );
             } );
         } );
 
@@ -163,15 +99,6 @@ describe( 'TextInput', () =>
             {
                 expect( props.onChange ).toBeUndefined();
             } );
-
-            test( 'should be passed to the TextInput', () =>
-            {
-                const onChange = () => undefined;
-                wrapper.setProps( { onChange } );
-
-                expect( wrapper.find( TextInput ).prop( 'onChange' ) )
-                    .toBe( onChange );
-            } );
         } );
 
         describe( 'onFocus', () =>
@@ -188,15 +115,6 @@ describe( 'TextInput', () =>
             {
                 expect( props.onKeyPress ).toBeUndefined();
             } );
-
-            test( 'should be passed to the TextInput', () =>
-            {
-                const onKeyPress = () => undefined;
-                wrapper.setProps( { onKeyPress } );
-
-                expect( wrapper.find( TextInput ).prop( 'onKeyPress' ) )
-                    .toBe( onKeyPress );
-            } );
         } );
 
         describe( 'onMouseOut', () =>
@@ -205,15 +123,6 @@ describe( 'TextInput', () =>
             {
                 expect( props.onMouseOut ).toBeUndefined();
             } );
-
-            test( 'should be passed to the TextInput', () =>
-            {
-                const onMouseOut = () => undefined;
-                wrapper.setProps( { onMouseOut } );
-
-                expect( wrapper.find( TextInput ).prop( 'onMouseOut' ) )
-                    .toBe( onMouseOut );
-            } );
         } );
 
         describe( 'onMouseOver', () =>
@@ -221,15 +130,6 @@ describe( 'TextInput', () =>
             test( 'should be undefined by default', () =>
             {
                 expect( props.onMouseOver ).toBeUndefined();
-            } );
-
-            test( 'should be passed to the TextInput', () =>
-            {
-                const onMouseOver = () => undefined;
-                wrapper.setProps( { onMouseOver } );
-
-                expect( wrapper.find( TextInput ).prop( 'onMouseOver' ) )
-                    .toBe( onMouseOver );
             } );
         } );
 
@@ -240,11 +140,11 @@ describe( 'TextInput', () =>
                 expect( props.placeholder ).toBeUndefined();
             } );
 
-            test( 'should be passed to the TextInput', () =>
+            test( 'should be passed to the <input>', () =>
             {
                 wrapper.setProps( { placeholder: 'yes!' } );
 
-                expect( wrapper.find( TextInput ).prop( 'placeholder' ) )
+                expect( wrapper.find( 'input' ).prop( 'placeholder' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -255,14 +155,6 @@ describe( 'TextInput', () =>
             {
                 expect( props.textAlign ).toBe( 'left' );
             } );
-
-            test( 'should be passed to the TextInput', () =>
-            {
-                wrapper.setProps( { textAlign: 'right' } );
-
-                expect( wrapper.find( TextInput ).prop( 'textAlign' ) )
-                    .toBe( 'right' );
-            } );
         } );
 
         describe( 'value', () =>
@@ -271,12 +163,11 @@ describe( 'TextInput', () =>
             {
                 expect( TextInput.defaultProps.value ).toBe( '' );
             } );
-
-            test( 'should be passed to the input element', () =>
+            test( 'should be passed to the <input>', () =>
             {
                 wrapper.setProps( { value: 'yes!' } );
 
-                expect( wrapper.find( TextInput ).prop( 'value' ) )
+                expect( wrapper.find( 'input' ).prop( 'value' ) )
                     .toBe( 'yes!' );
             } );
         } );
