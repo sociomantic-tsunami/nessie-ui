@@ -14,6 +14,21 @@ const distConfig = merge( {}, baseConfig, {
 
     devtool   : 'source-map',
     externals : {
+        'lodash' : {
+            'commonjs'  : 'lodash',
+            'commonjs2' : 'lodash',
+            'window'    : '_'
+        },
+        'moment' : {
+            'commonjs'  : 'moment',
+            'commonjs2' : 'moment',
+            'window'    : 'Moment'
+        },
+        'react-popper' : {
+            'commonjs'  : 'react-popper',
+            'commonjs2' : 'react-popper',
+            'window'    : 'ReactPopper'
+        },
         'codemirror/mode/jsx/jsx' : {
             commonjs  : 'codemirror/mode/jsx/jsx',
             commonjs2 : 'codemirror/mode/jsx/jsx',

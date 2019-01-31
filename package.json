@@ -37,6 +37,11 @@
     "url": "https://github.com/sociomantic-tsunami/nessie/issues"
   },
   "homepage": "https://github.com/sociomantic-tsunami/nessie#readme",
+  "dependencies" : {
+      "lodash": "^4.17.11",
+      "moment": "^2.23.0",
+      "react-popper": "^1.3.2"
+  },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
@@ -82,9 +87,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "loch-ness": "3.0.0-alpha.2",
-    "lodash": "^4.17.11",
     "mini-css-extract-plugin": "^0.5.0",
-    "moment": "^2.23.0",
     "postcss": "^7.0.13",
     "postcss-advanced-variables": "^3.0.0",
     "postcss-attribute-case-insensitive": "^4.0.1",
@@ -107,7 +110,6 @@
     "prop-types": "^15.5.8",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-popper": "^1.3.2",
     "react-test-renderer": "^16.7.0",
     "release-it": "^9.8.1",
     "replace": "^1.0.1",
