@@ -8,11 +8,11 @@
  */
 
 const ERR = {
-    TEXTINPUT_ERROR : ( event, state ) =>
-        `TextInput cannot simulate ${event} since it is ${state}`,
+    TEXTAREA_ERROR : ( event, state ) =>
+        `TextArea cannot simulate ${event} since it is ${state}`,
 };
 
-export default class TextInputDriver
+export default class TextAreaDriver
 {
     constructor( wrapper )
     {
@@ -23,7 +23,7 @@ export default class TextInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.TEXTINPUT_ERROR( 'blur', 'disabled' ) );
+            throw new Error( ERR.TEXTAREA_ERROR( 'blur', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'blur' );
@@ -34,25 +34,25 @@ export default class TextInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.TEXTINPUT_ERROR( 'focus', 'disabled' ) );
+            throw new Error( ERR.TEXTAREA_ERROR( 'focus', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'focus' );
         return this;
     }
 
-    change( val, input = 'input' )
+    change( val, textarea = 'textarea' )
     {
-        const node = this.wrapper.find( input ).instance();
+        const node = this.wrapper.find( textarea ).instance();
 
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.TEXTINPUT_ERROR( 'change', 'disabled' ) );
+            throw new Error( ERR.TEXTAREA_ERROR( 'change', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.TEXTINPUT_ERROR( 'change', 'read only' ) );
+            throw new Error( ERR.TEXTAREA_ERROR( 'change', 'read only' ) );
         }
 
         node.value = val;
@@ -65,7 +65,7 @@ export default class TextInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.TEXTINPUT_ERROR( 'click', 'disabled' ) );
+            throw new Error( ERR.TEXTAREA_ERROR( 'click', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'click' );
@@ -76,7 +76,7 @@ export default class TextInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.TEXTINPUT_ERROR( 'keyPress', 'disabled' ) );
+            throw new Error( ERR.TEXTAREA_ERROR( 'keyPress', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'keyPress', { keyCode, which: keyCode } );
@@ -87,7 +87,7 @@ export default class TextInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.TEXTINPUT_ERROR( 'keyDown', 'disabled' ) );
+            throw new Error( ERR.TEXTAREA_ERROR( 'keyDown', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'keyDown', { keyCode, which: keyCode } );
@@ -98,7 +98,7 @@ export default class TextInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.TEXTINPUT_ERROR( 'keyUp', 'disabled' ) );
+            throw new Error( ERR.TEXTAREA_ERROR( 'keyUp', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'keyUp', { keyCode, which: keyCode } );

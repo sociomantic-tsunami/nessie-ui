@@ -1,9 +1,9 @@
 ## Component Description
 
-A text input field.
+A text area field.
 
 ## Example Usage
 
 ```
-<TextInput placeholder = "Max Mustermann"/>
+<TextArea rows = { 4 } />
 ```
