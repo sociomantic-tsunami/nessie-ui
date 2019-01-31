@@ -44,7 +44,7 @@
 
 .role__default
 {
-    color:  var( --PC-GREY--D25 );
+    color:  inherit;
 }
 
 .role__critical
