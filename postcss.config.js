@@ -17,6 +17,7 @@ const pseudoClassAnyLink = require( 'postcss-pseudo-class-any-link' );
 const replaceOverflowWrap = require( 'postcss-replace-overflow-wrap' );
 const selectorMatches = require( 'postcss-selector-matches' );
 const selectorNot = require( 'postcss-selector-not' );
+const cssNano = require( 'cssnano' );
 
 
 module.exports = {
@@ -42,5 +43,6 @@ module.exports = {
         autoprefixer( {
             browsers : [ 'last 2 versions', 'ie 10', 'ie 11', 'safari 8' ],
         } ),
+        process.env.REACT_WEBPACK_ENV !== 'dev' ? cssNano : undefined,
     ],
 };
