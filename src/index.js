@@ -32,6 +32,7 @@ import Tabs              from './Tabs';
 import Tag               from './Tag';
 import TagInput          from './TagInput';
 import Text              from './Text';
+import TextArea          from './TextArea';
 import TextInput         from './TextInput';
 import TextInputWithIcon from './TextInputWithIcon';
 import Tooltip           from './Tooltip';
@@ -63,6 +64,7 @@ export {
     Tag,
     TagInput,
     Text,
+    TextArea,
     TextInput,
     TextInputWithIcon,
     Tooltip,
@@ -95,6 +97,7 @@ export default {
     Tag,
     TagInput,
     Text,
+    TextArea,
     TextInput,
     TextInputWithIcon,
     Tooltip,

@@ -326,6 +326,10 @@
 	"Tabs": {
 		"children": "{<Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab><Tab label=\"Русский\">привет!</Tab>}"
 	},
+	"TextArea": {
+		"placeholder": "Enter text....",
+		"resize": "none"
+	},
 	"TextInputWithIcon": {
 		"label": "Name",
 		"inputPlaceholder": "name",
