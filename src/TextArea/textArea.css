@@ -1,0 +1,125 @@
+/*
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+@import "../proto/base.css";
+
+.default
+{
+    display:            block;
+
+    box-sizing:         border-box;
+    width:              100%;
+
+    border:             1px solid var( --PC-GREY--L70 );
+    border-radius:      2px;
+
+    padding-top:        11px;
+    padding-bottom:     11px;
+    padding-left:       var( --spacing-2 );
+    padding-right:      var( --spacing-2 );
+
+    background-color:   var( --PC-WHITE );
+
+    font-size:          var( --typo-3 );
+    color:              var( --PC-GREY--D5 );
+
+    resize:             none;
+
+    @extend %Nessie-Regular;
+
+    /* removes clear and reveal password icons from IE */
+    &::-ms-reveal,
+    &::-ms-clear
+    {
+        display: none;
+    }
+
+    &::placeholder
+    {
+        @extend %Nessie-RegularIt;
+        color:         var( --PC-GREY--L70 );
+    }
+
+    &:focus,
+    &.fakeHovered
+    {
+        border-color:   var( --PC-BLUE );
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+
+        outline:        none;
+
+        @extend %Nessie-SemiBold;
+
+        &::placeholder
+        {
+            color: transparent !important;
+        }
+    }
+}
+
+.error
+{
+    border-color:   var( --PC-RED ) !important;
+    color:          var( --PC-RED ) !important;
+
+    &:focus,
+    &.fakeHovered
+    {
+        box-shadow: 0 0 0 2px color( var( --PC-RED ) a( 30% ) );
+    }
+
+}
+
+.disabled
+{
+    background:     var( --PC-GREY--L90 );
+    color:          var( --PC-GREY--L40 );
+    border-color:   var( --PC-GREY--L70 );
+
+    &:focus
+    {
+        border-color:   var( --PC-GREY--L70 );
+    }
+
+    &::placeholder
+    {
+        @extend %Nessie-RegularIt;
+        color:         var( --PC-GREY--L40 );
+    }
+}
+
+.resize__horizontal
+{
+    resize: horizontal;
+}
+
+.resize__vertical
+{
+    resize: vertical;
+}
+
+.resize__both
+{
+    resize: both;
+}
+
+.resize__none
+{
+    resize: none;
+}
+
+.align__left
+{
+    text-align: left;
+}
+
+.align__right
+{
+    text-align: right;
+}
