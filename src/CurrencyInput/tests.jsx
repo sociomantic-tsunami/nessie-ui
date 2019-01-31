@@ -9,11 +9,10 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React         from 'react';
-import { mount }     from 'enzyme';
+import React                         from 'react';
+import { shallow, mount }            from 'enzyme';
 
-import { CurrencyInput } from '..';
-import { attachEvents } from '../utils';
+import { CurrencyInput, TextInput }  from '..';
 
 
 describe( 'CurrencyInput', () =>
@@ -23,13 +22,13 @@ describe( 'CurrencyInput', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <CurrencyInput /> );
+        wrapper  = shallow( <CurrencyInput /> );
         instance = wrapper.instance();
     } );
 
     describe( 'render()', () =>
     {
-        test( 'should contain exactly one CurrencyInput', () =>
+        test( 'check that the component renders exactly one TextInput', () =>
         {
             expect( wrapper ).toHaveLength( 1 );
         } );
@@ -44,61 +43,29 @@ describe( 'CurrencyInput', () =>
             ( { props } = instance );
         } );
 
-        describe( 'defaultValue', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( props.defaultValue ).toBeUndefined();
-            } );
-
-            test( 'should be passed to the CurrencyInput', () =>
-            {
-                wrapper.setProps( { defaultValue: 'yes!' } );
-
-                expect( wrapper.find( CurrencyInput ).prop( 'defaultValue' ) )
-                    .toBe( 'yes!' );
-            } );
-        } );
-
-        describe( 'forceHover', () =>
-        {
-            test( 'should be false by default', () =>
-            {
-                expect( props.forceHover ).toBeFalsy();
-            } );
-
-            test( 'should be passed to the CurrencyInput', () =>
-            {
-                wrapper.setProps( { forceHover: true } );
-
-                expect( wrapper.find( CurrencyInput ).prop( 'forceHover' ) )
-                    .toBeTruthy();
-            } );
-        } );
-
         describe( 'hasError', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( props.hasError ).toBeFalsy();
+                expect( props.hasError ).toBe( false );
             } );
 
-            test( 'should be passed to the CurrencyInput', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { hasError: true } );
 
-                expect( wrapper.find( CurrencyInput ).prop( 'hasError' ) )
+                expect( wrapper.find( TextInput ).prop( 'hasError' ) )
                     .toBeTruthy();
             } );
         } );
 
         describe( 'id', () =>
         {
-            test( 'should be passed to the CurrencyInput', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { id: 'yes!' } );
 
-                expect( wrapper.find( CurrencyInput ).prop( 'id' ) )
+                expect( wrapper.find( TextInput ).prop( 'id' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -110,11 +77,11 @@ describe( 'CurrencyInput', () =>
                 expect( props.isDisabled ).toBe( false );
             } );
 
-            test( 'should be passed to the CurrencyInput', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
-                expect( wrapper.find( CurrencyInput ).prop( 'isDisabled' ) )
+                expect( wrapper.find( TextInput ).prop( 'isDisabled' ) )
                     .toBeTruthy();
             } );
         } );
@@ -141,11 +108,11 @@ describe( 'CurrencyInput', () =>
                 expect( props.name ).toBeUndefined();
             } );
 
-            test( 'should be passed to the CurrencyInput', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { name: 'yes!' } );
 
-                expect( wrapper.find( CurrencyInput ).prop( 'name' ) )
+                expect( wrapper.find( TextInput ).prop( 'name' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -164,15 +131,6 @@ describe( 'CurrencyInput', () =>
             {
                 expect( props.onChange ).toBeUndefined();
             } );
-
-            test( 'should be passed to the CurrencyInput', () =>
-            {
-                const onChange = () => undefined;
-                wrapper.setProps( { onChange } );
-
-                expect( wrapper.find( CurrencyInput ).prop( 'onChange' ) )
-                    .toBe( onChange );
-            } );
         } );
 
         describe( 'onFocus', () =>
@@ -190,12 +148,12 @@ describe( 'CurrencyInput', () =>
                 expect( props.onKeyPress ).toBeUndefined();
             } );
 
-            test( 'should be passed to the CurrencyInput', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 const onKeyPress = () => undefined;
                 wrapper.setProps( { onKeyPress } );
 
-                expect( wrapper.find( CurrencyInput ).prop( 'onKeyPress' ) )
+                expect( wrapper.find( TextInput ).prop( 'onKeyPress' ) )
                     .toBe( onKeyPress );
             } );
         } );
@@ -207,12 +165,12 @@ describe( 'CurrencyInput', () =>
                 expect( props.onMouseOut ).toBeUndefined();
             } );
 
-            test( 'should be passed to the CurrencyInput', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 const onMouseOut = () => undefined;
                 wrapper.setProps( { onMouseOut } );
 
-                expect( wrapper.find( CurrencyInput ).prop( 'onMouseOut' ) )
+                expect( wrapper.find( TextInput ).prop( 'onMouseOut' ) )
                     .toBe( onMouseOut );
             } );
         } );
@@ -224,12 +182,12 @@ describe( 'CurrencyInput', () =>
                 expect( props.onMouseOver ).toBeUndefined();
             } );
 
-            test( 'should be passed to the CurrencyInput', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 const onMouseOver = () => undefined;
                 wrapper.setProps( { onMouseOver } );
 
-                expect( wrapper.find( CurrencyInput ).prop( 'onMouseOver' ) )
+                expect( wrapper.find( TextInput ).prop( 'onMouseOver' ) )
                     .toBe( onMouseOver );
             } );
         } );
@@ -241,11 +199,11 @@ describe( 'CurrencyInput', () =>
                 expect( props.placeholder ).toBeUndefined();
             } );
 
-            test( 'should be passed to the CurrencyInput', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { placeholder: 'yes!' } );
 
-                expect( wrapper.find( CurrencyInput ).prop( 'placeholder' ) )
+                expect( wrapper.find( TextInput ).prop( 'placeholder' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -257,11 +215,11 @@ describe( 'CurrencyInput', () =>
                 expect( props.textAlign ).toBe( 'left' );
             } );
 
-            test( 'should be passed to the CurrencyInput', () =>
+            test( 'should be passed to the TextInput', () =>
             {
                 wrapper.setProps( { textAlign: 'right' } );
 
-                expect( wrapper.find( CurrencyInput ).prop( 'textAlign' ) )
+                expect( wrapper.find( TextInput ).prop( 'textAlign' ) )
                     .toBe( 'right' );
             } );
         } );
@@ -271,14 +229,6 @@ describe( 'CurrencyInput', () =>
             test( 'should be empty string by default', () =>
             {
                 expect( CurrencyInput.defaultProps.value ).toBe( '' );
-            } );
-
-            test( 'should be passed to the input element', () =>
-            {
-                wrapper.setProps( { value: 'yes!' } );
-
-                expect( wrapper.find( CurrencyInput ).prop( 'value' ) )
-                    .toBe( 'yes!' );
             } );
         } );
     } );
