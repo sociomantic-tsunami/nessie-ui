@@ -22,7 +22,7 @@ const distConfig = merge( {}, baseConfig, {
         'moment' : {
             'commonjs'  : 'moment',
             'commonjs2' : 'moment',
-            'window'    : 'Moment'
+            'window'    : 'moment'
         },
         'react-popper' : {
             'commonjs'  : 'react-popper',
