@@ -14,6 +14,11 @@ const distConfig = merge( {}, baseConfig, {
 
     devtool   : 'source-map',
     externals : {
+        'feather-icons' : {
+            commonjs  : 'feather-icons',
+            commonjs2 : 'feather-icons',
+            window    : 'FeatherIcons',
+        },
         'nessie-ui' : {
             commonjs  : 'nessie-ui',
             commonjs2 : 'nessie-ui',
