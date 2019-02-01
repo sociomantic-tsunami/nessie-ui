@@ -53,61 +53,7 @@ export default class Icon extends React.Component
         /**
          *  Icon to show
          */
-        type : PropTypes.oneOf( [
-            'account',
-            'add-circle',
-            'add',
-            'alert',
-            'approved',
-            'arrow-down',
-            'arrow-up',
-            'arrow',
-            'bell',
-            'board',
-            'calendar',
-            'close-circle',
-            'close-thick',
-            'close',
-            'dash',
-            'dashboard',
-            'declined',
-            'delete',
-            'down',
-            'download',
-            'duplicate',
-            'edit-circle',
-            'edit',
-            'ended',
-            'error',
-            'file',
-            'graph',
-            'hide',
-            'info',
-            'inspect',
-            'left',
-            'lightbulb',
-            'link',
-            'loader',
-            'megaphone',
-            'options',
-            'paused',
-            'pending',
-            'preview',
-            'puzzle-piece',
-            'reset',
-            'right',
-            'search',
-            'show',
-            'sociomantic',
-            'star-stroke',
-            'star',
-            'swap',
-            'table',
-            'up',
-            'upload',
-            'validation',
-            'none',
-        ] ),
+        type : PropTypes.string,
     };
 
     static defaultProps =
@@ -138,7 +84,7 @@ export default class Icon extends React.Component
                 aria-label = { children || label }
                 className  = { cssMap.main }>
                 { ( type !== 'none' ) &&
-                <use xlinkHref = { `#icon__${type}` } /> }
+                <use xlinkHref = { `#nessie-${type}` } /> }
             </svg>
         );
     }
