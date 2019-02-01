@@ -14,43 +14,25 @@ const distConfig = merge( {}, baseConfig, {
 
     devtool   : 'source-map',
     externals : {
-        'codemirror/mode/jsx/jsx' : {
-            commonjs  : 'codemirror/mode/jsx/jsx',
-            commonjs2 : 'codemirror/mode/jsx/jsx',
-        },
-        'componentDriver' : {
-            commonjs  : 'nessie-ui/dist/componentDriver',
-            commonjs2 : 'nessie-ui/dist/componentDriver',
-            'window'  : 'ComponentDriver',
-        },
-        'flounder/src/core/flounder' : {
-            commonjs  : 'flounder/src/core/flounder',
-            commonjs2 : 'flounder/src/core/flounder',
-            'window'  : 'Flounder',
-        },
         'nessie-ui' : {
-            'commonjs'  : 'nessie-ui',
-            'commonjs2' : 'nessie-ui',
-            'window'    : 'Nessie',
+            commonjs  : 'nessie-ui',
+            commonjs2 : 'nessie-ui',
+            window    : 'Nessie',
         },
         'prop-types' : {
-            'commonjs'  : 'prop-types',
-            'commonjs2' : 'prop-types',
-            'window'    : 'PropTypes',
+            commonjs  : 'prop-types',
+            commonjs2 : 'prop-types',
+            window    : 'PropTypes',
         },
-        addons : {
-            'commonjs'  : 'nessie-ui/dist/addons',
-            'commonjs2' : 'nessie-ui/dist/addons',
-        },
-        codemirror : {
-            'commonjs'  : 'codemirror',
-            'commonjs2' : 'codemirror',
-            'window'    : 'CodeMirror',
+        componentDriver : {
+            commonjs  : 'nessie-ui/dist/componentDriver',
+            commonjs2 : 'nessie-ui/dist/componentDriver',
+            window    : 'ComponentDriver',
         },
         react : {
-            'commonjs'  : 'react',
-            'commonjs2' : 'react',
-            'window'    : 'React',
+            commonjs  : 'react',
+            commonjs2 : 'react',
+            window    : 'React',
         },
         mode         : 'production',
         optimization : {
