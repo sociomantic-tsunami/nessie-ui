@@ -15,10 +15,10 @@ import {
     ListBox,
     ScrollBox,
 } from '../index';
-import withDropdown    from '../Addons/withDropdown';
-import { generateId }  from '../utils';
-import { addPrefix }   from '../ComboBox/utils';
-import DumbTagInput    from './dumb';
+import withDropdown                  from '../Addons/withDropdown';
+import { callMultiple, generateId }  from '../utils';
+import { addPrefix }                 from '../ComboBox/utils';
+import DumbTagInput                  from './dumb';
 
 
 /**
@@ -386,11 +386,11 @@ export default class TagInputStateful extends React.Component
                 dropdownProps    = { { children: dropdownContent } }
                 id               = { id }
                 inputValue       = { inputValue }
-                onBlur           = { this.handleBlur }
+                onBlur           = { callMultiple( this.handleBlur, this.props.onBlur ) } // temporary fix
                 onChangeInput    = { this.handleChangeInput }
                 onClickClose     = { this.handleClickClose }
-                onFocus          = { this.handleFocus }
-                onKeyDown        = { this.handleKeyDown }
+                onFocus          = { callMultiple( this.handleFocus, this.props.onFocus ) } // temporary fix
+                onKeyDown        = { callMultiple( this.handleKeyDown, this.props.onKeyDown ) } // temporary fix
                 tags             = { tags } />
         );
     }
