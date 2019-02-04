@@ -22,8 +22,7 @@ const SpriteMap = ( { id = "nessie" }) => (
                 <symbol
                     dangerouslySetInnerHTML = { { __html: contents } }
                     id                      = { `${id}-${name}` }
-                    viewBox                 = "0 0 24 24">
-                </symbol>
+                    viewBox                 = "0 0 24 24" />
             ) ) }
         </defs>
     </svg>
