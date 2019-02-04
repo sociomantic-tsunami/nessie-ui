@@ -183,7 +183,6 @@ export default {
     ProgressBar : props => ( {
         main : classNames.bind( progressBarClasses )(
             'default',
-            { width: `${props.progressPercentage}%` },
             props.className,
         ),
         ...progressBarClasses,

@@ -22,25 +22,25 @@ export default class ProgressBar extends React.Component
         /**
          *  Current percentage value
          */
-        progressPercentage : PropTypes.number,
+        percentage : PropTypes.number,
     };
 
     static defaultProps =
     {
-        progressPercentage : 0,
+        percentage : 0,
     };
 
     render()
     {
-        const { progressPercentage } = this.props;
+        const { percentage } = this.props;
 
         const cssMap = createCssMap( this.context.ProgressBar, this.props );
 
         return (
             <div className = { cssMap.default }>
-                { progressPercentage > 0 &&
+                { percentage > 0 &&
                 <div
-                    style = { { width: `${progressPercentage}%` } }
+                    style = { { width: `${percentage}%` } }
                     className = { cssMap.fill } />
                 }
             </div>

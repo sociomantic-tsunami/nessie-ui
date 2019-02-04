@@ -312,7 +312,7 @@
 		"popper": "{<Popup padding=\"M\">Popup content</Popup>}"
 	},
     "ProgressBar": {
-        "progressPercentage": 20
+        "percentage": 20
     },
 	"ScrollBar": {
 		"scrollMax": 100
