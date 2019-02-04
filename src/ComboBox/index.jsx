@@ -493,7 +493,7 @@ export default class ComboBox extends Component
                     padding  : optionsToShow.length ? 'none' : 'S',
                 } }
                 hasError      = { hasError }
-                iconType      = { isOpen ? 'up' : 'down' }
+                iconType      = { isOpen ? 'chevron-up' : 'chevron-down' }
                 id            = { id }
                 inputRef      = { this.inputRef }
                 isDisabled    = { isDisabled }

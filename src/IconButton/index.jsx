@@ -56,90 +56,35 @@ export default class IconButton extends React.Component
         /**
          *  Icon type to display
          */
-        iconType      : PropTypes.oneOf( [
-            'account',
-            'add-circle',
-            'add',
-            'alert',
-            'approved',
-            'arrow-down',
-            'arrow-up',
-            'arrow',
-            'bell',
-            'board',
-            'calendar',
-            'close-circle',
-            'close-thick',
-            'close',
-            'dash',
-            'dashboard',
-            'deactivated',
-            'declined',
-            'delete',
-            'down',
-            'download',
-            'duplicate',
-            'edit-circle',
-            'edit',
-            'ended',
-            'error',
-            'file',
-            'graph',
-            'hide',
-            'info',
-            'inspect',
-            'left',
-            'lightbulb',
-            'link',
-            'loader',
-            'megaphone',
-            'options',
-            'paused',
-            'pending',
-            'preview',
-            'puzzle-piece',
-            'reset',
-            'right',
-            'search',
-            'show',
-            'sociomantic',
-            'star-stroke',
-            'star',
-            'swap',
-            'table',
-            'up',
-            'upload',
-            'validation',
-            'none',
-        ] ),
+        iconType      : PropTypes.string,
         /**
          * Component id
          */
-        id          : PropTypes.string,
+        id            : PropTypes.string,
         /**
          *  Display as disabled
          */
-        isDisabled  : PropTypes.bool,
+        isDisabled    : PropTypes.bool,
         /**
          *  Button is focusable
          */
-        isFocusable : PropTypes.bool,
+        isFocusable   : PropTypes.bool,
         /**
          *  Label text
          */
-        label       : PropTypes.string,
+        label         : PropTypes.string,
         /**
          *  Button click callback function: ( e ) => { ... }
          */
-        onClick     : PropTypes.func,
+        onClick       : PropTypes.func,
         /**
          *  HTML value attribute
          */
-        role        : PropTypes.oneOf( [ 'default', 'inverted' ] ),
+        role          : PropTypes.oneOf( [ 'default', 'inverted' ] ),
         /**
          *  HTML value attribute
          */
-        value       : PropTypes.string,
+        value         : PropTypes.string,
     };
 
     static defaultProps =

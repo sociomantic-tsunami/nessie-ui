@@ -100,7 +100,7 @@ export default class Tag extends React.Component
                 <IconButton
                     className  = { cssMap.delete }
                     iconSize   = "S"
-                    iconType   = "close"
+                    iconType   = "x"
                     isDisabled = { isDisabled }
                     isReadOnly = { isReadOnly }
                     onClick    = { () =>

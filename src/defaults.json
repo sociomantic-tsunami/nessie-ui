@@ -262,10 +262,10 @@
 		"children": "{<Text>Grid Item dummy text</Text>}"
 	},
 	"Icon": {
-		"type": "add"
+		"type": "star"
 	},
 	"IconButton": {
-		"iconType": "add",
+		"iconType": "plus",
 		"label": "Add"
 	},
 	"ListBox": {

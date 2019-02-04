@@ -99,13 +99,13 @@ export default class DatePickerHeader extends React.Component
                 <div className = { cssMap.buttonsWrapper }>
                     <IconButton
                         className  = { cssMap.prev }
-                        iconType   = "left"
+                        iconType   = "arrow-left"
                         isDisabled = { isDisabled || prevIsDisabled }
                         onClick    = { onClickPrev }
                         role       = "inverted" />
                     <IconButton
                         className  = { cssMap.next }
-                        iconType   = "right"
+                        iconType   = "arrow-right"
                         isDisabled = { isDisabled || nextIsDisabled }
                         onClick    = { onClickNext }
                         role       = "inverted" />

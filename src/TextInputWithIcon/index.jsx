@@ -78,133 +78,79 @@ export default class TextInputWithIcon extends React.Component
         /**
          *  Icon type to display (overrides customIcon)
          */
-        iconType             : PropTypes.oneOf( [
-            'account',
-            'add-circle',
-            'add',
-            'alert',
-            'approved',
-            'arrow',
-            'arrow-up',
-            'arrow-down',
-            'bell',
-            'board',
-            'calendar',
-            'close-circle',
-            'close-thick',
-            'close',
-            'dash',
-            'dashboard',
-            'declined',
-            'delete',
-            'down',
-            'download',
-            'duplicate',
-            'edit-circle',
-            'edit',
-            'ended',
-            'error',
-            'file',
-            'graph',
-            'hide',
-            'info',
-            'inspect',
-            'left',
-            'lightbulb',
-            'link',
-            'loader',
-            'megaphone',
-            'options',
-            'paused',
-            'pending',
-            'preview',
-            'puzzle-piece',
-            'reset',
-            'right',
-            'search',
-            'show',
-            'star-stroke',
-            'star',
-            'sociomantic',
-            'swap',
-            'table',
-            'up',
-            'upload',
-            'validation',
-            'none',
-        ] ),
+        iconType             : PropTypes.string,
         /**
          *  Component id
          */
-        id             : PropTypes.string,
+        id                   : PropTypes.string,
         /**
          *  Callback that receives the native <input>: ( ref ) => { ... }
          */
-        inputRef       : PropTypes.func,
+        inputRef             : PropTypes.func,
         /**
          *  HTML input type
          */
-        inputType      : PropTypes.oneOf( [ 'text', 'password' ] ),
+        inputType            : PropTypes.oneOf( [ 'text', 'password' ] ),
         /**
          *  Display as disabled
          */
-        isDisabled     : PropTypes.bool,
+        isDisabled           : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly     : PropTypes.bool,
+        isReadOnly           : PropTypes.bool,
         /**
          *  HTML name attribute
          */
-        name           : PropTypes.string,
+        name                 : PropTypes.string,
         /**
          *  Blur callback function
          */
-        onBlur         : PropTypes.func,
+        onBlur               : PropTypes.func,
         /**
          *  Input change callback function
          */
-        onChangeInput  : PropTypes.func,
+        onChangeInput        : PropTypes.func,
         /**
          *  Click callback function
          */
-        onClick        : PropTypes.func,
+        onClick              : PropTypes.func,
         /**
          *  Icon click callback function
          */
-        onClickIcon    : PropTypes.func,
+        onClickIcon          : PropTypes.func,
         /**
          *  Focus callback function
          */
-        onFocus        : PropTypes.func,
+        onFocus              : PropTypes.func,
         /**
          *  Input key down callback function
          */
-        onKeyDownInput : PropTypes.func,
+        onKeyDownInput       : PropTypes.func,
         /**
          *  Mouse out callback function
          */
-        onMouseOut     : PropTypes.func,
+        onMouseOut          : PropTypes.func,
         /**
          *  Mouse over  callback function
          */
-        onMouseOver    : PropTypes.func,
+        onMouseOver          : PropTypes.func,
         /**
          *  Placeholder text
          */
-        placeholder    : PropTypes.string,
+        placeholder          : PropTypes.string,
         /**
          *  HTML attribute controlling input spell check
          */
-        spellCheck     : PropTypes.bool,
+        spellCheck           : PropTypes.bool,
         /**
          *  Input text alignment
          */
-        textAlign      : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+        textAlign            : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
         /**
          *  Input string value
          */
-        value          : PropTypes.string,
+        value                : PropTypes.string,
     };
 
     static defaultProps =

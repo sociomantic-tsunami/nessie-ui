@@ -6,7 +6,7 @@ A TextInput with an icon button “inside”.
 
 ```
 <TextInputWithIcon
-    iconType     = "preview"
+    iconType     = "search"
     iconPosition = "left"
     textAlign    = "left" />
 ```
