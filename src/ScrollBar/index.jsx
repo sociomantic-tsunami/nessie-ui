@@ -14,7 +14,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 
-import React                   from 'react';
+import React, { useCallback }  from 'react';
 import PropTypes               from 'prop-types';
 
 import { attachEvents, clamp } from '../utils';
@@ -44,6 +44,65 @@ const ScrollBar = props =>
     const trackRef = React.createRef();
     const thumbRef = React.createRef();
 
+    const handleClick = useCallback( ( payload, e ) =>
+    {
+        if ( e.target !== e.currentTarget || !onClickTrack )
+        {
+            return;
+        }
+
+        const trackLength = isVertical ?
+            trackRef.clientHeight : trackRef.clientWidth;
+        const clickOffset = isVertical ?
+            e.nativeEvent.offsetY : e.nativeEvent.offsetX;
+
+        const scale = scrollLength / trackLength;
+        const newPos = clickOffset * scale;
+
+        onClickTrack( newPos );
+    }, [ trackRef, onClickTrack ] );
+
+    const handleMouseDown = useCallback( ( payload, md ) =>
+    {
+        if ( !onChange )
+        {
+            return;
+        }
+
+        md.preventDefault();
+        const initialMouse = isVertical ?
+            md.clientY : md.clientX;
+        const trackLength = isVertical ?
+            trackRef.clientHeight : trackRef.clientWidth;
+
+        const thumbLength = isVertical ?
+            thumbRef.clientHeight : thumbRef.clientWidth;
+
+        const scale =
+                scrollLength / ( trackLength - thumbLength );
+
+        const handleMouseMove = mv =>
+        {
+            const mouse = isVertical ? mv.clientY : mv.clientX;
+            const mouseDiff = mouse - initialMouse;
+            const scrollDiff = mouseDiff * scale;
+
+            const newPos = clamp(
+                scrollPos + scrollDiff,
+                scrollMin, scrollMax,
+            );
+
+            onChange( newPos );
+        };
+
+        addEventListener( 'mousemove', handleMouseMove );
+        addEventListener( 'mouseup', function handleMouseUp()
+        {
+            removeEventListener( 'mousemove', handleMouseMove );
+            removeEventListener( 'mouseup', handleMouseUp );
+        } );
+    }, [ thumbRef, onChange ] );
+
     return (
         <div
             { ...attachEvents( props ) }
@@ -53,67 +112,12 @@ const ScrollBar = props =>
             aria-valuemin    = { scrollMin }
             aria-valuenow    = { scrollPos }
             className        = { cssMap.main }
-            onClick          = { e =>
-            {
-                if ( e.target !== e.currentTarget || !onClickTrack )
-                {
-                    return;
-                }
-
-                const trackLength = isVertical ?
-                    trackRef.clientHeight : trackRef.clientWidth;
-                const clickOffset = isVertical ?
-                    e.nativeEvent.offsetY : e.nativeEvent.offsetX;
-
-                const scale = scrollLength / trackLength;
-                const newPos = clickOffset * scale;
-
-                onClickTrack( newPos );
-            } }
+            onClick          = { handleClick }
             ref  = { trackRef }
             role = "scrollbar">
             <div
                 className   = { cssMap.thumb }
-                onMouseDown = { md =>
-                {
-                    if ( !onChange )
-                    {
-                        return;
-                    }
-
-                    md.preventDefault;
-                    const initialMouse = isVertical ?
-                        md.clientY : md.clientX;
-                    const trackLength = isVertical ?
-                        trackRef.clientHeight : trackRef.clientWidth;
-
-                    const thumbLength = isVertical ?
-                        thumbRef.clientHeight : thumbRef.clientWidth;
-
-                    const scale =
-                            scrollLength / ( trackLength - thumbLength );
-
-                    const handleMouseMove = mv =>
-                    {
-                        const mouse = isVertical ? mv.clientY : mv.clientX;
-                        const mouseDiff = mouse - initialMouse;
-                        const scrollDiff = mouseDiff * scale;
-
-                        const newPos = clamp(
-                            scrollPos + scrollDiff,
-                            scrollMin, scrollMax,
-                        );
-
-                        onChange( newPos );
-                    };
-
-                    addEventListener( 'mousemove', handleMouseMove );
-                    addEventListener( 'mouseup', function handleMouseUp()
-                    {
-                        removeEventListener( 'mousemove', handleMouseMove );
-                        removeEventListener( 'mouseup', handleMouseUp );
-                    } );
-                } }
+                onMouseDown = { handleMouseDown }
                 ref   = { thumbRef }
                 style = { {
                     [ isVertical ? 'height' : 'width' ] : thumbSize,
