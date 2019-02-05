@@ -29,26 +29,41 @@ const distConfig = merge( {}, baseConfig, {
             commonjs2 : 'prop-types',
             window    : 'PropTypes',
         },
+        'react-popper' : {
+            'commonjs'  : 'react-popper',
+            'commonjs2' : 'react-popper',
+            'window'    : 'ReactPopper'
+        },
         componentDriver : {
             commonjs  : 'nessie-ui/dist/componentDriver',
             commonjs2 : 'nessie-ui/dist/componentDriver',
             window    : 'ComponentDriver',
+        },
+        lodash : {
+            'commonjs'  : 'lodash',
+            'commonjs2' : 'lodash',
+            'window'    : '_'
+        },
+        moment : {
+            'commonjs'  : 'moment',
+            'commonjs2' : 'moment',
+            'window'    : 'moment'
         },
         react : {
             commonjs  : 'react',
             commonjs2 : 'react',
             window    : 'React',
         },
-        mode         : 'production',
-        optimization : {
-            minimizer : [
-                new UglifyJsPlugin( {
-                    cache     : true,
-                    parallel  : true,
-                    sourceMap : true,
-                } ),
-            ],
-        },
+    },
+    mode         : 'production',
+    optimization : {
+        minimizer : [
+            new UglifyJsPlugin( {
+                cache     : true,
+                parallel  : true,
+                sourceMap : true,
+            } ),
+        ],
     },
 } );
 
