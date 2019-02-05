@@ -320,13 +320,25 @@ export default class DateTimeInput extends Component
 
     static getDerivedStateFromProps( props, state )
     {
+        let timestamp;
+
+        if ( props.value )
+        {
+            timestamp = props.value;
+        }
+        else if ( props.value === null )
+        {
+            timestamp = undefined;
+        }
+        else
+        {
+            timestamp = displayTimestamp( state.editingTimestamp, state.timestamp );
+        }
+
         return {
-            id        : props.id || state.id || generateId( 'DateTimeInput' ),
-            isOpen    : Boolean( state.gridStartTimestamp ),
-            timestamp : props.value || displayTimestamp(
-                state.editingTimestamp,
-                state.timestamp,
-            ),
+            id     : props.id || state.id || generateId( 'DateTimeInput' ),
+            isOpen : Boolean( state.gridStartTimestamp ),
+            timestamp,
         };
     }
 
@@ -500,7 +512,6 @@ export default class DateTimeInput extends Component
         if ( !isReadOnly )
         {
             this.setState( { timestamp: value } );
-
             const { onChange } = this.props;
             const { id } = this.state;
             if ( typeof onChange === 'function' )
@@ -559,10 +570,11 @@ export default class DateTimeInput extends Component
             }
 
             return {
-                editingHourInputValue   : formatHours( value ),
-                editingMainInputValue   : value,
-                editingMinuteInputValue : formatMinutes( value ),
-                editingTimestamp        : timestamp,
+                editingHourInputValue   : !value ? undefined : formatHours( value ),
+                editingMainInputValue   : !value ? undefined : value,
+                editingMinuteInputValue : !value ? undefined : formatMinutes( value ),
+                editingTimestamp        : !value ? undefined : timestamp,
+                timestamp               : !value ? undefined : timestamp,
             };
         } );
     }
