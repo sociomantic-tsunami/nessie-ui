@@ -338,7 +338,7 @@
 		"label": "Name",
 		"inputPlaceholder": "name",
 		"inputType": "text",
-		"iconType": "show"
+		"iconType": "star"
 	},
 	"Tooltip": {
 		"message": "Pro tip!"
