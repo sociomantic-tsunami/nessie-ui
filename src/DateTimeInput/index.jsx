@@ -230,11 +230,11 @@ export default class DateTimeInput extends Component
         /**
          *  Maximum timestamp selectable
          */
-        maxDateSelectable : PropTypes.number,
+        max : PropTypes.number,
         /**
          *  Minimum timestamp selectable
          */
-        minDateSelectable : PropTypes.number,
+        min : PropTypes.number,
         /**
          *  Minute input placeholder text
          */
@@ -263,8 +263,8 @@ export default class DateTimeInput extends Component
         inputPlaceholder  : undefined,
         isDisabled        : false,
         isReadOnly        : false,
-        maxDateSelectable : undefined,
-        minDateSelectable : undefined,
+        max : undefined,
+        min : undefined,
         minutePlaceholder : undefined,
         mode              : 'default',
         onChange          : undefined,
@@ -367,17 +367,17 @@ export default class DateTimeInput extends Component
 
     canGotoNext()
     {
-        const { maxDateSelectable } = this.props;
+        const { max } = this.props;
         const nextGridStart = $m( this.state.gridStartTimestamp )
             .add( 1, this.props.mode === 'month' ? 'year' : 'month' ).valueOf();
 
-        return !_.isNumber( maxDateSelectable ) ||
-            ( nextGridStart <= maxDateSelectable );
+        return !_.isNumber( max ) ||
+            ( nextGridStart <= max );
     }
 
     canGotoPrev()
     {
-        const minDateSelectable = this.props.minDateSelectable || now();
+        const min = this.props.min || now();
         const prevGridStart = $m( this.state.gridStartTimestamp )
             .add( -1, this.props.mode === 'month' ? 'year' : 'month' )
             .valueOf();
@@ -385,8 +385,8 @@ export default class DateTimeInput extends Component
             .add( 1, this.props.mode === 'month' ? 'year' : 'month' )
             .valueOf();
 
-        return !_.isNumber( minDateSelectable ) ||
-            endOfPrev > minDateSelectable;
+        return !_.isNumber( min ) ||
+            endOfPrev > min;
     }
 
     canEditHourOrMinute()
@@ -396,14 +396,14 @@ export default class DateTimeInput extends Component
 
     isUnitSelectable( timestamp, unit, allowFraction )
     {
-        const { maxDateSelectable } = this.props;
-        const minDateSelectable = this.props.minDateSelectable || now();
+        const { max } = this.props;
+        const min = this.props.min || now();
 
-        if ( timestamp > maxDateSelectable ) return false;
+        if ( timestamp > max ) return false;
 
-        if ( !allowFraction ) return timestamp >= minDateSelectable;
+        if ( !allowFraction ) return timestamp >= min;
 
-        return $m( timestamp ).add( 1, unit ) > minDateSelectable;
+        return $m( timestamp ).add( 1, unit ) > min;
     }
 
     dayMatrix()
@@ -530,7 +530,7 @@ export default class DateTimeInput extends Component
     handleChangeInput( { value } )
     {
         const trimmed = value.replace( /\s+/g, ' ' );
-        const min = this.props.minDateSelectable || now();
+        const min = this.props.min || now();
 
         this.setState( prevState =>
         {
@@ -545,10 +545,10 @@ export default class DateTimeInput extends Component
                 timestamp = min;
             }
 
-            if ( this.props.maxDateSelectable &&
-                timestamp > this.props.maxDateSelectable )
+            if ( this.props.max &&
+                timestamp > this.props.max )
             {
-                timestamp = this.props.maxDateSelectable;
+                timestamp = this.props.max;
             }
 
             return {
@@ -659,13 +659,13 @@ export default class DateTimeInput extends Component
 
     open()
     {
-        const { minDateSelectable } = this.props;
+        const { min } = this.props;
         let { timestamp } = this.state;
 
         timestamp = _.isNumber( timestamp ) ? timestamp : now();
 
-        timestamp = ( _.isNumber( minDateSelectable ) &&
-            minDateSelectable > timestamp ) ? minDateSelectable : timestamp;
+        timestamp = ( _.isNumber( min ) &&
+            min > timestamp ) ? min : timestamp;
 
         this.setState( {
             gridStartTimestamp : $m( timestamp )
