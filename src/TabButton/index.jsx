@@ -7,12 +7,11 @@
  *
  */
 
- import React, {
-     useImperativeHandle,
-     useRef,
-     forwardRef
- } from 'react';
-
+import React, {
+    useImperativeHandle,
+    useRef,
+    forwardRef,
+} from 'react';
 import PropTypes        from 'prop-types';
 
 import { attachEvents } from '../utils';
@@ -22,14 +21,14 @@ const componentName = 'TabButton';
 
 const TabButton = forwardRef( ( props, ref ) =>
 {
-    const TabButtonRef = useRef();
+    const tabButtonRef = useRef();
 
-       useImperativeHandle( ref, () => ( {
-           focus : () =>
-           {
-               TabButtonRef.current.focus();
-           }
-       } ) );
+    useImperativeHandle( ref, () => ( {
+        focus : () =>
+        {
+            tabButtonRef.current.focus();
+        },
+    } ) );
 
     const cssMap = useTheme( componentName, props );
     const {
@@ -46,7 +45,7 @@ const TabButton = forwardRef( ( props, ref ) =>
             } ) }
             className = { cssMap.main }
             disabled  = { isDisabled }
-            ref       = { TabButtonRef }
+            ref       = { tabButtonRef }
             role      = "tab"
             type      = "button">
             <div className = { cssMap.content }>
@@ -61,7 +60,7 @@ const TabButton = forwardRef( ( props, ref ) =>
             </div>
         </button>
     );
-} )
+} );
 
 TabButton.propTypes =
 {
