@@ -436,7 +436,7 @@ export default class ComboBox extends Component
 
         let dropdownContent;
 
-        if ( optionsToShow.length )
+        if ( optionsToShow !== undefined && optionsToShow.length )
         {
             dropdownContent = (
                 <ScrollBox
@@ -457,7 +457,7 @@ export default class ComboBox extends Component
                 </ScrollBox>
             );
         }
-        else
+        else if ( dropdownPlaceholder !== undefined )
         {
             dropdownContent = (
                 <Text
@@ -467,6 +467,17 @@ export default class ComboBox extends Component
                     variant = "RegularIt">
                     { dropdownPlaceholder }
                 </Text>
+            );
+        }
+        else
+        {
+            dropdownContent = (
+                <ListBox
+                    isFocusable = { false }
+                    options = { [ {
+                        value      : 'No results to show',
+                        isDisabled : true,
+                    } ] } />
             );
         }
 
@@ -490,7 +501,8 @@ export default class ComboBox extends Component
                 dropdownProps    = { {
                     children : dropdownContent,
                     hasError,
-                    padding  : optionsToShow.length ? 'none' : 'S',
+                    padding  : optionsToShow !== undefined &&
+                        optionsToShow.length ? 'none' : 'S',
                 } }
                 hasError      = { hasError }
                 iconType      = { isOpen ? 'up' : 'down' }
