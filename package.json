@@ -1,6 +1,6 @@
 {
   "name": "nessie-ui",
-  "version": "10.0.0-alpha.2",
+  "version": "10.0.0-alpha.3",
   "description": "dunnhumby media UI component library",
   "author": "Sociomantic Labs GmbH",
   "main": "dist",
@@ -59,7 +59,7 @@
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
-    "autoprefixer": "^9.4.5",
+    "autoprefixer": "^9.4.7",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
@@ -68,6 +68,7 @@
     "classnames": "^2.2.6",
     "concurrently": "^4.1.0",
     "css-loader": "^2.1.0",
+    "cssnano": "^4.1.8",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "eslint": "^5.12.0",
@@ -82,9 +83,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "loch-ness": "3.0.0-alpha.2",
-    "lodash": "^4.17.11",
     "mini-css-extract-plugin": "^0.5.0",
-    "moment": "^2.23.0",
     "postcss": "^7.0.13",
     "postcss-advanced-variables": "^3.0.0",
     "postcss-attribute-case-insensitive": "^4.0.1",
@@ -107,7 +106,6 @@
     "prop-types": "^15.5.8",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-popper": "^1.3.2",
     "react-test-renderer": "^16.7.0",
     "release-it": "^9.8.1",
     "replace": "^1.0.1",
@@ -118,5 +116,9 @@
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "moment": "^2.24.0",
+    "react-popper": "^1.3.3"
+  }
 }
