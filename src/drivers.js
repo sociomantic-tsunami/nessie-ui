@@ -11,6 +11,7 @@ import { ComponentDriver } from 'componentDriver';
 import {
     Button,
     Checkbox,
+    CurrencyInput,
     DatePicker,
     IconButton,
     ListBox,
@@ -23,13 +24,16 @@ import {
     Tag,
     TagInput,
     Text,
+    TextArea,
     TextInput,
     TextInputWithIcon,
     Tooltip,
 } from 'nessie-ui';
 
+
 import ButtonDriver            from './Button/driver';
 import CheckboxDriver          from './Checkbox/driver';
+import CurrencyInputDriver     from './CurrencyInput/driver';
 import DatePickerDriver        from './DatePicker/driver';
 import IconButtonDriver        from './IconButton/driver';
 import ListBoxDriver           from './ListBox/driver';
@@ -41,6 +45,7 @@ import TabButtonDriver         from './TabButton/driver';
 import TabsDriver              from './Tabs/driver';
 import TagDriver               from './Tag/driver';
 import TagInputDriver          from './TagInput/driver';
+import TextAreaDriver          from './TextArea/driver';
 import TextDriver              from './Text/driver';
 import TextInputDriver         from './TextInput/driver';
 import TextInputWithIconDriver from './TextInputWithIcon/driver';
@@ -56,6 +61,10 @@ const drivers =
     {
         Component : Checkbox,
         Driver    : CheckboxDriver,
+    },
+    {
+        Component : CurrencyInput,
+        Driver    : CurrencyInputDriver,
     },
     {
         Component : DatePicker,
@@ -104,6 +113,10 @@ const drivers =
     {
         Component : Text,
         Driver    : TextDriver,
+    },
+    {
+        Component : TextArea,
+        Driver    : TextAreaDriver,
     },
     {
         Component : TextInput,

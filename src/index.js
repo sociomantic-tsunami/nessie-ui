@@ -7,13 +7,14 @@
  *
  */
 
+
 import Button            from './Button';
 import Card              from './Card';
 import Checkbox          from './Checkbox';
+import CurrencyInput     from './CurrencyInput';
 import ComboBox          from './ComboBox';
 import DatePicker        from './DatePicker';
 import DateTimeInput     from './DateTimeInput';
-import Dropdown          from './Dropdown';
 import Grid              from './Grid';
 import GridItem          from './GridItem';
 import Icon              from './Icon';
@@ -21,6 +22,8 @@ import IconButton        from './IconButton';
 import ListBox           from './ListBox';
 import Modal             from './Modal';
 import PasswordInput     from './PasswordInput';
+import Popup             from './Popup';
+import PopperWrapper     from './PopperWrapper';
 import ScrollBar         from './ScrollBar';
 import ScrollBox         from './ScrollBox';
 import Spinner           from './Spinner';
@@ -31,6 +34,7 @@ import Tabs              from './Tabs';
 import Tag               from './Tag';
 import TagInput          from './TagInput';
 import Text              from './Text';
+import TextArea          from './TextArea';
 import TextInput         from './TextInput';
 import TextInputWithIcon from './TextInputWithIcon';
 import Tooltip           from './Tooltip';
@@ -41,9 +45,9 @@ export {
     Card,
     Checkbox,
     ComboBox,
+    CurrencyInput,
     DatePicker,
     DateTimeInput,
-    Dropdown,
     Grid,
     GridItem,
     Icon,
@@ -51,6 +55,8 @@ export {
     ListBox,
     Modal,
     PasswordInput,
+    Popup,
+    PopperWrapper,
     ScrollBar,
     ScrollBox,
     Spinner,
@@ -61,6 +67,7 @@ export {
     Tag,
     TagInput,
     Text,
+    TextArea,
     TextInput,
     TextInputWithIcon,
     Tooltip,
@@ -72,9 +79,9 @@ export default {
     Card,
     Checkbox,
     ComboBox,
+    CurrencyInput,
     DatePicker,
     DateTimeInput,
-    Dropdown,
     Grid,
     GridItem,
     Icon,
@@ -82,6 +89,8 @@ export default {
     ListBox,
     Modal,
     PasswordInput,
+    Popup,
+    PopperWrapper,
     ScrollBar,
     ScrollBox,
     Spinner,
@@ -92,6 +101,7 @@ export default {
     Tag,
     TagInput,
     Text,
+    TextArea,
     TextInput,
     TextInputWithIcon,
     Tooltip,

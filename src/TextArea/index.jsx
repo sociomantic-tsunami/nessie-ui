@@ -15,7 +15,7 @@ import ThemeContext                          from '../Theming/ThemeContext';
 import { createCssMap }                      from '../Theming';
 
 
-export default class TextInput extends React.Component
+export default class TextArea extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -113,17 +113,32 @@ export default class TextInput extends React.Component
          */
         placeholder  : PropTypes.string,
         /**
+         *  TextArea resize handle
+         */
+        resize       : PropTypes.oneOf(
+            [
+                'horizontal',
+                'vertical',
+                'both',
+                'none',
+            ],
+        ),
+        /**
+         *  The visible number of lines in a text area
+         */
+        rows       : PropTypes.number,
+        /**
          *  HTML attribute controlling input spell check
          */
-        spellCheck   : PropTypes.bool,
+        spellCheck : PropTypes.bool,
         /**
          *  Input text alignment
          */
-        textAlign    : PropTypes.oneOf( [ 'left', 'right' ] ),
+        textAlign  : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
          *  Input string value
          */
-        value        : PropTypes.string,
+        value      : PropTypes.string,
     };
 
     static defaultProps =
@@ -148,18 +163,20 @@ export default class TextInput extends React.Component
         onMouseOut     : undefined,
         onMouseOver    : undefined,
         placeholder    : undefined,
+        resize         : undefined,
+        rows           : 2,
         spellCheck     : undefined,
         textAlign      : 'left',
         value          : '',
     };
 
-    static displayName = 'TextInput';
+    static displayName = 'TextArea';
 
-    inputRef = React.createRef();
+    textAreaRef = React.createRef();
 
     focus()
     {
-        this.inputRef.current.focus();
+        this.textAreaRef.current.focus();
     }
 
     render()
@@ -169,17 +186,18 @@ export default class TextInput extends React.Component
             autoCapitalize,
             autoComplete,
             autoCorrect,
-            cssMap = createCssMap( this.context.TextInput, this.props ),
-            id = generateId( 'TextInput' ),
+            cssMap = createCssMap( this.context.TextArea, this.props ),
+            id = generateId( 'TextArea' ),
             isDisabled,
             isReadOnly,
             placeholder,
+            rows,
             spellCheck,
-            value,
+            value
         } = this.props;
 
         return (
-            <input
+            <textarea
                 { ...mapAria( aria ) }
                 { ...attachEvents( this.props ) }
                 autoCapitalize = { autoCapitalize }
@@ -190,7 +208,8 @@ export default class TextInput extends React.Component
                 id             = { id }
                 placeholder    = { placeholder }
                 readOnly       = { isReadOnly }
-                ref            = { this.inputRef }
+                ref            = { this.textAreaRef }
+                rows           = { rows }
                 spellCheck     = { spellCheck }
                 value          = { value } />
         );

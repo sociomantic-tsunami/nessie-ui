@@ -7,12 +7,12 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                    from 'react';
+import PropTypes                from 'prop-types';
 
-import { attachEvents }     from '../utils';
-import { useTheme }         from '../Theming';
-import Icon                 from '..';
+import { useTheme }             from '../Theming';
+
+import { Icon }                 from '..';
 
 const componentName = 'Spinner';
 

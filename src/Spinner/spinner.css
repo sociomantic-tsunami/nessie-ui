@@ -7,8 +7,6 @@
  *
  */
 
-@import "../proto/base.css";
-
 @keyframes defaultSpinnerRingRotate
 {
     to
@@ -19,5 +17,6 @@
 
 .default
 {
+    max-width: none;
     animation: defaultSpinnerRingRotate .8s infinite ease-in-out;
 }

@@ -13,9 +13,9 @@ import PropTypes        from 'prop-types';
 import { useTheme }     from '../Theming';
 import { attachEvents } from '../utils';
 
-const componentName = 'Dropdown';
+const componentName = 'Popup';
 
-const Dropdown = props =>
+const Popup = props =>
 {
     const { children } = props;
 
@@ -30,7 +30,7 @@ const Dropdown = props =>
     );
 };
 
-Dropdown.propTypes = {
+Popup.propTypes = {
     children  : PropTypes.node,
     className : PropTypes.string,
     cssMap    : PropTypes.objectOf( PropTypes.string ),
@@ -39,7 +39,7 @@ Dropdown.propTypes = {
     size      : PropTypes.oneOf( [ 'content', 'default' ] ),
 };
 
-Dropdown.defaultProps = {
+Popup.defaultProps = {
     children  : undefined,
     className : undefined,
     cssMap    : undefined,
@@ -48,6 +48,6 @@ Dropdown.defaultProps = {
     size      : 'default',
 };
 
-Dropdown.displayName = componentName;
+Popup.displayName = componentName;
 
-export default Dropdown;
+export default Popup;
