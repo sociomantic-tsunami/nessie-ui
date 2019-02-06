@@ -20,8 +20,17 @@ import { useTheme }     from '../Theming';
 
 const componentName = 'TabButton';
 
-const TabButton = ( props ) =>
+const TabButton = forwardRef( ( props, ref ) =>
 {
+    const TabButtonRef = useRef();
+
+       useImperativeHandle( ref, () => ( {
+           focus : () =>
+           {
+               TabButtonRef.current.focus();
+           }
+       } ) );
+
     const cssMap = useTheme( componentName, props );
     const {
         isDisabled,
@@ -37,6 +46,7 @@ const TabButton = ( props ) =>
             } ) }
             className = { cssMap.main }
             disabled  = { isDisabled }
+            ref       = { TabButtonRef }
             role      = "tab"
             type      = "button">
             <div className = { cssMap.content }>
@@ -51,7 +61,7 @@ const TabButton = ( props ) =>
             </div>
         </button>
     );
-};
+} )
 
 TabButton.propTypes =
 {
