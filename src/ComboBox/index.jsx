@@ -421,8 +421,8 @@ export default class ComboBox extends Component
             value,
         } = this.state;
 
-        const optionVal = getOption( value, flatOptions ) ?
-            getOption( value, flatOptions ).text : undefined;
+        const flatOption = getOption( value, flatOptions );
+        const optionVal = flatOption ? flatOption.text : undefined;
 
         let optionsToShow = options;
 
