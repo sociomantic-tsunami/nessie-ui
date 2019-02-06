@@ -27,7 +27,7 @@ export default class DumbTagInput extends React.Component
     static propTypes =
     {
         /**
-         * Node containing Tag components ( overrides tags prop )
+         * Node containing Tag components ( overrides value prop )
          */
         children      : PropTypes.node,
         /**
@@ -69,7 +69,7 @@ export default class DumbTagInput extends React.Component
         /**
          * Array of strings to build Tag components
          */
-        tags          : PropTypes.arrayOf( PropTypes.string ),
+        value         : PropTypes.arrayOf( PropTypes.string ),
         /**
          * Input's value
          */
@@ -89,7 +89,7 @@ export default class DumbTagInput extends React.Component
         onChangeInput : undefined,
         onClickClose  : undefined,
         placeholder   : undefined,
-        tags          : undefined,
+        value         : undefined,
     };
 
     static displayName = 'DumbTagInput';
@@ -113,11 +113,11 @@ export default class DumbTagInput extends React.Component
             onChangeInput,
             onClickClose,
             placeholder,
-            tags,
+            value,
         } = this.props;
 
         let items = children ?
-            Children.toArray( children ) : buildTagsFromValues( tags );
+            Children.toArray( children ) : buildTagsFromValues( value );
 
         items = items.map( tag =>
         {
