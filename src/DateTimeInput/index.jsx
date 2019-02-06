@@ -189,24 +189,6 @@ function setPrecision( mode )
     return DISPLAY_FORMATTING[ format ];
 }
 
-/**
- * returns editing timestamp when editing date time input,
- * otherwise returns the current timestamp
- *
- * @param {Number}  editingTimestamp timestamp
- * @param {Number}  timestamp timestamp
- *
- * @return {Number} timestamp
- */
-function displayTimestamp( editingTimestamp, timestamp )
-{
-    if ( typeof editingTimestamp !== 'undefined' )
-    {
-        return editingTimestamp;
-    }
-    return timestamp;
-}
-
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
 export default class DateTimeInput extends Component
@@ -332,7 +314,7 @@ export default class DateTimeInput extends Component
         }
         else
         {
-            timestamp = displayTimestamp( state.editingTimestamp, state.timestamp );
+            timestamp = state.editingTimestamp || state.timestamp;
         }
 
         return {
