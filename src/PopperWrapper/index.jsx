@@ -26,25 +26,13 @@ const PopperWrapper = props =>
         popperWidth,
     } = props;
 
-    let offset = '';
-
-    switch ( popperOffset )
-    {
-    case 'S':
-        offset = '8px';
-        break;
-    case 'M':
-        offset = '16px';
-        break;
-    case 'L':
-        offset = '24px';
-        break;
-    case 'XL':
-        offset = '32px';
-        break;
-    default:
-        offset = '16px';
-    }
+    const offset = {
+        'S'    : '8px',
+        'M'    : '16px',
+        'L'    : '24px',
+        'XL'   : '32px',
+        'none' : undefined,
+    }[ popperOffset ];
 
     return (
         <Manager>
@@ -58,22 +46,22 @@ const PopperWrapper = props =>
             { isVisible && ReactDOM.createPortal(
                 <Popper
                     placement = { popperPosition }
-                    modifiers = { { offset: { offset: `0, ${offset}` } } }>
+                    modifiers = { offset ? {
+                        offset : {
+                            offset : `0, ${offset}`,
+                        },
+                    } : offset }>
                     { ( { ref, style } ) =>
-                    {
-                        const finalStyle = popperWidth ? {
-                            'width' : `${popperWidth}px`,
-                            ...style,
-                        } : style;
-
-                        return (
+                        (
                             <div
                                 ref   = { ref }
-                                style = { finalStyle }>
+                                style = { popperWidth ? {
+                                    'width' : `${popperWidth}px`,
+                                    ...style,
+                                } : style }>
                                 { popper }
                             </div>
-                        );
-                    } }
+                        ) }
                 </Popper>,
                 container ? document.querySelector( container ) :
                     document.body,
@@ -103,7 +91,7 @@ PopperWrapper.propTypes =
     /**
      *  Popper offset
      */
-    popperOffset   : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
+    popperOffset   : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'none' ] ),
     /**
      *  Popper position
      */
@@ -136,7 +124,7 @@ PopperWrapper.defaultProps =
     container      : undefined,
     isVisible      : false,
     popper         : undefined,
-    popperOffset   : 'M',
+    popperOffset   : 'none',
     popperPosition : 'auto',
     popperWidth    : undefined,
 };
