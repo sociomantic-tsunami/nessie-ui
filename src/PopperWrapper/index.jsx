@@ -23,6 +23,7 @@ const PopperWrapper = props =>
         popper,
         popperOffset,
         popperPosition,
+        popperWidth,
     } = props;
 
     let offset = '';
@@ -45,39 +46,40 @@ const PopperWrapper = props =>
         offset = '16px';
     }
 
-    let popperComponent = children;
+    return (
+        <Manager>
+            <Reference>
+                { ( { ref } ) => (
+                    <div ref = { ref }>
+                        { children }
+                    </div>
+                ) }
+            </Reference>
+            { isVisible && ReactDOM.createPortal(
+                <Popper
+                    placement = { popperPosition }
+                    modifiers = { { offset: { offset: `0, ${offset}` } } }>
+                    { ( { ref, style } ) =>
+                    {
+                        const finalStyle = popperWidth ? {
+                            'width' : `${popperWidth}px`,
+                            ...style,
+                        } : style;
 
-    if ( isVisible )
-    {
-        popperComponent = (
-            <Manager>
-                <Reference>
-                    { ( { ref } ) => (
-                        <div ref = { ref }>
-                            { children }
-                        </div>
-                    ) }
-                </Reference>
-                { ReactDOM.createPortal(
-                    <Popper
-                        placement = { popperPosition }
-                        modifiers = { { offset: { offset: `0, ${offset}` } } }>
-                        { ( { ref, style } ) => (
+                        return (
                             <div
                                 ref   = { ref }
-                                style = { style }>
+                                style = { finalStyle }>
                                 { popper }
                             </div>
-                        ) }
-                    </Popper>,
-                    container ? document.querySelector( container ) :
-                        document.body,
-                ) }
-            </Manager>
-        );
-    }
-
-    return popperComponent;
+                        );
+                    } }
+                </Popper>,
+                container ? document.querySelector( container ) :
+                    document.body,
+            ) }
+        </Manager>
+    );
 };
 
 PopperWrapper.propTypes =
@@ -122,6 +124,10 @@ PopperWrapper.propTypes =
         'right-start',
         'right-end',
     ] ),
+    /**
+     *  Popper width
+     */
+    popperWidth : PropTypes.number,
 };
 
 PopperWrapper.defaultProps =
@@ -132,6 +138,7 @@ PopperWrapper.defaultProps =
     popper         : undefined,
     popperOffset   : 'M',
     popperPosition : 'auto',
+    popperWidth    : undefined,
 };
 
 PopperWrapper.displayName = 'PopperWrapper';

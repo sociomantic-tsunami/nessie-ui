@@ -206,6 +206,11 @@ export default class ComboBox extends Component
         };
     }
 
+    componentDidMount()
+    {
+        this.popperWidth = this.inputRef.current.inputRef.current.offsetWidth;
+    }
+
     componentDidUpdate()
     {
         const { current: scrollBoxRef } = this.scrollBoxRef;
@@ -359,9 +364,8 @@ export default class ComboBox extends Component
                 return {
                     activeOption    : prevState.activeOption,
                     filteredOptions : undefined,
-                    isOpen          : typeof isOpen === 'boolean' ?
-                        prevState.isOpen : !prevState.isOpen,
-                    searchValue : undefined,
+                    isOpen          : !prevState.isOpen,
+                    searchValue     : undefined,
                     selectedOption,
                 };
             } );
@@ -398,6 +402,14 @@ export default class ComboBox extends Component
         } );
     }
 
+    handleReRender()
+    {
+        if ( !this.popperWidth )
+        {
+            this.forceUpdate();
+        }
+    }
+
     render()
     {
         const {
@@ -423,6 +435,8 @@ export default class ComboBox extends Component
 
         const optionVal = getOption( selectedOption, flatOptions ) ?
             getOption( selectedOption, flatOptions ).text : undefined;
+
+        this.handleReRender();
 
         let optionsToShow = options;
 
@@ -506,17 +520,21 @@ export default class ComboBox extends Component
 
         const popperPopup = (
             <Popup
-                children = { dropdownContent }
                 hasError = { hasError }
-                padding  = { optionsToShow.length ? 'none' : 'S' } />
+                padding  = { optionsToShow.length ? 'none' : 'S' }>
+                { dropdownContent }
+            </Popup>
         );
 
         return (
             <PopperWrapper
-                children       = { popperChildren }
-                popper         = { popperPopup }
                 isVisible      = { isOpen }
-                popperPosition = { dropdownPosition } />
+                popper         = { popperPopup }
+                popperOffset   = "S"
+                popperPosition = { dropdownPosition }
+                popperWidth    = { this.popperWidth }>
+                { popperChildren }
+            </PopperWrapper>
         );
     }
 }
