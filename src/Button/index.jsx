@@ -65,7 +65,9 @@ const Button = forwardRef( ( props, ref ) =>
             </div>
             { ( isLoading && !isDisabled ) &&
                 <div className = { cssMap.loadingOverlay }>
-                    <Spinner className = { cssMap.spinner } />
+                    <Spinner
+                        className = { cssMap.spinner }
+                        size = "S" />
                 </div>
             }
         </button>

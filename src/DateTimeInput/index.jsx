@@ -98,24 +98,32 @@ function isTimestampEqual( ts1, ts2, precision )
  *
  * @param {String}  inputValue human readable date
  * @param {Number}  timestamp current timestamp
+ * @param {String}  format custom format (overrides default format)
  *
  * @return {Number} timestamp
  */
-function tryParseInputValue( inputValue, timestamp )
+function tryParseInputValue( inputValue, timestamp, format )
 {
     if ( !inputValue ) return null;
 
-    const parser = PARSE_FORMATTING.find( ( { predicate, requirePrecision } ) =>
-        predicate.test( inputValue ) &&
-            PRECISIONS.includes( requirePrecision ) );
+    let newTimestamp;
 
-    if ( !parser ||
-        _.isNaN( moment.utc( inputValue, parser.format ).valueOf() ) )
+    if ( format )
     {
-        return timestamp;
+        newTimestamp = moment.utc( inputValue, format ).valueOf();
+    }
+    else
+    {
+        const parser =
+            PARSE_FORMATTING.find( ( { predicate, requirePrecision } ) =>
+                predicate.test( inputValue ) &&
+                PRECISIONS.includes( requirePrecision ) );
+
+        newTimestamp =
+            moment.utc( inputValue, format || parser.format ).valueOf();
     }
 
-    return moment.utc( inputValue, parser.format ).valueOf();
+    return _.isNaN( newTimestamp ) ? timestamp : newTimestamp;
 }
 
 /**
@@ -210,6 +218,10 @@ export default class DateTimeInput extends Component
          */
         className         : PropTypes.string,
         /**
+         *  Date time format
+         */
+        format            : PropTypes.string,
+        /**
          *  Display as error/invalid
          */
         hasError          : PropTypes.bool,
@@ -262,6 +274,7 @@ export default class DateTimeInput extends Component
     static defaultProps =
     {
         className         : undefined,
+        format            : undefined,
         hasError          : false,
         hourPlaceholder   : undefined,
         id                : undefined,
@@ -528,7 +541,11 @@ export default class DateTimeInput extends Component
 
         this.setState( prevState =>
         {
-            let timestamp = tryParseInputValue( trimmed, prevState.timestamp );
+            let timestamp = tryParseInputValue(
+                trimmed,
+                prevState.timestamp,
+                this.props.format,
+            );
 
             if ( timestamp < min )
             {
@@ -569,7 +586,7 @@ export default class DateTimeInput extends Component
                     editingTimestamp      : timestamp,
                     editingMainInputValue : formatDateTime(
                         timestamp,
-                        setPrecision( this.props.mode ),
+                        this.props.format || setPrecision( this.props.mode ),
                     ),
                 };
             } );
@@ -590,7 +607,8 @@ export default class DateTimeInput extends Component
                         editingTimestamp      : timestamp,
                         editingMainInputValue : formatDateTime(
                             timestamp,
-                            setPrecision( this.props.mode ),
+                            this.props.format ||
+                                setPrecision( this.props.mode ),
                         ),
                     };
                 } );
@@ -615,7 +633,7 @@ export default class DateTimeInput extends Component
                     editingTimestamp      : timestamp,
                     editingMainInputValue : formatDateTime(
                         timestamp,
-                        setPrecision( this.props.mode ),
+                        this.props.format || setPrecision( this.props.mode ),
                     ),
                 };
             } );
@@ -636,7 +654,8 @@ export default class DateTimeInput extends Component
                         editingTimestamp      : timestamp,
                         editingMainInputValue : formatDateTime(
                             timestamp,
-                            setPrecision( this.props.mode ),
+                            this.props.format ||
+                                setPrecision( this.props.mode ),
                         ),
                     };
                 } );
@@ -746,7 +765,8 @@ export default class DateTimeInput extends Component
                 spellCheck      = { false }
                 value           = {
                     typeof editingMainInputValue === 'undefined' ?
-                        formatDateTime( timestamp, setPrecision( mode ) ) :
+                        formatDateTime( timestamp, this.props.format ||
+                            setPrecision( this.props.mode ) ) :
                         editingMainInputValue
                 }
                 wrapperRef = { this.wrapperRef } />

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 dunnhumby Germany GmbH.
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -9,20 +9,20 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { mount, shallow } from 'enzyme';
+import React                  from 'react';
+import { shallow, mount }     from 'enzyme';
 
-import { TextInput }      from '..';
+import { TextArea }           from '..';
 
 
-describe( 'TextInput', () =>
+describe( 'TextArea', () =>
 {
     let wrapper;
     let instance;
 
     beforeEach( () =>
     {
-        wrapper = shallow( <TextInput /> );
+        wrapper  = shallow( <TextArea /> );
         instance = wrapper.instance();
     } );
 
@@ -39,17 +39,18 @@ describe( 'TextInput', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( props.hasError ).toBe( false );
+                expect( props.hasError ).toBeFalsy();
             } );
         } );
 
         describe( 'id', () =>
         {
-            test( 'should be passed to the <input>', () =>
+            test( 'should be passed to the <textarea>', () =>
             {
                 wrapper.setProps( { id: 'yes!' } );
 
-                expect( wrapper.find( 'input' ).prop( 'id' ) ).toBe( 'yes!' );
+                expect( wrapper.find( 'textarea' ).prop( 'id' ) )
+                    .toBe( 'yes!' );
             } );
         } );
 
@@ -60,12 +61,12 @@ describe( 'TextInput', () =>
                 expect( props.isDisabled ).toBe( false );
             } );
 
-            test( 'should be passed to the <input> as disabled', () =>
+            test( 'should be passed to the <textarea> as disabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
-                expect( wrapper.find( 'input' ).prop( 'disabled' ) )
-                    .toBe( true );
+                expect( wrapper.find( 'textarea' ).prop( 'disabled' ) )
+                    .toBeTruthy();
             } );
         } );
 
@@ -73,15 +74,14 @@ describe( 'TextInput', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( props.isReadOnly ).toBe( false );
+                expect( props.isReadOnly ).toBeFalsy();
             } );
 
-            test( 'should be passed to the <input> as readOnly', () =>
+            test( 'should be passed to the <textarea> as readOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
-                expect( wrapper.find( 'input' ).prop( 'readOnly' ) )
-                    .toBe( true );
+                expect( wrapper.find( 'textarea' ).prop( 'readOnly' ) ).toBeTruthy();
             } );
         } );
 
@@ -93,43 +93,11 @@ describe( 'TextInput', () =>
             } );
         } );
 
-        describe( 'onChange', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( props.onChange ).toBeUndefined();
-            } );
-        } );
-
         describe( 'onFocus', () =>
         {
             test( 'should be undefined by default', () =>
             {
                 expect( props.onFocus ).toBeUndefined();
-            } );
-        } );
-
-        describe( 'onKeyPress', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( props.onKeyPress ).toBeUndefined();
-            } );
-        } );
-
-        describe( 'onMouseOut', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( props.onMouseOut ).toBeUndefined();
-            } );
-        } );
-
-        describe( 'onMouseOver', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( props.onMouseOver ).toBeUndefined();
             } );
         } );
 
@@ -140,20 +108,12 @@ describe( 'TextInput', () =>
                 expect( props.placeholder ).toBeUndefined();
             } );
 
-            test( 'should be passed to the <input>', () =>
+            test( 'should be passed to the <textarea>', () =>
             {
                 wrapper.setProps( { placeholder: 'yes!' } );
 
-                expect( wrapper.find( 'input' ).prop( 'placeholder' ) )
+                expect( wrapper.find( 'textarea' ).prop( 'placeholder' ) )
                     .toBe( 'yes!' );
-            } );
-        } );
-
-        describe( 'textAlign', () =>
-        {
-            test( 'should be "left" by default', () =>
-            {
-                expect( props.textAlign ).toBe( 'left' );
             } );
         } );
 
@@ -161,13 +121,14 @@ describe( 'TextInput', () =>
         {
             test( 'should be empty string by default', () =>
             {
-                expect( TextInput.defaultProps.value ).toBe( '' );
+                expect( TextArea.defaultProps.value ).toBe( '' );
             } );
-            test( 'should be passed to the <input>', () =>
+
+            test( 'should be passed to the input element', () =>
             {
                 wrapper.setProps( { value: 'yes!' } );
 
-                expect( wrapper.find( 'input' ).prop( 'value' ) )
+                expect( wrapper.find( 'textarea' ).prop( 'value' ) )
                     .toBe( 'yes!' );
             } );
         } );
@@ -175,14 +136,14 @@ describe( 'TextInput', () =>
 } );
 
 
-describe( 'TextInputDriver', () =>
+describe( 'TextAreaDriver', () =>
 {
     let wrapper;
     let driver;
 
     beforeEach( () =>
     {
-        wrapper = mount( <TextInput /> );
+        wrapper = mount( <TextArea /> );
         driver  = wrapper.driver();
     } );
 
@@ -204,7 +165,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate blur since it is disabled';
+                    'TextArea cannot simulate blur since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -245,7 +206,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate focus since it is disabled';
+                    'TextArea cannot simulate focus since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
@@ -286,7 +247,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate change since it is disabled';
+                    'TextArea cannot simulate change since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -314,7 +275,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate change since it is read only';
+                    'TextArea cannot simulate change since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -355,7 +316,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate click since it is disabled';
+                    'TextArea cannot simulate click since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
@@ -396,7 +357,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate keyPress since it is disabled';
+                    'TextArea cannot simulate keyPress since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
@@ -437,7 +398,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate keyDown since it is disabled';
+                    'TextArea cannot simulate keyDown since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyDown() ).toThrow( expectedError );
@@ -478,7 +439,7 @@ describe( 'TextInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TextInput cannot simulate keyUp since it is disabled';
+                    'TextArea cannot simulate keyUp since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyUp() ).toThrow( expectedError );

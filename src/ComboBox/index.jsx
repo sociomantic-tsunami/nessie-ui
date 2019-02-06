@@ -16,7 +16,7 @@ import { ListBox, ScrollBox, Text }               from '..';
 
 import TextInputWithIcon                          from '../TextInputWithIcon';
 import withDropdown                               from '../Addons/withDropdown';
-import { generateId }                             from '../utils';
+import { callMultiple, generateId }               from '../utils';
 import { addPrefix, prefixOptions, removePrefix } from './utils';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
@@ -498,11 +498,12 @@ export default class ComboBox extends Component
                 inputRef      = { this.inputRef }
                 isDisabled    = { isDisabled }
                 isReadOnly    = { !isSearchable || !isOpen }
-                onBlur        = { this.handleBlur }
-                onChangeInput = { this.handleChangeInput }
-                onClick       = { this.handleClick }
+                onBlur        = { callMultiple( this.handleBlur, this.props.onBlur ) } // temporary fix
+                onChangeInput = { this.handleChangeInput } // temporary fix
+                onClick       = { callMultiple( this.handleClick, this.props.onClick ) } // temporary fix
                 onClickIcon   = { this.handleClickIcon }
-                onKeyDown     = { this.handleKeyDown }
+                onFocus       = { this.props.onFocus } // temporary fix
+                onKeyDown     = { callMultiple( this.handleKeyDown, this.props.onKeyDown ) } // temporary fix
                 placeholder   = { inputPlaceholder }
                 spellCheck    = { false }
                 value         = { ( isOpen && isSearchable ) ?

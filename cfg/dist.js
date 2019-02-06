@@ -1,11 +1,10 @@
-const path                    = require( 'path' );
+const path                 = require( 'path' );
 
-const { merge }               = require( 'lodash' );
-const MiniCssExtractPlugin    = require( 'mini-css-extract-plugin' );
-const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
-const UglifyJsPlugin          = require( 'uglifyjs-webpack-plugin' );
+const { merge }            = require( 'lodash' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const UglifyJsPlugin       = require( 'uglifyjs-webpack-plugin' );
 
-const baseConfig              = require( './base' );
+const baseConfig           = require( './base' );
 
 
 /* webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production */
@@ -15,6 +14,21 @@ const distConfig = merge( {}, baseConfig, {
 
     devtool   : 'source-map',
     externals : {
+        'lodash' : {
+            'commonjs'  : 'lodash',
+            'commonjs2' : 'lodash',
+            'window'    : '_'
+        },
+        'moment' : {
+            'commonjs'  : 'moment',
+            'commonjs2' : 'moment',
+            'window'    : 'moment'
+        },
+        'react-popper' : {
+            'commonjs'  : 'react-popper',
+            'commonjs2' : 'react-popper',
+            'window'    : 'ReactPopper'
+        },
         'codemirror/mode/jsx/jsx' : {
             commonjs  : 'codemirror/mode/jsx/jsx',
             commonjs2 : 'codemirror/mode/jsx/jsx',
@@ -56,9 +70,6 @@ const distConfig = merge( {}, baseConfig, {
         mode         : 'production',
         optimization : {
             minimizer : [
-                new OptimizeCSSAssetsPlugin( {
-                    cssProcessorOptions : { map: { inline: false } },
-                } ),
                 new UglifyJsPlugin( {
                     cache     : true,
                     parallel  : true,

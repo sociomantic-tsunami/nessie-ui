@@ -78,7 +78,7 @@ export default class ButtonDriver
             throw new Error( ERR.BUTTON_ERR( label, 'mouseOver', 'loading' ) );
         }
 
-        this.button.simulate( 'mouseenter' );
+        this.button.simulate( 'mouseOver' );
         return this;
     }
 
@@ -96,7 +96,7 @@ export default class ButtonDriver
             throw new Error( ERR.BUTTON_ERR( label, 'mouseOut', 'loading' ) );
         }
 
-        this.button.simulate( 'mouseleave' );
+        this.button.simulate( 'mouseOut' );
         return this;
     }
 }

@@ -31,6 +31,10 @@
 			"text": "Option 6"
 		}]
 	},
+	"CurrencyInput" :
+    {
+        "currency" : "USD"
+    },
 	"DatePicker": {
 		"month": "February",
 		"year": "2018",
@@ -251,10 +255,6 @@
 			}]
 		]
 	},
-	"Dropdown": {
-		"children": "Dropdown content",
-        "padding": "M"
-	},
 	"Grid": {
 		"children": "{<GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem>}"
 	},
@@ -303,6 +303,14 @@
 		"label": "Tell me your secrets",
 		"errorMessage": "Please enter a dark secret"
 	},
+	"Popup": {
+		"children": "Popup content",
+		"padding": "M"
+	},
+	"PopperWrapper": {
+		"children": "{<Button label=\"Click me!\" />}",
+		"popper": "{<Popup padding=\"M\">Popup content</Popup>}"
+	},
 	"ScrollBar": {
 		"scrollMax": 100
 	},
@@ -321,6 +329,10 @@
 	},
 	"Tabs": {
 		"children": "{<Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab><Tab label=\"Русский\">привет!</Tab>}"
+	},
+	"TextArea": {
+		"placeholder": "Enter text....",
+		"resize": "none"
 	},
 	"TextInputWithIcon": {
 		"label": "Name",
