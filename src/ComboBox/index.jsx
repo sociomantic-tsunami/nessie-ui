@@ -152,7 +152,6 @@ export default class ComboBox extends Component
 
     inputRef = React.createRef();
     scrollBoxRef = React.createRef();
-    wrapperRef = React.createRef();
 
     constructor()
     {
@@ -523,8 +522,7 @@ export default class ComboBox extends Component
                 spellCheck     = { false }
                 value          = { ( isOpen && isSearchable ) ?
                     searchValue : optionVal
-                }
-                wrapperRef = { this.wrapperRef } />
+                } />
         );
 
         const popperPopup = (
