@@ -108,7 +108,8 @@ export default class PopperWrapper extends Component
         const popperRef = this.popperRef.current ?
             this.popperRef.current.contains( e.target ) : false;
 
-        if ( this.referenceRef.current.contains(  e.target ) || popperRef )
+        if ( !( this.referenceRef.current.contains(  e.target ) ||
+                popperRef ) && this.props.onClickOutside )
         {
             this.props.onClickOutside();
         }
