@@ -93,10 +93,6 @@ export default class ComboBox extends Component
          */
         dropdownPlaceholder : PropTypes.string,
         /**
-         * Position of the dropdown relative to the text input
-         */
-        dropdownPosition    : PropTypes.oneOf( [ 'top', 'bottom' ] ),
-        /**
          *  Display as error/invalid
          */
         hasError            : PropTypes.bool,
@@ -138,7 +134,6 @@ export default class ComboBox extends Component
     {
         className           : undefined,
         dropdownPlaceholder : undefined,
-        dropdownPosition    : 'bottom',
         hasError            : false,
         id                  : undefined,
         inputPlaceholder    : undefined,
@@ -414,7 +409,6 @@ export default class ComboBox extends Component
         const {
             className,
             dropdownPlaceholder,
-            dropdownPosition,
             hasError,
             inputPlaceholder,
             isDisabled,
@@ -538,7 +532,7 @@ export default class ComboBox extends Component
                 isVisible      = { isOpen }
                 popper         = { popperPopup }
                 popperOffset   = "S"
-                popperPosition = { dropdownPosition }
+                popperPosition = "bottom"
                 popperWidth    = { this.popperWidth }>
                 { popperChildren }
             </PopperWrapper>
