@@ -104,7 +104,7 @@ export default class Tag extends React.Component
                     isDisabled = { isDisabled }
                     isReadOnly = { isReadOnly }
                     onClick    = { () =>
-                        onClick && onClick( { value: id } )
+                        onClick && onClick( { id } )
                     } />
             </div>
         );

@@ -121,7 +121,7 @@ export default class ComboBox extends Component
           */
         isSearchable        : PropTypes.bool,
         /**
-         *  Change callback: ( { selectedOption } ) => ...
+         *  Change callback: ( { value } ) => ...
          */
         onChange            : PropTypes.func,
         /*
@@ -131,7 +131,7 @@ export default class ComboBox extends Component
         /**
          *  Selected option id
          */
-        selectedOption      : PropTypes.string,
+        value               : PropTypes.string,
     };
 
     static defaultProps =
@@ -147,7 +147,7 @@ export default class ComboBox extends Component
         isSearchable        : false,
         onChange            : undefined,
         options             : undefined,
-        selectedOption      : undefined,
+        value               : undefined,
     };
 
     inputRef = React.createRef();
@@ -166,7 +166,7 @@ export default class ComboBox extends Component
             isOpen          : undefined,
             options         : undefined,
             searchValue     : undefined,
-            selectedOption  : undefined,
+            value           : undefined,
         };
 
         this.handleBlur            = this.handleBlur.bind( this );
@@ -182,8 +182,8 @@ export default class ComboBox extends Component
     static getDerivedStateFromProps( props, state )
     {
         let { flatOptions } = state;
-        const { selectedOption } = props;
-        let optionId = selectedOption || state.selectedOption;
+        const { value } = props;
+        let optionId = value || state.value;
 
         if ( props.options !== state.options )
         {
@@ -202,7 +202,7 @@ export default class ComboBox extends Component
             id              : props.id || state.id || generateId( 'ComboBox' ),
             options         : props.options,
             searchValue     : state.searchValue,
-            selectedOption  : optionId,
+            value           : optionId,
         };
     }
 
@@ -280,22 +280,22 @@ export default class ComboBox extends Component
 
         this.setState( prevState =>
         {
-            const selectedOption = !isReadOnly ? getOption(
+            const value = !isReadOnly ? getOption(
                 unprefixedId,
                 prevState.flatOptions,
-            ).id : prevState.selectedOption;
+            ).id : prevState.value;
 
             if ( !isReadOnly && typeof onChange === 'function' )
             {
-                onChange( { id, selectedOption } );
+                onChange( { id, value } );
             }
 
             return {
-                activeOption    : selectedOption,
+                activeOption    : value,
                 filteredOptions : undefined,
                 isOpen          : false,
                 searchValue     : undefined,
-                selectedOption,
+                value,
             };
         } );
     }
@@ -317,7 +317,7 @@ export default class ComboBox extends Component
                     const maxIndex = options.length - 1;
 
                     let activeIndex = getIndex(
-                        prevState.activeOption || prevState.selectedOption,
+                        prevState.activeOption || prevState.value,
                         options,
                     );
 
@@ -349,12 +349,12 @@ export default class ComboBox extends Component
 
             this.setState( prevState =>
             {
-                const selectedOption = !isReadOnly && prevState.activeOption ?
-                    prevState.activeOption : prevState.selectedOption;
+                const value = !isReadOnly && prevState.activeOption ?
+                    prevState.activeOption : prevState.value;
 
                 if ( !isReadOnly && typeof onChange === 'function' )
                 {
-                    onChange( { id, selectedOption } );
+                    onChange( { id, value } );
                 }
                 return {
                     activeOption    : prevState.activeOption,
@@ -362,7 +362,7 @@ export default class ComboBox extends Component
                     isOpen          : typeof isOpen === 'boolean' ?
                         prevState.isOpen : !prevState.isOpen,
                     searchValue : undefined,
-                    selectedOption,
+                    value,
                 };
             } );
         }
@@ -418,11 +418,11 @@ export default class ComboBox extends Component
             id,
             isOpen,
             searchValue,
-            selectedOption,
+            value,
         } = this.state;
 
-        const optionVal = getOption( selectedOption, flatOptions ) ?
-            getOption( selectedOption, flatOptions ).text : undefined;
+        const flatOption = getOption( value, flatOptions );
+        const optionVal = flatOption ? flatOption.text : undefined;
 
         let optionsToShow = options;
 
@@ -453,7 +453,7 @@ export default class ComboBox extends Component
                         options           = {
                             prefixOptions( optionsToShow, id )
                         }
-                        selection = { addPrefix( selectedOption, id ) } />
+                        selection = { addPrefix( value, id ) } />
                 </ScrollBox>
             );
         }
