@@ -30,7 +30,7 @@ const Tab = ( props ) =>
             { children }
         </div>
     );
-}
+};
 
 Tab.propTypes =
 {
