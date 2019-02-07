@@ -7,7 +7,7 @@
  *
  */
 
-/* global document */
+/* global document, addEventListener, removeEventListener */
 
 import React, { Component }                       from 'react';
 import ReactDOM                                   from 'react-dom';
@@ -30,6 +30,10 @@ export default class PopperWrapper extends Component
          *  Show / Hide popper
          */
         isVisible      : PropTypes.bool,
+        /**
+         *  Click Outside callback: ( e ) => ...
+         */
+        onClickOutside : PropTypes.func,
         /**
          *  Popper content node
          */
@@ -69,13 +73,46 @@ export default class PopperWrapper extends Component
         children       : undefined,
         container      : undefined,
         isVisible      : false,
+        onClickOutside : undefined,
         popper         : undefined,
         popperOffset   : 'none',
         popperPosition : 'auto',
         popperWidth    : undefined,
     }
 
-    static displayName = 'PopperWrapper';
+    static displayName = 'PopperWrapper'
+
+    referenceRef = React.createRef();
+    popperRef    = React.createRef();
+
+    componentDidMount()
+    {
+        addEventListener(
+            'mousedown',
+            this.handleClickOutSide.bind( this ),
+            false,
+        );
+    }
+
+    componentWillUnmount()
+    {
+        removeEventListener(
+            'mousedown',
+            this.handleClickOutSide.bind( this ),
+            false,
+        );
+    }
+
+    handleClickOutSide( e )
+    {
+        const popperRef = this.popperRef.current ?
+            this.popperRef.current.contains( e.target ) : false;
+
+        if ( this.referenceRef.current.contains(  e.target ) || popperRef )
+        {
+            this.props.onClickOutside();
+        }
+    }
 
     render()
     {
@@ -99,7 +136,8 @@ export default class PopperWrapper extends Component
 
         return (
             <Manager>
-                <Reference>
+                <Reference
+                    innerRef  = { ( ref ) => this.referenceRef.current = ref } >
                     { ( { ref } ) => (
                         <div ref = { ref }>
                             { children }
@@ -109,22 +147,22 @@ export default class PopperWrapper extends Component
                 { isVisible && ReactDOM.createPortal(
                     <Popper
                         placement = { popperPosition }
+                        innerRef  = { ( ref ) => this.popperRef.current = ref }
                         modifiers = { offset ? {
                             offset : {
                                 offset : `0, ${offset}`,
                             },
                         } : offset }>
-                        { ( { ref, style } ) =>
-                            (
-                                <div
-                                    ref   = { ref }
-                                    style = { popperWidth ? {
-                                        'width' : `${popperWidth}px`,
-                                        ...style,
-                                    } : style }>
-                                    { popper }
-                                </div>
-                            ) }
+                        { ( { ref, style } ) => (
+                            <div
+                                ref   = { ref }
+                                style = { popperWidth ? {
+                                    'width' : `${popperWidth}px`,
+                                    ...style,
+                                } : style }>
+                                { popper }
+                            </div>
+                        ) }
                     </Popper>,
                     container ? document.querySelector( container ) :
                         document.body,
