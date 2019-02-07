@@ -44,7 +44,7 @@ const ScrollBar = props =>
     const trackRef = React.createRef();
     const thumbRef = React.createRef();
 
-    const handleClick = useCallback( ( payload, e ) =>
+    const handleClick = e =>
     {
         if ( e.target !== e.currentTarget || !onClickTrack )
         {
@@ -60,16 +60,16 @@ const ScrollBar = props =>
         const newPos = clickOffset * scale;
 
         onClickTrack( newPos );
-    }, [ trackRef, onClickTrack ] );
+    };
 
-    const handleMouseDown = useCallback( ( payload, md ) =>
+    const handleMouseDown = md =>
     {
         if ( !onChange )
         {
             return;
         }
 
-        md.preventDefault();
+        md.preventDefault;
         const initialMouse = isVertical ?
             md.clientY : md.clientX;
         const trackLength = isVertical ?
@@ -101,7 +101,7 @@ const ScrollBar = props =>
             removeEventListener( 'mousemove', handleMouseMove );
             removeEventListener( 'mouseup', handleMouseUp );
         } );
-    }, [ thumbRef, onChange ] );
+    };
 
     return (
         <div
@@ -112,12 +112,14 @@ const ScrollBar = props =>
             aria-valuemin    = { scrollMin }
             aria-valuenow    = { scrollPos }
             className        = { cssMap.main }
-            onClick          = { handleClick }
+            onClick          = { useCallback( handleClick,
+                [ trackRef, onClickTrack ] ) }
             ref  = { trackRef }
             role = "scrollbar">
             <div
                 className   = { cssMap.thumb }
-                onMouseDown = { handleMouseDown }
+                onMouseDown = { useCallback( handleMouseDown,
+                    [ thumbRef, onChange ] ) }
                 ref   = { thumbRef }
                 style = { {
                     [ isVertical ? 'height' : 'width' ] : thumbSize,
