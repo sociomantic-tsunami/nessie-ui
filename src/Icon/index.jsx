@@ -51,7 +51,7 @@ export default class Icon extends React.Component
          */
         size : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
         /**
-         *  Icon to show
+         *  Icon to show (see https://feathericons.com/)
          */
         type : PropTypes.string,
     };

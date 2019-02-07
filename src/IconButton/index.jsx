@@ -54,7 +54,7 @@ export default class IconButton extends React.Component
          */
         iconSize      : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
         /**
-         *  Icon type to display
+         *  Icon type to display (see https://feathericons.com/)
          */
         iconType      : PropTypes.string,
         /**

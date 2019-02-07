@@ -36,7 +36,7 @@ export default class Button extends React.Component
          */
         iconPosition : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
-         *  Icon type to display
+         *  Icon type to display (see https://feathericons.com/)
          */
         iconType     : PropTypes.string,
         /**
