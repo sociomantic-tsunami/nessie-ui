@@ -77,7 +77,7 @@
 //             const onClickIcon = jest.fn();
 //             wrapper.setProps( {
 //                 onClickIcon,
-//                 'iconType' : 'up',
+//                 'iconType' : 'chevron-up',
 //             } );
 //
 //             driver.clickIcon();
