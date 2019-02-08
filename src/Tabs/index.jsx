@@ -7,13 +7,13 @@
  *
  */
 
-import React, { useState }                    from 'react';
-import PropTypes                              from 'prop-types';
+import React, { useState, useCallback }                    from 'react';
+import PropTypes                                           from 'prop-types';
 
-import { ScrollBox, TabButton }               from '..';
+import { ScrollBox, TabButton }                            from '..';
 
-import { attachEvents }                       from '../utils';
-import { useTheme }                           from '../Theming';
+import { attachEvents }                                    from '../utils';
+import { useTheme }                                        from '../Theming';
 
 const componentName = 'Tabs';
 
@@ -33,9 +33,9 @@ const Tabs = ( props ) =>
 
     const tabs = React.Children.toArray( children );
 
-    const handleClickTab = ( { tabIndex }, e ) =>
+    const { onClickTab, onChange } = props;
+    const handleClickTab = useCallback( ( { tabIndex }, e ) =>
     {
-        const { onClickTab, onChange } = props;
         let nessieDefaultPrevented = false;
 
         if ( typeof onClickTab === 'function' )
@@ -60,7 +60,7 @@ const Tabs = ( props ) =>
                 onChange( { activeTabIndex: tabIndex } );
             }
         }
-    };
+    }, [ onClickTab, onChange, activeTabIndexState ] );
     const tabButtons = tabs.map( ( tab, tabIndex ) =>
     {
         const { isDisabled, label } = tab.props;
