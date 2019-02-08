@@ -176,12 +176,11 @@ export default class TagInput extends React.Component
             normalizeOptions( props.suggestions ) || state.options || [];
 
         return {
-            filteredOptions : state.inputValue ?
-                state.filteredOptions : options,
-            id    : props.id || state.id || generateId( 'TagInput' ),
+            filteredOptions : state.filteredOptions || options,
+            id              : props.id || state.id || generateId( 'TagInput' ),
             options,
-            value : ( Array.isArray( props.value ) && props.value ) ||
-              state.value,
+            value           : ( Array.isArray( props.value ) && props.value ) ||
+                  state.value,
         };
     }
 
@@ -193,6 +192,12 @@ export default class TagInput extends React.Component
     focus()
     {
         this.inputRef.current.focus();
+    }
+
+    filterOptions( tags )
+    {
+        return this.state.options.filter( option =>
+            !tags.includes( option.text ) );
     }
 
     handleBlur()
@@ -232,7 +237,10 @@ export default class TagInput extends React.Component
                 onChange( { value: newTags } );
             }
 
-            return { value: newTags };
+            return {
+                value           : newTags,
+                filteredOptions : this.filterOptions( newTags ),
+            };
         } );
     }
 
@@ -251,7 +259,7 @@ export default class TagInput extends React.Component
 
             return {
                 activeOption    : undefined,
-                filteredOptions : undefined,
+                filteredOptions : this.filterOptions( newTags ),
                 inputValue      : '',
                 value           : newTags,
             };
@@ -283,7 +291,10 @@ export default class TagInput extends React.Component
                     }
                 }
 
-                return { value: newTags };
+                return {
+                    value           : newTags,
+                    filteredOptions : this.filterOptions( newTags ),
+                };
             } );
         }
         else if ( key === 'Enter' )
@@ -301,8 +312,10 @@ export default class TagInput extends React.Component
                 {
                     if ( activeOption )
                     {
-                        const option =
-                            getOption( activeOption, filteredOptions );
+                        const option = getOption(
+                            activeOption,
+                            filteredOptions,
+                        );
 
                         newTag = option.text;
                     }
@@ -326,7 +339,7 @@ export default class TagInput extends React.Component
 
                 return {
                     activeOption    : undefined,
-                    filteredOptions : undefined,
+                    filteredOptions : this.filterOptions( newTags ),
                     inputValue      : '',
                     value           : newTags,
                 };
@@ -466,7 +479,7 @@ export default class TagInput extends React.Component
 
         return (
             <PopperWrapper
-                isVisible      = { isOpen }
+                isVisible      = { listBoxOptions.length > 0 && isOpen }
                 popper         = { popperPopup }
                 popperOffset   = "S"
                 popperPosition = "bottom"

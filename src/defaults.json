@@ -330,6 +330,9 @@
 	"Tabs": {
 		"children": "{<Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab><Tab label=\"Русский\">привет!</Tab>}"
 	},
+	"TagInput": {
+		"suggestions":["hello","bye","morgen"]
+	},
 	"TextArea": {
 		"placeholder": "Enter text....",
 		"resize": "none"
