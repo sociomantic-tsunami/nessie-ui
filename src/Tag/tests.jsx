@@ -24,9 +24,9 @@ describe( 'Tag', () =>
         wrapper = shallow( <Tag /> );
     } );
 
-    test( 'should have “main” as default className', () =>
+    test( 'should have “default” as default className', () =>
     {
-        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'default' );
     } );
 
     test( 'should have an IconButton as a child', () =>
