@@ -457,7 +457,7 @@ export default class ScrollBox extends React.Component
                             scrollIndicatorVariant === 'circle'
                         }
                         iconSize = "S"
-                        iconType = { dir.toLowerCase() }
+                        iconType = { `chevron-${dir.toLowerCase()}` }
                         key      = { dir }
                         onClick  = { e => (
                             this.handleClickScrollButton( dir, e )

@@ -14,69 +14,56 @@ const distConfig = merge( {}, baseConfig, {
 
     devtool   : 'source-map',
     externals : {
-        'lodash' : {
-            'commonjs'  : 'lodash',
-            'commonjs2' : 'lodash',
-            'window'    : '_'
+        'feather-icons' : {
+            commonjs  : 'feather-icons',
+            commonjs2 : 'feather-icons',
+            window    : 'FeatherIcons',
         },
-        'moment' : {
-            'commonjs'  : 'moment',
-            'commonjs2' : 'moment',
-            'window'    : 'moment'
+        'nessie-ui' : {
+            commonjs  : 'nessie-ui',
+            commonjs2 : 'nessie-ui',
+            window    : 'Nessie',
+        },
+        'prop-types' : {
+            commonjs  : 'prop-types',
+            commonjs2 : 'prop-types',
+            window    : 'PropTypes',
         },
         'react-popper' : {
             'commonjs'  : 'react-popper',
             'commonjs2' : 'react-popper',
             'window'    : 'ReactPopper'
         },
-        'codemirror/mode/jsx/jsx' : {
-            commonjs  : 'codemirror/mode/jsx/jsx',
-            commonjs2 : 'codemirror/mode/jsx/jsx',
-        },
-        'componentDriver' : {
+        componentDriver : {
             commonjs  : 'nessie-ui/dist/componentDriver',
             commonjs2 : 'nessie-ui/dist/componentDriver',
-            'window'  : 'ComponentDriver',
+            window    : 'ComponentDriver',
         },
-        'flounder/src/core/flounder' : {
-            commonjs  : 'flounder/src/core/flounder',
-            commonjs2 : 'flounder/src/core/flounder',
-            'window'  : 'Flounder',
+        lodash : {
+            'commonjs'  : 'lodash',
+            'commonjs2' : 'lodash',
+            'window'    : '_'
         },
-        'nessie-ui' : {
-            'commonjs'  : 'nessie-ui',
-            'commonjs2' : 'nessie-ui',
-            'window'    : 'Nessie',
-        },
-        'prop-types' : {
-            'commonjs'  : 'prop-types',
-            'commonjs2' : 'prop-types',
-            'window'    : 'PropTypes',
-        },
-        addons : {
-            'commonjs'  : 'nessie-ui/dist/addons',
-            'commonjs2' : 'nessie-ui/dist/addons',
-        },
-        codemirror : {
-            'commonjs'  : 'codemirror',
-            'commonjs2' : 'codemirror',
-            'window'    : 'CodeMirror',
+        moment : {
+            'commonjs'  : 'moment',
+            'commonjs2' : 'moment',
+            'window'    : 'moment'
         },
         react : {
-            'commonjs'  : 'react',
-            'commonjs2' : 'react',
-            'window'    : 'React',
+            commonjs  : 'react',
+            commonjs2 : 'react',
+            window    : 'React',
         },
-        mode         : 'production',
-        optimization : {
-            minimizer : [
-                new UglifyJsPlugin( {
-                    cache     : true,
-                    parallel  : true,
-                    sourceMap : true,
-                } ),
-            ],
-        },
+    },
+    mode         : 'production',
+    optimization : {
+        minimizer : [
+            new UglifyJsPlugin( {
+                cache     : true,
+                parallel  : true,
+                sourceMap : true,
+            } ),
+        ],
     },
 } );
 

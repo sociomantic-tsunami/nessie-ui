@@ -34,10 +34,10 @@ describe( 'PasswordInput', () =>
             .toBe( 'password' );
     } );
 
-    test( 'it should pass iconType "show" by default', () =>
+    test( 'it should pass iconType "eye" by default', () =>
     {
         expect( wrapper.find( TextInputWithIcon ).prop( 'iconType' ) )
-            .toBe( 'show' );
+            .toBe( 'eye' );
     } );
 
     test( 'it should pass autoCapitalize "off"', () =>
@@ -77,10 +77,10 @@ describe( 'PasswordInput', () =>
                 .toBe( 'text' );
         } );
 
-        test( 'it should pass iconType "hide"', () =>
+        test( 'it should pass iconType "eye-off"', () =>
         {
             expect( wrapper.find( TextInputWithIcon ).prop( 'iconType' ) )
-                .toBe( 'hide' );
+                .toBe( 'eye-off' );
         } );
     } );
 } );
