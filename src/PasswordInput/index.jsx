@@ -10,7 +10,7 @@
 import React, {
     useState,
     useCallback,
-    forwardRef
+    forwardRef,
 }  from 'react';
 import PropTypes             from 'prop-types';
 
@@ -20,14 +20,14 @@ import { generateId }        from '../utils';
 
 const componentName = 'PasswordInput';
 
+
 const PasswordInput = forwardRef( ( props, ref ) =>
 {
-
     const [ passwordIsVisibleState,
         setPasswordIsVisibleState ] = useState( false );
 
     const {
-        id = generateId( componentName )
+        id = generateId( componentName ),
     } = props;
 
     const passwordIsVisible =
@@ -54,9 +54,9 @@ const PasswordInput = forwardRef( ( props, ref ) =>
 
         if ( !nessieDefaultPrevented )
         {
-            setPasswordIsVisibleState( !passwordIsVisibleState )
+            setPasswordIsVisibleState( !passwordIsVisibleState );
         }
-    }, [ id, onClickIcon, passwordIsVisibleState ] )
+    }, [ id, onClickIcon, passwordIsVisibleState ] );
 
     return (
         <TextInputWithIcon
@@ -64,7 +64,7 @@ const PasswordInput = forwardRef( ( props, ref ) =>
             autoCapitalize = "off"
             autoComplete   = "off"
             autoCorrect    = "off"
-            iconType       = { passwordIsVisible ? 'hide' : 'show' }
+            iconType       = { passwordIsVisible ? 'eye-off' : 'eye' }
             id             = { id }
             inputType      = { passwordIsVisible ? 'text' : 'password' }
             onClickIcon    = { handleClickIcon }

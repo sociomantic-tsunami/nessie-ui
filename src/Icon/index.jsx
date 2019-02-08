@@ -15,6 +15,7 @@ import { attachEvents } from '../utils';
 
 const componentName = 'Icon';
 
+
 const Icon = props =>
 {
     const {
@@ -68,63 +69,9 @@ Icon.propTypes =
      */
     size : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
     /**
-     *  Icon to show
+     *  Icon to show (see https://feathericons.com/)
      */
-    type : PropTypes.oneOf( [
-        'account',
-        'add-circle',
-        'add',
-        'alert',
-        'approved',
-        'arrow-down',
-        'arrow-up',
-        'arrow',
-        'bell',
-        'board',
-        'calendar',
-        'close-circle',
-        'close-thick',
-        'close',
-        'dash',
-        'dashboard',
-        'declined',
-        'delete',
-        'down',
-        'download',
-        'duplicate',
-        'edit-circle',
-        'edit',
-        'ended',
-        'error',
-        'file',
-        'graph',
-        'hide',
-        'info',
-        'inspect',
-        'left',
-        'lightbulb',
-        'link',
-        'loader',
-        'megaphone',
-        'options',
-        'paused',
-        'pending',
-        'preview',
-        'puzzle-piece',
-        'reset',
-        'right',
-        'search',
-        'show',
-        'sociomantic',
-        'star-stroke',
-        'star',
-        'swap',
-        'table',
-        'up',
-        'upload',
-        'validation',
-        'none',
-    ] ),
+    type : PropTypes.string,
 };
 
 Icon.defaultProps =

@@ -59,7 +59,7 @@ describe( 'DumbTagInput', () =>
     test( 'should have Tag components when passed as tags prop', () =>
     {
         wrapper.setProps( {
-            tags : [ 'TagLabelString 1', 'TagLabelString 2' ],
+            value : [ 'TagLabelString 1', 'TagLabelString 2' ],
         } );
 
         expect( wrapper.find( Tag ) ).toHaveLength( 2 );
