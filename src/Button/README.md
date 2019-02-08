@@ -18,7 +18,7 @@ A primary button in loading state:
 
 A primary button with an icon on the right:
 ```
-<Button iconType="right" iconPosition="right">Next Page</Button>
+<Button iconType="arrow-right" iconPosition="right">Next Page</Button>
 ```
 
 A subtle button:
