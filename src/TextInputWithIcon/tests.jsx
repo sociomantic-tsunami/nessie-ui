@@ -36,7 +36,7 @@ describe( 'TextInputWithIcon', () =>
     test( 'should contain exactly one IconButton when iconType is not \
 \'none\'', () =>
     {
-        wrapper.setProps( { iconType: 'add' } );
+        wrapper.setProps( { iconType: 'plus' } );
         expect( wrapper.find( IconButton ) ).toHaveLength( 1 );
     } );
 
@@ -75,10 +75,10 @@ describe( 'TextInputWithIcon', () =>
 
             test( 'should be passed to the IconButton', () =>
             {
-                wrapper.setProps( { iconType: 'add' } );
+                wrapper.setProps( { iconType: 'plus' } );
 
                 expect( wrapper.find( IconButton ).prop( 'iconType' ) )
-                    .toBe( 'add' );
+                    .toBe( 'plus' );
             } );
         } );
 
@@ -86,7 +86,7 @@ describe( 'TextInputWithIcon', () =>
         {
             beforeEach( () =>
             {
-                wrapper.setProps( { iconType: 'add' } );
+                wrapper.setProps( { iconType: 'plus' } );
             } );
 
             test( 'should be "right" by default', () =>
@@ -150,7 +150,7 @@ describe( 'TextInputWithIcon', () =>
             test( 'should be passed to the IconButton', () =>
             {
                 wrapper.setProps( {
-                    iconType   : 'add',
+                    iconType   : 'plus',
                     isDisabled : true,
                 } );
 
@@ -163,7 +163,7 @@ describe( 'TextInputWithIcon', () =>
         {
             beforeEach( () =>
             {
-                wrapper.setProps( { iconType: 'add' } );
+                wrapper.setProps( { iconType: 'plus' } );
             } );
 
             test( 'should be false by default', () =>
@@ -216,7 +216,7 @@ describe( 'TextInputWithIcon', () =>
             test( 'should be passed to the IconButton', () =>
             {
                 wrapper.setProps( {
-                    iconType : 'add',
+                    iconType : 'plus',
                     hasError : true,
                 } );
 
@@ -277,7 +277,7 @@ describe( 'TextInputWithIcon', () =>
         {
             beforeEach( () =>
             {
-                wrapper.setProps( { iconType: 'add' } );
+                wrapper.setProps( { iconType: 'plus' } );
             } );
 
             test( 'should be undefined by default', () =>
@@ -338,7 +338,7 @@ describe( 'TextInputWithIcon', () =>
                 const onMouseOver = () => undefined;
 
                 wrapper.setProps( {
-                    iconType : 'add',
+                    iconType : 'plus',
                     onMouseOver,
                 } );
 
@@ -370,7 +370,7 @@ describe( 'TextInputWithIcon', () =>
                 const onMouseOut = () => undefined;
 
                 wrapper.setProps( {
-                    iconType : 'add',
+                    iconType : 'plus',
                     onMouseOut,
                 } );
 
@@ -533,7 +533,7 @@ describe( 'TextInputWithIconDriver', () =>
         test( 'should trigger onClickIcon callback prop once', () =>
         {
             const onClickIcon = jest.fn();
-            wrapper.setProps( { onClickIcon, iconType: 'add' } );
+            wrapper.setProps( { onClickIcon, iconType: 'plus' } );
 
             driver.clickIcon();
             expect( onClickIcon ).toBeCalledTimes( 1 );

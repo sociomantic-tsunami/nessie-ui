@@ -46,13 +46,13 @@ export default class DatePickerDriver
     get prev()
     {
         return this.wrapper.find( IconButton ).findWhere( node =>
-            node.props().iconType === 'left' );
+            node.props().iconType === 'arrow-left' );
     }
 
     get next()
     {
         return this.wrapper.find( IconButton ).findWhere( node =>
-            node.props().iconType === 'right' );
+            node.props().iconType === 'arrow-right' );
     }
 
     get hour()

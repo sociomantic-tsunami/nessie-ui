@@ -1,13 +1,15 @@
 ## Component Description
 
-You’ll be needing this if you wanna use the Icon component...
+The [Feather Icons](https://feathericons.com/) as a sprite map. You’ll need this
+if you want to use the Icon component, or any other component that uses icons.
 
 ## Example Usage
 
-You should create a separate React mountpoint for the SpriteMap, e.g:
+You should create a separate ReactDOM mount point for SpriteMap, e.g:
 ```
 <html>
     <head>
+        <title>My Amazing Webapp</title>
         ...
     </head>
     <body>
