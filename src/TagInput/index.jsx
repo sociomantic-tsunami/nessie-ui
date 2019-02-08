@@ -7,18 +7,25 @@
  *
  */
 
-import React            from 'react';
-import PropTypes        from 'prop-types';
-import { escapeRegExp } from 'lodash';
+import React, { Children } from 'react';
+import PropTypes           from 'prop-types';
+import { escapeRegExp }    from 'lodash';
 
 import {
     ListBox,
     ScrollBox,
 } from '../index';
-import withDropdown                  from '../Addons/withDropdown';
-import { callMultiple, generateId }  from '../utils';
-import { addPrefix }                 from '../ComboBox/utils';
-import DumbTagInput                  from './dumb';
+import Popup               from '../Popup';
+import PopperWrapper       from '../PopperWrapper';
+import {
+    attachEvents,
+    callMultiple,
+    generateId,
+}  from '../utils';
+import { buildTagsFromValues } from './utils';
+import ThemeContext            from '../Theming/ThemeContext';
+import { createCssMap }        from '../Theming';
+import { addPrefix }           from '../ComboBox/utils';
 
 
 /**
@@ -62,77 +69,82 @@ function normalizeOptions( options )
         opt : { id: opt, text: opt } ) );
 }
 
-const TagInputwithDropdown = withDropdown( DumbTagInput );
-
 export default class TagInput extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
+         * Node containing Tag components ( overrides value prop )
+         */
+        children     : PropTypes.node,
+        /**
          *  CSS class name
          */
-        className        : PropTypes.string,
+        className    : PropTypes.string,
         /**
          *  CSS class map
          */
-        cssMap           : PropTypes.objectOf( PropTypes.string ),
+        cssMap       : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Initial value (when component is uncontrolled)
          */
-        defaultTags      : PropTypes.arrayOf( PropTypes.string ),
-        /**
-         *  Position of the dropdown relative to the input
-         */
-        dropdownPosition : PropTypes.oneOf( [ 'top', 'bottom' ] ),
+        defaultValue : PropTypes.arrayOf( PropTypes.string ),
         /**
          *  Display as error/invalid
          */
-        hasError         : PropTypes.bool,
+        hasError     : PropTypes.bool,
         /**
          *  Component id
          */
-        id               : PropTypes.string,
+        id           : PropTypes.string,
         /**
          *  Display as disabled
          */
-        isDisabled       : PropTypes.bool,
+        isDisabled   : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly       : PropTypes.bool,
+        isReadOnly   : PropTypes.bool,
         /**
          *  Change callback function
          */
-        onChange         : PropTypes.func,
+        onChange     : PropTypes.func,
         /**
          *  Placeholder text
          */
-        placeholder      : PropTypes.string,
+        placeholder  : PropTypes.string,
         /**
          *  Tag suggestions
          */
-        suggestions      : PropTypes.arrayOf( PropTypes.string ),
+        suggestions  : PropTypes.arrayOf( PropTypes.string ),
         /**
-         *  Current value
+         * Array of strings to build Tag components
          */
-        value            : PropTypes.arrayOf( PropTypes.string ),
+        value        : PropTypes.arrayOf( PropTypes.string ),
     };
 
     static defaultProps =
     {
-        className        : undefined,
-        cssMap           : undefined,
-        defaultTags      : undefined,
-        dropdownPosition : 'bottom',
-        hasError         : false,
-        id               : undefined,
-        isDisabled       : false,
-        isReadOnly       : false,
-        onChange         : undefined,
-        placeholder      : undefined,
-        suggestions      : undefined,
-        value            : undefined,
+        children     : undefined,
+        className    : undefined,
+        cssMap       : undefined,
+        defaultValue : undefined,
+        hasError     : false,
+        id           : undefined,
+        isDisabled   : false,
+        isReadOnly   : false,
+        onChange     : undefined,
+        placeholder  : undefined,
+        suggestions  : undefined,
+        value        : undefined,
     };
+
+    static displayName = 'TagInput';
+
+    inputRef = React.createRef();
+    outerRef = React.createRef();
 
     constructor( props )
     {
@@ -144,7 +156,8 @@ export default class TagInput extends React.Component
             id              : undefined,
             inputValue      : '',
             isOpen          : false,
-            value           : props.defaultTags,
+            value           : Array.isArray( props.defaultValue ) ?
+                props.defaultValue : [],
         };
 
         this.handleBlur            = this.handleBlur.bind( this );
@@ -167,8 +180,19 @@ export default class TagInput extends React.Component
                 state.filteredOptions : options,
             id    : props.id || state.id || generateId( 'TagInput' ),
             options,
-            value : props.value || state.value || [],
+            value : ( Array.isArray( props.value ) && props.value ) ||
+              state.value,
         };
+    }
+
+    componentDidMount()
+    {
+        this.popperWidth = this.outerRef.current.offsetWidth;
+    }
+
+    focus()
+    {
+        this.inputRef.current.focus();
     }
 
     handleBlur()
@@ -176,8 +200,10 @@ export default class TagInput extends React.Component
         this.setState( { isOpen: false } );
     }
 
-    handleChangeInput( { value } )
+    handleChangeInput( e )
     {
+        const { value } = e.target;
+
         this.setState( ( { options } ) =>
         {
             const filteredOptions = options.filter( ( { text } ) =>
@@ -237,8 +263,10 @@ export default class TagInput extends React.Component
         this.setState( { isOpen: true } );
     }
 
-    handleKeyDown( { preventNessieDefault, key } )
+    handleKeyDown( e )
     {
+        const { key } = e;
+
         if ( key === 'Backspace' )
         {
             this.setState( ( { inputValue, value } ) =>
@@ -306,7 +334,7 @@ export default class TagInput extends React.Component
         }
         else if ( key === 'ArrowUp' || key === 'ArrowDown' )
         {
-            preventNessieDefault();
+            e.preventDefault();
 
             this.setState( ( { activeOption, isOpen } ) =>
             {
@@ -345,7 +373,14 @@ export default class TagInput extends React.Component
 
     render()
     {
-        const { onChange, ...props } = this.props;
+        const {
+            children,
+            cssMap = createCssMap( this.context.TagInput, this.props ),
+            hasError,
+            isDisabled,
+            isReadOnly,
+            placeholder,
+        } = this.props;
 
         const {
             activeOption,
@@ -378,20 +413,66 @@ export default class TagInput extends React.Component
             </ScrollBox>
         );
 
+        let items = children ?
+            Children.toArray( children ) : buildTagsFromValues( value );
+
+        items = items.map( tag => (
+            React.cloneElement( tag, {
+                ...tag.props,
+                isDisabled : isDisabled || tag.props.isDisabled,
+                isReadOnly : isReadOnly || tag.props.isReadOnly,
+                onClick    : this.handleClickClose,
+            } )
+        ) );
+
+        const popperChildren = (
+            <label
+                { ...attachEvents( this.props ) }
+                className = { cssMap.main }
+                htmlFor   = { id }
+                ref       = { this.outerRef }>
+                { items }
+                <input
+                    className   = { cssMap.input }
+                    disabled    = { isDisabled }
+                    id          = { id }
+                    onBlur      = { callMultiple(
+                        this.handleBlur,
+                        this.props.onBlur,
+                    ) } // temporary fix
+                    onChange    = { this.handleChangeInput }
+                    onFocus     = { callMultiple(
+                        this.handleFocus,
+                        this.props.onFocus,
+                    ) } // temporary fix
+                    onKeyDown   = { callMultiple(
+                        this.handleKeyDown,
+                        this.props.onKeyDown,
+                    ) } // temporary fix
+                    placeholder = { placeholder }
+                    readOnly    = { isReadOnly }
+                    ref         = { this.inputRef }
+                    type        = "text"
+                    value       = { inputValue } />
+            </label>
+        );
+
+        const popperPopup = (
+            <Popup
+                hasError = { hasError }>
+                { dropdownContent }
+            </Popup>
+        );
 
         return (
-            <TagInputwithDropdown
-                { ...props }
-                dropdownIsOpen   = { listBoxOptions.length > 0 && isOpen }
-                dropdownProps    = { { children: dropdownContent } }
-                id               = { id }
-                inputValue       = { inputValue }
-                onBlur           = { callMultiple( this.handleBlur, this.props.onBlur ) } // temporary fix
-                onChangeInput    = { this.handleChangeInput }
-                onClickClose     = { this.handleClickClose }
-                onFocus          = { callMultiple( this.handleFocus, this.props.onFocus ) } // temporary fix
-                onKeyDown        = { callMultiple( this.handleKeyDown, this.props.onKeyDown ) } // temporary fix
-                value            = { value } />
+            <PopperWrapper
+                isVisible      = { isOpen }
+                popper         = { popperPopup }
+                popperOffset   = "S"
+                popperPosition = "bottom"
+                popperWidth    = { this.popperWidth }>
+                { popperChildren }
+            </PopperWrapper>
         );
     }
 }
