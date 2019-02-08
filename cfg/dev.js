@@ -20,6 +20,11 @@ const devConfig = merge( {}, baseConfig, {
     plugins : [],
 } );
 
-devConfig.module.rules[ 1 ].use[ 0 ] = 'style-loader';
+devConfig.module.rules[ 1 ].use[ 0 ] = {
+    loader  : 'style-loader',
+    options : {
+        insertAt : 'top',
+    },
+};
 
 module.exports = devConfig;
