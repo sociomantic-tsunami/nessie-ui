@@ -11,7 +11,7 @@
 
 import React, { Component }                       from 'react';
 import PropTypes                                  from 'prop-types';
-import { escapeRegExp }                           from 'lodash';
+import { castArray, escapeRegExp }                from 'lodash';
 
 import { ListBox, ScrollBox, Text }               from '..';
 
@@ -22,18 +22,6 @@ import { addPrefix, prefixOptions, removePrefix } from './utils';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
-
-/**
- * ensures that a value is an array, wrapping as neccessary
- *
- * @param   {any}   arrOrVal array or value
- *
- * @return  {Array}
- */
-function ensureArray( arrOrVal = [] )
-{
-    return Array.isArray( arrOrVal ) ? arrOrVal : [ arrOrVal ];
-}
 
 /**
  * gets the index of the option by the passed id
@@ -202,7 +190,7 @@ export default class ComboBox extends Component
             options         : undefined,
             searchValue     : undefined,
             selection       : isMultiselect ?
-                ensureArray( defaultValue ) : defaultValue,
+                castArray( defaultValue ) : defaultValue,
         };
 
         this.handleBlur            = this.handleBlur.bind( this );
@@ -231,7 +219,7 @@ export default class ComboBox extends Component
 
         if ( props.isMultiselect )
         {
-            selection = ensureArray( selection );
+            selection = castArray( selection );
         }
 
         const filteredOptions = state.searchValue && (
