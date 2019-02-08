@@ -311,6 +311,9 @@
 		"children": "{<Button label=\"Click me!\" />}",
 		"popper": "{<Popup padding=\"M\">Popup content</Popup>}"
 	},
+    "ProgressBar": {
+        "percentage": 20
+    },
 	"ScrollBar": {
 		"scrollMax": 100
 	},
