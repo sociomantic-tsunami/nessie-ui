@@ -1931,9 +1931,9 @@ babel-plugin-transform-exponentiation-operator@^6.22.0:
     babel-plugin-syntax-exponentiation-operator "^6.8.0"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-react-remove-prop-types@^0.4.22:
-  version "0.4.22"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-remove-prop-types/-/babel-plugin-transform-react-remove-prop-types-0.4.22.tgz#209f08958e17a003f524298efeb39e7ed74c6070"
+babel-plugin-transform-react-remove-prop-types@^0.4.24:
+  version "0.4.24"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-remove-prop-types/-/babel-plugin-transform-react-remove-prop-types-0.4.24.tgz#f2edaf9b4c6a5fbe5c1d678bfb531078c1555f3a"
 
 babel-plugin-transform-regenerator@^6.22.0:
   version "6.26.0"
@@ -4040,24 +4040,25 @@ entities@^1.1.1, entities@~1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.2.tgz#bdfa735299664dfafd34529ed4f8522a275fea56"
 
-enzyme-adapter-react-16@^1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.7.1.tgz#c37c4cb0fd75e88a063154a7a88096474914496a"
+enzyme-adapter-react-16@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.9.1.tgz#6d49a3a31c3a0fccf527610f31b837e0f307128a"
   dependencies:
-    enzyme-adapter-utils "^1.9.0"
+    enzyme-adapter-utils "^1.10.0"
     function.prototype.name "^1.1.0"
     object.assign "^4.1.0"
-    object.values "^1.0.4"
+    object.values "^1.1.0"
     prop-types "^15.6.2"
-    react-is "^16.6.1"
+    react-is "^16.7.0"
     react-test-renderer "^16.0.0-0"
 
-enzyme-adapter-utils@^1.9.0:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/enzyme-adapter-utils/-/enzyme-adapter-utils-1.9.1.tgz#68196fdaf2a9f51f31603cbae874618661233d72"
+enzyme-adapter-utils@^1.10.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/enzyme-adapter-utils/-/enzyme-adapter-utils-1.10.0.tgz#5836169f68b9e8733cb5b69cad5da2a49e34f550"
   dependencies:
     function.prototype.name "^1.1.0"
     object.assign "^4.1.0"
+    object.fromentries "^2.0.0"
     prop-types "^15.6.2"
     semver "^5.6.0"
 
@@ -4307,9 +4308,9 @@ eslint-plugin-promise@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-4.0.1.tgz#2d074b653f35a23d1ba89d8e976a985117d1c6a2"
 
-eslint-plugin-react@^7.12.3:
-  version "7.12.3"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.12.3.tgz#b9ca4cd7cd3f5d927db418a1950366a12d4568fd"
+eslint-plugin-react@^7.12.4:
+  version "7.12.4"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.12.4.tgz#b1ecf26479d61aee650da612e425c53a99f48c8c"
   dependencies:
     array-includes "^3.0.3"
     doctrine "^2.1.0"
@@ -6929,9 +6930,9 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
-loch-ness@3.0.0-alpha.2:
-  version "3.0.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/loch-ness/-/loch-ness-3.0.0-alpha.2.tgz#ef20bdce502f52b66f45e3cb01417b49db335f7b"
+loch-ness@3.0.0-alpha.3:
+  version "3.0.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/loch-ness/-/loch-ness-3.0.0-alpha.3.tgz#8d847ac7d6b785ed38d52d2d1cebee861e2f2aef"
   dependencies:
     "@babel/cli" "^7.0.0"
     "@babel/core" "^7.0.0"
@@ -6987,10 +6988,10 @@ loch-ness@3.0.0-alpha.2:
     precss "^1.4.0"
     prop-types "^15.6.2"
     raw-loader "^0.5.1"
-    react "^16.8.0-alpha.1"
+    react "^16.8.1"
     react-copy-to-clipboard "^4.1.0"
     react-docgen "^3.0.0-rc.2"
-    react-dom "^16.8.0-alpha.1"
+    react-dom "^16.8.1"
     react-dom-server "0.0.5"
     react-hot-loader "^1.2.9"
     react-redux "^4.4.6"
@@ -7903,7 +7904,7 @@ object.pick@^1.3.0:
   dependencies:
     isobject "^3.0.1"
 
-object.values@^1.0.4:
+object.values@^1.0.4, object.values@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/object.values/-/object.values-1.1.0.tgz#bf6810ef5da3e5325790eaaa2be213ea84624da9"
   dependencies:
@@ -9539,23 +9540,14 @@ react-dom-server@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/react-dom-server/-/react-dom-server-0.0.5.tgz#75b6c0f5946e08e84db9dda6eca5e48fed25f723"
 
-react-dom@^16.7.0:
-  version "16.7.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.7.0.tgz#a17b2a7ca89ee7390bc1ed5eb81783c7461748b8"
+react-dom@^16.8.1:
+  version "16.8.1"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.1.tgz#ec860f98853d09d39bafd3a6f1e12389d283dbb4"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.12.0"
-
-react-dom@^16.8.0-alpha.1:
-  version "16.8.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.0-alpha.1.tgz#dab73b8354ba2e498e3127d18e29d4546cea889e"
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    scheduler "^0.13.0-alpha.1"
+    scheduler "^0.13.1"
 
 react-hot-api@^0.4.5:
   version "0.4.7"
@@ -9568,9 +9560,13 @@ react-hot-loader@^1.2.9:
     react-hot-api "^0.4.5"
     source-map "^0.4.4"
 
-react-is@^16.6.1, react-is@^16.7.0:
+react-is@^16.7.0:
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.7.0.tgz#c1bd21c64f1f1364c6f70695ec02d69392f41bfa"
+
+react-is@^16.8.1:
+  version "16.8.1"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.1.tgz#a80141e246eb894824fb4f2901c0c50ef31d4cdb"
 
 react-popper@^1.3.3:
   version "1.3.3"
@@ -9610,7 +9606,7 @@ react-router@^3.0.0:
     prop-types "^15.5.6"
     warning "^3.0.0"
 
-react-test-renderer@^16.0.0-0, react-test-renderer@^16.7.0:
+react-test-renderer@^16.0.0-0:
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.7.0.tgz#1ca96c2b450ab47c36ba92cd8c03fcefc52ea01c"
   dependencies:
@@ -9619,23 +9615,23 @@ react-test-renderer@^16.0.0-0, react-test-renderer@^16.7.0:
     react-is "^16.7.0"
     scheduler "^0.12.0"
 
-react@^16.7.0:
-  version "16.7.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.7.0.tgz#b674ec396b0a5715873b350446f7ea0802ab6381"
+react-test-renderer@^16.8.1:
+  version "16.8.1"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.8.1.tgz#72845ad9269be526126e97853311982f781767be"
   dependencies:
-    loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.12.0"
+    react-is "^16.8.1"
+    scheduler "^0.13.1"
 
-react@^16.8.0-alpha.1:
-  version "16.8.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.8.0-alpha.1.tgz#c2b32689f3b466d3ce85a634dd9035f789d2cd97"
+react@^16.8.1:
+  version "16.8.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.8.1.tgz#ae11831f6cb2a05d58603a976afc8a558e852c4a"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.13.0-alpha.1"
+    scheduler "^0.13.1"
 
 read-cache@^1.0.0:
   version "1.0.0"
@@ -10223,9 +10219,9 @@ scheduler@^0.12.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-scheduler@^0.13.0-alpha.1:
-  version "0.13.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.13.0-alpha.1.tgz#753977fb4fb35d8cdd559868a11e46b640955556"
+scheduler@^0.13.1:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.13.1.tgz#1a217df1bfaabaf4f1b92a9127d5d732d85a9591"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
