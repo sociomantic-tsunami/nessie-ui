@@ -36,96 +36,41 @@ export default class Button extends React.Component
          */
         iconPosition : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
-         *  Icon type to display
+         *  Icon type to display (see https://feathericons.com/)
          */
-        iconType     : PropTypes.oneOf( [
-            'account',
-            'add-circle',
-            'add',
-            'alert',
-            'approved',
-            'arrow-down',
-            'arrow-up',
-            'arrow',
-            'bell',
-            'board',
-            'calendar',
-            'close-circle',
-            'close-thick',
-            'close',
-            'dash',
-            'dashboard',
-            'deactivated',
-            'declined',
-            'delete',
-            'down',
-            'download',
-            'duplicate',
-            'edit-circle',
-            'edit',
-            'ended',
-            'error',
-            'file',
-            'graph',
-            'hide',
-            'info',
-            'inspect',
-            'left',
-            'lightbulb',
-            'link',
-            'loader',
-            'megaphone',
-            'options',
-            'paused',
-            'pending',
-            'preview',
-            'puzzle-piece',
-            'reset',
-            'right',
-            'search',
-            'show',
-            'sociomantic',
-            'star-stroke',
-            'star',
-            'swap',
-            'table',
-            'up',
-            'upload',
-            'validation',
-            'none',
-        ] ),
+        iconType     : PropTypes.string,
         /**
          * Component identifier
          */
-        id          : PropTypes.string,
+        id           : PropTypes.string,
         /**
          *  Display as disabled
          */
-        isDisabled  : PropTypes.bool,
+        isDisabled   : PropTypes.bool,
         /**
          *  Display as loading
          */
-        isLoading   : PropTypes.bool,
+        isLoading    : PropTypes.bool,
         /**
          *  Label text
          */
-        label       : PropTypes.string,
+        label        : PropTypes.string,
         /**
          *  click callback function: ( { id } ) => ...
          */
-        onClick     : PropTypes.func,
+        onClick      : PropTypes.func,
         /**
          *  mouse out callback function: ( { id } ) => ...
          */
-        onMouseOut  : PropTypes.func,
+        onMouseOut   : PropTypes.func,
         /**
          *  mouse over callback function: ( { id } ) => ...
          */
-        onMouseOver : PropTypes.func,
+        onMouseOver  : PropTypes.func,
         /**
          *  Role/style
          */
-        role        : PropTypes.oneOf( [
+        role         : PropTypes.oneOf( [
             'default',
             'secondary',
             'subtle',

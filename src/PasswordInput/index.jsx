@@ -175,7 +175,7 @@ export default class PasswordInput extends React.Component
                 autoCapitalize = "off"
                 autoComplete   = "off"
                 autoCorrect    = "off"
-                iconType       = { passwordIsVisible ? 'hide' : 'show' }
+                iconType       = { passwordIsVisible ? 'eye-off' : 'eye' }
                 id             = { id }
                 inputType      = { passwordIsVisible ? 'text' : 'password' }
                 onClickIcon    = { this.handleClickIcon }

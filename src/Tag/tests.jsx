@@ -49,7 +49,7 @@ describe( 'Tag', () =>
     test( 'should have an IconButton with control theme and close icon as a \
 child', () =>
     {
-        expect( wrapper.find( IconButton ).props().iconType ).toBe( 'close' );
+        expect( wrapper.find( IconButton ).props().iconType ).toBe( 'x' );
     } );
 
     test( 'should have a string as a label when prop label is passed', () =>

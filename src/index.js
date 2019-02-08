@@ -24,10 +24,10 @@ import Modal             from './Modal';
 import PasswordInput     from './PasswordInput';
 import Popup             from './Popup';
 import PopperWrapper     from './PopperWrapper';
+import ProgressBar       from './ProgressBar';
 import ScrollBar         from './ScrollBar';
 import ScrollBox         from './ScrollBox';
 import Spinner           from './Spinner';
-import SpriteMap         from './SpriteMap';
 import Tab               from './Tab';
 import TabButton         from './TabButton';
 import Tabs              from './Tabs';
@@ -38,40 +38,6 @@ import TextArea          from './TextArea';
 import TextInput         from './TextInput';
 import TextInputWithIcon from './TextInputWithIcon';
 import Tooltip           from './Tooltip';
-
-
-export {
-    Button,
-    Card,
-    Checkbox,
-    ComboBox,
-    CurrencyInput,
-    DatePicker,
-    DateTimeInput,
-    Grid,
-    GridItem,
-    Icon,
-    IconButton,
-    ListBox,
-    Modal,
-    PasswordInput,
-    Popup,
-    PopperWrapper,
-    ScrollBar,
-    ScrollBox,
-    Spinner,
-    SpriteMap,
-    Tab,
-    TabButton,
-    Tabs,
-    Tag,
-    TagInput,
-    Text,
-    TextArea,
-    TextInput,
-    TextInputWithIcon,
-    Tooltip,
-};
 
 
 export default {
@@ -91,10 +57,44 @@ export default {
     PasswordInput,
     Popup,
     PopperWrapper,
+    ProgressBar,
     ScrollBar,
     ScrollBox,
     Spinner,
-    SpriteMap,
+    Tab,
+    TabButton,
+    Tabs,
+    Tag,
+    TagInput,
+    Text,
+    TextArea,
+    TextInput,
+    TextInputWithIcon,
+    Tooltip,
+};
+
+
+export {
+    Button,
+    Card,
+    Checkbox,
+    ComboBox,
+    CurrencyInput,
+    DatePicker,
+    DateTimeInput,
+    Grid,
+    GridItem,
+    Icon,
+    IconButton,
+    ListBox,
+    Modal,
+    PasswordInput,
+    Popup,
+    PopperWrapper,
+    ProgressBar,
+    ScrollBar,
+    ScrollBox,
+    Spinner,
     Tab,
     TabButton,
     Tabs,
@@ -113,3 +113,4 @@ export DefaultTheme      from './DefaultTheme';
 
 // Addons
 export withDropdown from './Addons/withDropdown';
+export SpriteMap    from './SpriteMap';
