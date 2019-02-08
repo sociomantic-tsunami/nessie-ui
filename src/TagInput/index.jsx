@@ -15,10 +15,10 @@ import {
     ListBox,
     ScrollBox,
 } from '../index';
-import withDropdown    from '../Addons/withDropdown';
-import { generateId }  from '../utils';
-import { addPrefix }   from '../ComboBox/utils';
-import DumbTagInput    from './dumb';
+import withDropdown                  from '../Addons/withDropdown';
+import { callMultiple, generateId }  from '../utils';
+import { addPrefix }                 from '../ComboBox/utils';
+import DumbTagInput                  from './dumb';
 
 
 /**
@@ -48,7 +48,7 @@ function getOption( id, options = [] )
 }
 
 /**
- * normalize array of options or tags
+ * normalize array of options or value
  *
  * @param   {Array} options options to normalize
  *
@@ -64,7 +64,7 @@ function normalizeOptions( options )
 
 const TagInputwithDropdown = withDropdown( DumbTagInput );
 
-export default class TagInputStateful extends React.Component
+export default class TagInput extends React.Component
 {
     static propTypes =
     {
@@ -77,7 +77,7 @@ export default class TagInputStateful extends React.Component
          */
         cssMap           : PropTypes.objectOf( PropTypes.string ),
         /**
-         *  Initial tags (when component is uncontrolled)
+         *  Initial value (when component is uncontrolled)
          */
         defaultTags      : PropTypes.arrayOf( PropTypes.string ),
         /**
@@ -113,9 +113,9 @@ export default class TagInputStateful extends React.Component
          */
         suggestions      : PropTypes.arrayOf( PropTypes.string ),
         /**
-         *  Current tags
+         *  Current value
          */
-        tags             : PropTypes.arrayOf( PropTypes.string ),
+        value            : PropTypes.arrayOf( PropTypes.string ),
     };
 
     static defaultProps =
@@ -131,7 +131,7 @@ export default class TagInputStateful extends React.Component
         onChange         : undefined,
         placeholder      : undefined,
         suggestions      : undefined,
-        tags             : undefined,
+        value            : undefined,
     };
 
     constructor( props )
@@ -144,7 +144,7 @@ export default class TagInputStateful extends React.Component
             id              : undefined,
             inputValue      : '',
             isOpen          : false,
-            tags            : props.defaultTags,
+            value           : props.defaultTags,
         };
 
         this.handleBlur            = this.handleBlur.bind( this );
@@ -165,15 +165,63 @@ export default class TagInputStateful extends React.Component
         return {
             filteredOptions : state.inputValue ?
                 state.filteredOptions : options,
-            id   : props.id || state.id || generateId( 'TagInput' ),
+            id    : props.id || state.id || generateId( 'TagInput' ),
             options,
-            tags : props.tags || state.tags || [],
+            value : props.value || state.value || [],
         };
+    }
+
+    enterNewTag()
+    {
+        this.setState( ( {
+            activeOption,
+            filteredOptions,
+            inputValue,
+            value,
+        } ) =>
+        {
+            let newTag;
+
+            if ( !value.find( tag => tag === inputValue ) )
+            {
+                if ( activeOption )
+                {
+                    const option =
+                        getOption( activeOption, filteredOptions );
+
+                    newTag = option.text;
+                }
+                else if ( inputValue )
+                {
+                    newTag = inputValue;
+                }
+            }
+
+            let newTags = value;
+            if ( newTag )
+            {
+                newTags = [ ...value, newTag ];
+
+                const { onChange } = this.props;
+                if ( typeof onChange === 'function' )
+                {
+                    onChange( { value: newTags } );
+                }
+            }
+
+            return {
+                activeOption    : undefined,
+                filteredOptions : undefined,
+                inputValue      : '',
+                value           : newTags,
+            };
+        } );
     }
 
     handleBlur()
     {
         this.setState( { isOpen: false } );
+        this.enterNewTag();
     }
 
     handleChangeInput( { value } )
@@ -194,40 +242,40 @@ export default class TagInputStateful extends React.Component
         } );
     }
 
-    handleClickClose( { value } )
+    handleClickClose( { id } )
     {
-        this.setState( ( { tags } ) =>
+        this.setState( ( { value } ) =>
         {
-            const newTags = tags.filter( tag => tag !== value );
+            const newTags = value.filter( tag => tag !== id );
 
             const { onChange } = this.props;
             if ( typeof onChange === 'function' )
             {
-                onChange( { tags: newTags } );
+                onChange( { value: newTags } );
             }
 
-            return { tags: newTags };
+            return { value: newTags };
         } );
     }
 
     handleClickOption( { id } )
     {
-        this.setState( ( { filteredOptions, tags } ) =>
+        this.setState( ( { filteredOptions, value } ) =>
         {
             const option = getOption( id, filteredOptions );
-            const newTags = [ ...tags, option.text ];
+            const newTags = [ ...value, option.text ];
 
             const { onChange } = this.props;
             if ( typeof onChange === 'function' )
             {
-                onChange( { tags: newTags } );
+                onChange( { value: newTags } );
             }
 
             return {
                 activeOption    : undefined,
                 filteredOptions : undefined,
                 inputValue      : '',
-                tags            : newTags,
+                value           : newTags,
             };
         } );
     }
@@ -241,68 +289,26 @@ export default class TagInputStateful extends React.Component
     {
         if ( key === 'Backspace' )
         {
-            this.setState( ( { inputValue, tags } ) =>
+            this.setState( ( { inputValue, value } ) =>
             {
-                let newTags = tags;
+                let newTags = value;
                 if ( !inputValue )
                 {
-                    newTags = tags.slice( 0, -1 );
+                    newTags = value.slice( 0, -1 );
 
                     const { onChange } = this.props;
                     if ( typeof onChange === 'function' )
                     {
-                        onChange( { tags: newTags } );
+                        onChange( { value: newTags } );
                     }
                 }
 
-                return { tags: newTags };
+                return { value: newTags };
             } );
         }
         else if ( key === 'Enter' )
         {
-            this.setState( ( {
-                activeOption,
-                filteredOptions,
-                inputValue,
-                tags,
-            } ) =>
-            {
-                let newTag;
-
-                if ( !tags.find( tag => tag === inputValue ) )
-                {
-                    if ( activeOption )
-                    {
-                        const option =
-                            getOption( activeOption, filteredOptions );
-
-                        newTag = option.text;
-                    }
-                    else if ( inputValue )
-                    {
-                        newTag = inputValue;
-                    }
-                }
-
-                let newTags = tags;
-                if ( newTag )
-                {
-                    newTags = [ ...tags, newTag ];
-
-                    const { onChange } = this.props;
-                    if ( typeof onChange === 'function' )
-                    {
-                        onChange( { tags: newTags } );
-                    }
-                }
-
-                return {
-                    activeOption    : undefined,
-                    filteredOptions : undefined,
-                    inputValue      : '',
-                    tags            : newTags,
-                };
-            } );
+            this.enterNewTag();
         }
         else if ( key === 'ArrowUp' || key === 'ArrowDown' )
         {
@@ -353,12 +359,12 @@ export default class TagInputStateful extends React.Component
             id,
             inputValue,
             isOpen,
-            tags,
+            value,
         } = this.state;
 
         const listBoxOptions = filteredOptions.reduce( ( result, opt ) =>
         {
-            if ( !tags.find( tag => tag === opt.id  ) )
+            if ( !value.find( tag => tag === opt.id  ) )
             {
                 result.push( opt );
             }
@@ -386,12 +392,12 @@ export default class TagInputStateful extends React.Component
                 dropdownProps    = { { children: dropdownContent } }
                 id               = { id }
                 inputValue       = { inputValue }
-                onBlur           = { this.handleBlur }
+                onBlur           = { callMultiple( this.handleBlur, this.props.onBlur ) } // temporary fix
                 onChangeInput    = { this.handleChangeInput }
                 onClickClose     = { this.handleClickClose }
-                onFocus          = { this.handleFocus }
-                onKeyDown        = { this.handleKeyDown }
-                tags             = { tags } />
+                onFocus          = { callMultiple( this.handleFocus, this.props.onFocus ) } // temporary fix
+                onKeyDown        = { callMultiple( this.handleKeyDown, this.props.onKeyDown ) } // temporary fix
+                value            = { value } />
         );
     }
 }

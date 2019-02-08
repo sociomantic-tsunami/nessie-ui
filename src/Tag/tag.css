@@ -39,7 +39,7 @@
 
         svg
         {
-            fill:       var( --PC-BLUE );
+            color:  var( --PC-BLUE );
         }
     }
 }

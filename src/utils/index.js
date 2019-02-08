@@ -9,6 +9,22 @@
 
 import eventsList from './eventsList';
 
+/**
+ * callMultiple( props )
+ *
+ * A temporary helper function that callls multiple callbacks, one after
+ * the other.
+ *
+ * @return  {Function}    event handler
+ */
+function callMultiple( ...callbacks )
+{
+    return function eventHandler( ...args )
+    {
+        callbacks.forEach( cb => typeof cb === 'function' && cb( ...args ) );
+    };
+}
+
 
 /**
  * attachEvents( props )
@@ -23,7 +39,8 @@ import eventsList from './eventsList';
 function attachEvents( props, customizers = {} )
 {
     const handlers = {};
-    Object.entries( props ).forEach( ( [ propName, propValue ] ) => {
+    Object.entries( props ).forEach( ( [ propName, propValue ] ) =>
+    {
         if ( eventsList.includes( propName ) )
         {
             handlers[ propName ] =
@@ -92,13 +109,15 @@ function createEventHandler( func, customizer )
     // construct standardized payload for consumer’s handler...
     return function eventHandler( e )
     {
-        const { currentTarget, relatedTarget, target, type } = e;
+        const {
+            currentTarget, relatedTarget, target, type,
+        } = e;
 
         const eventPayload = {
             preventNessieDefault()
             {
                 e.preventDefault();
-            }
+            },
         };
 
         e.stopPropagation(); // (TODO: find a way to flag event as “handled” without stopping propagation!)
@@ -172,6 +191,7 @@ const mapAria = ( ariaObj = {} ) =>
 export {
     attachEvents,
     buildDisplayName,
+    callMultiple,
     clamp,
     createEventHandler,
     generateId,
@@ -182,6 +202,7 @@ export {
 export default {
     attachEvents,
     buildDisplayName,
+    callMultiple,
     clamp,
     createEventHandler,
     generateId,

@@ -14,54 +14,56 @@ const distConfig = merge( {}, baseConfig, {
 
     devtool   : 'source-map',
     externals : {
-        'codemirror/mode/jsx/jsx' : {
-            commonjs  : 'codemirror/mode/jsx/jsx',
-            commonjs2 : 'codemirror/mode/jsx/jsx',
-        },
-        'componentDriver' : {
-            commonjs  : 'nessie-ui/dist/componentDriver',
-            commonjs2 : 'nessie-ui/dist/componentDriver',
-            'window'  : 'ComponentDriver',
-        },
-        'flounder/src/core/flounder' : {
-            commonjs  : 'flounder/src/core/flounder',
-            commonjs2 : 'flounder/src/core/flounder',
-            'window'  : 'Flounder',
+        'feather-icons' : {
+            commonjs  : 'feather-icons',
+            commonjs2 : 'feather-icons',
+            window    : 'FeatherIcons',
         },
         'nessie-ui' : {
-            'commonjs'  : 'nessie-ui',
-            'commonjs2' : 'nessie-ui',
-            'window'    : 'Nessie',
+            commonjs  : 'nessie-ui',
+            commonjs2 : 'nessie-ui',
+            window    : 'Nessie',
         },
         'prop-types' : {
-            'commonjs'  : 'prop-types',
-            'commonjs2' : 'prop-types',
-            'window'    : 'PropTypes',
+            commonjs  : 'prop-types',
+            commonjs2 : 'prop-types',
+            window    : 'PropTypes',
         },
-        addons : {
-            'commonjs'  : 'nessie-ui/dist/addons',
-            'commonjs2' : 'nessie-ui/dist/addons',
+        'react-popper' : {
+            'commonjs'  : 'react-popper',
+            'commonjs2' : 'react-popper',
+            'window'    : 'ReactPopper'
         },
-        codemirror : {
-            'commonjs'  : 'codemirror',
-            'commonjs2' : 'codemirror',
-            'window'    : 'CodeMirror',
+        componentDriver : {
+            commonjs  : 'nessie-ui/dist/componentDriver',
+            commonjs2 : 'nessie-ui/dist/componentDriver',
+            window    : 'ComponentDriver',
+        },
+        lodash : {
+            'commonjs'  : 'lodash',
+            'commonjs2' : 'lodash',
+            'window'    : '_'
+        },
+        moment : {
+            'commonjs'  : 'moment',
+            'commonjs2' : 'moment',
+            'window'    : 'moment'
         },
         react : {
-            'commonjs'  : 'react',
-            'commonjs2' : 'react',
-            'window'    : 'React',
+            commonjs  : 'react',
+            commonjs2 : 'react',
+            window    : 'React',
         },
-        mode         : 'production',
-        optimization : {
-            minimizer : [
-                new UglifyJsPlugin( {
-                    cache     : true,
-                    parallel  : true,
-                    sourceMap : true,
-                } ),
-            ],
-        },
+    },
+    mode         : 'production',
+    optimization : {
+        minimizer : [
+            new UglifyJsPlugin( {
+                cache     : true,
+                parallel  : true,
+                sourceMap : true,
+            } ),
+        ],
     },
 } );
 
