@@ -21,6 +21,7 @@
         "global-require"            : "off",
         "implicit-arrow-linebreak"  : "off",
         "import/first"              : "off",
+        "import/no-cycle"           : "off",
         "import/no-unresolved"      : "error",
         "import/order"              : [
             "error",
@@ -117,6 +118,7 @@
         "react/jsx-wrap-multilines"          : [ "error", { "arrow": false } ],
         "react/no-unused-prop-types"         : "warn",
         "react/jsx-one-expression-per-line"  : "off",
+        "react-hooks/rules-of-hooks"         : "error",
         "require-jsdoc"                      : [
             "error",
             {
@@ -173,6 +175,7 @@
         "compat",
         "import",
         "jsx-a11y",
-        "promise"
+        "promise",
+        "react-hooks"
     ]
 }
