@@ -7,7 +7,7 @@
  *
  */
 
-import classNames                     from 'classnames/bind';
+import classNames                from 'classnames/bind';
 
 import buttonClasses             from './Button/button.css';
 import cardClasses               from './Card/card.css';
@@ -24,6 +24,7 @@ import listBoxOptionClasses      from './ListBox/listBoxOption.css';
 import listBoxOptionGroupClasses from './ListBox/listBoxOptionGroup.css';
 import modalClasses              from './Modal/modal.css';
 import popupClasses              from './Popup/popup.css';
+import progressBarClasses        from './ProgressBar/progressBar.css';
 import scrollBarClasses          from './ScrollBar/scrollBar.css';
 import scrollBoxClasses          from './ScrollBox/scrollBox.css';
 import spinnerClasses            from './Spinner/spinner.css';
@@ -178,6 +179,13 @@ export default {
             props.className,
         ),
         ...popupClasses,
+    } ),
+    ProgressBar : props => ( {
+        main : classNames.bind( progressBarClasses )(
+            'default',
+            props.className,
+        ),
+        ...progressBarClasses,
     } ),
     ScrollBar : props => ( {
         main : classNames.bind( scrollBarClasses )(

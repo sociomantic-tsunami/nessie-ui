@@ -189,6 +189,53 @@ export default class TagInput extends React.Component
         this.popperWidth = this.outerRef.current.offsetWidth;
     }
 
+    enterNewTag()
+    {
+        this.setState( ( {
+            activeOption,
+            filteredOptions,
+            inputValue,
+            value,
+        } ) =>
+        {
+            let newTag;
+
+            if ( !value.find( tag => tag === inputValue ) )
+            {
+                if ( activeOption )
+                {
+                    const option =
+                        getOption( activeOption, filteredOptions );
+
+                    newTag = option.text;
+                }
+                else if ( inputValue )
+                {
+                    newTag = inputValue;
+                }
+            }
+
+            let newTags = value;
+            if ( newTag )
+            {
+                newTags = [ ...value, newTag ];
+
+                const { onChange } = this.props;
+                if ( typeof onChange === 'function' )
+                {
+                    onChange( { value: newTags } );
+                }
+            }
+
+            return {
+                activeOption    : undefined,
+                filteredOptions : this.filterOptions( newTags ),
+                inputValue      : '',
+                value           : newTags,
+            };
+        } );
+    }
+
     focus()
     {
         this.inputRef.current.focus();
@@ -203,6 +250,7 @@ export default class TagInput extends React.Component
     handleBlur()
     {
         this.setState( { isOpen: false } );
+        this.enterNewTag();
     }
 
     handleChangeInput( e )
@@ -299,51 +347,7 @@ export default class TagInput extends React.Component
         }
         else if ( key === 'Enter' )
         {
-            this.setState( ( {
-                activeOption,
-                filteredOptions,
-                inputValue,
-                value,
-            } ) =>
-            {
-                let newTag;
-
-                if ( !value.find( tag => tag === inputValue ) )
-                {
-                    if ( activeOption )
-                    {
-                        const option = getOption(
-                            activeOption,
-                            filteredOptions,
-                        );
-
-                        newTag = option.text;
-                    }
-                    else if ( inputValue )
-                    {
-                        newTag = inputValue;
-                    }
-                }
-
-                let newTags = value;
-                if ( newTag )
-                {
-                    newTags = [ ...value, newTag ];
-
-                    const { onChange } = this.props;
-                    if ( typeof onChange === 'function' )
-                    {
-                        onChange( { value: newTags } );
-                    }
-                }
-
-                return {
-                    activeOption    : undefined,
-                    filteredOptions : this.filterOptions( newTags ),
-                    inputValue      : '',
-                    value           : newTags,
-                };
-            } );
+            this.enterNewTag();
         }
         else if ( key === 'ArrowUp' || key === 'ArrowDown' )
         {
