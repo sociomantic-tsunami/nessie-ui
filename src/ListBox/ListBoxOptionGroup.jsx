@@ -13,61 +13,59 @@ import PropTypes        from 'prop-types';
 import { Text }         from '..';
 
 import { mapAria }      from '../utils';
-import ThemeContext     from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming';
+import { useTheme }     from '../Theming';
 
-export default class ListBoxOptionGroup extends React.Component
+const componentName = 'ListBoxOptionGroup';
+
+const ListBoxOptionGroup = props =>
 {
-    static contextType = ThemeContext;
+    const {
+        aria,
+        children,
+        header,
+        options,
+    } = props;
 
-    static propTypes = {
-        aria      : PropTypes.objectOf( PropTypes.string ),
-        children  : PropTypes.node,
-        className : PropTypes.string,
-        cssMap    : PropTypes.objectOf( PropTypes.string ),
-        header    : PropTypes.string,
-        options   : PropTypes.arrayOf( PropTypes.object ),
-    };
+    const cssMap = useTheme( componentName, props );
 
-    static defaultProps = {
-        aria      : undefined,
-        children  : undefined,
-        className : undefined,
-        cssMap    : undefined,
-        header    : undefined,
-        options   : undefined,
-    };
+    return (
+        <li
+            { ...mapAria( { ...aria, role: 'none' } ) }
+            className = { cssMap.main }>
+            <div className = { cssMap.header }>
+                <Text className = { cssMap.headerText }>{ header }</Text>
+            </div>
+            <ul
+                { ...mapAria( {
+                    expanded : true,
+                    label    : header,
+                    role     : 'group',
+                } ) }
+                className = { cssMap.options }>
+                { children || options }
+            </ul>
+        </li>
+    );
+};
 
-    render()
-    {
-        const {
-            aria,
-            children,
-            cssMap = createCssMap(
-                this.context.ListBoxOptionGroup,
-                this.props,
-            ),
-            header,
-            options,
-        } = this.props;
+ListBoxOptionGroup.propTypes = {
+    aria      : PropTypes.objectOf( PropTypes.string ),
+    children  : PropTypes.node,
+    className : PropTypes.string,
+    cssMap    : PropTypes.objectOf( PropTypes.string ),
+    header    : PropTypes.string,
+    options   : PropTypes.arrayOf( PropTypes.object ),
+};
 
-        return (
-            <li
-                { ...mapAria( { ...aria, role: 'none' } ) }
-                className = { cssMap.main }>
-                <div className = { cssMap.header }>
-                    <Text className = { cssMap.headerText }>{ header }</Text>
-                </div>
-                <ul
-                    { ...mapAria( {
-                        expanded : true,
-                        label    : header,
-                        role     : 'group',
-                    } ) }
-                    className = { cssMap.options }>
-                    { children || options }
-                </ul>
-            </li>
-        );
-    }
-}
+ListBoxOptionGroup.defaultProps = {
+    aria      : undefined,
+    children  : undefined,
+    className : undefined,
+    cssMap    : undefined,
+    header    : undefined,
+    options   : undefined,
+};
+
+ListBoxOptionGroup.displayName = componentName;
+
+export default ListBoxOptionGroup;
