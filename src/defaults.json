@@ -262,10 +262,10 @@
 		"children": "{<Text>Grid Item dummy text</Text>}"
 	},
 	"Icon": {
-		"type": "add"
+		"type": "star"
 	},
 	"IconButton": {
-		"iconType": "add",
+		"iconType": "plus",
 		"label": "Add"
 	},
 	"ListBox": {
@@ -311,6 +311,9 @@
 		"children": "{<Button label=\"Click me!\" />}",
 		"popper": "{<Popup padding=\"M\">Popup content</Popup>}"
 	},
+    "ProgressBar": {
+        "percentage": 20
+    },
 	"ScrollBar": {
 		"scrollMax": 100
 	},
@@ -338,7 +341,7 @@
 		"label": "Name",
 		"inputPlaceholder": "name",
 		"inputType": "text",
-		"iconType": "show"
+		"iconType": "star"
 	},
 	"Tooltip": {
 		"message": "Pro tip!"
