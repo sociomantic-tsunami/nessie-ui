@@ -6,7 +6,7 @@ A Nessie IconButton is a Icon inside a HTML `<button type="button">` element.
 Example Usage
 -------------
 
-    <IconButton iconType="right">
+    <IconButton iconType="arrow-right">
         Next page
     </IconButton>
 

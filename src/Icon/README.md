@@ -1,16 +1,16 @@
 ## Component Description
 
-A Nessie Icon contains an `<svg>` that can display different icons in different
-forms.
-
+Displays and icon from the Nessie spitemap. SpriteMap component to be loaded on
+the page.
 
 ## Example Usage
 
-_Add_ icon:
+_Alert_ icon:
+```
+<Icon type="alert-circle"/>
+```
 
-	<Icon type="add">Add</Icon>
-
-
-_Alert_ icon with stroke:
-
-	<Icon type="alert"/>
+_Plus_ icon with description (used as `aria-labeledby`):
+```
+<Icon type="plus">Add</Icon>
+```
