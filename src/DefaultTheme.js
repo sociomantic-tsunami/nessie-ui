@@ -198,15 +198,13 @@ export default {
     ScrollBox : props => ( {
         main : classNames.bind( scrollBoxClasses )(
             'default',
-            {
-                scrollBarsAreVisible   : props.scrollBarsAreVisible,
-                scrollIndicatorVariant : props.scrollIndicatorVariant,
-            },
+            { scrollBarsAreVisible: props.scrollBarsAreVisible },
             `paddingX__${Array.isArray( props.padding ) ?
                 props.padding[ 0 ] : props.padding}`,
             `paddingY__${Array.isArray( props.padding ) ?
                 props.padding[ 1 ] : props.padding}`,
             `scroll__${props.scroll}`,
+            `scrollIndicatorVariant__${props.scrollIndicatorVariant}`,
             props.className,
         ),
         ...scrollBoxClasses,
@@ -279,13 +277,13 @@ export default {
             'default',
             {
                 disabled : props.isDisabled,
-                error    : !props.isDisabled && props.hasError
+                error    : !props.isDisabled && props.hasError,
             },
             `align__${props.textAlign}`,
             `resize__${props.resize}`,
             props.className,
         ),
-        ...textAreaClasses
+        ...textAreaClasses,
     } ),
     TextInput : props => ( {
         main : classNames.bind( textInputClasses )(
