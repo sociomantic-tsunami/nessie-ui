@@ -94,7 +94,7 @@ export default class PopperWrapper extends Component
 
     componentDidMount()
     {
-        if ( this.props.onClickOutside )
+        if ( this.props.isVisible && this.props.onClickOutside )
         {
             addEventListener( 'mousedown', this.handleClickOutSide, false );
         }
@@ -102,13 +102,26 @@ export default class PopperWrapper extends Component
 
     componentDidUpdate( prevProps )
     {
-        if ( prevProps.onClickOutside !== this.props.onClickOutside )
+        if ( this.props.isVisible )
         {
-            removeEventListener( 'mousedown', this.handleClickOutSide, false );
+            this.scheduleUpdate();
 
-            if ( this.props.onClickOutside )
+            if ( prevProps.onClickOutside !== this.props.onClickOutside )
             {
-                addEventListener( 'mousedown', this.handleClickOutSide, false );
+                removeEventListener(
+                    'mousedown',
+                    this.handleClickOutSide,
+                    false,
+                );
+
+                if ( this.props.onClickOutside )
+                {
+                    addEventListener(
+                        'mousedown',
+                        this.handleClickOutSide,
+                        false,
+                    );
+                }
             }
         }
     }
@@ -123,13 +136,10 @@ export default class PopperWrapper extends Component
 
     handleClickOutSide( e )
     {
-        if ( this.props.isVisible )
+        if ( !( this.referenceRef.current.contains(  e.target ) ||
+                this.popperRef.current.contains( e.target ) ) )
         {
-            if ( !( this.referenceRef.current.contains(  e.target ) ||
-                    this.popperRef.current.contains( e.target ) ) )
-            {
-                this.props.onClickOutside();
-            }
+            this.props.onClickOutside();
         }
     }
 
@@ -172,18 +182,23 @@ export default class PopperWrapper extends Component
                                 offset : `0, ${offset}`,
                             },
                         } : offset }>
-                        { ( { ref, style } ) => (
-                            <div
-                                ref   = { ref }
-                                style = { matchRefWidth ? {
-                                    'width' : this.referenceRef.current
-                                        .clientWidth,
-                                    ...style,
-                                } : style }>
-                                { popper }
-                            </div> ) }
+                        { ( { ref, style, scheduleUpdate } ) =>
+                        {
+                            this.scheduleUpdate = scheduleUpdate;
+
+                            return (
+                                <div
+                                    ref   = { ref }
+                                    style = { matchRefWidth ? {
+                                        'width' : this.referenceRef.current
+                                            .clientWidth,
+                                        ...style,
+                                    } : style }>
+                                    { popper }
+                                </div> );
+                        } }
                     </Popper>,
-                    document.getElementById( container ) || document.body,
+                    document.getElementById( container ) || document.body,
                 ) }
             </Manager>
         );
