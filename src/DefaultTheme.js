@@ -7,7 +7,7 @@
  *
  */
 
-import classNames                     from 'classnames/bind';
+import classNames                from 'classnames/bind';
 
 import buttonClasses             from './Button/button.css';
 import cardClasses               from './Card/card.css';
@@ -24,6 +24,7 @@ import listBoxOptionClasses      from './ListBox/listBoxOption.css';
 import listBoxOptionGroupClasses from './ListBox/listBoxOptionGroup.css';
 import modalClasses              from './Modal/modal.css';
 import popupClasses              from './Popup/popup.css';
+import progressBarClasses        from './ProgressBar/progressBar.css';
 import scrollBarClasses          from './ScrollBar/scrollBar.css';
 import scrollBoxClasses          from './ScrollBox/scrollBox.css';
 import spinnerClasses            from './Spinner/spinner.css';
@@ -179,6 +180,13 @@ export default {
         ),
         ...popupClasses,
     } ),
+    ProgressBar : props => ( {
+        main : classNames.bind( progressBarClasses )(
+            'default',
+            props.className,
+        ),
+        ...progressBarClasses,
+    } ),
     ScrollBar : props => ( {
         main : classNames.bind( scrollBarClasses )(
             'default',
@@ -190,15 +198,13 @@ export default {
     ScrollBox : props => ( {
         main : classNames.bind( scrollBoxClasses )(
             'default',
-            {
-                scrollBarsAreVisible   : props.scrollBarsAreVisible,
-                scrollIndicatorVariant : props.scrollIndicatorVariant,
-            },
+            { scrollBarsAreVisible: props.scrollBarsAreVisible },
             `paddingX__${Array.isArray( props.padding ) ?
                 props.padding[ 0 ] : props.padding}`,
             `paddingY__${Array.isArray( props.padding ) ?
                 props.padding[ 1 ] : props.padding}`,
             `scroll__${props.scroll}`,
+            `scrollIndicatorVariant__${props.scrollIndicatorVariant}`,
             props.className,
         ),
         ...scrollBoxClasses,
@@ -271,13 +277,13 @@ export default {
             'default',
             {
                 disabled : props.isDisabled,
-                error    : !props.isDisabled && props.hasError
+                error    : !props.isDisabled && props.hasError,
             },
             `align__${props.textAlign}`,
             `resize__${props.resize}`,
             props.className,
         ),
-        ...textAreaClasses
+        ...textAreaClasses,
     } ),
     TextInput : props => ( {
         main : classNames.bind( textInputClasses )(
