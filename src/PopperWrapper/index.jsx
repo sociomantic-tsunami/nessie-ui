@@ -31,6 +31,10 @@ export default class PopperWrapper extends Component
          */
         isVisible      : PropTypes.bool,
         /**
+         *  pop up width matches reference width
+         */
+        matchRefWidth  : PropTypes.bool,
+        /**
          *  Click Outside callback: ( e ) => ...
          */
         onClickOutside : PropTypes.func,
@@ -62,10 +66,6 @@ export default class PopperWrapper extends Component
             'right-start',
             'right-end',
         ] ),
-        /**
-         *  Popper width
-         */
-        popperWidth : PropTypes.number,
     }
 
     static defaultProps =
@@ -73,11 +73,11 @@ export default class PopperWrapper extends Component
         children       : undefined,
         container      : undefined,
         isVisible      : false,
+        matchRefWidth  : undefined,
         onClickOutside : undefined,
         popper         : undefined,
         popperOffset   : 'none',
         popperPosition : 'auto',
-        popperWidth    : undefined,
     }
 
     static displayName = 'PopperWrapper'
@@ -139,10 +139,10 @@ export default class PopperWrapper extends Component
             children,
             container,
             isVisible,
+            matchRefWidth,
             popper,
             popperOffset,
             popperPosition,
-            popperWidth,
         } = this.props;
 
         const offset = {
@@ -175,13 +175,13 @@ export default class PopperWrapper extends Component
                         { ( { ref, style } ) => (
                             <div
                                 ref   = { ref }
-                                style = { popperWidth ? {
-                                    'width' : `${popperWidth}px`,
+                                style = { matchRefWidth ? {
+                                    'width' : this.referenceRef.current
+                                        .clientWidth,
                                     ...style,
                                 } : style }>
                                 { popper }
-                            </div>
-                        ) }
+                            </div> ) }
                     </Popper>,
                     container ? document.querySelector( container ) :
                         document.body,

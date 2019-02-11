@@ -200,11 +200,6 @@ export default class ComboBox extends Component
         };
     }
 
-    componentDidMount()
-    {
-        this.popperWidth = this.inputRef.current.inputRef.current.offsetWidth;
-    }
-
     componentDidUpdate()
     {
         const { current: scrollBoxRef } = this.scrollBoxRef;
@@ -396,14 +391,6 @@ export default class ComboBox extends Component
         } );
     }
 
-    handleReRender()
-    {
-        if ( !this.popperWidth )
-        {
-            this.forceUpdate();
-        }
-    }
-
     render()
     {
         const {
@@ -428,8 +415,6 @@ export default class ComboBox extends Component
 
         const flatOption = getOption( value, flatOptions );
         const optionVal = flatOption ? flatOption.text : undefined;
-
-        this.handleReRender();
 
         let optionsToShow = options;
 
@@ -530,10 +515,10 @@ export default class ComboBox extends Component
         return (
             <PopperWrapper
                 isVisible      = { isOpen }
+                matchRefWidth
                 popper         = { popperPopup }
                 popperOffset   = "S"
-                popperPosition = "bottom"
-                popperWidth    = { this.popperWidth }>
+                popperPosition = "bottom">
                 { popperChildren }
             </PopperWrapper>
         );

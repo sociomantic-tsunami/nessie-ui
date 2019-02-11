@@ -184,11 +184,6 @@ export default class TagInput extends React.Component
         };
     }
 
-    componentDidMount()
-    {
-        this.popperWidth = this.outerRef.current.offsetWidth;
-    }
-
     enterNewTag()
     {
         this.setState( ( {
@@ -484,10 +479,10 @@ export default class TagInput extends React.Component
         return (
             <PopperWrapper
                 isVisible      = { listBoxOptions.length > 0 && isOpen }
+                matchRefWidth
                 popper         = { popperPopup }
                 popperOffset   = "S"
-                popperPosition = "bottom"
-                popperWidth    = { this.popperWidth }>
+                popperPosition = "bottom">
                 { popperChildren }
             </PopperWrapper>
         );
