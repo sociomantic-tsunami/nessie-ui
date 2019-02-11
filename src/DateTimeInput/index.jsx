@@ -29,26 +29,7 @@ const DISPLAY_FORMATTING = {
     minute : 'YYYY/MM/DD HH:mm',
 };
 
-const PARSE_FORMATTING = [
-    {
-        predicate        : /^\d{4}\/\d{1,2}$/,
-        requirePrecision : 'month',
-        format           : 'YYYY/M',
-    },
-    {
-        predicate        : /^\d{4}\/\d{1,2}\/\d{1,2}$/,
-        requirePrecision : 'day',
-        format           : 'YYYY/M/D',
-    },
-    {
-        predicate :
-            /^\d{4}\/\d{1,2}\/\d{1,2}\s+\d{1,2}:\d{1,2}(:\d{1,2})?$/,
-        requirePrecision : 'minute',
-        format           : 'YYYY/M/D H:m',
-    },
-];
-
-const PRECISIONS = [ 'minute', 'hour', 'day', 'month' ];
+const DEFAULT_FORMAT = 'YYYY/M/D H:m';
 
 const DAY_LABELS = _.range( 0, 7 ).map( day => ( {
     label : copy.dayHeaders[ day ],
@@ -97,32 +78,15 @@ function isTimestampEqual( ts1, ts2, precision )
  *
  * @param {String}  inputValue human readable date
  * @param {Number}  timestamp current timestamp
- * @param {String}  format custom format (overrides default format)
+ * @param {String}  format date format
  *
  * @return {Number} timestamp
  */
-function tryParseInputValue( inputValue, timestamp, format )
+function tryParseInputValue( inputValue, timestamp, format = DEFAULT_FORMAT )
 {
     if ( !inputValue ) return null;
 
-    let newTimestamp;
-
-    if ( format )
-    {
-        newTimestamp = moment.utc( inputValue, format ).valueOf();
-    }
-    else
-    {
-        const parser =
-            PARSE_FORMATTING.find( ( { predicate, requirePrecision } ) =>
-                predicate.test( inputValue ) &&
-                PRECISIONS.includes( requirePrecision ) );
-
-        newTimestamp =
-            moment.utc( inputValue, format || parser.format ).valueOf();
-    }
-
-    return _.isNaN( newTimestamp ) ? timestamp : newTimestamp;
+    return moment.utc( inputValue, format ).valueOf() || timestamp;
 }
 
 /**

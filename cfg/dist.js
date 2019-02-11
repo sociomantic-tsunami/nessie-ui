@@ -32,7 +32,7 @@ const distConfig = merge( {}, baseConfig, {
         'react-popper' : {
             'commonjs'  : 'react-popper',
             'commonjs2' : 'react-popper',
-            'window'    : 'ReactPopper'
+            'window'    : 'ReactPopper',
         },
         componentDriver : {
             commonjs  : 'nessie-ui/dist/componentDriver',
@@ -42,12 +42,12 @@ const distConfig = merge( {}, baseConfig, {
         lodash : {
             'commonjs'  : 'lodash',
             'commonjs2' : 'lodash',
-            'window'    : '_'
+            'window'    : '_',
         },
         moment : {
             'commonjs'  : 'moment',
             'commonjs2' : 'moment',
-            'window'    : 'moment'
+            'window'    : 'moment',
         },
         react : {
             commonjs  : 'react',
@@ -72,7 +72,12 @@ const components = merge( {}, distConfig, {
     output  : { filename: 'index.js' },
     plugins : [],
 } );
-components.module.rules[ 1 ].use[ 0 ] = 'style-loader';
+components.module.rules[ 1 ].use[ 0 ] = {
+    loader  : 'style-loader',
+    options : {
+        insertAt : 'top',
+    },
+};
 
 const componentDriver = merge( {}, distConfig, {
     entry  : path.join( __dirname, '../src/Testing/index.js' ),
