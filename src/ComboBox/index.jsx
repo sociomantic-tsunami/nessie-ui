@@ -158,7 +158,7 @@ export default class ComboBox extends Component
     {
         className           : undefined,
         defaultValue        : undefined,
-        dropdownPlaceholder : undefined,
+        dropdownPlaceholder : 'No results to show',
         dropdownPosition    : 'bottom',
         hasError            : false,
         id                  : undefined,
@@ -480,7 +480,7 @@ export default class ComboBox extends Component
             }
         }
 
-        let optionsToShow = options;
+        let optionsToShow = options || [];
 
         if ( filteredOptions )
         {
@@ -492,7 +492,7 @@ export default class ComboBox extends Component
 
         let dropdownContent;
 
-        if ( optionsToShow.length )
+        if ( optionsToShow !== undefined && optionsToShow.length )
         {
             dropdownContent = (
                 <ScrollBox
