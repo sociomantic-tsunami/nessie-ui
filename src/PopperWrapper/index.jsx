@@ -183,8 +183,7 @@ export default class PopperWrapper extends Component
                                 { popper }
                             </div> ) }
                     </Popper>,
-                    container ? document.querySelector( container ) :
-                        document.body,
+                    document.getElementById( container ) || document.body,
                 ) }
             </Manager>
         );

@@ -89,6 +89,10 @@ export default class ComboBox extends Component
          */
         className           : PropTypes.string,
         /**
+         *  id of the DOM element used as container for popup listBox
+         */
+        container           : PropTypes.string,
+        /**
          * Placeholder text to show when no dropdown list options
          */
         dropdownPlaceholder : PropTypes.string,
@@ -133,6 +137,7 @@ export default class ComboBox extends Component
     static defaultProps =
     {
         className           : undefined,
+        container           : undefined,
         dropdownPlaceholder : undefined,
         hasError            : false,
         id                  : undefined,
@@ -395,6 +400,7 @@ export default class ComboBox extends Component
     {
         const {
             className,
+            container,
             dropdownPlaceholder,
             hasError,
             inputPlaceholder,
@@ -514,6 +520,7 @@ export default class ComboBox extends Component
 
         return (
             <PopperWrapper
+                container      = { container || 'nessie-overlay' }
                 isVisible      = { isOpen }
                 matchRefWidth
                 popper         = { popperPopup }

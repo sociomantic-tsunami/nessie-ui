@@ -84,6 +84,10 @@ export default class TagInput extends React.Component
          */
         className    : PropTypes.string,
         /**
+         *  id of the DOM element used as container for popup listbox
+         */
+        container    : PropTypes.string,
+        /**
          *  CSS class map
          */
         cssMap       : PropTypes.objectOf( PropTypes.string ),
@@ -129,6 +133,7 @@ export default class TagInput extends React.Component
     {
         children     : undefined,
         className    : undefined,
+        container    : undefined,
         cssMap       : undefined,
         defaultValue : undefined,
         hasError     : false,
@@ -387,6 +392,7 @@ export default class TagInput extends React.Component
     {
         const {
             children,
+            container,
             cssMap = createCssMap( this.context.TagInput, this.props ),
             hasError,
             isDisabled,
@@ -478,6 +484,7 @@ export default class TagInput extends React.Component
 
         return (
             <PopperWrapper
+                container      = { container || 'nessie-overlay' }
                 isVisible      = { listBoxOptions.length > 0 && isOpen }
                 matchRefWidth
                 popper         = { popperPopup }

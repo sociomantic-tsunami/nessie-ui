@@ -197,6 +197,10 @@ export default class DateTimeInput extends Component
          */
         className         : PropTypes.string,
         /**
+         *  id of the DOM element used as container for popup datepicker
+         */
+        container         : PropTypes.string,
+        /**
          *  Date time format
          */
         format            : PropTypes.string,
@@ -253,6 +257,7 @@ export default class DateTimeInput extends Component
     static defaultProps =
     {
         className         : undefined,
+        container         : undefined,
         format            : undefined,
         hasError          : false,
         hourPlaceholder   : undefined,
@@ -670,6 +675,7 @@ export default class DateTimeInput extends Component
     {
         const {
             className,
+            container,
             hasError,
             hourPlaceholder,
             id = generateId( 'DateTimeInput' ),
@@ -751,6 +757,7 @@ export default class DateTimeInput extends Component
 
         return (
             <PopperWrapper
+                container      = { container || 'nessie-overlay' }
                 isVisible      = { isOpen }
                 onClickOutside = { this.handleClickOutSide }
                 popper         = { popperPopup }
