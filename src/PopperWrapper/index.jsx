@@ -85,33 +85,51 @@ export default class PopperWrapper extends Component
     referenceRef = React.createRef();
     popperRef    = React.createRef();
 
+    constructor()
+    {
+        super();
+
+        this.handleClickOutSide = this.handleClickOutSide.bind( this );
+    }
+
     componentDidMount()
     {
-        addEventListener(
-            'mousedown',
-            this.handleClickOutSide.bind( this ),
-            false,
-        );
+        if ( this.props.onClickOutside )
+        {
+            addEventListener( 'mousedown', this.handleClickOutSide, false );
+        }
+    }
+
+    componentDidUpdate( prevProps )
+    {
+        if ( prevProps.onClickOutside !== this.props.onClickOutside )
+        {
+            removeEventListener( 'mousedown', this.handleClickOutSide, false );
+
+            if ( this.props.onClickOutside )
+            {
+                addEventListener( 'mousedown', this.handleClickOutSide, false );
+            }
+        }
     }
 
     componentWillUnmount()
     {
-        removeEventListener(
-            'mousedown',
-            this.handleClickOutSide.bind( this ),
-            false,
-        );
+        if ( this.props.onClickOutside )
+        {
+            removeEventListener( 'mousedown', this.handleClickOutSide, false );
+        }
     }
 
     handleClickOutSide( e )
     {
-        const popperRef = this.popperRef.current ?
-            this.popperRef.current.contains( e.target ) : false;
-
-        if ( !( this.referenceRef.current.contains(  e.target ) ||
-                popperRef ) && this.props.onClickOutside )
+        if ( this.props.isVisible )
         {
-            this.props.onClickOutside();
+            if ( !( this.referenceRef.current.contains(  e.target ) ||
+                    this.popperRef.current.contains( e.target ) ) )
+            {
+                this.props.onClickOutside();
+            }
         }
     }
 
