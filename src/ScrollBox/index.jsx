@@ -72,40 +72,6 @@ const ScrollBox = props =>
 
     const cssMap = useTheme( componentName, props );
 
-    const getInnerStyle = () =>
-    {
-        const style = { maxHeight: height };
-
-        if ( innerRef.current )
-        {
-            // space taken by native scrollbars
-            const diffX = dimensions.offsetWidth - dimensions.clientWidth;
-            const diffY = dimensions.offsetHeight - dimensions.clientHeight;
-
-            if ( diffX || diffY )
-            {
-                Object.assign( style, {
-                    width        : diffX ? `calc( 100% + ${diffX}px )` : null,
-                    height       : diffY ? `calc( 100% + ${diffY}px )` : null,
-                    marginRight  : diffX ? `-${diffX}px` : null,
-                    marginBottom : diffY ? `-${diffY}px` : null,
-                } );
-            }
-            else
-            {
-                // compensate for macOS overlaid scrollbars
-                const compo = 20;
-
-                Object.assign( style, {
-                    padding : `${compo}px`,
-                    margin  : `-${compo}px`,
-                } );
-            }
-        }
-
-        return style;
-    };
-
     const handleClickScrollButton = useCallback( ( dir, e ) =>
     {
         const callback = props[ `onClickScroll${dir}` ];
@@ -189,7 +155,12 @@ const ScrollBox = props =>
         innerRef.current = ref;
     }, [ scrollBoxRef ] );
 
-    const handleRenderScrollButton = useCallback( ( dir ) =>
+    const handleScroll = useCallback( () =>
+    {
+        setDimensions( dimensions );
+    }, [ dimensions ] );
+
+    const renderScrollButton = useCallback( ( dir ) =>
     {
         if ( dir === 'Up' && dimensions.scrollTop === 0 )
         {
@@ -220,94 +191,102 @@ const ScrollBox = props =>
         dimensions.scrollLeft, dimensions.clientWidth, dimensions.scrollWidth,
     ] );
 
-    const handleScroll = useCallback( () =>
+    const style = { maxHeight: height };
+
+    if ( innerRef.current )
     {
-        setDimensions( dimensions );
-    }, [ dimensions ] );
+        // space taken by native scrollbars
+        const diffX = dimensions.offsetWidth - dimensions.clientWidth;
+        const diffY = dimensions.offsetHeight - dimensions.clientHeight;
 
-    const renderScrollBars = () =>
+        if ( diffX || diffY )
+        {
+            Object.assign( style, {
+                width        : diffX ? `calc( 100% + ${diffX}px )` : null,
+                height       : diffY ? `calc( 100% + ${diffY}px )` : null,
+                marginRight  : diffX ? `-${diffX}px` : null,
+                marginBottom : diffY ? `-${diffY}px` : null,
+            } );
+        }
+        else
+        {
+            // compensate for macOS overlaid scrollbars
+            const compo = 20;
+
+            Object.assign( style, {
+                padding : `${compo}px`,
+                margin  : `-${compo}px`,
+            } );
+        }
+    }
+
+    const scrollBars = [];
+
+    if ( scroll !== 'vertical' )
     {
-        if ( !innerRef )
+        if ( dimensions.scrollWidth > dimensions.clientWidth )
         {
-            return;
-        }
-
-        const scrollBars = [];
-
-        if ( scroll !== 'vertical' )
-        {
-            if ( dimensions.scrollWidth > dimensions.clientWidth )
-            {
-                scrollBars.push( <ScrollBar
-                    className             = { cssMap.scrollBarHorizontal }
-                    key                   = "horizontal"
-                    onClickTrack          = { handleClickTrackX }
-                    onChange              = { handleChangeX }
-                    onThumbDragStart      = { onThumbDragStartX }
-                    onThumbDragEnd        = { onThumbDragEndX }
-                    orientation           = "horizontal"
-                    scrollPos             = { dimensions.scrollLeft }
-                    thumbSize             = {
-                        `${( dimensions.clientWidth / dimensions.scrollWidth )
-                            * 100}%`
-                    }
-                    scrollMax = { dimensions.scrollWidth -
-                                      dimensions.clientWidth } /> );
-            }
-        }
-
-        if ( scroll !== 'horizontal' )
-        {
-            if ( dimensions.scrollHeight > dimensions.clientHeight )
-            {
-                scrollBars.push( <ScrollBar
-                    className            = { cssMap.scrollBarVertical }
-                    key                  = "vertical"
-                    onClickTrack         = { handleClickTrackY }
-                    onChange             = { handleChangeY }
-                    onThumbDragStart     = { onThumbDragStartY }
-                    onThumbDragEnd       = { onThumbDragEndY }
-                    orientation          = "vertical"
-                    scrollPos            = { dimensions.scrollTop }
-                    thumbSize            = {
-                        `${( dimensions.clientHeight / dimensions.scrollHeight )
-                            * 100}%`
-                    }
-                    scrollMax = { dimensions.scrollHeight -
-                                      dimensions.clientHeight  }
-                    length    = { `${dimensions.clientHeight}px` } /> );
-            }
-        }
-
-        return scrollBars;
-    };
-
-    const renderScrollButtons = () =>
-    {
-        const scrollButtons = [];
-
-        [ 'Up', 'Down', 'Left', 'Right' ].forEach( dir =>
-        {
-            if ( props[ `scroll${dir}IsVisible` ] )
-            {
-                if ( handleRenderScrollButton( dir ) )
-                {
-                    console.log( 'IN' );
-                    scrollButtons.push( <IconButton
-                        className     = { cssMap[ `icon${dir}` ] }
-                        hasBackground = { scrollIndicatorVariant === 'circle' }
-                        iconSize      = "S"
-                        iconType      = { `chevron-${dir.toLowerCase()}` }
-                        key           = { dir }
-                        onClick       = { e =>
-                            handleClickScrollButton( dir, e )
-                        } /> );
+            scrollBars.push( <ScrollBar
+                className             = { cssMap.scrollBarHorizontal }
+                key                   = "horizontal"
+                onClickTrack          = { handleClickTrackX }
+                onChange              = { handleChangeX }
+                onThumbDragStart      = { onThumbDragStartX }
+                onThumbDragEnd        = { onThumbDragEndX }
+                orientation           = "horizontal"
+                scrollPos             = { dimensions.scrollLeft }
+                thumbSize             = {
+                    `${( dimensions.clientWidth / dimensions.scrollWidth )
+                        * 100}%`
                 }
-            }
-        } );
+                scrollMax = { dimensions.scrollWidth -
+                                  dimensions.clientWidth } /> );
+        }
+    }
 
-        return scrollButtons;
-    };
+    if ( scroll !== 'horizontal' )
+    {
+        if ( dimensions.scrollHeight > dimensions.clientHeight )
+        {
+            scrollBars.push( <ScrollBar
+                className            = { cssMap.scrollBarVertical }
+                key                  = "vertical"
+                onClickTrack         = { handleClickTrackY }
+                onChange             = { handleChangeY }
+                onThumbDragStart     = { onThumbDragStartY }
+                onThumbDragEnd       = { onThumbDragEndY }
+                orientation          = "vertical"
+                scrollPos            = { dimensions.scrollTop }
+                thumbSize            = {
+                    `${( dimensions.clientHeight / dimensions.scrollHeight )
+                        * 100}%`
+                }
+                scrollMax = { dimensions.scrollHeight -
+                                  dimensions.clientHeight  }
+                length    = { `${dimensions.clientHeight}px` } /> );
+        }
+    }
+
+    const scrollButtons = [];
+
+    [ 'Up', 'Down', 'Left', 'Right' ].forEach( dir =>
+    {
+        if ( props[ `scroll${dir}IsVisible` ] )
+        {
+            if ( renderScrollButton( dir ) )
+            {
+                scrollButtons.push( <IconButton
+                    className     = { cssMap[ `icon${dir}` ] }
+                    hasBackground = { scrollIndicatorVariant === 'circle' }
+                    iconSize      = "S"
+                    iconType      = { `chevron-${dir.toLowerCase()}` }
+                    key           = { dir }
+                    onClick       = { e =>
+                        handleClickScrollButton( dir, e )
+                    } /> );
+            }
+        }
+    } );
 
     return (
         <div
@@ -319,15 +298,15 @@ const ScrollBox = props =>
                 className = { cssMap.inner }
                 onScroll  = { handleScroll }
                 ref       = { handleRef }
-                style     = { getInnerStyle() }>
+                style     = { style }>
                 <div
                     className = { cssMap.content }
                     style     = { contentWidth && { width: contentWidth } }>
                     { children }
                 </div>
             </div>
-            { renderScrollButtons() }
-            { scrollBarsAreVisible && renderScrollBars() }
+            { scrollButtons }
+            { scrollBarsAreVisible && scrollBars }
         </div>
     );
 };
