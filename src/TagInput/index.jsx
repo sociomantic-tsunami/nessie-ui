@@ -207,7 +207,8 @@ export default class TagInput extends React.Component
                     const option =
                         getOption( activeOption, filteredOptions );
 
-                    newTag = option.text;
+                    newTag = value.indexOf( activeOption ) !== -1 ?
+                        inputValue : option.text;
                 }
                 else if ( inputValue )
                 {
