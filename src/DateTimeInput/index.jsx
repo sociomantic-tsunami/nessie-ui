@@ -7,8 +7,6 @@
  *
  */
 
-/* global addEventListener, removeEventListener */
-
 import React, { Component }         from 'react';
 import PropTypes                    from 'prop-types';
 import moment                       from 'moment';
@@ -20,7 +18,8 @@ import copy                         from './copy.json';
 import { DatePicker }               from '..';
 
 import TextInputWithIcon            from '../TextInputWithIcon';
-import withDropdown                 from '../Addons/withDropdown';
+import Popup                        from '../Popup';
+import PopperWrapper                from '../PopperWrapper';
 
 
 const DISPLAY_FORMATTING = {
@@ -153,8 +152,6 @@ function setPrecision( mode )
     return DISPLAY_FORMATTING[ format ];
 }
 
-const InputWithDropdown = withDropdown( TextInputWithIcon );
-
 export default class DateTimeInput extends Component
 {
     static propTypes =
@@ -163,6 +160,10 @@ export default class DateTimeInput extends Component
          *  Extra CSS class name
          */
         className         : PropTypes.string,
+        /**
+         *  id of the DOM element used as container for popup datepicker
+         */
+        container         : PropTypes.string,
         /**
          *  Date time format
          */
@@ -194,11 +195,11 @@ export default class DateTimeInput extends Component
         /**
          *  Maximum timestamp selectable
          */
-        max : PropTypes.number,
+        max               : PropTypes.number,
         /**
          *  Minimum timestamp selectable
          */
-        min : PropTypes.number,
+        min               : PropTypes.number,
         /**
          *  Minute input placeholder text
          */
@@ -220,6 +221,7 @@ export default class DateTimeInput extends Component
     static defaultProps =
     {
         className         : undefined,
+        container         : undefined,
         format            : undefined,
         hasError          : false,
         hourPlaceholder   : undefined,
@@ -227,8 +229,8 @@ export default class DateTimeInput extends Component
         inputPlaceholder  : undefined,
         isDisabled        : false,
         isReadOnly        : false,
-        max : undefined,
-        min : undefined,
+        max               : undefined,
+        min               : undefined,
         minutePlaceholder : undefined,
         mode              : 'default',
         onChange          : undefined,
@@ -288,17 +290,6 @@ export default class DateTimeInput extends Component
         };
     }
 
-    componentDidMount()
-    {
-        addEventListener( 'mousedown', this.handleClickOutSide, false );
-    }
-
-    componentWillUnmount()
-    {
-        removeEventListener( 'mousedown', this.handleClickOutSide, false );
-    }
-
-
     handleClickNext()
     {
         if ( !this.canGotoNext() ) return;
@@ -321,12 +312,9 @@ export default class DateTimeInput extends Component
         } ) );
     }
 
-    handleClickOutSide( e )
+    handleClickOutSide()
     {
-        if ( !this.wrapperRef.current.contains( e.target ) )
-        {
-            this.close();
-        }
+        this.close();
     }
 
     canGotoNext()
@@ -516,11 +504,13 @@ export default class DateTimeInput extends Component
             }
 
             return {
-                editingHourInputValue   : !value ? undefined : formatHours( value ),
+                editingHourInputValue : !value ? undefined :
+                    formatHours( value ),
                 editingMainInputValue   : !value ? undefined : value,
-                editingMinuteInputValue : !value ? undefined : formatMinutes( value ),
-                editingTimestamp        : !value ? undefined : timestamp,
-                timestamp               : !value ? undefined : timestamp,
+                editingMinuteInputValue : !value ? undefined :
+                    formatMinutes( value ),
+                editingTimestamp : !value ? undefined : timestamp,
+                timestamp        : !value ? undefined : timestamp,
             };
         } );
     }
@@ -649,6 +639,7 @@ export default class DateTimeInput extends Component
     {
         const {
             className,
+            container,
             hasError,
             hourPlaceholder,
             id = generateId( 'DateTimeInput' ),
@@ -697,21 +688,12 @@ export default class DateTimeInput extends Component
                 year           = { this.yearLabel() } />
         );
 
-        const dropdownProps = {
-            children : datePicker,
-            hasError,
-            padding  : 'none',
-            size     : 'content',
-        };
-
-        return (
-            <InputWithDropdown
+        const popperChildren = (
+            <TextInputWithIcon
                 autoCapitalize  = "off"
                 autoComplete    = "off"
                 autoCorrect     = "off"
                 className       = { className }
-                dropdownIsOpen  = { isOpen }
-                dropdownProps   = { dropdownProps }
                 forceHover      = { isOpen }
                 hasError        = { hasError }
                 iconType        = "calendar"
@@ -728,6 +710,25 @@ export default class DateTimeInput extends Component
                         editingMainInputValue
                 }
                 wrapperRef = { this.wrapperRef } />
+        );
+
+        const popperPopup = (
+            <Popup
+                hasError = { hasError }>
+                { datePicker }
+            </Popup>
+        );
+
+        return (
+            <PopperWrapper
+                container      = { container || 'nessie-overlay' }
+                isVisible      = { isOpen }
+                onClickOutside = { this.handleClickOutSide }
+                popper         = { popperPopup }
+                popperOffset   = "S"
+                popperPosition = "bottom-start">
+                { popperChildren }
+            </PopperWrapper>
         );
     }
 }

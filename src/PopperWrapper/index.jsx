@@ -7,120 +7,200 @@
  *
  */
 
-/* global document */
+/* global document, addEventListener, removeEventListener */
 
-import React                                      from 'react';
+import React, { Component }                       from 'react';
 import ReactDOM                                   from 'react-dom';
 import { Manager, Reference, Popper }             from 'react-popper';
 import PropTypes                                  from 'prop-types';
 
-const PopperWrapper = props =>
+export default class PopperWrapper extends Component
 {
-    const {
-        children,
-        container,
-        popper,
-        popperOffset,
-        popperPosition,
-    } = props;
-
-    let offset = '';
-
-    switch ( popperOffset )
+    static propTypes =
     {
-    case 'S':
-        offset = '8px';
-        break;
-    case 'M':
-        offset = '16px';
-        break;
-    case 'L':
-        offset = '24px';
-        break;
-    case 'XL':
-        offset = '32px';
-        break;
-    default:
-        offset = '16px';
+        /**
+         *  Reference node to attach popper
+         */
+        children       : PropTypes.node,
+        /**
+         *  id of the DOM element used as container
+         */
+        container      : PropTypes.string,
+        /**
+         *  Show / Hide popper
+         */
+        isVisible      : PropTypes.bool,
+        /**
+         *  pop up width matches reference width
+         */
+        matchRefWidth  : PropTypes.bool,
+        /**
+         *  Click Outside callback: ( e ) => ...
+         */
+        onClickOutside : PropTypes.func,
+        /**
+         *  Popper content node
+         */
+        popper         : PropTypes.node,
+        /**
+         *  Popper offset
+         */
+        popperOffset   : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'none' ] ),
+        /**
+         *  Popper position
+         */
+        popperPosition : PropTypes.oneOf( [
+            'auto',
+            'auto-start',
+            'auto-end',
+            'top',
+            'top-start',
+            'top-end',
+            'bottom',
+            'bottom-start',
+            'bottom-end',
+            'left',
+            'left-start',
+            'left-end',
+            'right',
+            'right-start',
+            'right-end',
+        ] ),
     }
 
-    return (
-        <Manager>
-            <Reference>
-                { ( { ref } ) => (
-                    <div ref = { ref }>
-                        { children }
-                    </div>
-                ) }
-            </Reference>
-            { ReactDOM.createPortal(
-                <Popper
-                    placement = { popperPosition }
-                    modifiers = { { offset: { offset: `0, ${offset}` } } }>
-                    { ( { ref, style } ) => (
-                        <div
-                            ref   = { ref }
-                            style = { style }>
-                            { popper }
+    static defaultProps =
+    {
+        children       : undefined,
+        container      : undefined,
+        isVisible      : false,
+        matchRefWidth  : undefined,
+        onClickOutside : undefined,
+        popper         : undefined,
+        popperOffset   : 'none',
+        popperPosition : 'auto',
+    }
+
+    static displayName = 'PopperWrapper'
+
+    referenceRef = React.createRef();
+    popperRef    = React.createRef();
+
+    constructor()
+    {
+        super();
+
+        this.handleClickOutSide = this.handleClickOutSide.bind( this );
+    }
+
+    componentDidMount()
+    {
+        if ( this.props.isVisible && this.props.onClickOutside )
+        {
+            addEventListener( 'mousedown', this.handleClickOutSide, false );
+        }
+    }
+
+    componentDidUpdate( prevProps )
+    {
+        if ( this.props.isVisible )
+        {
+            this.scheduleUpdate();
+
+            if ( prevProps.onClickOutside !== this.props.onClickOutside )
+            {
+                removeEventListener(
+                    'mousedown',
+                    this.handleClickOutSide,
+                    false,
+                );
+
+                if ( this.props.onClickOutside )
+                {
+                    addEventListener(
+                        'mousedown',
+                        this.handleClickOutSide,
+                        false,
+                    );
+                }
+            }
+        }
+    }
+
+    componentWillUnmount()
+    {
+        if ( this.props.onClickOutside )
+        {
+            removeEventListener( 'mousedown', this.handleClickOutSide, false );
+        }
+    }
+
+    handleClickOutSide( e )
+    {
+        if ( !( this.referenceRef.current.contains(  e.target ) ||
+                this.popperRef.current.contains( e.target ) ) )
+        {
+            this.props.onClickOutside();
+        }
+    }
+
+    render()
+    {
+        const {
+            children,
+            container,
+            isVisible,
+            matchRefWidth,
+            popper,
+            popperOffset,
+            popperPosition,
+        } = this.props;
+
+        const offset = {
+            'S'    : '8px',
+            'M'    : '16px',
+            'L'    : '24px',
+            'XL'   : '32px',
+            'none' : undefined,
+        }[ popperOffset ];
+
+        return (
+            <Manager>
+                <Reference
+                    innerRef  = { ( ref ) => this.referenceRef.current = ref } >
+                    { ( { ref } ) => (
+                        <div ref = { ref }>
+                            { children }
                         </div>
                     ) }
-                </Popper>,
-                container ? document.querySelector( container ) :
-                    document.body,
-            ) }
-        </Manager>
-    );
-};
+                </Reference>
+                { isVisible && ReactDOM.createPortal(
+                    <Popper
+                        placement = { popperPosition }
+                        innerRef  = { ( ref ) => this.popperRef.current = ref }
+                        modifiers = { offset ? {
+                            offset : {
+                                offset : `0, ${offset}`,
+                            },
+                        } : offset }>
+                        { ( { ref, style, scheduleUpdate } ) =>
+                        {
+                            this.scheduleUpdate = scheduleUpdate;
 
-PopperWrapper.propTypes =
-{
-    /**
-     *  Reference node to attach popper
-     */
-    children       : PropTypes.node,
-    /**
-     *  id of the DOM element used as container
-     */
-    container      : PropTypes.string,
-    /**
-     *  Popper content node
-     */
-    popper         : PropTypes.node,
-    /**
-     *  Popper offset
-     */
-    popperOffset   : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
-    /**
-     *  Popper position
-     */
-    popperPosition : PropTypes.oneOf( [
-        'auto',
-        'auto-start',
-        'auto-end',
-        'top',
-        'top-start',
-        'top-end',
-        'bottom',
-        'bottom-start',
-        'bottom-end',
-        'left',
-        'left-start',
-        'left-end',
-        'right',
-        'right-start',
-        'right-end',
-    ] ),
-};
-
-PopperWrapper.defaultProps =
-{
-    children       : undefined,
-    container      : undefined,
-    popper         : undefined,
-    popperOffset   : 'M',
-    popperPosition : 'auto',
-};
-
-PopperWrapper.displayName = 'PopperWrapper';
-
-export default PopperWrapper;
+                            return (
+                                <div
+                                    ref   = { ref }
+                                    style = { matchRefWidth ? {
+                                        'width' : this.referenceRef.current
+                                            .clientWidth,
+                                        ...style,
+                                    } : style }>
+                                    { popper }
+                                </div> );
+                        } }
+                    </Popper>,
+                    document.getElementById( container ) || document.body,
+                ) }
+            </Manager>
+        );
+    }
+}

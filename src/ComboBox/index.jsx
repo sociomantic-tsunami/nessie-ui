@@ -16,12 +16,10 @@ import { castArray, escapeRegExp }                from 'lodash';
 import { ListBox, ScrollBox, Text }               from '..';
 
 import TextInputWithIcon                          from '../TextInputWithIcon';
-import withDropdown                               from '../Addons/withDropdown';
+import Popup                                      from '../Popup';
+import PopperWrapper                              from '../PopperWrapper';
 import { callMultiple, generateId }               from '../utils';
 import { addPrefix, prefixOptions, removePrefix } from './utils';
-
-const InputWithDropdown = withDropdown( TextInputWithIcon );
-
 
 /**
  * gets the index of the option by the passed id
@@ -98,13 +96,13 @@ export default class ComboBox extends Component
             PropTypes.arrayOf( PropTypes.string ),
         ),
         /**
+         *  id of the DOM element used as container for popup listBox
+         */
+        container           : PropTypes.string,
+        /**
          * Placeholder text to show when no dropdown list options
          */
         dropdownPlaceholder : PropTypes.string,
-        /**
-         * Position of the dropdown relative to the text input
-         */
-        dropdownPosition    : PropTypes.oneOf( [ 'top', 'bottom' ] ),
         /**
          *  Display as error/invalid
          */
@@ -157,9 +155,9 @@ export default class ComboBox extends Component
     static defaultProps =
     {
         className           : undefined,
+        container           : undefined,
         defaultValue        : undefined,
         dropdownPlaceholder : 'No results to show',
-        dropdownPosition    : 'bottom',
         hasError            : false,
         id                  : undefined,
         inputPlaceholder    : undefined,
@@ -175,7 +173,6 @@ export default class ComboBox extends Component
 
     inputRef = React.createRef();
     scrollBoxRef = React.createRef();
-    wrapperRef = React.createRef();
 
     constructor( { defaultValue, isMultiselect } )
     {
@@ -442,8 +439,8 @@ export default class ComboBox extends Component
     {
         const {
             className,
+            container,
             dropdownPlaceholder,
-            dropdownPosition,
             hasError,
             inputPlaceholder,
             isDisabled,
@@ -531,8 +528,8 @@ export default class ComboBox extends Component
             );
         }
 
-        return (
-            <InputWithDropdown
+        const popperChildren = (
+            <TextInputWithIcon
                 aria = { {
                     activeDescendant :
                         activeOption && addPrefix( activeOption, id ),
@@ -542,35 +539,56 @@ export default class ComboBox extends Component
                     owns         : addPrefix( 'listbox', id ),
                     role         : 'combobox',
                 } }
-                autoCapitalize   = "off"
-                autoComplete     = "off"
-                autoCorrect      = "off"
-                className        = { className }
-                dropdownIsOpen   = { isOpen }
-                dropdownPosition = { dropdownPosition }
-                dropdownProps    = { {
-                    children : dropdownContent,
-                    hasError,
-                    padding  : optionsToShow.length ? 'none' : 'S',
-                } }
-                hasError      = { hasError }
-                iconType      = { isOpen ? 'chevron-up' : 'chevron-down' }
-                id            = { id }
-                inputRef      = { this.inputRef }
-                isDisabled    = { isDisabled }
-                isReadOnly    = { !isSearchable || !isOpen }
-                onBlur        = { callMultiple( this.handleBlur, this.props.onBlur ) } // temporary fix
-                onChangeInput = { this.handleChangeInput } // temporary fix
-                onClick       = { callMultiple( this.handleClick, this.props.onClick ) } // temporary fix
-                onClickIcon   = { this.handleClickIcon }
-                onFocus       = { this.props.onFocus } // temporary fix
-                onKeyDown     = { callMultiple( this.handleKeyDown, this.props.onKeyDown ) } // temporary fix
-                placeholder   = { inputPlaceholder }
-                spellCheck    = { false }
-                value         = { ( isOpen && isSearchable ) ?
+                autoCapitalize = "off"
+                autoComplete   = "off"
+                autoCorrect    = "off"
+                className      = { className }
+                hasError       = { hasError }
+                iconType       = { isOpen ? 'chevron-up' : 'chevron-down' }
+                id             = { id }
+                inputRef       = { this.inputRef }
+                isDisabled     = { isDisabled }
+                isReadOnly     = { !isSearchable || !isOpen }
+                onBlur         = { callMultiple(
+                    this.handleBlur,
+                    this.props.onBlur,
+                ) } // temporary fix
+                onChangeInput  = { this.handleChangeInput }
+                onClick        = { callMultiple(
+                    this.handleClick,
+                    this.props.onClick,
+                ) } // temporary fix
+                onClickIcon    = { this.handleClickIcon }
+                onFocus        = { this.props.onFocus } // temporary fix
+                onKeyDown      = { callMultiple(
+                    this.handleKeyDown,
+                    this.props.onKeyDown,
+                ) } // temporary fix
+                placeholder    = { inputPlaceholder }
+                spellCheck     = { false }
+                value          = { ( isOpen && isSearchable ) ?
                     searchValue : selectedText
-                }
-                wrapperRef = { this.wrapperRef } />
+                } />
+        );
+
+        const popperPopup = (
+            <Popup
+                hasError = { hasError }
+                padding  = { optionsToShow.length ? 'none' : 'S' }>
+                { dropdownContent }
+            </Popup>
+        );
+
+        return (
+            <PopperWrapper
+                container      = { container || 'nessie-overlay' }
+                isVisible      = { isOpen }
+                matchRefWidth
+                popper         = { popperPopup }
+                popperOffset   = "S"
+                popperPosition = "bottom">
+                { popperChildren }
+            </PopperWrapper>
         );
     }
 }

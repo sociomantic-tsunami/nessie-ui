@@ -14,24 +14,23 @@ import { mount, shallow }  from 'enzyme';
 
 import styles              from './tagInput.css';
 import { Tag, TagInput }   from '../index';
-import DumbTagInput        from './dumb';
 
-describe( 'DumbTagInput', () =>
+describe( 'TagInput', () =>
 {
     let wrapper;
     let instance;
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <DumbTagInput cssMap = { styles } /> );
+        wrapper  = mount( <TagInput /> );
         instance = wrapper.instance();
     } );
 
     describe( 'constructor( props )', () =>
     {
-        test( 'should have name DumbTagInput', () =>
+        test( 'should have name TagInput', () =>
         {
-            expect( instance.constructor.name ).toBe( 'DumbTagInput' );
+            expect( instance.constructor.name ).toBe( 'TagInput' );
         } );
     } );
 
@@ -39,8 +38,7 @@ describe( 'DumbTagInput', () =>
     {
         test( 'should contain exactly one input', () =>
         {
-            expect( wrapper.find( `.${instance.props.cssMap.input}` ) )
-                .toHaveLength( 1 );
+            expect( wrapper.find( 'input' ) ).toHaveLength( 1 );
         } );
     } );
 
@@ -71,8 +69,7 @@ describe( 'DumbTagInput', () =>
         {
             wrapper.setProps( { isReadOnly: true } );
 
-            expect( wrapper.find( `.${instance.props.cssMap.input}` )
-                .prop( 'readOnly' ) ).toBe( true );
+            expect( wrapper.find( 'input' ).prop( 'readOnly' ) ).toBe( true );
         } );
     } );
 
@@ -82,8 +79,7 @@ describe( 'DumbTagInput', () =>
         {
             wrapper.setProps( { isDisabled: true } );
 
-            expect( wrapper.find( `.${instance.props.cssMap.input}` )
-                .prop( 'disabled' ) ).toBe( true );
+            expect( wrapper.find( 'input' ).prop( 'disabled' ) ).toBe( true );
         } );
     } );
 } );
