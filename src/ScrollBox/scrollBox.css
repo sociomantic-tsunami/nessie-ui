@@ -149,16 +149,15 @@
 
         svg
         {
-            color:      var( --PC-GREY--D5 );
-            z-index:    1;
+            color:  var( --PC-GREY--D5 );
         }
 
         &::before
         {
-            content:    "";
-            display:    block;
-            position:   absolute;
-            visibility: visible;
+            content:        "";
+            display:        block;
+            position:       absolute;
+            pointer-events: none;
         }
 
         &:focus
