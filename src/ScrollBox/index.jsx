@@ -299,7 +299,7 @@ const ScrollBoxHooks = props =>
                         className     = { cssMap[ `icon${dir}` ] }
                         hasBackground = { scrollIndicatorVariant === 'circle' }
                         iconSize      = "S"
-                        iconType      = { dir.toLowerCase() }
+                        iconType      = { `chevron-${dir.toLowerCase()}` }
                         key           = { dir }
                         onClick       = { e =>
                             handleClickScrollButton( dir, e )

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -12,8 +12,14 @@
 
 .default
 {
-    display:    block;
-    position:   relative;
+    display:            block;
+    position:           relative;
+
+    stroke:             currentColor;
+    stroke-width:       2;
+    stroke-linecap:     round;
+    stroke-linejoin:    round;
+    fill:               none;
 }
 
 
@@ -44,7 +50,7 @@
 
 .role__default
 {
-    color:  var( --PC-GREY--D25 );
+    color:  inherit;
 }
 
 .role__critical

@@ -1,9 +1,9 @@
 ## Component Description
 
-A loading spinner. Can be “small” or “big”.
+A loading spinner. Size can be from “S” to “XL”.
 
 ## Example Usage
 
 ```
-<Spinner size="big" />
+<Spinner size="M" />
 ```

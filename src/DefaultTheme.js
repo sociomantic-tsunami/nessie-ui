@@ -15,7 +15,6 @@ import checkboxClasses           from './Checkbox/checkbox.css';
 import datePickerClasses         from './DatePicker/datePicker.css';
 import datePickerHeaderClasses   from './DatePicker/datePickerHeader.css';
 import datePickerItemClasses     from './DatePicker/datePickerItem.css';
-import dropdownClasses           from './Dropdown/dropdown.css';
 import gridClasses               from './Grid/grid.css';
 import gridItemClasses           from './GridItem/gridItem.css';
 import iconButtonClasses         from './IconButton/iconButton.css';
@@ -24,13 +23,18 @@ import listBoxClasses            from './ListBox/listBox.css';
 import listBoxOptionClasses      from './ListBox/listBoxOption.css';
 import listBoxOptionGroupClasses from './ListBox/listBoxOptionGroup.css';
 import modalClasses              from './Modal/modal.css';
+import popupClasses              from './Popup/popup.css';
+import progressBarClasses        from './ProgressBar/progressBar.css';
 import scrollBarClasses          from './ScrollBar/scrollBar.css';
 import scrollBoxClasses          from './ScrollBox/scrollBox.css';
 import spinnerClasses            from './Spinner/spinner.css';
 import tabButtonClasses          from './TabButton/tabButton.css';
 import tabClasses                from './Tab/tab.css';
 import tabsClasses               from './Tabs/tabs.css';
+import tagClasses                from './Tag/tag.css';
+import tagInputClasses           from './TagInput/tagInput.css';
 import textClasses               from './Text/text.css';
+import textAreaClasses           from './TextArea/textArea.css';
 import textInputClasses          from './TextInput/textInput.css';
 import textInputWithIconClasses  from './TextInputWithIcon/textInputWithIcon.css';
 import timeInputClasses          from './DatePicker/timeInput.css';
@@ -96,24 +100,6 @@ export default {
             props.className,
         ),
         ...datePickerItemClasses,
-    } ),
-    TimeInput : props => ( {
-        main : classNames.bind( timeInputClasses )(
-            'default',
-            { fakeHovered: props.forceHover },
-            props.className,
-        ),
-        ...timeInputClasses,
-    } ),
-    Dropdown : props => ( {
-        main : classNames.bind( dropdownClasses )(
-            'default',
-            { error: props.hasError },
-            `padding__${props.padding}`,
-            `size__${props.size}`,
-            props.className,
-        ),
-        ...dropdownClasses,
     } ),
     Grid : props => ( {
         main : classNames.bind( gridClasses )(
@@ -184,6 +170,23 @@ export default {
         main : classNames.bind( modalClasses )( 'default', props.className ),
         ...modalClasses,
     } ),
+    Popup : props => ( {
+        main : classNames.bind( popupClasses )(
+            'default',
+            { error: props.hasError },
+            `padding__${props.padding}`,
+            `size__${props.size}`,
+            props.className,
+        ),
+        ...popupClasses,
+    } ),
+    ProgressBar : props => ( {
+        main : classNames.bind( progressBarClasses )(
+            'default',
+            props.className,
+        ),
+        ...progressBarClasses,
+    } ),
     ScrollBar : props => ( {
         main : classNames.bind( scrollBarClasses )(
             'default',
@@ -195,15 +198,13 @@ export default {
     ScrollBox : props => ( {
         main : classNames.bind( scrollBoxClasses )(
             'default',
-            {
-                scrollBarsAreVisible : props.scrollBarsAreVisible,
-            },
-            `scrollIndicatorVariant__${props.scrollIndicatorVariant}`,
+            { scrollBarsAreVisible: props.scrollBarsAreVisible },
             `paddingX__${Array.isArray( props.padding ) ?
                 props.padding[ 0 ] : props.padding}`,
             `paddingY__${Array.isArray( props.padding ) ?
                 props.padding[ 1 ] : props.padding}`,
             `scroll__${props.scroll}`,
+            `scrollIndicatorVariant__${props.scrollIndicatorVariant}`,
             props.className,
         ),
         ...scrollBoxClasses,
@@ -235,6 +236,26 @@ export default {
         ),
         ...tabsClasses,
     } ),
+    Tag : props =>  ( {
+        main : classNames.bind( tagClasses )(
+            'default',
+            { disabled: props.isDisabled },
+            props.className,
+        ),
+        ...tagClasses,
+    } ),
+    TagInput : props =>  ( {
+        main : classNames.bind( tagInputClasses )(
+            'default',
+            {
+                disabled  : props.isDisabled,
+                error     : !props.isDisabled && props.hasError,
+                resizable : props.isResizable,
+            },
+            props.className,
+        ),
+        ...tagInputClasses,
+    } ),
     Text : props => ( {
         main : classNames.bind( textClasses )(
             'default',
@@ -250,6 +271,19 @@ export default {
             props.className,
         ),
         ...textClasses,
+    } ),
+    TextArea : props => ( {
+        main : classNames.bind( textAreaClasses )(
+            'default',
+            {
+                disabled : props.isDisabled,
+                error    : !props.isDisabled && props.hasError,
+            },
+            `align__${props.textAlign}`,
+            `resize__${props.resize}`,
+            props.className,
+        ),
+        ...textAreaClasses,
     } ),
     TextInput : props => ( {
         main : classNames.bind( textInputClasses )(
@@ -274,6 +308,14 @@ export default {
             props.className,
         ),
         ...textInputWithIconClasses,
+    } ),
+    TimeInput : props => ( {
+        main : classNames.bind( timeInputClasses )(
+            'default',
+            { fakeHovered: props.forceHover },
+            props.className,
+        ),
+        ...timeInputClasses,
     } ),
     Tooltip : props => ( {
         main : classNames.bind( tooltipClasses )(

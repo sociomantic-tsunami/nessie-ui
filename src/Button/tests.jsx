@@ -14,7 +14,7 @@ import { mount, shallow }        from 'enzyme';
 
 import { Button, Icon, Spinner } from '..';
 
-describe.only( 'Button', () =>
+describe( 'Button', () =>
 {
     let wrapper;
 
@@ -32,7 +32,7 @@ describe.only( 'Button', () =>
 
         test( 'should have a exactly one Icon when configured', () =>
         {
-            wrapper.setProps( { iconType: 'add' } );
+            wrapper.setProps( { iconType: 'plus' } );
             expect( wrapper.find( Icon ) ).toHaveLength( 1 );
         } );
 
@@ -54,9 +54,9 @@ describe.only( 'Button', () =>
 
             test( 'should be passed to the Icon as type', () =>
             {
-                wrapper.setProps( { iconType: 'add' } );
+                wrapper.setProps( { iconType: 'plus' } );
 
-                expect( wrapper.find( Icon ).prop( 'type' ) ).toBe( 'add' );
+                expect( wrapper.find( Icon ).prop( 'type' ) ).toBe( 'plus' );
             } );
         } );
 

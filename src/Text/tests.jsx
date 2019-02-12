@@ -9,26 +9,10 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { mount, shallow } from 'enzyme';
+import React     from 'react';
+import { mount } from 'enzyme';
 
-import { Text }           from '..';
-
-
-describe( 'Text', () =>
-{
-    let wrapper;
-
-    beforeEach( () =>
-    {
-        wrapper = shallow( <Text /> );
-    } );
-
-    test( 'should have “main” as default className', () =>
-    {
-        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
-    } );
-} );
+import { Text }  from '..';
 
 
 describe( 'TextDriver', () =>
