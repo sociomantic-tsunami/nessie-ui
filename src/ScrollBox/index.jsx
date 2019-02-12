@@ -9,7 +9,6 @@
 
 import React, {
     useCallback,
-    useContext,
     useEffect,
     useRef,
     useState,
@@ -18,14 +17,12 @@ import PropTypes                 from 'prop-types';
 import isEqual                   from 'lodash.isequal';
 
 import { IconButton, ScrollBar } from '../index';
-import ThemeContext              from '../Theming/ThemeContext';
-import createCssMap              from '../Theming/createCssMap';
+import { useTheme }              from '../Theming';
 
+const componentName = 'ScrollBox';
 
-const ScrollBoxHooks = props =>
+const ScrollBox = props =>
 {
-    const context = useContext( ThemeContext );
-
     const [ dimensions, setDimensions ] = useState( {
         clientHeight : null,
         clientWidth  : null,
@@ -54,7 +51,6 @@ const ScrollBoxHooks = props =>
 
     const {
         children,
-        cssMap = createCssMap( context.ScrollBox, props ),
         contentWidth,
         height,
         onMouseOut,
@@ -73,6 +69,8 @@ const ScrollBoxHooks = props =>
         scrollBarsAreVisible,
         scrollIndicatorVariant,
     } = props;
+
+    const cssMap = useTheme( componentName, props );
 
     const getInnerStyle = () =>
     {
@@ -334,7 +332,7 @@ const ScrollBoxHooks = props =>
     );
 };
 
-ScrollBoxHooks.propTypes =
+ScrollBox.propTypes =
 {
     /**
      *  Extra CSS class name
@@ -455,7 +453,7 @@ ScrollBoxHooks.propTypes =
     scrollUpIsVisible      : PropTypes.bool,
 };
 
-ScrollBoxHooks.defaultProps =
+ScrollBox.defaultProps =
 {
     children               : undefined,
     className              : undefined,
@@ -484,6 +482,6 @@ ScrollBoxHooks.defaultProps =
     scrollUpIsVisible      : false,
 };
 
-ScrollBoxHooks.displayName = 'ScrollBoxHooks';
+ScrollBox.displayName = componentName;
 
-export default ScrollBoxHooks;
+export default ScrollBox;
