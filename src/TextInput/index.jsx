@@ -57,6 +57,10 @@ export default class TextInput extends React.Component
          */
         cssMap       : PropTypes.objectOf( PropTypes.string ),
         /**
+         *  Default input string value
+         */
+        defaultValue : PropTypes.string,
+        /**
          *  Display as error/invalid
          */
         hasError     : PropTypes.bool,
@@ -134,6 +138,7 @@ export default class TextInput extends React.Component
         autoCorrect    : undefined,
         className      : undefined,
         cssMap         : undefined,
+        defaultValue   : undefined,
         hasError       : false,
         id             : undefined,
         isDisabled     : false,
@@ -170,6 +175,7 @@ export default class TextInput extends React.Component
             autoComplete,
             autoCorrect,
             cssMap = createCssMap( this.context.TextInput, this.props ),
+            defaultValue,
             id = generateId( 'TextInput' ),
             isDisabled,
             isReadOnly,
@@ -186,6 +192,7 @@ export default class TextInput extends React.Component
                 autoComplete   = { autoComplete }
                 autoCorrect    = { autoCorrect }
                 className      = { cssMap.main }
+                defaultValue   = { defaultValue }
                 disabled       = { isDisabled }
                 id             = { id }
                 placeholder    = { placeholder }

@@ -57,6 +57,10 @@ export default class TextArea extends React.Component
          */
         cssMap       : PropTypes.objectOf( PropTypes.string ),
         /**
+         *  Default input string value
+         */
+        defaultValue : PropTypes.string,
+        /**
          *  Display as error/invalid
          */
         hasError     : PropTypes.bool,
@@ -149,6 +153,7 @@ export default class TextArea extends React.Component
         autoCorrect    : undefined,
         className      : undefined,
         cssMap         : undefined,
+        defaultValue   : '',
         hasError       : false,
         id             : undefined,
         isDisabled     : false,
@@ -187,13 +192,14 @@ export default class TextArea extends React.Component
             autoComplete,
             autoCorrect,
             cssMap = createCssMap( this.context.TextArea, this.props ),
+            defaultValue,
             id = generateId( 'TextArea' ),
             isDisabled,
             isReadOnly,
             placeholder,
             rows,
             spellCheck,
-            value
+            value,
         } = this.props;
 
         return (
@@ -204,6 +210,7 @@ export default class TextArea extends React.Component
                 autoComplete   = { autoComplete }
                 autoCorrect    = { autoCorrect }
                 className      = { cssMap.main }
+                defaultValue   = { defaultValue }
                 disabled       = { isDisabled }
                 id             = { id }
                 placeholder    = { placeholder }

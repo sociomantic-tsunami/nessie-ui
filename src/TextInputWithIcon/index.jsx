@@ -60,6 +60,10 @@ export default class TextInputWithIcon extends React.Component
          */
         cssMap               : PropTypes.objectOf( PropTypes.string ),
         /**
+         *  Default input string value
+         */
+        defaultValue         : PropTypes.string,
+        /**
          *  Display as hover when required from another component
          */
         forceHover           : PropTypes.bool,
@@ -161,6 +165,7 @@ export default class TextInputWithIcon extends React.Component
         autoCorrect          : undefined,
         className            : undefined,
         cssMap               : undefined,
+        defaultValue         : '',
         forceHover           : false,
         hasError             : false,
         iconButtonIsDisabled : false,
@@ -196,6 +201,7 @@ export default class TextInputWithIcon extends React.Component
             autoComplete,
             autoCorrect,
             cssMap = createCssMap( this.context.TextInputWithIcon, this.props ),
+            defaultValue,
             forceHover,
             hasError,
             iconButtonIsDisabled,
@@ -232,6 +238,7 @@ export default class TextInputWithIcon extends React.Component
                     autoComplete   = { autoComplete }
                     autoCorrect    = { autoCorrect }
                     className      = { cssMap.input }
+                    defaultValue   = { defaultValue }
                     forceHover     = { forceHover }
                     hasError       = { hasError }
                     id             = { id }

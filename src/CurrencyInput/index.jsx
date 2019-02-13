@@ -9,16 +9,17 @@
 
 /* global navigator */
 
-import React                                     from 'react';
-import PropTypes                                 from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import { generateId }                            from '../utils';
+import { generateId }   from '../utils';
 
-import { TextInput }                             from '..';
+import { TextInput }    from '..';
 
 
 const currencyFormat = ( number, currency, language = navigator.language ) =>
-    number.toLocaleString( language, currency ? { style: 'currency', currency } : {} );
+    number.toLocaleString( language, currency ?
+        { style: 'currency', currency } : {} );
 
 export default class CurrencyInput extends React.Component
 {
@@ -27,102 +28,107 @@ export default class CurrencyInput extends React.Component
         /**
          *  Extra CSS class name
          */
-        className   : PropTypes.string,
+        className    : PropTypes.string,
         /**
          *  CSS class map
          */
-        cssMap      : PropTypes.objectOf( PropTypes.string ),
+        cssMap       : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Currency to display
          */
-        currency    : PropTypes.oneOf( [ 'USD', 'EUR', 'GBP' ] ),
+        currency     : PropTypes.oneOf( [ 'USD', 'EUR', 'GBP' ] ),
+        /**
+         *  Default input string value
+         */
+        defaultValue : PropTypes.string,
         /**
          *  Display as error/invalid
          */
-        hasError    : PropTypes.bool,
+        hasError     : PropTypes.bool,
         /**
          *  HTML id attribute
          */
-        id          : PropTypes.string,
+        id           : PropTypes.string,
         /**
          *  Display as disabled
          */
-        isDisabled  : PropTypes.bool,
+        isDisabled   : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly  : PropTypes.bool,
+        isReadOnly   : PropTypes.bool,
         /**
          *  Blur callback function
          */
-        onBlur      : PropTypes.func,
+        onBlur       : PropTypes.func,
         /**
          *  Input change callback function
          */
-        onChange    : PropTypes.func,
+        onChange     : PropTypes.func,
         /**
          *  Input click callback function
          */
-        onClick     : PropTypes.func,
+        onClick      : PropTypes.func,
         /**
          *  Focus callback function
          */
-        onFocus     : PropTypes.func,
+        onFocus      : PropTypes.func,
         /**
          *  Key down callback function
          */
-        onKeyDown   : PropTypes.func,
+        onKeyDown    : PropTypes.func,
         /**
          *  Key press callback function
          */
-        onKeyPress  : PropTypes.func,
+        onKeyPress   : PropTypes.func,
         /**
          *  Key up callback function
          */
-        onKeyUp     : PropTypes.func,
+        onKeyUp      : PropTypes.func,
         /**
          *  Mouse out callback function
          */
-        onMouseOut  : PropTypes.func,
+        onMouseOut   : PropTypes.func,
         /**
          *  Mouse over  callback function
          */
-        onMouseOver : PropTypes.func,
+        onMouseOver  : PropTypes.func,
         /**
          *  Placeholder text
          */
-        placeholder : PropTypes.string,
+        placeholder  : PropTypes.string,
         /**
          *  Input text alignment
          */
-        textAlign   : PropTypes.oneOf( [ 'left', 'right' ] ),
+        textAlign    : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
          *  Input string value
          */
-        value       : PropTypes.string,
+        value        : PropTypes.string,
     };
 
     static defaultProps =
     {
-        className   : undefined,
-        cssMap      : undefined,
-        currency    : undefined,
-        hasError    : false,
-        id          : undefined,
-        isDisabled  : false,
-        isReadOnly  : false,
-        onBlur      : undefined,
-        onChange    : undefined,
-        onClick     : undefined,
-        onFocus     : undefined,
-        onKeyDown   : undefined,
-        onKeyPress  : undefined,
-        onKeyUp     : undefined,
-        onMouseOut  : undefined,
-        onMouseOver : undefined,
-        placeholder : undefined,
-        textAlign   : 'left',
-        value       : '',
+        className    : undefined,
+        cssMap       : undefined,
+        currency     : undefined,
+        defaultValue : '',
+        hasError     : false,
+        id           : undefined,
+        isDisabled   : false,
+        isReadOnly   : false,
+        onBlur       : undefined,
+        onChange     : undefined,
+        onClick      : undefined,
+        onFocus      : undefined,
+        onKeyDown    : undefined,
+        onKeyPress   : undefined,
+        onKeyUp      : undefined,
+        onMouseOut   : undefined,
+        onMouseOver  : undefined,
+        placeholder  : undefined,
+        textAlign    : 'left',
+        value        : '',
     };
 
 
@@ -140,7 +146,8 @@ export default class CurrencyInput extends React.Component
 
     handleBlur()
     {
-        const newVal = Number( String( this.state.value ).replace( /[^0-9\.-]/g, '' ) );
+        const newVal = Number( String( this.state.value )
+            .replace( /[^0-9\.-]/g, '' ) );
         this.setState( {
             value : newVal,
         } );
@@ -165,20 +172,29 @@ export default class CurrencyInput extends React.Component
     {
         const {
             currency,
+            defaultValue,
             id = generateId( 'CurrencyInput' ),
             value,
         } = this.props;
+
+        const currencyDefaultValue =
+            Number( defaultValue.replace( /[^0-9\.-]/g, '' ) );
+        const currencyValue = Number( value.replace( /[^0-9\.-]/g, '' ) );
+
         return (
             <TextInput
                 { ...this.props }
                 autoCapitalize = "off"
                 autoComplete   = "off"
                 autoCorrect    = "off"
-                spellCheck     = { false }
+                defaultValue   = { currencyFormat( currencyDefaultValue,
+                    currency ) }
                 id             = { id }
                 onBlur         = { this.handleBlur }
                 onChange       = { this.handleChange }
-                value          = { currencyFormat( Number( value.replace( /[^0-9\.-]/g, '' ) ) || this.state.value, currency ) } />
+                spellCheck     = { false }
+                value          = { currencyFormat( currencyValue ||
+                    this.state.value, currency ) } />
         );
     }
 }
