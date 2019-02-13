@@ -10,7 +10,6 @@
 import React, {
     Children,
     useState,
-    useEffect,
     useRef,
     useMemo,
     useImperativeHandle,
@@ -22,7 +21,8 @@ import { escapeRegExp }    from 'lodash';
 import {
     ListBox,
     ScrollBox,
-} from '../index';
+} from '..';
+
 import Popup               from '../Popup';
 import PopperWrapper       from '../PopperWrapper';
 import {
@@ -98,8 +98,7 @@ const TagInput = forwardRef( ( props, ref ) =>
     const [ filteredOptionsState, setFilteredOptionsState ] = useState( undefined );
     const [ inputValue, setInputValue ] = useState( '' );
     const [ isOpen, setIsOpen ] = useState( false );
-    const [ valueState, setValueState ] = useState( Array.isArray( props.defaultValue ) ?
-        props.defaultValue : [] );
+    const [ valueState, setValueState ] = useState( Array.isArray( props.defaultValue ) ? props.defaultValue : [] );
 
     const options =
         useMemo( () => (
@@ -109,7 +108,7 @@ const TagInput = forwardRef( ( props, ref ) =>
     const filteredOptions =
         useMemo( () => (
             filteredOptionsState || options
-        ), [ filteredOptionsState ] );
+        ), [ options, filteredOptionsState ] );
 
     const id =  useMemo( () => (
         props.id || generateId( 'TagInput' )
@@ -117,7 +116,7 @@ const TagInput = forwardRef( ( props, ref ) =>
 
     const value = useMemo( () => (
         ( Array.isArray( props.value ) && props.value ) || valueState
-    ), [ props.value ] );
+    ), [ props.value, valueState ] );
 
     useImperativeHandle( ref, () => ( {
         focus : () =>
@@ -175,22 +174,21 @@ const TagInput = forwardRef( ( props, ref ) =>
 
     const handleChangeInput = ( e ) =>
     {
-        const { value: valueInner } = e.target;
+        const { value: scopedValue } = e.target;
+        const filteredOptionsScoped = options.filter( ( { text } ) =>
+            text.match( new RegExp( escapeRegExp( scopedValue ), 'i' ) ) );
 
-        const filteredOptionsInner = options.filter( ( { text } ) =>
-            text.match( new RegExp( escapeRegExp( value ), 'i' ) ) );
+        const activeOptionScoped = ( scopedValue && filteredOptionsScoped.length ) ?
+            filteredOptionsScoped[ 0 ].id : undefined;
 
-        const activeOptionInner = ( valueInner && filteredOptionsInner.length ) ?
-            filteredOptionsInner[ 0 ].id : undefined;
-
-        setActiveOption( activeOptionInner );
-        setFilteredOptionsState( filteredOptionsInner );
-        setValueState( valueInner );
+        setActiveOption( activeOptionScoped );
+        setFilteredOptionsState( filteredOptionsScoped );
+        setInputValue( scopedValue );
     };
 
-    const handleClickClose = ( { id } ) =>
+    const handleClickClose = ( { id: scopedId } ) =>
     {
-        const newTags = value.filter( tag => tag !== id );
+        const newTags = value.filter( tag => tag !== scopedId );
 
         const { onChange } = props;
         if ( typeof onChange === 'function' )
@@ -202,11 +200,10 @@ const TagInput = forwardRef( ( props, ref ) =>
         setFilteredOptionsState( filterOptions( newTags ) );
     };
 
-    const handleClickOption = ( { id } ) =>
+    const handleClickOption = ( { id: scopedId } ) =>
     {
-        const option = getOption( id, filteredOptions );
+        const option = getOption( scopedId, filteredOptions );
         const newTags = [ ...value, option.text ];
-
         const { onChange } = props;
         if ( typeof onChange === 'function' )
         {
@@ -273,12 +270,12 @@ const TagInput = forwardRef( ( props, ref ) =>
 
     const handleMouseOutOption = () =>
     {
-        setActiveOption(  undefined );
+        setActiveOption( undefined );
     };
 
-    const handleMouseOverOption = ( { id } ) =>
+    const handleMouseOverOption = ( { id: scopedId } ) =>
     {
-        setActiveOption( id );
+        setActiveOption( scopedId );
     };
 
     const listBoxOptions = filteredOptions.reduce( ( result, opt ) =>
