@@ -153,7 +153,7 @@ export default class TextArea extends React.Component
         autoCorrect    : undefined,
         className      : undefined,
         cssMap         : undefined,
-        defaultValue   : '',
+        defaultValue   : undefined,
         hasError       : false,
         id             : undefined,
         isDisabled     : false,
@@ -172,7 +172,7 @@ export default class TextArea extends React.Component
         rows           : 2,
         spellCheck     : undefined,
         textAlign      : 'left',
-        value          : '',
+        value          : undefined,
     };
 
     static displayName = 'TextArea';

@@ -155,7 +155,7 @@ export default class TextInput extends React.Component
         placeholder    : undefined,
         spellCheck     : undefined,
         textAlign      : 'left',
-        value          : '',
+        value          : undefined,
     };
 
     static displayName = 'TextInput';

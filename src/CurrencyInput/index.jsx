@@ -112,7 +112,7 @@ export default class CurrencyInput extends React.Component
         className    : undefined,
         cssMap       : undefined,
         currency     : undefined,
-        defaultValue : '',
+        defaultValue : undefined,
         hasError     : false,
         id           : undefined,
         isDisabled   : false,
@@ -128,7 +128,7 @@ export default class CurrencyInput extends React.Component
         onMouseOver  : undefined,
         placeholder  : undefined,
         textAlign    : 'left',
-        value        : '',
+        value        : undefined,
     };
 
 

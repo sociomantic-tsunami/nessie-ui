@@ -165,7 +165,7 @@ export default class TextInputWithIcon extends React.Component
         autoCorrect          : undefined,
         className            : undefined,
         cssMap               : undefined,
-        defaultValue         : '',
+        defaultValue         : undefined,
         forceHover           : false,
         hasError             : false,
         iconButtonIsDisabled : false,
@@ -188,7 +188,7 @@ export default class TextInputWithIcon extends React.Component
         placeholder          : undefined,
         spellCheck           : undefined,
         textAlign            : 'auto',
-        value                : '',
+        value                : undefined,
     };
 
     static displayName = 'TextInputWithIcon';
