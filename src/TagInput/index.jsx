@@ -12,6 +12,7 @@ import React, {
     useState,
     useEffect,
     useRef,
+    useMemo,
     useImperativeHandle,
     forwardRef,
 } from 'react';
@@ -82,7 +83,7 @@ const TagInput = forwardRef( ( props, ref ) =>
     const inputRef = useRef();
     const outerRef = useRef();
 
-    const cssMap = useTheme( component, props );
+    const cssMap = useTheme( componentName, props );
     const {
         children,
         container,
@@ -94,26 +95,30 @@ const TagInput = forwardRef( ( props, ref ) =>
 
 
     const [ activeOption, setActiveOption ] = useState( undefined );
-    const [ filteredOptions, setFilteredOptions ] = useState( undefined );
+    const [ filteredOptionsState, setFilteredOptionsState ] = useState( undefined );
     const [ inputValue, setInputValue ] = useState( '' );
     const [ isOpen, setIsOpen ] = useState( false );
-    const [ id, setId ] = useState( undefined );
-    const [ value, setValue ] = useState( Array.isArray( props.defaultValue ) ?
+    const [ valueState, setValueState ] = useState( Array.isArray( props.defaultValue ) ?
         props.defaultValue : [] );
 
-    useEffect(  ( state ) =>
-    {
-        const options =
-            normalizeOptions( props.suggestions ) || state.options || [];
+    const options =
+        useMemo( () => (
+            normalizeOptions( props.suggestions ) || []
+        ), [ props.suggestions ] );
 
-        return {
-            filteredOptions : state.filteredOptions || options,
-            id              : props.id || state.id || generateId( 'TagInput' ),
-            options,
-            value           : ( Array.isArray( props.value ) && props.value ) ||
-                  state.value,
-        };
-    } );
+    const filteredOptions =
+        useMemo( () => (
+            filteredOptionsState || options
+        ), [ filteredOptionsState ] );
+
+    const id =  useMemo( () => (
+        props.id || generateId( 'TagInput' )
+    ), [ props.id ] );
+
+    const value = useMemo( () => (
+        ( Array.isArray( props.value ) && props.value ) || valueState
+    ), [ props.value ] );
+
     useImperativeHandle( ref, () => ( {
         focus : () =>
         {
@@ -123,126 +128,99 @@ const TagInput = forwardRef( ( props, ref ) =>
 
     const enterNewTag = () =>
     {
-        setState( ( {
-            activeOption,
-            filteredOptions,
-            inputValue,
-            value,
-        } ) =>
+        let newTag;
+
+        if ( !value.find( tag => tag === inputValue ) )
         {
-            let newTag;
-
-            if ( !value.find( tag => tag === inputValue ) )
+            if ( activeOption )
             {
-                if ( activeOption )
-                {
-                    const option =
-                        getOption( activeOption, filteredOptions );
+                const option =
+                    getOption( activeOption, filteredOptions );
 
-                    newTag = value.indexOf( activeOption ) !== -1 ?
-                        inputValue : option.text;
-                }
-                else if ( inputValue )
-                {
-                    newTag = inputValue;
-                }
+                newTag = value.indexOf( activeOption ) !== -1 ?
+                    inputValue : option.text;
             }
-
-            let newTags = value;
-            if ( newTag )
+            else if ( inputValue )
             {
-                newTags = [ ...value, newTag ];
-
-                const { onChange } = props;
-                if ( typeof onChange === 'function' )
-                {
-                    onChange( { value: newTags } );
-                }
+                newTag = inputValue;
             }
+        }
 
-            return {
-                activeOption    : undefined,
-                filteredOptions : filterOptions( newTags ),
-                inputValue      : '',
-                value           : newTags,
-            };
-        } );
+        let newTags = value;
+        if ( newTag )
+        {
+            newTags = [ ...value, newTag ];
+
+            const { onChange } = props;
+            if ( typeof onChange === 'function' )
+            {
+                onChange( { value: newTags } );
+            }
+        }
+        setActiveOption( undefined );
+        setFilteredOptionsState( filterOptions( newTags ) );
+        setInputValue( '' );
+        setValueState( newTags );
     };
 
     const filterOptions = ( tags ) =>
-        state.options.filter( option =>
+        options.filter( option =>
             !tags.includes( option.text ) );
 
     const handleBlur = () =>
     {
-        setState( { isOpen: false } );
+        setIsOpen( false );
         enterNewTag();
     };
 
     const handleChangeInput = ( e ) =>
     {
-        const { value } = e.target;
+        const { value: valueInner } = e.target;
 
-        setState( ( { options } ) =>
-        {
-            const filteredOptions = options.filter( ( { text } ) =>
-                text.match( new RegExp( escapeRegExp( value ), 'i' ) ) );
+        const filteredOptionsInner = options.filter( ( { text } ) =>
+            text.match( new RegExp( escapeRegExp( value ), 'i' ) ) );
 
-            const activeOption = ( value && filteredOptions.length ) ?
-                filteredOptions[ 0 ].id : undefined;
+        const activeOptionInner = ( valueInner && filteredOptionsInner.length ) ?
+            filteredOptionsInner[ 0 ].id : undefined;
 
-            return {
-                activeOption,
-                filteredOptions,
-                inputValue : value,
-            };
-        } );
+        setActiveOption( activeOptionInner );
+        setFilteredOptionsState( filteredOptionsInner );
+        setValueState( valueInner );
     };
 
     const handleClickClose = ( { id } ) =>
     {
-        setState( ( { value } ) =>
+        const newTags = value.filter( tag => tag !== id );
+
+        const { onChange } = props;
+        if ( typeof onChange === 'function' )
         {
-            const newTags = value.filter( tag => tag !== id );
+            onChange( { value: newTags } );
+        }
 
-            const { onChange } = props;
-            if ( typeof onChange === 'function' )
-            {
-                onChange( { value: newTags } );
-            }
-
-            return {
-                value           : newTags,
-                filteredOptions : filterOptions( newTags ),
-            };
-        } );
+        setValueState( newTags );
+        setFilteredOptionsState( filterOptions( newTags ) );
     };
 
     const handleClickOption = ( { id } ) =>
     {
-        setState( ( { filteredOptions, value } ) =>
+        const option = getOption( id, filteredOptions );
+        const newTags = [ ...value, option.text ];
+
+        const { onChange } = props;
+        if ( typeof onChange === 'function' )
         {
-            const option = getOption( id, filteredOptions );
-            const newTags = [ ...value, option.text ];
-
-            const { onChange } = props;
-            if ( typeof onChange === 'function' )
-            {
-                onChange( { value: newTags } );
-            }
-
-            return {
-                activeOption    : undefined,
-                filteredOptions : filterOptions( newTags ),
-                inputValue      : '',
-                value           : newTags,
-            };
-        } );
+            onChange( { value: newTags } );
+        }
+        setActiveOption( undefined );
+        setFilteredOptionsState( filterOptions( newTags ) );
+        setInputValue( '' );
+        setValueState( newTags );
     };
 
     const handleFocus = () =>
     {
-        setState( { isOpen: true } );
+        setIsOpen( true );
     };
 
     const handleKeyDown = ( e ) =>
@@ -251,27 +229,21 @@ const TagInput = forwardRef( ( props, ref ) =>
 
         if ( key === 'Backspace' )
         {
-            setState( ( { inputValue, value } ) =>
+            let newTags = value;
+            if ( !inputValue )
             {
-                let newTags = value;
-                if ( !inputValue )
+                newTags = value.slice( 0, -1 );
+
+                const { onChange } = props;
+                if ( typeof onChange === 'function' )
                 {
-                    newTags = value.slice( 0, -1 );
-
-                    const { onChange } = props;
-                    if ( typeof onChange === 'function' )
-                    {
-                        onChange( { value: newTags } );
-                    }
+                    onChange( { value: newTags } );
                 }
-
-                return {
-                    value           : newTags,
-                    filteredOptions : filterOptions( newTags ),
-                };
-            } );
+            }
+            setValueState( newTags );
+            setFilteredOptionsState( filterOptions( newTags ) );
         }
-        else if ( key === 'Enter' )
+        if ( key === 'Enter' )
         {
             enterNewTag();
         }
@@ -279,39 +251,34 @@ const TagInput = forwardRef( ( props, ref ) =>
         {
             e.preventDefault();
 
-            setState( ( { activeOption, isOpen } ) =>
+
+            if ( isOpen && filteredOptions.length )
             {
-                const { filteredOptions } = state;
+                const minIndex = 0;
+                const maxIndex = filteredOptions.length - 1;
 
-                if ( isOpen && filteredOptions.length )
-                {
-                    const minIndex = 0;
-                    const maxIndex = filteredOptions.length - 1;
+                let activeIndex = getIndex( activeOption, filteredOptions );
 
-                    let activeIndex = getIndex( activeOption, filteredOptions );
+                activeIndex = key === 'ArrowUp' ?
+                    Math.max( activeIndex - 1, minIndex ) :
+                    Math.min( activeIndex + 1, maxIndex );
 
-                    activeIndex = key === 'ArrowUp' ?
-                        Math.max( activeIndex - 1, minIndex ) :
-                        Math.min( activeIndex + 1, maxIndex );
 
-                    return {
-                        activeOption : filteredOptions[ activeIndex ].id,
-                    };
-                }
+                setActiveOption( filteredOptions[ activeIndex ].id );
+            }
 
-                return { isOpen: true };
-            } );
+            setIsOpen( true );
         }
     };
 
     const handleMouseOutOption = () =>
     {
-        setState( { activeOption: undefined } );
+        setActiveOption(  undefined );
     };
 
     const handleMouseOverOption = ( { id } ) =>
     {
-        setState( { activeOption: id } );
+        setActiveOption( id );
     };
 
     const listBoxOptions = filteredOptions.reduce( ( result, opt ) =>
