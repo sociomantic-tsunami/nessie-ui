@@ -227,9 +227,10 @@ describe( 'TextInputWithIcon', () =>
 
         describe( 'value', () =>
         {
-            test( 'should be empty string by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( TextInputWithIcon.defaultProps.value ).toBe( '' );
+                expect( TextInputWithIcon.defaultProps.value )
+                    .toBe( undefined );
             } );
 
             test( 'should be passed to the TextInput', () =>

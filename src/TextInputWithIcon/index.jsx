@@ -134,7 +134,7 @@ export default class TextInputWithIcon extends React.Component
         /**
          *  Mouse out callback function
          */
-        onMouseOut          : PropTypes.func,
+        onMouseOut           : PropTypes.func,
         /**
          *  Mouse over  callback function
          */
