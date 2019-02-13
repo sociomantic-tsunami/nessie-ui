@@ -7,48 +7,51 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                    from 'react';
+import PropTypes                from 'prop-types';
 
-import { attachEvents }     from '../utils';
-import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming';
+import { useTheme }             from '../Theming';
 
+import { Icon }                 from '..';
 
-export default class Spinner extends React.Component
+const componentName = 'Spinner';
+
+const Spinner = ( props ) =>
 {
-    static contextType = ThemeContext;
+    const { size } = props;
+    const cssMap = useTheme( componentName, props );
+    return (
+        <Icon
+            className = { cssMap.main }
+            type = "loader"
+            size = { size }
+        />
+    );
+};
 
-    static propTypes =
-    {
-        /**
-         *  Size of the Spinner
-         */
-        cssMap : PropTypes.objectOf( PropTypes.string ),
-        /**
-         *  Size of the Spinner
-         */
-        size   : PropTypes.oneOf( [ 'small', 'big' ] ),
-    };
+Spinner.propTypes =
+{
+    /**
+     *  Size of the Spinner
+     */
+    cssMap : PropTypes.objectOf( PropTypes.string ),
+    /**
+     *  Size of the Spinner
+     */
+    size   : PropTypes.oneOf( [
+        'S',
+        'M',
+        'L',
+        'XL',
+    ] ),
+};
 
-    static defaultProps =
-    {
-        cssMap : undefined,
-        size   : 'small',
-    };
+Spinner.defaultProps =
+{
+    cssMap : undefined,
+    size   : 'M',
+};
 
-    static displayName = 'Spinner';
+Spinner.displayName = componentName;
 
-    render()
-    {
-        const {
-            cssMap = createCssMap( this.context.Spinner, this.props ),
-        } = this.props;
-
-        return (
-            <div
-                { ...attachEvents( this.props ) }
-                className = { cssMap.main } />
-        );
-    }
-}
+export default Spinner;

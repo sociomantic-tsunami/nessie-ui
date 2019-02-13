@@ -7,8 +7,6 @@
  *
  */
 
-/* global addEventListener, removeEventListener */
-
 import React, { Component }         from 'react';
 import PropTypes                    from 'prop-types';
 import moment                       from 'moment';
@@ -20,7 +18,8 @@ import copy                         from './copy.json';
 import { DatePicker }               from '..';
 
 import TextInputWithIcon            from '../TextInputWithIcon';
-import withDropdown                 from '../Addons/withDropdown';
+import Popup                        from '../Popup';
+import PopperWrapper                from '../PopperWrapper';
 
 
 const DISPLAY_FORMATTING = {
@@ -30,26 +29,7 @@ const DISPLAY_FORMATTING = {
     minute : 'YYYY/MM/DD HH:mm',
 };
 
-const PARSE_FORMATTING = [
-    {
-        predicate        : /^\d{4}\/\d{1,2}$/,
-        requirePrecision : 'month',
-        format           : 'YYYY/M',
-    },
-    {
-        predicate        : /^\d{4}\/\d{1,2}\/\d{1,2}$/,
-        requirePrecision : 'day',
-        format           : 'YYYY/M/D',
-    },
-    {
-        predicate :
-            /^\d{4}\/\d{1,2}\/\d{1,2}\s+\d{1,2}:\d{1,2}(:\d{1,2})?$/,
-        requirePrecision : 'minute',
-        format           : 'YYYY/M/D H:m',
-    },
-];
-
-const PRECISIONS = [ 'minute', 'hour', 'day', 'month' ];
+const DEFAULT_FORMAT = 'YYYY/M/D H:m';
 
 const DAY_LABELS = _.range( 0, 7 ).map( day => ( {
     label : copy.dayHeaders[ day ],
@@ -98,24 +78,15 @@ function isTimestampEqual( ts1, ts2, precision )
  *
  * @param {String}  inputValue human readable date
  * @param {Number}  timestamp current timestamp
+ * @param {String}  format date format
  *
  * @return {Number} timestamp
  */
-function tryParseInputValue( inputValue, timestamp )
+function tryParseInputValue( inputValue, timestamp, format = DEFAULT_FORMAT )
 {
     if ( !inputValue ) return null;
 
-    const parser = PARSE_FORMATTING.find( ( { predicate, requirePrecision } ) =>
-        predicate.test( inputValue ) &&
-            PRECISIONS.includes( requirePrecision ) );
-
-    if ( !parser ||
-        _.isNaN( moment.utc( inputValue, parser.format ).valueOf() ) )
-    {
-        return timestamp;
-    }
-
-    return moment.utc( inputValue, parser.format ).valueOf();
+    return moment.utc( inputValue, format ).valueOf() || timestamp;
 }
 
 /**
@@ -181,26 +152,6 @@ function setPrecision( mode )
     return DISPLAY_FORMATTING[ format ];
 }
 
-/**
- * returns editing timestamp when editing date time input,
- * otherwise returns the current timestamp
- *
- * @param {Number}  editingTimestamp timestamp
- * @param {Number}  timestamp timestamp
- *
- * @return {Number} timestamp
- */
-function displayTimestamp( editingTimestamp, timestamp )
-{
-    if ( typeof editingTimestamp !== 'undefined' )
-    {
-        return editingTimestamp;
-    }
-    return timestamp;
-}
-
-const InputWithDropdown = withDropdown( TextInputWithIcon );
-
 export default class DateTimeInput extends Component
 {
     static propTypes =
@@ -209,6 +160,14 @@ export default class DateTimeInput extends Component
          *  Extra CSS class name
          */
         className         : PropTypes.string,
+        /**
+         *  id of the DOM element used as container for popup datepicker
+         */
+        container         : PropTypes.string,
+        /**
+         *  Date time format
+         */
+        format            : PropTypes.string,
         /**
          *  Display as error/invalid
          */
@@ -236,11 +195,11 @@ export default class DateTimeInput extends Component
         /**
          *  Maximum timestamp selectable
          */
-        maxDateSelectable : PropTypes.number,
+        max               : PropTypes.number,
         /**
          *  Minimum timestamp selectable
          */
-        minDateSelectable : PropTypes.number,
+        min               : PropTypes.number,
         /**
          *  Minute input placeholder text
          */
@@ -262,14 +221,16 @@ export default class DateTimeInput extends Component
     static defaultProps =
     {
         className         : undefined,
+        container         : undefined,
+        format            : undefined,
         hasError          : false,
         hourPlaceholder   : undefined,
         id                : undefined,
         inputPlaceholder  : undefined,
         isDisabled        : false,
         isReadOnly        : false,
-        maxDateSelectable : undefined,
-        minDateSelectable : undefined,
+        max               : undefined,
+        min               : undefined,
         minutePlaceholder : undefined,
         mode              : 'default',
         onChange          : undefined,
@@ -307,26 +268,27 @@ export default class DateTimeInput extends Component
 
     static getDerivedStateFromProps( props, state )
     {
+        let timestamp;
+
+        if ( props.value )
+        {
+            timestamp = props.value;
+        }
+        else if ( props.value === null )
+        {
+            timestamp = undefined;
+        }
+        else
+        {
+            timestamp = state.editingTimestamp || state.timestamp;
+        }
+
         return {
-            id        : props.id || state.id || generateId( 'DateTimeInput' ),
-            isOpen    : Boolean( state.gridStartTimestamp ),
-            timestamp : props.value || displayTimestamp(
-                state.editingTimestamp,
-                state.timestamp,
-            ),
+            id     : props.id || state.id || generateId( 'DateTimeInput' ),
+            isOpen : Boolean( state.gridStartTimestamp ),
+            timestamp,
         };
     }
-
-    componentDidMount()
-    {
-        addEventListener( 'mousedown', this.handleClickOutSide, false );
-    }
-
-    componentWillUnmount()
-    {
-        removeEventListener( 'mousedown', this.handleClickOutSide, false );
-    }
-
 
     handleClickNext()
     {
@@ -350,27 +312,24 @@ export default class DateTimeInput extends Component
         } ) );
     }
 
-    handleClickOutSide( e )
+    handleClickOutSide()
     {
-        if ( !this.wrapperRef.current.contains( e.target ) )
-        {
-            this.close();
-        }
+        this.close();
     }
 
     canGotoNext()
     {
-        const { maxDateSelectable } = this.props;
+        const { max } = this.props;
         const nextGridStart = $m( this.state.gridStartTimestamp )
             .add( 1, this.props.mode === 'month' ? 'year' : 'month' ).valueOf();
 
-        return !_.isNumber( maxDateSelectable ) ||
-            ( nextGridStart <= maxDateSelectable );
+        return !_.isNumber( max ) ||
+            ( nextGridStart <= max );
     }
 
     canGotoPrev()
     {
-        const minDateSelectable = this.props.minDateSelectable || now();
+        const min = this.props.min || now();
         const prevGridStart = $m( this.state.gridStartTimestamp )
             .add( -1, this.props.mode === 'month' ? 'year' : 'month' )
             .valueOf();
@@ -378,8 +337,8 @@ export default class DateTimeInput extends Component
             .add( 1, this.props.mode === 'month' ? 'year' : 'month' )
             .valueOf();
 
-        return !_.isNumber( minDateSelectable ) ||
-            endOfPrev > minDateSelectable;
+        return !_.isNumber( min ) ||
+            endOfPrev > min;
     }
 
     canEditHourOrMinute()
@@ -389,14 +348,14 @@ export default class DateTimeInput extends Component
 
     isUnitSelectable( timestamp, unit, allowFraction )
     {
-        const { maxDateSelectable } = this.props;
-        const minDateSelectable = this.props.minDateSelectable || now();
+        const { max } = this.props;
+        const min = this.props.min || now();
 
-        if ( timestamp > maxDateSelectable ) return false;
+        if ( timestamp > max ) return false;
 
-        if ( !allowFraction ) return timestamp >= minDateSelectable;
+        if ( !allowFraction ) return timestamp >= min;
 
-        return $m( timestamp ).add( 1, unit ) > minDateSelectable;
+        return $m( timestamp ).add( 1, unit ) > min;
     }
 
     dayMatrix()
@@ -487,7 +446,6 @@ export default class DateTimeInput extends Component
         if ( !isReadOnly )
         {
             this.setState( { timestamp: value } );
-
             const { onChange } = this.props;
             const { id } = this.state;
             if ( typeof onChange === 'function' )
@@ -524,28 +482,35 @@ export default class DateTimeInput extends Component
     handleChangeInput( { value } )
     {
         const trimmed = value.replace( /\s+/g, ' ' );
-        const min = this.props.minDateSelectable || now();
+        const min = this.props.min || now();
 
         this.setState( prevState =>
         {
-            let timestamp = tryParseInputValue( trimmed, prevState.timestamp );
+            let timestamp = tryParseInputValue(
+                trimmed,
+                prevState.timestamp,
+                this.props.format,
+            );
 
             if ( timestamp < min )
             {
                 timestamp = min;
             }
 
-            if ( this.props.maxDateSelectable &&
-                timestamp > this.props.maxDateSelectable )
+            if ( this.props.max &&
+                timestamp > this.props.max )
             {
-                timestamp = this.props.maxDateSelectable;
+                timestamp = this.props.max;
             }
 
             return {
-                editingHourInputValue   : formatHours( value ),
-                editingMainInputValue   : value,
-                editingMinuteInputValue : formatMinutes( value ),
-                editingTimestamp        : timestamp,
+                editingHourInputValue : !value ? undefined :
+                    formatHours( value ),
+                editingMainInputValue   : !value ? undefined : value,
+                editingMinuteInputValue : !value ? undefined :
+                    formatMinutes( value ),
+                editingTimestamp : !value ? undefined : timestamp,
+                timestamp        : !value ? undefined : timestamp,
             };
         } );
     }
@@ -569,7 +534,7 @@ export default class DateTimeInput extends Component
                     editingTimestamp      : timestamp,
                     editingMainInputValue : formatDateTime(
                         timestamp,
-                        setPrecision( this.props.mode ),
+                        this.props.format || setPrecision( this.props.mode ),
                     ),
                 };
             } );
@@ -590,7 +555,8 @@ export default class DateTimeInput extends Component
                         editingTimestamp      : timestamp,
                         editingMainInputValue : formatDateTime(
                             timestamp,
-                            setPrecision( this.props.mode ),
+                            this.props.format ||
+                                setPrecision( this.props.mode ),
                         ),
                     };
                 } );
@@ -615,7 +581,7 @@ export default class DateTimeInput extends Component
                     editingTimestamp      : timestamp,
                     editingMainInputValue : formatDateTime(
                         timestamp,
-                        setPrecision( this.props.mode ),
+                        this.props.format || setPrecision( this.props.mode ),
                     ),
                 };
             } );
@@ -636,7 +602,8 @@ export default class DateTimeInput extends Component
                         editingTimestamp      : timestamp,
                         editingMainInputValue : formatDateTime(
                             timestamp,
-                            setPrecision( this.props.mode ),
+                            this.props.format ||
+                                setPrecision( this.props.mode ),
                         ),
                     };
                 } );
@@ -646,13 +613,13 @@ export default class DateTimeInput extends Component
 
     open()
     {
-        const { minDateSelectable } = this.props;
+        const { min } = this.props;
         let { timestamp } = this.state;
 
         timestamp = _.isNumber( timestamp ) ? timestamp : now();
 
-        timestamp = ( _.isNumber( minDateSelectable ) &&
-            minDateSelectable > timestamp ) ? minDateSelectable : timestamp;
+        timestamp = ( _.isNumber( min ) &&
+            min > timestamp ) ? min : timestamp;
 
         this.setState( {
             gridStartTimestamp : $m( timestamp )
@@ -672,6 +639,7 @@ export default class DateTimeInput extends Component
     {
         const {
             className,
+            container,
             hasError,
             hourPlaceholder,
             id = generateId( 'DateTimeInput' ),
@@ -720,21 +688,12 @@ export default class DateTimeInput extends Component
                 year           = { this.yearLabel() } />
         );
 
-        const dropdownProps = {
-            children : datePicker,
-            hasError,
-            padding  : 'none',
-            size     : 'content',
-        };
-
-        return (
-            <InputWithDropdown
+        const popperChildren = (
+            <TextInputWithIcon
                 autoCapitalize  = "off"
                 autoComplete    = "off"
                 autoCorrect     = "off"
                 className       = { className }
-                dropdownIsOpen  = { isOpen }
-                dropdownProps   = { dropdownProps }
                 forceHover      = { isOpen }
                 hasError        = { hasError }
                 iconType        = "calendar"
@@ -746,10 +705,30 @@ export default class DateTimeInput extends Component
                 spellCheck      = { false }
                 value           = {
                     typeof editingMainInputValue === 'undefined' ?
-                        formatDateTime( timestamp, setPrecision( mode ) ) :
+                        formatDateTime( timestamp, this.props.format ||
+                            setPrecision( this.props.mode ) ) :
                         editingMainInputValue
                 }
                 wrapperRef = { this.wrapperRef } />
+        );
+
+        const popperPopup = (
+            <Popup
+                hasError = { hasError }>
+                { datePicker }
+            </Popup>
+        );
+
+        return (
+            <PopperWrapper
+                container      = { container || 'nessie-overlay' }
+                isVisible      = { isOpen }
+                onClickOutside = { this.handleClickOutSide }
+                popper         = { popperPopup }
+                popperOffset   = "S"
+                popperPosition = "bottom-start">
+                { popperChildren }
+            </PopperWrapper>
         );
     }
 }

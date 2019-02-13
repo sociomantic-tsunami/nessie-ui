@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -17,15 +17,15 @@ import React, {
     useState,
 }                                                 from 'react';
 import PropTypes                                  from 'prop-types';
+import { castArray, escapeRegExp }                from 'lodash';
 
 import { ListBox, ScrollBox, Text }               from '..';
 
 import TextInputWithIcon                          from '../TextInputWithIcon';
-import withDropdown                               from '../Addons/withDropdown';
+import Popup                                      from '../Popup';
+import PopperWrapper                              from '../PopperWrapper';
 import { generateId }                             from '../utils';
 import { addPrefix, prefixOptions, removePrefix } from './utils';
-
-const InputWithDropdown = withDropdown( TextInputWithIcon );
 
 /**
  * gets the index of the option by the passed id
@@ -354,45 +354,67 @@ const ComboBox = props =>
         );
     }
 
-    return (
-        <InputWithDropdown
+    const popperChildren = (
+        <TextInputWithIcon
             aria = { {
                 activeDescendant :
-                    activeOption && addPrefix( activeOption, componentId ),
+                    activeOption && addPrefix( activeOption, id ),
                 autocomplete : 'list',
                 expanded     : isOpen,
                 hasPopup     : 'listbox',
-                owns         : addPrefix( 'listbox', componentId ),
+                owns         : addPrefix( 'listbox', id ),
                 role         : 'combobox',
             } }
-            autoCapitalize   = "off"
-            autoComplete     = "off"
-            autoCorrect      = "off"
-            className        = { className }
-            dropdownIsOpen   = { isOpen }
-            dropdownPosition = { dropdownPosition }
-            dropdownProps    = { {
-                children : dropdownContent,
-                hasError,
-                padding  : optionsToShow.length ? 'none' : 'S',
-            } }
-            hasError        = { hasError }
-            iconType        = { isOpen ? 'up' : 'down' }
-            id              = { componentId }
-            inputRef        = { inputRef }
-            isDisabled      = { isDisabled }
-            isReadOnly      = { isReadOnly || !isSearchable || !isOpen }
-            onBlur          = { handleBlur }
-            onChangeInput   = { handleChangeInput }
-            onClick         = { handleClickInput }
-            onClickIcon     = { handleClickIcon }
-            onKeyDown       = { handleKeyDown }
-            placeholder     = { inputPlaceholder }
-            spellCheck      = { false }
-            value           = { ( isOpen && isSearchable ) ?
-                searchValue : optionVal
-            }
-            wrapperRef = { wrapperRef } />
+            autoCapitalize = "off"
+            autoComplete   = "off"
+            autoCorrect    = "off"
+            className      = { className }
+            hasError       = { hasError }
+            iconType       = { isOpen ? 'chevron-up' : 'chevron-down' }
+            id             = { id }
+            inputRef       = { this.inputRef }
+            isDisabled     = { isDisabled }
+            isReadOnly     = { !isSearchable || !isOpen }
+            onBlur         = { callMultiple(
+                this.handleBlur,
+                this.props.onBlur,
+            ) } // temporary fix
+            onChangeInput  = { this.handleChangeInput }
+            onClick        = { callMultiple(
+                this.handleClick,
+                this.props.onClick,
+            ) } // temporary fix
+            onClickIcon    = { this.handleClickIcon }
+            onFocus        = { this.props.onFocus } // temporary fix
+            onKeyDown      = { callMultiple(
+                this.handleKeyDown,
+                this.props.onKeyDown,
+            ) } // temporary fix
+            placeholder    = { inputPlaceholder }
+            spellCheck     = { false }
+            value          = { ( isOpen && isSearchable ) ?
+                searchValue : selectedText
+            } />
+    );
+
+    const popperPopup = (
+        <Popup
+            hasError = { hasError }
+            padding  = { optionsToShow.length ? 'none' : 'S' }>
+            { dropdownContent }
+        </Popup>
+    );
+
+    return (
+        <PopperWrapper
+            container      = { container || 'nessie-overlay' }
+            isVisible      = { isOpen }
+            matchRefWidth
+            popper         = { popperPopup }
+            popperOffset   = "S"
+            popperPosition = "bottom">
+            { popperChildren }
+        </PopperWrapper>
     );
 };
 

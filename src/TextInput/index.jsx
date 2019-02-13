@@ -43,7 +43,7 @@ export default class TextInput extends React.Component
         /**
          *  HTML attribute controlling input auto complete
          */
-        autoComplete : PropTypes.string,
+        autoComplete : PropTypes.oneOf( [ 'on', 'off' ] ),
         /**
          *  HTML attribute controlling input auto correct (Safari-specific)
          */
@@ -84,10 +84,6 @@ export default class TextInput extends React.Component
          *  Input click callback function
          */
         onClick      : PropTypes.func,
-        /**
-         *  Icon click callback function
-         */
-        onClickIcon  : PropTypes.func,
         /**
          *  Focus callback function
          */
@@ -145,7 +141,6 @@ export default class TextInput extends React.Component
         onBlur         : undefined,
         onChange       : undefined,
         onClick        : undefined,
-        onClickIcon    : undefined,
         onFocus        : undefined,
         onKeyDown      : undefined,
         onKeyPress     : undefined,

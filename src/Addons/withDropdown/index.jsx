@@ -7,13 +7,13 @@
  *
  */
 
-import React                              from 'react';
-import PropTypes                          from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { Dropdown }                       from '../..';
-import { attachEvents, buildDisplayName } from '../../utils';
-import ThemeContext                       from '../../Theming/ThemeContext';
-import { createCssMap }                   from '../../Theming';
+import { Popup }            from '../..';
+import { buildDisplayName } from '../../utils';
+import ThemeContext         from '../../Theming/ThemeContext';
+import { createCssMap }     from '../../Theming';
 
 
 const withDropdown = Component =>
@@ -62,12 +62,9 @@ const withDropdown = Component =>
             } = this.props;
 
             return (
-                <div
-                    { ...attachEvents( this.props ) }
-                    className = { cssMap.main }
-                    ref       = { wrapperRef }>
+                <div className = { cssMap.main } ref = { wrapperRef }>
                     <Component { ...componentProps } />
-                    <Dropdown
+                    <Popup
                         { ...dropdownProps }
                         className = { cssMap.dropdown } />
                 </div>
