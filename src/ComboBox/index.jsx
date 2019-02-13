@@ -19,12 +19,16 @@ import React, {
 import PropTypes                                  from 'prop-types';
 import { castArray, escapeRegExp }                from 'lodash';
 
-import { ListBox, ScrollBox, Text }               from '..';
+import {
+    ListBox,
+    Popup,
+    PopperWrapper,
+    ScrollBox,
+    Text,
+    TextInputWithIcon,
+}                                                 from '..';
 
-import TextInputWithIcon                          from '../TextInputWithIcon';
-import Popup                                      from '../Popup';
-import PopperWrapper                              from '../PopperWrapper';
-import { generateId }                             from '../utils';
+import { callMultiple, generateId }               from '../utils';
 import { addPrefix, prefixOptions, removePrefix } from './utils';
 
 /**
@@ -82,19 +86,19 @@ const optionsFormatted = ( filteredOptionsIds, originalOptions ) => (
         return formattedOptions;
     }, [] ) );
 
-const useSelectedOption = ( selectedOption ) =>
+const useSelection = ( defaultValue, value ) =>
 {
-    const [ option, setOption ] = useState( undefined );
+    const [ selection, setSelection ] = useState( defaultValue );
 
-    const setter = ( value ) =>
+    const setter = ( newValue ) =>
     {
-        if ( !selectedOption )
+        if ( !value )
         {
-            setOption( value );
+            setSelection( newValue );
         }
     };
 
-    return [ selectedOption || option, setter ];
+    return [ value || selection, setter ];
 };
 
 const ComboBox = props =>
@@ -104,27 +108,39 @@ const ComboBox = props =>
     const [ isOpen, setIsOpen ] = useState( undefined );
     const [ searchValue, setSearchValue ] = useState( undefined );
 
+    // const filteredOptions = searchValue && (
+    //     flatOptions.filter( ( { text } ) => (
+    //         text.match( new RegExp(
+    //             escapeRegExp( searchValue ),
+    //             'i',
+    //         ) )
+    //     ) )
+    // );
+
     const inputRef = useRef( null );
     const scrollBoxRef = useRef( null );
-    const wrapperRef = useRef( null );
 
     const {
         className,
+        container,
+        defaultValue,
         dropdownPlaceholder,
-        dropdownPosition,
         hasError,
         id,
         inputPlaceholder,
         isDisabled,
+        isMultiselect,
         isReadOnly,
         isSearchable,
         onChange,
         options,
-        selectedOption,
+        value,
     } = props;
 
-    const [ optionSelected,
-        setOptionSelected ] = useSelectedOption( selectedOption );
+    const [ optionSelected, setOptionSelected ] = useSelection(
+        isMultiselect ? castArray( defaultValue ) : defaultValue,
+        isMultiselect ? castArray( value ) : value,
+    );
 
     const flatOptions = useMemo(
         () => ( options.flatMap( o => o.options || o ) ),
@@ -209,21 +225,28 @@ const ComboBox = props =>
     {
         const unprefixedId = removePrefix( optId, componentId );
 
-        const selectedOptionToUse = !isReadOnly ? getOption(
+        let newSelection = !isReadOnly ? getOption(
             unprefixedId,
             flatOptions,
         ).id : optionSelected;
 
-        if ( !isReadOnly && typeof onChange === 'function' )
+        if ( isMultiselect )
         {
-            onChange( { id, selectedOptionToUse } );
+            newSelection = optionSelected.includes( optId ) ?
+                optionSelected.filter( item => item !== optId ) :
+                [ ...optionSelected, optId ];
         }
 
-        setActiveOption( selectedOptionToUse );
+        if ( !isReadOnly && typeof onChange === 'function' )
+        {
+            onChange( { id, newSelection } );
+        }
+
+        setActiveOption( newSelection );
         setFilteredOptions( undefined );
         setIsOpen( false );
         setSearchValue( undefined );
-        setOptionSelected( selectedOptionToUse );
+        setOptionSelected( newSelection );
     }, [ componentId, isReadOnly, flatOptions, optionSelected, onChange ] );
 
     const handleKeyDown = useCallback( ( { key, preventNessieDefault } ) =>
@@ -262,19 +285,31 @@ const ComboBox = props =>
         }
         else if ( key === 'Enter' )
         {
-            const selectedOptionToUse = !isReadOnly && activeOption ?
-                activeOption : optionSelected;
-
-            if ( !isReadOnly && typeof onChange === 'function' )
+            if ( !isReadOnly )
             {
-                onChange( { id, selectedOptionToUse } );
-            }
+                let newSelection = !isReadOnly && activeOption ?
+                    activeOption : optionSelected;
 
-            setActiveOption( activeOption );
-            setFilteredOptions( undefined );
-            setIsOpen( !isOpen );
-            setSearchValue( undefined );
-            setOptionSelected( selectedOptionToUse );
+                if ( newSelection && isMultiselect )
+                {
+                    newSelection = optionSelected.includes( newSelection ) ?
+                        optionSelected.filter( item => item !== newSelection ) :
+                        [ ...optionSelected, newSelection ];
+                }
+
+                newSelection = newSelection || optionSelected;
+
+                if ( typeof onChange === 'function' )
+                {
+                    onChange( { id, newSelection } );
+                }
+
+                setActiveOption( activeOption );
+                setFilteredOptions( undefined );
+                setIsOpen( !isOpen );
+                setSearchValue( undefined );
+                setOptionSelected( newSelection );
+            }
         }
     }, [ filteredOptions, flatOptions, isOpen, activeOption, optionSelected,
         isReadOnly, onChange ] );
@@ -302,10 +337,24 @@ const ComboBox = props =>
         setSearchValue( undefined );
     };
 
-    const optionVal = getOption( optionSelected, flatOptions ) ?
-        getOption( optionSelected, flatOptions ).text : undefined;
+    let selectedOption = getOption( optionSelected, flatOptions );
+    let selectedText = selectedOption ? selectedOption.text : '';
 
-    let optionsToShow = options;
+    if ( isMultiselect )
+    {
+        if ( optionSelected.length === 1 )
+        {
+            selectedOption = getOption( optionSelected[ 0 ], flatOptions );
+            selectedText = selectedOption ? selectedOption.text : '';
+        }
+        else if ( optionSelected.length > 1 )
+        {
+            selectedText = optionSelected.length &&
+                    `(${optionSelected.length} items selected)`;
+        }
+    }
+
+    let optionsToShow = options || [];
 
     if ( filteredOptions )
     {
@@ -372,23 +421,23 @@ const ComboBox = props =>
             hasError       = { hasError }
             iconType       = { isOpen ? 'chevron-up' : 'chevron-down' }
             id             = { id }
-            inputRef       = { this.inputRef }
+            inputRef       = { inputRef }
             isDisabled     = { isDisabled }
             isReadOnly     = { !isSearchable || !isOpen }
             onBlur         = { callMultiple(
-                this.handleBlur,
-                this.props.onBlur,
+                handleBlur,
+                props.onBlur,
             ) } // temporary fix
-            onChangeInput  = { this.handleChangeInput }
+            onChangeInput  = { handleChangeInput }
             onClick        = { callMultiple(
-                this.handleClick,
-                this.props.onClick,
+                handleClickInput,
+                props.onClick,
             ) } // temporary fix
-            onClickIcon    = { this.handleClickIcon }
-            onFocus        = { this.props.onFocus } // temporary fix
+            onClickIcon    = { handleClickIcon }
+            onFocus        = { props.onFocus } // temporary fix
             onKeyDown      = { callMultiple(
-                this.handleKeyDown,
-                this.props.onKeyDown,
+                handleKeyDown,
+                props.onKeyDown,
             ) } // temporary fix
             placeholder    = { inputPlaceholder }
             spellCheck     = { false }
@@ -423,15 +472,22 @@ ComboBox.propTypes =
     /**
      *  Extra CSS class name
      */
-    className           : PropTypes.string,
+    className    : PropTypes.string,
+    /**
+     *  Default selected option id(s) (when uncontrolled)
+     */
+    defaultValue : PropTypes.oneOfType(
+        PropTypes.string,
+        PropTypes.arrayOf( PropTypes.string ),
+    ),
+    /**
+     *  id of the DOM element used as container for popup listBox
+     */
+    container           : PropTypes.string,
     /**
      * Placeholder text to show when no dropdown list options
      */
     dropdownPlaceholder : PropTypes.string,
-    /**
-     * Position of the dropdown relative to the text input
-     */
-    dropdownPosition    : PropTypes.oneOf( [ 'top', 'bottom' ] ),
     /**
      *  Display as error/invalid
      */
@@ -449,6 +505,10 @@ ComboBox.propTypes =
      */
     isDisabled          : PropTypes.bool,
     /**
+     *  Enables multi-select behavior
+     */
+    isMultiselect       : PropTypes.bool,
+    /**
      *  Display as read-only
      */
     isReadOnly          : PropTypes.bool,
@@ -457,33 +517,43 @@ ComboBox.propTypes =
       */
     isSearchable        : PropTypes.bool,
     /**
-     *  Change callback: ( { selectedOption } ) => ...
+     *  Change callback: ( { value } ) => ...
      */
     onChange            : PropTypes.func,
+    /**
+     *  Input field change callback: ( { value } ) => ...
+     */
+    onChangeInput       : PropTypes.func,
     /*
      * Dropdown list options
      */
     options             : PropTypes.arrayOf( PropTypes.object ),
     /**
-     *  Selected option id
+     *  Selected option id(s)
      */
-    selectedOption      : PropTypes.string,
+    value               : PropTypes.oneOfType(
+        PropTypes.string,
+        PropTypes.arrayOf( PropTypes.string ),
+    ),
 };
 
 ComboBox.defaultProps =
 {
     className           : undefined,
-    dropdownPlaceholder : undefined,
-    dropdownPosition    : 'bottom',
+    container           : undefined,
+    defaultValue        : undefined,
+    dropdownPlaceholder : 'No results to show',
     hasError            : false,
     id                  : undefined,
     inputPlaceholder    : undefined,
     isDisabled          : false,
+    isMultiselect       : false,
     isReadOnly          : undefined,
     isSearchable        : false,
     onChange            : undefined,
+    onChangeInput       : undefined,
     options             : undefined,
-    selectedOption      : undefined,
+    value               : undefined,
 };
 
 ComboBox.displayName = 'ComboBox';
