@@ -111,7 +111,7 @@ const TagInput = forwardRef( ( props, ref ) =>
         ), [ options, filteredOptionsState ] );
 
     const id =  useMemo( () => (
-        props.id || generateId( 'TagInput' )
+        props.id || generateId( componentName )
     ), [ props.id ] );
 
     const value = useMemo( () => (
