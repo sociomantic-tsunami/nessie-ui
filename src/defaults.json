@@ -318,7 +318,7 @@
 		"scrollMax": 100
 	},
 	"ScrollBox": {
-		"children": "ScrollBox content",
+		"children": "{<Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid>}",
 		"contentWidth": "150%",
 		"height": "100px"
 	},
