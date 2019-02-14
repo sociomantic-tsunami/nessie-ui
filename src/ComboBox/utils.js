@@ -52,10 +52,19 @@ function prefixOptions( options = [], prefix )
             };
         }
 
-        return {
+        const flatOptions = {
+            text : option,
+            id   : addPrefix( option, prefix ),
+        };
+        const structuredOptions = {
             ...option,
             id : addPrefix( option.id, prefix ),
         };
+
+        const returnedOptions = typeof option !== 'string' ?
+            structuredOptions : flatOptions;
+
+        return returnedOptions;
     } );
 }
 
@@ -71,6 +80,7 @@ function prefixOptions( options = [], prefix )
  */
 function removePrefix( str, prefix )
 {
+
     return ( str && prefix ) ? str.replace( `${prefix}-`, '' ) : str;
 }
 
