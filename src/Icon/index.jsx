@@ -32,7 +32,7 @@ const Icon = props =>
             aria-label = { children || label }
             className  = { cssMap.main }>
             { ( type !== 'none' ) &&
-            <use xlinkHref = { `#icon__${type}` } /> }
+            <use xlinkHref = { `#nessie-${type}` } /> }
         </svg>
     );
 };
