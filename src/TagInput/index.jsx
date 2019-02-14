@@ -95,10 +95,13 @@ const TagInput = forwardRef( ( props, ref ) =>
 
 
     const [ activeOption, setActiveOption ] = useState( undefined );
-    const [ filteredOptionsState, setFilteredOptionsState ] = useState( undefined );
+    const [ filteredOptionsState,
+        setFilteredOptionsState ] = useState( undefined );
     const [ inputValue, setInputValue ] = useState( '' );
     const [ isOpen, setIsOpen ] = useState( false );
-    const [ valueState, setValueState ] = useState( Array.isArray( props.defaultValue ) ? props.defaultValue : [] );
+    const [ valueState,
+        setValueState ] = useState( Array.isArray( props.defaultValue ) ?
+        props.defaultValue : [] );
 
     const options =
         useMemo( () => (
@@ -178,7 +181,8 @@ const TagInput = forwardRef( ( props, ref ) =>
         const filteredOptionsScoped = options.filter( ( { text } ) =>
             text.match( new RegExp( escapeRegExp( scopedValue ), 'i' ) ) );
 
-        const activeOptionScoped = ( scopedValue && filteredOptionsScoped.length ) ?
+        const activeOptionScoped = ( scopedValue &&
+            filteredOptionsScoped.length ) ?
             filteredOptionsScoped[ 0 ].id : undefined;
 
         setActiveOption( activeOptionScoped );
