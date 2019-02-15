@@ -20,6 +20,7 @@ import Popup                                      from '../Popup';
 import PopperWrapper                              from '../PopperWrapper';
 import { callMultiple, generateId }               from '../utils';
 import { addPrefix, prefixOptions, removePrefix } from './utils';
+import { buildTagsFromValues }                    from '../TagInput/utils';
 
 /**
  * gets the index of the option by the passed id
@@ -156,7 +157,7 @@ export default class ComboBox extends Component
     {
         className           : undefined,
         container           : undefined,
-        defaultValue        : undefined,
+        defaultValue        : [],
         dropdownPlaceholder : 'No results to show',
         hasError            : false,
         id                  : undefined,
@@ -460,21 +461,12 @@ export default class ComboBox extends Component
             selection,
         } = this.state;
 
-        let selectedOption = getOption( selection, flatOptions );
+        const selectedOption = getOption( selection, flatOptions );
         let selectedText = selectedOption ? selectedOption.text : '';
 
         if ( isMultiselect )
         {
-            if ( selection.length === 1 )
-            {
-                selectedOption = getOption( selection[ 0 ], flatOptions );
-                selectedText = selectedOption ? selectedOption.text : '';
-            }
-            else if ( selection.length > 1 )
-            {
-                selectedText =
-                    selection.length && `(${selection.length} items selected)`;
-            }
+            selectedText = buildTagsFromValues( selection );
         }
 
         let optionsToShow = options || [];
