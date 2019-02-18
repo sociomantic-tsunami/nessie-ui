@@ -18,14 +18,23 @@ import {
     ListBox,
     ScrollBox,
     Text,
-    TextInput,
 } from '..';
 
-import Popup                                      from '../Popup';
-import PopperWrapper                              from '../PopperWrapper';
-import { attachEvents, callMultiple, generateId } from '../utils';
-import { addPrefix, prefixOptions, removePrefix } from './utils';
-import { buildTagsFromValues }                    from '../TagInput/utils';
+import Popup            from '../Popup';
+import PopperWrapper    from '../PopperWrapper';
+import {
+    attachEvents,
+    callMultiple,
+    generateId,
+} from '../utils';
+import {
+    addPrefix,
+    prefixOptions,
+    removePrefix,
+} from './utils';
+import { buildTagsFromValues }  from '../TagInput/utils';
+import ThemeContext             from '../Theming/ThemeContext';
+import { createCssMap }         from '../Theming';
 
 /**
  * normalize array of options or value
@@ -103,6 +112,8 @@ function optionsFormatted( filteredOptionsIds, originalOptions )
 
 export default class ComboBox extends Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -120,6 +131,10 @@ export default class ComboBox extends Component
          *  id of the DOM element used as container for popup listBox
          */
         container           : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap              : PropTypes.objectOf( PropTypes.string ),
         /**
          * Placeholder text to show when no dropdown list options
          */
@@ -177,6 +192,7 @@ export default class ComboBox extends Component
     {
         className           : undefined,
         container           : undefined,
+        cssMap              : undefined,
         defaultValue        : [],
         dropdownPlaceholder : 'No results to show',
         hasError            : false,
@@ -465,6 +481,7 @@ export default class ComboBox extends Component
         const {
             className,
             container,
+            cssMap = createCssMap( this.context.ComboBox, this.props ),
             dropdownPlaceholder,
             hasError,
             inputPlaceholder,
@@ -540,9 +557,12 @@ export default class ComboBox extends Component
         }
 
         const popperChildren = (
-            <div { ...attachEvents( this.props ) }>
+            <label
+                { ...attachEvents( this.props ) }
+                className = { cssMap.main }
+                htmlFor   = { id }>
                 { isMultiselect && buildTagsFromValues( selection ) }
-                <TextInput
+                <input
                     aria = { {
                         activeDescendant :
                             activeOption && addPrefix( activeOption, id ),
@@ -555,7 +575,7 @@ export default class ComboBox extends Component
                     autoCapitalize = "off"
                     autoComplete   = "off"
                     autoCorrect    = "off"
-                    className      = { className }
+                    className      = { cssMap.input }
                     hasError       = { hasError }
                     id             = { id }
                     inputRef       = { this.inputRef }
@@ -580,10 +600,10 @@ export default class ComboBox extends Component
                     value          = { ( isOpen && isSearchable ) ?
                         searchValue : selectedText } />
                 <IconButton
-                    className   = { className }
+                    className   = { cssMap.icon }
                     iconType    = { isOpen ? 'chevron-up' : 'chevron-down' }
                     onClickIcon = { this.handleClickIcon } />
-            </div>
+            </label>
         );
 
         const popperPopup = (
