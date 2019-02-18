@@ -9,16 +9,21 @@
 
 /* global document */
 
-import React, { Component }                       from 'react';
-import PropTypes                                  from 'prop-types';
-import { castArray, escapeRegExp }                from 'lodash';
+import React, { Component }         from 'react';
+import PropTypes                    from 'prop-types';
+import { castArray, escapeRegExp }  from 'lodash';
 
-import { ListBox, ScrollBox, Text }               from '..';
+import {
+    IconButton,
+    ListBox,
+    ScrollBox,
+    Text,
+    TextInput,
+} from '..';
 
-import TextInputWithIcon                          from '../TextInputWithIcon';
 import Popup                                      from '../Popup';
 import PopperWrapper                              from '../PopperWrapper';
-import { callMultiple, generateId }               from '../utils';
+import { attachEvents, callMultiple, generateId } from '../utils';
 import { addPrefix, prefixOptions, removePrefix } from './utils';
 import { buildTagsFromValues }                    from '../TagInput/utils';
 
@@ -462,12 +467,7 @@ export default class ComboBox extends Component
         } = this.state;
 
         const selectedOption = getOption( selection, flatOptions );
-        let selectedText = selectedOption ? selectedOption.text : '';
-
-        if ( isMultiselect )
-        {
-            selectedText = buildTagsFromValues( selection );
-        }
+        const selectedText = selectedOption ? selectedOption.text : '';
 
         let optionsToShow = options || [];
 
@@ -521,46 +521,50 @@ export default class ComboBox extends Component
         }
 
         const popperChildren = (
-            <TextInputWithIcon
-                aria = { {
-                    activeDescendant :
-                        activeOption && addPrefix( activeOption, id ),
-                    autocomplete : 'list',
-                    expanded     : isOpen,
-                    hasPopup     : 'listbox',
-                    owns         : addPrefix( 'listbox', id ),
-                    role         : 'combobox',
-                } }
-                autoCapitalize = "off"
-                autoComplete   = "off"
-                autoCorrect    = "off"
-                className      = { className }
-                hasError       = { hasError }
-                iconType       = { isOpen ? 'chevron-up' : 'chevron-down' }
-                id             = { id }
-                inputRef       = { this.inputRef }
-                isDisabled     = { isDisabled }
-                isReadOnly     = { !isSearchable || !isOpen }
-                onBlur         = { callMultiple(
-                    this.handleBlur,
-                    this.props.onBlur,
-                ) } // temporary fix
-                onChangeInput  = { this.handleChangeInput }
-                onClick        = { callMultiple(
-                    this.handleClick,
-                    this.props.onClick,
-                ) } // temporary fix
-                onClickIcon    = { this.handleClickIcon }
-                onFocus        = { this.props.onFocus } // temporary fix
-                onKeyDown      = { callMultiple(
-                    this.handleKeyDown,
-                    this.props.onKeyDown,
-                ) } // temporary fix
-                placeholder    = { inputPlaceholder }
-                spellCheck     = { false }
-                value          = { ( isOpen && isSearchable ) ?
-                    searchValue : selectedText
-                } />
+            <div { ...attachEvents( this.props ) }>
+                { isMultiselect && buildTagsFromValues( selection ) }
+                <TextInput
+                    aria = { {
+                        activeDescendant :
+                            activeOption && addPrefix( activeOption, id ),
+                        autocomplete : 'list',
+                        expanded     : isOpen,
+                        hasPopup     : 'listbox',
+                        owns         : addPrefix( 'listbox', id ),
+                        role         : 'combobox',
+                    } }
+                    autoCapitalize = "off"
+                    autoComplete   = "off"
+                    autoCorrect    = "off"
+                    className      = { className }
+                    hasError       = { hasError }
+                    id             = { id }
+                    inputRef       = { this.inputRef }
+                    isDisabled     = { isDisabled }
+                    isReadOnly     = { !isSearchable || !isOpen }
+                    onBlur         = { callMultiple(
+                        this.handleBlur,
+                        this.props.onBlur,
+                    ) } // temporary fix
+                    onChangeInput  = { this.handleChangeInput }
+                    onClick        = { callMultiple(
+                        this.handleClick,
+                        this.props.onClick,
+                    ) } // temporary fix
+                    onFocus        = { this.props.onFocus } // temporary fix
+                    onKeyDown      = { callMultiple(
+                        this.handleKeyDown,
+                        this.props.onKeyDown,
+                    ) } // temporary fix
+                    placeholder    = { inputPlaceholder }
+                    spellCheck     = { false }
+                    value          = { ( isOpen && isSearchable ) ?
+                        searchValue : selectedText } />
+                <IconButton
+                    className   = { className }
+                    iconType    = { isOpen ? 'chevron-up' : 'chevron-down' }
+                    onClickIcon = { this.handleClickIcon } />
+            </div>
         );
 
         const popperPopup = (
