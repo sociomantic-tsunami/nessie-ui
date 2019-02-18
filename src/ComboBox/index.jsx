@@ -494,6 +494,7 @@ export default class ComboBox extends Component
                     selection.length && `(${selection.length} items selected)`;
             }
         }
+
         const options = normalizeOptions( this.props.options ) ||
             this.state.options || [];
         let optionsToShow = options || [];

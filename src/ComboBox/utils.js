@@ -80,7 +80,6 @@ function prefixOptions( options = [], prefix )
  */
 function removePrefix( str, prefix )
 {
-
     return ( str && prefix ) ? str.replace( `${prefix}-`, '' ) : str;
 }
 
