@@ -254,8 +254,8 @@ export default class ComboBox extends Component
             activeOption,
             flatOptions,
             filteredOptions,
-            id      : props.id || state.id || generateId( 'ComboBox' ),
-            options : props.options,
+            id : props.id || state.id || generateId( 'ComboBox' ),
+            options,
             selection,
         };
     }
@@ -475,6 +475,7 @@ export default class ComboBox extends Component
             id,
             isOpen,
             searchValue,
+            options,
             selection,
         } = this.state;
 
@@ -495,8 +496,6 @@ export default class ComboBox extends Component
             }
         }
 
-        const options = normalizeOptions( this.props.options ) ||
-            this.state.options || [];
         let optionsToShow = options || [];
 
         if ( filteredOptions )

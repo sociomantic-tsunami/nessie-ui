@@ -52,19 +52,10 @@ function prefixOptions( options = [], prefix )
             };
         }
 
-        const flatOptions = {
-            text : option,
-            id   : addPrefix( option, prefix ),
-        };
-        const structuredOptions = {
+        return {
             ...option,
             id : addPrefix( option.id, prefix ),
         };
-
-        const returnedOptions = typeof option !== 'string' ?
-            structuredOptions : flatOptions;
-
-        return returnedOptions;
     } );
 }
 
