@@ -21,9 +21,10 @@ const currencyFormat = ( number, currency, language = navigator.language ) =>
     number.toLocaleString( language, currency ?
         { style: 'currency', currency } : {} );
 
-const patt = /[^0-9.-]/g;
+const pattern = /[^0-9.-]/g;
 
 const componentName = 'CurrencyInput';
+
 const CurrencyInput = ( props ) =>
 {
     const {
@@ -36,8 +37,8 @@ const CurrencyInput = ( props ) =>
 
     const handleBlur = () =>
     {
-        const newVal = Number( String( valueState )
-            .replace( patt, '' ) );
+        const newVal = Number( String( valueState ).replace( pattern, '' ) );
+
         setValue( newVal );
 
         if ( typeof props.onBlur === 'function' )
@@ -67,7 +68,7 @@ const CurrencyInput = ( props ) =>
             onBlur         = { handleBlur }
             onChange       = { handleChange }
             value          = { currencyFormat( Number( value
-                .replace( patt, '' ) ) || valueState, currency ) } />
+                .replace( pattern, '' ) ) || valueState, currency ) } />
     );
 };
 
