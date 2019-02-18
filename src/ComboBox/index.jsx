@@ -22,6 +22,21 @@ import { callMultiple, generateId }               from '../utils';
 import { addPrefix, prefixOptions, removePrefix } from './utils';
 
 /**
+ * normalize array of options or value
+ *
+ * @param   {Array} options options to normalize
+ *
+ * @return  {Array} normalized options
+ */
+function normalizeOptions( options )
+{
+    if ( !Array.isArray( options ) ) return;
+
+    return options.map( opt => ( typeof opt === 'object' ?
+        opt : { id: opt, text: opt } ) );
+}
+
+/**
  * gets the index of the option by the passed id
  *
  * @param {String} id id of the option
@@ -203,9 +218,13 @@ export default class ComboBox extends Component
     static getDerivedStateFromProps( props, state )
     {
         let { flatOptions } = state;
-        if ( props.options && props.options !== state.options )
+
+        const options = normalizeOptions( props.options ) ||
+            state.options || [];
+
+        if ( options && options !== state.options )
         {
-            flatOptions = props.options.flatMap( o => o.options || o );
+            flatOptions = options.flatMap( o => o.options || o );
         }
 
         let { selection } = state;
@@ -235,8 +254,8 @@ export default class ComboBox extends Component
             activeOption,
             flatOptions,
             filteredOptions,
-            id      : props.id || state.id || generateId( 'ComboBox' ),
-            options : props.options,
+            id : props.id || state.id || generateId( 'ComboBox' ),
+            options,
             selection,
         };
     }
@@ -447,7 +466,6 @@ export default class ComboBox extends Component
             isMultiselect,
             isReadOnly,
             isSearchable,
-            options,
         } = this.props;
 
         const {
@@ -457,6 +475,7 @@ export default class ComboBox extends Component
             id,
             isOpen,
             searchValue,
+            options,
             selection,
         } = this.state;
 
