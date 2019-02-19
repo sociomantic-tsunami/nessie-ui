@@ -26,58 +26,63 @@ export default class Checkbox extends React.Component
         /**
          *  Label content (React node; overrides label prop)
          */
-        children   : PropTypes.node,
+        children         : PropTypes.node,
         /**
          *  Extra CSS class name
          */
-        className  : PropTypes.string,
+        className        : PropTypes.string,
         /**
          *  CSS class map
          */
-        cssMap     : PropTypes.objectOf( PropTypes.string ),
+        cssMap           : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Display as error/invalid
          */
-        hasError   : PropTypes.bool,
+        hasError         : PropTypes.bool,
         /**
          *  Component id
          */
-        id         : PropTypes.string,
+        id               : PropTypes.string,
         /**
          *  Display as checked (controlled input)
          */
-        isChecked  : PropTypes.bool,
+        isChecked        : PropTypes.bool,
+        /**
+         *  Display as checked by default (uncontrolled input)
+         */
+        isDefaultChecked : PropTypes.bool,
         /**
          *  Display as disabled
          */
-        isDisabled : PropTypes.bool,
+        isDisabled       : PropTypes.bool,
         /**
          *  Label content (string)
          */
-        label      : PropTypes.string,
+        label            : PropTypes.string,
         /**
          *  change callback prop
          */
-        onChange   : PropTypes.func,
+        onChange         : PropTypes.func,
         /**
          *  click callback prop
          */
-        onClick    : PropTypes.func,
+        onClick          : PropTypes.func,
 
     };
 
     static defaultProps =
     {
-        children   : undefined,
-        className  : undefined,
-        cssMap     : undefined,
-        hasError   : false,
-        id         : undefined,
-        isChecked  : undefined,
-        isDisabled : false,
-        label      : undefined,
-        onChange   : undefined,
-        onClick    : undefined,
+        children         : undefined,
+        className        : undefined,
+        cssMap           : undefined,
+        hasError         : false,
+        id               : undefined,
+        isChecked        : undefined,
+        isDefaultChecked : undefined,
+        isDisabled       : false,
+        label            : undefined,
+        onChange         : undefined,
+        onClick          : undefined,
     };
 
     static displayName = 'Checkbox';
@@ -89,6 +94,7 @@ export default class Checkbox extends React.Component
             cssMap = createCssMap( this.context.Checkbox, this.props ),
             id = generateId( 'Checkbox' ),
             isChecked,
+            isDefaultChecked,
             isDisabled,
             label,
         } = this.props;
@@ -106,11 +112,12 @@ export default class Checkbox extends React.Component
                 { ...attachEvents( this.props ) }
                 className = { cssMap.main }>
                 <input
-                    checked   = { isChecked }
-                    className = { cssMap.input }
-                    disabled  = { isDisabled }
-                    id        = { id }
-                    type      =  "checkbox" />
+                    checked        = { isChecked }
+                    className      = { cssMap.input }
+                    defaultChecked = { isDefaultChecked }
+                    disabled       = { isDisabled }
+                    id             = { id }
+                    type           =  "checkbox" />
                 <label className = { cssMap.label } htmlFor = { id }>
                     { labelContent &&
                         <span className = { cssMap.labelContent }>

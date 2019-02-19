@@ -22,7 +22,7 @@ describe( 'CurrencyInput', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <CurrencyInput /> );
+        wrapper  = shallow( <CurrencyInput value = "123" /> );
         instance = wrapper.instance();
     } );
 
@@ -227,7 +227,7 @@ describe( 'CurrencyInput', () =>
 
         describe( 'value', () =>
         {
-            test( 'should be empty string by default', () =>
+            test( 'should be an empty string by default', () =>
             {
                 expect( CurrencyInput.defaultProps.value ).toBe( '' );
             } );
@@ -243,7 +243,7 @@ describe( 'CurrencyInputDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <CurrencyInput /> );
+        wrapper = mount( <CurrencyInput value = "321" /> );
         driver  = wrapper.driver();
     } );
 
@@ -374,8 +374,8 @@ describe( 'CurrencyInputDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError =
-                    'CurrencyInput cannot simulate change since it is read only';
+                const expectedError = 'CurrencyInput cannot simulate change \
+since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -456,8 +456,8 @@ describe( 'CurrencyInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError =
-                    'CurrencyInput cannot simulate keyPress since it is disabled';
+                const expectedError = 'CurrencyInput cannot simulate keyPress \
+since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
@@ -497,8 +497,8 @@ describe( 'CurrencyInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError =
-                    'CurrencyInput cannot simulate keyDown since it is disabled';
+                const expectedError = 'CurrencyInput cannot simulate keyDown \
+since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyDown() ).toThrow( expectedError );
