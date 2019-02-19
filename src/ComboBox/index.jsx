@@ -26,6 +26,7 @@ import {
     attachEvents,
     callMultiple,
     generateId,
+    mapAria,
 } from '../utils';
 import {
     addPrefix,
@@ -230,6 +231,7 @@ export default class ComboBox extends Component
         this.handleBlur            = this.handleBlur.bind( this );
         this.handleChangeInput     = this.handleChangeInput.bind( this );
         this.handleClick           = this.handleClick.bind( this );
+        this.handleClickClose      = this.handleClickClose.bind( this );
         this.handleClickIcon       = this.handleClickIcon.bind( this );
         this.handleClickOption     = this.handleClickOption.bind( this );
         this.handleKeyDown         = this.handleKeyDown.bind( this );
@@ -333,7 +335,7 @@ export default class ComboBox extends Component
 
     handleClickIcon()
     {
-        this.focus();
+        // this.focus(); // focus() is broken
         this.setState( prevState => ( { isOpen: !prevState.isOpen } ) );
     }
 
@@ -367,6 +369,25 @@ export default class ComboBox extends Component
                 isOpen          : false,
                 searchValue     : '',
                 selection       : newSelection,
+            };
+        } );
+    }
+
+    handleClickClose( { id } )
+    {
+        this.setState( ( { selection } ) =>
+        {
+            const newTags = selection.filter( tag => tag !== id );
+
+            const { onChange } = this.props;
+            if ( typeof onChange === 'function' )
+            {
+                onChange( { selection: newTags } );
+            }
+
+            return {
+                selection       : newTags,
+                // filteredOptions : this.filterOptions( newTags ),
             };
         } );
     }
@@ -479,7 +500,6 @@ export default class ComboBox extends Component
     render()
     {
         const {
-            className,
             container,
             cssMap = createCssMap( this.context.ComboBox, this.props ),
             dropdownPlaceholder,
@@ -556,14 +576,29 @@ export default class ComboBox extends Component
             );
         }
 
+        let tags;
+
+        if ( isMultiselect )
+        {
+            tags = buildTagsFromValues( selection );
+            tags = tags.map( tag => (
+                React.cloneElement( tag, {
+                    ...tag.props,
+                    isDisabled : isDisabled || tag.props.isDisabled,
+                    isReadOnly : isReadOnly || tag.props.isReadOnly,
+                    onClick    : this.handleClickClose,
+                } )
+            ) );
+        }
+
         const popperChildren = (
             <label
                 { ...attachEvents( this.props ) }
                 className = { cssMap.main }
                 htmlFor   = { id }>
-                { isMultiselect && buildTagsFromValues( selection ) }
+                { tags }
                 <input
-                    aria = { {
+                    { ...mapAria( {
                         activeDescendant :
                             activeOption && addPrefix( activeOption, id ),
                         autocomplete : 'list',
@@ -571,7 +606,7 @@ export default class ComboBox extends Component
                         hasPopup     : 'listbox',
                         owns         : addPrefix( 'listbox', id ),
                         role         : 'combobox',
-                    } }
+                    } ) }
                     autoCapitalize = "off"
                     autoComplete   = "off"
                     autoCorrect    = "off"
@@ -602,7 +637,7 @@ export default class ComboBox extends Component
                 <IconButton
                     className   = { cssMap.icon }
                     iconType    = { isOpen ? 'chevron-up' : 'chevron-down' }
-                    onClickIcon = { this.handleClickIcon } />
+                    onClick     = { this.handleClickIcon } />
             </label>
         );
 

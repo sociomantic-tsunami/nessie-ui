@@ -33,7 +33,7 @@
     border-radius:      2px;
 
     padding-top:        3px;
-    padding-right:      3px;
+    padding-right:      var( --iconOffset );
     padding-bottom:     0;
     padding-left:       3px;
 
@@ -44,8 +44,8 @@
 
     & > *
     {
-        margin-right:   4px;
-        margin-bottom:  3px;
+        margin-right:   4px !important; /* always override default margins */
+        margin-bottom:  3px !important; /* always override default margins */
     }
 
     .input

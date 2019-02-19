@@ -81,10 +81,13 @@ export default {
         ),
         ...checkboxClasses,
     } ),
-    ComboBox : {
-        main : classNames.bind( comboBoxClasses )( 'default' ),
+    ComboBox : props => ( {
+        main : classNames.bind( comboBoxClasses )(
+            'default',
+            props.className,
+        ),
         ...comboBoxClasses,
-    },
+    } ),
     DatePicker : {
         main : classNames.bind( datePickerClasses )( 'default' ),
         ...datePickerClasses,
