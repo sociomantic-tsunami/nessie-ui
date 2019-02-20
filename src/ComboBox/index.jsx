@@ -172,10 +172,6 @@ export default class ComboBox extends Component
          *  Change callback: ( { value } ) => ...
          */
         onChange            : PropTypes.func,
-        /**
-         *  Input field change callback: ( { value } ) => ...
-         */
-        onChangeInput       : PropTypes.func,
         /*
          * Dropdown list options
          */
@@ -204,7 +200,6 @@ export default class ComboBox extends Component
         isReadOnly          : undefined,
         isSearchable        : false,
         onChange            : undefined,
-        onChangeInput       : undefined,
         options             : undefined,
         value               : undefined,
     };
@@ -322,12 +317,13 @@ export default class ComboBox extends Component
             !tags.includes( option.text ) );
     }
 
-    handleChangeInput( { value }, ...args )
+    handleChangeInput( e, ...args )
     {
-        const { onChangeInput } = this.props;
-        if ( typeof onChangeInput === 'function' )
+        const { value } = e.target;
+        const { onChange } = this.props;
+        if ( typeof onChange === 'function' )
         {
-            onChangeInput( { value }, ...args );
+            onChange( { value }, ...args );
         }
 
         this.setState( { searchValue: value } );
@@ -619,7 +615,8 @@ export default class ComboBox extends Component
                         this.handleBlur,
                         this.props.onBlur,
                     ) } // temporary fix
-                    onChangeInput  = { this.handleChangeInput }
+                    onChange       = { isSearchable ?
+                        this.handleChangeInput : null }
                     onClick        = { callMultiple(
                         this.handleClick,
                         this.props.onClick,
