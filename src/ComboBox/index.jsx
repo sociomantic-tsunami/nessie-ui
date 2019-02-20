@@ -311,6 +311,11 @@ export default class ComboBox extends Component
         }
     }
 
+    focus()
+    {
+        this.inputRef.current.focus();
+    }
+
     filterOptions( tags )
     {
         return this.state.options.filter( option =>
@@ -331,6 +336,7 @@ export default class ComboBox extends Component
 
     handleClickIcon()
     {
+        this.focus();
         this.setState( prevState => ( { isOpen: !prevState.isOpen } ) );
     }
 
@@ -483,8 +489,6 @@ export default class ComboBox extends Component
 
     handleBlur()
     {
-        this.handleClickIcon();
-
         this.setState( {
             activeOption    : undefined,
             isOpen          : false,
