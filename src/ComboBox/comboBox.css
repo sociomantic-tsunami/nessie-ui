@@ -81,23 +81,23 @@
 
             &::placeholder
             {
-                color: transparent !important;
+                color:  transparent !important;
             }
         }
 
         &::placeholder
         {
             @extend %Nessie-RegularIt;
-            color:         var( --PC-GREY--L80 );
+            color:      var( --PC-GREY--L80 );
         }
     }
 
     .icon
     {
-        position:   absolute;
-        top:        50%;
-        right:      var( --iconOffset );
-        margin-top: calc( -1 * ( var( --iconSize ) / 2 ) );
+        position:       absolute;
+        top:            50%;
+        right:          var( --iconOffset );
+        margin-top:     calc( -1 * ( var( --iconSize ) / 2 ) );
     }
 
     &:focus-within
@@ -110,7 +110,7 @@
 
 .disabled
 {
-    pointer-events: none;
+    pointer-events:     none;
 
     &:hover
     {

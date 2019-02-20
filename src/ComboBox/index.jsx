@@ -345,6 +345,7 @@ export default class ComboBox extends Component
         {
             const optId = removePrefix( prefixedId, id );
             const { isMultiselect, onChange } = this.props;
+
             let newSelection = optId;
             if ( isMultiselect )
             {
@@ -606,11 +607,9 @@ export default class ComboBox extends Component
                     autoComplete   = "off"
                     autoCorrect    = "off"
                     className      = { cssMap.input }
+                    disabled       = { isDisabled }
                     hasError       = { hasError }
                     id             = { id }
-                    inputRef       = { this.inputRef }
-                    isDisabled     = { isDisabled }
-                    isReadOnly     = { !isSearchable || !isOpen }
                     onBlur         = { callMultiple(
                         this.handleBlur,
                         this.props.onBlur,
@@ -627,6 +626,8 @@ export default class ComboBox extends Component
                         this.props.onKeyDown,
                     ) } // temporary fix
                     placeholder    = { inputPlaceholder }
+                    readOnly       = { !isSearchable || !isOpen }
+                    ref            = { this.inputRef }
                     spellCheck     = { false }
                     value          = { ( isOpen && isSearchable ) ?
                         searchValue : selectedText } />
