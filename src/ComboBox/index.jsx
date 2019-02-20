@@ -209,9 +209,6 @@ export default class ComboBox extends Component
         value               : undefined,
     };
 
-    inputRef = React.createRef();
-    scrollBoxRef = React.createRef();
-
     constructor( { defaultValue, isMultiselect } )
     {
         super();
@@ -227,6 +224,9 @@ export default class ComboBox extends Component
             selection       : isMultiselect ?
                 castArray( defaultValue ) : defaultValue,
         };
+
+        this.inputRef     = React.createRef();
+        this.scrollBoxRef = React.createRef();
 
         this.handleBlur            = this.handleBlur.bind( this );
         this.handleChangeInput     = this.handleChangeInput.bind( this );
@@ -316,11 +316,11 @@ export default class ComboBox extends Component
         }
     }
 
-    focus()
+    filterOptions( tags )
     {
-        this.inputRef.current.focus();
+        return this.state.options.filter( option =>
+            !tags.includes( option.text ) );
     }
-
 
     handleChangeInput( { value }, ...args )
     {
@@ -335,7 +335,6 @@ export default class ComboBox extends Component
 
     handleClickIcon()
     {
-        // this.focus(); // focus() is broken
         this.setState( prevState => ( { isOpen: !prevState.isOpen } ) );
     }
 
@@ -387,17 +386,15 @@ export default class ComboBox extends Component
 
             return {
                 selection       : newTags,
-                // filteredOptions : this.filterOptions( newTags ),
+                filteredOptions : this.filterOptions( newTags ),
             };
         } );
     }
 
-    handleKeyDown( { key, preventNessieDefault } )
+    handleKeyDown( { key } )
     {
         if ( key === 'ArrowUp' || key === 'ArrowDown' )
         {
-            preventNessieDefault();
-
             this.setState( prevState =>
             {
                 const options = prevState.filteredOptions ||
@@ -489,6 +486,8 @@ export default class ComboBox extends Component
 
     handleBlur()
     {
+        this.handleClickIcon();
+
         this.setState( {
             activeOption    : undefined,
             isOpen          : false,
@@ -637,6 +636,7 @@ export default class ComboBox extends Component
                 <IconButton
                     className   = { cssMap.icon }
                     iconType    = { isOpen ? 'chevron-up' : 'chevron-down' }
+                    isFocusable = { false }
                     onClick     = { this.handleClickIcon } />
             </label>
         );

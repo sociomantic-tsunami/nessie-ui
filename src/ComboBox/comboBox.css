@@ -76,6 +76,7 @@
 
         &:focus
         {
+            @extend %Nessie-SemiBold;
             outline:    none;
 
             &::placeholder
