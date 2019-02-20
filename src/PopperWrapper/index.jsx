@@ -105,24 +105,51 @@ export default class PopperWrapper extends Component
         if ( this.props.isVisible )
         {
             this.scheduleUpdate();
+        }
 
-            if ( prevProps.onClickOutside !== this.props.onClickOutside )
+        if ( prevProps.isVisible && prevProps.onClickOutside )
+        {
+            if ( this.props.isVisible )
             {
-                removeEventListener(
-                    'mousedown',
-                    this.handleClickOutSide,
-                    false,
-                );
-
                 if ( this.props.onClickOutside )
                 {
-                    addEventListener(
+                    if ( prevProps.onClickOutside !==
+                          this.props.onClickOutside )
+                    {
+                        removeEventListener(
+                            'mousedown',
+                            this.handleClickOutSide,
+                            false,
+                        );
+
+                        addEventListener(
+                            'mousedown',
+                            this.handleClickOutSide,
+                            false,
+                        );
+                    }
+                }
+                else
+                {
+                    removeEventListener(
                         'mousedown',
                         this.handleClickOutSide,
                         false,
                     );
                 }
             }
+            else
+            {
+                removeEventListener(
+                    'mousedown',
+                    this.handleClickOutSide,
+                    false,
+                );
+            }
+        }
+        else if ( this.props.isVisible && this.props.onClickOutside )
+        {
+            addEventListener( 'mousedown', this.handleClickOutSide, false );
         }
     }
 

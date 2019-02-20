@@ -21,7 +21,6 @@ import TextInputWithIcon            from '../TextInputWithIcon';
 import Popup                        from '../Popup';
 import PopperWrapper                from '../PopperWrapper';
 
-
 const DISPLAY_FORMATTING = {
     month  : 'YYYY/MM',
     day    : 'YYYY/MM/DD',
@@ -264,6 +263,7 @@ export default class DateTimeInput extends Component
         this.handleClickNext    = this.handleClickNext.bind( this );
         this.handleClickOutSide = this.handleClickOutSide.bind( this );
         this.handleClickPrev    = this.handleClickPrev.bind( this );
+        this.purgeEdits         = this.purgeEdits.bind( this );
     }
 
     static getDerivedStateFromProps( props, state )
@@ -699,6 +699,7 @@ export default class DateTimeInput extends Component
                 iconType        = "calendar"
                 id              = { id }
                 isDisabled      = { isDisabled }
+                onBlur          = { this.purgeEdits }
                 onChangeInput   = { this.handleChangeInput }
                 onClickIcon     = { this.handleClickIcon }
                 placeholder     = { inputPlaceholder }

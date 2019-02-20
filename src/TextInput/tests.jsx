@@ -159,9 +159,9 @@ describe( 'TextInput', () =>
 
         describe( 'value', () =>
         {
-            test( 'should be empty string by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( TextInput.defaultProps.value ).toBe( '' );
+                expect( TextInput.defaultProps.value ).toBe( undefined );
             } );
             test( 'should be passed to the <input>', () =>
             {

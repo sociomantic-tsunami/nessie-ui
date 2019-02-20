@@ -119,9 +119,9 @@ describe( 'TextArea', () =>
 
         describe( 'value', () =>
         {
-            test( 'should be empty string by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( TextArea.defaultProps.value ).toBe( '' );
+                expect( TextArea.defaultProps.value ).toBe( undefined );
             } );
 
             test( 'should be passed to the input element', () =>

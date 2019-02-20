@@ -36,6 +36,10 @@ export default class PasswordInput extends React.Component
          */
         cssMap               : PropTypes.objectOf( PropTypes.string ),
         /**
+         *  Default input string value
+         */
+        defaultValue         : PropTypes.string,
+        /**
          *  Display as hover when required from another component
          */
         forceHover           : PropTypes.bool,
@@ -102,6 +106,7 @@ export default class PasswordInput extends React.Component
         aria                 : undefined,
         className            : undefined,
         cssMap               : undefined,
+        defaultValue         : undefined,
         forceHover           : false,
         hasError             : false,
         iconButtonIsDisabled : undefined,
@@ -116,7 +121,7 @@ export default class PasswordInput extends React.Component
         passwordIsVisible    : false,
         placeholder          : undefined,
         textAlign            : 'auto',
-        value                : '',
+        value                : undefined,
     };
 
     constructor( props )
