@@ -24,7 +24,7 @@ const TimeInput = props =>
         hourIsReadOnly,
         hourPlaceholder,
         hourValue,
-        id = generateId( 'TimeInput' ),
+        id = generateId( componentName ),
         isDisabled,
         isReadOnly,
         minuteIsDisabled,
