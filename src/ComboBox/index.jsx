@@ -345,7 +345,7 @@ export default class ComboBox extends Component
         const { onChangeInput } = this.props;
         if ( typeof onChangeInput === 'function' )
         {
-            onChangeInput( value );
+            onChangeInput( { value } );
         }
 
         this.setState( { searchValue: value } );
