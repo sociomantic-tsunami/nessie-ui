@@ -229,6 +229,7 @@ export default class ComboBox extends Component
         this.handleClickClose      = this.handleClickClose.bind( this );
         this.handleClickIcon       = this.handleClickIcon.bind( this );
         this.handleClickOption     = this.handleClickOption.bind( this );
+        this.handleFocus           = this.handleFocus.bind( this );
         this.handleKeyDown         = this.handleKeyDown.bind( this );
         this.handleMouseOutOption  = this.handleMouseOutOption.bind( this );
         this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
@@ -320,6 +321,16 @@ export default class ComboBox extends Component
     {
         return this.state.options.filter( option =>
             !tags.includes( option.text ) );
+    }
+
+    handleFocus()
+    {
+        this.focus();
+
+        if ( this.props.isSearchable )
+        {
+            this.setState( { searchValue: '' } );
+        }
     }
 
     handleChangeInput( e, ...args )
@@ -628,7 +639,10 @@ export default class ComboBox extends Component
                         this.handleClick,
                         this.props.onClick,
                     ) } // temporary fix
-                    onFocus        = { this.props.onFocus } // temporary fix
+                    onFocus        = { callMultiple(
+                        this.handleFocus,
+                        this.props.onFocus,
+                    ) } // temporary fix
                     onKeyDown      = { callMultiple(
                         this.handleKeyDown,
                         this.props.onKeyDown,
