@@ -394,10 +394,14 @@ export default class ComboBox extends Component
         } );
     }
 
-    handleKeyDown( { key } )
+    handleKeyDown( e )
     {
+        const { key } = e;
+
         if ( key === 'ArrowUp' || key === 'ArrowDown' )
         {
+            e.preventDefault();
+
             this.setState( prevState =>
             {
                 const options = prevState.filteredOptions ||
