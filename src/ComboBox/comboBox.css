@@ -110,11 +110,17 @@
 
 .disabled
 {
-    pointer-events:     none;
+    pointer-events:         none;
+    background-color:       var( --PC-GREY--L90 );
 
     &:hover
     {
-        border-color:   ( --PC-GREY--L70 );
+        border-color:       var( --PC-GREY--L70 );
+    }
+
+    .input
+    {
+        background-color:   var( --PC-GREY--L90 );
     }
 }
 

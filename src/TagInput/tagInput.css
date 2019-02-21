@@ -94,7 +94,7 @@
 
     &:hover
     {
-        border-color:   ( --PC-GREY--L70 );
+        border-color:   var( --PC-GREY--L70 );
     }
 }
 

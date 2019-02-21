@@ -84,6 +84,9 @@ export default {
     ComboBox : props => ( {
         main : classNames.bind( comboBoxClasses )(
             'default',
+            {
+                disabled : props.isDisabled,
+            },
             props.className,
         ),
         ...comboBoxClasses,
