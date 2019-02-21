@@ -85,7 +85,7 @@ export default {
         main : classNames.bind( comboBoxClasses )(
             'default',
             {
-                disabled : props.isDisabled,
+                disabled : !props.isMultiselect && props.isDisabled,
             },
             props.className,
         ),
