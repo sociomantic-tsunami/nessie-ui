@@ -171,7 +171,7 @@ export default class ComboBox extends Component
         /**
          *  Change callback: ( { value } ) => ...
          */
-        onChange            : PropTypes.func,
+        onChangeValue       : PropTypes.func,
         /**
          *  Input field change callback: ( { value } ) => ...
          */
@@ -203,7 +203,7 @@ export default class ComboBox extends Component
         isMultiselect       : false,
         isReadOnly          : undefined,
         isSearchable        : false,
-        onChange            : undefined,
+        onChangeValue       : undefined,
         onChangeInput       : undefined,
         options             : undefined,
         value               : undefined,
@@ -365,7 +365,7 @@ export default class ComboBox extends Component
         this.setState( ( { id, selection } ) =>
         {
             const optId = removePrefix( prefixedId, id );
-            const { isMultiselect, onChange } = this.props;
+            const { isMultiselect, onChangeValue } = this.props;
 
             let newSelection = optId;
             if ( isMultiselect )
@@ -375,9 +375,9 @@ export default class ComboBox extends Component
                     [ ...selection, optId ];
             }
 
-            if ( typeof onChange === 'function' )
+            if ( typeof onChangeValue === 'function' )
             {
-                onChange( { value: newSelection } );
+                onChangeValue( { value: newSelection } );
             }
 
             return {
@@ -396,10 +396,10 @@ export default class ComboBox extends Component
         {
             const newTags = selection.filter( tag => tag !== id );
 
-            const { onChange } = this.props;
-            if ( typeof onChange === 'function' )
+            const { onChangeValue } = this.props;
+            if ( typeof onChangeValue === 'function' )
             {
-                onChange( { selection: newTags } );
+                onChangeValue( { selection: newTags } );
             }
 
             return {
@@ -468,10 +468,10 @@ export default class ComboBox extends Component
                     }
                     newSelection = newSelection || selection;
 
-                    const { onChange } = this.props;
-                    if ( typeof onChange === 'function' )
+                    const { onChangeValue } = this.props;
+                    if ( typeof onChangeValue === 'function' )
                     {
-                        onChange( { value: newSelection } );
+                        onChangeValue( { value: newSelection } );
                     }
 
                     return {
@@ -637,8 +637,7 @@ export default class ComboBox extends Component
                         this.handleBlur,
                         this.props.onBlur,
                     ) } // temporary fix
-                    onChange       = { isSearchable ?
-                        this.handleChangeInput : null }
+                    onChange       = { this.handleChangeInput }
                     onClick        = { callMultiple(
                         this.handleClick,
                         this.props.onClick,

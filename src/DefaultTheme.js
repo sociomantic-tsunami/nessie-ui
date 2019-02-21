@@ -86,6 +86,7 @@ export default {
             'default',
             {
                 disabled : !props.isMultiselect && props.isDisabled,
+                error    : props.hasError,
             },
             props.className,
         ),
