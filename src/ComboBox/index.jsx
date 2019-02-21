@@ -399,7 +399,7 @@ export default class ComboBox extends Component
             const { onChangeValue } = this.props;
             if ( typeof onChangeValue === 'function' )
             {
-                onChangeValue( { selection: newTags } );
+                onChangeValue( { value: newTags } );
             }
 
             return {
