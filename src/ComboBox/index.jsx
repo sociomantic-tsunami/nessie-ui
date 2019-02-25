@@ -171,7 +171,7 @@ export default class ComboBox extends Component
         /**
          *  Change callback: ( { value } ) => ...
          */
-        onChangeValue       : PropTypes.func,
+        onChange            : PropTypes.func,
         /**
          *  Input field change callback: ( { value } ) => ...
          */
@@ -203,7 +203,7 @@ export default class ComboBox extends Component
         isMultiselect       : false,
         isReadOnly          : undefined,
         isSearchable        : false,
-        onChangeValue       : undefined,
+        onChange            : undefined,
         onChangeInput       : undefined,
         options             : undefined,
         value               : undefined,
@@ -340,12 +340,13 @@ export default class ComboBox extends Component
 
     handleChangeInput( e )
     {
+        e.stopPropagation();
         const { value } = e.target;
 
         const { onChangeInput } = this.props;
         if ( typeof onChangeInput === 'function' )
         {
-            onChangeInput( { value } );
+            onChangeInput( { value }, e );
         }
 
         this.setState( { searchValue: value } );
@@ -367,7 +368,7 @@ export default class ComboBox extends Component
         this.setState( ( { id, selection } ) =>
         {
             const optId = removePrefix( prefixedId, id );
-            const { isMultiselect, onChangeValue } = this.props;
+            const { isMultiselect, onChange } = this.props;
 
             let newSelection = optId;
             if ( isMultiselect )
@@ -377,9 +378,9 @@ export default class ComboBox extends Component
                     [ ...selection, optId ];
             }
 
-            if ( typeof onChangeValue === 'function' )
+            if ( typeof onChange === 'function' )
             {
-                onChangeValue( { value: newSelection } );
+                onChange( { value: newSelection } );
             }
 
             return {
@@ -398,10 +399,10 @@ export default class ComboBox extends Component
         {
             const newTags = selection.filter( tag => tag !== id );
 
-            const { onChangeValue } = this.props;
-            if ( typeof onChangeValue === 'function' )
+            const { onChange } = this.props;
+            if ( typeof onChange === 'function' )
             {
-                onChangeValue( { value: newTags } );
+                onChange( { value: newTags } );
             }
 
             return {
@@ -470,10 +471,10 @@ export default class ComboBox extends Component
                     }
                     newSelection = newSelection || selection;
 
-                    const { onChangeValue } = this.props;
-                    if ( typeof onChangeValue === 'function' )
+                    const { onChange } = this.props;
+                    if ( typeof onChange === 'function' )
                     {
-                        onChangeValue( { value: newSelection } );
+                        onChange( { value: newSelection } );
                     }
 
                     return {

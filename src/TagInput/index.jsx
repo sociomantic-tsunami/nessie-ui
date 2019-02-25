@@ -256,6 +256,7 @@ export default class TagInput extends React.Component
 
     handleChangeInput( e )
     {
+        e.stopPropagation();
         const { value } = e.target;
 
         this.setState( ( { options } ) =>
