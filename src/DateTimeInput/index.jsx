@@ -159,6 +159,23 @@ function setPrecision( mode )
     return DISPLAY_FORMATTING[ format ];
 }
 
+
+const useTimestamp = ( defaultValue, value ) =>
+{
+    const [ timestamp, setTimestamp ] = useState( defaultValue );
+
+    const setter = ( newValue ) =>
+    {
+        if ( value === undefined )
+        {
+            setTimestamp( newValue );
+        }
+    };
+
+    return [ value || timestamp, setter ];
+};
+
+
 const DateTimeInput = React.forwardRef( ( props, ref ) =>
 {
     const inputRef = useRef();
@@ -176,35 +193,12 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
     const [ editingTimestamp, setEditingTimestamp ] = useState( undefined );
     const [ gridStartTimestamp, setGridStartTimestamp ] = useState( undefined );
     const [ isOpen, setIsOpen ] = useState( undefined );
-    const [ timestamp, setTimestamp ] = useState( undefined );
+    const [ timestamp, setTimestamp ] = useTimestamp( undefined, props.value );
 
-    const id =  useMemo( () => (
+    const id = useMemo( () => (
         props.id || generateId( componentName )
     ), [ props.id ] );
 
-    // static getDerivedStateFromProps( props, state )
-    // {
-    //     let timestamp;
-    //
-    //     if ( props.value )
-    //     {
-    //         timestamp = props.value;
-    //     }
-    //     else if ( props.value === null )
-    //     {
-    //         timestamp = undefined;
-    //     }
-    //     else
-    //     {
-    //         timestamp = state.editingTimestamp || state.timestamp;
-    //     }
-    //
-    //     return {
-    //         id     : props.id || state.id || generateId( componentName ),
-    //         isOpen : Boolean( state.gridStartTimestamp ),
-    //         timestamp,
-    //     };
-    // }
 
     const handleClickCell = useCallback( ( { value } ) =>
     {
@@ -255,6 +249,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         }
         else
         {
+            inputRef.current.focus();
             open();
         }
     }, [ isOpen ] );
@@ -264,34 +259,33 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         const trimmed = value.replace( /\s+/g, ' ' );
         const min = props.min || now();
 
-        let time = tryParseInputValue(
+        let newTimestamp = tryParseInputValue(
             trimmed,
             timestamp,
             props.format,
         );
 
-        if ( time < min )
+        if ( newTimestamp < min )
         {
-            time = min;
+            newTimestamp = min;
         }
 
-        if ( props.max && time > props.max )
+        if ( props.max && newTimestamp > props.max )
         {
-            time = props.max;
+            newTimestamp = props.max;
         }
 
         setEditingHourInputValue( !value ? undefined : formatHours( value ) );
         setEditingMainInputValue( !value ? undefined : value );
         setEditingMinuteInputValue( !value ? undefined :
             formatMinutes( value ) );
-        setEditingTimestamp( !value ? undefined : timestamp );
-        setTimestamp( !value ? undefined : timestamp );
+        setEditingTimestamp( !value ? undefined : newTimestamp );
+        setTimestamp( !value ? undefined : newTimestamp );
     }, [
-        editingHourInputValue,
-        editingMainInputValue,
-        editingMinuteInputValue,
-        editingTimestamp,
         timestamp,
+        props.format,
+        props.max,
+        props.min,
     ] );
 
     const handleChangeHour = useCallback( ( { value } ) =>
@@ -303,11 +297,12 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
 
         if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 23 )
         {
-            const time = $m( timestamp ).set( 'hour', digits ).valueOf();
+            const newTimestamp = $m( timestamp ).set( 'hour', digits )
+                .valueOf();
 
-            setEditingTimestamp( time );
+            setEditingTimestamp( newTimestamp );
             setEditingMainInputValue( formatDateTime(
-                time,
+                newTimestamp,
                 props.format || setPrecision( props.mode ),
             ) );
         }
@@ -317,20 +312,20 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
 
             if ( !_.isNaN( digits ) )
             {
-                const time = $m( timestamp ).set( 'hour', digits ).valueOf();
+                const newTimestamp = $m( timestamp ).set( 'hour', digits )
+                    .valueOf();
 
-                setEditingTimestamp( time );
+                setEditingTimestamp( newTimestamp );
                 setEditingMainInputValue( formatDateTime(
-                    time,
+                    newTimestamp,
                     props.format || setPrecision( props.mode ),
                 ) );
             }
         }
     },
     [
-        editingTimestamp,
-        editingHourInputValue,
-        editingMainInputValue,
+        props.format,
+        props.mode,
         timestamp,
     ] );
 
@@ -343,11 +338,12 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
 
         if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 59 )
         {
-            const time = $m( timestamp ).set( 'minute', digits ).valueOf();
+            const newTimestamp = $m( timestamp ).set( 'minute', digits )
+                .valueOf();
 
-            setEditingTimestamp( time );
+            setEditingTimestamp( newTimestamp );
             setEditingMainInputValue( formatDateTime(
-                time,
+                newTimestamp,
                 props.format || setPrecision( props.mode ),
             ) );
         }
@@ -357,27 +353,22 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
 
             if ( !_.isNaN( digits ) )
             {
-                const time = $m( timestamp ).set( 'minute', digits ).valueOf();
+                const newTimestamp = $m( timestamp ).set( 'minute', digits )
+                    .valueOf();
 
-                setEditingTimestamp( time );
+                setEditingTimestamp( newTimestamp );
                 setEditingMainInputValue( formatDateTime(
-                    time,
+                    newTimestamp,
                     props.format || setPrecision( props.mode ),
                 ) );
             }
         }
     },
     [
-        editingTimestamp,
-        editingMainInputValue,
-        editingMinuteInputValue,
+        props.format,
+        props.mode,
         timestamp,
     ] );
-
-    // const handleInputFocus = useCallback( () =>
-    // {
-    //     open();
-    // }, [ isOpen ] );
 
 
     const canGotoNext = useCallback( () =>
@@ -412,7 +403,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
     ] );
 
     const isUnitSelectable = useCallback( (
-        time = timestamp,
+        newTimestamp = timestamp,
         unit,
         allowFraction,
     ) =>
@@ -420,11 +411,11 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         const { max } = props;
         const min = props.min || now();
 
-        if ( time > max ) return false;
+        if ( newTimestamp > max ) return false;
 
-        if ( !allowFraction ) return time >= min;
+        if ( !allowFraction ) return newTimestamp >= min;
 
-        return $m( time ).add( 1, unit ) > min;
+        return $m( newTimestamp ).add( 1, unit ) > min;
     }, [ timestamp ] );
 
 
@@ -516,13 +507,14 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
     const open = () =>
     {
         const { min } = props;
-        let time;
+        let newTimestamp;
 
-        time = _.isNumber( timestamp ) ? timestamp : now();
+        newTimestamp = _.isNumber( timestamp ) ? timestamp : now();
 
-        time = ( _.isNumber( min ) && min > timestamp ) ? min : timestamp;
+        newTimestamp = ( _.isNumber( min ) && min > timestamp ) ?
+            min : timestamp;
 
-        setGridStartTimestamp( $m( time )
+        setGridStartTimestamp( $m( newTimestamp )
             .startOf( props.mode === 'month' ? 'year' : 'month' )
             .valueOf() );
         setIsOpen( true );
@@ -591,7 +583,6 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             isDisabled      = { isDisabled }
             onChangeInput   = { handleChangeInput }
             onClickIcon     = { handleClickIcon }
-            // onFocus         = { handleInputFocus }
             placeholder     = { inputPlaceholder }
             spellCheck      = { false }
             value           = {
