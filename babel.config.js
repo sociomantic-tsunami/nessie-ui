@@ -24,6 +24,7 @@ module.exports = function config( api )
         '@babel/plugin-proposal-throw-expressions',
         '@babel/plugin-proposal-export-default-from',
         '@babel/plugin-proposal-logical-assignment-operators',
+        '@babel/plugin-proposal-object-rest-spread',
         '@babel/plugin-proposal-optional-chaining',
         [
             '@babel/plugin-proposal-pipeline-operator',

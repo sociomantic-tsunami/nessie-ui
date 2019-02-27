@@ -94,6 +94,10 @@ PasswordInput.propTypes =
      */
     cssMap               : PropTypes.objectOf( PropTypes.string ),
     /**
+     *  Default input string value
+     */
+    defaultValue         : PropTypes.string,
+    /**
      *  Display as hover when required from another component
      */
     forceHover           : PropTypes.bool,
@@ -160,6 +164,7 @@ PasswordInput.defaultProps =
     aria                 : undefined,
     className            : undefined,
     cssMap               : undefined,
+    defaultValue         : undefined,
     forceHover           : false,
     hasError             : false,
     iconButtonIsDisabled : undefined,
@@ -176,6 +181,5 @@ PasswordInput.defaultProps =
     textAlign            : 'auto',
     value                : '',
 };
-
 
 export default PasswordInput;

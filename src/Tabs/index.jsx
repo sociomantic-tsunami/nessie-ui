@@ -72,7 +72,7 @@ const Tabs = ( props ) =>
                 isDisabled = { isDisabled || isActive }
                 key        = { label || tabIndex }
                 label      = { label }
-                onClick    = { props.activeTabIndex ? handleClickTab : null }
+                onClick    = { !props.activeTabIndex ? handleClickTab : null }
                 tabIndex   = { tabIndex }
                 value      = { tabIndex } />
         );
