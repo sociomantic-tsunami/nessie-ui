@@ -12,6 +12,7 @@ import classNames                from 'classnames/bind';
 import buttonClasses             from './Button/button.css';
 import cardClasses               from './Card/card.css';
 import checkboxClasses           from './Checkbox/checkbox.css';
+import comboBoxClasses           from './ComboBox/comboBox.css';
 import datePickerClasses         from './DatePicker/datePicker.css';
 import datePickerHeaderClasses   from './DatePicker/datePickerHeader.css';
 import datePickerItemClasses     from './DatePicker/datePickerItem.css';
@@ -79,6 +80,17 @@ export default {
             props.className,
         ),
         ...checkboxClasses,
+    } ),
+    ComboBox : props => ( {
+        main : classNames.bind( comboBoxClasses )(
+            'default',
+            {
+                disabled : !props.isMultiselect && props.isDisabled,
+                error    : props.hasError,
+            },
+            props.className,
+        ),
+        ...comboBoxClasses,
     } ),
     DatePicker : {
         main : classNames.bind( datePickerClasses )( 'default' ),

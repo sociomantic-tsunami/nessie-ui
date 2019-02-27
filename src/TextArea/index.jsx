@@ -32,6 +32,7 @@ const TextArea = forwardRef( ( props, ref ) =>
         autoCapitalize,
         autoComplete,
         autoCorrect,
+        defaultValue,
         id = generateId( componentName ),
         isDisabled,
         isReadOnly,
@@ -49,6 +50,7 @@ const TextArea = forwardRef( ( props, ref ) =>
             autoComplete   = { autoComplete }
             autoCorrect    = { autoCorrect }
             className      = { cssMap.main }
+            defaultValue   = { defaultValue }
             disabled       = { isDisabled }
             id             = { id }
             placeholder    = { placeholder }
@@ -97,6 +99,10 @@ TextArea.propTypes =
      *  CSS class map
      */
     cssMap       : PropTypes.objectOf( PropTypes.string ),
+    /**
+     *  Default input string value
+     */
+    defaultValue : PropTypes.string,
     /**
      *  Display as error/invalid
      */
@@ -190,6 +196,7 @@ TextArea.defaultProps =
     autoCorrect    : undefined,
     className      : undefined,
     cssMap         : undefined,
+    defaultValue   : undefined,
     hasError       : false,
     id             : undefined,
     isDisabled     : false,

@@ -177,6 +177,7 @@ const TagInput = forwardRef( ( props, ref ) =>
 
     const handleChangeInput = ( e ) =>
     {
+        e.stopPropagation();
         const { value: scopedValue } = e.target;
         const filteredOptionsScoped = options.filter( ( { text } ) =>
             text.match( new RegExp( escapeRegExp( scopedValue ), 'i' ) ) );

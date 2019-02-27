@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
+ * Copyright (c) 2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -8,6 +8,16 @@
  */
 
 @import "../proto/base.css";
+
+:root
+{
+    --iconSize:     24px;
+    --borderWidth:  1px;
+
+    --iconOffset:   calc( var( --spacing-1 ) + var( --borderWidth ) );
+    --inputPadding: calc( var( --iconSize ) + ( 2 * var( --spacing-1 ) ) +
+        var( --borderWidth ) );
+}
 
 .default
 {
@@ -23,7 +33,7 @@
     border-radius:      2px;
 
     padding-top:        3px;
-    padding-right:      3px;
+    padding-right:      var( --iconOffset );
     padding-bottom:     0;
     padding-left:       3px;
 
@@ -34,8 +44,8 @@
 
     & > *
     {
-        margin-right:   4px;
-        margin-bottom:  3px;
+        margin-right:   4px !important; /* always override default margins */
+        margin-bottom:  3px !important; /* always override default margins */
     }
 
     .input
@@ -48,6 +58,7 @@
 
         padding:        0;
         padding-top:    1px;
+        padding-right:  var( --inputPadding );
 
         border:         none;
         margin-right:   0;
@@ -65,19 +76,28 @@
 
         &:focus
         {
+            @extend %Nessie-SemiBold;
             outline:    none;
 
             &::placeholder
             {
-                color: transparent !important;
+                color:  transparent !important;
             }
         }
 
         &::placeholder
         {
             @extend %Nessie-RegularIt;
-            color:         var( --PC-GREY--L80 );
+            color:      var( --PC-GREY--L80 );
         }
+    }
+
+    .icon
+    {
+        position:       absolute;
+        top:            50%;
+        right:          var( --iconOffset );
+        margin-top:     calc( -1 * ( var( --iconSize ) / 2 ) );
     }
 
     &:focus-within
@@ -90,11 +110,17 @@
 
 .disabled
 {
-    pointer-events: none;
+    pointer-events:         none;
+    background-color:       var( --PC-GREY--L90 );
 
     &:hover
     {
-        border-color:   var( --PC-GREY--L70 );
+        border-color:       var( --PC-GREY--L70 );
+    }
+
+    .input
+    {
+        background-color:   var( --PC-GREY--L90 );
     }
 }
 
