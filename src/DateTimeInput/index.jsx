@@ -190,10 +190,11 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         useState( undefined );
     const [ editingMinuteInputValue, setEditingMinuteInputValue ] =
         useState( undefined );
-    const [ editingTimestamp, setEditingTimestamp ] = useState( undefined );
     const [ gridStartTimestamp, setGridStartTimestamp ] = useState( undefined );
-    const [ isOpen, setIsOpen ] = useState( undefined );
     const [ timestamp, setTimestamp ] = useTimestamp( undefined, props.value );
+
+    const isOpen = Boolean( gridStartTimestamp );
+
 
     const id = useMemo( () => (
         props.id || generateId( componentName )
@@ -216,7 +217,8 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         }
 
         purgeEdits();
-    }, [ timestamp ] );
+    }, [ props.id, props.isReadOnly, props.onChange, timestamp ] );
+
 
     const handleClickNext = useCallback( () =>
     {
@@ -225,12 +227,8 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         setGridStartTimestamp( $m( gridStartTimestamp )
             .add( 1, props.mode === 'month' ? 'year' : 'month' )
             .valueOf() );
-    }, [ gridStartTimestamp ] );
+    }, [ gridStartTimestamp, props.mode ] );
 
-    const handleClickOutSide = useCallback( () =>
-    {
-        close();
-    }, [ isOpen ] );
 
     const handleClickPrev = useCallback( () =>
     {
@@ -239,7 +237,8 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         setGridStartTimestamp( $m( gridStartTimestamp )
             .add( -1, props.mode === 'month' ? 'year' : 'month' )
             .valueOf() );
-    }, [ gridStartTimestamp ] );
+    }, [ gridStartTimestamp, props.mode ] );
+
 
     const handleClickIcon = useCallback( () =>
     {
@@ -252,7 +251,8 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             inputRef.current.focus();
             open();
         }
-    }, [ isOpen ] );
+    }, [ inputRef.current, isOpen ] );
+
 
     const handleChangeInput = useCallback( ( { value } ) =>
     {
@@ -279,14 +279,9 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         setEditingMainInputValue( !value ? undefined : value );
         setEditingMinuteInputValue( !value ? undefined :
             formatMinutes( value ) );
-        setEditingTimestamp( !value ? undefined : newTimestamp );
         setTimestamp( !value ? undefined : newTimestamp );
-    }, [
-        timestamp,
-        props.format,
-        props.max,
-        props.min,
-    ] );
+    }, [ props.format, props.max, props.min, timestamp ] );
+
 
     const handleChangeHour = useCallback( ( { value } ) =>
     {
@@ -300,7 +295,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             const newTimestamp = $m( timestamp ).set( 'hour', digits )
                 .valueOf();
 
-            setEditingTimestamp( newTimestamp );
+            setTimestamp( newTimestamp );
             setEditingMainInputValue( formatDateTime(
                 newTimestamp,
                 props.format || setPrecision( props.mode ),
@@ -315,19 +310,15 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
                 const newTimestamp = $m( timestamp ).set( 'hour', digits )
                     .valueOf();
 
-                setEditingTimestamp( newTimestamp );
+                setTimestamp( newTimestamp );
                 setEditingMainInputValue( formatDateTime(
                     newTimestamp,
                     props.format || setPrecision( props.mode ),
                 ) );
             }
         }
-    },
-    [
-        props.format,
-        props.mode,
-        timestamp,
-    ] );
+    }, [ props.format, props.mode, timestamp ] );
+
 
     const handleChangeMinute = useCallback( ( { value } ) =>
     {
@@ -341,7 +332,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             const newTimestamp = $m( timestamp ).set( 'minute', digits )
                 .valueOf();
 
-            setEditingTimestamp( newTimestamp );
+            setTimestamp( newTimestamp );
             setEditingMainInputValue( formatDateTime(
                 newTimestamp,
                 props.format || setPrecision( props.mode ),
@@ -356,19 +347,14 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
                 const newTimestamp = $m( timestamp ).set( 'minute', digits )
                     .valueOf();
 
-                setEditingTimestamp( newTimestamp );
+                setTimestamp( newTimestamp );
                 setEditingMainInputValue( formatDateTime(
                     newTimestamp,
                     props.format || setPrecision( props.mode ),
                 ) );
             }
         }
-    },
-    [
-        props.format,
-        props.mode,
-        timestamp,
-    ] );
+    }, [ props.format, props.mode, timestamp ] );
 
 
     const canGotoNext = useCallback( () =>
@@ -377,9 +363,9 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         const nextGridStart = $m( gridStartTimestamp )
             .add( 1, props.mode === 'month' ? 'year' : 'month' ).valueOf();
 
-        return !_.isNumber( max ) ||
-            ( nextGridStart <= max );
-    }, [ gridStartTimestamp ] );
+        return !_.isNumber( max ) || ( nextGridStart <= max );
+    }, [ gridStartTimestamp, props.mode, props.max ] );
+
 
     const canGotoPrev = useCallback( () =>
     {
@@ -391,16 +377,13 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             .add( 1, props.mode === 'month' ? 'year' : 'month' )
             .valueOf();
 
-        return !_.isNumber( min ) ||
-            endOfPrev > min;
-    }, [ gridStartTimestamp ] );
+        return !_.isNumber( min ) || endOfPrev > min;
+    }, [ gridStartTimestamp, props.mode, props.min ] );
+
 
     const canEditHourOrMinute = useCallback( () =>
-        _.isNumber( timestamp ),
-    [
-        editingHourInputValue,
-        editingMinuteInputValue,
-    ] );
+        _.isNumber( timestamp ), [ timestamp ] );
+
 
     const isUnitSelectable = useCallback( (
         newTimestamp = timestamp,
@@ -416,7 +399,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         if ( !allowFraction ) return newTimestamp >= min;
 
         return $m( newTimestamp ).add( 1, unit ) > min;
-    }, [ timestamp ] );
+    }, [ timestamp, props.max, props.min ] );
 
 
     const dayMatrix = () =>
@@ -500,7 +483,6 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         setEditingHourInputValue( undefined );
         setEditingMainInputValue( undefined );
         setEditingMinuteInputValue( undefined );
-        setEditingTimestamp( undefined );
     };
 
 
@@ -517,15 +499,14 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         setGridStartTimestamp( $m( newTimestamp )
             .startOf( props.mode === 'month' ? 'year' : 'month' )
             .valueOf() );
-        setIsOpen( true );
     };
 
     const close = () =>
     {
         purgeEdits();
         setGridStartTimestamp( null );
-        setIsOpen( false );
     };
+
 
     const {
         className,
@@ -554,7 +535,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             }
             minuteIsReadOnly  = { !canEditHourOrMinute() }
             minutePlaceholder = { minutePlaceholder }
-            minuteValue       =  { editingMinuteInputValue ||
+            minuteValue       = { editingMinuteInputValue ||
                 formatMinutes( timestamp )
             }
             mode           = { mode }
@@ -572,26 +553,23 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
 
     const popperChildren = (
         <TextInputWithIcon
-            autoCapitalize  = "off"
-            autoComplete    = "off"
-            autoCorrect     = "off"
-            className       = { className }
-            forceHover      = { isOpen }
-            hasError        = { hasError }
-            iconType        = "calendar"
-            id              = { id }
-            isDisabled      = { isDisabled }
-            onChangeInput   = { handleChangeInput }
-            onClickIcon     = { handleClickIcon }
-            placeholder     = { inputPlaceholder }
-            spellCheck      = { false }
-            value           = {
-                typeof editingMainInputValue === 'undefined' ?
-                    formatDateTime( timestamp, format ||
-                        setPrecision( mode ) ) :
-                    editingMainInputValue
-            }
-            inputRef = { inputRef } />
+            autoCapitalize = "off"
+            autoComplete   = "off"
+            autoCorrect    = "off"
+            className      = { className }
+            forceHover     = { isOpen }
+            hasError       = { hasError }
+            iconType       = "calendar"
+            id             = { id }
+            inputRef       = { inputRef }
+            isDisabled     = { isDisabled }
+            onChangeInput  = { handleChangeInput }
+            onClickIcon    = { handleClickIcon }
+            placeholder    = { inputPlaceholder }
+            spellCheck     = { false }
+            value          = { editingMainInputValue ||
+                formatDateTime( timestamp, format || setPrecision( mode ) )
+            } />
     );
 
     const popperPopup = (
@@ -605,7 +583,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         <PopperWrapper
             container      = { container || 'nessie-overlay' }
             isVisible      = { isOpen }
-            onClickOutside = { handleClickOutSide }
+            onClickOutside = { close }
             popper         = { popperPopup }
             popperOffset   = "S"
             popperPosition = "bottom-start">
