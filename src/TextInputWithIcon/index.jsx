@@ -27,6 +27,7 @@ const TextInputWithIcon = ( props ) =>
         autoCapitalize,
         autoComplete,
         autoCorrect,
+        defaultValue,
         forceHover,
         hasError,
         iconButtonIsDisabled,
@@ -63,6 +64,7 @@ const TextInputWithIcon = ( props ) =>
                 autoComplete   = { autoComplete }
                 autoCorrect    = { autoCorrect }
                 className      = { cssMap.input }
+                defaultValue   = { defaultValue }
                 forceHover     = { forceHover }
                 hasError       = { hasError }
                 id             = { id }
@@ -127,6 +129,10 @@ TextInputWithIcon.propTypes =
      *  CSS class map
      */
     cssMap               : PropTypes.objectOf( PropTypes.string ),
+    /**
+     *  Default input string value
+     */
+    defaultValue         : PropTypes.string,
     /**
      *  Display as hover when required from another component
      */
@@ -229,6 +235,7 @@ TextInputWithIcon.defaultProps =
     autoCorrect          : undefined,
     className            : undefined,
     cssMap               : undefined,
+    defaultValue         : undefined,
     forceHover           : false,
     hasError             : false,
     iconButtonIsDisabled : false,

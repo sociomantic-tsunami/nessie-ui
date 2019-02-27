@@ -31,9 +31,11 @@ const CurrencyInput = ( props ) =>
         currency,
         id = generateId( componentName ),
         value,
+        defaultValue,
+        ...restProps
     } = props;
 
-    const [ valueState, setValue ] = useState( '' );
+    const [ valueState, setValue ] = useState( defaultValue );
 
     const handleBlur = () =>
     {
@@ -59,7 +61,7 @@ const CurrencyInput = ( props ) =>
 
     return (
         <TextInput
-            { ...props }
+            { ...restProps }
             autoCapitalize = "off"
             autoComplete   = "off"
             autoCorrect    = "off"
@@ -77,102 +79,107 @@ CurrencyInput.propTypes =
     /**
      *  Extra CSS class name
      */
-    className   : PropTypes.string,
+    className    : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap      : PropTypes.objectOf( PropTypes.string ),
+    cssMap       : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Currency to display
      */
-    currency    : PropTypes.oneOf( [ 'USD', 'EUR', 'GBP' ] ),
+    currency     : PropTypes.oneOf( [ 'USD', 'EUR', 'GBP' ] ),
+    /**
+     *  Default input string value
+     */
+    defaultValue : PropTypes.string,
     /**
      *  Display as error/invalid
      */
-    hasError    : PropTypes.bool,
+    hasError     : PropTypes.bool,
     /**
      *  HTML id attribute
      */
-    id          : PropTypes.string,
+    id           : PropTypes.string,
     /**
      *  Display as disabled
      */
-    isDisabled  : PropTypes.bool,
+    isDisabled   : PropTypes.bool,
     /**
      *  Display as read-only
      */
-    isReadOnly  : PropTypes.bool,
+    isReadOnly   : PropTypes.bool,
     /**
      *  Blur callback function
      */
-    onBlur      : PropTypes.func,
+    onBlur       : PropTypes.func,
     /**
      *  Input change callback function
      */
-    onChange    : PropTypes.func,
+    onChange     : PropTypes.func,
     /**
      *  Input click callback function
      */
-    onClick     : PropTypes.func,
+    onClick      : PropTypes.func,
     /**
      *  Focus callback function
      */
-    onFocus     : PropTypes.func,
+    onFocus      : PropTypes.func,
     /**
      *  Key down callback function
      */
-    onKeyDown   : PropTypes.func,
+    onKeyDown    : PropTypes.func,
     /**
      *  Key press callback function
      */
-    onKeyPress  : PropTypes.func,
+    onKeyPress   : PropTypes.func,
     /**
      *  Key up callback function
      */
-    onKeyUp     : PropTypes.func,
+    onKeyUp      : PropTypes.func,
     /**
      *  Mouse out callback function
      */
-    onMouseOut  : PropTypes.func,
+    onMouseOut   : PropTypes.func,
     /**
      *  Mouse over  callback function
      */
-    onMouseOver : PropTypes.func,
+    onMouseOver  : PropTypes.func,
     /**
      *  Placeholder text
      */
-    placeholder : PropTypes.string,
+    placeholder  : PropTypes.string,
     /**
      *  Input text alignment
      */
-    textAlign   : PropTypes.oneOf( [ 'left', 'right' ] ),
+    textAlign    : PropTypes.oneOf( [ 'left', 'right' ] ),
     /**
      *  Input string value
      */
-    value       : PropTypes.string,
+    value        : PropTypes.string,
 };
 
 CurrencyInput.defaultProps =
 {
-    className   : undefined,
-    cssMap      : undefined,
-    currency    : undefined,
-    hasError    : false,
-    id          : undefined,
-    isDisabled  : false,
-    isReadOnly  : false,
-    onBlur      : undefined,
-    onChange    : undefined,
-    onClick     : undefined,
-    onFocus     : undefined,
-    onKeyDown   : undefined,
-    onKeyPress  : undefined,
-    onKeyUp     : undefined,
-    onMouseOut  : undefined,
-    onMouseOver : undefined,
-    placeholder : undefined,
-    textAlign   : 'left',
-    value       : '',
+    className    : undefined,
+    cssMap       : undefined,
+    currency     : undefined,
+    defaultValue : '',
+    hasError     : false,
+    id           : undefined,
+    isDisabled   : false,
+    isReadOnly   : false,
+    onBlur       : undefined,
+    onChange     : undefined,
+    onClick      : undefined,
+    onFocus      : undefined,
+    onKeyDown    : undefined,
+    onKeyPress   : undefined,
+    onKeyUp      : undefined,
+    onMouseOut   : undefined,
+    onMouseOver  : undefined,
+    placeholder  : undefined,
+    textAlign    : 'left',
+    value        : '',
 };
 
 

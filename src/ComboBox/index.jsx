@@ -9,17 +9,33 @@
 
 /* global document */
 
-import React, { Component }                       from 'react';
-import PropTypes                                  from 'prop-types';
-import { castArray, escapeRegExp }                from 'lodash';
+import React, { Component }         from 'react';
+import PropTypes                    from 'prop-types';
+import { castArray, escapeRegExp }  from 'lodash';
 
-import { ListBox, ScrollBox, Text }               from '..';
+import {
+    IconButton,
+    ListBox,
+    ScrollBox,
+    Text,
+} from '..';
 
-import TextInputWithIcon                          from '../TextInputWithIcon';
-import Popup                                      from '../Popup';
-import PopperWrapper                              from '../PopperWrapper';
-import { callMultiple, generateId }               from '../utils';
-import { addPrefix, prefixOptions, removePrefix } from './utils';
+import Popup            from '../Popup';
+import PopperWrapper    from '../PopperWrapper';
+import {
+    attachEvents,
+    callMultiple,
+    generateId,
+    mapAria,
+} from '../utils';
+import {
+    addPrefix,
+    prefixOptions,
+    removePrefix,
+} from './utils';
+import { buildTagsFromValues }  from '../TagInput/utils';
+import ThemeContext             from '../Theming/ThemeContext';
+import { createCssMap }         from '../Theming';
 
 /**
  * normalize array of options or value
@@ -97,6 +113,8 @@ function optionsFormatted( filteredOptionsIds, originalOptions )
 
 export default class ComboBox extends Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -114,6 +132,10 @@ export default class ComboBox extends Component
          *  id of the DOM element used as container for popup listBox
          */
         container           : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap              : PropTypes.objectOf( PropTypes.string ),
         /**
          * Placeholder text to show when no dropdown list options
          */
@@ -171,7 +193,8 @@ export default class ComboBox extends Component
     {
         className           : undefined,
         container           : undefined,
-        defaultValue        : undefined,
+        cssMap              : undefined,
+        defaultValue        : [],
         dropdownPlaceholder : 'No results to show',
         hasError            : false,
         id                  : undefined,
@@ -185,9 +208,6 @@ export default class ComboBox extends Component
         options             : undefined,
         value               : undefined,
     };
-
-    inputRef = React.createRef();
-    scrollBoxRef = React.createRef();
 
     constructor( { defaultValue, isMultiselect } )
     {
@@ -205,11 +225,16 @@ export default class ComboBox extends Component
                 castArray( defaultValue ) : defaultValue,
         };
 
+        this.inputRef     = React.createRef();
+        this.scrollBoxRef = React.createRef();
+
         this.handleBlur            = this.handleBlur.bind( this );
         this.handleChangeInput     = this.handleChangeInput.bind( this );
         this.handleClick           = this.handleClick.bind( this );
+        this.handleClickClose      = this.handleClickClose.bind( this );
         this.handleClickIcon       = this.handleClickIcon.bind( this );
         this.handleClickOption     = this.handleClickOption.bind( this );
+        this.handleFocus           = this.handleFocus.bind( this );
         this.handleKeyDown         = this.handleKeyDown.bind( this );
         this.handleMouseOutOption  = this.handleMouseOutOption.bind( this );
         this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
@@ -297,13 +322,31 @@ export default class ComboBox extends Component
         this.inputRef.current.focus();
     }
 
-
-    handleChangeInput( { value }, ...args )
+    filterOptions( tags )
     {
+        return this.state.options.filter( option =>
+            !tags.includes( option.text ) );
+    }
+
+    handleFocus()
+    {
+        this.focus();
+
+        if ( this.props.isSearchable )
+        {
+            this.setState( { searchValue: '' } );
+        }
+    }
+
+    handleChangeInput( e )
+    {
+        e.stopPropagation();
+        const { value } = e.target;
+
         const { onChangeInput } = this.props;
         if ( typeof onChangeInput === 'function' )
         {
-            onChangeInput( { value }, ...args );
+            onChangeInput( { value }, e );
         }
 
         this.setState( { searchValue: value } );
@@ -326,6 +369,7 @@ export default class ComboBox extends Component
         {
             const optId = removePrefix( prefixedId, id );
             const { isMultiselect, onChange } = this.props;
+
             let newSelection = optId;
             if ( isMultiselect )
             {
@@ -349,11 +393,32 @@ export default class ComboBox extends Component
         } );
     }
 
-    handleKeyDown( { key, preventNessieDefault } )
+    handleClickClose( { id } )
     {
+        this.setState( ( { selection } ) =>
+        {
+            const newTags = selection.filter( tag => tag !== id );
+
+            const { onChange } = this.props;
+            if ( typeof onChange === 'function' )
+            {
+                onChange( { value: newTags } );
+            }
+
+            return {
+                selection       : newTags,
+                filteredOptions : this.filterOptions( newTags ),
+            };
+        } );
+    }
+
+    handleKeyDown( e )
+    {
+        const { key } = e;
+
         if ( key === 'ArrowUp' || key === 'ArrowDown' )
         {
-            preventNessieDefault();
+            e.preventDefault();
 
             this.setState( prevState =>
             {
@@ -457,8 +522,8 @@ export default class ComboBox extends Component
     render()
     {
         const {
-            className,
             container,
+            cssMap = createCssMap( this.context.ComboBox, this.props ),
             dropdownPlaceholder,
             hasError,
             inputPlaceholder,
@@ -479,22 +544,8 @@ export default class ComboBox extends Component
             selection,
         } = this.state;
 
-        let selectedOption = getOption( selection, flatOptions );
-        let selectedText = selectedOption ? selectedOption.text : '';
-
-        if ( isMultiselect )
-        {
-            if ( selection.length === 1 )
-            {
-                selectedOption = getOption( selection[ 0 ], flatOptions );
-                selectedText = selectedOption ? selectedOption.text : '';
-            }
-            else if ( selection.length > 1 )
-            {
-                selectedText =
-                    selection.length && `(${selection.length} items selected)`;
-            }
-        }
+        const selectedOption = getOption( selection, flatOptions );
+        const selectedText = selectedOption ? selectedOption.text : '';
 
         let optionsToShow = options || [];
 
@@ -547,47 +598,73 @@ export default class ComboBox extends Component
             );
         }
 
+        let tags;
+
+        if ( isMultiselect )
+        {
+            tags = buildTagsFromValues( selection );
+            tags = tags.map( tag => (
+                React.cloneElement( tag, {
+                    ...tag.props,
+                    isDisabled : isDisabled || tag.props.isDisabled,
+                    isReadOnly : isReadOnly || tag.props.isReadOnly,
+                    onClick    : this.handleClickClose,
+                } )
+            ) );
+        }
+
         const popperChildren = (
-            <TextInputWithIcon
-                aria = { {
-                    activeDescendant :
-                        activeOption && addPrefix( activeOption, id ),
-                    autocomplete : 'list',
-                    expanded     : isOpen,
-                    hasPopup     : 'listbox',
-                    owns         : addPrefix( 'listbox', id ),
-                    role         : 'combobox',
-                } }
-                autoCapitalize = "off"
-                autoComplete   = "off"
-                autoCorrect    = "off"
-                className      = { className }
-                hasError       = { hasError }
-                iconType       = { isOpen ? 'chevron-up' : 'chevron-down' }
-                id             = { id }
-                inputRef       = { this.inputRef }
-                isDisabled     = { isDisabled }
-                isReadOnly     = { !isSearchable || !isOpen }
-                onBlur         = { callMultiple(
-                    this.handleBlur,
-                    this.props.onBlur,
-                ) } // temporary fix
-                onChangeInput  = { this.handleChangeInput }
-                onClick        = { callMultiple(
-                    this.handleClick,
-                    this.props.onClick,
-                ) } // temporary fix
-                onClickIcon    = { this.handleClickIcon }
-                onFocus        = { this.props.onFocus } // temporary fix
-                onKeyDown      = { callMultiple(
-                    this.handleKeyDown,
-                    this.props.onKeyDown,
-                ) } // temporary fix
-                placeholder    = { inputPlaceholder }
-                spellCheck     = { false }
-                value          = { ( isOpen && isSearchable ) ?
-                    searchValue : selectedText
-                } />
+            <label
+                { ...attachEvents( this.props ) }
+                className = { cssMap.main }
+                htmlFor   = { id }>
+                { tags }
+                <input
+                    { ...mapAria( {
+                        activeDescendant :
+                            activeOption && addPrefix( activeOption, id ),
+                        autocomplete : 'list',
+                        expanded     : isOpen,
+                        hasPopup     : 'listbox',
+                        owns         : addPrefix( 'listbox', id ),
+                        role         : 'combobox',
+                    } ) }
+                    autoCapitalize = "off"
+                    autoComplete   = "off"
+                    autoCorrect    = "off"
+                    className      = { cssMap.input }
+                    disabled       = { isDisabled }
+                    hasError       = { hasError }
+                    id             = { id }
+                    onBlur         = { callMultiple(
+                        this.handleBlur,
+                        this.props.onBlur,
+                    ) } // temporary fix
+                    onChange       = { this.handleChangeInput }
+                    onClick        = { callMultiple(
+                        this.handleClick,
+                        this.props.onClick,
+                    ) } // temporary fix
+                    onFocus        = { callMultiple(
+                        this.handleFocus,
+                        this.props.onFocus,
+                    ) } // temporary fix
+                    onKeyDown      = { callMultiple(
+                        this.handleKeyDown,
+                        this.props.onKeyDown,
+                    ) } // temporary fix
+                    placeholder    = { inputPlaceholder }
+                    readOnly       = { !isSearchable || !isOpen }
+                    ref            = { this.inputRef }
+                    spellCheck     = { false }
+                    value          = { ( isOpen && isSearchable ) ?
+                        searchValue : selectedText } />
+                <IconButton
+                    className   = { cssMap.icon }
+                    iconType    = { isOpen ? 'chevron-up' : 'chevron-down' }
+                    isFocusable = { false }
+                    onClick     = { this.handleClickIcon } />
+            </label>
         );
 
         const popperPopup = (
