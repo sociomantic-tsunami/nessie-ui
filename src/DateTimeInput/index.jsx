@@ -440,6 +440,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         return _.chunk( days, 7 );
     };
 
+
     const monthMatrix = () =>
     {
         const startYear = gridStartTimestamp;
@@ -469,24 +470,20 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
     };
 
 
-    const monthLabel = () =>
-    {
-        const month = $m( gridStartTimestamp ).month();
-        return copy.months[ month ];
-    };
+    const monthLabel = copy.months[ $m( gridStartTimestamp ).month() ];
 
     const yearLabel = () => $m( gridStartTimestamp ).year().toString();
 
 
-    const purgeEdits = () =>
+    const purgeEdits = useCallback( () =>
     {
         setEditingHourInputValue( undefined );
         setEditingMainInputValue( undefined );
         setEditingMinuteInputValue( undefined );
-    };
+    }, [] );
 
 
-    const open = () =>
+    const open = useCallback( () =>
     {
         const { min } = props;
         let newTimestamp;
@@ -499,13 +496,13 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         setGridStartTimestamp( $m( newTimestamp )
             .startOf( props.mode === 'month' ? 'year' : 'month' )
             .valueOf() );
-    };
+    }, [ props.min, props.mode, timestamp ] );
 
-    const close = () =>
+    const close = useCallback( () =>
     {
         purgeEdits();
         setGridStartTimestamp( null );
-    };
+    }, [] );
 
 
     const {
@@ -539,7 +536,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
                 formatMinutes( timestamp )
             }
             mode           = { mode }
-            month          = { mode !== 'month' && monthLabel() }
+            month          = { mode !== 'month' && monthLabel }
             nextIsDisabled = { !canGotoNext() }
             onChangeHour   = { handleChangeHour }
             onChangeMinute = { handleChangeMinute }
