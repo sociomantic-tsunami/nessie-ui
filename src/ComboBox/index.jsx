@@ -9,48 +9,34 @@
 
 /* global document */
 
-import React, { Component }         from 'react';
-import PropTypes                    from 'prop-types';
-import { castArray, escapeRegExp }  from 'lodash';
+import React, {
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+}                                                 from 'react';
+import PropTypes                                  from 'prop-types';
+import { castArray, escapeRegExp }                from 'lodash';
 
 import {
     IconButton,
     ListBox,
+    Popup,
+    PopperWrapper,
     ScrollBox,
     Text,
-} from '..';
+}                                                 from '..';
 
-import Popup            from '../Popup';
-import PopperWrapper    from '../PopperWrapper';
 import {
     attachEvents,
     callMultiple,
     generateId,
     mapAria,
 } from '../utils';
-import {
-    addPrefix,
-    prefixOptions,
-    removePrefix,
-} from './utils';
-import { buildTagsFromValues }  from '../TagInput/utils';
-import ThemeContext             from '../Theming/ThemeContext';
-import { createCssMap }         from '../Theming';
-
-/**
- * normalize array of options or value
- *
- * @param   {Array} options options to normalize
- *
- * @return  {Array} normalized options
- */
-function normalizeOptions( options )
-{
-    if ( !Array.isArray( options ) ) return;
-
-    return options.map( opt => ( typeof opt === 'object' ?
-        opt : { id: opt, text: opt } ) );
-}
+import { addPrefix, prefixOptions, removePrefix } from './utils';
+import { buildTagsFromValues }                    from '../TagInput/utils';
+import { useTheme }                               from '../Theming';
 
 /**
  * gets the index of the option by the passed id
@@ -63,7 +49,6 @@ function normalizeOptions( options )
 const getIndex = ( id, options = [] ) => (
     options.findIndex( opt => opt.id === id ) );
 
-
 /**
  * gets the option by the passed id
  *
@@ -75,6 +60,20 @@ const getIndex = ( id, options = [] ) => (
 const getOption = ( id, options = [] ) => (
     options.find( opt => opt.id === id ) );
 
+/**
+ * normalize array of options or value
+ *
+ * @param   {Array} options options to normalize
+ *
+ * @return  {Array} normalized options
+ */
+const normalizeOptions = ( options ) =>
+{
+    if ( !Array.isArray( options ) ) return;
+
+    return options.map( opt => ( typeof opt === 'object' ?
+        opt : { id: opt, text: opt } ) );
+};
 
 /**
  * gives correct format to the filtered options
@@ -107,231 +106,85 @@ const optionsFormatted = ( filteredOptionsIds, originalOptions ) => (
         return formattedOptions;
     }, [] ) );
 
-const useSelection = ( defaultValue, value ) =>
+const useSelection = ( defaultValue, value, isMultiselect ) =>
 {
-    static contextType = ThemeContext;
+    const validatedDefaultValue = isMultiselect ? castArray( defaultValue ) :
+        defaultValue;
+    const validatedValue = isMultiselect && value ? castArray( value ) : value;
 
-    static propTypes =
-    {
-        /**
-         *  Extra CSS class name
-         */
-        className    : PropTypes.string,
-        /**
-         *  Default selected option id(s) (when uncontrolled)
-         */
-        defaultValue : PropTypes.oneOfType(
-            PropTypes.string,
-            PropTypes.arrayOf( PropTypes.string ),
-        ),
-        /**
-         *  id of the DOM element used as container for popup listBox
-         */
-        container           : PropTypes.string,
-        /**
-         *  CSS class map
-         */
-        cssMap              : PropTypes.objectOf( PropTypes.string ),
-        /**
-         * Placeholder text to show when no dropdown list options
-         */
-        dropdownPlaceholder : PropTypes.string,
-        /**
-         *  Display as error/invalid
-         */
-        hasError            : PropTypes.bool,
-        /**
-         *  Component id
-         */
-        id                  : PropTypes.string,
-        /**
-         *  Placeholder text
-         */
-        inputPlaceholder    : PropTypes.string,
-        /**
-         *  Display as disabled
-         */
-        isDisabled          : PropTypes.bool,
-        /**
-         *  Enables multi-select behavior
-         */
-        isMultiselect       : PropTypes.bool,
-        /**
-         *  Display as read-only
-         */
-        isReadOnly          : PropTypes.bool,
-        /**
-          *  input searchable
-          */
-        isSearchable        : PropTypes.bool,
-        /**
-         *  Change callback: ( { value } ) => ...
-         */
-        onChange            : PropTypes.func,
-        /**
-         *  Input field change callback: ( { value } ) => ...
-         */
-        onChangeInput       : PropTypes.func,
-        /*
-         * Dropdown list options
-         */
-        options             : PropTypes.arrayOf( PropTypes.object ),
-        /**
-         *  Selected option id(s)
-         */
-        value               : PropTypes.oneOfType(
-            PropTypes.string,
-            PropTypes.arrayOf( PropTypes.string ),
-        ),
-    };
+    const [ selection, setSelection ] = useState( validatedDefaultValue );
 
-    static defaultProps =
-    {
-        className           : undefined,
-        container           : undefined,
-        cssMap              : undefined,
-        defaultValue        : [],
-        dropdownPlaceholder : 'No results to show',
-        hasError            : false,
-        id                  : undefined,
-        inputPlaceholder    : undefined,
-        isDisabled          : false,
-        isMultiselect       : false,
-        isReadOnly          : undefined,
-        isSearchable        : false,
-        onChange            : undefined,
-        onChangeInput       : undefined,
-        options             : undefined,
-        value               : undefined,
-    };
-
-    constructor( { defaultValue, isMultiselect } )
-    {
-        super();
-
-        this.state = {
-            activeOption    : undefined,
-            filteredOptions : undefined,
-            flatOptions     : undefined,
-            id              : undefined,
-            isOpen          : undefined,
-            options         : undefined,
-            searchValue     : undefined,
-            selection       : isMultiselect ?
-                castArray( defaultValue ) : defaultValue,
-        };
-
-        this.inputRef     = React.createRef();
-        this.scrollBoxRef = React.createRef();
-
-        this.handleBlur            = this.handleBlur.bind( this );
-        this.handleChangeInput     = this.handleChangeInput.bind( this );
-        this.handleClick           = this.handleClick.bind( this );
-        this.handleClickClose      = this.handleClickClose.bind( this );
-        this.handleClickIcon       = this.handleClickIcon.bind( this );
-        this.handleClickOption     = this.handleClickOption.bind( this );
-        this.handleFocus           = this.handleFocus.bind( this );
-        this.handleKeyDown         = this.handleKeyDown.bind( this );
-        this.handleMouseOutOption  = this.handleMouseOutOption.bind( this );
-        this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
-    }
+    const validatedSelection = isMultiselect &&
+      typeof selection !== 'undefined' ? castArray( selection ) : selection;
 
     const setter = ( newValue ) =>
     {
-        let { flatOptions } = state;
-
-        const options = normalizeOptions( props.options ) ||
-            state.options || [];
-
-        if ( options && options !== state.options )
+        if ( !value )
         {
-            flatOptions = options.flatMap( o => o.options || o );
+            setSelection( newValue );
         }
     };
 
-        let { selection } = state;
-        if ( props.value )
-        {
-            selection = props.value;
-        }
+    return [ validatedValue || validatedSelection, setter ];
+};
 
-        if ( props.isMultiselect )
-        {
-            selection = castArray( selection );
-        }
-
-        const filteredOptions = state.searchValue && (
-            flatOptions.filter( ( { text } ) => (
-                text.match( new RegExp(
-                    escapeRegExp( state.searchValue ),
-                    'i',
-                ) )
-            ) )
-        );
-
-        const activeOption = ( state.searchValue && filteredOptions.length ) ?
-            filteredOptions[ 0 ].id : state.activeOption;
-
-        return {
-            activeOption,
-            flatOptions,
-            filteredOptions,
-            id : props.id || state.id || generateId( 'ComboBox' ),
-            options,
-            selection,
-        };
-    }
+const componentName = 'ComboBox';
 
 const ComboBox = props =>
 {
-    const [ activeOption, setActiveOption ] = useState( undefined );
-    const [ filteredOptions, setFilteredOptions ] = useState( undefined );
+    const cssMap = useTheme( componentName, props );
+    // const [ activeOption, setActiveOption ] = useState( undefined );
+    // const [ filteredOptions, setFilteredOptions ] = useState( undefined );
     const [ isOpen, setIsOpen ] = useState( undefined );
     const [ searchValue, setSearchValue ] = useState( undefined );
-
-    // const filteredOptions = searchValue && (
-    //     flatOptions.filter( ( { text } ) => (
-    //         text.match( new RegExp(
-    //             escapeRegExp( searchValue ),
-    //             'i',
-    //         ) )
-    //     ) )
-    // );
 
     const inputRef = useRef( null );
     const scrollBoxRef = useRef( null );
 
     const {
-        className,
         container,
         defaultValue,
         dropdownPlaceholder,
         hasError,
-        id,
         inputPlaceholder,
         isDisabled,
         isMultiselect,
         isReadOnly,
         isSearchable,
         onChange,
+        onChangeInput,
         options,
         value,
     } = props;
 
     const [ optionSelected, setOptionSelected ] = useSelection(
-        isMultiselect ? castArray( defaultValue ) : defaultValue,
-        isMultiselect ? castArray( value ) : value,
+        defaultValue,
+        value,
+        isMultiselect,
     );
 
     const flatOptions = useMemo(
-        () => ( options.flatMap( o => o.options || o ) ),
+        () => ( normalizeOptions( options ).flatMap( o => o.options || o ) ),
         [ options ],
     );
 
-    const componentId = useMemo(
-        () => ( id || generateId( 'ComoBox' ) ),
-        [ id ],
+    const id = useMemo(
+        () => ( props.id || generateId( 'ComboBox' ) ),
+        [ props.id ],
     );
+
+    let filteredOptions = searchValue && (
+        flatOptions.filter( ( { text } ) => (
+            text.match( new RegExp(
+                escapeRegExp( searchValue ),
+                'i',
+            ) )
+        ) )
+    );
+
+    let activeOption = ( searchValue && filteredOptions.length ) ?
+        filteredOptions[ 0 ].id : activeOption;
+
 
     useEffect( () =>
     {
@@ -340,7 +193,7 @@ const ComboBox = props =>
             const activeEl =
                 document.getElementById( addPrefix(
                     activeOption,
-                    componentId,
+                    id,
                 ) );
 
             if ( activeEl &&
@@ -370,47 +223,39 @@ const ComboBox = props =>
 
     const focus = useCallback( () =>
     {
-        this.inputRef.current.focus();
-    }
+        inputRef.current.focus();
+    }, [ inputRef.current ] );
 
-    filterOptions( tags )
+    const filterOptions = ( tags ) =>
+        (
+            normalizeOptions( props.options ).filter(
+                option => !tags.includes( option.text ),
+            )
+        );
+
+    const handleFocus = () =>
     {
-        return this.state.options.filter( option =>
-            !tags.includes( option.text ) );
-    }
+        focus();
 
-    handleFocus()
-    {
-        this.focus();
-
-        if ( this.props.isSearchable )
+        if ( isSearchable )
         {
-            this.setState( { searchValue: '' } );
+            setSearchValue( '' );
         }
-    }
+    };
 
-    handleChangeInput( e )
+    const handleChangeInput = useCallback( ( e ) =>
     {
         e.stopPropagation();
-        const { value } = e.target;
 
-        const { onChangeInput } = this.props;
+        const searchValueToUse = ( e.target.value || '' ).toLowerCase();
+
+        console.log( typeof onChangeInput );
         if ( typeof onChangeInput === 'function' )
         {
-            onChangeInput( { value }, e );
+            console.log( 'mierdas' );
+            onChangeInput( { value: e.target.value }, e );
         }
 
-        const filteredOptionsToUse = flatOptions.filter( ( { text } ) =>
-            !searchValueToUse || text.toLowerCase().indexOf(
-                searchValueToUse,
-            ) > -1 );
-
-        const activeOptionToUse = ( searchValueToUse &&
-            filteredOptionsToUse.length ) ?
-            filteredOptionsToUse[ 0 ].id : undefined;
-
-        setActiveOption( activeOptionToUse );
-        setFilteredOptions( filteredOptionsToUse );
         setSearchValue( searchValueToUse );
     }, [ flatOptions ] );
 
@@ -420,14 +265,14 @@ const ComboBox = props =>
         setIsOpen( !isOpen );
     }, [ isOpen ] );
 
-    const handleClickInput = () =>
+    const handleClick = () =>
     {
         setIsOpen( true );
     };
 
     const handleClickOption = useCallback( ( { id : optId } ) =>
     {
-        const unprefixedId = removePrefix( optId, componentId );
+        const unprefixedId = removePrefix( optId, id );
 
         let newSelection = !isReadOnly ? getOption(
             unprefixedId,
@@ -436,49 +281,46 @@ const ComboBox = props =>
 
         if ( isMultiselect )
         {
-            const optId = removePrefix( prefixedId, id );
-            const { isMultiselect, onChange } = this.props;
-
-            let newSelection = optId;
-            if ( isMultiselect )
+            if ( optionSelected )
             {
-                newSelection = selection.includes( optId ) ?
-                    selection.filter( item => item !== optId ) :
-                    [ ...selection, optId ];
+                newSelection = optionSelected.includes( unprefixedId ) ?
+                    optionSelected.filter( item => item !== unprefixedId ) :
+                    [ ...optionSelected, unprefixedId ];
             }
+            else
+            {
+                newSelection = [ unprefixedId ];
+            }
+        }
 
         if ( !isReadOnly && typeof onChange === 'function' )
         {
             onChange( { id, newSelection } );
         }
 
-        setActiveOption( newSelection );
-        setFilteredOptions( undefined );
+        activeOption = newSelection;
+        filteredOptions = undefined;
         setIsOpen( false );
         setSearchValue( undefined );
         setOptionSelected( newSelection );
-    }, [ componentId, isReadOnly, flatOptions, optionSelected, onChange ] );
+    }, [ id, isMultiselect, isReadOnly, flatOptions, optionSelected,
+        onChange ] );
 
-    handleClickClose( { id } )
+    const handleClickClose = useCallback( ( { id : tagId } ) =>
     {
-        this.setState( ( { selection } ) =>
+        const newTags = optionSelected.filter( tag => tag !== tagId );
+
+        if ( typeof onChange === 'function' )
         {
-            const newTags = selection.filter( tag => tag !== id );
+            onChange( { value: newTags } );
+        }
 
-            const { onChange } = this.props;
-            if ( typeof onChange === 'function' )
-            {
-                onChange( { value: newTags } );
-            }
+        setOptionSelected( newTags );
+        filteredOptions = filterOptions( newTags );
+        setIsOpen( false );
+    } );
 
-            return {
-                selection       : newTags,
-                filteredOptions : this.filterOptions( newTags ),
-            };
-        } );
-    }
-
-    handleKeyDown( e )
+    const handleKeyDown = useCallback( ( e ) =>
     {
         const { key } = e;
 
@@ -502,15 +344,15 @@ const ComboBox = props =>
                     Math.max( activeIndex - 1, minIndex ) :
                     Math.min( activeIndex + 1, maxIndex );
 
-                setActiveOption( optionsToUse[ activeIndex ].id );
+                activeOption = optionsToUse[ activeIndex ].id;
             }
 
             setIsOpen( true );
         }
         else if ( key === 'Escape' )
         {
-            setActiveOption( undefined );
-            setFilteredOptions( undefined );
+            activeOption = undefined;
+            filteredOptions = undefined;
             setIsOpen( false );
             setSearchValue( undefined );
         }
@@ -523,23 +365,34 @@ const ComboBox = props =>
 
                 if ( newSelection && isMultiselect )
                 {
-                    newSelection = optionSelected.includes( newSelection ) ?
-                        optionSelected.filter( item => item !== newSelection ) :
-                        [ ...optionSelected, newSelection ];
+                    if ( optionSelected )
+                    {
+                        newSelection = optionSelected.includes( newSelection ) ?
+                            optionSelected.filter(
+                                item => item !== newSelection,
+                            ) : [ ...optionSelected, newSelection ];
+                    }
+                    else
+                    {
+                        newSelection = [ newSelection ];
+                    }
                 }
 
-                newSelection = newSelection || optionSelected;
+                const finalSelection = newSelection || optionSelected;
 
                 if ( typeof onChange === 'function' )
                 {
-                    onChange( { id, newSelection } );
+                    onChange( { id, finalSelection } );
                 }
-
-                setActiveOption( activeOption );
-                setFilteredOptions( undefined );
+                console.log( newSelection );
+                activeOption = undefined;
+                filteredOptions = undefined;
                 setIsOpen( !isOpen );
                 setSearchValue( undefined );
-                setOptionSelected( newSelection );
+                if ( newSelection )
+                {
+                    setOptionSelected( newSelection );
+                }
             }
         }
     }, [ filteredOptions, flatOptions, isOpen, activeOption, optionSelected,
@@ -547,125 +400,52 @@ const ComboBox = props =>
 
     const handleMouseOutOption = () =>
     {
-        setActiveOption( undefined );
+        activeOption = undefined;
     };
 
     const handleMouseOverOption = useCallback( ( { id : optId } ) =>
     {
-        const unprefixedId = removePrefix( optId, componentId );
+        const unprefixedId = removePrefix( optId, id );
 
-        setActiveOption( getOption(
+        activeOption = getOption(
             unprefixedId,
             flatOptions,
-        ).id );
-    }, [ componentId, flatOptions ] );
+        ).id;
+    }, [ id, flatOptions ] );
 
     const handleBlur = () =>
     {
-        const {
-            container,
-            cssMap = createCssMap( this.context.ComboBox, this.props ),
-            dropdownPlaceholder,
-            hasError,
-            inputPlaceholder,
-            isDisabled,
-            isMultiselect,
-            isReadOnly,
-            isSearchable,
-        } = this.props;
+        setIsOpen( false );
+        activeOption = undefined;
+        filteredOptions = undefined;
+        setSearchValue( undefined );
+    };
 
-        const {
-            activeOption,
-            filteredOptions,
-            flatOptions,
-            id,
-            isOpen,
-            searchValue,
-            options,
-            selection,
-        } = this.state;
+    const selectedOption = getOption( optionSelected, flatOptions );
+    const selectedText = selectedOption ? selectedOption.text : '';
 
-        const selectedOption = getOption( selection, flatOptions );
-        const selectedText = selectedOption ? selectedOption.text : '';
+    let tags;
 
-        let optionsToShow = options || [];
-
-        if ( filteredOptions )
-        {
-            selectedText = optionSelected.length &&
-                    `(${optionSelected.length} items selected)`;
-        }
+    if ( isMultiselect )
+    {
+        tags = buildTagsFromValues( optionSelected );
+        tags = tags.map( tag => (
+            React.cloneElement( tag, {
+                ...tag.props,
+                isDisabled : isDisabled || tag.props.isDisabled,
+                isReadOnly : isReadOnly || tag.props.isReadOnly,
+                onClick    : handleClickClose,
+            } )
+        ) );
     }
 
-    let optionsToShow = options || [];
+    let optionsToShow = normalizeOptions( options ) || [];
 
-        let tags;
-
-        if ( isMultiselect )
-        {
-            tags = buildTagsFromValues( selection );
-            tags = tags.map( tag => (
-                React.cloneElement( tag, {
-                    ...tag.props,
-                    isDisabled : isDisabled || tag.props.isDisabled,
-                    isReadOnly : isReadOnly || tag.props.isReadOnly,
-                    onClick    : this.handleClickClose,
-                } )
-            ) );
-        }
-
-        const popperChildren = (
-            <label
-                { ...attachEvents( this.props ) }
-                className = { cssMap.main }
-                htmlFor   = { id }>
-                { tags }
-                <input
-                    { ...mapAria( {
-                        activeDescendant :
-                            activeOption && addPrefix( activeOption, id ),
-                        autocomplete : 'list',
-                        expanded     : isOpen,
-                        hasPopup     : 'listbox',
-                        owns         : addPrefix( 'listbox', id ),
-                        role         : 'combobox',
-                    } ) }
-                    autoCapitalize = "off"
-                    autoComplete   = "off"
-                    autoCorrect    = "off"
-                    className      = { cssMap.input }
-                    disabled       = { isDisabled }
-                    hasError       = { hasError }
-                    id             = { id }
-                    onBlur         = { callMultiple(
-                        this.handleBlur,
-                        this.props.onBlur,
-                    ) } // temporary fix
-                    onChange       = { this.handleChangeInput }
-                    onClick        = { callMultiple(
-                        this.handleClick,
-                        this.props.onClick,
-                    ) } // temporary fix
-                    onFocus        = { callMultiple(
-                        this.handleFocus,
-                        this.props.onFocus,
-                    ) } // temporary fix
-                    onKeyDown      = { callMultiple(
-                        this.handleKeyDown,
-                        this.props.onKeyDown,
-                    ) } // temporary fix
-                    placeholder    = { inputPlaceholder }
-                    readOnly       = { !isSearchable || !isOpen }
-                    ref            = { this.inputRef }
-                    spellCheck     = { false }
-                    value          = { ( isOpen && isSearchable ) ?
-                        searchValue : selectedText } />
-                <IconButton
-                    className   = { cssMap.icon }
-                    iconType    = { isOpen ? 'chevron-up' : 'chevron-down' }
-                    isFocusable = { false }
-                    onClick     = { this.handleClickIcon } />
-            </label>
+    if ( filteredOptions )
+    {
+        optionsToShow = optionsFormatted(
+            filteredOptions.map( option => option.id ),
+            options,
         );
     }
 
@@ -681,17 +461,21 @@ const ComboBox = props =>
                 <ListBox
                     activeOption      = { addPrefix(
                         activeOption,
-                        componentId,
+                        id,
                     ) }
-                    id                = { addPrefix( 'listbox', componentId ) }
+                    id                = { addPrefix( 'listbox', id ) }
                     isFocusable       = { false }
+                    isMultiselect     = { isMultiselect }
                     onClickOption     = { handleClickOption }
                     onMouseOutOption  = { handleMouseOutOption }
                     onMouseOverOption = { handleMouseOverOption }
                     options           = {
-                        prefixOptions( optionsToShow, componentId )
+                        prefixOptions( optionsToShow, id )
                     }
-                    selection = { addPrefix( optionSelected, componentId ) } />
+                    selection = { isMultiselect && optionSelected ?
+                        optionSelected.map( optId => addPrefix( optId, id ) ) :
+                        addPrefix( optionSelected, id )
+                    } />
             </ScrollBox>
         );
     }
@@ -709,46 +493,57 @@ const ComboBox = props =>
     }
 
     const popperChildren = (
-        <TextInputWithIcon
-            aria = { {
-                activeDescendant :
-                    activeOption && addPrefix( activeOption, id ),
-                autocomplete : 'list',
-                expanded     : isOpen,
-                hasPopup     : 'listbox',
-                owns         : addPrefix( 'listbox', id ),
-                role         : 'combobox',
-            } }
-            autoCapitalize = "off"
-            autoComplete   = "off"
-            autoCorrect    = "off"
-            className      = { className }
-            hasError       = { hasError }
-            iconType       = { isOpen ? 'chevron-up' : 'chevron-down' }
-            id             = { id }
-            inputRef       = { inputRef }
-            isDisabled     = { isDisabled }
-            isReadOnly     = { !isSearchable || !isOpen }
-            onBlur         = { callMultiple(
-                handleBlur,
-                props.onBlur,
-            ) } // temporary fix
-            onChangeInput  = { handleChangeInput }
-            onClick        = { callMultiple(
-                handleClickInput,
-                props.onClick,
-            ) } // temporary fix
-            onClickIcon    = { handleClickIcon }
-            onFocus        = { props.onFocus } // temporary fix
-            onKeyDown      = { callMultiple(
-                handleKeyDown,
-                props.onKeyDown,
-            ) } // temporary fix
-            placeholder    = { inputPlaceholder }
-            spellCheck     = { false }
-            value          = { ( isOpen && isSearchable ) ?
-                searchValue : selectedText
-            } />
+        <label
+            { ...attachEvents( props ) }
+            className = { cssMap.main }
+            htmlFor   = { id }>
+            { tags }
+            <input
+                { ...mapAria( {
+                    activeDescendant :
+                        activeOption && addPrefix( activeOption, id ),
+                    autocomplete : 'list',
+                    expanded     : isOpen,
+                    hasPopup     : 'listbox',
+                    owns         : addPrefix( 'listbox', id ),
+                    role         : 'combobox',
+                } ) }
+                autoCapitalize = "off"
+                autoComplete   = "off"
+                autoCorrect    = "off"
+                className      = { cssMap.input }
+                disabled       = { isDisabled }
+                hasError       = { hasError }
+                id             = { id }
+                onBlur         = { callMultiple(
+                    handleBlur,
+                    props.onBlur,
+                ) } // temporary fix
+                onChange       = { handleChangeInput }
+                onClick        = { callMultiple(
+                    handleClick,
+                    props.onClick,
+                ) } // temporary fix
+                onFocus        = { callMultiple(
+                    handleFocus,
+                    props.onFocus,
+                ) } // temporary fix
+                onKeyDown      = { callMultiple(
+                    handleKeyDown,
+                    props.onKeyDown,
+                ) } // temporary fix
+                placeholder    = { inputPlaceholder }
+                readOnly       = { !isSearchable || !isOpen }
+                ref            = { inputRef }
+                spellCheck     = { false }
+                value          = { ( isOpen && isSearchable ) ?
+                    searchValue : selectedText } />
+            <IconButton
+                className   = { cssMap.icon }
+                iconType    = { isOpen ? 'chevron-up' : 'chevron-down' }
+                isFocusable = { false }
+                onClick     = { handleClickIcon } />
+        </label>
     );
 
     const popperPopup = (
@@ -832,11 +627,14 @@ ComboBox.propTypes =
     /*
      * Dropdown list options
      */
-    options             : PropTypes.arrayOf( PropTypes.object ),
+    options             : PropTypes.arrayOf( PropTypes.oneOfType(
+        PropTypes.string,
+        PropTypes.object,
+    ) ),
     /**
      *  Selected option id(s)
      */
-    value               : PropTypes.oneOfType(
+    value : PropTypes.oneOfType(
         PropTypes.string,
         PropTypes.arrayOf( PropTypes.string ),
     ),
