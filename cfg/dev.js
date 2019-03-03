@@ -1,12 +1,8 @@
-const path                 = require( 'path' );
+const baseConfig = require( './base' );
 
-const { merge }            = require( 'lodash' );
-
-const baseConfig           = require( './base' );
-
-
-const devConfig = merge( {}, baseConfig, {
-    entry  : path.join( __dirname, '../src/index.js' ),
+module.exports = baseConfig( {
+    mode   : 'development',
+    inline : false,
     output : {
         filename      : 'index.dev.js',
         library       : 'Nessie',
@@ -16,15 +12,4 @@ const devConfig = merge( {}, baseConfig, {
         'prop-types' : 'PropTypes',
         react        : 'React',
     },
-    mode    : 'development',
-    plugins : [],
 } );
-
-devConfig.module.rules[ 1 ].use[ 0 ] = {
-    loader  : 'style-loader',
-    options : {
-        insertAt : 'top',
-    },
-};
-
-module.exports = devConfig;

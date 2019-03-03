@@ -27,8 +27,7 @@
             {
                 "newlines-between" : "always",
                 "groups"           : [
-                    "builtin",
-                    "external",
+                    ["builtin", "external"],
                     "internal",
                     [ "sibling", "parent" ],
                     "index"
@@ -70,7 +69,7 @@
             { "exceptAfterSingleLine": true }
         ],
         "max-len"                  : [ "error", 80, 4 ],
-        "no-console"               : ["warn", { allow: ["warn"] } ],
+        "no-console"               : ["warn", { "allow": ["warn"] } ],
         "no-constant-condition"    : "warn",
         "no-continue"              : "warn",
         "no-debugger"              : "error",
