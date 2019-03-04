@@ -17,170 +17,115 @@ import PropTypes                             from 'prop-types';
 import { Icon, Text }                        from '..';
 
 import { attachEvents, generateId, mapAria } from '../utils';
-import ThemeContext                          from '../Theming/ThemeContext';
-import { createCssMap }                      from '../Theming';
+import { useTheme }                          from '../Theming';
 
+const componentName = 'ListBoxOption';
 
-export default class ListBoxOption extends React.Component
+const ListBoxOption = props =>
 {
-    static contextType = ThemeContext;
+    const {
+        aria,
+        children,
+        description,
+        iconSize,
+        iconType,
+        id = generateId( componentName ),
+        isSelected,
+        text,
+        value,
+    } = props;
 
-    static propTypes = {
-        aria        : PropTypes.objectOf( PropTypes.string ),
-        children    : PropTypes.node,
-        className   : PropTypes.string,
-        cssMap      : PropTypes.objectOf( PropTypes.string ),
-        description : PropTypes.string,
-        iconSize    : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'XXL' ] ),
-        iconType    : PropTypes.oneOf( [
-            'account',
-            'add-circle',
-            'add',
-            'alert',
-            'approved',
-            'arrow',
-            'arrow-up',
-            'arrow-down',
-            'bell',
-            'board',
-            'calendar',
-            'close-circle',
-            'close-thick',
-            'close',
-            'dash',
-            'dashboard',
-            'deactivated',
-            'declined',
-            'delete',
-            'down',
-            'download',
-            'duplicate',
-            'edit-circle',
-            'edit',
-            'ended',
-            'error',
-            'file',
-            'graph',
-            'hide',
-            'info',
-            'inspect',
-            'left',
-            'lightbulb',
-            'link',
-            'loader',
-            'megaphone',
-            'options',
-            'paused',
-            'pending',
-            'preview',
-            'puzzle-piece',
-            'reset',
-            'right',
-            'search',
-            'show',
-            'star-stroke',
-            'star',
-            'sociomantic',
-            'swap',
-            'table',
-            'up',
-            'upload',
-            'validation',
-            'none',
-        ] ),
-        isActive    : PropTypes.bool,
-        id          : PropTypes.string,
-        isDisabled  : PropTypes.bool,
-        isSelected  : PropTypes.bool,
-        onClick     : PropTypes.func,
-        onMouseOut  : PropTypes.func,
-        onMouseOver : PropTypes.func,
-        text        : PropTypes.string,
-        value       : PropTypes.string,
-    };
+    const cssMap = useTheme( componentName, props );
 
-    static defaultProps = {
-        aria        : undefined,
-        children    : undefined,
-        className   : undefined,
-        cssMap      : undefined,
-        description : undefined,
-        iconSize    : undefined,
-        iconType    : 'none',
-        id          : undefined,
-        isActive    : false,
-        isDisabled  : false,
-        isSelected  : false,
-        onClick     : undefined,
-        onMouseOut  : undefined,
-        onMouseOver : undefined,
-        text        : undefined,
-        value       : undefined,
-    };
+    let label;
 
-    render()
+    if ( children )
     {
-        const {
-            aria,
-            children,
-            cssMap = createCssMap( this.context.ListBoxOption, this.props ),
-            description,
-            iconSize,
-            iconType,
-            id = generateId( 'ListBoxOption' ),
-            isSelected,
-            text,
-            value,
-        } = this.props;
-
-        let label;
-
-        if ( children )
-        {
-            label = children;
-        }
-        else
-        {
-            label = typeof text !== 'undefined' ? text : value;
-            label = String( label );
-        }
-
-        label = typeof label === 'string' ? (
-            <Text className = { cssMap.optionText } noWrap overflowIsHidden>
-                { label }
-            </Text> ) : label;
-
-        return (
-            <li
-                { ...attachEvents( this.props, {
-                    onClick     : { id },
-                    onMouseOut  : { id },
-                    onMouseOver : { id },
-                } ) }
-                { ...mapAria( {
-                    ...aria,
-                    selected : isSelected,
-                    role     : 'option',
-                } ) }
-                className   = { cssMap.main }
-                id          = { id }>
-                { ( iconType && iconType !== 'none' ) &&
-                    <Icon
-                        className = { cssMap.icon }
-                        size      = { iconSize || 'S'  }
-                        type      = { iconType }
-                        variant   = "stroke" />
-                }
-                <div className = { cssMap.textContainer }>
-                    { label }
-                    { description &&
-                        <Text
-                            className = { cssMap.description }
-                            overflowIsHidden>
-                            { description }
-                        </Text> }
-                </div>
-            </li>
-        );
+        label = children;
     }
-}
+    else
+    {
+        label = typeof text !== 'undefined' ? text : value;
+        label = String( label );
+    }
+
+    label = typeof label === 'string' ? (
+        <Text className = { cssMap.optionText } noWrap overflowIsHidden>
+            { label }
+        </Text> ) : label;
+
+    return (
+        <li
+            { ...attachEvents( props, {
+                onClick     : { id },
+                onMouseOut  : { id },
+                onMouseOver : { id },
+            } ) }
+            { ...mapAria( {
+                ...aria,
+                selected : isSelected,
+                role     : 'option',
+            } ) }
+            className   = { cssMap.main }
+            id          = { id }>
+            { ( iconType && iconType !== 'none' ) &&
+                <Icon
+                    className = { cssMap.icon }
+                    size      = { iconSize || 'S'  }
+                    type      = { iconType }
+                    variant   = "stroke" />
+            }
+            <div className = { cssMap.textContainer }>
+                { label }
+                { description &&
+                    <Text
+                        className = { cssMap.description }
+                        overflowIsHidden>
+                        { description }
+                    </Text> }
+            </div>
+        </li>
+    );
+};
+
+ListBoxOption.propTypes = {
+    aria        : PropTypes.objectOf( PropTypes.string ),
+    children    : PropTypes.node,
+    className   : PropTypes.string,
+    cssMap      : PropTypes.objectOf( PropTypes.string ),
+    description : PropTypes.string,
+    iconSize    : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'XXL' ] ),
+    iconType    : PropTypes.string,
+    id          : PropTypes.string,
+    isActive    : PropTypes.bool,
+    isDisabled  : PropTypes.bool,
+    isSelected  : PropTypes.bool,
+    onClick     : PropTypes.func,
+    onMouseOut  : PropTypes.func,
+    onMouseOver : PropTypes.func,
+    text        : PropTypes.string,
+    value       : PropTypes.string,
+};
+
+ListBoxOption.defaultProps = {
+    aria        : undefined,
+    children    : undefined,
+    className   : undefined,
+    cssMap      : undefined,
+    description : undefined,
+    iconSize    : undefined,
+    iconType    : 'none',
+    id          : undefined,
+    isActive    : false,
+    isDisabled  : false,
+    isSelected  : false,
+    onClick     : undefined,
+    onMouseOut  : undefined,
+    onMouseOver : undefined,
+    text        : undefined,
+    value       : undefined,
+};
+
+ListBoxOption.displayName = componentName;
+
+export default ListBoxOption;

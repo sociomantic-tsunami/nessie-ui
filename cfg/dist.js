@@ -1,11 +1,10 @@
-const path                    = require( 'path' );
+const path                 = require( 'path' );
 
-const { merge }               = require( 'lodash' );
-const MiniCssExtractPlugin    = require( 'mini-css-extract-plugin' );
-const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
-const UglifyJsPlugin          = require( 'uglifyjs-webpack-plugin' );
+const { merge }            = require( 'lodash' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const UglifyJsPlugin       = require( 'uglifyjs-webpack-plugin' );
 
-const baseConfig              = require( './base' );
+const baseConfig           = require( './base' );
 
 
 /* webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production */
@@ -15,57 +14,51 @@ const distConfig = merge( {}, baseConfig, {
 
     devtool   : 'source-map',
     externals : {
-        'codemirror/mode/jsx/jsx' : {
-            commonjs  : 'codemirror/mode/jsx/jsx',
-            commonjs2 : 'codemirror/mode/jsx/jsx',
-        },
-        'componentDriver' : {
-            commonjs  : 'nessie-ui/dist/componentDriver',
-            commonjs2 : 'nessie-ui/dist/componentDriver',
-            'window'  : 'ComponentDriver',
-        },
-        'flounder/src/core/flounder' : {
-            commonjs  : 'flounder/src/core/flounder',
-            commonjs2 : 'flounder/src/core/flounder',
-            'window'  : 'Flounder',
+        'feather-icons' : {
+            commonjs  : 'feather-icons',
+            commonjs2 : 'feather-icons',
+            window    : 'FeatherIcons',
         },
         'nessie-ui' : {
-            'commonjs'  : 'nessie-ui',
-            'commonjs2' : 'nessie-ui',
-            'window'    : 'Nessie',
+            commonjs  : 'nessie-ui',
+            commonjs2 : 'nessie-ui',
+            window    : 'Nessie',
         },
         'prop-types' : {
-            'commonjs'  : 'prop-types',
-            'commonjs2' : 'prop-types',
-            'window'    : 'PropTypes',
+            commonjs  : 'prop-types',
+            commonjs2 : 'prop-types',
+            window    : 'PropTypes',
         },
-        addons : {
-            'commonjs'  : 'nessie-ui/dist/addons',
-            'commonjs2' : 'nessie-ui/dist/addons',
+        'react-popper' : {
+            'commonjs'  : 'react-popper',
+            'commonjs2' : 'react-popper',
+            'window'    : 'ReactPopper',
         },
-        codemirror : {
-            'commonjs'  : 'codemirror',
-            'commonjs2' : 'codemirror',
-            'window'    : 'CodeMirror',
+        lodash : {
+            'commonjs'  : 'lodash',
+            'commonjs2' : 'lodash',
+            'window'    : '_',
+        },
+        moment : {
+            'commonjs'  : 'moment',
+            'commonjs2' : 'moment',
+            'window'    : 'moment',
         },
         react : {
-            'commonjs'  : 'react',
-            'commonjs2' : 'react',
-            'window'    : 'React',
+            commonjs  : 'react',
+            commonjs2 : 'react',
+            window    : 'React',
         },
-        mode         : 'production',
-        optimization : {
-            minimizer : [
-                new OptimizeCSSAssetsPlugin( {
-                    cssProcessorOptions : { map: { inline: false } },
-                } ),
-                new UglifyJsPlugin( {
-                    cache     : true,
-                    parallel  : true,
-                    sourceMap : true,
-                } ),
-            ],
-        },
+    },
+    mode         : 'production',
+    optimization : {
+        minimizer : [
+            new UglifyJsPlugin( {
+                cache     : true,
+                parallel  : true,
+                sourceMap : true,
+            } ),
+        ],
     },
 } );
 
@@ -74,12 +67,12 @@ const components = merge( {}, distConfig, {
     output  : { filename: 'index.js' },
     plugins : [],
 } );
-components.module.rules[ 1 ].use[ 0 ] = 'style-loader';
-
-const componentDriver = merge( {}, distConfig, {
-    entry  : path.join( __dirname, '../src/Testing/index.js' ),
-    output : { filename: 'componentDriver.js' },
-} );
+components.module.rules[ 1 ].use[ 0 ] = {
+    loader  : 'style-loader',
+    options : {
+        insertAt : 'top',
+    },
+};
 
 const componentsJS = merge( {}, distConfig, {
     entry   : path.join( __dirname, '../src/index.js' ),
@@ -92,21 +85,8 @@ const componentsJS = merge( {}, distConfig, {
     ],
 } );
 
-const driverSuite = merge( {}, distConfig, {
-    entry   : path.join( __dirname, '../src/drivers.js' ),
-    output  : { filename: 'driverSuite.js' },
-    plugins : [
-        new MiniCssExtractPlugin( {
-            allChunks : true,
-            filename  : 'driverSuite.css',
-        } ),
-    ],
-} );
-
 
 module.exports = [
-    componentDriver,
     components,
     componentsJS,
-    driverSuite,
 ];

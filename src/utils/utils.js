@@ -10,6 +10,22 @@
 import eventsList from './eventsList';
 
 /**
+ * callMultiple( props )
+ *
+ * A temporary helper function that callls multiple callbacks, one after
+ * the other.
+ *
+ * @return  {Function}    event handler
+ */
+function callMultiple( ...callbacks )
+{
+    return function eventHandler( ...args )
+    {
+        callbacks.forEach( cb => typeof cb === 'function' && cb( ...args ) );
+    };
+}
+
+/**
  * attachEvents( props )
  *
  * Returns a set of Nessie standardized event handlers based on props provided
@@ -173,6 +189,7 @@ const mapAria = ( ariaObj = {} ) =>
 export {
     attachEvents,
     buildDisplayName,
+    callMultiple,
     clamp,
     createEventHandler,
     generateId,
@@ -183,6 +200,7 @@ export {
 export default {
     attachEvents,
     buildDisplayName,
+    callMultiple,
     clamp,
     createEventHandler,
     generateId,

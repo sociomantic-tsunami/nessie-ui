@@ -1,0 +1,132 @@
+/*
+ * Copyright (c) 2019 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+@import "../proto/base.css";
+
+:root
+{
+    --iconSize:     24px;
+    --borderWidth:  1px;
+
+    --iconOffset:   calc( var( --spacing-1 ) + var( --borderWidth ) );
+    --inputPadding: calc( var( --iconSize ) + ( 2 * var( --spacing-1 ) ) +
+        var( --borderWidth ) );
+}
+
+.default
+{
+    display:            flex;
+    flex-wrap:          wrap;
+    align-items:        flex-start;
+    align-content:      flex-start;
+
+    box-sizing:         border-box;
+    width:              100%;
+
+    border:             1px solid var( --PC-GREY--L70 );
+    border-radius:      2px;
+
+    padding-top:        3px;
+    padding-right:      var( --iconOffset );
+    padding-bottom:     0;
+    padding-left:       3px;
+
+    background-color:   var( --PC-WHITE );
+    outline:            none;
+
+    overflow-x:         hidden;
+
+    & > *
+    {
+        margin-right:   4px !important; /* always override default margins */
+        margin-bottom:  3px !important; /* always override default margins */
+    }
+
+    .input
+    {
+        flex:           1 0 0%;
+
+        box-sizing:     border-box;
+        min-width:      5ch;
+        min-height:     32px;
+
+        padding:        0;
+        padding-top:    1px;
+        padding-right:  var( --inputPadding );
+
+        border:         none;
+        margin-right:   0;
+
+        background:     transparent;
+
+        @extend         %Nessie-Regular;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-m );
+        letter-spacing: 0.4px;
+        text-indent:    5px;
+        color:          var( --PC-GREY--D5 );
+
+        resize:         none; /* required for Safari */
+
+        &:focus
+        {
+            @extend %Nessie-SemiBold;
+            outline:    none;
+
+            &::placeholder
+            {
+                color:  transparent !important;
+            }
+        }
+
+        &::placeholder
+        {
+            @extend %Nessie-RegularIt;
+            color:      var( --PC-GREY--L80 );
+        }
+    }
+
+    .icon
+    {
+        position:       absolute;
+        top:            50%;
+        right:          var( --iconOffset );
+        margin-top:     calc( -1 * ( var( --iconSize ) / 2 ) );
+    }
+
+    &:focus-within
+    {
+        border-color:   var( --PC-BLUE );
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+    }
+}
+
+
+.disabled
+{
+    pointer-events:         none;
+    background-color:       var( --PC-GREY--L90 );
+
+    &:hover
+    {
+        border-color:       var( --PC-GREY--L70 );
+    }
+
+    .input
+    {
+        background-color:   var( --PC-GREY--L90 );
+    }
+}
+
+
+.error
+{
+    border-color:   var( --PC-RED ) !important; /* yes, always override other states */
+    box-shadow:     0 0 0 2px color( var( --PC-RED ) a( 30% ) );
+}

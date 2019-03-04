@@ -11,65 +11,61 @@ import React            from 'react';
 import PropTypes        from 'prop-types';
 
 import { attachEvents } from '../utils';
-import ThemeContext     from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming';
+import { useTheme }     from '../Theming';
 
+const componentName = 'Card';
 
-export default class Card extends React.Component
+const Card = props =>
 {
-    static contextType = ThemeContext;
+    const { children } = props;
 
-    static propTypes =
-    {
-        /**
-         *  Module content
-         */
-        children  : PropTypes.node,
-        /**
-         *  Extra CSS class name
-         */
-        className : PropTypes.string,
-        /**
-         *  CSS class map
-         */
-        cssMap    : PropTypes.objectOf( PropTypes.string ),
-        /**
-        *   Card padding
-        */
-        padding   : PropTypes.oneOfType( [
-            PropTypes.oneOf( [ 'none', 'S', 'M', 'L', 'XL', 'XXL' ] ),
-            PropTypes.arrayOf( PropTypes.oneOf( [
-                'none',
-                'S',
-                'M',
-                'L',
-                'XL',
-                'XXL',
-            ] ) ),
-        ] ),
-    };
+    const cssMap = useTheme( componentName, props );
 
-    static defaultProps =
-    {
-        children  : undefined,
-        className : undefined,
-        cssMap    : undefined,
-        padding   : 'M',
-    };
+    return (
+        <div { ...attachEvents( props ) } className = { cssMap.main }>
+            { children }
+        </div>
+    );
+};
 
-    static displayName = 'Card';
+Card.propTypes =
+{
+    /**
+     *  Module content
+     */
+    children  : PropTypes.node,
+    /**
+     *  Extra CSS class name
+     */
+    className : PropTypes.string,
+    /**
+     *  CSS class map
+     */
+    cssMap    : PropTypes.objectOf( PropTypes.string ),
+    /**
+    *   Card padding
+    */
+    padding   : PropTypes.oneOfType( [
+        PropTypes.oneOf( [ 'none', 'S', 'M', 'L', 'XL', 'XXL' ] ),
+        PropTypes.arrayOf( PropTypes.oneOf( [
+            'none',
+            'S',
+            'M',
+            'L',
+            'XL',
+            'XXL',
+        ] ) ),
+    ] ),
+};
 
-    render()
-    {
-        const {
-            children,
-            cssMap = createCssMap( this.context.Card, this.props ),
-        } = this.props;
+Card.defaultProps =
+{
+    children  : undefined,
+    className : undefined,
+    cssMap    : undefined,
+    padding   : 'M',
+};
 
-        return (
-            <div { ...attachEvents( this.props ) } className = { cssMap.main }>
-                { children }
-            </div>
-        );
-    }
-}
+Card.displayName = componentName;
+
+export default Card;

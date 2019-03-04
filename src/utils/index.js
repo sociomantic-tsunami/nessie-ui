@@ -10,6 +10,7 @@
 export {
     attachEvents,
     buildDisplayName,
+    callMultiple,
     clamp,
     createEventHandler,
     generateId,
