@@ -133,8 +133,7 @@ const componentName = 'ComboBox';
 const ComboBox = props =>
 {
     const cssMap = useTheme( componentName, props );
-    // const [ activeOption, setActiveOption ] = useState( undefined );
-    // const [ filteredOptions, setFilteredOptions ] = useState( undefined );
+    const [ stateActiveOption, setActiveOption ] = useState( undefined );
     const [ isOpen, setIsOpen ] = useState( undefined );
     const [ searchValue, setSearchValue ] = useState( undefined );
 
@@ -173,7 +172,7 @@ const ComboBox = props =>
         [ props.id ],
     );
 
-    let filteredOptions = searchValue && (
+    const filteredOptions = searchValue && (
         flatOptions.filter( ( { text } ) => (
             text.match( new RegExp(
                 escapeRegExp( searchValue ),
@@ -182,9 +181,8 @@ const ComboBox = props =>
         ) )
     );
 
-    let activeOption = ( searchValue && filteredOptions.length ) ?
-        filteredOptions[ 0 ].id : activeOption;
-
+    const activeOption = ( searchValue && filteredOptions.length ) ?
+        filteredOptions[ 0 ].id : stateActiveOption;
 
     useEffect( () =>
     {
@@ -226,14 +224,7 @@ const ComboBox = props =>
         inputRef.current.focus();
     }, [ inputRef.current ] );
 
-    const filterOptions = ( tags ) =>
-        (
-            normalizeOptions( props.options ).filter(
-                option => !tags.includes( option.text ),
-            )
-        );
-
-    const handleFocus = () =>
+    const handleFocus = useCallback( () =>
     {
         focus();
 
@@ -241,7 +232,7 @@ const ComboBox = props =>
         {
             setSearchValue( '' );
         }
-    };
+    }, [ isSearchable ] );
 
     const handleChangeInput = useCallback( ( e ) =>
     {
@@ -249,15 +240,13 @@ const ComboBox = props =>
 
         const searchValueToUse = ( e.target.value || '' ).toLowerCase();
 
-        console.log( typeof onChangeInput );
         if ( typeof onChangeInput === 'function' )
         {
-            console.log( 'mierdas' );
             onChangeInput( { value: e.target.value }, e );
         }
 
         setSearchValue( searchValueToUse );
-    }, [ flatOptions ] );
+    }, [ flatOptions, onChangeInput ] );
 
     const handleClickIcon = useCallback( () =>
     {
@@ -298,8 +287,6 @@ const ComboBox = props =>
             onChange( { id, newSelection } );
         }
 
-        activeOption = newSelection;
-        filteredOptions = undefined;
         setIsOpen( false );
         setSearchValue( undefined );
         setOptionSelected( newSelection );
@@ -316,7 +303,6 @@ const ComboBox = props =>
         }
 
         setOptionSelected( newTags );
-        filteredOptions = filterOptions( newTags );
         setIsOpen( false );
     } );
 
@@ -344,15 +330,14 @@ const ComboBox = props =>
                     Math.max( activeIndex - 1, minIndex ) :
                     Math.min( activeIndex + 1, maxIndex );
 
-                activeOption = optionsToUse[ activeIndex ].id;
+                setActiveOption( optionsToUse[ activeIndex ].id );
             }
 
             setIsOpen( true );
         }
         else if ( key === 'Escape' )
         {
-            activeOption = undefined;
-            filteredOptions = undefined;
+            setActiveOption( undefined );
             setIsOpen( false );
             setSearchValue( undefined );
         }
@@ -360,64 +345,65 @@ const ComboBox = props =>
         {
             if ( !isReadOnly )
             {
-                let newSelection = !isReadOnly && activeOption ?
-                    activeOption : optionSelected;
+                let newSelection;
 
-                if ( newSelection && isMultiselect )
+                if ( activeOption && isMultiselect )
                 {
                     if ( optionSelected )
                     {
-                        newSelection = optionSelected.includes( newSelection ) ?
-                            optionSelected.filter(
-                                item => item !== newSelection,
-                            ) : [ ...optionSelected, newSelection ];
+                        newSelection = optionSelected.includes(
+                            activeOption,
+                        ) ? optionSelected.filter(
+                                item => item !== activeOption,
+                            ) : [ ...optionSelected, activeOption ];
                     }
                     else
                     {
-                        newSelection = [ newSelection ];
+                        newSelection = [ activeOption ];
                     }
                 }
-
-                const finalSelection = newSelection || optionSelected;
-
-                if ( typeof onChange === 'function' )
+                else
                 {
-                    onChange( { id, finalSelection } );
+                    newSelection = activeOption;
                 }
-                console.log( newSelection );
-                activeOption = undefined;
-                filteredOptions = undefined;
+
+                setActiveOption( undefined );
                 setIsOpen( !isOpen );
                 setSearchValue( undefined );
+
                 if ( newSelection )
                 {
+                    if ( typeof onChange === 'function' )
+                    {
+                        onChange( { id, newSelection } );
+                    }
+
                     setOptionSelected( newSelection );
                 }
             }
         }
-    }, [ filteredOptions, flatOptions, isOpen, activeOption, optionSelected,
+    }, [ flatOptions, isOpen, activeOption, optionSelected,
         isReadOnly, onChange ] );
 
     const handleMouseOutOption = () =>
     {
-        activeOption = undefined;
+        setActiveOption( undefined );
     };
 
     const handleMouseOverOption = useCallback( ( { id : optId } ) =>
     {
         const unprefixedId = removePrefix( optId, id );
 
-        activeOption = getOption(
+        setActiveOption( getOption(
             unprefixedId,
             flatOptions,
-        ).id;
+        ).id );
     }, [ id, flatOptions ] );
 
     const handleBlur = () =>
     {
         setIsOpen( false );
-        activeOption = undefined;
-        filteredOptions = undefined;
+        setActiveOption( undefined );
         setSearchValue( undefined );
     };
 
