@@ -156,7 +156,7 @@ const ComboBox = props =>
         value,
     } = props;
 
-    const [ optionSelected, setOptionSelected ] = useSelection(
+    const [ selection, setSelection ] = useSelection(
         defaultValue,
         value,
         isMultiselect,
@@ -168,21 +168,22 @@ const ComboBox = props =>
     );
 
     const id = useMemo(
-        () => ( props.id || generateId( 'ComboBox' ) ),
+        () => ( props.id || generateId( componentName ) ),
         [ props.id ],
     );
 
-    const filteredOptions = searchValue && (
-        flatOptions.filter( ( { text } ) => (
-            text.match( new RegExp(
-                escapeRegExp( searchValue ),
-                'i',
-            ) )
-        ) )
+    const filteredOptions = useMemo(
+        () => ( searchValue && ( flatOptions.filter( ( { text } ) => (
+            text.match( new RegExp( escapeRegExp( searchValue ), 'i' ) ) ) )
+        ) ),
+        [ flatOptions, searchValue ],
     );
 
-    const activeOption = ( searchValue && filteredOptions.length ) ?
-        filteredOptions[ 0 ].id : stateActiveOption;
+    const activeOption = useMemo(
+        () => ( ( searchValue && filteredOptions.length ) ?
+            filteredOptions[ 0 ].id : stateActiveOption ),
+        [ filteredOptions, searchValue, stateActiveOption ],
+    );
 
     useEffect( () =>
     {
@@ -254,27 +255,24 @@ const ComboBox = props =>
         setIsOpen( !isOpen );
     }, [ isOpen ] );
 
-    const handleClick = () =>
+    const handleClick = useCallback( () =>
     {
         setIsOpen( true );
-    };
+    }, [] );
 
     const handleClickOption = useCallback( ( { id : optId } ) =>
     {
         const unprefixedId = removePrefix( optId, id );
 
-        let newSelection = !isReadOnly ? getOption(
-            unprefixedId,
-            flatOptions,
-        ).id : optionSelected;
+        let newSelection = !isReadOnly ? unprefixedId : selection;
 
         if ( isMultiselect )
         {
-            if ( optionSelected )
+            if ( selection )
             {
-                newSelection = optionSelected.includes( unprefixedId ) ?
-                    optionSelected.filter( item => item !== unprefixedId ) :
-                    [ ...optionSelected, unprefixedId ];
+                newSelection = selection.includes( unprefixedId ) ?
+                    selection.filter( item => item !== unprefixedId ) :
+                    [ ...selection, unprefixedId ];
             }
             else
             {
@@ -289,22 +287,22 @@ const ComboBox = props =>
 
         setIsOpen( false );
         setSearchValue( undefined );
-        setOptionSelected( newSelection );
-    }, [ id, isMultiselect, isReadOnly, flatOptions, optionSelected,
+        setSelection( newSelection );
+    }, [ id, isMultiselect, isReadOnly, flatOptions, selection,
         onChange ] );
 
     const handleClickClose = useCallback( ( { id : tagId } ) =>
     {
-        const newTags = optionSelected.filter( tag => tag !== tagId );
+        const newTags = selection.filter( tag => tag !== tagId );
 
         if ( typeof onChange === 'function' )
         {
             onChange( { value: newTags } );
         }
 
-        setOptionSelected( newTags );
+        setSelection( newTags );
         setIsOpen( false );
-    } );
+    }, [ selection, onChange ] );
 
     const handleKeyDown = useCallback( ( e ) =>
     {
@@ -322,7 +320,7 @@ const ComboBox = props =>
                 const maxIndex = optionsToUse.length - 1;
 
                 let activeIndex = getIndex(
-                    activeOption || optionSelected,
+                    activeOption || selection,
                     optionsToUse,
                 );
 
@@ -349,13 +347,13 @@ const ComboBox = props =>
 
                 if ( activeOption && isMultiselect )
                 {
-                    if ( optionSelected )
+                    if ( selection )
                     {
-                        newSelection = optionSelected.includes(
+                        newSelection = selection.includes(
                             activeOption,
-                        ) ? optionSelected.filter(
+                        ) ? selection.filter(
                                 item => item !== activeOption,
-                            ) : [ ...optionSelected, activeOption ];
+                            ) : [ ...selection, activeOption ];
                     }
                     else
                     {
@@ -378,17 +376,17 @@ const ComboBox = props =>
                         onChange( { id, newSelection } );
                     }
 
-                    setOptionSelected( newSelection );
+                    setSelection( newSelection );
                 }
             }
         }
-    }, [ flatOptions, isOpen, activeOption, optionSelected,
+    }, [ flatOptions, isOpen, activeOption, selection,
         isReadOnly, onChange ] );
 
-    const handleMouseOutOption = () =>
+    const handleMouseOutOption = useCallback( () =>
     {
         setActiveOption( undefined );
-    };
+    }, [] );
 
     const handleMouseOverOption = useCallback( ( { id : optId } ) =>
     {
@@ -400,21 +398,21 @@ const ComboBox = props =>
         ).id );
     }, [ id, flatOptions ] );
 
-    const handleBlur = () =>
+    const handleBlur = useCallback( () =>
     {
         setIsOpen( false );
         setActiveOption( undefined );
         setSearchValue( undefined );
-    };
+    }, [] );
 
-    const selectedOption = getOption( optionSelected, flatOptions );
+    const selectedOption = getOption( selection, flatOptions );
     const selectedText = selectedOption ? selectedOption.text : '';
 
     let tags;
 
     if ( isMultiselect )
     {
-        tags = buildTagsFromValues( optionSelected );
+        tags = buildTagsFromValues( selection );
         tags = tags.map( tag => (
             React.cloneElement( tag, {
                 ...tag.props,
@@ -431,7 +429,7 @@ const ComboBox = props =>
     {
         optionsToShow = optionsFormatted(
             filteredOptions.map( option => option.id ),
-            options,
+            normalizeOptions( options ),
         );
     }
 
@@ -458,9 +456,9 @@ const ComboBox = props =>
                     options           = {
                         prefixOptions( optionsToShow, id )
                     }
-                    selection = { isMultiselect && optionSelected ?
-                        optionSelected.map( optId => addPrefix( optId, id ) ) :
-                        addPrefix( optionSelected, id )
+                    selection = { isMultiselect && selection ?
+                        selection.map( optId => addPrefix( optId, id ) ) :
+                        addPrefix( selection, id )
                     } />
             </ScrollBox>
         );
@@ -645,6 +643,6 @@ ComboBox.defaultProps =
     value               : undefined,
 };
 
-ComboBox.displayName = 'ComboBox';
+ComboBox.displayName = componentName;
 
 export default ComboBox;
