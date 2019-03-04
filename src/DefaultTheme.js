@@ -40,7 +40,6 @@ import textInputClasses          from './TextInput/textInput.css';
 import textInputWithIconClasses  from './TextInputWithIcon/textInputWithIcon.css';
 import timeInputClasses          from './DatePicker/timeInput.css';
 import tooltipClasses            from './Tooltip/tooltip.css';
-import withDropdownClasses       from './Addons/withDropdown/withDropdown.css';
 
 
 export default {
@@ -338,14 +337,5 @@ export default {
             props.className,
         ),
         ...tooltipClasses,
-    } ),
-    withDropdown : props => ( {
-        main : classNames.bind( withDropdownClasses )(
-            'default',
-            { open: props.dropdownIsOpen },
-            `position__${props.dropdownPosition}`,
-            props.className,
-        ),
-        ...withDropdownClasses,
     } ),
 };
