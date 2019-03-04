@@ -1,5 +1,5 @@
 const paths      = require( './paths' );
-const baseConfig = require( './base' )();
+const baseConfig = require( './base' );
 
 
 /* webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production */
