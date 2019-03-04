@@ -66,7 +66,8 @@ module.exports = ( options = {} ) => ( {
             },
         ],
     },
-    optimization : options.mode === 'production' ? {
+    optimization : {
+        minimize  : options.mode === 'production',
         minimizer : [
             new UglifyJsPlugin( {
                 cache     : true,
@@ -74,7 +75,7 @@ module.exports = ( options = {} ) => ( {
                 sourceMap : true,
             } ),
         ],
-    } : undefined,
+    },
     externals : options.externals,
     plugins   : [
         !options.inline && new MiniCssExtractPlugin( {
