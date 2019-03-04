@@ -11,13 +11,18 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 
-import React                                 from 'react';
-import PropTypes                             from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import { Icon, Text }                        from '..';
+import { Icon, Text }   from '..';
 
-import { attachEvents, generateId, mapAria } from '../utils';
-import { useTheme }                          from '../Theming';
+import {
+    attachEvents,
+    mapAria,
+    useId,
+    useTheme,
+} from '../utils';
+
 
 const componentName = 'ListBoxOption';
 
@@ -29,13 +34,13 @@ const ListBoxOption = props =>
         description,
         iconSize,
         iconType,
-        id = generateId( componentName ),
         isSelected,
         text,
         value,
     } = props;
 
     const cssMap = useTheme( componentName, props );
+    const id = useId( componentName, props );
 
     let label;
 

@@ -13,15 +13,18 @@ import React, {
     useRef,
     forwardRef,
 } from 'react';
-import PropTypes                    from 'prop-types';
+import PropTypes    from 'prop-types';
 
-import { Text }                     from '..';
+import { Text }     from '..';
 
-import { attachEvents, generateId } from '../utils';
-import { useTheme }                 from '../Theming';
+import {
+    attachEvents,
+    useId,
+    useTheme,
+} from '../utils';
+
 
 const componentName = 'Checkbox';
-
 
 const Checkbox = forwardRef( ( props, ref ) =>
 {
@@ -33,7 +36,6 @@ const Checkbox = forwardRef( ( props, ref ) =>
 
     const {
         children,
-        id = generateId( componentName ),
         isChecked,
         isDefaultChecked,
         isDisabled,
@@ -41,6 +43,7 @@ const Checkbox = forwardRef( ( props, ref ) =>
     } = props;
 
     const cssMap = useTheme( componentName, props );
+    const id = useId( componentName, props );
 
     let labelContent = children || label;
 

@@ -7,13 +7,13 @@
  *
  */
 
-import React             from 'react';
-import PropTypes         from 'prop-types';
+import React                       from 'react';
+import PropTypes                   from 'prop-types';
 
-import { Text }          from '..';
+import { Text }                    from '..';
 
-import { useTheme }      from '../Theming';
-import { attachEvents }  from '../utils';
+import { attachEvents, useTheme }  from '../utils';
+
 
 const componentName = 'DatePickerItem';
 

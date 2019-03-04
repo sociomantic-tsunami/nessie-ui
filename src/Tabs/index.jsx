@@ -7,19 +7,20 @@
  *
  */
 
-import React, { useState, useCallback }                    from 'react';
-import PropTypes                                           from 'prop-types';
+import React, { useState, useCallback } from 'react';
+import PropTypes                        from 'prop-types';
 
-import { ScrollBox, TabButton }                            from '..';
+import { ScrollBox, TabButton }         from '..';
 
-import { attachEvents }                                    from '../utils';
-import { useTheme }                                        from '../Theming';
+import { attachEvents, useTheme }       from '../utils';
+
 
 const componentName = 'Tabs';
 
 const Tabs = ( props ) =>
 {
     const cssMap = useTheme( componentName, props );
+
     const {
         children,
         secondaryControls,

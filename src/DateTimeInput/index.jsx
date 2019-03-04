@@ -10,7 +10,6 @@
 import React, {
     useCallback,
     useImperativeHandle,
-    useMemo,
     useRef,
     useState,
 } from 'react';
@@ -18,7 +17,6 @@ import PropTypes            from 'prop-types';
 import moment               from 'moment';
 import _                    from 'lodash';
 
-import { generateId }       from '../utils';
 import copy                 from './copy.json';
 
 import { DatePicker }       from '..';
@@ -26,6 +24,7 @@ import { DatePicker }       from '..';
 import TextInputWithIcon    from '../TextInputWithIcon';
 import Popup                from '../Popup';
 import PopperWrapper        from '../PopperWrapper';
+
 
 const componentName = 'DateTimeInput';
 
@@ -196,11 +195,6 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
     const isOpen = Boolean( gridStartTimestamp );
 
 
-    const id = useMemo( () => (
-        props.id || generateId( componentName )
-    ), [ props.id ] );
-
-
     const handleClickCell = useCallback( ( { value } ) =>
     {
         const { isReadOnly } = props;
@@ -212,12 +206,12 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
 
             if ( typeof onChange === 'function' )
             {
-                onChange( { id, value } );
+                onChange( { value } );
             }
         }
 
         purgeEdits();
-    }, [ props.id, props.isReadOnly, props.onChange, timestamp ] );
+    }, [ props.isReadOnly, props.onChange, timestamp ] );
 
 
     const handleClickNext = useCallback( () =>
@@ -557,7 +551,6 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             forceHover     = { isOpen }
             hasError       = { hasError }
             iconType       = "calendar"
-            id             = { id }
             inputRef       = { inputRef }
             isDisabled     = { isDisabled }
             onChangeInput  = { handleChangeInput }
@@ -612,10 +605,6 @@ DateTimeInput.propTypes =
      */
     hourPlaceholder   : PropTypes.string,
     /**
-     *  Component id
-     */
-    id                : PropTypes.string,
-    /**
      *  Main input placeholder text
      */
     inputPlaceholder  : PropTypes.string,
@@ -660,7 +649,6 @@ DateTimeInput.defaultProps =
     format            : undefined,
     hasError          : false,
     hourPlaceholder   : undefined,
-    id                : undefined,
     inputPlaceholder  : undefined,
     isDisabled        : false,
     isReadOnly        : false,

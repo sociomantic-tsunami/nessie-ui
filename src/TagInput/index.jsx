@@ -28,10 +28,10 @@ import PopperWrapper       from '../PopperWrapper';
 import {
     attachEvents,
     callMultiple,
-    generateId,
+    useId,
+    useTheme,
 }  from '../utils';
 import { buildTagsFromValues } from './utils';
-import { useTheme }            from '../Theming';
 import { addPrefix }           from '../ComboBox/utils';
 
 
@@ -76,6 +76,7 @@ function normalizeOptions( options )
         opt : { id: opt, text: opt } ) );
 }
 
+
 const componentName = 'TagInput';
 
 const TagInput = forwardRef( ( props, ref ) =>
@@ -84,6 +85,8 @@ const TagInput = forwardRef( ( props, ref ) =>
     const outerRef = useRef();
 
     const cssMap = useTheme( componentName, props );
+    const id = useId( componentName, props );
+
     const {
         children,
         container,
@@ -112,10 +115,6 @@ const TagInput = forwardRef( ( props, ref ) =>
         useMemo( () => (
             filteredOptionsState || options
         ), [ options, filteredOptionsState ] );
-
-    const id =  useMemo( () => (
-        props.id || generateId( componentName )
-    ), [ props.id ] );
 
     const value = useMemo( () => (
         ( Array.isArray( props.value ) && props.value ) || valueState

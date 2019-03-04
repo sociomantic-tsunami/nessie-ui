@@ -10,11 +10,10 @@
 import React                        from 'react';
 import PropTypes                    from 'prop-types';
 
-import { attachEvents, generateId } from '../utils';
+import { attachEvents, useTheme }   from '../utils';
 
 import { IconButton, TextInput }    from '..';
 
-import { useTheme }                 from '../Theming';
 
 const componentName = 'TextInputWithIcon';
 
@@ -33,7 +32,6 @@ const TextInputWithIcon = ( props ) =>
         iconButtonIsDisabled,
         iconPosition,
         iconType,
-        id = generateId( componentName ),
         inputRef,
         inputType,
         isDisabled,
@@ -67,7 +65,6 @@ const TextInputWithIcon = ( props ) =>
                 defaultValue   = { defaultValue }
                 forceHover     = { forceHover }
                 hasError       = { hasError }
-                id             = { id }
                 isDisabled     = { isDisabled }
                 isReadOnly     = { isReadOnly }
                 name           = { name }
@@ -154,10 +151,6 @@ TextInputWithIcon.propTypes =
      */
     iconType             : PropTypes.string,
     /**
-     *  Component id
-     */
-    id                   : PropTypes.string,
-    /**
      *  Callback that receives the native <input>: ( ref ) => { ... }
      */
     inputRef             : PropTypes.func,
@@ -241,7 +234,6 @@ TextInputWithIcon.defaultProps =
     iconButtonIsDisabled : false,
     iconPosition         : 'right',
     iconType             : 'none',
-    id                   : undefined,
     inputRef             : undefined,
     inputType            : 'text',
     isDisabled           : false,

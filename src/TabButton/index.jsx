@@ -12,10 +12,10 @@ import React, {
     useRef,
     forwardRef,
 } from 'react';
-import PropTypes        from 'prop-types';
+import PropTypes                  from 'prop-types';
 
-import { attachEvents } from '../utils';
-import { useTheme }     from '../Theming';
+import { attachEvents, useTheme } from '../utils';
+
 
 const componentName = 'TabButton';
 
@@ -31,6 +31,7 @@ const TabButton = forwardRef( ( props, ref ) =>
     } ) );
 
     const cssMap = useTheme( componentName, props );
+
     const {
         isDisabled,
         label,

@@ -15,9 +15,9 @@ import React, {
     useMemo,
     useRef,
     useState,
-}                                                 from 'react';
-import PropTypes                                  from 'prop-types';
-import { castArray, escapeRegExp }                from 'lodash';
+}                                   from 'react';
+import PropTypes                    from 'prop-types';
+import { castArray, escapeRegExp }  from 'lodash';
 
 import {
     IconButton,
@@ -26,17 +26,17 @@ import {
     PopperWrapper,
     ScrollBox,
     Text,
-}                                                 from '..';
+} from '..';
 
 import {
     attachEvents,
     callMultiple,
-    generateId,
     mapAria,
+    useId,
+    useTheme,
 } from '../utils';
 import { addPrefix, prefixOptions, removePrefix } from './utils';
 import { buildTagsFromValues }                    from '../TagInput/utils';
-import { useTheme }                               from '../Theming';
 
 /**
  * gets the index of the option by the passed id
@@ -128,11 +128,14 @@ const useSelection = ( defaultValue, value, isMultiselect ) =>
     return [ validatedValue || validatedSelection, setter ];
 };
 
+
 const componentName = 'ComboBox';
 
 const ComboBox = props =>
 {
     const cssMap = useTheme( componentName, props );
+    const id = useId( componentName, props );
+
     const [ stateActiveOption, setActiveOption ] = useState( undefined );
     const [ isOpen, setIsOpen ] = useState( undefined );
     const [ searchValue, setSearchValue ] = useState( undefined );
@@ -165,11 +168,6 @@ const ComboBox = props =>
     const flatOptions = useMemo(
         () => ( normalizeOptions( options ).flatMap( o => o.options || o ) ),
         [ options ],
-    );
-
-    const id = useMemo(
-        () => ( props.id || generateId( componentName ) ),
-        [ props.id ],
     );
 
     const filteredOptions = useMemo(

@@ -11,5 +11,3 @@ import ThemeContext from './ThemeContext';
 
 const { Consumer : ThemeConsumer, Provider : ThemeProvider } = ThemeContext;
 export { ThemeConsumer, ThemeProvider };
-
-export useTheme from '../utils';

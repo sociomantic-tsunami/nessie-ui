@@ -7,19 +7,22 @@
  *
  */
 
-import React                    from 'react';
-import PropTypes                from 'prop-types';
+import React        from 'react';
+import PropTypes    from 'prop-types';
 
-import { useTheme }             from '../Theming';
+import { useTheme } from '../utils';
 
-import { Icon }                 from '..';
+import { Icon }     from '..';
+
 
 const componentName = 'Spinner';
 
 const Spinner = ( props ) =>
 {
     const { size } = props;
+
     const cssMap = useTheme( componentName, props );
+
     return (
         <Icon
             className = { cssMap.main }

@@ -10,10 +10,14 @@
 import React, {
     useRef, useImperativeHandle, forwardRef,
 } from 'react';
-import PropTypes                              from 'prop-types';
+import PropTypes from 'prop-types';
 
-import { attachEvents, mapAria, generateId }  from '../utils';
-import { useTheme }                           from '../Theming';
+import {
+    attachEvents,
+    mapAria,
+    useTheme,
+} from '../utils';
+
 
 const componentName = 'TextArea';
 
@@ -33,7 +37,6 @@ const TextArea = forwardRef( ( props, ref ) =>
         autoComplete,
         autoCorrect,
         defaultValue,
-        id = generateId( componentName ),
         isDisabled,
         isReadOnly,
         placeholder,
@@ -52,7 +55,6 @@ const TextArea = forwardRef( ( props, ref ) =>
             className      = { cssMap.main }
             defaultValue   = { defaultValue }
             disabled       = { isDisabled }
-            id             = { id }
             placeholder    = { placeholder }
             readOnly       = { isReadOnly }
             ref            = { textAreaRef }
@@ -107,10 +109,6 @@ TextArea.propTypes =
      *  Display as error/invalid
      */
     hasError     : PropTypes.bool,
-    /**
-     *  HTML id attribute
-     */
-    id           : PropTypes.string,
     /**
      *  Display as disabled
      */
@@ -198,7 +196,6 @@ TextArea.defaultProps =
     cssMap         : undefined,
     defaultValue   : undefined,
     hasError       : false,
-    id             : undefined,
     isDisabled     : false,
     isReadOnly     : false,
     onBlur         : undefined,

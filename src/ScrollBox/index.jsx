@@ -17,7 +17,7 @@ import PropTypes                 from 'prop-types';
 import { isEqual }               from 'lodash';
 
 import { IconButton, ScrollBar } from '../index';
-import { useTheme }              from '../Theming';
+import { useTheme }              from '../utils';
 
 const componentName = 'ScrollBox';
 

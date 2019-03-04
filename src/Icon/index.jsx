@@ -7,14 +7,13 @@
  *
  */
 
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                      from 'react';
+import PropTypes                  from 'prop-types';
 
-import { useTheme }     from '../Theming';
-import { attachEvents } from '../utils';
+import { attachEvents, useTheme } from '../utils';
+
 
 const componentName = 'Icon';
-
 
 const Icon = props =>
 {
