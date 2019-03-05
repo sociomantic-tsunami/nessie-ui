@@ -12,8 +12,8 @@ import PropTypes                    from 'prop-types';
 
 import { Icon }                     from '..';
 
-import { attachEvents, generateId } from '../utils';
-import { useTheme }                 from '../Theming';
+import { attachEvents, useTheme }   from '../utils';
+
 
 const componentName = 'IconButton';
 
@@ -26,7 +26,6 @@ const IconButton = props =>
         children,
         iconSize,
         iconType,
-        id = generateId( 'IconButton' ),
         isDisabled,
         isFocusable,
         label,
@@ -42,7 +41,6 @@ const IconButton = props =>
             } ) }
             className   = { cssMap.main }
             disabled    = { isDisabled }
-            id          = { id }
             onMouseDown = { !isFocusable ? killFocus : undefined }
             ref         = { buttonRef }
             tabIndex    = { isFocusable ? '0' : '-1' }
@@ -94,10 +92,6 @@ IconButton.propTypes =
      */
     iconType      : PropTypes.string,
     /**
-     * Component id
-     */
-    id            : PropTypes.string,
-    /**
      *  Display as disabled
      */
     isDisabled    : PropTypes.bool,
@@ -133,7 +127,6 @@ IconButton.defaultProps =
     hasBackground : false,
     iconSize      : 'S',
     iconType      : undefined,
-    id            : undefined,
     isDisabled    : false,
     isFocusable   : true,
     label         : undefined,

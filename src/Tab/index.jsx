@@ -10,7 +10,8 @@
 import React            from 'react';
 import PropTypes        from 'prop-types';
 
-import { useTheme }     from '../Theming';
+import { useTheme }     from '../utils';
+
 
 const componentName = 'Tab';
 

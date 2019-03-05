@@ -7,11 +7,14 @@
  *
  */
 
-import React                              from 'react';
-import PropTypes                          from 'prop-types';
+import React        from 'react';
+import PropTypes    from 'prop-types';
 
-import { createEventHandler, generateId } from '../utils';
-import { useTheme }                       from '../Theming';
+import {
+    createEventHandler,
+    useTheme,
+} from '../utils';
+
 
 const componentName = 'TimeInput';
 
@@ -24,7 +27,6 @@ const TimeInput = props =>
         hourIsReadOnly,
         hourPlaceholder,
         hourValue,
-        id = generateId( componentName ),
         isDisabled,
         isReadOnly,
         minuteIsDisabled,
@@ -40,7 +42,6 @@ const TimeInput = props =>
             <input
                 className   = { cssMap.hour }
                 disabled    = { isDisabled || hourIsDisabled }
-                id          = { `${id}-hour` }
                 onChange    = { createEventHandler( onChangeHour ) }
                 placeholder = { hourPlaceholder }
                 readOnly    = { isReadOnly || hourIsReadOnly }
@@ -50,7 +51,6 @@ const TimeInput = props =>
             <input
                 className   = { cssMap.min }
                 disabled    = { isDisabled || minuteIsDisabled }
-                id          = { `${id}-minute` }
                 onChange    = { createEventHandler( onChangeMinute ) }
                 placeholder = { minutePlaceholder }
                 readOnly    = { isReadOnly || minuteIsReadOnly }
@@ -68,7 +68,6 @@ TimeInput.propTypes =
     hourIsReadOnly    : PropTypes.bool,
     hourPlaceholder   : PropTypes.string,
     hourValue         : PropTypes.string,
-    id                : PropTypes.string,
     isDisabled        : PropTypes.bool,
     isReadOnly        : PropTypes.bool,
     minuteIsDisabled  : PropTypes.bool,
@@ -87,7 +86,6 @@ TimeInput.defaultProps =
     hourIsReadOnly    : false,
     hourPlaceholder   : 'HH',
     hourValue         : undefined,
-    id                : undefined,
     isDisabled        : false,
     isReadOnly        : false,
     minuteIsDisabled  : false,

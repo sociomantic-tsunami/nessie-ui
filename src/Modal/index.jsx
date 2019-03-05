@@ -7,11 +7,11 @@
  *
  */
 
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React                        from 'react';
+import PropTypes                    from 'prop-types';
 
-import { attachEvents }                 from '../utils';
-import { useTheme }                     from '../Theming';
+import { attachEvents, useTheme }   from '../utils';
+
 
 const componentName = 'Modal';
 
@@ -28,9 +28,7 @@ const Modal = ( props ) =>
         }
     };
 
-    const {
-        children
-    } = props;
+    const { children } = props;
 
     const cssMap = useTheme( componentName, props );
 
@@ -45,8 +43,6 @@ const Modal = ( props ) =>
         </div>
     );
 };
-
-Modal.displayName = componentName;
 
 Modal.propTypes =
 {
@@ -76,5 +72,6 @@ Modal.defaultProps =
     onClickOverlay : undefined,
 };
 
+Modal.displayName = componentName;
 
 export default Modal;

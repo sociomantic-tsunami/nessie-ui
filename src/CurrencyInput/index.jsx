@@ -12,8 +12,6 @@
 import React, { useState } from 'react';
 import PropTypes           from 'prop-types';
 
-import { generateId }      from '../utils';
-
 import { TextInput }       from '..';
 
 
@@ -23,13 +21,13 @@ const currencyFormat = ( number, currency, language = navigator.language ) =>
 
 const pattern = /[^0-9.-]/g;
 
+
 const componentName = 'CurrencyInput';
 
 const CurrencyInput = ( props ) =>
 {
     const {
         currency,
-        id = generateId( componentName ),
         value,
         defaultValue,
         ...restProps
@@ -66,7 +64,6 @@ const CurrencyInput = ( props ) =>
             autoComplete   = "off"
             autoCorrect    = "off"
             spellCheck     = { false }
-            id             = { id }
             onBlur         = { handleBlur }
             onChange       = { handleChange }
             value          = { currencyFormat( Number( value
@@ -96,10 +93,6 @@ CurrencyInput.propTypes =
      *  Display as error/invalid
      */
     hasError     : PropTypes.bool,
-    /**
-     *  HTML id attribute
-     */
-    id           : PropTypes.string,
     /**
      *  Display as disabled
      */
@@ -165,7 +158,6 @@ CurrencyInput.defaultProps =
     currency     : undefined,
     defaultValue : '',
     hasError     : false,
-    id           : undefined,
     isDisabled   : false,
     isReadOnly   : false,
     onBlur       : undefined,
@@ -181,7 +173,6 @@ CurrencyInput.defaultProps =
     textAlign    : 'left',
     value        : '',
 };
-
 
 CurrencyInput.displayName = componentName;
 

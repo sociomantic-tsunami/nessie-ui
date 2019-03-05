@@ -7,11 +7,11 @@
  *
  */
 
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                      from 'react';
+import PropTypes                  from 'prop-types';
 
-import { attachEvents } from '../utils';
-import { useTheme }     from '../Theming';
+import { attachEvents, useTheme } from '../utils';
+
 
 const componentName = 'Card';
 

@@ -13,7 +13,8 @@ import PropTypes            from 'prop-types';
 import { IconButton, Text } from '..';
 
 import TimeInput            from './TimeInput';
-import { useTheme }         from '../Theming';
+import { useTheme }         from '../utils';
+
 
 const componentName = 'DatePickerHeader';
 

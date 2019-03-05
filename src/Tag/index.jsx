@@ -12,8 +12,8 @@ import PropTypes            from 'prop-types';
 
 import { IconButton, Text } from '..';
 
-import { generateId }       from '../utils';
-import { useTheme }         from '../Theming';
+import { useId, useTheme }  from '../utils';
+
 
 const componentName = 'Tag';
 
@@ -21,7 +21,6 @@ const Tag = props =>
 {
     const {
         children,
-        id = generateId( 'Tag' ),
         isDisabled,
         isReadOnly,
         label,
@@ -29,6 +28,7 @@ const Tag = props =>
     } = props;
 
     const cssMap = useTheme( componentName, props );
+    const id = useId( componentName, props );
 
     let labelText = children || label;
 

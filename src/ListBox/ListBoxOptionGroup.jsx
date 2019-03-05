@@ -7,13 +7,13 @@
  *
  */
 
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                    from 'react';
+import PropTypes                from 'prop-types';
 
-import { Text }         from '..';
+import { Text }                 from '..';
 
-import { mapAria }      from '../utils';
-import { useTheme }     from '../Theming';
+import { mapAria, useTheme }    from '../utils';
+
 
 const componentName = 'ListBoxOptionGroup';
 

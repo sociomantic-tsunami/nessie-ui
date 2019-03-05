@@ -7,13 +7,13 @@
  *
  */
 
-import React, { useMemo }           from 'react';
+import React                        from 'react';
 import PropTypes                    from 'prop-types';
 
 import { IconButton, Text }         from '..';
 
-import { attachEvents, generateId } from '../utils';
-import { useTheme }                 from '../Theming';
+import { attachEvents, useTheme }   from '../utils';
+
 
 const componentName = 'Tooltip';
 
@@ -28,15 +28,10 @@ const Tooltip = props =>
 
     const cssMap = useTheme( componentName, props );
 
-    const id =  useMemo( () => (
-        props.id || generateId( componentName )
-    ), [ props.id ] );
-
     return (
         <div
             { ...attachEvents( props ) }
             className = { cssMap.main }
-            id        = { id }
             role      = "tooltip">
             <div className = { cssMap.message }>
                 { children || ( typeof message === 'string' ?
@@ -89,10 +84,6 @@ Tooltip.propTypes =
      */
     cssMap        : PropTypes.objectOf( PropTypes.string ),
     /**
-     * Component id
-     */
-    id            : PropTypes.string,
-    /**
      *  Display the tooltip as user dismissible
      */
     isDismissible : PropTypes.bool,
@@ -130,7 +121,6 @@ Tooltip.defaultProps =
     children      : undefined,
     className     : undefined,
     cssMap        : undefined,
-    id            : undefined,
     isDismissible : undefined,
     message       : undefined,
     onClickClose  : undefined,

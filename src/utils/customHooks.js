@@ -7,9 +7,12 @@
  *
  */
 
-import { useContext }     from 'react';
+import { useContext, useMemo }  from 'react';
 
-import ThemeContext       from '../Theming/ThemeContext';
+import ThemeContext             from '../Theming/ThemeContext';
+
+import { generateId }           from '.';
+
 
 /**
  * Builds class names from theme
@@ -27,4 +30,22 @@ function useTheme( displayName, props )
         ( typeof theme === 'function' ? theme( props ) : theme );
 }
 
-export default useTheme;
+
+/**
+ * Builds ID for given component
+ *
+ * @param {String} displayName component's displayName
+ * @param {Object} props component's props
+ *
+ * @return {String} generated ID
+ */
+function useId( displayName, props )
+{
+    return useMemo(
+        () => props.id || generateId( displayName ),
+        [ props.id ],
+    );
+}
+
+export { useId, useTheme };
+export default { useId, useTheme };

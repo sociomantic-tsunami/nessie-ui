@@ -14,11 +14,11 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 
-import React, { useCallback }  from 'react';
-import PropTypes               from 'prop-types';
+import React, { useCallback }            from 'react';
+import PropTypes                         from 'prop-types';
 
-import { attachEvents, clamp } from '../utils';
-import { useTheme }            from '../Theming';
+import { attachEvents, clamp, useTheme } from '../utils';
+
 
 const componentName = 'ScrollBar';
 
