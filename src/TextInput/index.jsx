@@ -39,6 +39,7 @@ const TextInput = forwardRef( ( props, ref ) =>
         isReadOnly,
         placeholder,
         spellCheck,
+        type,
         value,
     } = props;
 
@@ -57,6 +58,7 @@ const TextInput = forwardRef( ( props, ref ) =>
             readOnly       = { isReadOnly }
             ref            = { inputRef }
             spellCheck     = { spellCheck }
+            type           = { type }
             value          = { value } />
     );
 } );
@@ -167,6 +169,10 @@ TextInput.propTypes =
      */
     textAlign    : PropTypes.oneOf( [ 'left', 'right' ] ),
     /**
+     *  HTML type attribute (input element only)
+     */
+    type         : PropTypes.oneOf( [ 'text', 'password' ] ),
+    /**
      *  Input string value
      */
     value        : PropTypes.string,
@@ -197,7 +203,8 @@ TextInput.defaultProps =
     placeholder    : undefined,
     spellCheck     : undefined,
     textAlign      : 'left',
-    value          : '',
+    type           : 'text',
+    value          : undefined,
 };
 
 TextInput.displayName = componentName;

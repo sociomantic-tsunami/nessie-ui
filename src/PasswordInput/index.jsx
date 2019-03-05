@@ -11,24 +11,18 @@ import React, {
     useState,
     useCallback,
     forwardRef,
-}  from 'react';
-import PropTypes             from 'prop-types';
+}                               from 'react';
+import PropTypes                from 'prop-types';
 
-import { TextInputWithIcon } from '..';
+import { TextInputWithIcon }    from '..';
 
-import { generateId }        from '../utils';
 
 const componentName = 'PasswordInput';
-
 
 const PasswordInput = forwardRef( ( props, ref ) =>
 {
     const [ passwordIsVisibleState,
         setPasswordIsVisibleState ] = useState( false );
-
-    const {
-        id = generateId( componentName ),
-    } = props;
 
     const passwordIsVisible =
         props.passwordIsVisible || passwordIsVisibleState;
@@ -42,7 +36,6 @@ const PasswordInput = forwardRef( ( props, ref ) =>
         {
             onClickIcon(
                 {
-                    id,
                     preventNessieDefault()
                     {
                         nessieDefaultPrevented = true;
@@ -56,7 +49,7 @@ const PasswordInput = forwardRef( ( props, ref ) =>
         {
             setPasswordIsVisibleState( !passwordIsVisibleState );
         }
-    }, [ id, onClickIcon, passwordIsVisibleState ] );
+    }, [ onClickIcon, passwordIsVisibleState ] );
 
     return (
         <TextInputWithIcon
@@ -65,7 +58,6 @@ const PasswordInput = forwardRef( ( props, ref ) =>
             autoComplete   = "off"
             autoCorrect    = "off"
             iconType       = { passwordIsVisible ? 'eye-off' : 'eye' }
-            id             = { id }
             inputType      = { passwordIsVisible ? 'text' : 'password' }
             onClickIcon    = { handleClickIcon }
             ref            = { ref }
@@ -113,10 +105,6 @@ PasswordInput.propTypes =
      *  Alignment of the icon
      */
     iconPosition         : PropTypes.oneOf( [ 'left', 'right' ] ),
-    /**
-     *  Component id
-     */
-    id                   : PropTypes.string,
     /**
      *  Callback that receives the native <input>: ( ref ) => { ... }
      */
@@ -169,7 +157,6 @@ PasswordInput.defaultProps =
     hasError             : false,
     iconButtonIsDisabled : undefined,
     iconPosition         : 'right',
-    id                   : undefined,
     inputRef             : undefined,
     isDisabled           : false,
     isReadOnly           : false,
@@ -179,7 +166,7 @@ PasswordInput.defaultProps =
     passwordIsVisible    : false,
     placeholder          : undefined,
     textAlign            : 'auto',
-    value                : '',
+    value                : undefined,
 };
 
 export default PasswordInput;

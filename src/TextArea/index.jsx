@@ -215,7 +215,7 @@ TextArea.defaultProps =
     rows           : 2,
     spellCheck     : undefined,
     textAlign      : 'left',
-    value          : '',
+    value          : undefined,
 };
 
 TextArea.displayName = componentName;

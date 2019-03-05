@@ -258,7 +258,7 @@ TextInputWithIcon.defaultProps =
     placeholder          : undefined,
     spellCheck           : undefined,
     textAlign            : 'auto',
-    value                : '',
+    value                : undefined,
 };
 
 TextInputWithIcon.displayName = componentName;
