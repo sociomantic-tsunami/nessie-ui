@@ -30,6 +30,7 @@ const ListBox = props =>
         aria,
         activeOption,
         children,
+        id,
         isFocusable,
         isMultiselect,
         onClickOption,
@@ -57,6 +58,7 @@ const ListBox = props =>
                 role             : 'listbox',
             } ) }
             className   = { cssMap.main }
+            id          = { id }
             onMouseDown = { !isFocusable ? killFocus : undefined }
             tabIndex    = { isFocusable ? '0' : '-1' }>
             { updateOptions(
@@ -91,6 +93,10 @@ ListBox.propTypes = {
     isFocusable       : PropTypes.bool,
     isMultiselect     : PropTypes.bool,
     /**
+    *  ListBox ID
+    */
+    id                : PropTypes.string,
+    /**
     *  Array of strings or objects (to build the options)
     */
     options           : PropTypes.arrayOf( PropTypes.object ),
@@ -118,6 +124,7 @@ ListBox.defaultProps = {
     children          : undefined,
     className         : undefined,
     cssMap            : undefined,
+    id                : undefined,
     isFocusable       : true,
     isMultiselect     : false,
     onClickOption     : undefined,

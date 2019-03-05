@@ -32,6 +32,7 @@ const Button = forwardRef( ( props, ref ) =>
     const {
         children,
         iconType,
+        id,
         isDisabled,
         isLoading,
         label,
@@ -44,6 +45,7 @@ const Button = forwardRef( ( props, ref ) =>
             { ...attachEvents( props ) }
             className = { cssMap.main }
             disabled  = { isDisabled }
+            id        = { id }
             ref       = { buttonRef }
             type      = "button">
             <div className = { cssMap.content }>
@@ -89,6 +91,10 @@ Button.propTypes =
      */
     iconType     : PropTypes.string,
     /**
+     * Component identifier
+     */
+    id           : PropTypes.string,
+    /**
      *  Display as disabled
      */
     isDisabled   : PropTypes.bool,
@@ -131,6 +137,7 @@ Button.defaultProps =
     cssMap       : undefined,
     iconPosition : 'left',
     iconType     : 'none',
+    id           : undefined,
     isDisabled   : false,
     isLoading    : false,
     label        : undefined,

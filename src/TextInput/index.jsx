@@ -38,6 +38,7 @@ const TextInput = forwardRef( ( props, ref ) =>
         autoComplete,
         autoCorrect,
         defaultValue,
+        id,
         isDisabled,
         isReadOnly,
         placeholder,
@@ -56,6 +57,7 @@ const TextInput = forwardRef( ( props, ref ) =>
             className      = { cssMap.main }
             defaultValue   = { defaultValue }
             disabled       = { isDisabled }
+            id             = { id }
             placeholder    = { placeholder }
             readOnly       = { isReadOnly }
             ref            = { inputRef }
@@ -110,6 +112,10 @@ TextInput.propTypes =
      *  Display as error/invalid
      */
     hasError     : PropTypes.bool,
+    /**
+     *  HTML id attribute
+     */
+    id           : PropTypes.string,
     /**
      *  Display as disabled
      */
@@ -186,6 +192,7 @@ TextInput.defaultProps =
     cssMap         : undefined,
     defaultValue   : undefined,
     hasError       : false,
+    id             : undefined,
     isDisabled     : false,
     isReadOnly     : false,
     onBlur         : undefined,

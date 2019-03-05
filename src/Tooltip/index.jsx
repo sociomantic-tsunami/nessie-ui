@@ -21,6 +21,7 @@ const Tooltip = props =>
 {
     const {
         children,
+        id,
         isDismissible,
         message,
         onClickClose,
@@ -32,6 +33,7 @@ const Tooltip = props =>
         <div
             { ...attachEvents( props ) }
             className = { cssMap.main }
+            id        = { id }
             role      = "tooltip">
             <div className = { cssMap.message }>
                 { children || ( typeof message === 'string' ?
@@ -84,6 +86,10 @@ Tooltip.propTypes =
      */
     cssMap        : PropTypes.objectOf( PropTypes.string ),
     /**
+     * Component id
+     */
+    id            : PropTypes.string,
+    /**
      *  Display the tooltip as user dismissible
      */
     isDismissible : PropTypes.bool,
@@ -121,6 +127,7 @@ Tooltip.defaultProps =
     children      : undefined,
     className     : undefined,
     cssMap        : undefined,
+    id            : undefined,
     isDismissible : undefined,
     message       : undefined,
     onClickClose  : undefined,

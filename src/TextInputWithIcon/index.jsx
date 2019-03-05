@@ -32,6 +32,7 @@ const TextInputWithIcon = ( props ) =>
         iconButtonIsDisabled,
         iconPosition,
         iconType,
+        id,
         inputRef,
         inputType,
         isDisabled,
@@ -65,6 +66,7 @@ const TextInputWithIcon = ( props ) =>
                 defaultValue   = { defaultValue }
                 forceHover     = { forceHover }
                 hasError       = { hasError }
+                id             = { id }
                 isDisabled     = { isDisabled }
                 isReadOnly     = { isReadOnly }
                 name           = { name }
@@ -151,6 +153,10 @@ TextInputWithIcon.propTypes =
      */
     iconType             : PropTypes.string,
     /**
+     *  Component id
+     */
+    id                   : PropTypes.string,
+    /**
      *  Callback that receives the native <input>: ( ref ) => { ... }
      */
     inputRef             : PropTypes.func,
@@ -234,6 +240,7 @@ TextInputWithIcon.defaultProps =
     iconButtonIsDisabled : false,
     iconPosition         : 'right',
     iconType             : 'none',
+    id                   : undefined,
     inputRef             : undefined,
     inputType            : 'text',
     isDisabled           : false,
