@@ -206,12 +206,12 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
 
             if ( typeof onChange === 'function' )
             {
-                onChange( { value } );
+                onChange( { id, value } );
             }
         }
 
         purgeEdits();
-    }, [ props.isReadOnly, props.onChange, timestamp ] );
+    }, [ props.id, props.isReadOnly, props.onChange, timestamp ] );
 
 
     const handleClickNext = useCallback( () =>
@@ -505,6 +505,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         format,
         hasError,
         hourPlaceholder,
+        id,
         inputPlaceholder,
         isDisabled,
         minutePlaceholder,
@@ -551,6 +552,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             forceHover     = { isOpen }
             hasError       = { hasError }
             iconType       = "calendar"
+            id             = { id }
             inputRef       = { inputRef }
             isDisabled     = { isDisabled }
             onChangeInput  = { handleChangeInput }
@@ -605,6 +607,10 @@ DateTimeInput.propTypes =
      */
     hourPlaceholder   : PropTypes.string,
     /**
+     *  Component id
+     */
+    id                : PropTypes.string,
+    /**
      *  Main input placeholder text
      */
     inputPlaceholder  : PropTypes.string,
@@ -649,6 +655,7 @@ DateTimeInput.defaultProps =
     format            : undefined,
     hasError          : false,
     hourPlaceholder   : undefined,
+    id                : undefined,
     inputPlaceholder  : undefined,
     isDisabled        : false,
     isReadOnly        : false,

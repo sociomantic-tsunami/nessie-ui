@@ -28,8 +28,9 @@ const CurrencyInput = ( props ) =>
 {
     const {
         currency,
-        value,
         defaultValue,
+        id,
+        value,
         ...restProps
     } = props;
 
@@ -63,6 +64,7 @@ const CurrencyInput = ( props ) =>
             autoCapitalize = "off"
             autoComplete   = "off"
             autoCorrect    = "off"
+            id             = { id }
             spellCheck     = { false }
             onBlur         = { handleBlur }
             onChange       = { handleChange }
@@ -93,6 +95,10 @@ CurrencyInput.propTypes =
      *  Display as error/invalid
      */
     hasError     : PropTypes.bool,
+    /**
+     *  HTML id attribute
+     */
+    id           : PropTypes.string,
     /**
      *  Display as disabled
      */
@@ -158,6 +164,7 @@ CurrencyInput.defaultProps =
     currency     : undefined,
     defaultValue : '',
     hasError     : false,
+    id           : undefined,
     isDisabled   : false,
     isReadOnly   : false,
     onBlur       : undefined,

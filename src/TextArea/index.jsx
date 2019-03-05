@@ -37,6 +37,7 @@ const TextArea = forwardRef( ( props, ref ) =>
         autoComplete,
         autoCorrect,
         defaultValue,
+        id,
         isDisabled,
         isReadOnly,
         placeholder,
@@ -55,6 +56,7 @@ const TextArea = forwardRef( ( props, ref ) =>
             className      = { cssMap.main }
             defaultValue   = { defaultValue }
             disabled       = { isDisabled }
+            id             = { id }
             placeholder    = { placeholder }
             readOnly       = { isReadOnly }
             ref            = { textAreaRef }
@@ -109,6 +111,10 @@ TextArea.propTypes =
      *  Display as error/invalid
      */
     hasError     : PropTypes.bool,
+    /**
+     *  HTML id attribute
+     */
+    id           : PropTypes.string,
     /**
      *  Display as disabled
      */
@@ -196,6 +202,7 @@ TextArea.defaultProps =
     cssMap         : undefined,
     defaultValue   : undefined,
     hasError       : false,
+    id             : undefined,
     isDisabled     : false,
     isReadOnly     : false,
     onBlur         : undefined,
