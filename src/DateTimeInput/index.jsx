@@ -248,7 +248,6 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         }
         else
         {
-            inputRef.current.focus();
             open();
         }
     }, [ inputRef.current, isOpen ] );
@@ -356,6 +355,13 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         }
     }, [ props.format, props.mode, timestamp ] );
 
+    const handleOnBlur = useCallback( () =>
+    {
+        if ( !gridStartTimestamp )
+        {
+            purgeEdits();
+        }
+    }, [] );
 
     const canGotoNext = useCallback( () =>
     {
@@ -498,6 +504,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             .valueOf() );
     }, [ props.min, props.mode, timestamp ] );
 
+
     const close = useCallback( () =>
     {
         purgeEdits();
@@ -560,6 +567,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             id             = { id }
             inputRef       = { inputRef }
             isDisabled     = { isDisabled }
+            onBlur         = { handleOnBlur }
             onChangeInput  = { handleChangeInput }
             onClickIcon    = { handleClickIcon }
             placeholder    = { inputPlaceholder }
