@@ -55,9 +55,9 @@ const Checkbox = forwardRef( ( props, ref ) =>
 
     return (
         <div
-            { ...attachEvents( props ) }
             className = { cssMap.main }>
             <input
+                { ...attachEvents( props ) }
                 checked   = { isChecked }
                 className = { cssMap.input }
                 defaultChecked = { isDefaultChecked }
