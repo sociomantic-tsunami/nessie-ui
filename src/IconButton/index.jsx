@@ -78,10 +78,6 @@ IconButton.propTypes =
      */
     children      : PropTypes.string,
     /**
-     * Display as hover when required from another component
-     */
-    forceHover    : PropTypes.bool,
-    /**
      * Adds a background to the icon
      */
     hasBackground : PropTypes.bool,
@@ -129,7 +125,6 @@ IconButton.defaultProps =
     children      : undefined,
     className     : undefined,
     cssMap        : undefined,
-    forceHover    : false,
     hasBackground : false,
     iconSize      : 'S',
     iconType      : undefined,
