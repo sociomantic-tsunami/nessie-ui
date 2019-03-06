@@ -109,11 +109,10 @@ Tooltip.propTypes =
      *  onMouseOut callback function: ( e ) => { ... }
      */
     onMouseOut    : PropTypes.func,
-
     /**
      *  Tooltip role/style
      */
-    role : PropTypes.oneOf( [
+    role          : PropTypes.oneOf( [
         'default',
         'critical',
         'promoted',

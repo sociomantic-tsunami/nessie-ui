@@ -142,7 +142,7 @@ PasswordInput.propTypes =
     /**
      *  Show password as plain text
      */
-    passwordIsVisible    : PropTypes.func,
+    passwordIsVisible    : PropTypes.bool,
     /**
      *  Placeholder text
      */
