@@ -2,7 +2,7 @@ const baseConfig = require( './base' );
 
 module.exports = baseConfig( {
     mode   : 'development',
-    inline : false,
+    inline : true,
     output : {
         filename      : 'index.dev.js',
         library       : 'Nessie',
