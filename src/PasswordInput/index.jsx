@@ -96,10 +96,6 @@ PasswordInput.propTypes =
      */
     defaultValue         : PropTypes.string,
     /**
-     *  Display as hover when required from another component
-     */
-    forceHover           : PropTypes.bool,
-    /**
      *  Display as error/invalid
      */
     hasError             : PropTypes.bool,
@@ -163,7 +159,6 @@ PasswordInput.defaultProps =
     className            : undefined,
     cssMap               : undefined,
     defaultValue         : undefined,
-    forceHover           : false,
     hasError             : false,
     iconButtonIsDisabled : undefined,
     iconPosition         : 'right',

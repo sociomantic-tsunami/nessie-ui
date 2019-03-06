@@ -556,7 +556,6 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             autoComplete   = "off"
             autoCorrect    = "off"
             className      = { className }
-            forceHover     = { isOpen }
             hasError       = { hasError }
             iconType       = "calendar"
             id             = { id }
