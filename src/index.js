@@ -28,6 +28,7 @@ import ProgressBar       from './ProgressBar';
 import ScrollBar         from './ScrollBar';
 import ScrollBox         from './ScrollBox';
 import Spinner           from './Spinner';
+import Switch            from './Switch';
 import Tab               from './Tab';
 import TabButton         from './TabButton';
 import Tabs              from './Tabs';
@@ -61,6 +62,7 @@ export default {
     ScrollBar,
     ScrollBox,
     Spinner,
+    Switch,
     Tab,
     TabButton,
     Tabs,
@@ -95,6 +97,7 @@ export {
     ScrollBar,
     ScrollBox,
     Spinner,
+    Switch,
     Tab,
     TabButton,
     Tabs,
