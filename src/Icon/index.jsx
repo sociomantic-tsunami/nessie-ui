@@ -7,85 +7,83 @@
  *
  */
 
-import React              from 'react';
-import PropTypes          from 'prop-types';
+import React                      from 'react';
+import PropTypes                  from 'prop-types';
 
-import ThemeContext       from '../Theming/ThemeContext';
-import { createCssMap }   from '../Theming';
-import { attachEvents }   from '../utils';
+import { attachEvents, useTheme } from '../utils';
 
 
-export default class Icon extends React.Component
+const componentName = 'Icon';
+
+const Icon = props =>
 {
-    static contextType = ThemeContext;
+    const {
+        children,
+        label,
+        type,
+    } = props;
 
-    static propTypes =
-    {
-        /**
-         * Icon label (overrides label prop)
-         */
-        children  : PropTypes.string,
-        /**
-         *  CSS class name
-         */
-        className : PropTypes.string,
-        /**
-         *  CSS class map
-         */
-        cssMap    : PropTypes.objectOf( PropTypes.string ),
-        /**
-         * Icon label
-         */
-        label     : PropTypes.string,
-        /**
-         *  Icon role
-         */
-        role      : PropTypes.oneOf( [
-            'default',
-            'critical',
-            'promoted',
-            'warning',
-        ] ),
-        /**
-         *  Icon size
-         */
-        size : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
-        /**
-         *  Icon to show (see https://feathericons.com/)
-         */
-        type : PropTypes.string,
-    };
+    const cssMap = useTheme( componentName, props );
 
-    static defaultProps =
-    {
-        children  : undefined,
-        className : undefined,
-        cssMap    : undefined,
-        label     : undefined,
-        role      : 'default',
-        size      : 'S',
-        type      : 'none',
-    };
+    return (
+        <svg
+            { ...attachEvents( props ) }
+            aria-label = { children || label }
+            className  = { cssMap.main }>
+            { ( type !== 'none' ) &&
+            <use xlinkHref = { `#nessie-${type}` } /> }
+        </svg>
+    );
+};
 
-    static displayName = 'Icon';
+Icon.propTypes =
+{
+    /**
+     * Icon label (overrides label prop)
+     */
+    children  : PropTypes.string,
+    /**
+     *  CSS class name
+     */
+    className : PropTypes.string,
+    /**
+     *  CSS class map
+     */
+    cssMap    : PropTypes.objectOf( PropTypes.string ),
+    /**
+     * Icon label
+     */
+    label     : PropTypes.string,
+    /**
+     *  Icon role
+     */
+    role      : PropTypes.oneOf( [
+        'default',
+        'critical',
+        'promoted',
+        'warning',
+    ] ),
+    /**
+     *  Icon size
+     */
+    size : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
+    /**
+     *  Icon to show (see https://feathericons.com/)
+     */
+    type : PropTypes.string,
+};
 
-    render()
-    {
-        const {
-            children,
-            cssMap = createCssMap( this.context.Icon, this.props ),
-            label,
-            type,
-        } = this.props;
+Icon.defaultProps =
+{
+    children  : undefined,
+    className : undefined,
+    cssMap    : undefined,
+    label     : undefined,
+    role      : 'default',
+    size      : 'S',
+    type      : 'none',
+};
 
-        return (
-            <svg
-                { ...attachEvents( this.props ) }
-                aria-label = { children || label }
-                className  = { cssMap.main }>
-                { ( type !== 'none' ) &&
-                <use xlinkHref = { `#nessie-${type}` } /> }
-            </svg>
-        );
-    }
-}
+Icon.displayName = componentName;
+
+export default Icon;

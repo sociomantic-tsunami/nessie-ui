@@ -51,15 +51,14 @@ const distConfig = ( options = {} ) => baseConfig( {
 } );
 
 const components = distConfig( {
-    inline         : false,
+    inline         : true,
     outputFilename : 'index.js',
 } );
 
 const componentsJS = distConfig( {
-    inline         : true,
+    inline         : false,
     outputFilename : 'componentsJS.js',
 } );
-
 
 module.exports = [
     components,
