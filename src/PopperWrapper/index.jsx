@@ -9,7 +9,7 @@
 
 /* global document, addEventListener, removeEventListener */
 
-import React, { useEffect, useRef, useState }     from 'react';
+import React, { useEffect, useRef }               from 'react';
 import ReactDOM                                   from 'react-dom';
 import { Manager, Reference, Popper }             from 'react-popper';
 import PropTypes                                  from 'prop-types';
@@ -29,92 +29,37 @@ const PopperWrapper = ( props ) =>
         popperPosition,
     } = props;
 
-    const referenceRef = useRef();
-    const popperRef    = useRef();
-
-    const [ update, setUpdate ] = useState( undefined );
+    const referenceRef      = useRef();
+    const popperRef         = useRef();
+    const scheduleUpdateRef = useRef();
 
     useEffect( () =>
     {
-        if ( isVisible )
+        if ( isVisible && scheduleUpdateRef.current )
         {
-            console.log( update );
-            // update();
-
-            if ( onClickOutside )
-            {
-                addEventListener( 'mousedown', handleClickOutSide, false );
-
-                return () =>
-                {
-                    removeEventListener(
-                        'mousedown',
-                        handleClickOutSide,
-                        false,
-                    );
-                };
-            }
+            scheduleUpdateRef.current();
         }
-    } );
+    }, [ isVisible, popperOffset ] );
 
-    // useEffect( () =>
-    // {
-    //     if ( isVisible )
-    //     {y
-    //         update();
-    //
-    //         if ( onClickOutside )
-    //         {
-    //               addEventListener( 'mousedown', handleClickOutSide, false );
-    //         }
-    //     }
-    //
-    //     if ( isVisible && onClickOutside )
-    //     {
-    //         if ( isVisible )
-    //         {
-    //             if ( onClickOutside )
-    //             {
-    //                 removeEventListener(
-    //                     'mousedown',
-    //                     handleClickOutSide,
-    //                     false,
-    //                 );
-    //
-    //                 addEventListener(
-    //                     'mousedown',
-    //                     handleClickOutSide,
-    //                     false,
-    //                 );
-    //             }
-    //             else
-    //             {
-    //                 removeEventListener(
-    //                     'mousedown',
-    //                     handleClickOutSide,
-    //                     false,
-    //                 );
-    //             }
-    //         }
-    //         else
-    //         {
-    //             removeEventListener(
-    //                 'mousedown',
-    //                 handleClickOutSide,
-    //                 false,
-    //             );
-    //         }
-    //     }
-    //
-    // }, [ isVisible, onClickOutside ] );
+    useEffect( () =>
+    {
+        if ( isVisible && onClickOutside )
+        {
+            addEventListener( 'mousedown', handleClickOutSide );
 
+            return () =>
+            {
+                removeEventListener( 'mousedown', handleClickOutSide );
+            };
+        }
+    }, [ scheduleUpdateRef.current, isVisible, onClickOutside ] );
 
     const handleClickOutSide = ( e ) =>
     {
         if ( !( referenceRef.current.contains( e.target ) ||
                 popperRef.current.contains( e.target ) ) )
         {
-            props.onClickOutside();
+            onClickOutside();
         }
     };
 
@@ -147,7 +92,7 @@ const PopperWrapper = ( props ) =>
                     } : offset }>
                     { ( { ref, style, scheduleUpdate } ) =>
                     {
-                        // setUpdate( scheduleUpdate );
+                        scheduleUpdateRef.current = scheduleUpdate;
 
                         return (
                             <div
