@@ -357,7 +357,7 @@ const TagInput = forwardRef( ( props, ref ) =>
 
     return (
         <PopperWrapper
-            container      = { container || 'nessie-overlay' }
+            container      = { container }
             isVisible      = { listBoxOptions.length > 0 && isOpen }
             matchRefWidth
             popper         = { popperPopup }

@@ -71,6 +71,40 @@ const PopperWrapper = ( props ) =>
         'none' : undefined,
     }[ popperOffset ];
 
+    let popup = (
+        <Popper
+            placement = { popperPosition }
+            innerRef  = { ( ref ) => popperRef.current = ref }
+            modifiers = { offset ? {
+                offset : {
+                    offset : `0, ${offset}`,
+                },
+            } : offset }>
+            { ( { ref, style, scheduleUpdate } ) =>
+            {
+                scheduleUpdateRef.current = scheduleUpdate;
+
+                return (
+                    <div
+                        ref   = { ref }
+                        style = { matchRefWidth ? {
+                            'width' : referenceRef.current
+                                .clientWidth,
+                            ...style,
+                        } : style }>
+                        { popper }
+                    </div> );
+            } }
+        </Popper> );
+
+    if ( document.getElementById( container ) )
+    {
+        popup = ReactDOM.createPortal(
+            popup,
+            document.getElementById( container ),
+        );
+    }
+
     return (
         <Manager>
             <Reference
@@ -81,37 +115,10 @@ const PopperWrapper = ( props ) =>
                     </div>
                 ) }
             </Reference>
-            { isVisible && ReactDOM.createPortal(
-                <Popper
-                    placement = { popperPosition }
-                    innerRef  = { ( ref ) => popperRef.current = ref }
-                    modifiers = { offset ? {
-                        offset : {
-                            offset : `0, ${offset}`,
-                        },
-                    } : offset }>
-                    { ( { ref, style, scheduleUpdate } ) =>
-                    {
-                        scheduleUpdateRef.current = scheduleUpdate;
-
-                        return (
-                            <div
-                                ref   = { ref }
-                                style = { matchRefWidth ? {
-                                    'width' : referenceRef.current
-                                        .clientWidth,
-                                    ...style,
-                                } : style }>
-                                { popper }
-                            </div> );
-                    } }
-                </Popper>,
-                document.getElementById( container ) || document.body,
-            ) }
+            { isVisible && popup }
         </Manager>
     );
 };
-
 
 PopperWrapper.propTypes =
 {
@@ -168,7 +175,7 @@ PopperWrapper.propTypes =
 PopperWrapper.defaultProps =
 {
     children       : undefined,
-    container      : undefined,
+    container      : 'nessie-overlay',
     isVisible      : false,
     matchRefWidth  : undefined,
     onClickOutside : undefined,

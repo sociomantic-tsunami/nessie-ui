@@ -538,7 +538,7 @@ const ComboBox = props =>
 
     return (
         <PopperWrapper
-            container      = { container || 'nessie-overlay' }
+            container      = { container }
             isVisible      = { isOpen }
             matchRefWidth
             popper         = { popperPopup }

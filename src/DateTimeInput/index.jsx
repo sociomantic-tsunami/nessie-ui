@@ -580,7 +580,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
 
     return (
         <PopperWrapper
-            container      = { container || 'nessie-overlay' }
+            container      = { container }
             isVisible      = { isOpen }
             onClickOutside = { close }
             popper         = { popperPopup }
