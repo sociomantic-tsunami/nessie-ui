@@ -7,10 +7,14 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React        from 'react';
+import PropTypes    from 'prop-types';
 
-import { useId, useTheme }  from '../utils';
+import {
+    attachEvents,
+    useId,
+    useTheme,
+} from '../utils';
 
 
 const componentName = 'Switch';
@@ -22,9 +26,6 @@ const Switch = props =>
         isDefaultChecked,
         isDisabled,
         label,
-        onBlur,
-        onChange,
-        onFocus,
         onMouseOut,
         onMouseOver,
     } = props;
@@ -38,14 +39,12 @@ const Switch = props =>
             onMouseEnter = { onMouseOver }
             onMouseLeave = { onMouseOut }>
             <input
+                { ...attachEvents( props ) }
                 checked        = { isChecked }
                 className      = { cssMap.input }
                 disabled       = { isDisabled }
                 id             = { id }
                 defaultChecked = { isDefaultChecked }
-                onBlur         = { onBlur }
-                onChange       = { onChange }
-                onFocus        = { onFocus }
                 type           = "checkbox" />
             <label
                 aria-label = { label }
