@@ -1,6 +1,5 @@
 {
   "scripts" : {
-    "beforeStart" : "yarn test",
     "beforeBump"  : "yarn build"
   }
 }

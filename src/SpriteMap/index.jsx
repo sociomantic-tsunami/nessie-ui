@@ -8,10 +8,11 @@
  */
 
 import React     from 'react';
+import PropTypes from 'prop-types';
 import { icons } from 'feather-icons';
 
 
-const SpriteMap = ( { id = "nessie" }) => (
+const SpriteMap = ( { id = 'nessie' } ) => (
     <svg
         display = "none"
         height  = "0"
@@ -27,6 +28,19 @@ const SpriteMap = ( { id = "nessie" }) => (
         </defs>
     </svg>
 );
+
+SpriteMap.propTypes =
+{
+    /**
+     *  Component id
+     */
+    id : PropTypes.string,
+};
+
+SpriteMap.defaultProps =
+{
+    id : undefined,
+};
 
 SpriteMap.displayName = 'SpriteMap';
 

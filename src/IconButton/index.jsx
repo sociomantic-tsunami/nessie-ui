@@ -12,138 +12,131 @@ import PropTypes                    from 'prop-types';
 
 import { Icon }                     from '..';
 
-import { attachEvents, generateId } from '../utils';
-import ThemeContext                 from '../Theming/ThemeContext';
-import { createCssMap }             from '../Theming';
+import { attachEvents, useTheme }   from '../utils';
+
+
+const componentName = 'IconButton';
 
 const killFocus = e => e.preventDefault();
 
-
-export default class IconButton extends React.Component
+const IconButton = props =>
 {
-    static contextType = ThemeContext;
+    const {
+        buttonRef,
+        children,
+        iconSize,
+        iconType,
+        id,
+        isDisabled,
+        isFocusable,
+        label,
+        value,
+    } = props;
 
-    static propTypes =
-    {
-        /**
-         * Callback that receives a ref to the <button>: ( ref ) => { ... }
-         */
-        buttonRef     : PropTypes.func,
-        /**
-         *  extra CSS class name
-         */
-        className     : PropTypes.string,
-        /**
-         *  CSS class map
-         */
-        cssMap        : PropTypes.objectOf( PropTypes.string ),
-        /**
-         *  Label text (overrides label prop)
-         */
-        children      : PropTypes.string,
-        /**
-         * Display as hover when required from another component
-         */
-        forceHover    : PropTypes.bool,
-        /**
-         * Adds a background to the icon
-         */
-        hasBackground : PropTypes.bool,
-        /**
-         *  Icon size to display
-         */
-        iconSize      : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
-        /**
-         *  Icon type to display (see https://feathericons.com/)
-         */
-        iconType      : PropTypes.string,
-        /**
-         * Component id
-         */
-        id            : PropTypes.string,
-        /**
-         *  Display as disabled
-         */
-        isDisabled    : PropTypes.bool,
-        /**
-         *  Button is focusable
-         */
-        isFocusable   : PropTypes.bool,
-        /**
-         *  Label text
-         */
-        label         : PropTypes.string,
-        /**
-         *  Button click callback function: ( e ) => { ... }
-         */
-        onClick       : PropTypes.func,
-        /**
-         *  HTML value attribute
-         */
-        role          : PropTypes.oneOf( [ 'default', 'inverted' ] ),
-        /**
-         *  HTML value attribute
-         */
-        value         : PropTypes.string,
-    };
+    const cssMap = useTheme( componentName, props );
 
-    static defaultProps =
-    {
-        buttonRef     : undefined,
-        children      : undefined,
-        className     : undefined,
-        cssMap        : undefined,
-        forceHover    : false,
-        hasBackground : false,
-        iconSize      : 'S',
-        iconType      : undefined,
-        id            : undefined,
-        isDisabled    : false,
-        isFocusable   : true,
-        label         : undefined,
-        onClick       : undefined,
-        role          : 'default',
-        value         : undefined,
-    };
+    return (
+        <button
+            { ...attachEvents( props, {
+                onClick : { value },
+            } ) }
+            className   = { cssMap.main }
+            disabled    = { isDisabled }
+            id          = { id }
+            onMouseDown = { !isFocusable ? killFocus : undefined }
+            ref         = { buttonRef }
+            tabIndex    = { isFocusable ? '0' : '-1' }
+            type        = "button"
+            value       = { value }>
+            <Icon
+                className  = { cssMap.icon }
+                isDisabled = { isDisabled }
+                size       = { iconSize }
+                type       = { iconType }>
+                { children || label }
+            </Icon>
+        </button>
+    );
+};
 
-    static displayName = 'IconButton';
+IconButton.propTypes =
+{
+    /**
+     * Callback that receives a ref to the <button>: ( ref ) => { ... }
+     */
+    buttonRef     : PropTypes.func,
+    /**
+     *  extra CSS class name
+     */
+    className     : PropTypes.string,
+    /**
+     *  CSS class map
+     */
+    cssMap        : PropTypes.objectOf( PropTypes.string ),
+    /**
+     *  Label text (overrides label prop)
+     */
+    children      : PropTypes.string,
+    /**
+     * Adds a background to the icon
+     */
+    hasBackground : PropTypes.bool,
+    /**
+     *  Icon size to display
+     */
+    iconSize      : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
+    /**
+     *  Icon type to display (see https://feathericons.com/)
+     */
+    iconType      : PropTypes.string,
+    /**
+     * Component id
+     */
+    id            : PropTypes.string,
+    /**
+     *  Display as disabled
+     */
+    isDisabled    : PropTypes.bool,
+    /**
+     *  Button is focusable
+     */
+    isFocusable   : PropTypes.bool,
+    /**
+     *  Label text
+     */
+    label         : PropTypes.string,
+    /**
+     *  Button click callback function: ( e ) => { ... }
+     */
+    onClick       : PropTypes.func,
+    /**
+     *  HTML value attribute
+     */
+    role          : PropTypes.oneOf( [ 'default', 'inverted' ] ),
+    /**
+     *  HTML value attribute
+     */
+    value         : PropTypes.string,
+};
 
-    render()
-    {
-        const {
-            buttonRef,
-            children,
-            cssMap = createCssMap( this.context.IconButton, this.props ),
-            iconSize,
-            iconType,
-            id = generateId( 'IconButton' ),
-            isDisabled,
-            isFocusable,
-            label,
-            value,
-        } = this.props;
+IconButton.defaultProps =
+{
+    buttonRef     : undefined,
+    children      : undefined,
+    className     : undefined,
+    cssMap        : undefined,
+    hasBackground : false,
+    iconSize      : 'S',
+    iconType      : undefined,
+    id            : undefined,
+    isDisabled    : false,
+    isFocusable   : true,
+    label         : undefined,
+    onClick       : undefined,
+    role          : 'default',
+    value         : undefined,
+};
 
-        return (
-            <button
-                { ...attachEvents( this.props, {
-                    onClick : { value },
-                } ) }
-                className   = { cssMap.main }
-                disabled    = { isDisabled }
-                id          = { id }
-                onMouseDown = { !isFocusable ? killFocus : undefined }
-                ref         = { buttonRef }
-                tabIndex    = { isFocusable ? '0' : '-1' }
-                type        = "button"
-                value       = { value }>
-                <Icon
-                    className  = { cssMap.icon }
-                    isDisabled = { isDisabled }
-                    size       = { iconSize }
-                    type       = { iconType }>
-                    { children || label }
-                </Icon>
-            </button>
-        );
-    }
-}
+IconButton.displayName = componentName;
+
+export default IconButton;

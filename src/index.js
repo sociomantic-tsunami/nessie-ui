@@ -112,5 +112,4 @@ export { ThemeProvider } from './Theming';
 export DefaultTheme      from './DefaultTheme';
 
 // Addons
-export withDropdown from './Addons/withDropdown';
 export SpriteMap    from './SpriteMap';

@@ -9,191 +9,178 @@
 
 /* global navigator */
 
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React, { useState } from 'react';
+import PropTypes           from 'prop-types';
 
-import { generateId }   from '../utils';
-
-import { TextInput }    from '..';
+import { TextInput }       from '..';
 
 
 const currencyFormat = ( number, currency, language = navigator.language ) =>
     number.toLocaleString( language, currency ?
         { style: 'currency', currency } : {} );
 
-export default class CurrencyInput extends React.Component
+const pattern = /[^0-9.-]/g;
+
+
+const componentName = 'CurrencyInput';
+
+const CurrencyInput = ( props ) =>
 {
-    static propTypes =
+    const {
+        currency,
+        defaultValue,
+        id,
+        value,
+        ...restProps
+    } = props;
+
+    const [ valueState, setValue ] = useState( defaultValue );
+
+    const handleBlur = () =>
     {
-        /**
-         *  Extra CSS class name
-         */
-        className    : PropTypes.string,
-        /**
-         *  CSS class map
-         */
-        cssMap       : PropTypes.objectOf( PropTypes.string ),
-        /**
-         *  Currency to display
-         */
-        currency     : PropTypes.oneOf( [ 'USD', 'EUR', 'GBP' ] ),
-        /**
-         *  Default input string value
-         */
-        defaultValue : PropTypes.string,
-        /**
-         *  Display as error/invalid
-         */
-        hasError     : PropTypes.bool,
-        /**
-         *  HTML id attribute
-         */
-        id           : PropTypes.string,
-        /**
-         *  Display as disabled
-         */
-        isDisabled   : PropTypes.bool,
-        /**
-         *  Display as read-only
-         */
-        isReadOnly   : PropTypes.bool,
-        /**
-         *  Blur callback function
-         */
-        onBlur       : PropTypes.func,
-        /**
-         *  Input change callback function
-         */
-        onChange     : PropTypes.func,
-        /**
-         *  Input click callback function
-         */
-        onClick      : PropTypes.func,
-        /**
-         *  Focus callback function
-         */
-        onFocus      : PropTypes.func,
-        /**
-         *  Key down callback function
-         */
-        onKeyDown    : PropTypes.func,
-        /**
-         *  Key press callback function
-         */
-        onKeyPress   : PropTypes.func,
-        /**
-         *  Key up callback function
-         */
-        onKeyUp      : PropTypes.func,
-        /**
-         *  Mouse out callback function
-         */
-        onMouseOut   : PropTypes.func,
-        /**
-         *  Mouse over  callback function
-         */
-        onMouseOver  : PropTypes.func,
-        /**
-         *  Placeholder text
-         */
-        placeholder  : PropTypes.string,
-        /**
-         *  Input text alignment
-         */
-        textAlign    : PropTypes.oneOf( [ 'left', 'right' ] ),
-        /**
-         *  Input string value
-         */
-        value        : PropTypes.string,
-    };
+        const newVal = Number( String( valueState ).replace( pattern, '' ) );
 
-    static defaultProps =
-    {
-        className    : undefined,
-        cssMap       : undefined,
-        currency     : undefined,
-        defaultValue : '',
-        hasError     : false,
-        id           : undefined,
-        isDisabled   : false,
-        isReadOnly   : false,
-        onBlur       : undefined,
-        onChange     : undefined,
-        onClick      : undefined,
-        onFocus      : undefined,
-        onKeyDown    : undefined,
-        onKeyPress   : undefined,
-        onKeyUp      : undefined,
-        onMouseOut   : undefined,
-        onMouseOver  : undefined,
-        placeholder  : undefined,
-        textAlign    : 'left',
-        value        : '',
-    };
+        setValue( newVal );
 
-    static displayName = 'CurrencyInput';
-
-    constructor( props )
-    {
-        super( props );
-        this.state = {
-            value : '',
-        };
-        this.handleBlur   = this.handleBlur.bind( this );
-        this.handleChange = this.handleChange.bind( this );
-    }
-
-    handleBlur()
-    {
-        const newVal = Number( String( this.state.value )
-            .replace( /[^0-9\.-]/g, '' ) );
-        this.setState( {
-            value : newVal,
-        } );
-
-        if ( typeof this.props.onBlur === 'function' )
+        if ( typeof props.onBlur === 'function' )
         {
-            this.props.onBlur( { } );
+            props.onBlur( { } );
         }
 
-        if ( typeof this.props.onChange === 'function' )
+        if ( typeof props.onChange === 'function' )
         {
-            this.props.onChange( { value: newVal } );
+            props.onChange( { value: newVal } );
         }
-    }
+    };
 
-    handleChange( { value } )
+    const handleChange = ( { value: scopedValue } ) =>
     {
-        this.setState( { value } );
-    }
+        setValue( scopedValue );
+    };
 
-    render()
-    {
-        const {
-            currency,
-            defaultValue,
-            id = generateId( 'CurrencyInput' ),
-            value,
-        } = this.props;
+    return (
+        <TextInput
+            { ...restProps }
+            autoCapitalize = "off"
+            autoComplete   = "off"
+            autoCorrect    = "off"
+            id             = { id }
+            spellCheck     = { false }
+            onBlur         = { handleBlur }
+            onChange       = { handleChange }
+            value          = { currencyFormat( Number( value
+                .replace( pattern, '' ) ) || valueState, currency ) } />
+    );
+};
 
-        const currencyDefaultValue =
-            Number( defaultValue.replace( /[^0-9\.-]/g, '' ) );
-        const currencyValue = Number( value.replace( /[^0-9\.-]/g, '' ) );
+CurrencyInput.propTypes =
+{
+    /**
+     *  Extra CSS class name
+     */
+    className    : PropTypes.string,
+    /**
+     *  CSS class map
+     */
+    cssMap       : PropTypes.objectOf( PropTypes.string ),
+    /**
+     *  Currency to display
+     */
+    currency     : PropTypes.oneOf( [ 'USD', 'EUR', 'GBP' ] ),
+    /**
+     *  Default input string value
+     */
+    defaultValue : PropTypes.string,
+    /**
+     *  Display as error/invalid
+     */
+    hasError     : PropTypes.bool,
+    /**
+     *  HTML id attribute
+     */
+    id           : PropTypes.string,
+    /**
+     *  Display as disabled
+     */
+    isDisabled   : PropTypes.bool,
+    /**
+     *  Display as read-only
+     */
+    isReadOnly   : PropTypes.bool,
+    /**
+     *  Blur callback function
+     */
+    onBlur       : PropTypes.func,
+    /**
+     *  Input change callback function
+     */
+    onChange     : PropTypes.func,
+    /**
+     *  Input click callback function
+     */
+    onClick      : PropTypes.func,
+    /**
+     *  Focus callback function
+     */
+    onFocus      : PropTypes.func,
+    /**
+     *  Key down callback function
+     */
+    onKeyDown    : PropTypes.func,
+    /**
+     *  Key press callback function
+     */
+    onKeyPress   : PropTypes.func,
+    /**
+     *  Key up callback function
+     */
+    onKeyUp      : PropTypes.func,
+    /**
+     *  Mouse out callback function
+     */
+    onMouseOut   : PropTypes.func,
+    /**
+     *  Mouse over  callback function
+     */
+    onMouseOver  : PropTypes.func,
+    /**
+     *  Placeholder text
+     */
+    placeholder  : PropTypes.string,
+    /**
+     *  Input text alignment
+     */
+    textAlign    : PropTypes.oneOf( [ 'left', 'right' ] ),
+    /**
+     *  Input string value
+     */
+    value        : PropTypes.string,
+};
 
-        return (
-            <TextInput
-                { ...this.props }
-                autoCapitalize = "off"
-                autoComplete   = "off"
-                autoCorrect    = "off"
-                defaultValue   = { currencyFormat( currencyDefaultValue,
-                    currency ) }
-                id             = { id }
-                onBlur         = { this.handleBlur }
-                onChange       = { this.handleChange }
-                spellCheck     = { false }
-                value          = { currencyFormat( currencyValue ||
-                    this.state.value, currency ) } />
-        );
-    }
-}
+CurrencyInput.defaultProps =
+{
+    className    : undefined,
+    cssMap       : undefined,
+    currency     : undefined,
+    defaultValue : '',
+    hasError     : false,
+    id           : undefined,
+    isDisabled   : false,
+    isReadOnly   : false,
+    onBlur       : undefined,
+    onChange     : undefined,
+    onClick      : undefined,
+    onFocus      : undefined,
+    onKeyDown    : undefined,
+    onKeyPress   : undefined,
+    onKeyUp      : undefined,
+    onMouseOut   : undefined,
+    onMouseOver  : undefined,
+    placeholder  : undefined,
+    textAlign    : 'left',
+    value        : '',
+};
+
+CurrencyInput.displayName = componentName;
+
+export default CurrencyInput;
