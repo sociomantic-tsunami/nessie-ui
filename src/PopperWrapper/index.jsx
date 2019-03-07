@@ -9,7 +9,7 @@
 
 /* global document, addEventListener, removeEventListener */
 
-import React, { useEffect, useRef }               from 'react';
+import React, { useCallback, useEffect, useRef }  from 'react';
 import ReactDOM                                   from 'react-dom';
 import { Manager, Reference, Popper }             from 'react-popper';
 import PropTypes                                  from 'prop-types';
@@ -54,14 +54,14 @@ const PopperWrapper = ( props ) =>
         }
     }, [ scheduleUpdateRef.current, isVisible, onClickOutside ] );
 
-    const handleClickOutSide = ( e ) =>
+    const handleClickOutSide = useCallback( ( e ) =>
     {
         if ( !( referenceRef.current.contains( e.target ) ||
                 popperRef.current.contains( e.target ) ) )
         {
             onClickOutside();
         }
-    };
+    }, [ onClickOutside ] );
 
     const offset = {
         'S'    : '8px',
@@ -74,7 +74,7 @@ const PopperWrapper = ( props ) =>
     return (
         <Manager>
             <Reference
-                innerRef  = { ( ref ) => referenceRef.current = ref } >
+                innerRef  = { ( ref ) => referenceRef.current = ref }>
                 { ( { ref } ) => (
                     <div ref = { ref }>
                         { children }
