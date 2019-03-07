@@ -1,6 +1,6 @@
 ## Component Description
 
-Am on/off switch.
+An on/off switch.
 
 
 ## Example Usage
