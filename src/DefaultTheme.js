@@ -221,10 +221,13 @@ export default {
         main : classNames.bind( spinnerClasses )( 'default' ),
         ...spinnerClasses,
     },
-    Switch : {
-        main : classNames.bind( switchClasses )( 'default' ),
+    Switch : props => ( {
+        main : classNames.bind( switchClasses )(
+            'default',
+            { 'disabled': props.isDisabled },
+        ),
         ...switchClasses,
-    },
+    } ),
     Tab : {
         main : classNames.bind( tabClasses )( 'default' ),
         ...tabClasses,
