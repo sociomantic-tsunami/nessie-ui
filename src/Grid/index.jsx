@@ -7,136 +7,123 @@
  *
  */
 
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                        from 'react';
+import PropTypes                    from 'prop-types';
 
-import ThemeContext     from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming';
-import { attachEvents } from '../utils';
+import { attachEvents, useTheme }   from '../utils';
 
 
+const componentName = 'Grid';
 
-export default class Grid extends React.Component
+const Grid = props =>
 {
-    static contextType = ThemeContext;
+    const {
+        autoCols,
+        autoRows,
+        children,
+        columns,
+        customColumns,
+        customRows,
+        rows,
+    } = props;
 
-    static propTypes =
-    {
-        /**
-         * Vertical alignment of the grid items
-         */
-        align : PropTypes.oneOf( [
-            'start',
-            'center',
-            'end',
-            'stretch',
-        ] ),
-        /**
-         * Defines the size of implicitly set columns
-         */
-        autoCols      : PropTypes.string,
-        /**
-         * Controls where to auto place new grid items if their place is
-         * undefined
-         */
-        autoFlow      : PropTypes.oneOf( [ 'row', 'col' ] ),
-        /**
-         * Defines the size of implicitly set rows
-         */
-        autoRows      : PropTypes.string,
-        /**
-         *  Grid content (Columns)
-         */
-        children      : PropTypes.node,
-        /**
-         *  CSS class name
-         */
-        className     : PropTypes.string,
-        /**
-         *  Column gap
-         */
-        columnGap     : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
-        /**
-         *  Number of columns - should be an integer > 0
-         */
-        columns       : PropTypes.number,
-        /**
-         *  CSS class map
-         */
-        cssMap        : PropTypes.objectOf( PropTypes.string ),
-        /**
-         *  Custom sizes of columns
-         */
-        customColumns : PropTypes.string,
-        /**
-         *  Custom sizes of rows
-         */
-        customRows    : PropTypes.string,
-        /**
-         * Horizontal alignment of the grid items
-         */
-        justify       : PropTypes.oneOf( [
-            'start',
-            'center',
-            'end',
-            'stretch',
-        ] ),
-        /**
-         *  Row gap
-         */
-        rowGap : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
-        /**
-         *  Number of rows - should be an integer > 0
-         */
-        rows   : PropTypes.number,
-    };
+    const cssMap = useTheme( componentName, props );
 
-    static defaultProps =
-    {
-        align         : 'stretch',
-        autoCols      : undefined,
-        autoFlow      : 'row',
-        autoRows      : undefined,
-        children      : undefined,
-        className     : undefined,
-        columnGap     : 'M',
-        columns       : undefined,
-        cssMap        : undefined,
-        customColumns : undefined,
-        customRows    : undefined,
-        justify       : 'stretch',
-        rowGap        : 'M',
-        rows          : undefined,
-    };
+    return (
+        <div
+            { ...attachEvents( props ) }
+            className = { cssMap.main }
+            style     = { {
+                gridAutoColumns     : autoCols,
+                gridAutoRows        : autoRows,
+                gridTemplateColumns : customColumns ||
+                    `repeat( ${columns}, 1fr )`,
+                gridTemplateRows : customRows || `repeat( ${rows}, 1fr )`,
+            } }>
+            { children }
+        </div>
+    );
+};
 
-    static displayName = 'Grid';
+Grid.propTypes =
+{
+    /**
+     * Vertical alignment of the grid items
+     */
+    align         : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
+    /**
+     * Defines the size of implicitly set columns
+     */
+    autoCols      : PropTypes.string,
+    /**
+     * Controls where to auto place new grid items if their place is
+     * undefined
+     */
+    autoFlow      : PropTypes.oneOf( [ 'row', 'col' ] ),
+    /**
+     * Defines the size of implicitly set rows
+     */
+    autoRows      : PropTypes.string,
+    /**
+     *  Grid content (Columns)
+     */
+    children      : PropTypes.node,
+    /**
+     *  CSS class name
+     */
+    className     : PropTypes.string,
+    /**
+     *  Column gap
+     */
+    columnGap     : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    /**
+     *  Number of columns - should be an integer > 0
+     */
+    columns       : PropTypes.number,
+    /**
+     *  CSS class map
+     */
+    cssMap        : PropTypes.objectOf( PropTypes.string ),
+    /**
+     *  Custom sizes of columns
+     */
+    customColumns : PropTypes.string,
+    /**
+     *  Custom sizes of rows
+     */
+    customRows    : PropTypes.string,
+    /**
+     * Horizontal alignment of the grid items
+     */
+    justify       : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
+    /**
+     *  Row gap
+     */
+    rowGap        : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    /**
+     *  Number of rows - should be an integer > 0
+     */
+    rows          : PropTypes.number,
+};
 
-    render()
-    {
-        const {
-            autoCols,
-            autoRows,
-            children,
-            columns,
-            cssMap = createCssMap( this.context.Grid, this.props ),
-            customColumns,
-            customRows,
-            rows,
-        } = this.props;
+Grid.defaultProps =
+{
+    align         : 'stretch',
+    autoCols      : undefined,
+    autoFlow      : 'row',
+    autoRows      : undefined,
+    children      : undefined,
+    className     : undefined,
+    columnGap     : 'M',
+    columns       : undefined,
+    cssMap        : undefined,
+    customColumns : undefined,
+    customRows    : undefined,
+    justify       : 'stretch',
+    rowGap        : 'M',
+    rows          : undefined,
+};
 
-        return (
-            <div
-                { ...attachEvents( this.props ) }
-                className = { cssMap.main }
-                style     = { {
-                    gridAutoColumns     : autoCols,
-                    gridAutoRows        : autoRows,
-                    gridTemplateColumns : customColumns ||
-                        `repeat( ${columns}, 1fr )`,
-                    gridTemplateRows : customRows || `repeat( ${rows}, 1fr )`,
-                } }>
-                { children }
-            </div>
-        );
-    }
-}
+Grid.displayName = componentName;
+
+export default Grid;

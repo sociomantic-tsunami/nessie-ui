@@ -34,11 +34,6 @@ const distConfig = merge( {}, baseConfig, {
             'commonjs2' : 'react-popper',
             'window'    : 'ReactPopper',
         },
-        componentDriver : {
-            commonjs  : 'nessie-ui/dist/componentDriver',
-            commonjs2 : 'nessie-ui/dist/componentDriver',
-            window    : 'ComponentDriver',
-        },
         lodash : {
             'commonjs'  : 'lodash',
             'commonjs2' : 'lodash',
@@ -79,11 +74,6 @@ components.module.rules[ 1 ].use[ 0 ] = {
     },
 };
 
-const componentDriver = merge( {}, distConfig, {
-    entry  : path.join( __dirname, '../src/Testing/index.js' ),
-    output : { filename: 'componentDriver.js' },
-} );
-
 const componentsJS = merge( {}, distConfig, {
     entry   : path.join( __dirname, '../src/index.js' ),
     output  : { filename: 'componentsJS.js' },
@@ -95,21 +85,8 @@ const componentsJS = merge( {}, distConfig, {
     ],
 } );
 
-const driverSuite = merge( {}, distConfig, {
-    entry   : path.join( __dirname, '../src/drivers.js' ),
-    output  : { filename: 'driverSuite.js' },
-    plugins : [
-        new MiniCssExtractPlugin( {
-            allChunks : true,
-            filename  : 'driverSuite.css',
-        } ),
-    ],
-} );
-
 
 module.exports = [
-    componentDriver,
     components,
     componentsJS,
-    driverSuite,
 ];

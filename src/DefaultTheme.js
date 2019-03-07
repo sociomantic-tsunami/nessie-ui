@@ -41,7 +41,6 @@ import textInputClasses          from './TextInput/textInput.css';
 import textInputWithIconClasses  from './TextInputWithIcon/textInputWithIcon.css';
 import timeInputClasses          from './DatePicker/timeInput.css';
 import tooltipClasses            from './Tooltip/tooltip.css';
-import withDropdownClasses       from './Addons/withDropdown/withDropdown.css';
 
 
 export default {
@@ -50,7 +49,6 @@ export default {
             'default',
             {
                 disabled    : props.isDisabled,
-                fakeHovered : props.forceHover,
                 loading     : props.isLoading && !props.isDisabled,
             },
             `iconPosition__${props.iconPosition}`,
@@ -76,7 +74,6 @@ export default {
             {
                 disabled    : props.isDisabled,
                 error       : !props.isDisabled && props.hasError,
-                fakeHovered : !props.isDisabled && props.forceHover,
             },
             props.className,
         ),
@@ -106,7 +103,6 @@ export default {
             'default',
             {
                 disabled    : props.isDisabled,
-                fakeHovered : props.forceHover,
                 selected    : props.isSelected,
             },
             `type__${props.type}`,
@@ -150,7 +146,6 @@ export default {
             {
                 background  : props.hasBackground,
                 disabled    : props.isDisabled,
-                fakeHovered : props.forceHover,
             },
             `role__${props.role}`,
             `size__${props.size}`,
@@ -329,7 +324,6 @@ export default {
     TimeInput : props => ( {
         main : classNames.bind( timeInputClasses )(
             'default',
-            { fakeHovered: props.forceHover },
             props.className,
         ),
         ...timeInputClasses,
@@ -343,14 +337,5 @@ export default {
             props.className,
         ),
         ...tooltipClasses,
-    } ),
-    withDropdown : props => ( {
-        main : classNames.bind( withDropdownClasses )(
-            'default',
-            { open: props.dropdownIsOpen },
-            `position__${props.dropdownPosition}`,
-            props.className,
-        ),
-        ...withDropdownClasses,
     } ),
 };

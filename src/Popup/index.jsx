@@ -7,48 +7,47 @@
  *
  */
 
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                      from 'react';
+import PropTypes                  from 'prop-types';
 
-import ThemeContext     from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming';
-import { attachEvents } from '../utils';
+import { attachEvents, useTheme } from '../utils';
 
-export default class Popup extends React.Component
+
+const componentName = 'Popup';
+
+const Popup = props =>
 {
-    static contextType = ThemeContext;
+    const { children } = props;
 
-    static propTypes = {
-        children  : PropTypes.node,
-        className : PropTypes.string,
-        cssMap    : PropTypes.objectOf( PropTypes.string ),
-        hasError  : PropTypes.bool,
-        padding   : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
-        size      : PropTypes.oneOf( [ 'content', 'default' ] ),
-    };
+    const cssMap = useTheme( componentName, props );
 
-    static defaultProps = {
-        children  : undefined,
-        className : undefined,
-        cssMap    : undefined,
-        hasError  : false,
-        padding   : 'none',
-        size      : 'default',
-    };
+    return (
+        <div
+            { ...attachEvents( props ) }
+            className = { cssMap.main }>
+            { children }
+        </div>
+    );
+};
 
-    static displayName = 'Popup';
+Popup.propTypes = {
+    children  : PropTypes.node,
+    className : PropTypes.string,
+    cssMap    : PropTypes.objectOf( PropTypes.string ),
+    hasError  : PropTypes.bool,
+    padding   : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    size      : PropTypes.oneOf( [ 'content', 'default' ] ),
+};
 
-    render()
-    {
-        const {
-            children,
-            cssMap = createCssMap( this.context.Popup, this.props ),
-        } = this.props;
+Popup.defaultProps = {
+    children  : undefined,
+    className : undefined,
+    cssMap    : undefined,
+    hasError  : false,
+    padding   : 'none',
+    size      : 'default',
+};
 
-        return (
-            <div { ...attachEvents( this.props ) } className = { cssMap.main }>
-                { children }
-            </div>
-        );
-    }
-}
+Popup.displayName = componentName;
+
+export default Popup;
