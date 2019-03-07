@@ -224,7 +224,7 @@ export default {
     Switch : props => ( {
         main : classNames.bind( switchClasses )(
             'default',
-            { 'disabled': props.isDisabled },
+            { disabled: props.isDisabled },
         ),
         ...switchClasses,
     } ),

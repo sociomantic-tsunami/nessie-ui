@@ -26,8 +26,6 @@ const Switch = props =>
         isDefaultChecked,
         isDisabled,
         label,
-        onMouseOut,
-        onMouseOver,
     } = props;
 
     const cssMap = useTheme( componentName, props );
@@ -35,11 +33,9 @@ const Switch = props =>
 
     return (
         <div
-            className    = { cssMap.main }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }>
+            { ...attachEvents( props ) }
+            className = { cssMap.main }>
             <input
-                { ...attachEvents( props ) }
                 checked        = { isChecked }
                 className      = { cssMap.input }
                 disabled       = { isDisabled }
@@ -65,10 +61,6 @@ Switch.propTypes =
      */
     cssMap           : PropTypes.objectOf( PropTypes.string ),
     /**
-     * Display as hover when required from another component
-     */
-    forceHover       : PropTypes.bool,
-    /**
      * HTML id attribute
      */
     id               : PropTypes.string,
@@ -89,23 +81,23 @@ Switch.propTypes =
      */
     label            : PropTypes.string,
     /**
-     * onBlur callback function: ( e ) => { ... }
+     * onBlur callback function: () => { ... }
      */
     onBlur           : PropTypes.func,
     /**
-     * onChange callback function: ( e ) => { ... }
+     * onChange callback function: () => { ... }
      */
     onChange         : PropTypes.func,
     /**
-     *  onFocus callback function: ( e ) => { ... }
+     *  onFocus callback function: ( { isChecked } ) => { ... }
      */
     onFocus          : PropTypes.func,
     /**
-     *  onMouseOut callback function: ( e ) => { ... }
+     *  onMouseOut callback function: () => { ... }
      */
     onMouseOut       : PropTypes.func,
     /**
-     *  onMouseOver callback function: ( e ) => { ... }
+     *  onMouseOver callback function: () => { ... }
      */
     onMouseOver      : PropTypes.func,
 };
@@ -114,7 +106,6 @@ Switch.defaultProps =
 {
     className        : undefined,
     cssMap           : undefined,
-    forceHover       : false,
     id               : undefined,
     isChecked        : undefined,
     isDefaultChecked : undefined,

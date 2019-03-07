@@ -1,11 +1,10 @@
-Component Description
----------------------
+## Component Description
 
-A Nessie Switch is a single Switch button. It consists of a (hidden) native `<input type="checkbox">` and a `<label>` styled to replace the native input.
+Am on/off switch.
 
 
-Example Usage
--------------
+## Example Usage
 
-    <Switch isChecked = { false }
-            isDisabled= { false } />
+```
+<Switch isChecked = { false } isDisabled= { false } />
+```
