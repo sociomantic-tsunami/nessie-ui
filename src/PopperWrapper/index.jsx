@@ -41,6 +41,17 @@ const PopperWrapper = ( props ) =>
     const containerEl = useMemo( () => document.getElementById( container ),
         [ container ] );
 
+    const offset = useMemo( () =>
+        (
+            {
+                'S'    : '8px',
+                'M'    : '16px',
+                'L'    : '24px',
+                'XL'   : '32px',
+                'none' : undefined,
+            }[ popperOffset ]
+        ), [ popperOffset ] );
+
     useEffect( () =>
     {
         if ( isVisible && scheduleUpdateRef.current )
@@ -71,16 +82,9 @@ const PopperWrapper = ( props ) =>
         }
     }, [ onClickOutside ] );
 
-    const offset = {
-        'S'    : '8px',
-        'M'    : '16px',
-        'L'    : '24px',
-        'XL'   : '32px',
-        'none' : undefined,
-    }[ popperOffset ];
-
     let popup = (
         <Popper
+            key       = { offset }
             placement = { popperPosition }
             innerRef  = { ( ref ) => popperRef.current = ref }
             modifiers = { offset ? {
