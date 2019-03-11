@@ -100,8 +100,11 @@
         &:focus
         {
             opacity:    1;
+            svg
+            {
+                color:  var( --PC-WHITE );
+            }
         }
-
         svg
         {
             color:  var( --PC-WHITE );
