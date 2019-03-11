@@ -9,10 +9,15 @@
 
 /* global document, addEventListener, removeEventListener */
 
-import React, { useCallback, useEffect, useRef }  from 'react';
-import ReactDOM                                   from 'react-dom';
-import { Manager, Reference, Popper }             from 'react-popper';
-import PropTypes                                  from 'prop-types';
+import React, {
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+}                                         from 'react';
+import ReactDOM                           from 'react-dom';
+import { Manager, Reference, Popper }     from 'react-popper';
+import PropTypes                          from 'prop-types';
 
 const componentName = 'PopperWrapper';
 
@@ -32,6 +37,9 @@ const PopperWrapper = ( props ) =>
     const referenceRef      = useRef();
     const popperRef         = useRef();
     const scheduleUpdateRef = useRef();
+
+    const containerEl = useMemo( () => document.getElementById( container ),
+        [ container ] );
 
     useEffect( () =>
     {
@@ -71,6 +79,34 @@ const PopperWrapper = ( props ) =>
         'none' : undefined,
     }[ popperOffset ];
 
+    let popup = (
+        <Popper
+            placement = { popperPosition }
+            innerRef  = { ( ref ) => popperRef.current = ref }
+            modifiers = { offset ? {
+                offset : {
+                    offset : `0, ${offset}`,
+                },
+            } : offset }>
+            { ( { ref, style, scheduleUpdate } ) =>
+            {
+                scheduleUpdateRef.current = scheduleUpdate;
+
+                return (
+                    <div
+                        ref   = { ref }
+                        style = { matchRefWidth ? {
+                            'width' : referenceRef.current
+                                .clientWidth,
+                            ...style,
+                        } : style }>
+                        { popper }
+                    </div> );
+            } }
+        </Popper> );
+
+    popup = containerEl ? ReactDOM.createPortal( popup, containerEl ) : popup;
+
     return (
         <Manager>
             <Reference
@@ -81,37 +117,10 @@ const PopperWrapper = ( props ) =>
                     </div>
                 ) }
             </Reference>
-            { isVisible && ReactDOM.createPortal(
-                <Popper
-                    placement = { popperPosition }
-                    innerRef  = { ( ref ) => popperRef.current = ref }
-                    modifiers = { offset ? {
-                        offset : {
-                            offset : `0, ${offset}`,
-                        },
-                    } : offset }>
-                    { ( { ref, style, scheduleUpdate } ) =>
-                    {
-                        scheduleUpdateRef.current = scheduleUpdate;
-
-                        return (
-                            <div
-                                ref   = { ref }
-                                style = { matchRefWidth ? {
-                                    'width' : referenceRef.current
-                                        .clientWidth,
-                                    ...style,
-                                } : style }>
-                                { popper }
-                            </div> );
-                    } }
-                </Popper>,
-                document.getElementById( container ) || document.body,
-            ) }
+            { isVisible && popup }
         </Manager>
     );
 };
-
 
 PopperWrapper.propTypes =
 {
@@ -168,7 +177,7 @@ PopperWrapper.propTypes =
 PopperWrapper.defaultProps =
 {
     children       : undefined,
-    container      : undefined,
+    container      : 'nessie-overlay',
     isVisible      : false,
     matchRefWidth  : undefined,
     onClickOutside : undefined,

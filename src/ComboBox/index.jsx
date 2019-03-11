@@ -144,7 +144,7 @@ const ComboBox = props =>
     const scrollBoxRef = useRef( null );
 
     const {
-        container,
+        popperContainer,
         defaultValue,
         dropdownPlaceholder,
         hasError,
@@ -538,12 +538,12 @@ const ComboBox = props =>
 
     return (
         <PopperWrapper
-            container      = { container || 'nessie-overlay' }
-            isVisible      = { isOpen }
+            popperContainer = { popperContainer }
+            isVisible       = { isOpen }
             matchRefWidth
-            popper         = { popperPopup }
-            popperOffset   = "S"
-            popperPosition = "bottom">
+            popper          = { popperPopup }
+            popperOffset    = "S"
+            popperPosition  = "bottom">
             { popperChildren }
         </PopperWrapper>
     );
@@ -565,7 +565,7 @@ ComboBox.propTypes =
     /**
      *  id of the DOM element used as container for popup listBox
      */
-    container           : PropTypes.string,
+    popperContainer     : PropTypes.string,
     /**
      * Placeholder text to show when no dropdown list options
      */
@@ -625,7 +625,7 @@ ComboBox.propTypes =
 ComboBox.defaultProps =
 {
     className           : undefined,
-    container           : undefined,
+    popperContainer     : undefined,
     defaultValue        : undefined,
     dropdownPlaceholder : 'No results to show',
     hasError            : false,

@@ -508,7 +508,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
 
     const {
         className,
-        container,
+        popperContainer,
         format,
         hasError,
         hourPlaceholder,
@@ -580,12 +580,12 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
 
     return (
         <PopperWrapper
-            container      = { container || 'nessie-overlay' }
-            isVisible      = { isOpen }
-            onClickOutside = { close }
-            popper         = { popperPopup }
-            popperOffset   = "S"
-            popperPosition = "bottom-start">
+            popperContainer = { popperContainer }
+            isVisible       = { isOpen }
+            onClickOutside  = { close }
+            popper          = { popperPopup }
+            popperOffset    = "S"
+            popperPosition  = "bottom-start">
             { popperChildren }
         </PopperWrapper>
     );
@@ -600,7 +600,7 @@ DateTimeInput.propTypes =
     /**
      *  id of the DOM element used as container for popup datepicker
      */
-    container         : PropTypes.string,
+    popperContainer   : PropTypes.string,
     /**
      *  Date time format
      */
@@ -658,7 +658,7 @@ DateTimeInput.propTypes =
 DateTimeInput.defaultProps =
 {
     className         : undefined,
-    container         : undefined,
+    popperContainer   : undefined,
     format            : undefined,
     hasError          : false,
     hourPlaceholder   : undefined,
