@@ -1,16 +1,23 @@
-const path = require( 'path' );
-
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const UglifyJsPlugin       = require( 'uglifyjs-webpack-plugin' );
+
+
+const paths = require( './paths' );
 
 
 const localIdentName = process.env.REACT_WEBPACK_ENV === 'dev' ?
     '[name]__[local]__[hash:base64:5]' : '[name]__[local]';
 
-module.exports = {
-    output  : { path: path.join( __dirname, '../dist' ) },
+module.exports = ( options = {} ) => ( {
+    mode   : options.mode,
+    entry  : options.entry || paths.index,
+    output : {
+        path : paths.dist,
+        ...options.output,
+    },
     resolve : {
         extensions : [ '.js', '.json', '.jsx' ],
-        modules    : [ path.join( __dirname, '../node_modules' ) ],
+        modules    : [ paths.src, paths.nodeModules ],
     },
     module : {
         rules : [
@@ -21,7 +28,12 @@ module.exports = {
             {
                 test : /\.css$/,
                 use  : [
-                    MiniCssExtractPlugin.loader,
+                    !options.inline ? MiniCssExtractPlugin.loader : {
+                        loader  : 'style-loader',
+                        options : {
+                            insertAt : 'top',
+                        },
+                    },
                     {
                         loader  : 'css-loader',
                         options :
@@ -54,4 +66,22 @@ module.exports = {
             },
         ],
     },
-};
+    optimization : {
+        minimize  : options.mode === 'production',
+        minimizer : [
+            new UglifyJsPlugin( {
+                cache     : true,
+                parallel  : true,
+                sourceMap : true,
+            } ),
+        ],
+    },
+    externals : options.externals,
+    plugins   : [
+        !options.inline && new MiniCssExtractPlugin( {
+            allChunks : true,
+            filename  : 'styles.css',
+        } ),
+    ].filter( Boolean ),
+    devtool : options.mode === 'production' ? 'source-map' : 'eval',
+} );

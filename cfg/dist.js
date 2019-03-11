@@ -1,18 +1,16 @@
-const path                 = require( 'path' );
-
-const { merge }            = require( 'lodash' );
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const UglifyJsPlugin       = require( 'uglifyjs-webpack-plugin' );
-
-const baseConfig           = require( './base' );
+const paths      = require( './paths' );
+const baseConfig = require( './base' );
 
 
 /* webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production */
-
-const distConfig = merge( {}, baseConfig, {
-    output : { libraryTarget: 'umd' },
-
-    devtool   : 'source-map',
+const distConfig = ( options = {} ) => baseConfig( {
+    mode   : 'production',
+    entry  : paths.index,
+    output : {
+        libraryTarget : 'umd',
+        filename      : options.outputFilename || 'index.js',
+    },
+    inline    : options.inline,
     externals : {
         'feather-icons' : {
             commonjs  : 'feather-icons',
@@ -50,41 +48,17 @@ const distConfig = merge( {}, baseConfig, {
             window    : 'React',
         },
     },
-    mode         : 'production',
-    optimization : {
-        minimizer : [
-            new UglifyJsPlugin( {
-                cache     : true,
-                parallel  : true,
-                sourceMap : true,
-            } ),
-        ],
-    },
 } );
 
-const components = merge( {}, distConfig, {
-    entry   : path.join( __dirname, '../src/index.js' ),
-    output  : { filename: 'index.js' },
-    plugins : [],
-} );
-components.module.rules[ 1 ].use[ 0 ] = {
-    loader  : 'style-loader',
-    options : {
-        insertAt : 'top',
-    },
-};
-
-const componentsJS = merge( {}, distConfig, {
-    entry   : path.join( __dirname, '../src/index.js' ),
-    output  : { filename: 'componentsJS.js' },
-    plugins : [
-        new MiniCssExtractPlugin( {
-            allChunks : true,
-            filename  : 'styles.css',
-        } ),
-    ],
+const components = distConfig( {
+    inline         : true,
+    outputFilename : 'index.js',
 } );
 
+const componentsJS = distConfig( {
+    inline         : false,
+    outputFilename : 'componentsJS.js',
+} );
 
 module.exports = [
     components,
