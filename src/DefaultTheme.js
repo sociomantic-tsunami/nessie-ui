@@ -29,6 +29,7 @@ import progressBarClasses        from './ProgressBar/progressBar.css';
 import scrollBarClasses          from './ScrollBar/scrollBar.css';
 import scrollBoxClasses          from './ScrollBox/scrollBox.css';
 import spinnerClasses            from './Spinner/spinner.css';
+import switchClasses             from './Switch/switch.css';
 import tabButtonClasses          from './TabButton/tabButton.css';
 import tabClasses                from './Tab/tab.css';
 import tabsClasses               from './Tabs/tabs.css';
@@ -220,6 +221,13 @@ export default {
         main : classNames.bind( spinnerClasses )( 'default' ),
         ...spinnerClasses,
     },
+    Switch : props => ( {
+        main : classNames.bind( switchClasses )(
+            'default',
+            { disabled: props.isDisabled },
+        ),
+        ...switchClasses,
+    } ),
     Tab : {
         main : classNames.bind( tabClasses )( 'default' ),
         ...tabClasses,
