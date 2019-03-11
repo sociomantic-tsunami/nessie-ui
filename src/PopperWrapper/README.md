@@ -13,7 +13,7 @@ popup always at the bottom of the `<body>` of your app ( in order to avoid
 conflicts / overlaps with some other stuff ) you can add an extra div with
 "nessie-overlay" as id ( `<div id="nessie-overlay>` ) at the bottom of the
 `<body>`, if this div exists _PopperWrapper_ will always render the popup inside
-it ( as long as `container` prop is undefined ).
+it ( as long as `container` prop keeps its default value ).
 
 ## Example Usage
 
