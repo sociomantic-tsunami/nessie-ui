@@ -48,8 +48,8 @@ export default {
         main : classNames.bind( buttonClasses )(
             'default',
             {
-                disabled    : props.isDisabled,
-                loading     : props.isLoading && !props.isDisabled,
+                disabled : props.isDisabled,
+                loading  : props.isLoading && !props.isDisabled,
             },
             `iconPosition__${props.iconPosition}`,
             `role__${props.role}`,
@@ -72,8 +72,8 @@ export default {
         main : classNames.bind( checkboxClasses )(
             'default',
             {
-                disabled    : props.isDisabled,
-                error       : !props.isDisabled && props.hasError,
+                disabled : props.isDisabled,
+                error    : !props.isDisabled && props.hasError,
             },
             props.className,
         ),
@@ -102,8 +102,8 @@ export default {
         main : classNames.bind( datePickerItemClasses )(
             'default',
             {
-                disabled    : props.isDisabled,
-                selected    : props.isSelected,
+                disabled : props.isDisabled,
+                selected : props.isSelected,
             },
             `type__${props.type}`,
             props.className,
@@ -144,8 +144,8 @@ export default {
         main : classNames.bind( iconButtonClasses )(
             'default',
             {
-                background  : props.hasBackground,
-                disabled    : props.isDisabled,
+                background : props.hasBackground,
+                disabled   : props.isDisabled,
             },
             `role__${props.role}`,
             `size__${props.size}`,
