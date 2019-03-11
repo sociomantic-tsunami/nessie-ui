@@ -9,10 +9,15 @@
 
 /* global document, addEventListener, removeEventListener */
 
-import React, { useCallback, useEffect, useRef }  from 'react';
-import ReactDOM                                   from 'react-dom';
-import { Manager, Reference, Popper }             from 'react-popper';
-import PropTypes                                  from 'prop-types';
+import React, {
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+}                                         from 'react';
+import ReactDOM                           from 'react-dom';
+import { Manager, Reference, Popper }     from 'react-popper';
+import PropTypes                          from 'prop-types';
 
 const componentName = 'PopperWrapper';
 
@@ -32,6 +37,9 @@ const PopperWrapper = ( props ) =>
     const referenceRef      = useRef();
     const popperRef         = useRef();
     const scheduleUpdateRef = useRef();
+
+    const containerEl = useMemo( () => document.getElementById( container ),
+        [ container ] );
 
     useEffect( () =>
     {
@@ -97,13 +105,7 @@ const PopperWrapper = ( props ) =>
             } }
         </Popper> );
 
-    if ( document.getElementById( container ) )
-    {
-        popup = ReactDOM.createPortal(
-            popup,
-            document.getElementById( container ),
-        );
-    }
+    popup = containerEl ? ReactDOM.createPortal( popup, containerEl ) : popup;
 
     return (
         <Manager>

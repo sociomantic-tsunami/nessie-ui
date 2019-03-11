@@ -12,6 +12,9 @@ but not limited to:
 The implementation of the above is determined by the event handling behavior
 provided by the consumer in the host app.
 
+it uses _PopperWrapper_ for rendering the dropdown list ( see _PopperWrapper_
+README.md for more info ).
+
 ## Recommended Implementations (WIP)
 
 The following recommendations are based on [WAI-ARIA Authoring Practices 1.1](https://w3c.github.io/aria-practices/#combobox)

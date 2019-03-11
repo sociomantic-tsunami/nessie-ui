@@ -89,7 +89,7 @@ const TagInput = forwardRef( ( props, ref ) =>
 
     const {
         children,
-        container,
+        popperContainer,
         hasError,
         isDisabled,
         isReadOnly,
@@ -357,12 +357,12 @@ const TagInput = forwardRef( ( props, ref ) =>
 
     return (
         <PopperWrapper
-            container      = { container }
-            isVisible      = { listBoxOptions.length > 0 && isOpen }
+            popperContainer = { popperContainer }
+            isVisible       = { listBoxOptions.length > 0 && isOpen }
             matchRefWidth
-            popper         = { popperPopup }
-            popperOffset   = "S"
-            popperPosition = "bottom">
+            popper          = { popperPopup }
+            popperOffset    = "S"
+            popperPosition  = "bottom">
             { popperChildren }
         </PopperWrapper>
     );
@@ -373,72 +373,72 @@ TagInput.propTypes =
     /**
      * Node containing Tag components ( overrides value prop )
      */
-    children     : PropTypes.node,
+    children        : PropTypes.node,
     /**
      *  CSS class name
      */
-    className    : PropTypes.string,
+    className       : PropTypes.string,
     /**
      *  id of the DOM element used as container for popup listbox
      */
-    container    : PropTypes.string,
+    popperContainer : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap       : PropTypes.objectOf( PropTypes.string ),
+    cssMap          : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Initial value (when component is uncontrolled)
      */
-    defaultValue : PropTypes.arrayOf( PropTypes.string ),
+    defaultValue    : PropTypes.arrayOf( PropTypes.string ),
     /**
      *  Display as error/invalid
      */
-    hasError     : PropTypes.bool,
+    hasError        : PropTypes.bool,
     /**
      *  Component id
      */
-    id           : PropTypes.string,
+    id              : PropTypes.string,
     /**
      *  Display as disabled
      */
-    isDisabled   : PropTypes.bool,
+    isDisabled      : PropTypes.bool,
     /**
      *  Display as read-only
      */
-    isReadOnly   : PropTypes.bool,
+    isReadOnly      : PropTypes.bool,
     /**
      *  Change callback function
      */
-    onChange     : PropTypes.func,
+    onChange        : PropTypes.func,
     /**
      *  Placeholder text
      */
-    placeholder  : PropTypes.string,
+    placeholder     : PropTypes.string,
     /**
      *  Tag suggestions
      */
-    suggestions  : PropTypes.arrayOf( PropTypes.string ),
+    suggestions     : PropTypes.arrayOf( PropTypes.string ),
     /**
      * Array of strings to build Tag components
      */
-    value        : PropTypes.arrayOf( PropTypes.string ),
+    value           : PropTypes.arrayOf( PropTypes.string ),
 };
 
 TagInput.defaultProps =
 {
-    children     : undefined,
-    className    : undefined,
-    container    : undefined,
-    cssMap       : undefined,
-    defaultValue : undefined,
-    hasError     : false,
-    id           : undefined,
-    isDisabled   : false,
-    isReadOnly   : false,
-    onChange     : undefined,
-    placeholder  : undefined,
-    suggestions  : undefined,
-    value        : undefined,
+    children        : undefined,
+    className       : undefined,
+    popperContainer : undefined,
+    cssMap          : undefined,
+    defaultValue    : undefined,
+    hasError        : false,
+    id              : undefined,
+    isDisabled      : false,
+    isReadOnly      : false,
+    onChange        : undefined,
+    placeholder     : undefined,
+    suggestions     : undefined,
+    value           : undefined,
 };
 
 TagInput.displayName = componentName;
