@@ -183,12 +183,12 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         focus : () => inputRef.current.focus(),
     } ) );
 
-    const [ editingHourInputValue, setEditingHourInputValue ] =
-        useState( undefined );
+    // const [ editingHourInputValue, setEditingHourInputValue ] =
+    //     useState( undefined );
     const [ editingMainInputValue, setEditingMainInputValue ] =
         useState( undefined );
-    const [ editingMinuteInputValue, setEditingMinuteInputValue ] =
-        useState( undefined );
+    // const [ editingMinuteInputValue, setEditingMinuteInputValue ] =
+    //     useState( undefined );
     const [ gridStartTimestamp, setGridStartTimestamp ] = useState( undefined );
     const [ timestamp, setTimestamp ] = useTimestamp( undefined, props.value );
 
@@ -268,86 +268,86 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             newTimestamp = props.max;
         }
 
-        setEditingHourInputValue( !value ? undefined : formatHours( value ) );
+        // setEditingHourInputValue( !value ? undefined : formatHours( value ) );
         setEditingMainInputValue( !value ? undefined : value );
-        setEditingMinuteInputValue( !value ? undefined :
-            formatMinutes( value ) );
+        // setEditingMinuteInputValue( !value ? undefined :
+        //     formatMinutes( value ) );
         setTimestamp( !value ? undefined : newTimestamp );
     }, [ props.format, props.max, props.min, timestamp ] );
 
 
-    const handleChangeHour = useCallback( ( { value } ) =>
-    {
-        const trimmed = value.trim().replace( /\s+/g, ' ' );
-        let digits = Number( trimmed );
-
-        setEditingHourInputValue( value );
-
-        if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 23 )
-        {
-            const newTimestamp = $m( timestamp ).set( 'hour', digits )
-                .valueOf();
-
-            setTimestamp( newTimestamp );
-            setEditingMainInputValue( formatDateTime(
-                newTimestamp,
-                props.format || setPrecision( props.mode ),
-            ) );
-        }
-        else
-        {
-            digits = _.isNumber( timestamp ) && $m( timestamp ).hour();
-
-            if ( !_.isNaN( digits ) )
-            {
-                const newTimestamp = $m( timestamp ).set( 'hour', digits )
-                    .valueOf();
-
-                setTimestamp( newTimestamp );
-                setEditingMainInputValue( formatDateTime(
-                    newTimestamp,
-                    props.format || setPrecision( props.mode ),
-                ) );
-            }
-        }
-    }, [ props.format, props.mode, timestamp ] );
-
-
-    const handleChangeMinute = useCallback( ( { value } ) =>
-    {
-        const trimmed = value.trim().replace( /\s+/g, ' ' );
-        let digits = Number( trimmed );
-
-        setEditingMinuteInputValue( value );
-
-        if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 59 )
-        {
-            const newTimestamp = $m( timestamp ).set( 'minute', digits )
-                .valueOf();
-
-            setTimestamp( newTimestamp );
-            setEditingMainInputValue( formatDateTime(
-                newTimestamp,
-                props.format || setPrecision( props.mode ),
-            ) );
-        }
-        else
-        {
-            digits = _.isNumber( timestamp ) && $m( timestamp ).minute();
-
-            if ( !_.isNaN( digits ) )
-            {
-                const newTimestamp = $m( timestamp ).set( 'minute', digits )
-                    .valueOf();
-
-                setTimestamp( newTimestamp );
-                setEditingMainInputValue( formatDateTime(
-                    newTimestamp,
-                    props.format || setPrecision( props.mode ),
-                ) );
-            }
-        }
-    }, [ props.format, props.mode, timestamp ] );
+    // const handleChangeHour = useCallback( ( { value } ) =>
+    // {
+    //     const trimmed = value.trim().replace( /\s+/g, ' ' );
+    //     let digits = Number( trimmed );
+    //
+    //     setEditingHourInputValue( value );
+    //
+    //     if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 23 )
+    //     {
+    //         const newTimestamp = $m( timestamp ).set( 'hour', digits )
+    //             .valueOf();
+    //
+    //         setTimestamp( newTimestamp );
+    //         setEditingMainInputValue( formatDateTime(
+    //             newTimestamp,
+    //             props.format || setPrecision( props.mode ),
+    //         ) );
+    //     }
+    //     else
+    //     {
+    //         digits = _.isNumber( timestamp ) && $m( timestamp ).hour();
+    //
+    //         if ( !_.isNaN( digits ) )
+    //         {
+    //             const newTimestamp = $m( timestamp ).set( 'hour', digits )
+    //                 .valueOf();
+    //
+    //             setTimestamp( newTimestamp );
+    //             setEditingMainInputValue( formatDateTime(
+    //                 newTimestamp,
+    //                 props.format || setPrecision( props.mode ),
+    //             ) );
+    //         }
+    //     }
+    // }, [ props.format, props.mode, timestamp ] );
+    //
+    //
+    // const handleChangeMinute = useCallback( ( { value } ) =>
+    // {
+    //     const trimmed = value.trim().replace( /\s+/g, ' ' );
+    //     let digits = Number( trimmed );
+    //
+    //     setEditingMinuteInputValue( value );
+    //
+    //     if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 59 )
+    //     {
+    //         const newTimestamp = $m( timestamp ).set( 'minute', digits )
+    //             .valueOf();
+    //
+    //         setTimestamp( newTimestamp );
+    //         setEditingMainInputValue( formatDateTime(
+    //             newTimestamp,
+    //             props.format || setPrecision( props.mode ),
+    //         ) );
+    //     }
+    //     else
+    //     {
+    //         digits = _.isNumber( timestamp ) && $m( timestamp ).minute();
+    //
+    //         if ( !_.isNaN( digits ) )
+    //         {
+    //             const newTimestamp = $m( timestamp ).set( 'minute', digits )
+    //                 .valueOf();
+    //
+    //             setTimestamp( newTimestamp );
+    //             setEditingMainInputValue( formatDateTime(
+    //                 newTimestamp,
+    //                 props.format || setPrecision( props.mode ),
+    //             ) );
+    //         }
+    //     }
+    // }, [ props.format, props.mode, timestamp ] );
 
     const handleOnBlur = useCallback( () =>
     {
@@ -477,9 +477,9 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
 
     const purgeEdits = useCallback( () =>
     {
-        setEditingHourInputValue( undefined );
+        // setEditingHourInputValue( undefined );
         setEditingMainInputValue( undefined );
-        setEditingMinuteInputValue( undefined );
+        // setEditingMinuteInputValue( undefined );
     }, [] );
 
 
@@ -511,11 +511,9 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         popperContainer,
         format,
         hasError,
-        hourPlaceholder,
         id,
         inputPlaceholder,
         isDisabled,
-        minutePlaceholder,
         mode,
     } = props;
 
@@ -524,7 +522,6 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             hasTimeInput    = { mode === 'default' }
             headers         = { mode !== 'month' && DAY_LABELS }
             hourIsReadOnly  = { !canEditHourOrMinute() }
-            hourPlaceholder = { hourPlaceholder }
             hourValue       = { editingHourInputValue ||
                 formatHours( timestamp )
             }
@@ -533,15 +530,12 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
                 monthMatrix() : dayMatrix()
             }
             minuteIsReadOnly  = { !canEditHourOrMinute() }
-            minutePlaceholder = { minutePlaceholder }
             minuteValue       = { editingMinuteInputValue ||
                 formatMinutes( timestamp )
             }
             mode           = { mode }
             month          = { mode !== 'month' && monthLabel }
             nextIsDisabled = { !canGotoNext() }
-            onChangeHour   = { handleChangeHour }
-            onChangeMinute = { handleChangeMinute }
             onClickItem    = { handleClickCell }
             onClickNext    = { handleClickNext }
             onClickPrev    = { handleClickPrev }
@@ -596,82 +590,72 @@ DateTimeInput.propTypes =
     /**
      *  Extra CSS class name
      */
-    className         : PropTypes.string,
+    className        : PropTypes.string,
     /**
      *  id of the DOM element used as container for popup datepicker
      */
-    popperContainer   : PropTypes.string,
+    popperContainer  : PropTypes.string,
     /**
      *  Date time format
      */
-    format            : PropTypes.string,
+    format           : PropTypes.string,
     /**
      *  Display as error/invalid
      */
-    hasError          : PropTypes.bool,
-    /**
-     *  Hour input placeholder text
-     */
-    hourPlaceholder   : PropTypes.string,
+    hasError         : PropTypes.bool,
     /**
      *  Component id
      */
-    id                : PropTypes.string,
+    id               : PropTypes.string,
     /**
      *  Main input placeholder text
      */
-    inputPlaceholder  : PropTypes.string,
+    inputPlaceholder : PropTypes.string,
     /**
      *  Display as disabled
      */
-    isDisabled        : PropTypes.bool,
+    isDisabled       : PropTypes.bool,
     /**
      *  Display as read-only
      */
-    isReadOnly        : PropTypes.bool,
+    isReadOnly       : PropTypes.bool,
     /**
      *  Maximum timestamp selectable
      */
-    max               : PropTypes.number,
+    max              : PropTypes.number,
     /**
      *  Minimum timestamp selectable
      */
-    min               : PropTypes.number,
-    /**
-     *  Minute input placeholder text
-     */
-    minutePlaceholder : PropTypes.string,
+    min              : PropTypes.number,
     /**
      *  Picker mode
      */
-    mode              : PropTypes.oneOf( [ 'default', 'date', 'month' ] ),
+    mode             : PropTypes.oneOf( [ 'default', 'date', 'month' ] ),
     /**
      *  Change callback: ( { value } ) => ...
      */
-    onChange          : PropTypes.func,
+    onChange         : PropTypes.func,
     /**
      *  Selected timestamp
      */
-    value             : PropTypes.number,
+    value            : PropTypes.number,
 };
 
 DateTimeInput.defaultProps =
 {
-    className         : undefined,
-    popperContainer   : undefined,
-    format            : undefined,
-    hasError          : false,
-    hourPlaceholder   : undefined,
-    id                : undefined,
-    inputPlaceholder  : undefined,
-    isDisabled        : false,
-    isReadOnly        : false,
-    max               : undefined,
-    min               : undefined,
-    minutePlaceholder : undefined,
-    mode              : 'default',
-    onChange          : undefined,
-    value             : undefined,
+    className        : undefined,
+    popperContainer  : undefined,
+    format           : undefined,
+    hasError         : false,
+    id               : undefined,
+    inputPlaceholder : undefined,
+    isDisabled       : false,
+    isReadOnly       : false,
+    max              : undefined,
+    min              : undefined,
+    mode             : 'default',
+    onChange         : undefined,
+    value            : undefined,
 };
 
 DateTimeInput.displayName = componentName;

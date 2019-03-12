@@ -7,35 +7,59 @@
  *
  */
 
-import React        from 'react';
-import PropTypes    from 'prop-types';
+import React, { useState }  from 'react';
+import PropTypes            from 'prop-types';
 
-import {
-    createEventHandler,
-    useTheme,
-} from '../utils';
+import { useTheme }         from '../utils';
 
 
 const componentName = 'TimeInput';
 
 const TimeInput = props =>
 {
+    const [ hourValue, setHourValue ] = useState( undefined );
+    const [ minuteValue, setMinuteValue ] = useState( undefined );
+
     const cssMap = useTheme( componentName, props );
+
+
+    const handleChangeHour = ( e ) =>
+    {
+        const { value } = e.target;
+        const { onChangeHour } = props;
+
+        if ( onChangeHour )
+        {
+            onChangeHour( value );
+        }
+
+        setHourValue( value );
+    };
+
+    const handleChangeMinute = ( e ) =>
+    {
+        const { value } = e.target;
+        const { onChangeMinute } = props;
+
+        if ( onChangeMinute )
+        {
+            onChangeMinute( value );
+        }
+
+        setMinuteValue( value );
+    };
+
 
     const {
         hourIsDisabled,
         hourIsReadOnly,
         hourPlaceholder,
-        hourValue,
         id,
         isDisabled,
         isReadOnly,
         minuteIsDisabled,
         minuteIsReadOnly,
         minutePlaceholder,
-        minuteValue,
-        onChangeHour,
-        onChangeMinute,
     } = props;
 
     return (
@@ -44,7 +68,7 @@ const TimeInput = props =>
                 className   = { cssMap.hour }
                 disabled    = { isDisabled || hourIsDisabled }
                 id          = { `${id}-hour` }
-                onChange    = { createEventHandler( onChangeHour ) }
+                onChange    = { handleChangeHour }
                 placeholder = { hourPlaceholder }
                 readOnly    = { isReadOnly || hourIsReadOnly }
                 type        = "text"
@@ -54,7 +78,7 @@ const TimeInput = props =>
                 className   = { cssMap.min }
                 disabled    = { isDisabled || minuteIsDisabled }
                 id          = { `${id}-minute` }
-                onChange    = { createEventHandler( onChangeMinute ) }
+                onChange    = { handleChangeMinute }
                 placeholder = { minutePlaceholder }
                 readOnly    = { isReadOnly || minuteIsReadOnly }
                 type        = "text"
