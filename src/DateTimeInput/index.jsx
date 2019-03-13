@@ -17,7 +17,7 @@ import PropTypes            from 'prop-types';
 import moment               from 'moment';
 import _                    from 'lodash';
 
-import copy                 from './copy.json';
+// import copy                 from '../DatePicker/copy.json';
 
 import { DatePicker }       from '..';
 
@@ -37,9 +37,9 @@ const DISPLAY_FORMATTING = {
 
 const DEFAULT_FORMAT = 'YYYY/M/D H:m';
 
-const DAY_LABELS = _.range( 0, 7 ).map( day => ( {
-    label : copy.dayHeaders[ day ],
-} ) );
+// const DAY_LABELS = _.range( 0, 7 ).map( day => ( {
+//     label : copy.dayHeaders[ day ],
+// } ) );
 
 
 /**
@@ -64,19 +64,19 @@ function $m( timestamp )
     return moment( timestamp ).utc();
 }
 
-/**
- * checks if 2 timestamp are equal
- *
- * @param {Number}  ts1 timestamp
- * @param {Number}  ts2 timestamp
- * @param {String}  precision precision to compare
- *
- * @return {Boolean}
- */
-function isTimestampEqual( ts1, ts2, precision )
-{
-    return $m( ts1 ).isSame( $m( ts2 ), precision );
-}
+// /**
+//  * checks if 2 timestamp are equal
+//  *
+//  * @param {Number}  ts1 timestamp
+//  * @param {Number}  ts2 timestamp
+//  * @param {String}  precision precision to compare
+//  *
+//  * @return {Boolean}
+//  */
+// function isTimestampEqual( ts1, ts2, precision )
+// {
+//     return $m( ts1 ).isSame( $m( ts2 ), precision );
+// }
 
 /**
  * Human date ( input value ) conversion to timestamp,
@@ -195,43 +195,43 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
     const isOpen = Boolean( gridStartTimestamp );
 
 
-    const handleClickCell = useCallback( ( { value } ) =>
-    {
-        const { isReadOnly } = props;
-
-        if ( !isReadOnly )
-        {
-            setTimestamp( value );
-            const { onChange } = props;
-
-            if ( typeof onChange === 'function' )
-            {
-                onChange( { id, value } );
-            }
-        }
-
-        purgeEdits();
-    }, [ props.id, props.isReadOnly, props.onChange, timestamp ] );
-
-
-    const handleClickNext = useCallback( () =>
-    {
-        if ( !canGotoNext() ) return;
-
-        setGridStartTimestamp( $m( gridStartTimestamp )
-            .add( 1, props.mode === 'month' ? 'year' : 'month' )
-            .valueOf() );
-    }, [ gridStartTimestamp, props.mode ] );
+    // const handleClickCell = useCallback( ( { value } ) =>
+    // {
+    //     const { isReadOnly } = props;
+    //
+    //     if ( !isReadOnly )
+    //     {
+    //         setTimestamp( value );
+    //         const { onChange } = props;
+    //
+    //         if ( typeof onChange === 'function' )
+    //         {
+    //             onChange( { id, value } );
+    //         }
+    //     }
+    //
+    //     purgeEdits();
+    // }, [ props.id, props.isReadOnly, props.onChange, timestamp ] );
 
 
-    const handleClickPrev = useCallback( () =>
-    {
-        if ( !canGotoPrev() ) return;
-
-        setGridStartTimestamp( $m( gridStartTimestamp )
-            .add( -1, props.mode === 'month' ? 'year' : 'month' )
-            .valueOf() );
-    }, [ gridStartTimestamp, props.mode ] );
+    // const handleClickNext = useCallback( () =>
+    // {
+    //     if ( !canGotoNext() ) return;
+    //
+    //     setGridStartTimestamp( $m( gridStartTimestamp )
+    //         .add( 1, props.mode === 'month' ? 'year' : 'month' )
+    //         .valueOf() );
+    // }, [ gridStartTimestamp, props.mode ] );
+    //
+    //
+    // const handleClickPrev = useCallback( () =>
+    // {
+    //     if ( !canGotoPrev() ) return;
+    //
+    //     setGridStartTimestamp( $m( gridStartTimestamp )
+    //         .add( -1, props.mode === 'month' ? 'year' : 'month' )
+    //         .valueOf() );
+    // }, [ gridStartTimestamp, props.mode ] );
 
 
     const handleClickIcon = useCallback( () =>
@@ -385,94 +385,94 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         _.isNumber( timestamp ), [ timestamp ] );
 
 
-    const isUnitSelectable = useCallback( (
-        newTimestamp = timestamp,
-        unit,
-        allowFraction,
-    ) =>
-    {
-        const { max } = props;
-        const min = props.min || now();
-
-        if ( newTimestamp > max ) return false;
-
-        if ( !allowFraction ) return newTimestamp >= min;
-
-        return $m( newTimestamp ).add( 1, unit ) > min;
-    }, [ timestamp, props.max, props.min ] );
-
-
-    const dayMatrix = () =>
-    {
-        const startMonth = gridStartTimestamp;
-
-        if ( !startMonth ) return;
-
-        const offset = ( $m( startMonth ).weekday() + 6 ) % 7;
-        const daysInMonth = $m( startMonth ).daysInMonth();
-
-        const days = _.range( -offset, daysInMonth ).map( dayIndex =>
-        {
-            const hasDate = dayIndex >= 0 && dayIndex < daysInMonth;
-            const label = hasDate ? String( dayIndex + 1 ) : '';
-            const value = hasDate ?
-                $m( startMonth ).add( dayIndex, 'day' ).valueOf() : null;
-
-            const isDisabled = hasDate && !isUnitSelectable(
-                value,
-                'day',
-                props.mode === 'default',
-            );
-
-            const isCurrent = hasDate &&
-                isTimestampEqual( value, now(), 'day' );
-            const isSelected = hasDate && _.isNumber( timestamp ) &&
-                isTimestampEqual( timestamp, value, 'day' );
-            return {
-                label,
-                value,
-                isDisabled,
-                isCurrent,
-                isSelected,
-            };
-        } );
-
-        return _.chunk( days, 7 );
-    };
+    // const isUnitSelectable = useCallback( (
+    //     newTimestamp = timestamp,
+    //     unit,
+    //     allowFraction,
+    // ) =>
+    // {
+    //     const { max } = props;
+    //     const min = props.min || now();
+    //
+    //     if ( newTimestamp > max ) return false;
+    //
+    //     if ( !allowFraction ) return newTimestamp >= min;
+    //
+    //     return $m( newTimestamp ).add( 1, unit ) > min;
+    // }, [ timestamp, props.max, props.min ] );
 
 
-    const monthMatrix = () =>
-    {
-        const startYear = gridStartTimestamp;
-
-        if ( !startYear ) return;
-
-        const months = _.range( 0, 12 ).map( month =>
-        {
-            const label = copy.shortMonths[ month ];
-            const value = $m( startYear ).add( month, 'month' ).valueOf();
-
-            const isDisabled = !isUnitSelectable( value, 'month' );
-
-            const isCurrent = isTimestampEqual( value, now(), 'month' );
-            const isSelected = _.isNumber( timestamp ) &&
-                isTimestampEqual( timestamp, value, 'month' );
-            return {
-                label,
-                value,
-                isDisabled,
-                isCurrent,
-                isSelected,
-            };
-        } );
-
-        return _.chunk( months, 4 );
-    };
-
-
-    const monthLabel = copy.months[ $m( gridStartTimestamp ).month() ];
-
-    const yearLabel = () => $m( gridStartTimestamp ).year().toString();
+    // const dayMatrix = () =>
+    // {
+    //     const startMonth = gridStartTimestamp;
+    //
+    //     if ( !startMonth ) return;
+    //
+    //     const offset = ( $m( startMonth ).weekday() + 6 ) % 7;
+    //     const daysInMonth = $m( startMonth ).daysInMonth();
+    //
+    //     const days = _.range( -offset, daysInMonth ).map( dayIndex =>
+    //     {
+    //         const hasDate = dayIndex >= 0 && dayIndex < daysInMonth;
+    //         const label = hasDate ? String( dayIndex + 1 ) : '';
+    //         const value = hasDate ?
+    //             $m( startMonth ).add( dayIndex, 'day' ).valueOf() : null;
+    //
+    //         const isDisabled = hasDate && !isUnitSelectable(
+    //             value,
+    //             'day',
+    //             props.mode === 'default',
+    //         );
+    //
+    //         const isCurrent = hasDate &&
+    //             isTimestampEqual( value, now(), 'day' );
+    //         const isSelected = hasDate && _.isNumber( timestamp ) &&
+    //             isTimestampEqual( timestamp, value, 'day' );
+    //         return {
+    //             label,
+    //             value,
+    //             isDisabled,
+    //             isCurrent,
+    //             isSelected,
+    //         };
+    //     } );
+    //
+    //     return _.chunk( days, 7 );
+    // };
+    //
+    //
+    // const monthMatrix = () =>
+    // {
+    //     const startYear = gridStartTimestamp;
+    //
+    //     if ( !startYear ) return;
+    //
+    //     const months = _.range( 0, 12 ).map( month =>
+    //     {
+    //         const label = copy.shortMonths[ month ];
+    //         const value = $m( startYear ).add( month, 'month' ).valueOf();
+    //
+    //         const isDisabled = !isUnitSelectable( value, 'month' );
+    //
+    //         const isCurrent = isTimestampEqual( value, now(), 'month' );
+    //         const isSelected = _.isNumber( timestamp ) &&
+    //             isTimestampEqual( timestamp, value, 'month' );
+    //         return {
+    //             label,
+    //             value,
+    //             isDisabled,
+    //             isCurrent,
+    //             isSelected,
+    //         };
+    //     } );
+    //
+    //     return _.chunk( months, 4 );
+    // };
+    //
+    //
+    // const monthLabel = copy.months[ $m( gridStartTimestamp ).month() ];
+    //
+    // const yearLabel = () => $m( gridStartTimestamp ).year().toString();
 
 
     const purgeEdits = useCallback( () =>
@@ -520,28 +520,28 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
     const datePicker = (
         <DatePicker
             hasTimeInput    = { mode === 'default' }
-            headers         = { mode !== 'month' && DAY_LABELS }
+            // headers         = { mode !== 'month' && DAY_LABELS }
             hourIsReadOnly  = { !canEditHourOrMinute() }
             hourValue       = { editingHourInputValue ||
                 formatHours( timestamp )
             }
             isDisabled = { isDisabled }
-            items      = { mode === 'month' ?
-                monthMatrix() : dayMatrix()
-            }
+            // items      = { mode === 'month' ?
+            //     monthMatrix() : dayMatrix()
+            // }
             minuteIsReadOnly  = { !canEditHourOrMinute() }
             minuteValue       = { editingMinuteInputValue ||
                 formatMinutes( timestamp )
             }
             mode           = { mode }
-            month          = { mode !== 'month' && monthLabel }
+            // month          = { mode !== 'month' && monthLabel }
             nextIsDisabled = { !canGotoNext() }
-            onClickItem    = { handleClickCell }
+            // onClickItem    = { handleClickCell }
             onClickNext    = { handleClickNext }
             onClickPrev    = { handleClickPrev }
             prevIsDisabled = { !canGotoPrev() }
             type           = { mode === 'month' ? 'month' : 'day' }
-            year           = { yearLabel() } />
+            /* year           = { yearLabel() } */ />
     );
 
     const popperChildren = (

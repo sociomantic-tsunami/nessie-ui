@@ -7,46 +7,224 @@
  *
  */
 
-import React                        from 'react';
+import React, { useState }          from 'react';
 import PropTypes                    from 'prop-types';
+import moment                       from 'moment';
+import _                            from 'lodash';
 
+import copy                         from './copy.json';
 import DatePickerItem               from './DatePickerItem';
 import DatePickerHeader             from './DatePickerHeader';
 import { attachEvents, useTheme }   from '../utils';
+
+
+const DAY_LABELS = _.range( 0, 7 ).map( day => ( {
+    label : copy.dayHeaders[ day ],
+} ) );
+
+/**
+ * returns the timestamp of the current moment
+ *
+ * @return {Number} timestamp
+ */
+function now()
+{
+    return new Date().getTime();
+}
+
+/**
+ * returns utc of the timestamp passed
+ *
+ * @param {Number} timestamp passed
+ *
+ * @return {Number} UTC timestamp
+ */
+function $m( timestamp )
+{
+    return moment( timestamp ).utc();
+}
+
+/**
+ * checks if 2 timestamp are equal
+ *
+ * @param {Number}  ts1 timestamp
+ * @param {Number}  ts2 timestamp
+ * @param {String}  precision precision to compare
+ *
+ * @return {Boolean}
+ */
+function isTimestampEqual( ts1, ts2, precision )
+{
+    return $m( ts1 ).isSame( $m( ts2 ), precision );
+}
 
 
 const componentName = 'DatePicker';
 
 const DatePicker = props =>
 {
+    const [ gridStartTimestamp, setGridStartTimestamp ] = useState( undefined );
+    const [ timestamp, setTimestamp ] = useState( undefined );
+    const [ hourValue, setHourValue ] = useState( undefined );
+    const [ minuteValue, setMinuteValue ] = useState( undefined );
+
     const cssMap = useTheme( componentName, props );
+
+
+    if ( !timestamp )
+    {
+        setTimestamp( now() );
+    }
+
+    if ( !gridStartTimestamp )
+    {
+        setGridStartTimestamp( $m( timestamp )
+            .startOf( props.type === 'month' ? 'year' : 'month' )
+            .valueOf() );
+    }
+
+    const dayMatrix = () =>
+    {
+        const startMonth = gridStartTimestamp;
+
+        if ( !startMonth ) return;
+
+        const offset = ( $m( startMonth ).weekday() + 6 ) % 7;
+        const daysInMonth = $m( startMonth ).daysInMonth();
+
+        const days = _.range( -offset, daysInMonth ).map( dayIndex =>
+        {
+            const hasDate = dayIndex >= 0 && dayIndex < daysInMonth;
+            const label = hasDate ? String( dayIndex + 1 ) : '';
+            const value = hasDate ?
+                $m( startMonth ).add( dayIndex, 'day' ).valueOf() : null;
+
+            const isCurrent = hasDate &&
+                isTimestampEqual( value, now(), 'day' );
+            const isSelected = hasDate && _.isNumber( timestamp ) &&
+                isTimestampEqual( timestamp, value, 'day' );
+            return {
+                label,
+                value,
+                isCurrent,
+                isSelected,
+            };
+        } );
+
+        return _.chunk( days, 7 );
+    };
+
+
+    const monthMatrix = () =>
+    {
+        const startYear = gridStartTimestamp;
+
+        if ( !startYear ) return;
+
+        const months = _.range( 0, 12 ).map( month =>
+        {
+            const label = copy.shortMonths[ month ];
+            const value = $m( startYear ).add( month, 'month' ).valueOf();
+
+            const isCurrent = isTimestampEqual( value, now(), 'month' );
+            const isSelected = _.isNumber( timestamp ) &&
+                isTimestampEqual( timestamp, value, 'month' );
+            return {
+                label,
+                value,
+                isCurrent,
+                isSelected,
+            };
+        } );
+
+        return _.chunk( months, 4 );
+    };
+
+
+    const monthLabel = copy.months[ $m( gridStartTimestamp ).month() ];
+
+    const yearLabel = () => $m( gridStartTimestamp ).year().toString();
+
+
+    const handleClickNext = () =>
+    {
+        if ( nextIsDisabled ) return;
+
+        setGridStartTimestamp( $m( gridStartTimestamp )
+            .add( 1, props.type === 'month' ? 'year' : 'month' )
+            .valueOf() );
+    };
+
+    const handleClickPrev = () =>
+    {
+        if ( prevIsDisabled ) return;
+
+        setGridStartTimestamp( $m( gridStartTimestamp )
+            .add( -1, props.type === 'month' ? 'year' : 'month' )
+            .valueOf() );
+    };
+
+    const handleChangeHour = ( { value } ) =>
+    {
+        const { onChangeHour } = props;
+
+        if ( onChangeHour )
+        {
+            onChangeHour( value );
+        }
+
+        setHourValue( value );
+    };
+
+    const handleChangeMinute = ( { value } ) =>
+    {
+        const { onChangeMinute } = props;
+
+        if ( onChangeMinute )
+        {
+            onChangeMinute( value );
+        }
+
+        setMinuteValue( value );
+    };
+
+    const handleClickItem = ( { value } ) =>
+    {
+        const { isReadOnly } = props;
+
+        if ( !isReadOnly )
+        {
+            setTimestamp( value );
+
+            const { onClickItem } = props;
+
+            if ( typeof onClickItem === 'function' )
+            {
+                onClickItem( { value } );
+            }
+        }
+    };
+
 
     const {
         hasTimeInput,
-        headers,
         hourIsDisabled,
         hourIsReadOnly,
         hourPlaceholder,
-        hourValue,
         isDisabled,
         isReadOnly,
-        items,
         label,
         minuteIsDisabled,
         minuteIsReadOnly,
         minutePlaceholder,
-        minuteValue,
-        month,
         nextIsDisabled,
-        onChangeHour,
-        onChangeMinute,
-        onClickItem,
-        onClickNext,
-        onClickPrev,
         prevIsDisabled,
         type,
-        year,
     } = props;
+
+    const headers = type !== 'month' && DAY_LABELS;
+
+    const items = type === 'month' ? monthMatrix() : dayMatrix();
 
     return (
         <div { ...attachEvents( props ) } className = { cssMap.main }>
@@ -63,14 +241,14 @@ const DatePicker = props =>
                 minuteIsReadOnly  = { minuteIsReadOnly }
                 minutePlaceholder = { minutePlaceholder }
                 minuteValue       = { minuteValue }
-                month             = { month }
+                month             = { monthLabel }
                 nextIsDisabled    = { nextIsDisabled }
-                onChangeHour      = { onChangeHour }
-                onChangeMinute    = { onChangeMinute }
-                onClickNext       = { onClickNext }
-                onClickPrev       = { onClickPrev }
+                onChangeHour      = { handleChangeHour }
+                onChangeMinute    = { handleChangeMinute }
+                onClickNext       = { handleClickNext }
+                onClickPrev       = { handleClickPrev }
                 prevIsDisabled    = { prevIsDisabled }
-                year              = { year } />
+                year              = { yearLabel() } />
 
             { items &&
                 <table className = { cssMap.calendar }>
@@ -94,7 +272,7 @@ const DatePicker = props =>
                                         { item.value &&
                                             <DatePickerItem
                                                 { ...item }
-                                                onClick = { onClickItem }
+                                                onClick = { handleClickItem }
                                                 type    = { type } />
                                         }
                                     </td> ) }
