@@ -495,7 +495,6 @@ const ComboBox = props =>
                 autoCorrect    = "off"
                 className      = { cssMap.input }
                 disabled       = { isDisabled }
-                hasError       = { hasError }
                 id             = { id }
                 onBlur         = { callMultiple(
                     handleBlur,
