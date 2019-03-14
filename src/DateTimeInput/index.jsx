@@ -109,31 +109,31 @@ function formatDateTime( timestamp, precision )
     return $m( timestamp ).format( precision );
 }
 
-/**
- * Timestamp conversion to Human time ( hours )
- *
- * @param {Number}  timestamp timestamp
- *
- * @return {String} human readable time ( hours )
- */
-function formatHours( timestamp )
-{
-    if ( !_.isNumber( timestamp ) ) return '';
-    return $m( timestamp ).format( 'HH' );
-}
+// /**
+//  * Timestamp conversion to Human time ( hours )
+//  *
+//  * @param {Number}  timestamp timestamp
+//  *
+//  * @return {String} human readable time ( hours )
+//  */
+// function formatHours( timestamp )
+// {
+//     if ( !_.isNumber( timestamp ) ) return '';
+//     return $m( timestamp ).format( 'HH' );
+// }
 
-/**
- * Timestamp conversion to Human time ( minutes )
- *
- * @param {Number}  timestamp timestamp
- *
- * @return {String} human readable time ( minutes )
- */
-function formatMinutes( timestamp )
-{
-    if ( !_.isNumber( timestamp ) ) return '';
-    return $m( timestamp ).format( 'mm' );
-}
+// /**
+//  * Timestamp conversion to Human time ( minutes )
+//  *
+//  * @param {Number}  timestamp timestamp
+//  *
+//  * @return {String} human readable time ( minutes )
+//  */
+// function formatMinutes( timestamp )
+// {
+//     if ( !_.isNumber( timestamp ) ) return '';
+//     return $m( timestamp ).format( 'mm' );
+// }
 
 /**
  * set precision for formatting and comparing
@@ -357,28 +357,28 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         }
     }, [] );
 
-    const canGotoNext = useCallback( () =>
-    {
-        const { max } = props;
-        const nextGridStart = $m( gridStartTimestamp )
-            .add( 1, props.mode === 'month' ? 'year' : 'month' ).valueOf();
-
-        return !_.isNumber( max ) || ( nextGridStart <= max );
-    }, [ gridStartTimestamp, props.mode, props.max ] );
-
-
-    const canGotoPrev = useCallback( () =>
-    {
-        const min = props.min || now();
-        const prevGridStart = $m( gridStartTimestamp )
-            .add( -1, props.mode === 'month' ? 'year' : 'month' )
-            .valueOf();
-        const endOfPrev = $m( prevGridStart )
-            .add( 1, props.mode === 'month' ? 'year' : 'month' )
-            .valueOf();
-
-        return !_.isNumber( min ) || endOfPrev > min;
-    }, [ gridStartTimestamp, props.mode, props.min ] );
+    // const canGotoNext = useCallback( () =>
+    // {
+    //     const { max } = props;
+    //     const nextGridStart = $m( gridStartTimestamp )
+    //         .add( 1, props.mode === 'month' ? 'year' : 'month' ).valueOf();
+    //
+    //     return !_.isNumber( max ) || ( nextGridStart <= max );
+    // }, [ gridStartTimestamp, props.mode, props.max ] );
+    //
+    //
+    // const canGotoPrev = useCallback( () =>
+    // {
+    //     const min = props.min || now();
+    //     const prevGridStart = $m( gridStartTimestamp )
+    //         .add( -1, props.mode === 'month' ? 'year' : 'month' )
+    //         .valueOf();
+    //     const endOfPrev = $m( prevGridStart )
+    //         .add( 1, props.mode === 'month' ? 'year' : 'month' )
+    //         .valueOf();
+    //
+    //     return !_.isNumber( min ) || endOfPrev > min;
+    // }, [ gridStartTimestamp, props.mode, props.min ] );
 
 
     const canEditHourOrMinute = useCallback( () =>
@@ -535,11 +535,11 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             // }
             mode           = { mode }
             // month          = { mode !== 'month' && monthLabel }
-            nextIsDisabled = { !canGotoNext() }
+            // nextIsDisabled = { !canGotoNext() }
             // onClickItem    = { handleClickCell }
             // onClickNext    = { handleClickNext }
             // onClickPrev    = { handleClickPrev }
-            prevIsDisabled = { !canGotoPrev() }
+            // prevIsDisabled = { !canGotoPrev() }
             type           = { mode === 'month' ? 'month' : 'day' }
             /* year           = { yearLabel() } */ />
     );

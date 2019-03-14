@@ -7,7 +7,7 @@
  *
  */
 
-import React, { useMemo, useState } from 'react';
+import React, { useState }          from 'react';
 import PropTypes                    from 'prop-types';
 import moment                       from 'moment';
 import _                            from 'lodash';
@@ -85,36 +85,37 @@ function formatMinutes( timestamp )
 }
 
 
+const useTimestamp = ( defaultValue, value ) =>
+{
+    const [ timestamp, setTimestamp ] = useState( defaultValue );
+
+    const setter = ( newValue ) =>
+    {
+        if ( value === undefined )
+        {
+            setTimestamp( newValue );
+        }
+    };
+
+    return [ value || timestamp, setter ];
+};
+
+
 const componentName = 'DatePicker';
 
 const DatePicker = props =>
 {
-    const [ gridStartTimestamp, setGridStartTimestamp ] = useState( undefined );
-    const [ timestamp, setTimestamp ] = useState( undefined );
+    const [ gridStartTimestamp, setGridStartTimestamp ] = useState(
+        $m( timestamp )
+            .startOf( props.type === 'month' ? 'year' : 'month' )
+            .valueOf(),
+    );
+    const [ timestamp, setTimestamp ] = useTimestamp( now(), props.value );
     const [ hourValue, setHourValue ] = useState( undefined );
     const [ minuteValue, setMinuteValue ] = useState( undefined );
 
     const cssMap = useTheme( componentName, props );
-    const timeValue = useMemo( () =>
-    {
-        if ( props.value )
-        {
-            setTimestamp( props.value );
-        }
-    }, [ props.value, timestamp ] );
 
-
-    if ( !timestamp && !timeValue )
-    {
-        setTimestamp( now() );
-    }
-
-    if ( !gridStartTimestamp )
-    {
-        setGridStartTimestamp( $m( timestamp )
-            .startOf( props.type === 'month' ? 'year' : 'month' )
-            .valueOf() );
-    }
 
     const dayMatrix = () =>
     {
@@ -147,7 +148,6 @@ const DatePicker = props =>
         return _.chunk( days, 7 );
     };
 
-
     const monthMatrix = () =>
     {
         const startYear = gridStartTimestamp;
@@ -179,9 +179,33 @@ const DatePicker = props =>
     const yearLabel = () => $m( gridStartTimestamp ).year().toString();
 
 
+    const canGotoNext = () =>
+    {
+        const { max } = props;
+        const nextGridStart = $m( gridStartTimestamp )
+            .add( 1, props.type === 'month' ? 'year' : 'month' ).valueOf();
+
+        return !_.isNumber( max ) || ( nextGridStart <= max );
+    };
+
+
+    const canGotoPrev = () =>
+    {
+        const min = props.min || now();
+        const prevGridStart = $m( gridStartTimestamp )
+            .add( -1, props.type === 'month' ? 'year' : 'month' )
+            .valueOf();
+        const endOfPrev = $m( prevGridStart )
+            .add( 1, props.type === 'month' ? 'year' : 'month' )
+            .valueOf();
+
+        return !_.isNumber( min ) || endOfPrev > min;
+    };
+
+
     const handleClickNext = () =>
     {
-        if ( nextIsDisabled ) return;
+        if ( !canGotoNext() ) return;
 
         setGridStartTimestamp( $m( gridStartTimestamp )
             .add( 1, props.type === 'month' ? 'year' : 'month' )
@@ -190,7 +214,7 @@ const DatePicker = props =>
 
     const handleClickPrev = () =>
     {
-        if ( prevIsDisabled ) return;
+        if ( !canGotoPrev() ) return;
 
         setGridStartTimestamp( $m( gridStartTimestamp )
             .add( -1, props.type === 'month' ? 'year' : 'month' )
@@ -210,6 +234,11 @@ const DatePicker = props =>
                 .valueOf();
 
             setTimestamp( newTimestamp );
+
+            if ( typeof onChange === 'function' )
+            {
+                onChange( { value: newTimestamp } );
+            }
         }
         else
         {
@@ -221,6 +250,11 @@ const DatePicker = props =>
                     .valueOf();
 
                 setTimestamp( newTimestamp );
+
+                if ( typeof onChange === 'function' )
+                {
+                    onChange( { value: newTimestamp } );
+                }
             }
         }
     };
@@ -238,6 +272,11 @@ const DatePicker = props =>
                 .valueOf();
 
             setTimestamp( newTimestamp );
+
+            if ( typeof onChange === 'function' )
+            {
+                onChange( { value: newTimestamp } );
+            }
         }
         else
         {
@@ -249,6 +288,11 @@ const DatePicker = props =>
                     .valueOf();
 
                 setTimestamp( newTimestamp );
+
+                if ( typeof onChange === 'function' )
+                {
+                    onChange( { value: newTimestamp } );
+                }
             }
         }
     };
@@ -257,12 +301,10 @@ const DatePicker = props =>
     {
         setTimestamp( value );
 
-        // const { onClickItem } = props;
-        //
-        // if ( typeof onClickItem === 'function' )
-        // {
-        //     onClickItem( { value } );
-        // }
+        if ( typeof onChange === 'function' )
+        {
+            onChange( { value } );
+        }
 
         purgeEdits();
     };
@@ -282,13 +324,12 @@ const DatePicker = props =>
         hourPlaceholder,
         isDisabled,
         isReadOnly,
-        label,
         minuteIsDisabled,
         minuteIsReadOnly,
         minutePlaceholder,
-        nextIsDisabled,
-        prevIsDisabled,
         type,
+        onChange,
+        ...restProps
     } = props;
 
     const headers = type !== 'month' && DAY_LABELS;
@@ -296,7 +337,7 @@ const DatePicker = props =>
     const items = type === 'month' ? monthMatrix() : dayMatrix();
 
     return (
-        <div { ...attachEvents( props ) } className = { cssMap.main }>
+        <div { ...attachEvents( restProps ) } className = { cssMap.main }>
             <DatePickerHeader
                 hasTimeInput      = { hasTimeInput }
                 hourIsDisabled    = { hourIsDisabled }
@@ -305,19 +346,18 @@ const DatePicker = props =>
                 hourValue         = { hourValue || formatHours( timestamp ) }
                 isDisabled        = { isDisabled }
                 isReadOnly        = { isReadOnly }
-                label             = { label }
                 minuteIsDisabled  = { minuteIsDisabled }
                 minuteIsReadOnly  = { minuteIsReadOnly }
                 minutePlaceholder = { minutePlaceholder }
                 minuteValue       = { minuteValue ||
                     formatMinutes( timestamp ) }
                 month             = { monthLabel }
-                nextIsDisabled    = { nextIsDisabled }
+                nextIsDisabled    = { !canGotoNext() }
                 onChangeHour      = { handleChangeHour }
                 onChangeMinute    = { handleChangeMinute }
                 onClickNext       = { handleClickNext }
                 onClickPrev       = { handleClickPrev }
-                prevIsDisabled    = { prevIsDisabled }
+                prevIsDisabled    = { !canGotoPrev() }
                 year              = { yearLabel() } />
 
             { items &&
@@ -355,38 +395,38 @@ const DatePicker = props =>
 };
 
 DatePicker.propTypes = {
-    className : PropTypes.string,
-    cssMap    : PropTypes.objectOf( PropTypes.string ),
-    headers   : PropTypes.arrayOf( PropTypes
+    className    : PropTypes.string,
+    cssMap       : PropTypes.objectOf( PropTypes.string ),
+    defaultValue : PropTypes.number,
+    headers      : PropTypes.arrayOf( PropTypes
         .objectOf( PropTypes.string ) ),
-    hourIsDisabled  : PropTypes.bool,
-    hourIsReadOnly  : PropTypes.bool,
-    hourPlaceholder : PropTypes.string,
-    hourValue       : PropTypes.string,
-    isDisabled      : PropTypes.bool,
-    isReadOnly      : PropTypes.bool,
-    items           : PropTypes.arrayOf( PropTypes
-        .arrayOf( PropTypes.object ) ),
+    hourIsDisabled    : PropTypes.bool,
+    hourIsReadOnly    : PropTypes.bool,
+    hourPlaceholder   : PropTypes.string,
+    hourValue         : PropTypes.string,
+    isDisabled        : PropTypes.bool,
+    isReadOnly        : PropTypes.bool,
     hasTimeInput      : PropTypes.bool,
-    label             : PropTypes.string,
+    max               : PropTypes.number,
+    min               : PropTypes.number,
     minuteIsDisabled  : PropTypes.bool,
     minuteIsReadOnly  : PropTypes.bool,
     minutePlaceholder : PropTypes.string,
     minuteValue       : PropTypes.string,
-    nextIsDisabled    : PropTypes.bool,
+    onChange          : PropTypes.func,
     onChangeHour      : PropTypes.func,
     onChangeMinute    : PropTypes.func,
     onClickItem       : PropTypes.func,
     onClickNext       : PropTypes.func,
     onClickPrev       : PropTypes.func,
-    prevIsDisabled    : PropTypes.bool,
     type              : PropTypes.oneOf( [ 'day', 'month' ] ),
-    value             : PropTypes.string,
+    value             : PropTypes.number,
 };
 
 DatePicker.defaultProps = {
     className         : undefined,
     cssMap            : undefined,
+    defaultValue      : undefined,
     hasTimeInput      : true,
     headers           : undefined,
     hourIsDisabled    : false,
@@ -395,19 +435,18 @@ DatePicker.defaultProps = {
     hourValue         : undefined,
     isDisabled        : false,
     isReadOnly        : false,
-    items             : undefined,
-    label             : undefined,
+    max               : undefined,
+    min               : undefined,
     minuteIsDisabled  : false,
     minuteIsReadOnly  : false,
     minutePlaceholder : undefined,
     minuteValue       : undefined,
-    nextIsDisabled    : false,
+    onChange          : undefined,
     onChangeHour      : undefined,
     onChangeMinute    : undefined,
     onClickItem       : undefined,
     onClickNext       : undefined,
     onClickPrev       : undefined,
-    prevIsDisabled    : false,
     type              : 'day',
     value             : undefined,
 };
