@@ -7,7 +7,7 @@
  *
  */
 
-import React, { useState }          from 'react';
+import React, { useMemo, useState } from 'react';
 import PropTypes                    from 'prop-types';
 import moment                       from 'moment';
 import _                            from 'lodash';
@@ -58,6 +58,32 @@ function isTimestampEqual( ts1, ts2, precision )
     return $m( ts1 ).isSame( $m( ts2 ), precision );
 }
 
+/**
+ * Timestamp conversion to Human time ( hours )
+ *
+ * @param {Number}  timestamp timestamp
+ *
+ * @return {String} human readable time ( hours )
+ */
+function formatHours( timestamp )
+{
+    if ( !_.isNumber( timestamp ) ) return '';
+    return $m( timestamp ).format( 'HH' );
+}
+
+/**
+ * Timestamp conversion to Human time ( minutes )
+ *
+ * @param {Number}  timestamp timestamp
+ *
+ * @return {String} human readable time ( minutes )
+ */
+function formatMinutes( timestamp )
+{
+    if ( !_.isNumber( timestamp ) ) return '';
+    return $m( timestamp ).format( 'mm' );
+}
+
 
 const componentName = 'DatePicker';
 
@@ -69,9 +95,16 @@ const DatePicker = props =>
     const [ minuteValue, setMinuteValue ] = useState( undefined );
 
     const cssMap = useTheme( componentName, props );
+    const timeValue = useMemo( () =>
+    {
+        if ( props.value )
+        {
+            setTimestamp( props.value );
+        }
+    }, [ props.value, timestamp ] );
 
 
-    if ( !timestamp )
+    if ( !timestamp && !timeValue )
     {
         setTimestamp( now() );
     }
@@ -166,43 +199,79 @@ const DatePicker = props =>
 
     const handleChangeHour = ( { value } ) =>
     {
-        const { onChangeHour } = props;
-
-        if ( onChangeHour )
-        {
-            onChangeHour( value );
-        }
+        const trimmed = value.trim().replace( /\s+/g, ' ' );
+        let digits = Number( trimmed );
 
         setHourValue( value );
+
+        if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 23 )
+        {
+            const newTimestamp = $m( timestamp ).set( 'hour', digits )
+                .valueOf();
+
+            setTimestamp( newTimestamp );
+        }
+        else
+        {
+            digits = _.isNumber( timestamp ) && $m( timestamp ).hour();
+
+            if ( !_.isNaN( digits ) )
+            {
+                const newTimestamp = $m( timestamp ).set( 'hour', digits )
+                    .valueOf();
+
+                setTimestamp( newTimestamp );
+            }
+        }
     };
 
     const handleChangeMinute = ( { value } ) =>
     {
-        const { onChangeMinute } = props;
-
-        if ( onChangeMinute )
-        {
-            onChangeMinute( value );
-        }
+        const trimmed = value.trim().replace( /\s+/g, ' ' );
+        let digits = Number( trimmed );
 
         setMinuteValue( value );
+
+        if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 59 )
+        {
+            const newTimestamp = $m( timestamp ).set( 'minute', digits )
+                .valueOf();
+
+            setTimestamp( newTimestamp );
+        }
+        else
+        {
+            digits = _.isNumber( timestamp ) && $m( timestamp ).minute();
+
+            if ( !_.isNaN( digits ) )
+            {
+                const newTimestamp = $m( timestamp ).set( 'minute', digits )
+                    .valueOf();
+
+                setTimestamp( newTimestamp );
+            }
+        }
     };
 
     const handleClickItem = ( { value } ) =>
     {
-        const { isReadOnly } = props;
+        setTimestamp( value );
 
-        if ( !isReadOnly )
-        {
-            setTimestamp( value );
+        // const { onClickItem } = props;
+        //
+        // if ( typeof onClickItem === 'function' )
+        // {
+        //     onClickItem( { value } );
+        // }
 
-            const { onClickItem } = props;
+        purgeEdits();
+    };
 
-            if ( typeof onClickItem === 'function' )
-            {
-                onClickItem( { value } );
-            }
-        }
+
+    const purgeEdits = () =>
+    {
+        setHourValue( undefined );
+        setMinuteValue( undefined );
     };
 
 
@@ -233,14 +302,15 @@ const DatePicker = props =>
                 hourIsDisabled    = { hourIsDisabled }
                 hourIsReadOnly    = { hourIsReadOnly }
                 hourPlaceholder   = { hourPlaceholder }
-                hourValue         = { hourValue }
+                hourValue         = { hourValue || formatHours( timestamp ) }
                 isDisabled        = { isDisabled }
                 isReadOnly        = { isReadOnly }
                 label             = { label }
                 minuteIsDisabled  = { minuteIsDisabled }
                 minuteIsReadOnly  = { minuteIsReadOnly }
                 minutePlaceholder = { minutePlaceholder }
-                minuteValue       = { minuteValue }
+                minuteValue       = { minuteValue ||
+                    formatMinutes( timestamp ) }
                 month             = { monthLabel }
                 nextIsDisabled    = { nextIsDisabled }
                 onChangeHour      = { handleChangeHour }
@@ -303,7 +373,6 @@ DatePicker.propTypes = {
     minuteIsReadOnly  : PropTypes.bool,
     minutePlaceholder : PropTypes.string,
     minuteValue       : PropTypes.string,
-    month             : PropTypes.string,
     nextIsDisabled    : PropTypes.bool,
     onChangeHour      : PropTypes.func,
     onChangeMinute    : PropTypes.func,
@@ -312,7 +381,7 @@ DatePicker.propTypes = {
     onClickPrev       : PropTypes.func,
     prevIsDisabled    : PropTypes.bool,
     type              : PropTypes.oneOf( [ 'day', 'month' ] ),
-    year              : PropTypes.string,
+    value             : PropTypes.string,
 };
 
 DatePicker.defaultProps = {
@@ -332,7 +401,6 @@ DatePicker.defaultProps = {
     minuteIsReadOnly  : false,
     minutePlaceholder : undefined,
     minuteValue       : undefined,
-    month             : undefined,
     nextIsDisabled    : false,
     onChangeHour      : undefined,
     onChangeMinute    : undefined,
@@ -341,7 +409,7 @@ DatePicker.defaultProps = {
     onClickPrev       : undefined,
     prevIsDisabled    : false,
     type              : 'day',
-    year              : undefined,
+    value             : undefined,
 };
 
 DatePicker.displayName = componentName;

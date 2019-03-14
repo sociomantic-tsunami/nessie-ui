@@ -522,23 +522,23 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             hasTimeInput    = { mode === 'default' }
             // headers         = { mode !== 'month' && DAY_LABELS }
             hourIsReadOnly  = { !canEditHourOrMinute() }
-            hourValue       = { editingHourInputValue ||
-                formatHours( timestamp )
-            }
+            // hourValue       = { editingHourInputValue ||
+            //     formatHours( timestamp )
+            // }
             isDisabled = { isDisabled }
             // items      = { mode === 'month' ?
             //     monthMatrix() : dayMatrix()
             // }
             minuteIsReadOnly  = { !canEditHourOrMinute() }
-            minuteValue       = { editingMinuteInputValue ||
-                formatMinutes( timestamp )
-            }
+            // minuteValue       = { editingMinuteInputValue ||
+            //     formatMinutes( timestamp )
+            // }
             mode           = { mode }
             // month          = { mode !== 'month' && monthLabel }
             nextIsDisabled = { !canGotoNext() }
             // onClickItem    = { handleClickCell }
-            onClickNext    = { handleClickNext }
-            onClickPrev    = { handleClickPrev }
+            // onClickNext    = { handleClickNext }
+            // onClickPrev    = { handleClickPrev }
             prevIsDisabled = { !canGotoPrev() }
             type           = { mode === 'month' ? 'month' : 'day' }
             /* year           = { yearLabel() } */ />
