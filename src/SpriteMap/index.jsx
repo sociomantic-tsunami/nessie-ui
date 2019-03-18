@@ -23,6 +23,7 @@ const SpriteMap = ( { id = 'nessie' } ) => (
                 <symbol
                     dangerouslySetInnerHTML = { { __html: contents } }
                     id                      = { `${id}-${name}` }
+                    key                     = { name }
                     viewBox                 = "0 0 24 24" />
             ) ) }
         </defs>
