@@ -85,7 +85,7 @@ function formatMinutes( timestamp )
 }
 
 
-const useTimestamp = ( defaultValue, value ) =>
+const useTimestamp = ( defaultValue = now(), value ) =>
 {
     const [ timestamp, setTimestamp ] = useState( defaultValue );
 
@@ -105,16 +105,32 @@ const componentName = 'DatePicker';
 
 const DatePicker = props =>
 {
-    const [ gridStartTimestamp, setGridStartTimestamp ] = useState(
-        $m( timestamp )
-            .startOf( props.type === 'month' ? 'year' : 'month' )
-            .valueOf(),
+    const [ timestamp, setTimestamp ] = useTimestamp(
+        props.defaultValue,
+        props.value,
     );
-    const [ timestamp, setTimestamp ] = useTimestamp( now(), props.value );
+    const [ gridStartState, setGridStartState ] = useState( null );
     const [ hourValue, setHourValue ] = useState( undefined );
     const [ minuteValue, setMinuteValue ] = useState( undefined );
 
     const cssMap = useTheme( componentName, props );
+
+    const gridStartTimestamp = gridStartState || $m( timestamp )
+        .startOf( props.type === 'month' ? 'year' : 'month' )
+        .valueOf();
+
+    const isUnitSelectable = (
+        itemTimestamp,
+        unit,
+    ) =>
+    {
+        const { max } = props;
+        const min = props.min || now();
+
+        if ( itemTimestamp > max ) return false;
+
+        return $m( itemTimestamp ).add( 1, unit ) > min;
+    };
 
 
     const dayMatrix = () =>
@@ -133,6 +149,11 @@ const DatePicker = props =>
             const value = hasDate ?
                 $m( startMonth ).add( dayIndex, 'day' ).valueOf() : null;
 
+            const isDisabled = hasDate && !isUnitSelectable(
+                value,
+                'day',
+            );
+
             const isCurrent = hasDate &&
                 isTimestampEqual( value, now(), 'day' );
             const isSelected = hasDate && _.isNumber( timestamp ) &&
@@ -141,6 +162,7 @@ const DatePicker = props =>
                 label,
                 value,
                 isCurrent,
+                isDisabled,
                 isSelected,
             };
         } );
@@ -159,6 +181,8 @@ const DatePicker = props =>
             const label = copy.shortMonths[ month ];
             const value = $m( startYear ).add( month, 'month' ).valueOf();
 
+            const isDisabled = !isUnitSelectable( value, 'month' );
+
             const isCurrent = isTimestampEqual( value, now(), 'month' );
             const isSelected = _.isNumber( timestamp ) &&
                 isTimestampEqual( timestamp, value, 'month' );
@@ -166,6 +190,7 @@ const DatePicker = props =>
                 label,
                 value,
                 isCurrent,
+                isDisabled,
                 isSelected,
             };
         } );
@@ -207,7 +232,7 @@ const DatePicker = props =>
     {
         if ( !canGotoNext() ) return;
 
-        setGridStartTimestamp( $m( gridStartTimestamp )
+        setGridStartState( $m( gridStartTimestamp )
             .add( 1, props.type === 'month' ? 'year' : 'month' )
             .valueOf() );
     };
@@ -216,7 +241,7 @@ const DatePicker = props =>
     {
         if ( !canGotoPrev() ) return;
 
-        setGridStartTimestamp( $m( gridStartTimestamp )
+        setGridStartState( $m( gridStartTimestamp )
             .add( -1, props.type === 'month' ? 'year' : 'month' )
             .valueOf() );
     };
@@ -305,15 +330,6 @@ const DatePicker = props =>
         {
             onChange( { value } );
         }
-
-        purgeEdits();
-    };
-
-
-    const purgeEdits = () =>
-    {
-        setHourValue( undefined );
-        setMinuteValue( undefined );
     };
 
 

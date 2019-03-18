@@ -190,7 +190,10 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
     // const [ editingMinuteInputValue, setEditingMinuteInputValue ] =
     //     useState( undefined );
     const [ gridStartTimestamp, setGridStartTimestamp ] = useState( undefined );
-    const [ timestamp, setTimestamp ] = useTimestamp( undefined, props.value );
+    const [ timestamp, setTimestamp ] = useTimestamp(
+        props.defaultValue,
+        props.value,
+    );
 
     const isOpen = Boolean( gridStartTimestamp );
 
@@ -357,6 +360,16 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         }
     }, [] );
 
+    const handleChange = ( { value } ) =>
+    {
+        if ( typeof onChange === 'function' )
+        {
+            onChange( value );
+        }
+
+        setTimestamp( value );
+    };
+
     // const canGotoNext = useCallback( () =>
     // {
     //     const { max } = props;
@@ -514,7 +527,10 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         id,
         inputPlaceholder,
         isDisabled,
+        max,
+        min,
         mode,
+        onChange,
     } = props;
 
     const datePicker = (
@@ -529,11 +545,14 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             // items      = { mode === 'month' ?
             //     monthMatrix() : dayMatrix()
             // }
+            max = { max }
+            min = { min }
             minuteIsReadOnly  = { !canEditHourOrMinute() }
             // minuteValue       = { editingMinuteInputValue ||
             //     formatMinutes( timestamp )
             // }
             mode           = { mode }
+            onChange = { handleChange }
             // month          = { mode !== 'month' && monthLabel }
             // nextIsDisabled = { !canGotoNext() }
             // onClickItem    = { handleClickCell }
@@ -541,6 +560,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             // onClickPrev    = { handleClickPrev }
             // prevIsDisabled = { !canGotoPrev() }
             type           = { mode === 'month' ? 'month' : 'day' }
+            value = { timestamp }
             /* year           = { yearLabel() } */ />
     );
 
@@ -591,6 +611,10 @@ DateTimeInput.propTypes =
      *  Extra CSS class name
      */
     className        : PropTypes.string,
+    /**
+     *  Default timestamp value
+     */
+    defaultValue     : PropTypes.number,
     /**
      *  id of the DOM element used as container for popup datepicker
      */
@@ -644,6 +668,7 @@ DateTimeInput.propTypes =
 DateTimeInput.defaultProps =
 {
     className        : undefined,
+    defaultValue     : undefined,
     popperContainer  : undefined,
     format           : undefined,
     hasError         : false,
