@@ -115,6 +115,7 @@ const DatePicker = props =>
 
     const cssMap = useTheme( componentName, props );
 
+
     const gridStartTimestamp = gridStartState || $m( timestamp )
         .startOf( props.type === 'month' ? 'year' : 'month' )
         .valueOf();
@@ -237,6 +238,7 @@ const DatePicker = props =>
             .valueOf() );
     };
 
+
     const handleClickPrev = () =>
     {
         if ( !canGotoPrev() ) return;
@@ -245,6 +247,7 @@ const DatePicker = props =>
             .add( -1, props.type === 'month' ? 'year' : 'month' )
             .valueOf() );
     };
+
 
     const handleChangeHour = ( { value } ) =>
     {
@@ -284,6 +287,7 @@ const DatePicker = props =>
         }
     };
 
+
     const handleChangeMinute = ( { value } ) =>
     {
         const trimmed = value.trim().replace( /\s+/g, ' ' );
@@ -321,6 +325,7 @@ const DatePicker = props =>
             }
         }
     };
+
 
     const handleClickItem = ( { value } ) =>
     {
