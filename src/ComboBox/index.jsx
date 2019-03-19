@@ -636,7 +636,7 @@ ComboBox.defaultProps =
     isSearchable        : false,
     onChange            : undefined,
     onChangeInput       : undefined,
-    options             : undefined,
+    options             : [],
     value               : undefined,
 };
 
