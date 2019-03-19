@@ -22,15 +22,6 @@ const DAY_LABELS = _.range( 0, 7 ).map( day => ( {
     label : copy.dayHeaders[ day ],
 } ) );
 
-/**
- * returns the timestamp of the current moment
- *
- * @return {Number} timestamp
- */
-function now()
-{
-    return new Date().getTime();
-}
 
 /**
  * returns utc of the timestamp passed
@@ -85,7 +76,7 @@ function formatMinutes( timestamp )
 }
 
 
-const useTimestamp = ( defaultValue = now(), value ) =>
+const useTimestamp = ( defaultValue = Date.now(), value ) =>
 {
     const [ timestamp, setTimestamp ] = useState( defaultValue );
 
@@ -126,7 +117,7 @@ const DatePicker = props =>
     ) =>
     {
         const { max } = props;
-        const min = props.min || now();
+        const min = props.min || Date.now();
 
         if ( itemTimestamp > max ) return false;
 
@@ -156,7 +147,7 @@ const DatePicker = props =>
             );
 
             const isCurrent = hasDate &&
-                isTimestampEqual( value, now(), 'day' );
+                isTimestampEqual( value, Date.now(), 'day' );
             const isSelected = hasDate && _.isNumber( timestamp ) &&
                 isTimestampEqual( timestamp, value, 'day' );
             return {
@@ -184,7 +175,7 @@ const DatePicker = props =>
 
             const isDisabled = !isUnitSelectable( value, 'month' );
 
-            const isCurrent = isTimestampEqual( value, now(), 'month' );
+            const isCurrent = isTimestampEqual( value, Date.now(), 'month' );
             const isSelected = _.isNumber( timestamp ) &&
                 isTimestampEqual( timestamp, value, 'month' );
             return {
@@ -202,7 +193,7 @@ const DatePicker = props =>
 
     const monthLabel = copy.months[ $m( gridStartTimestamp ).month() ];
 
-    const yearLabel = () => $m( gridStartTimestamp ).year().toString();
+    const yearLabel = $m( gridStartTimestamp ).year().toString();
 
 
     const canGotoNext = () =>
@@ -217,7 +208,7 @@ const DatePicker = props =>
 
     const canGotoPrev = () =>
     {
-        const min = props.min || now();
+        const min = props.min || Date.now();
         const prevGridStart = $m( gridStartTimestamp )
             .add( -1, props.type === 'month' ? 'year' : 'month' )
             .valueOf();
@@ -379,7 +370,7 @@ const DatePicker = props =>
                 onClickNext       = { handleClickNext }
                 onClickPrev       = { handleClickPrev }
                 prevIsDisabled    = { !canGotoPrev() }
-                year              = { yearLabel() } />
+                year              = { yearLabel } />
 
             { items &&
                 <table className = { cssMap.calendar }>
