@@ -412,7 +412,7 @@ export default class ComboBox extends Component
     {
         let { dropdownPosition } = props;
 
-        if ( props.dropdownPosition === 'auto' )
+        if ( dropdownPosition === 'auto' )
         {
             const { wrapperRef } = this;
 
@@ -434,7 +434,10 @@ export default class ComboBox extends Component
             }
         }
 
-        this.setState( { dropdownPosition } );
+        if ( dropdownPosition !== this.state.dropdownPosition )
+        {
+            this.setState( { dropdownPosition } );
+        }
     }
 
     handleClickOption( e, optId )
