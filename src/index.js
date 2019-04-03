@@ -113,6 +113,7 @@ export {
 // Theming
 export { ThemeProvider } from './Theming';
 export DefaultTheme      from './DefaultTheme';
+export { useTheme }      from './utils';
 
 // Addons
 export SpriteMap    from './SpriteMap';
