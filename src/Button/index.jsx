@@ -16,7 +16,7 @@ import PropTypes                    from 'prop-types';
 
 import { Icon, Spinner }            from '..';
 
-import { attachEvents, useTheme }   from '../utils';
+import { attachEvents, useThemeClasses }   from '../utils';
 
 
 const componentName = 'Button';
@@ -38,7 +38,7 @@ const Button = forwardRef( ( props, ref ) =>
         label,
     } = props;
 
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
 
     return (
         <button

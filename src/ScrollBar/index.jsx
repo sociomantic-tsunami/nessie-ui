@@ -17,7 +17,7 @@
 import React, { useCallback }            from 'react';
 import PropTypes                         from 'prop-types';
 
-import { attachEvents, clamp, useTheme } from '../utils';
+import { attachEvents, clamp, useThemeClasses } from '../utils';
 
 
 const componentName = 'ScrollBar';
@@ -35,7 +35,7 @@ const ScrollBar = props =>
         thumbSize,
     } = props;
 
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
     const isVertical = orientation === 'vertical';
     const scrollLength = Math.abs( scrollMax - scrollMin );
     const thumbOffset =

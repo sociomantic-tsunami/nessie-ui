@@ -14,7 +14,7 @@ import React, {
 } from 'react';
 import PropTypes                  from 'prop-types';
 
-import { attachEvents, useTheme } from '../utils';
+import { attachEvents, useThemeClasses } from '../utils';
 
 
 const componentName = 'TabButton';
@@ -30,7 +30,7 @@ const TabButton = forwardRef( ( props, ref ) =>
         },
     } ) );
 
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
 
     const {
         isDisabled,

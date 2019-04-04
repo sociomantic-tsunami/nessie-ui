@@ -111,8 +111,10 @@ export {
 };
 
 // Theming
-export { ThemeProvider } from './Theming';
-export DefaultTheme      from './DefaultTheme';
+export { ThemeProvider }                  from './Theming';
+export DefaultTheme                       from './DefaultTheme';
+export { useThemeClasses, useThemeVars }  from './utils';
+
 
 // Addons
 export SpriteMap    from './SpriteMap';

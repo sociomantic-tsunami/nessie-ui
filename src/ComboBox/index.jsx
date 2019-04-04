@@ -33,7 +33,7 @@ import {
     callMultiple,
     mapAria,
     useId,
-    useTheme,
+    useThemeClasses,
 } from '../utils';
 import { addPrefix, prefixOptions, removePrefix } from './utils';
 import { buildTagsFromValues }                    from '../TagInput/utils';
@@ -133,7 +133,7 @@ const componentName = 'ComboBox';
 
 const ComboBox = props =>
 {
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
     const id = useId( componentName, props );
 
     const [ stateActiveOption, setActiveOption ] = useState( undefined );

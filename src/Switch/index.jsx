@@ -13,7 +13,7 @@ import PropTypes    from 'prop-types';
 import {
     attachEvents,
     useId,
-    useTheme,
+    useThemeClasses,
 } from '../utils';
 
 
@@ -28,7 +28,7 @@ const Switch = props =>
         label,
     } = props;
 
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
     const id = useId( componentName, props );
 
     return (

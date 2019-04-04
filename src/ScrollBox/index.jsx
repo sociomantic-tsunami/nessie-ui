@@ -17,7 +17,7 @@ import PropTypes                 from 'prop-types';
 import { isEqual }               from 'lodash';
 
 import { IconButton, ScrollBar } from '../index';
-import { useTheme }              from '../utils';
+import { useThemeClasses }              from '../utils';
 
 const componentName = 'ScrollBox';
 
@@ -70,7 +70,7 @@ const ScrollBox = props =>
         scrollIndicatorVariant,
     } = props;
 
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
 
     const handleClickScrollButton = useCallback( ( dir, e ) =>
     {

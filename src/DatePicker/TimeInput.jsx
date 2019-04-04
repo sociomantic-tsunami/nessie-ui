@@ -12,7 +12,7 @@ import PropTypes    from 'prop-types';
 
 import {
     createEventHandler,
-    useTheme,
+    useThemeClasses,
 } from '../utils';
 
 
@@ -20,7 +20,7 @@ const componentName = 'TimeInput';
 
 const TimeInput = props =>
 {
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
 
     const {
         hourIsDisabled,

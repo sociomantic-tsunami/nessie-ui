@@ -12,14 +12,14 @@ import PropTypes                        from 'prop-types';
 
 import { ScrollBox, TabButton }         from '..';
 
-import { attachEvents, useTheme }       from '../utils';
+import { attachEvents, useThemeClasses }       from '../utils';
 
 
 const componentName = 'Tabs';
 
 const Tabs = ( props ) =>
 {
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
 
     const {
         children,

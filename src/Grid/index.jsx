@@ -10,7 +10,7 @@
 import React                        from 'react';
 import PropTypes                    from 'prop-types';
 
-import { attachEvents, useTheme }   from '../utils';
+import { attachEvents, useThemeClasses }   from '../utils';
 
 
 const componentName = 'Grid';
@@ -27,7 +27,7 @@ const Grid = props =>
         rows,
     } = props;
 
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
 
     return (
         <div
