@@ -18,4 +18,4 @@ export {
     mapAria,
 } from './utils';
 
-export { useId, useTheme } from './customHooks';
+export { useId, useThemeClasses, useThemeVars } from './customHooks';

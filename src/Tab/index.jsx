@@ -10,14 +10,14 @@
 import React            from 'react';
 import PropTypes        from 'prop-types';
 
-import { useTheme }     from '../utils';
+import { useThemeClasses }     from '../utils';
 
 
 const componentName = 'Tab';
 
 const Tab = ( props ) =>
 {
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
     const {
         children,
         label,

@@ -17,7 +17,7 @@ import PropTypes    from 'prop-types';
 import {
     attachEvents,
     mapAria,
-    useTheme,
+    useThemeClasses,
 } from '../utils';
 
 
@@ -26,7 +26,7 @@ const componentName = 'TextInput';
 const TextInput = forwardRef( ( props, ref ) =>
 {
     const inputRef = useRef();
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
 
     useImperativeHandle( ref, () => ( {
         focus : () => inputRef.current.focus(),

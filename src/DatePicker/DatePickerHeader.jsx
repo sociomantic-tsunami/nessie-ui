@@ -13,14 +13,14 @@ import PropTypes            from 'prop-types';
 import { IconButton, Text } from '..';
 
 import TimeInput            from './TimeInput';
-import { useTheme }         from '../utils';
+import { useThemeClasses }         from '../utils';
 
 
 const componentName = 'DatePickerHeader';
 
 const DatePickerHeader = props =>
 {
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
 
     const {
         hasTimeInput,

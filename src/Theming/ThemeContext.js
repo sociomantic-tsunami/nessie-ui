@@ -11,4 +11,4 @@ import React        from 'react';
 
 import DefaultTheme from '../DefaultTheme';
 
-export default React.createContext( DefaultTheme.classNames );
+export default React.createContext( DefaultTheme );
