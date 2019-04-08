@@ -7,8 +7,8 @@
  *
  */
 
-import React                      from 'react';
-import PropTypes                  from 'prop-types';
+import React                             from 'react';
+import PropTypes                         from 'prop-types';
 
 import { attachEvents, useThemeClasses } from '../utils';
 
@@ -44,23 +44,42 @@ Text.propTypes =
     /**
      *  Capitalize text
      */
-    allCaps          : PropTypes.bool,
+    allCaps   : PropTypes.bool,
     /**
      *  Text content (JSX node; overrides text prop)
      */
-    children         : PropTypes.node,
+    children  : PropTypes.node,
     /**
      *  Extra CSS class name
      */
-    className        : PropTypes.string,
+    className : PropTypes.string,
     /**
      *  Text Color
      */
-    color            : PropTypes.string,
+    color     : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap           : PropTypes.objectOf( PropTypes.string ),
+    cssMap    : PropTypes.objectOf( PropTypes.string ),
+    /**
+     *  Font rules to apply to text
+     */
+    font      : PropTypes.oneOf( [
+        'L1',
+        'L2',
+        'H1',
+        'H2',
+        'H3',
+        'H4',
+        'Body1',
+        'Body2',
+        'Body3',
+        'Body4',
+        'Link',
+        'Caption1',
+        'Caption2',
+        'Caption3',
+    ] ),
     /**
      * Letter Spacing for the text
      */
@@ -136,6 +155,7 @@ Text.defaultProps =
     className        : undefined,
     color            : undefined,
     cssMap           : undefined,
+    font             : undefined,
     letterSpacing    : undefined,
     lineHeight       : undefined,
     noWrap           : false,
