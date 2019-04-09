@@ -12,7 +12,7 @@ import PropTypes                from 'prop-types';
 
 import { Text }                 from '..';
 
-import { mapAria, useTheme }    from '../utils';
+import { mapAria, useThemeClasses }    from '../utils';
 
 
 const componentName = 'ListBoxOptionGroup';
@@ -26,7 +26,7 @@ const ListBoxOptionGroup = props =>
         options,
     } = props;
 
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
 
     return (
         <li

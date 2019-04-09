@@ -12,7 +12,7 @@ import PropTypes                    from 'prop-types';
 
 import { IconButton, Text }         from '..';
 
-import { attachEvents, useTheme }   from '../utils';
+import { attachEvents, useThemeClasses }   from '../utils';
 
 
 const componentName = 'Tooltip';
@@ -27,7 +27,7 @@ const Tooltip = props =>
         onClickClose,
     } = props;
 
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
 
     return (
         <div

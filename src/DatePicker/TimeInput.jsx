@@ -7,17 +7,20 @@
  *
  */
 
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React      from 'react';
+import PropTypes  from 'prop-types';
 
-import { createEventHandler, useTheme } from '../utils';
+import {
+    createEventHandler,
+    useThemeClasses,
+} from '../utils';
 
 
 const componentName = 'TimeInput';
 
 const TimeInput = props =>
 {
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
 
     const {
         hourIsDisabled,

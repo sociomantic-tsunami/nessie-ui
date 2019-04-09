@@ -12,7 +12,7 @@ import PropTypes            from 'prop-types';
 
 import { IconButton, Text } from '..';
 
-import { useId, useTheme }  from '../utils';
+import { useId, useThemeClasses }  from '../utils';
 
 
 const componentName = 'Tag';
@@ -27,7 +27,7 @@ const Tag = props =>
         onClick,
     } = props;
 
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
     const id = useId( componentName, props );
 
     let labelText = children || label;

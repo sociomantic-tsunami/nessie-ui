@@ -18,7 +18,7 @@ import {
     attachEvents,
     killFocus,
     mapAria,
-    useTheme,
+    useThemeClasses,
 } from '../utils';
 
 
@@ -40,7 +40,7 @@ const ListBox = props =>
         selection,
     } = props;
 
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
 
     let realSelection = selection;
 

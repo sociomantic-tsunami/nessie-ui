@@ -20,7 +20,7 @@ import {
     attachEvents,
     mapAria,
     useId,
-    useTheme,
+    useThemeClasses,
 } from '../utils';
 
 
@@ -39,7 +39,7 @@ const ListBoxOption = props =>
         value,
     } = props;
 
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
     const id = useId( componentName, props );
 
     let label;

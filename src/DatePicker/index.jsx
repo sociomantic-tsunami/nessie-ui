@@ -7,15 +7,15 @@
  *
  */
 
-import React, { useState }          from 'react';
-import PropTypes                    from 'prop-types';
-import moment                       from 'moment';
-import _                            from 'lodash';
+import React, { useState }                from 'react';
+import PropTypes                          from 'prop-types';
+import moment                             from 'moment';
+import _                                  from 'lodash';
 
-import copy                         from './copy.json';
-import DatePickerItem               from './DatePickerItem';
-import DatePickerHeader             from './DatePickerHeader';
-import { attachEvents, useTheme }   from '../utils';
+import copy                               from './copy.json';
+import DatePickerItem                     from './DatePickerItem';
+import DatePickerHeader                   from './DatePickerHeader';
+import { attachEvents, useThemeClasses }  from '../utils';
 
 
 const DAY_LABELS = _.range( 0, 7 ).map( day => ( {
@@ -104,7 +104,7 @@ const DatePicker = props =>
     const [ hourValue, setHourValue ] = useState( undefined );
     const [ minuteValue, setMinuteValue ] = useState( undefined );
 
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
 
 
     const gridStartTimestamp = gridStartState || $m( timestamp )

@@ -29,7 +29,7 @@ import {
     attachEvents,
     callMultiple,
     useId,
-    useTheme,
+    useThemeClasses,
 }  from '../utils';
 import { buildTagsFromValues } from './utils';
 import { addPrefix }           from '../ComboBox/utils';
@@ -84,7 +84,7 @@ const TagInput = forwardRef( ( props, ref ) =>
     const inputRef = useRef();
     const outerRef = useRef();
 
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
     const id = useId( componentName, props );
 
     const {

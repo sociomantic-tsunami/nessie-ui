@@ -20,7 +20,7 @@ import { Text }     from '..';
 import {
     attachEvents,
     useId,
-    useTheme,
+    useThemeClasses,
 } from '../utils';
 
 
@@ -42,7 +42,7 @@ const Checkbox = forwardRef( ( props, ref ) =>
         label,
     } = props;
 
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
     const id = useId( componentName, props );
 
     let labelContent = children || label;

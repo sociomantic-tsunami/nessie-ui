@@ -22,12 +22,23 @@ import { generateId }           from '.';
  *
  * @return {Object} cssMap containing component's styles
  */
-function useTheme( displayName, props )
+export function useThemeClasses( displayName, props )
 {
-    const { [ displayName ] : theme } = useContext( ThemeContext );
+    const { classNames } = useContext( ThemeContext );
+    const { [ displayName ] : cssMap } = classNames;
 
     return props.cssMap ||
-        ( typeof theme === 'function' ? theme( props ) : theme );
+           ( typeof cssMap === 'function' ? cssMap( props ) : cssMap );
+}
+
+/**
+ * Returns Theme variables
+ *
+ * @return {Object} Theme variables
+ */
+export function useThemeVars()
+{
+    return useContext( ThemeContext ).variables;
 }
 
 
@@ -39,13 +50,10 @@ function useTheme( displayName, props )
  *
  * @return {String} generated ID
  */
-function useId( displayName, props )
+export function useId( displayName, props )
 {
     return useMemo(
         () => props.id || generateId( displayName ),
-        [ props.id ],
+        [ displayName, props.id ],
     );
 }
-
-export { useId, useTheme };
-export default { useId, useTheme };

@@ -10,7 +10,7 @@
 import React                        from 'react';
 import PropTypes                    from 'prop-types';
 
-import { attachEvents, useTheme }   from '../utils';
+import { attachEvents, useThemeClasses }   from '../utils';
 
 import { IconButton, TextInput }    from '..';
 
@@ -19,7 +19,7 @@ const componentName = 'TextInputWithIcon';
 
 const TextInputWithIcon = ( props ) =>
 {
-    const cssMap = useTheme( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
 
     const {
         aria,
