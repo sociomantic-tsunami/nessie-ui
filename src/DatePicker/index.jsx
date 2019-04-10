@@ -75,6 +75,19 @@ function formatMinutes( timestamp )
     return $m( timestamp ).format( 'mm' );
 }
 
+/**
+ * Timestamp conversion to week number
+ *
+ * @param {Number}  timestamp timestamp
+ *
+ * @return {String} week number
+ */
+function formatWeeks( timestamp )
+{
+    if ( !_.isNumber( timestamp ) ) return '';
+    return $m( timestamp ).week();
+}
+
 
 const useTimestamp = ( defaultValue = Date.now(), value ) =>
 {

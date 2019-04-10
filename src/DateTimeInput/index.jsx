@@ -159,7 +159,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         {
             open();
         }
-    }, [ inputRef.current, isOpen ] );
+    }, [ close, isOpen, open ] );
 
 
     const handleChangeInput = useCallback( ( { value } ) =>
@@ -185,7 +185,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
 
         setEditingMainInputValue( !value ? undefined : value );
         setTimestamp( !value ? undefined : newTimestamp );
-    }, [ props.format, props.max, props.min, timestamp ] );
+    }, [ props.format, props.max, props.min, setTimestamp, timestamp ] );
 
 
     const handleOnBlur = useCallback( () =>
@@ -194,7 +194,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         {
             purgeEdits();
         }
-    }, [] );
+    }, [ gridStartTimestamp, purgeEdits ] );
 
 
     const handleChange = ( { value } ) =>
@@ -231,14 +231,14 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         setGridStartTimestamp( $m( newTimestamp )
             .startOf( props.mode === 'month' ? 'year' : 'month' )
             .valueOf() );
-    }, [ props.min, props.mode, timestamp ] );
+    }, [ props, timestamp ] );
 
 
     const close = useCallback( () =>
     {
         purgeEdits();
         setGridStartTimestamp( null );
-    }, [] );
+    }, [ purgeEdits ] );
 
 
     const {
@@ -361,15 +361,20 @@ DateTimeInput.propTypes =
     /**
      *  Picker mode
      */
-    mode             : PropTypes.oneOf( [ 'default', 'date', 'month' ] ),
+    mode             : PropTypes.oneOf( [
+        'default',
+        'date',
+        'week',
+        'month',
+    ] ),
     /**
      *  Change callback: ( { value } ) => ...
      */
-    onChange         : PropTypes.func,
+    onChange : PropTypes.func,
     /**
      *  Selected timestamp
      */
-    value            : PropTypes.number,
+    value    : PropTypes.number,
 };
 
 DateTimeInput.defaultProps =
