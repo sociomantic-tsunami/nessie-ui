@@ -141,4 +141,4 @@ Radio.defaultProps = {
 
 Radio.displayName = componentName;
 
-export default React.forwardRef( ( props, ref ) => <Radio { ...props } ref = { ref } /> );
+export default Radio;
