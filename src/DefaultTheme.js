@@ -26,6 +26,7 @@ import listBoxOptionGroupClasses from './ListBox/listBoxOptionGroup.css';
 import modalClasses              from './Modal/modal.css';
 import popupClasses              from './Popup/popup.css';
 import progressBarClasses        from './ProgressBar/progressBar.css';
+import radioClasses              from './Radio/radio.css';
 import scrollBarClasses          from './ScrollBar/scrollBar.css';
 import scrollBoxClasses          from './ScrollBox/scrollBox.css';
 import spinnerClasses            from './Spinner/spinner.css';
@@ -194,6 +195,13 @@ const classNames = {
             props.className,
         ),
         ...progressBarClasses,
+    } ),
+    Radio : props => ( {
+        main : cx.bind( radioClasses )(
+            'default',
+            props.className,
+        ),
+        ...radioClasses,
     } ),
     ScrollBar : props => ( {
         main : cx.bind( scrollBarClasses )(

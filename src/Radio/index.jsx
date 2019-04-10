@@ -7,138 +7,138 @@
  *
  */
 
-import React, { useImperativeHandle, useRef, forwardRef } from "react";
-import PropTypes from "prop-types";
+import React, {
+    useImperativeHandle,
+    useRef, forwardRef,
+} from 'react';
+import PropTypes                             from 'prop-types';
 
-import Checkable from "../proto/Checkable";
-import { generateId } from "../utils";
-import ThemeContext from "../Theming/ThemeContext";
-import { createCssMap } from "../Theming";
-import { useId, useThemeClasses } from "../utils";
+import Checkable                             from '../proto/Checkable';
+import { useId, useThemeClasses }            from '../utils';
 
-const componentName = "Radio";
-const Radio = forwardRef((props, ref) => {
-  const radioRef = useRef();
+const componentName = 'Radio';
+const Radio = forwardRef( ( props, ref ) =>
+{
+    const radioRef = useRef();
 
-  useImperativeHandle(ref, () => ({
-    focus: () => radioRef.current.focus()
-  }));
+    useImperativeHandle( ref, () => ( {
+        focus : () => radioRef.current.focus(),
+    } ) );
 
-  const cssMap = useThemeClasses(componentName, props);
-  const id = useId(componentName, props);
+    const cssMap = useThemeClasses( componentName, props );
+    const id = useId( componentName, props );
 
-  return (
-    <Checkable
-      {...props}
-      cssMap={cssMap}
-      id={id}
-      ref={this.props.ref}
-      type="radio"
-    />
-  );
-});
+    return (
+        <Checkable
+            { ...props }
+            cssMap = { cssMap }
+            id = { id }
+            ref = { ref }
+            type = "radio" />
+    );
+} );
 
 Radio.propTypes = {
-  /**
+    /**
    *  Label content (JSX node; overrides label prop)
    */
-  children: PropTypes.node,
-  /**
+    children    : PropTypes.node,
+    /**
    *  Extra CSS class name
    */
-  className: PropTypes.string,
-  /**
+    className   : PropTypes.string,
+    /**
    *  CSS class map
    */
-  cssMap: PropTypes.objectOf(PropTypes.string),
-  /**
+    cssMap      : PropTypes.objectOf( PropTypes.string ),
+    /**
    * Display as hover when required from another component
    */
-  forceHover: PropTypes.bool,
-  /**
+    forceHover  : PropTypes.bool,
+    /**
    *  Display as error/invalid
    */
-  hasError: PropTypes.bool,
-  /**
+    hasError    : PropTypes.bool,
+    /**
    *  HTML id attribute
    */
-  id: PropTypes.string,
-  /**
+    id          : PropTypes.string,
+    /**
    * Callback that receives the native <input>: ( ref ) => { ... }
    */
-  inputRef: PropTypes.func,
-  /**
+    inputRef    : PropTypes.func,
+    /**
    *  Display as checked (controlled input)
    */
-  isChecked: PropTypes.bool,
-  /**
+    isChecked   : PropTypes.bool,
+    /**
    *  Display as disabled
    */
-  isDisabled: PropTypes.bool,
-  /**
+    isDisabled  : PropTypes.bool,
+    /**
    *  Display as read-only
    */
-  isReadOnly: PropTypes.bool,
-  /**
+    isReadOnly  : PropTypes.bool,
+    /**
    *  Label content (string)
    */
-  label: PropTypes.string,
-  /**
+    label       : PropTypes.string,
+    /**
    *  Radio group name
    */
-  name: PropTypes.string,
-  /**
+    name        : PropTypes.string,
+    /**
    *  OnBlur callback function: ( e ) => { ... }
    */
-  onBlur: PropTypes.func,
-  /**
+    onBlur      : PropTypes.func,
+    /**
    *  OnClick callback function: ( e ) => { ... }
    */
-  onClick: PropTypes.func,
-  /**
+    onClick     : PropTypes.func,
+    /**
    *  OnChange callback function: ( e ) => { ... }
    */
-  onChange: PropTypes.func,
-  /**
+    onChange    : PropTypes.func,
+    /**
    *  onFocus callback function: ( e ) => { ... }
    */
-  onFocus: PropTypes.func,
-  /**
+    onFocus     : PropTypes.func,
+    /**
    *  onMouseOut callback function : ( e ) => { ... }
    */
-  onMouseOut: PropTypes.func,
-  /**
+    onMouseOut  : PropTypes.func,
+    /**
    *  onMouseOver callback function : ( e ) => { ... }
    */
-  onMouseOver: PropTypes.func,
-  /**
+    onMouseOver : PropTypes.func,
+    /**
    *  HTML value attribute
    */
-  value: PropTypes.string
+    value       : PropTypes.string,
 };
 
 Radio.defaultProps = {
-  children: undefined,
-  className: undefined,
-  cssMap: undefined,
-  forceHover: false,
-  hasError: false,
-  id: undefined,
-  inputRef: undefined,
-  isChecked: false,
-  isDisabled: false,
-  isReadOnly: false,
-  label: undefined,
-  name: undefined,
-  onBlur: undefined,
-  onChange: undefined,
-  onClick: undefined,
-  onFocus: undefined,
-  onMouseOut: undefined,
-  onMouseOver: undefined,
-  value: undefined
+    children    : undefined,
+    className   : undefined,
+    cssMap      : undefined,
+    forceHover  : false,
+    hasError    : false,
+    id          : undefined,
+    inputRef    : undefined,
+    isChecked   : false,
+    isDisabled  : false,
+    isReadOnly  : false,
+    label       : undefined,
+    name        : undefined,
+    onBlur      : undefined,
+    onChange    : undefined,
+    onClick     : undefined,
+    onFocus     : undefined,
+    onMouseOut  : undefined,
+    onMouseOver : undefined,
+    value       : undefined,
 };
 
 Radio.displayName = componentName;
 
-export default React.forwardRef((props, ref) => <Radio {...props} ref={ref} />);
+export default React.forwardRef( ( props, ref ) => <Radio { ...props } ref = { ref } /> );
