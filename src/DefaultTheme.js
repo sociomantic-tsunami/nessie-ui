@@ -11,7 +11,6 @@ import cx                         from 'classnames/bind';
 
 import buttonClasses              from './Button/button.css';
 import cardClasses                from './Card/card.css';
-import checkableClasses           from './proto/checkable.css';
 import checkboxClasses            from './Checkbox/checkbox.css';
 import comboBoxClasses            from './ComboBox/comboBox.css';
 import datePickerClasses          from './DatePicker/datePicker.css';
@@ -69,17 +68,6 @@ const classNames = {
             props.className,
         ),
         ...cardClasses,
-    } ),
-    Checkable : props => ( {
-        main : cx.bind( checkableClasses )(
-            'default',
-            {
-                disabled : props.isDisabled,
-                error    : !props.isDisabled && props.hasError,
-            },
-            props.className,
-        ),
-        ...checkableClasses,
     } ),
     Checkbox : props => ( {
         main : cx.bind( checkboxClasses )(
