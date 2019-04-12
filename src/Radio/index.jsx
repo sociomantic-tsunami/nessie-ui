@@ -40,6 +40,7 @@ const Radio = forwardRef( ( props, ref ) =>
         isDefaultChecked,
         isDisabled,
         label,
+        value,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -63,7 +64,8 @@ const Radio = forwardRef( ( props, ref ) =>
                 defaultChecked = { isDefaultChecked }
                 disabled  = { isDisabled }
                 id        = { id }
-                type      =  "radio" />
+                type      =  "radio"
+                value     = { value } />
             <label className = { cssMap.label } htmlFor = { id }>
                 { labelContent &&
                     <span className = { cssMap.labelContent }>

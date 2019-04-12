@@ -7,7 +7,7 @@
  *
  */
 
-@import "./base.css";
+@import "../proto/base.css";
 
 .default {
   padding-top: var(--spacing-1);

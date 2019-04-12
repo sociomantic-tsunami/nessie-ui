@@ -7,104 +7,49 @@
  *
  */
 
- @import "../proto/base.css";
+@import "./checkable.css";
 
- .default {
-   padding-top: var(--spacing-1);
-   padding-bottom: var(--spacing-1);
+:root
+{
+    --dotSize:   calc( var( --spacing-3 ) / 2 );
+    --dotOffset: calc( var( --dotSize ) / 2 );
+}
 
-   width: auto;
+.default
+{
+    .label::before,
+    .label::after
+    {
+        border-radius:  50%;
+    }
 
-   .input /* the (hidden) native input */
-  {
-     position: absolute;
-     left: -9999px;
-   }
 
-   .label /* ‘label’ is the styled checkbox/radio */
-  {
-     display: flex;
-     align-items: center;
+    .input:checked + .label::after
+    {
+        display:    block;
 
-     position: relative;
+        top:        var(--dotOffset );
+        left:       var(--dotOffset );
 
-     height: var(--spacing-3);
+        width:      var( --dotSize );
+        height:     var( --dotSize );
 
-     cursor: pointer;
+        background: var( --PC-BLUE );
+    }
+}
 
-     &::before {
-       content: "";
+.error
+{
+    .input:checked + .label::after
+    {
+        background: var( --PC-RED );
+    }
+}
 
-       display: block;
-       position: relative;
-
-       box-sizing: border-box;
-       width: var(--spacing-3);
-       height: var(--spacing-3);
-
-       border: 1px solid var(--PC-BLUE--L55);
-       border-radius: 2px;
-
-       background: var(--PC-WHITE);
-     }
-
-     &::after {
-       content: "";
-
-       display: none;
-       position: absolute;
-
-       top: 0;
-       left: 0;
-
-       width: var(--spacing-3);
-       height: var(--spacing-3);
-     }
-   }
-
-   .labelContent {
-     display: block;
-     margin-left: var(--spacing-1);
-   }
-
-   .labelText {
-     @extend %Nessie-SemiBold;
-     color: var(--PC-GREY--D15);
-   }
-
-   .input:checked + .label::before,
-   .input:focus + .label::before,
-   &.fakeHovered .label::before {
-     border-color: var(--PC-BLUE);
-   }
-
-   .input:focus + .label::before,
-   &.fakeHovered .label::before {
-     box-shadow: 0 0 0 2px color(var(--PC-BLUE) a(30%));
-   }
- }
-
- .error {
-   .label::before {
-     border: 1px solid var(--PC-RED) !important;
-   }
-
-   .input:focus + .label::before,
-   &.fakeHovered .label::before {
-     box-shadow: 0 0 0 2px color(var(--PC-RED) a(30%));
-   }
- }
-
- .disabled {
-   .label {
-     cursor: default;
-
-     &::before {
-       border-color: var(--PC-GREY--L70) !important;
-     }
-   }
-
-   .labelText {
-     color: var(--PC-GREY--L70);
-   }
- }
+.disabled
+{
+    .input:checked + .label::after
+    {
+        background: var( --PC-GREY--L70 );
+    }
+}

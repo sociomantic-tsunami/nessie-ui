@@ -9,6 +9,7 @@
 /* eslint-disable react/prop-types */
 
 import React        from 'react';
+import { merge }    from 'lodash';
 
 import DefaultTheme from '../DefaultTheme';
 import ThemeContext from './ThemeContext';
@@ -16,7 +17,7 @@ import ThemeContext from './ThemeContext';
 const { Consumer : ThemeConsumer, Provider } = ThemeContext;
 
 const ThemeProvider = props => (
-    <Provider value = { { ...DefaultTheme, ...props.value } }>
+    <Provider value = {  merge( {}, DefaultTheme, props.value ) }>
         {props.children}
     </Provider>
 );
