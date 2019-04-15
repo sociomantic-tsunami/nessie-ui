@@ -7,7 +7,6 @@
  *
  */
 
-
 import Button            from './Button';
 import Card              from './Card';
 import Checkbox          from './Checkbox';
@@ -39,7 +38,7 @@ import TextArea          from './TextArea';
 import TextInput         from './TextInput';
 import TextInputWithIcon from './TextInputWithIcon';
 import Tooltip           from './Tooltip';
-
+import Radio             from './Radio';
 
 export default {
     Button,
@@ -73,8 +72,8 @@ export default {
     TextInput,
     TextInputWithIcon,
     Tooltip,
+    Radio,
 };
-
 
 export {
     Button,
@@ -108,13 +107,13 @@ export {
     TextInput,
     TextInputWithIcon,
     Tooltip,
+    Radio,
 };
 
 // Theming
-export { ThemeProvider }                  from './Theming';
-export DefaultTheme                       from './DefaultTheme';
-export { useThemeClasses, useThemeVars }  from './utils';
-
+export { ThemeProvider } from './Theming';
+export DefaultTheme from './DefaultTheme';
+export { useThemeClasses, useThemeVars } from './utils';
 
 // Addons
-export SpriteMap    from './SpriteMap';
+export SpriteMap from './SpriteMap';
