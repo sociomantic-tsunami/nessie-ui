@@ -30,6 +30,7 @@ const PasswordInput = forwardRef( ( props, ref ) =>
     const {
         id,
         onClickIcon,
+        style,
     } = props;
 
     const handleClickIcon = useCallback( ( payload, e ) =>
@@ -67,7 +68,8 @@ const PasswordInput = forwardRef( ( props, ref ) =>
             inputType      = { passwordIsVisible ? 'text' : 'password' }
             onClickIcon    = { handleClickIcon }
             ref            = { ref }
-            spellCheck     = { false } />
+            spellCheck     = { false }
+            style          = { style } />
     );
 } );
 
@@ -151,6 +153,10 @@ PasswordInput.propTypes =
      *  Input string value
      */
     value                : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style                : PropTypes.objectOf( PropTypes.string ),
 };
 
 PasswordInput.defaultProps =
@@ -171,6 +177,7 @@ PasswordInput.defaultProps =
     onClickIcon          : undefined,
     passwordIsVisible    : false,
     placeholder          : undefined,
+    style                : undefined,
     textAlign            : 'auto',
     value                : undefined,
 };

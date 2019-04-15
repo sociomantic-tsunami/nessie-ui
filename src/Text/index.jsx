@@ -7,8 +7,8 @@
  *
  */
 
-import React                      from 'react';
-import PropTypes                  from 'prop-types';
+import React                             from 'react';
+import PropTypes                         from 'prop-types';
 
 import { attachEvents, useThemeClasses } from '../utils';
 
@@ -22,6 +22,7 @@ const Text = props =>
         color,
         letterSpacing,
         lineHeight,
+        style,
         text,
         textRef,
     } = props;
@@ -33,7 +34,9 @@ const Text = props =>
             { ...attachEvents( props ) }
             className = { cssMap.main }
             ref       = { textRef }
-            style     = { { color, letterSpacing, lineHeight } }>
+            style     = { {
+                color, letterSpacing, lineHeight, ...style,
+            } }>
             { children || text }
         </div>
     );
@@ -127,6 +130,10 @@ Text.propTypes =
         'ExtraBold',
         'ExtraBoldIt',
     ] ),
+    /**
+     *  Style overrides
+     */
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 Text.defaultProps =
@@ -142,6 +149,7 @@ Text.defaultProps =
     overflowIsHidden : false,
     role             : 'default',
     size             : 'M',
+    style            : undefined,
     text             : undefined,
     textAlign        : undefined,
     textRef          : undefined,

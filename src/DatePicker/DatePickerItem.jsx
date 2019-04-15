@@ -7,10 +7,10 @@
  *
  */
 
-import React                       from 'react';
-import PropTypes                   from 'prop-types';
+import React                              from 'react';
+import PropTypes                          from 'prop-types';
 
-import { Text }                    from '..';
+import { Text }                           from '..';
 
 import { attachEvents, useThemeClasses }  from '../utils';
 
@@ -26,6 +26,7 @@ const DatePickerItem = props =>
         isDisabled,
         isSelected,
         label,
+        style,
         value,
     } = props;
 
@@ -37,6 +38,7 @@ const DatePickerItem = props =>
             aria-pressed = { isSelected }
             className    = { cssMap.main }
             disabled     = { isDisabled }
+            style        = { style }
             type         = "button"
             value        = { value }>
             <Text className = { cssMap.text }>{ children || label }</Text>
@@ -54,6 +56,10 @@ DatePickerItem.propTypes = {
     onClick    : PropTypes.func,
     value      : PropTypes.string,
     type       : PropTypes.oneOf( [ 'day', 'month' ] ),
+    /**
+     *  Style overrides
+     */
+    style      : PropTypes.objectOf( PropTypes.string ),
 };
 
 DatePickerItem.defaultProps = {
@@ -64,8 +70,9 @@ DatePickerItem.defaultProps = {
     isSelected : false,
     label      : undefined,
     onClick    : undefined,
-    value      : undefined,
+    style      : undefined,
     type       : 'day',
+    value      : undefined,
 };
 
 DatePickerItem.displayName = componentName;

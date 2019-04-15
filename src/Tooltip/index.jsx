@@ -7,10 +7,10 @@
  *
  */
 
-import React                        from 'react';
-import PropTypes                    from 'prop-types';
+import React                               from 'react';
+import PropTypes                           from 'prop-types';
 
-import { IconButton, Text }         from '..';
+import { IconButton, Text }                from '..';
 
 import { attachEvents, useThemeClasses }   from '../utils';
 
@@ -25,6 +25,7 @@ const Tooltip = props =>
         isDismissible,
         message,
         onClickClose,
+        style,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -34,7 +35,8 @@ const Tooltip = props =>
             { ...attachEvents( props ) }
             className = { cssMap.main }
             id        = { id }
-            role      = "tooltip">
+            role      = "tooltip"
+            style     = { style }>
             <div className = { cssMap.message }>
                 { children || ( typeof message === 'string' ?
                     <Text>{ message }</Text> : message )
@@ -118,6 +120,10 @@ Tooltip.propTypes =
         'promoted',
         'warning',
     ] ),
+    /**
+     *  Style overrides
+     */
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 Tooltip.defaultProps =
@@ -133,6 +139,7 @@ Tooltip.defaultProps =
     onMouseOut    : undefined,
     onMouseOver   : undefined,
     role          : 'default',
+    style         : undefined,
 };
 
 Tooltip.displayName = componentName;

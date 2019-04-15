@@ -32,6 +32,7 @@ const PopperWrapper = ( props ) =>
         popper,
         popperOffset,
         popperPosition,
+        style,
     } = props;
 
     const referenceRef      = useRef();
@@ -71,7 +72,7 @@ const PopperWrapper = ( props ) =>
                 removeEventListener( 'mousedown', handleClickOutSide );
             };
         }
-    }, [ scheduleUpdateRef.current, isVisible, onClickOutside ] );
+    }, [ isVisible, onClickOutside, handleClickOutSide ] );
 
     const handleClickOutSide = useCallback( ( e ) =>
     {
@@ -116,7 +117,7 @@ const PopperWrapper = ( props ) =>
             <Reference
                 innerRef  = { ( ref ) => referenceRef.current = ref }>
                 { ( { ref } ) => (
-                    <div ref = { ref }>
+                    <div ref = { ref } style = { style }>
                         { children }
                     </div>
                 ) }
@@ -176,6 +177,10 @@ PopperWrapper.propTypes =
         'right-start',
         'right-end',
     ] ),
+    /**
+     *  Style overrides
+     */
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 PopperWrapper.defaultProps =
@@ -188,6 +193,7 @@ PopperWrapper.defaultProps =
     popper         : undefined,
     popperOffset   : 'none',
     popperPosition : 'auto',
+    style          : undefined,
 };
 
 PopperWrapper.displayComponent = componentName;

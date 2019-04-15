@@ -36,10 +36,11 @@ const TimeInput = props =>
         minuteValue,
         onChangeHour,
         onChangeMinute,
+        style,
     } = props;
 
     return (
-        <div className = { cssMap.main }>
+        <div className = { cssMap.main } style = { style }>
             <input
                 className   = { cssMap.hour }
                 disabled    = { isDisabled || hourIsDisabled }
@@ -80,6 +81,10 @@ TimeInput.propTypes =
     minuteValue       : PropTypes.string,
     onChangeHour      : PropTypes.func,
     onChangeMinute    : PropTypes.func,
+    /**
+     *  Style overrides
+     */
+    style             : PropTypes.objectOf( PropTypes.string ),
 };
 
 TimeInput.defaultProps =
@@ -99,6 +104,7 @@ TimeInput.defaultProps =
     minuteValue       : undefined,
     onChangeHour      : undefined,
     onChangeMinute    : undefined,
+    style             : undefined,
 };
 
 TimeInput.displayName = componentName;

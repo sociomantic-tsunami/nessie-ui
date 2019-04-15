@@ -43,6 +43,7 @@ const TextArea = forwardRef( ( props, ref ) =>
         placeholder,
         rows,
         spellCheck,
+        style,
         value,
     } = props;
 
@@ -62,6 +63,7 @@ const TextArea = forwardRef( ( props, ref ) =>
             ref            = { textAreaRef }
             rows           = { rows }
             spellCheck     = { spellCheck }
+            style          = { style }
             value          = { value } />
     );
 } );
@@ -190,6 +192,10 @@ TextArea.propTypes =
      *  Input string value
      */
     value      : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style      : PropTypes.objectOf( PropTypes.string ),
 };
 
 TextArea.defaultProps =
@@ -218,6 +224,7 @@ TextArea.defaultProps =
     resize         : undefined,
     rows           : 2,
     spellCheck     : undefined,
+    style          : undefined,
     textAlign      : 'left',
     value          : undefined,
 };

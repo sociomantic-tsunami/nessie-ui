@@ -7,10 +7,10 @@
  *
  */
 
-import React, { useState, useCallback } from 'react';
-import PropTypes                        from 'prop-types';
+import React, { useState, useCallback }        from 'react';
+import PropTypes                               from 'prop-types';
 
-import { ScrollBox, TabButton }         from '..';
+import { ScrollBox, TabButton }                from '..';
 
 import { attachEvents, useThemeClasses }       from '../utils';
 
@@ -24,6 +24,7 @@ const Tabs = ( props ) =>
     const {
         children,
         secondaryControls,
+        style,
     } = props;
 
     const [ activeTabIndexState,
@@ -61,7 +62,7 @@ const Tabs = ( props ) =>
                 onChange( { activeTabIndex: tabIndex } );
             }
         }
-    }, [ onClickTab, onChange, activeTabIndexState ] );
+    }, [ onClickTab, onChange ] );
     const tabButtons = tabs.map( ( tab, tabIndex ) =>
     {
         const { isDisabled, label } = tab.props;
@@ -80,7 +81,10 @@ const Tabs = ( props ) =>
     } );
 
     return (
-        <div { ...attachEvents( props ) } className = { cssMap.main }>
+        <div
+            { ...attachEvents( props ) }
+            className = { cssMap.main }
+            style = { style }>
             <div className = { cssMap.header }>
                 <ScrollBox
                     className = { cssMap.tabsContainer }
@@ -146,6 +150,10 @@ Tabs.propTypes =
      *  Secondary controls to add to tabs header
      */
     secondaryControls : PropTypes.node,
+    /**
+     *  Style overrides
+     */
+    style             : PropTypes.objectOf( PropTypes.string ),
 };
 
 Tabs.defaultProps =
@@ -158,6 +166,7 @@ Tabs.defaultProps =
     onClickTab        : undefined,
     padding           : [ 'none', 'M' ],
     secondaryControls : undefined,
+    style             : undefined,
 };
 
 Tabs.displayName = componentName;

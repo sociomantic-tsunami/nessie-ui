@@ -43,6 +43,7 @@ const TextInput = forwardRef( ( props, ref ) =>
         isReadOnly,
         placeholder,
         spellCheck,
+        style,
         type,
         value,
     } = props;
@@ -62,6 +63,7 @@ const TextInput = forwardRef( ( props, ref ) =>
             readOnly       = { isReadOnly }
             ref            = { inputRef }
             spellCheck     = { spellCheck }
+            style          = { style }
             type           = { type }
             value          = { value } />
     );
@@ -180,6 +182,10 @@ TextInput.propTypes =
      *  Input string value
      */
     value        : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style        : PropTypes.objectOf( PropTypes.string ),
 };
 
 TextInput.defaultProps =
@@ -206,6 +212,7 @@ TextInput.defaultProps =
     onMouseOver    : undefined,
     placeholder    : undefined,
     spellCheck     : undefined,
+    style          : undefined,
     textAlign      : 'left',
     type           : 'text',
     value          : undefined,

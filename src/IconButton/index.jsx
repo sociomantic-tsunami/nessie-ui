@@ -7,12 +7,12 @@
  *
  */
 
-import React                        from 'react';
-import PropTypes                    from 'prop-types';
+import React                             from 'react';
+import PropTypes                         from 'prop-types';
 
-import { Icon }                     from '..';
+import { Icon }                          from '..';
 
-import { attachEvents, useThemeClasses }   from '../utils';
+import { attachEvents, useThemeClasses } from '../utils';
 
 
 const componentName = 'IconButton';
@@ -30,6 +30,7 @@ const IconButton = props =>
         isDisabled,
         isFocusable,
         label,
+        style,
         value,
     } = props;
 
@@ -45,6 +46,7 @@ const IconButton = props =>
             id          = { id }
             onMouseDown = { !isFocusable ? killFocus : undefined }
             ref         = { buttonRef }
+            style       = { style }
             tabIndex    = { isFocusable ? '0' : '-1' }
             type        = "button"
             value       = { value }>
@@ -117,6 +119,10 @@ IconButton.propTypes =
      *  HTML value attribute
      */
     value         : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style         : PropTypes.objectOf( PropTypes.string ),
 };
 
 IconButton.defaultProps =
@@ -134,6 +140,7 @@ IconButton.defaultProps =
     label         : undefined,
     onClick       : undefined,
     role          : 'default',
+    style         : undefined,
     value         : undefined,
 };
 

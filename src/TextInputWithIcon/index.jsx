@@ -7,12 +7,12 @@
  *
  */
 
-import React                        from 'react';
-import PropTypes                    from 'prop-types';
+import React                               from 'react';
+import PropTypes                           from 'prop-types';
 
 import { attachEvents, useThemeClasses }   from '../utils';
 
-import { IconButton, TextInput }    from '..';
+import { IconButton, TextInput }           from '..';
 
 
 const componentName = 'TextInputWithIcon';
@@ -42,6 +42,7 @@ const TextInputWithIcon = ( props ) =>
         onKeyDownInput,
         placeholder,
         spellCheck,
+        style,
         textAlign,
         value,
     } = props;
@@ -55,7 +56,10 @@ const TextInputWithIcon = ( props ) =>
     }
 
     return (
-        <div { ...attachEvents( props ) } className = { cssMap.main }>
+        <div
+            { ...attachEvents( props ) }
+            className = { cssMap.main }
+            style = { style }>
             <TextInput
                 aria           = { aria }
                 autocapitalize = { autoCapitalize }
@@ -218,6 +222,10 @@ TextInputWithIcon.propTypes =
      *  Input string value
      */
     value                : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style                : PropTypes.objectOf( PropTypes.string ),
 };
 
 TextInputWithIcon.defaultProps =
@@ -249,6 +257,7 @@ TextInputWithIcon.defaultProps =
     onMouseOver          : undefined,
     placeholder          : undefined,
     spellCheck           : undefined,
+    style                : undefined,
     textAlign            : 'auto',
     value                : undefined,
 };

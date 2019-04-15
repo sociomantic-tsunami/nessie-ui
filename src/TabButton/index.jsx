@@ -12,7 +12,7 @@ import React, {
     useRef,
     forwardRef,
 } from 'react';
-import PropTypes                  from 'prop-types';
+import PropTypes                         from 'prop-types';
 
 import { attachEvents, useThemeClasses } from '../utils';
 
@@ -37,6 +37,7 @@ const TabButton = forwardRef( ( props, ref ) =>
         label,
         subtitle,
         tabIndex,
+        style,
     } = props;
 
     return (
@@ -48,6 +49,7 @@ const TabButton = forwardRef( ( props, ref ) =>
             disabled  = { isDisabled }
             ref       = { tabButtonRef }
             role      = "tab"
+            style     = { style }
             type      = "button">
             <div className = { cssMap.content }>
                 <div className = { cssMap.label }>
@@ -97,6 +99,10 @@ TabButton.propTypes =
      *  Index of this tab
      */
     tabIndex   : PropTypes.number,
+    /**
+     *  Style overrides
+     */
+    style      : PropTypes.objectOf( PropTypes.string ),
 };
 
 TabButton.defaultProps =
@@ -109,6 +115,7 @@ TabButton.defaultProps =
     onClick    : undefined,
     subtitle   : undefined,
     tabIndex   : 0,
+    style      : undefined,
 };
 
 TabButton.displayName = componentName;

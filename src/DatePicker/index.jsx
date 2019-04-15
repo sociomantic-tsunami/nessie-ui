@@ -339,8 +339,9 @@ const DatePicker = props =>
         minuteIsDisabled,
         minuteIsReadOnly,
         minutePlaceholder,
-        type,
         onChange,
+        style,
+        type,
         ...restProps
     } = props;
 
@@ -349,7 +350,10 @@ const DatePicker = props =>
     const items = type === 'month' ? monthMatrix() : dayMatrix();
 
     return (
-        <div { ...attachEvents( restProps ) } className = { cssMap.main }>
+        <div
+            { ...attachEvents( restProps ) }
+            className = { cssMap.main }
+            style     = { style }>
             <DatePickerHeader
                 hasTimeInput      = { hasTimeInput }
                 hourIsDisabled    = { hourIsDisabled }
@@ -433,6 +437,11 @@ DatePicker.propTypes = {
     onClickPrev       : PropTypes.func,
     type              : PropTypes.oneOf( [ 'day', 'month' ] ),
     value             : PropTypes.number,
+    /**
+     *  Style overrides
+     */
+    style             : PropTypes.objectOf( PropTypes.string ),
+
 };
 
 DatePicker.defaultProps = {
@@ -459,6 +468,7 @@ DatePicker.defaultProps = {
     onClickItem       : undefined,
     onClickNext       : undefined,
     onClickPrev       : undefined,
+    style             : undefined,
     type              : 'day',
     value             : undefined,
 };
