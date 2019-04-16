@@ -25,6 +25,7 @@ import {
     Popup,
     PopperWrapper,
     ScrollBox,
+    Tag,
     Text,
 } from '..';
 
@@ -36,7 +37,6 @@ import {
     useThemeClasses,
 } from '../utils';
 import { addPrefix, prefixOptions, removePrefix } from './utils';
-import { buildTagsFromValues }                    from '../TagInput/utils';
 
 /**
  * gets the index of the option by the passed id
@@ -108,8 +108,8 @@ const optionsFormatted = ( filteredOptionsIds, originalOptions ) => (
 
 const useSelection = ( defaultValue, value, isMultiselect ) =>
 {
-    const validatedDefaultValue = isMultiselect && defaultValue ? castArray( defaultValue ) :
-        defaultValue;
+    const validatedDefaultValue = isMultiselect && defaultValue ?
+        castArray( defaultValue ) : defaultValue;
     const validatedValue = isMultiselect && value ? castArray( value ) : value;
 
     const [ selection, setSelection ] = useState( validatedDefaultValue );
@@ -221,7 +221,7 @@ const ComboBox = props =>
     const focus = useCallback( () =>
     {
         inputRef.current.focus();
-    }, [ inputRef.current ] );
+    }, [] );
 
     const handleFocus = useCallback( () =>
     {
@@ -231,7 +231,7 @@ const ComboBox = props =>
         {
             setSearchValue( '' );
         }
-    }, [ isSearchable ] );
+    }, [ focus, isSearchable ] );
 
     const handleChangeInput = useCallback( ( e ) =>
     {
@@ -245,13 +245,13 @@ const ComboBox = props =>
         }
 
         setSearchValue( searchValueToUse );
-    }, [ flatOptions, onChangeInput ] );
+    }, [ onChangeInput ] );
 
     const handleClickIcon = useCallback( () =>
     {
         focus();
         setIsOpen( !isOpen );
-    }, [ isOpen ] );
+    }, [ focus, isOpen ] );
 
     const handleClick = useCallback( () =>
     {
@@ -286,13 +286,12 @@ const ComboBox = props =>
         setIsOpen( false );
         setSearchValue( undefined );
         setSelection( newSelection );
-    }, [ id, isMultiselect, isReadOnly, flatOptions, selection,
-        onChange ] );
+    }, [ id, isReadOnly, selection, isMultiselect, onChange, setSelection ] );
 
     const handleClickClose = useCallback( ( { id : tagId } ) =>
     {
         const newTags = selection.filter( tag => tag !== tagId );
-console.log(tagId);
+
         if ( typeof onChange === 'function' )
         {
             onChange( { value: newTags } );
@@ -300,7 +299,7 @@ console.log(tagId);
 
         setSelection( newTags );
         setIsOpen( false );
-    }, [ selection, onChange ] );
+    }, [ selection, onChange, setSelection ] );
 
     const handleKeyDown = useCallback( ( e ) =>
     {
@@ -378,8 +377,18 @@ console.log(tagId);
                 }
             }
         }
-    }, [ flatOptions, isOpen, activeOption, selection,
-        isReadOnly, onChange ] );
+    }, [
+        filteredOptions,
+        flatOptions,
+        isOpen,
+        activeOption,
+        selection,
+        isReadOnly,
+        isMultiselect,
+        onChange,
+        setSelection,
+        id,
+    ] );
 
     const handleMouseOutOption = useCallback( () =>
     {
@@ -410,21 +419,15 @@ console.log(tagId);
 
     if ( isMultiselect )
     {
-      let selectedTags = selection && selection.map( itemId => (
-        {
-          id: itemId,
-          key: itemId,
-          label: getOption( itemId, flatOptions ).text
-        }
-      ));
-        tags = buildTagsFromValues( selectedTags );
-        tags = tags.map( tag => (
-            React.cloneElement( tag, {
-                ...tag.props,
-                isDisabled : isDisabled || tag.props.isDisabled,
-                isReadOnly : isReadOnly || tag.props.isReadOnly,
-                onClick    : handleClickClose,
-            } )
+        tags = selection && selection.map( itemId => (
+            <Tag
+                id = { itemId }
+                isDisabled = { isDisabled }
+                isReadOnly = { isReadOnly }
+                key = { itemId }
+                label = { getOption( itemId, flatOptions ).text }
+                onClick  = { handleClickClose }
+            />
         ) );
     }
 
