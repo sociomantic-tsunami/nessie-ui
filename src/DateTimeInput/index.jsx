@@ -263,45 +263,48 @@ const DateTimeInput = forwardRef( ( props, ref ) =>
             value            = { timestamp } />
     );
 
-    const popperChildren = (
-        <TextInputWithIcon
-            autoCapitalize = "off"
-            autoComplete   = "off"
-            autoCorrect    = "off"
-            className      = { className }
-            hasError       = { hasError }
-            iconType       = "calendar"
-            id             = { id }
-            isDisabled     = { isDisabled }
-            isReadOnly     = { isReadOnly }
-            onBlur         = { handleOnBlur }
-            onChangeInput  = { handleChangeInput }
-            onClickIcon    = { handleClickIcon }
-            placeholder    = { inputPlaceholder }
-            spellCheck     = { false }
-            value          = { editingMainInputValue ||
-                formatDateTime( timestamp, format || setPrecision( mode ) )
-            } />
-    );
-
-    const popperPopup = (
-        <Popup
-            hasError = { hasError }>
-            { datePicker }
-        </Popup>
-    );
 
     return (
         <PopperWrapper
             isVisible       = { isOpen }
             onClickOutside  = { close }
-            popper          = { popperPopup }
+            popper          = { popperProps => (
+                <Popup
+                    hasError = { hasError }
+                    size     = "content"
+                    { ...popperProps }>
+                    { datePicker }
+                </Popup>
+            ) }
             popperContainer = { popperContainer }
             popperOffset    = "S"
             popperPosition  = "bottom-start"
             ref             = { ref }
             style           = { style }>
-            { popperChildren }
+            { refProps => (
+                <TextInputWithIcon
+                    autoCapitalize = "off"
+                    autoComplete   = "off"
+                    autoCorrect    = "off"
+                    className      = { className }
+                    hasError       = { hasError }
+                    iconType       = "calendar"
+                    id             = { id }
+                    isDisabled     = { isDisabled }
+                    isReadOnly     = { isReadOnly }
+                    onBlur         = { handleOnBlur }
+                    onChangeInput  = { handleChangeInput }
+                    onClickIcon    = { handleClickIcon }
+                    placeholder    = { inputPlaceholder }
+                    spellCheck     = { false }
+                    value          = { editingMainInputValue ||
+                        formatDateTime(
+                            timestamp,
+                            format || setPrecision( mode ),
+                        )
+                    }
+                    { ...refProps } />
+            ) }
         </PopperWrapper>
     );
 } );

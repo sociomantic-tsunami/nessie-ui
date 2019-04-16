@@ -305,54 +305,52 @@ const TagInput = forwardRef( ( props, ref ) =>
         } )
     ) );
 
-    const popperChildren = (
-        <label
-            { ...attachEvents( props ) }
-            className = { cssMap.main }
-            htmlFor   = { id }
-            ref       = { ref }
-            style     = { style }>
-            { items }
-            <input
-                className   = { cssMap.input }
-                disabled    = { isDisabled }
-                id          = { id }
-                onBlur      = { callMultiple(
-                    handleBlur,
-                    props.onBlur,
-                ) } // temporary fix
-                onChange    = { handleChangeInput }
-                onFocus     = { callMultiple(
-                    handleFocus,
-                    props.onFocus,
-                ) } // temporary fix
-                onKeyDown   = { callMultiple(
-                    handleKeyDown,
-                    props.onKeyDown,
-                ) } // temporary fix
-                placeholder = { placeholder }
-                readOnly    = { isReadOnly }
-                type        = "text"
-                value       = { inputValue } />
-        </label>
-    );
-
-    const popperPopup = (
-        <Popup
-            hasError = { hasError }>
-            { dropdownContent }
-        </Popup>
-    );
-
     return (
         <PopperWrapper
             popperContainer = { popperContainer }
             isVisible       = { listBoxOptions.length > 0 && isOpen }
             matchRefWidth
-            popper          = { popperPopup }
+            popper          = { popperProps => (
+                <Popup
+                    hasError = { hasError }
+                    { ...popperProps }>
+                    { dropdownContent }
+                </Popup>
+            ) }
             popperOffset    = "S"
-            popperPosition  = "bottom">
-            { popperChildren }
+            popperPosition  = "bottom"
+            ref             = { ref }>
+            {  refProps => (
+                <label
+                    { ...attachEvents( props ) }
+                    className = { cssMap.main }
+                    htmlFor   = { id }
+                    style     = { style }
+                    { ...refProps }>
+                    { items }
+                    <input
+                        className   = { cssMap.input }
+                        disabled    = { isDisabled }
+                        id          = { id }
+                        onBlur      = { callMultiple(
+                            handleBlur,
+                            props.onBlur,
+                        ) } // temporary fix
+                        onChange    = { handleChangeInput }
+                        onFocus     = { callMultiple(
+                            handleFocus,
+                            props.onFocus,
+                        ) } // temporary fix
+                        onKeyDown   = { callMultiple(
+                            handleKeyDown,
+                            props.onKeyDown,
+                        ) } // temporary fix
+                        placeholder = { placeholder }
+                        readOnly    = { isReadOnly }
+                        type        = "text"
+                        value       = { inputValue } />
+                </label>
+            ) }
         </PopperWrapper>
     );
 } );

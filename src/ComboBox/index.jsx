@@ -484,77 +484,75 @@ const ComboBox = forwardRef( ( props, ref ) =>
         );
     }
 
-    const popperChildren = (
-        <label
-            { ...attachEvents( props ) }
-            className = { cssMap.main }
-            htmlFor   = { id }>
-            { tags }
-            <input
-                { ...mapAria( {
-                    activeDescendant :
-                        activeOption && addPrefix( activeOption, id ),
-                    autocomplete : 'list',
-                    expanded     : isOpen,
-                    hasPopup     : 'listbox',
-                    owns         : addPrefix( 'listbox', id ),
-                    role         : 'combobox',
-                } ) }
-                autoCapitalize = "off"
-                autoComplete   = "off"
-                autoCorrect    = "off"
-                className      = { cssMap.input }
-                disabled       = { isDisabled }
-                id             = { id }
-                onBlur         = { callMultiple(
-                    handleBlur,
-                    props.onBlur,
-                ) } // temporary fix
-                onChange       = { handleChangeInput }
-                onClick        = { callMultiple(
-                    handleClick,
-                    props.onClick,
-                ) } // temporary fix
-                onFocus        = { callMultiple(
-                    handleFocus,
-                    props.onFocus,
-                ) } // temporary fix
-                onKeyDown      = { callMultiple(
-                    handleKeyDown,
-                    props.onKeyDown,
-                ) } // temporary fix
-                placeholder    = { inputPlaceholder }
-                readOnly       = { !isSearchable || !isOpen }
-                spellCheck     = { false }
-                value          = { ( isOpen && isSearchable ) ?
-                    searchValue : selectedText } />
-            <IconButton
-                className   = { cssMap.icon }
-                iconType    = { isOpen ? 'chevron-up' : 'chevron-down' }
-                isFocusable = { false }
-                onClick     = { handleClickIcon } />
-        </label>
-    );
-
-    const popperPopup = (
-        <Popup
-            hasError = { hasError }
-            padding  = { optionsToShow.length ? 'none' : 'S' }>
-            { dropdownContent }
-        </Popup>
-    );
-
     return (
         <PopperWrapper
             popperContainer = { popperContainer }
             isVisible       = { isOpen }
             matchRefWidth
-            popper          = { popperPopup }
+            popper          = { ( { ...popperProps } ) => (
+                <Popup
+                    { ...popperProps }
+                    hasError = { hasError }
+                    padding  = { optionsToShow.length ? 'none' : 'S' }>
+                    { dropdownContent }
+                </Popup>
+            ) }
             popperOffset    = "S"
             popperPosition  = "bottom"
             ref             = { ref }
             style           = { style }>
-            { popperChildren }
+            { ( { ref: innerRef } ) => (
+                <label
+                    { ...attachEvents( props ) }
+                    className = { cssMap.main }
+                    htmlFor   = { id }
+                    ref       = { innerRef }>
+                    { tags }
+                    <input
+                        { ...mapAria( {
+                            activeDescendant :
+                              activeOption && addPrefix( activeOption, id ),
+                            autocomplete : 'list',
+                            expanded     : isOpen,
+                            hasPopup     : 'listbox',
+                            owns         : addPrefix( 'listbox', id ),
+                            role         : 'combobox',
+                        } ) }
+                        autoCapitalize = "off"
+                        autoComplete   = "off"
+                        autoCorrect    = "off"
+                        className      = { cssMap.input }
+                        disabled       = { isDisabled }
+                        id             = { id }
+                        onBlur         = { callMultiple(
+                            handleBlur,
+                            props.onBlur,
+                        ) } // temporary fix
+                        onChange       = { handleChangeInput }
+                        onClick        = { callMultiple(
+                            handleClick,
+                            props.onClick,
+                        ) } // temporary fix
+                        onFocus        = { callMultiple(
+                            handleFocus,
+                            props.onFocus,
+                        ) } // temporary fix
+                        onKeyDown      = { callMultiple(
+                            handleKeyDown,
+                            props.onKeyDown,
+                        ) } // temporary fix
+                        placeholder    = { inputPlaceholder }
+                        readOnly       = { !isSearchable || !isOpen }
+                        spellCheck     = { false }
+                        value          = { ( isOpen && isSearchable ) ?
+                            searchValue : selectedText } />
+                    <IconButton
+                        className   = { cssMap.icon }
+                        iconType    = { isOpen ? 'chevron-up' : 'chevron-down' }
+                        isFocusable = { false }
+                        onClick     = { handleClickIcon } />
+                </label>
+            ) }
         </PopperWrapper>
     );
 } );

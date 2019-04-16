@@ -84,7 +84,7 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
         }
     }, [ onClickOutside ] );
 
-    let popup = (
+    let popup = popper && (
         <Popper
             key       = { offset }
             placement = { popperPosition }
@@ -97,22 +97,20 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
                     offset : `0, ${offset}`,
                 },
             } : offset }>
-            { ( { ref, style : popperStyle, scheduleUpdate } ) =>
+            { ( { style : popperStyle, scheduleUpdate, ...rest } ) =>
             {
                 scheduleUpdateRef.current = scheduleUpdate;
-
-                return (
-                    <div
-                        ref   = { ref }
-                        style = { matchRefWidth ? {
-                            'width' : referenceRef.current
-                                .clientWidth,
+                return popper( {
+                    style : matchRefWidth ?
+                        {
+                            'width' : referenceRef.current.clientWidth,
                             ...popperStyle,
-                        } : style }>
-                        { popper }
-                    </div> );
+                        } : popperStyle,
+                    ...rest,
+                } );
             } }
-        </Popper> );
+        </Popper>
+    );
 
     popup = containerEl ? ReactDOM.createPortal( popup, containerEl ) : popup;
 
@@ -127,11 +125,9 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
                         forwardedRef.current = ref;
                     }
                 } }>
-                { ( { ref } ) => (
-                    <div ref = { ref } style = { style }>
-                        { children }
-                    </div>
-                ) }
+                { refProps => typeof children === 'function' &&
+                  children( { ...refProps, style } )
+                }
             </Reference>
             { isVisible && popup }
         </Manager>
@@ -141,9 +137,9 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
 PopperWrapper.propTypes =
 {
     /**
-     *  Reference node to attach popper
+     *  Reference node render function
      */
-    children       : PropTypes.node,
+    children       : PropTypes.func,
     /**
      *  id of the DOM element used as container
      */
@@ -161,9 +157,9 @@ PopperWrapper.propTypes =
      */
     onClickOutside : PropTypes.func,
     /**
-     *  Popper content node
+     *  Popper content render function
      */
-    popper         : PropTypes.node,
+    popper         : PropTypes.func,
     /**
      *  Popper offset
      */
