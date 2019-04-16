@@ -94,6 +94,7 @@ const TagInput = forwardRef( ( props, ref ) =>
         isDisabled,
         isReadOnly,
         placeholder,
+        style,
     } = props;
 
 
@@ -321,7 +322,8 @@ const TagInput = forwardRef( ( props, ref ) =>
             { ...attachEvents( props ) }
             className = { cssMap.main }
             htmlFor   = { id }
-            ref       = { outerRef }>
+            ref       = { outerRef }
+            style     = { style }>
             { items }
             <input
                 className   = { cssMap.input }
@@ -422,13 +424,16 @@ TagInput.propTypes =
      * Array of strings to build Tag components
      */
     value           : PropTypes.arrayOf( PropTypes.string ),
+    /**
+     *  Style overrides
+     */
+    style           : PropTypes.objectOf( PropTypes.string ),
 };
 
 TagInput.defaultProps =
 {
     children        : undefined,
     className       : undefined,
-    popperContainer : undefined,
     cssMap          : undefined,
     defaultValue    : undefined,
     hasError        : false,
@@ -437,6 +442,8 @@ TagInput.defaultProps =
     isReadOnly      : false,
     onChange        : undefined,
     placeholder     : undefined,
+    popperContainer : undefined,
+    style           : undefined,
     suggestions     : undefined,
     value           : undefined,
 };

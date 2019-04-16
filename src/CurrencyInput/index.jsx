@@ -30,6 +30,7 @@ const CurrencyInput = ( props ) =>
         currency,
         defaultValue,
         id,
+        style,
         value,
         ...restProps
     } = props;
@@ -68,6 +69,7 @@ const CurrencyInput = ( props ) =>
             spellCheck     = { false }
             onBlur         = { handleBlur }
             onChange       = { handleChange }
+            style          = { style }
             value          = { currencyFormat( Number( value
                 .replace( pattern, '' ) ) || valueState, currency ) } />
     );
@@ -155,6 +157,10 @@ CurrencyInput.propTypes =
      *  Input string value
      */
     value        : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style        : PropTypes.objectOf( PropTypes.string ),
 };
 
 CurrencyInput.defaultProps =
@@ -179,6 +185,7 @@ CurrencyInput.defaultProps =
     placeholder  : undefined,
     textAlign    : 'left',
     value        : '',
+    style        : undefined,
 };
 
 CurrencyInput.displayName = componentName;

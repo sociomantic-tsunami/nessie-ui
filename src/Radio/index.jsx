@@ -13,9 +13,9 @@ import React, {
     useRef,
     forwardRef,
 } from 'react';
-import PropTypes    from 'prop-types';
+import PropTypes from 'prop-types';
 
-import { Text }     from '..';
+import { Text }  from '..';
 
 import {
     attachEvents,
@@ -40,6 +40,7 @@ const Radio = forwardRef( ( props, ref ) =>
         isDefaultChecked,
         isDisabled,
         label,
+        style,
         value,
     } = props;
 
@@ -55,8 +56,7 @@ const Radio = forwardRef( ( props, ref ) =>
     }
 
     return (
-        <div
-            className = { cssMap.main }>
+        <div className = { cssMap.main } style = { style }>
             <input
                 { ...attachEvents( props ) }
                 checked   = { isChecked }
@@ -124,6 +124,14 @@ Radio.propTypes =
      *  click callback prop
      */
     onClick          : PropTypes.func,
+    /**
+     *  Style overrides
+     */
+    style            : PropTypes.objectOf( PropTypes.string ),
+    /**
+     *  Radio value
+     */
+    value            : PropTypes.string,
 };
 
 Radio.defaultProps =
@@ -139,6 +147,8 @@ Radio.defaultProps =
     label            : undefined,
     onChange         : undefined,
     onClick          : undefined,
+    style            : undefined,
+    value            : undefined,
 };
 
 Radio.displayName = componentName;

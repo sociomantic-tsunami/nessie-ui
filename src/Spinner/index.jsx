@@ -7,19 +7,19 @@
  *
  */
 
-import React        from 'react';
-import PropTypes    from 'prop-types';
+import React               from 'react';
+import PropTypes           from 'prop-types';
 
 import { useThemeClasses } from '../utils';
 
-import { Icon }     from '..';
+import { Icon }            from '..';
 
 
 const componentName = 'Spinner';
 
 const Spinner = ( props ) =>
 {
-    const { size } = props;
+    const { size, style } = props;
 
     const cssMap = useThemeClasses( componentName, props );
 
@@ -28,6 +28,7 @@ const Spinner = ( props ) =>
             className = { cssMap.main }
             type = "loader"
             size = { size }
+            style = { style }
         />
     );
 };
@@ -47,12 +48,17 @@ Spinner.propTypes =
         'L',
         'XL',
     ] ),
+    /**
+     *  Style overrides
+     */
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 Spinner.defaultProps =
 {
     cssMap : undefined,
     size   : 'M',
+    style  : undefined,
 };
 
 Spinner.displayName = componentName;

@@ -14,8 +14,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 
-import React, { useCallback }            from 'react';
-import PropTypes                         from 'prop-types';
+import React, { useCallback }                   from 'react';
+import PropTypes                                from 'prop-types';
 
 import { attachEvents, clamp, useThemeClasses } from '../utils';
 
@@ -33,6 +33,7 @@ const ScrollBar = props =>
         scrollMin,
         scrollPos,
         thumbSize,
+        style,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -101,7 +102,7 @@ const ScrollBar = props =>
             removeEventListener( 'mousemove', handleMouseMove );
             removeEventListener( 'mouseup', handleMouseUp );
         } );
-    }, [ isVertical, onChange, scrollLength, thumbRef, trackRef ] );
+    }, [ isVertical, onChange, scrollLength, scrollMax, scrollMin, scrollPos ] );
 
     return (
         <div
@@ -114,7 +115,8 @@ const ScrollBar = props =>
             className        = { cssMap.main }
             onClick          = { handleClick }
             ref  = { trackRef }
-            role = "scrollbar">
+            role = "scrollbar"
+            style = { style }>
             <div
                 className   = { cssMap.thumb }
                 onMouseDown = { handleMouseDown }
@@ -169,6 +171,10 @@ ScrollBar.propTypes =
      *  Scroll thumb size (CSS unit)
      */
     thumbSize    : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style        : PropTypes.objectOf( PropTypes.string ),
 };
 
 ScrollBar.defaultProps =
@@ -182,6 +188,7 @@ ScrollBar.defaultProps =
     scrollMax    : 0,
     scrollMin    : 0,
     scrollPos    : 0,
+    style        : undefined,
     thumbSize    : '20px',
 };
 

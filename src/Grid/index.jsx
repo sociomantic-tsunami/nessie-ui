@@ -7,8 +7,8 @@
  *
  */
 
-import React                        from 'react';
-import PropTypes                    from 'prop-types';
+import React                               from 'react';
+import PropTypes                           from 'prop-types';
 
 import { attachEvents, useThemeClasses }   from '../utils';
 
@@ -25,6 +25,7 @@ const Grid = props =>
         customColumns,
         customRows,
         rows,
+        style,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -39,6 +40,7 @@ const Grid = props =>
                 gridTemplateColumns : customColumns ||
                     `repeat( ${columns}, 1fr )`,
                 gridTemplateRows : customRows || `repeat( ${rows}, 1fr )`,
+                ...style,
             } }>
             { children }
         </div>
@@ -104,6 +106,10 @@ Grid.propTypes =
      *  Number of rows - should be an integer > 0
      */
     rows          : PropTypes.number,
+    /**
+     *  Style overrides
+     */
+    style         : PropTypes.objectOf( PropTypes.string ),
 };
 
 Grid.defaultProps =
@@ -122,6 +128,7 @@ Grid.defaultProps =
     justify       : 'stretch',
     rowGap        : 'M',
     rows          : undefined,
+    style         : undefined,
 };
 
 Grid.displayName = componentName;

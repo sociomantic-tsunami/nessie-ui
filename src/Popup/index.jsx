@@ -7,8 +7,8 @@
  *
  */
 
-import React                      from 'react';
-import PropTypes                  from 'prop-types';
+import React                             from 'react';
+import PropTypes                         from 'prop-types';
 
 import { attachEvents, useThemeClasses } from '../utils';
 
@@ -17,14 +17,15 @@ const componentName = 'Popup';
 
 const Popup = props =>
 {
-    const { children } = props;
+    const { children, style } = props;
 
     const cssMap = useThemeClasses( componentName, props );
 
     return (
         <div
             { ...attachEvents( props ) }
-            className = { cssMap.main }>
+            className = { cssMap.main }
+            style = { style }>
             { children }
         </div>
     );
@@ -37,6 +38,10 @@ Popup.propTypes = {
     hasError  : PropTypes.bool,
     padding   : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     size      : PropTypes.oneOf( [ 'content', 'default' ] ),
+    /**
+     *  Style overrides
+     */
+    style     : PropTypes.objectOf( PropTypes.string ),
 };
 
 Popup.defaultProps = {
@@ -46,6 +51,7 @@ Popup.defaultProps = {
     hasError  : false,
     padding   : 'none',
     size      : 'default',
+    style     : undefined,
 };
 
 Popup.displayName = componentName;

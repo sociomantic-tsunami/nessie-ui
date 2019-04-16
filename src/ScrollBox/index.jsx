@@ -13,10 +13,10 @@ import React, {
     useRef,
     useState,
 }                                from 'react';
-import PropTypes                 from 'prop-types';
-import { isEqual }               from 'lodash';
+import PropTypes                        from 'prop-types';
+import { isEqual }                      from 'lodash';
 
-import { IconButton, ScrollBar } from '../index';
+import { IconButton, ScrollBar }        from '../index';
 import { useThemeClasses }              from '../utils';
 
 const componentName = 'ScrollBox';
@@ -53,21 +53,22 @@ const ScrollBox = props =>
         children,
         contentWidth,
         height,
-        onMouseOut,
-        onMouseOver,
-        onClickScrollUp,
         onClickScrollDown,
         onClickScrollLeft,
         onClickScrollRight,
-        onThumbDragStartX,
+        onClickScrollUp,
+        onMouseOut,
+        onMouseOver,
         onThumbDragEndX,
-        onThumbDragStartY,
         onThumbDragEndY,
+        onThumbDragStartX,
+        onThumbDragStartY,
         scroll,
-        scrollBoxRef,
         scrollAmount,
         scrollBarsAreVisible,
+        scrollBoxRef,
         scrollIndicatorVariant,
+        style,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -105,9 +106,7 @@ const ScrollBox = props =>
             const increment = dir === 'Right' ? amount : -amount;
             innerRef.current.scrollLeft = dimensions.scrollLeft + increment;
         }
-    }, [ onClickScrollUp, onClickScrollDown, onClickScrollLeft,
-        onClickScrollRight, dimensions.clientHeight, dimensions.scrollTop,
-        dimensions.clientWidth, dimensions.scrollLeft, scrollAmount ] );
+    }, [ props, dimensions.clientHeight, dimensions.scrollTop, dimensions.clientWidth, dimensions.scrollLeft, scrollAmount ] );
 
     const handleClickTrackX = useCallback( ( pos ) =>
     {
@@ -138,12 +137,12 @@ const ScrollBox = props =>
     const handleChangeX = useCallback( ( pos ) =>
     {
         innerRef.current.scrollLeft = pos;
-    }, [ innerRef.current ] );
+    }, [] );
 
     const handleChangeY = useCallback( ( pos ) =>
     {
         innerRef.current.scrollTop = pos;
-    }, [ innerRef.current ] );
+    }, [] );
 
     const handleRef = useCallback( ( ref ) =>
     {
@@ -191,7 +190,7 @@ const ScrollBox = props =>
         dimensions.scrollLeft, dimensions.clientWidth, dimensions.scrollWidth,
     ] );
 
-    const style = { maxHeight: height };
+    const innerStyle = { maxHeight: height };
 
     if ( innerRef.current )
     {
@@ -201,7 +200,7 @@ const ScrollBox = props =>
 
         if ( diffX || diffY )
         {
-            Object.assign( style, {
+            Object.assign( innerStyle, {
                 width        : diffX ? `calc( 100% + ${diffX}px )` : null,
                 height       : diffY ? `calc( 100% + ${diffY}px )` : null,
                 marginRight  : diffX ? `-${diffX}px` : null,
@@ -213,7 +212,7 @@ const ScrollBox = props =>
             // compensate for macOS overlaid scrollbars
             const compo = 20;
 
-            Object.assign( style, {
+            Object.assign( innerStyle, {
                 padding : `${compo}px`,
                 margin  : `-${compo}px`,
             } );
@@ -236,8 +235,8 @@ const ScrollBox = props =>
                 orientation           = "horizontal"
                 scrollPos             = { dimensions.scrollLeft }
                 thumbSize             = {
-                    `${( dimensions.clientWidth / dimensions.scrollWidth )
-                        * 100}%`
+                    `${( dimensions.clientWidth / dimensions.scrollWidth ) *
+                        100}%`
                 }
                 scrollMax = { dimensions.scrollWidth -
                                   dimensions.clientWidth } /> );
@@ -258,8 +257,8 @@ const ScrollBox = props =>
                 orientation          = "vertical"
                 scrollPos            = { dimensions.scrollTop }
                 thumbSize            = {
-                    `${( dimensions.clientHeight / dimensions.scrollHeight )
-                        * 100}%`
+                    `${( dimensions.clientHeight / dimensions.scrollHeight ) *
+                        100}%`
                 }
                 scrollMax = { dimensions.scrollHeight -
                                   dimensions.clientHeight  }
@@ -293,12 +292,12 @@ const ScrollBox = props =>
             className    = { cssMap.main }
             onMouseEnter = { onMouseOver }
             onMouseLeave = { onMouseOut }
-            style        = { { maxHeight: height } }>
+            style        = { { maxHeight: height, ...style } }>
             <div
                 className = { cssMap.inner }
                 onScroll  = { handleScroll }
                 ref       = { handleRef }
-                style     = { style }>
+                style     = { innerStyle }>
                 <div
                     className = { cssMap.content }
                     style     = { contentWidth && { width: contentWidth } }>
@@ -430,14 +429,18 @@ ScrollBox.propTypes =
      *  Display Scroll up icon
      */
     scrollUpIsVisible      : PropTypes.bool,
+    /**
+     *  Style overrides
+     */
+    style                  : PropTypes.objectOf( PropTypes.string ),
 };
 
 ScrollBox.defaultProps =
 {
     children               : undefined,
     className              : undefined,
-    cssMap                 : undefined,
     contentWidth           : undefined,
+    cssMap                 : undefined,
     height                 : undefined,
     onClickScrollDown      : undefined,
     onClickScrollLeft      : undefined,
@@ -445,10 +448,10 @@ ScrollBox.defaultProps =
     onClickScrollUp        : undefined,
     onMouseOut             : undefined,
     onMouseOver            : undefined,
-    onThumbDragStartX      : undefined,
     onThumbDragEndX        : undefined,
-    onThumbDragStartY      : undefined,
     onThumbDragEndY        : undefined,
+    onThumbDragStartX      : undefined,
+    onThumbDragStartY      : undefined,
     padding                : 'none',
     scroll                 : 'both',
     scrollAmount           : undefined,
@@ -459,6 +462,7 @@ ScrollBox.defaultProps =
     scrollLeftIsVisible    : false,
     scrollRightIsVisible   : false,
     scrollUpIsVisible      : false,
+    style                  : undefined,
 };
 
 ScrollBox.displayName = componentName;

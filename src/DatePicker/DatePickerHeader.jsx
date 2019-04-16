@@ -7,12 +7,12 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                       from 'react';
+import PropTypes                   from 'prop-types';
 
-import { IconButton, Text } from '..';
+import { IconButton, Text }        from '..';
 
-import TimeInput            from './TimeInput';
+import TimeInput                   from './TimeInput';
 import { useThemeClasses }         from '../utils';
 
 
@@ -41,11 +41,12 @@ const DatePickerHeader = props =>
         onClickNext,
         onClickPrev,
         prevIsDisabled,
+        style,
         year,
     } = props;
 
     return (
-        <div className = { cssMap.main }>
+        <div className = { cssMap.main } style = { style }>
             <div className = { cssMap.buttonsWrapper }>
                 <IconButton
                     className  = { cssMap.prev }
@@ -105,6 +106,10 @@ DatePickerHeader.propTypes = {
     onClickPrev       : PropTypes.func,
     prevIsDisabled    : PropTypes.bool,
     year              : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style             : PropTypes.objectOf( PropTypes.string ),
 };
 
 DatePickerHeader.defaultProps = {
@@ -128,6 +133,7 @@ DatePickerHeader.defaultProps = {
     onClickNext       : undefined,
     onClickPrev       : undefined,
     prevIsDisabled    : undefined,
+    style             : undefined,
     year              : undefined,
 };
 

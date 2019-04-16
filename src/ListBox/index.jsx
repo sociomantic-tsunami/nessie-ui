@@ -38,6 +38,7 @@ const ListBox = props =>
         onMouseOverOption,
         options,
         selection,
+        style,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -60,6 +61,7 @@ const ListBox = props =>
             className   = { cssMap.main }
             id          = { id }
             onMouseDown = { !isFocusable ? killFocus : undefined }
+            style       = { style }
             tabIndex    = { isFocusable ? '0' : '-1' }>
             { updateOptions(
                 children || buildOptions( options ),
@@ -116,6 +118,10 @@ ListBox.propTypes = {
         PropTypes.string,
         PropTypes.arrayOf( PropTypes.string ),
     ] ),
+    /**
+     *  Style overrides
+     */
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 ListBox.defaultProps = {
@@ -132,6 +138,7 @@ ListBox.defaultProps = {
     onMouseOverOption : undefined,
     options           : undefined,
     selection         : undefined,
+    style             : undefined,
 };
 
 ListBox.displayName = componentName;

@@ -144,7 +144,6 @@ const ComboBox = props =>
     const scrollBoxRef = useRef( null );
 
     const {
-        popperContainer,
         defaultValue,
         dropdownPlaceholder,
         hasError,
@@ -156,6 +155,8 @@ const ComboBox = props =>
         onChange,
         onChangeInput,
         options,
+        popperContainer,
+        style,
         value,
     } = props;
 
@@ -552,7 +553,8 @@ const ComboBox = props =>
             matchRefWidth
             popper          = { popperPopup }
             popperOffset    = "S"
-            popperPosition  = "bottom">
+            popperPosition  = "bottom"
+            style           = { style }>
             { popperChildren }
         </PopperWrapper>
     );
@@ -629,6 +631,10 @@ ComboBox.propTypes =
         PropTypes.string,
         PropTypes.arrayOf( PropTypes.string ),
     ),
+    /**
+     *  Style overrides
+     */
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 ComboBox.defaultProps =
@@ -648,6 +654,7 @@ ComboBox.defaultProps =
     onChangeInput       : undefined,
     options             : [],
     value               : undefined,
+    style               : undefined,
 };
 
 ComboBox.displayName = componentName;
