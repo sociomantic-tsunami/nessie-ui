@@ -122,6 +122,7 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
                     referenceRef.current = ref;
                     if ( forwardedRef )
                     {
+                        // eslint-disable-next-line no-param-reassign
                         forwardedRef.current = ref;
                     }
                 } }>
