@@ -97,7 +97,7 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
                     offset : `0, ${offset}`,
                 },
             } : offset }>
-            { ( { style : popperStyle, scheduleUpdate, ...rest } ) =>
+            { ( { style : popperStyle, scheduleUpdate, ref } ) =>
             {
                 scheduleUpdateRef.current = scheduleUpdate;
                 return popper( {
@@ -106,7 +106,7 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
                             'width' : referenceRef.current.clientWidth,
                             ...popperStyle,
                         } : popperStyle,
-                    ...rest,
+                    ref,
                 } );
             } }
         </Popper>
@@ -126,8 +126,8 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
                         forwardedRef.current = ref;
                     }
                 } }>
-                { refProps => typeof children === 'function' &&
-                  children( { ...refProps, style } )
+                { ( { ref } ) => typeof children === 'function' &&
+                  children( { ref, style } )
                 }
             </Reference>
             { isVisible && popup }
