@@ -10,8 +10,6 @@
 import React, {
     forwardRef,
     useCallback,
-    useImperativeHandle,
-    useRef,
     useState,
 } from 'react';
 import PropTypes            from 'prop-types';
@@ -130,7 +128,7 @@ const useTimestamp = ( defaultValue, value ) =>
 };
 
 
-const DateTimeInput = React.forwardRef( ( props, ref ) =>
+const DateTimeInput = forwardRef( ( props, ref ) =>
 {
     const [ editingMainInputValue, setEditingMainInputValue ] =
         useState( undefined );
