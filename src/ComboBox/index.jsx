@@ -108,7 +108,7 @@ const optionsFormatted = ( filteredOptionsIds, originalOptions ) => (
 
 const useSelection = ( defaultValue, value, isMultiselect ) =>
 {
-    const validatedDefaultValue = isMultiselect ? castArray( defaultValue ) :
+    const validatedDefaultValue = isMultiselect && defaultValue ? castArray( defaultValue ) :
         defaultValue;
     const validatedValue = isMultiselect && value ? castArray( value ) : value;
 
@@ -280,7 +280,7 @@ const ComboBox = props =>
 
         if ( !isReadOnly && typeof onChange === 'function' )
         {
-            onChange( { id, newSelection } );
+            onChange( { id, value: newSelection } );
         }
 
         setIsOpen( false );
@@ -292,7 +292,7 @@ const ComboBox = props =>
     const handleClickClose = useCallback( ( { id : tagId } ) =>
     {
         const newTags = selection.filter( tag => tag !== tagId );
-
+console.log(tagId);
         if ( typeof onChange === 'function' )
         {
             onChange( { value: newTags } );
@@ -410,7 +410,14 @@ const ComboBox = props =>
 
     if ( isMultiselect )
     {
-        tags = buildTagsFromValues( selection );
+      let selectedTags = selection && selection.map( itemId => (
+        {
+          id: itemId,
+          key: itemId,
+          label: getOption( itemId, flatOptions ).text
+        }
+      ));
+        tags = buildTagsFromValues( selectedTags );
         tags = tags.map( tag => (
             React.cloneElement( tag, {
                 ...tag.props,
