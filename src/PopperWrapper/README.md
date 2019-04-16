@@ -17,11 +17,30 @@ it ( as long as `container` prop keeps its default value ).
 
 ## Example Usage
 
+`children` and `popper` are render props (i.e. they expect a function) and
+should be used as follows:
 ```
 <PopperWrapper
-    popper         = "Popup content"
+    popper = { popperProps => <MyPopupComponent {...propperProps}/> }>
+    { refProps =>
+        <MyWrappedComponent {...refProps} />
+    }
+</PopperWrapper>
+```
+
+For example:
+
+```
+<PopperWrapper
+    popper = { popperProps => (
+      <Popup {...propperProps}>
+        Popup content
+      </Popup>
+    ) }
     popperPosition = "bottom">
-    <Button label = "Click me!"/>
+    { refProps =>
+         <Button {...refProps}>Click me!</Button>
+    }
 </PopperWrapper>
 
 ```
