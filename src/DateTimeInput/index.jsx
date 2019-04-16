@@ -159,7 +159,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         {
             open();
         }
-    }, [ inputRef.current, isOpen ] );
+    }, [ close, isOpen, open ] );
 
 
     const handleChangeInput = useCallback( ( { value } ) =>
@@ -185,7 +185,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
 
         setEditingMainInputValue( !value ? undefined : value );
         setTimestamp( !value ? undefined : newTimestamp );
-    }, [ props.format, props.max, props.min, timestamp ] );
+    }, [ props.format, props.max, props.min, setTimestamp, timestamp ] );
 
 
     const handleOnBlur = useCallback( () =>
@@ -194,7 +194,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         {
             purgeEdits();
         }
-    }, [] );
+    }, [ gridStartTimestamp, purgeEdits ] );
 
 
     const handleChange = ( { value } ) =>
@@ -231,19 +231,18 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         setGridStartTimestamp( $m( newTimestamp )
             .startOf( props.mode === 'month' ? 'year' : 'month' )
             .valueOf() );
-    }, [ props.min, props.mode, timestamp ] );
+    }, [ props, timestamp ] );
 
 
     const close = useCallback( () =>
     {
         purgeEdits();
         setGridStartTimestamp( null );
-    }, [] );
+    }, [ purgeEdits ] );
 
 
     const {
         className,
-        popperContainer,
         format,
         hasError,
         id,
@@ -254,6 +253,8 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         min,
         mode,
         onChange,
+        popperContainer,
+        style,
     } = props;
 
     const datePicker = (
@@ -301,12 +302,13 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
 
     return (
         <PopperWrapper
-            popperContainer = { popperContainer }
             isVisible       = { isOpen }
             onClickOutside  = { close }
             popper          = { popperPopup }
+            popperContainer = { popperContainer }
             popperOffset    = "S"
-            popperPosition  = "bottom-start">
+            popperPosition  = "bottom-start"
+            style           = { style }>
             { popperChildren }
         </PopperWrapper>
     );
@@ -370,13 +372,16 @@ DateTimeInput.propTypes =
      *  Selected timestamp
      */
     value            : PropTypes.number,
+    /**
+     *  Style overrides
+     */
+    style            : PropTypes.objectOf( PropTypes.string ),
 };
 
 DateTimeInput.defaultProps =
 {
     className        : undefined,
     defaultValue     : undefined,
-    popperContainer  : undefined,
     format           : undefined,
     hasError         : false,
     id               : undefined,
@@ -387,6 +392,8 @@ DateTimeInput.defaultProps =
     min              : undefined,
     mode             : 'default',
     onChange         : undefined,
+    popperContainer  : undefined,
+    style            : undefined,
     value            : undefined,
 };
 

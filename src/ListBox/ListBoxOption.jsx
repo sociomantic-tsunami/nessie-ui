@@ -35,6 +35,7 @@ const ListBoxOption = props =>
         iconSize,
         iconType,
         isSelected,
+        style,
         text,
         value,
     } = props;
@@ -72,7 +73,8 @@ const ListBoxOption = props =>
                 role     : 'option',
             } ) }
             className   = { cssMap.main }
-            id          = { id }>
+            id          = { id }
+            style       = { style }>
             { ( iconType && iconType !== 'none' ) &&
                 <Icon
                     className = { cssMap.icon }
@@ -110,6 +112,10 @@ ListBoxOption.propTypes = {
     onMouseOver : PropTypes.func,
     text        : PropTypes.string,
     value       : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style       : PropTypes.objectOf( PropTypes.string ),
 };
 
 ListBoxOption.defaultProps = {
@@ -127,6 +133,7 @@ ListBoxOption.defaultProps = {
     onClick     : undefined,
     onMouseOut  : undefined,
     onMouseOver : undefined,
+    style       : undefined,
     text        : undefined,
     value       : undefined,
 };

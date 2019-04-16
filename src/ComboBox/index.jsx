@@ -144,7 +144,6 @@ const ComboBox = props =>
     const scrollBoxRef = useRef( null );
 
     const {
-        popperContainer,
         defaultValue,
         dropdownPlaceholder,
         hasError,
@@ -156,6 +155,8 @@ const ComboBox = props =>
         onChange,
         onChangeInput,
         options,
+        popperContainer,
+        style,
         value,
     } = props;
 
@@ -221,7 +222,7 @@ const ComboBox = props =>
     const focus = useCallback( () =>
     {
         inputRef.current.focus();
-    }, [ inputRef.current ] );
+    }, [] );
 
     const handleFocus = useCallback( () =>
     {
@@ -231,7 +232,7 @@ const ComboBox = props =>
         {
             setSearchValue( '' );
         }
-    }, [ isSearchable ] );
+    }, [ focus, isSearchable ] );
 
     const handleChangeInput = useCallback( ( e ) =>
     {
@@ -245,13 +246,13 @@ const ComboBox = props =>
         }
 
         setSearchValue( searchValueToUse );
-    }, [ flatOptions, onChangeInput ] );
+    }, [ onChangeInput ] );
 
     const handleClickIcon = useCallback( () =>
     {
         focus();
         setIsOpen( !isOpen );
-    }, [ isOpen ] );
+    }, [ focus, isOpen ] );
 
     const handleClick = useCallback( () =>
     {
@@ -286,8 +287,7 @@ const ComboBox = props =>
         setIsOpen( false );
         setSearchValue( undefined );
         setSelection( newSelection );
-    }, [ id, isMultiselect, isReadOnly, flatOptions, selection,
-        onChange ] );
+    }, [ id, isReadOnly, selection, isMultiselect, onChange, setSelection ] );
 
     const handleClickClose = useCallback( ( { id : tagId } ) =>
     {
@@ -300,7 +300,7 @@ const ComboBox = props =>
 
         setSelection( newTags );
         setIsOpen( false );
-    }, [ selection, onChange ] );
+    }, [ selection, onChange, setSelection ] );
 
     const handleKeyDown = useCallback( ( e ) =>
     {
@@ -378,8 +378,7 @@ const ComboBox = props =>
                 }
             }
         }
-    }, [ flatOptions, isOpen, activeOption, selection,
-        isReadOnly, onChange ] );
+    }, [ filteredOptions, flatOptions, isOpen, activeOption, selection, isReadOnly, isMultiselect, onChange, setSelection, id ] );
 
     const handleMouseOutOption = useCallback( () =>
     {
@@ -542,7 +541,8 @@ const ComboBox = props =>
             matchRefWidth
             popper          = { popperPopup }
             popperOffset    = "S"
-            popperPosition  = "bottom">
+            popperPosition  = "bottom"
+            style           = { style }>
             { popperChildren }
         </PopperWrapper>
     );
@@ -619,6 +619,10 @@ ComboBox.propTypes =
         PropTypes.string,
         PropTypes.arrayOf( PropTypes.string ),
     ),
+    /**
+     *  Style overrides
+     */
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 ComboBox.defaultProps =
@@ -638,6 +642,7 @@ ComboBox.defaultProps =
     onChangeInput       : undefined,
     options             : [],
     value               : undefined,
+    style               : undefined,
 };
 
 ComboBox.displayName = componentName;

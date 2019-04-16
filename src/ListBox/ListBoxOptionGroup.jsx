@@ -7,10 +7,10 @@
  *
  */
 
-import React                    from 'react';
-import PropTypes                from 'prop-types';
+import React                           from 'react';
+import PropTypes                       from 'prop-types';
 
-import { Text }                 from '..';
+import { Text }                        from '..';
 
 import { mapAria, useThemeClasses }    from '../utils';
 
@@ -24,6 +24,7 @@ const ListBoxOptionGroup = props =>
         children,
         header,
         options,
+        style,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -31,7 +32,8 @@ const ListBoxOptionGroup = props =>
     return (
         <li
             { ...mapAria( { ...aria, role: 'none' } ) }
-            className = { cssMap.main }>
+            className = { cssMap.main }
+            style     = { style }>
             <div className = { cssMap.header }>
                 <Text className = { cssMap.headerText }>{ header }</Text>
             </div>
@@ -55,6 +57,10 @@ ListBoxOptionGroup.propTypes = {
     cssMap    : PropTypes.objectOf( PropTypes.string ),
     header    : PropTypes.string,
     options   : PropTypes.arrayOf( PropTypes.object ),
+    /**
+     *  Style overrides
+     */
+    style     : PropTypes.objectOf( PropTypes.string ),
 };
 
 ListBoxOptionGroup.defaultProps = {
@@ -64,6 +70,7 @@ ListBoxOptionGroup.defaultProps = {
     cssMap    : undefined,
     header    : undefined,
     options   : undefined,
+    style     : undefined,
 };
 
 ListBoxOptionGroup.displayName = componentName;

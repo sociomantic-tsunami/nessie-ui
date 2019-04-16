@@ -26,6 +26,7 @@ const Switch = props =>
         isDefaultChecked,
         isDisabled,
         label,
+        style,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -34,7 +35,8 @@ const Switch = props =>
     return (
         <div
             { ...attachEvents( props ) }
-            className = { cssMap.main }>
+            className = { cssMap.main }
+            style     = { style }>
             <input
                 checked        = { isChecked }
                 className      = { cssMap.input }
@@ -100,6 +102,10 @@ Switch.propTypes =
      *  onMouseOver callback function: () => { ... }
      */
     onMouseOver      : PropTypes.func,
+    /**
+     *  Style overrides
+     */
+    style            : PropTypes.objectOf( PropTypes.string ),
 };
 
 Switch.defaultProps =
@@ -116,6 +122,7 @@ Switch.defaultProps =
     onFocus          : undefined,
     onMouseOut       : undefined,
     onMouseOver      : undefined,
+    style            : undefined,
 };
 
 Switch.displayName = componentName;

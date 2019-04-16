@@ -7,22 +7,22 @@
  *
  */
 
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React               from 'react';
+import PropTypes           from 'prop-types';
 
-import { useThemeClasses }     from '../utils';
+import { useThemeClasses } from '../utils';
 
 
 const componentName = 'ProgressBar';
 
 const ProgressBar = ( props ) =>
 {
-    const { percentage } = props;
+    const { percentage, style } = props;
 
     const cssMap = useThemeClasses( componentName, props );
 
     return (
-        <div className = { cssMap.default }>
+        <div className = { cssMap.default } style = { style }>
             { percentage > 0 &&
             <div
                 style = { { width: `${percentage}%` } }
@@ -38,11 +38,16 @@ ProgressBar.propTypes =
      *  Current percentage value
      */
     percentage : PropTypes.number,
+    /**
+     *  Style overrides
+     */
+    style      : PropTypes.objectOf( PropTypes.string ),
 };
 
 ProgressBar.defaultProps =
 {
     percentage : 0,
+    style      : undefined,
 };
 
 ProgressBar.displayName = componentName;

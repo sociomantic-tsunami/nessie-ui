@@ -40,6 +40,7 @@ const Checkbox = forwardRef( ( props, ref ) =>
         isDefaultChecked,
         isDisabled,
         label,
+        style,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -54,8 +55,7 @@ const Checkbox = forwardRef( ( props, ref ) =>
     }
 
     return (
-        <div
-            className = { cssMap.main }>
+        <div className = { cssMap.main } style = { style }>
             <input
                 { ...attachEvents( props ) }
                 checked   = { isChecked }
@@ -122,6 +122,10 @@ Checkbox.propTypes =
      *  click callback prop
      */
     onClick          : PropTypes.func,
+    /**
+     *  Style overrides
+     */
+    style            : PropTypes.objectOf( PropTypes.string ),
 };
 
 Checkbox.defaultProps =
@@ -137,6 +141,7 @@ Checkbox.defaultProps =
     label            : undefined,
     onChange         : undefined,
     onClick          : undefined,
+    style            : undefined,
 };
 
 Checkbox.displayName = componentName;

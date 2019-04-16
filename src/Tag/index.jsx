@@ -7,10 +7,10 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                       from 'react';
+import PropTypes                   from 'prop-types';
 
-import { IconButton, Text } from '..';
+import { IconButton, Text }        from '..';
 
 import { useId, useThemeClasses }  from '../utils';
 
@@ -25,6 +25,7 @@ const Tag = props =>
         isReadOnly,
         label,
         onClick,
+        style,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -42,7 +43,7 @@ const Tag = props =>
     }
 
     return (
-        <div className = { cssMap.main }>
+        <div className = { cssMap.main } style = { style }>
             { labelText }
             <IconButton
                 className  = { cssMap.delete }
@@ -91,6 +92,10 @@ Tag.propTypes =
      *   onClick callback function for delete icon
      */
     onClick    : PropTypes.func,
+    /**
+     *  Style overrides
+     */
+    style      : PropTypes.objectOf( PropTypes.string ),
 };
 
 Tag.defaultProps =
@@ -103,6 +108,7 @@ Tag.defaultProps =
     isReadOnly : false,
     label      : undefined,
     onClick    : undefined,
+    style      : undefined,
 };
 
 Tag.displayName = componentName;
