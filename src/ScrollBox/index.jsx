@@ -8,6 +8,7 @@
  */
 
 import React, {
+    forwardRef,
     useCallback,
     useEffect,
     useRef,
@@ -21,7 +22,7 @@ import { useThemeClasses }              from '../utils';
 
 const componentName = 'ScrollBox';
 
-const ScrollBox = props =>
+const ScrollBox = forwardRef( ( props, ref ) =>
 {
     const [ dimensions, setDimensions ] = useState( {
         clientHeight : null,
@@ -41,7 +42,9 @@ const ScrollBox = props =>
         const newDimensions = {};
 
         Object.keys( dimensions ).forEach( key =>
-            newDimensions[ key ] = innerRef.current[ key ] );
+        {
+            newDimensions[ key ] = innerRef.current[ key ];
+        } );
 
         if ( !isEqual( dimensions, newDimensions ) )
         {
@@ -106,7 +109,14 @@ const ScrollBox = props =>
             const increment = dir === 'Right' ? amount : -amount;
             innerRef.current.scrollLeft = dimensions.scrollLeft + increment;
         }
-    }, [ props, dimensions.clientHeight, dimensions.scrollTop, dimensions.clientWidth, dimensions.scrollLeft, scrollAmount ] );
+    }, [
+        dimensions.clientHeight,
+        dimensions.clientWidth,
+        dimensions.scrollLeft,
+        dimensions.scrollTop,
+        props,
+        scrollAmount,
+    ] );
 
     const handleClickTrackX = useCallback( ( pos ) =>
     {
@@ -292,6 +302,7 @@ const ScrollBox = props =>
             className    = { cssMap.main }
             onMouseEnter = { onMouseOver }
             onMouseLeave = { onMouseOut }
+            ref          = { ref }
             style        = { { maxHeight: height, ...style } }>
             <div
                 className = { cssMap.inner }
@@ -308,7 +319,7 @@ const ScrollBox = props =>
             { scrollBarsAreVisible && scrollBars }
         </div>
     );
-};
+} );
 
 ScrollBox.propTypes =
 {

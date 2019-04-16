@@ -10,6 +10,7 @@
 /* global document */
 
 import React, {
+    forwardRef,
     useCallback,
     useEffect,
     useMemo,
@@ -22,8 +23,8 @@ import { castArray, escapeRegExp }  from 'lodash';
 import {
     IconButton,
     ListBox,
-    Popup,
     PopperWrapper,
+    Popup,
     ScrollBox,
     Text,
 } from '..';
@@ -131,7 +132,7 @@ const useSelection = ( defaultValue, value, isMultiselect ) =>
 
 const componentName = 'ComboBox';
 
-const ComboBox = props =>
+const ComboBox = forwardRef( ( props, ref ) =>
 {
     const cssMap = useThemeClasses( componentName, props );
     const id = useId( componentName, props );
@@ -140,7 +141,6 @@ const ComboBox = props =>
     const [ isOpen, setIsOpen ] = useState( undefined );
     const [ searchValue, setSearchValue ] = useState( undefined );
 
-    const inputRef = useRef( null );
     const scrollBoxRef = useRef( null );
 
     const {
@@ -221,8 +221,8 @@ const ComboBox = props =>
 
     const focus = useCallback( () =>
     {
-        inputRef.current.focus();
-    }, [] );
+        document.getElementById( id ).focus();
+    }, [ id ] );
 
     const handleFocus = useCallback( () =>
     {
@@ -378,7 +378,18 @@ const ComboBox = props =>
                 }
             }
         }
-    }, [ filteredOptions, flatOptions, isOpen, activeOption, selection, isReadOnly, isMultiselect, onChange, setSelection, id ] );
+    }, [
+        activeOption,
+        filteredOptions,
+        flatOptions,
+        id,
+        isMultiselect,
+        isOpen,
+        isReadOnly,
+        onChange,
+        selection,
+        setSelection,
+    ] );
 
     const handleMouseOutOption = useCallback( () =>
     {
@@ -514,7 +525,6 @@ const ComboBox = props =>
                 ) } // temporary fix
                 placeholder    = { inputPlaceholder }
                 readOnly       = { !isSearchable || !isOpen }
-                ref            = { inputRef }
                 spellCheck     = { false }
                 value          = { ( isOpen && isSearchable ) ?
                     searchValue : selectedText } />
@@ -542,11 +552,12 @@ const ComboBox = props =>
             popper          = { popperPopup }
             popperOffset    = "S"
             popperPosition  = "bottom"
+            ref             = { ref }
             style           = { style }>
             { popperChildren }
         </PopperWrapper>
     );
-};
+} );
 
 ComboBox.propTypes =
 {

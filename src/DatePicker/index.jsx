@@ -7,15 +7,15 @@
  *
  */
 
-import React, { useState }                from 'react';
-import PropTypes                          from 'prop-types';
-import moment                             from 'moment';
-import _                                  from 'lodash';
+import React, { forwardRef, useState }   from 'react';
+import PropTypes                         from 'prop-types';
+import moment                            from 'moment';
+import _                                 from 'lodash';
 
-import copy                               from './copy.json';
-import DatePickerItem                     from './DatePickerItem';
-import DatePickerHeader                   from './DatePickerHeader';
-import { attachEvents, useThemeClasses }  from '../utils';
+import copy                              from './copy.json';
+import DatePickerItem                    from './DatePickerItem';
+import DatePickerHeader                  from './DatePickerHeader';
+import { attachEvents, useThemeClasses } from '../utils';
 
 
 const DAY_LABELS = _.range( 0, 7 ).map( day => ( {
@@ -94,7 +94,7 @@ const useTimestamp = ( defaultValue = Date.now(), value ) =>
 
 const componentName = 'DatePicker';
 
-const DatePicker = props =>
+const DatePicker = forwardRef( ( props, ref ) =>
 {
     const [ timestamp, setTimestamp ] = useTimestamp(
         props.defaultValue,
@@ -353,6 +353,7 @@ const DatePicker = props =>
         <div
             { ...attachEvents( restProps ) }
             className = { cssMap.main }
+            ref       = { ref }
             style     = { style }>
             <DatePickerHeader
                 hasTimeInput      = { hasTimeInput }
@@ -408,7 +409,7 @@ const DatePicker = props =>
             }
         </div>
     );
-};
+} );
 
 DatePicker.propTypes = {
     className    : PropTypes.string,

@@ -9,11 +9,9 @@
 
 import React, {
     Children,
-    useState,
-    useRef,
-    useMemo,
-    useImperativeHandle,
     forwardRef,
+    useMemo,
+    useState,
 } from 'react';
 import PropTypes           from 'prop-types';
 import { escapeRegExp }    from 'lodash';
@@ -81,9 +79,6 @@ const componentName = 'TagInput';
 
 const TagInput = forwardRef( ( props, ref ) =>
 {
-    const inputRef = useRef();
-    const outerRef = useRef();
-
     const cssMap = useThemeClasses( componentName, props );
     const id = useId( componentName, props );
 
@@ -120,13 +115,6 @@ const TagInput = forwardRef( ( props, ref ) =>
     const value = useMemo( () => (
         ( Array.isArray( props.value ) && props.value ) || valueState
     ), [ props.value, valueState ] );
-
-    useImperativeHandle( ref, () => ( {
-        focus : () =>
-        {
-            inputRef.current.focus();
-        },
-    } ) );
 
     const enterNewTag = () =>
     {
@@ -322,7 +310,7 @@ const TagInput = forwardRef( ( props, ref ) =>
             { ...attachEvents( props ) }
             className = { cssMap.main }
             htmlFor   = { id }
-            ref       = { outerRef }
+            ref       = { ref }
             style     = { style }>
             { items }
             <input
@@ -344,7 +332,6 @@ const TagInput = forwardRef( ( props, ref ) =>
                 ) } // temporary fix
                 placeholder = { placeholder }
                 readOnly    = { isReadOnly }
-                ref         = { inputRef }
                 type        = "text"
                 value       = { inputValue } />
         </label>

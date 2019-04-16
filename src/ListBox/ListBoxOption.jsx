@@ -11,10 +11,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React, { forwardRef } from 'react';
+import PropTypes             from 'prop-types';
 
-import { Icon, Text }   from '..';
+import { Icon, Text }        from '..';
 
 import {
     attachEvents,
@@ -26,7 +26,7 @@ import {
 
 const componentName = 'ListBoxOption';
 
-const ListBoxOption = props =>
+const ListBoxOption = forwardRef( ( props, ref ) =>
 {
     const {
         aria,
@@ -69,11 +69,12 @@ const ListBoxOption = props =>
             } ) }
             { ...mapAria( {
                 ...aria,
-                selected : isSelected,
                 role     : 'option',
+                selected : isSelected,
             } ) }
             className   = { cssMap.main }
             id          = { id }
+            ref         = { ref }
             style       = { style }>
             { ( iconType && iconType !== 'none' ) &&
                 <Icon
@@ -93,7 +94,7 @@ const ListBoxOption = props =>
             </div>
         </li>
     );
-};
+} );
 
 ListBoxOption.propTypes = {
     aria        : PropTypes.objectOf( PropTypes.string ),

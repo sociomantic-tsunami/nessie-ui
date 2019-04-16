@@ -8,14 +8,10 @@
  */
 
 
-import React, {
-    useImperativeHandle,
-    useRef,
-    forwardRef,
-} from 'react';
-import PropTypes from 'prop-types';
+import React, { forwardRef } from 'react';
+import PropTypes             from 'prop-types';
 
-import { Text }  from '..';
+import { Text }              from '..';
 
 import {
     attachEvents,
@@ -28,12 +24,6 @@ const componentName = 'Radio';
 
 const Radio = forwardRef( ( props, ref ) =>
 {
-    const radioRef = useRef();
-
-    useImperativeHandle( ref, () => ( {
-        focus : () => radioRef.current.focus(),
-    } ) );
-
     const {
         children,
         isChecked,
@@ -56,7 +46,7 @@ const Radio = forwardRef( ( props, ref ) =>
     }
 
     return (
-        <div className = { cssMap.main } style = { style }>
+        <div className = { cssMap.main } ref = { ref } style = { style }>
             <input
                 { ...attachEvents( props ) }
                 checked   = { isChecked }

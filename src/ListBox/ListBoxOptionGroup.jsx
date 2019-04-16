@@ -7,17 +7,17 @@
  *
  */
 
-import React                           from 'react';
-import PropTypes                       from 'prop-types';
+import React, { forwardRef }        from 'react';
+import PropTypes                    from 'prop-types';
 
-import { Text }                        from '..';
+import { Text }                     from '..';
 
-import { mapAria, useThemeClasses }    from '../utils';
+import { mapAria, useThemeClasses } from '../utils';
 
 
 const componentName = 'ListBoxOptionGroup';
 
-const ListBoxOptionGroup = props =>
+const ListBoxOptionGroup = forwardRef( ( props, ref ) =>
 {
     const {
         aria,
@@ -33,6 +33,7 @@ const ListBoxOptionGroup = props =>
         <li
             { ...mapAria( { ...aria, role: 'none' } ) }
             className = { cssMap.main }
+            ref       = { ref }
             style     = { style }>
             <div className = { cssMap.header }>
                 <Text className = { cssMap.headerText }>{ header }</Text>
@@ -48,7 +49,7 @@ const ListBoxOptionGroup = props =>
             </ul>
         </li>
     );
-};
+} );
 
 ListBoxOptionGroup.propTypes = {
     aria      : PropTypes.objectOf( PropTypes.string ),

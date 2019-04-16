@@ -7,7 +7,7 @@
  *
  */
 
-import React                             from 'react';
+import React, { forwardRef }             from 'react';
 import PropTypes                         from 'prop-types';
 
 import { attachEvents, useThemeClasses } from '../utils';
@@ -15,7 +15,7 @@ import { attachEvents, useThemeClasses } from '../utils';
 
 const componentName = 'Popup';
 
-const Popup = props =>
+const Popup = forwardRef( ( props, ref ) =>
 {
     const { children, style } = props;
 
@@ -25,11 +25,12 @@ const Popup = props =>
         <div
             { ...attachEvents( props ) }
             className = { cssMap.main }
-            style = { style }>
+            ref       = { ref }
+            style     = { style }>
             { children }
         </div>
     );
-};
+} );
 
 Popup.propTypes = {
     children  : PropTypes.node,

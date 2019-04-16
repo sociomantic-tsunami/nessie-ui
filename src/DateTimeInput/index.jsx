@@ -8,6 +8,7 @@
  */
 
 import React, {
+    forwardRef,
     useCallback,
     useImperativeHandle,
     useRef,
@@ -131,13 +132,6 @@ const useTimestamp = ( defaultValue, value ) =>
 
 const DateTimeInput = React.forwardRef( ( props, ref ) =>
 {
-    const inputRef = useRef();
-
-    useImperativeHandle( ref, () => ( {
-        focus : () => inputRef.current.focus(),
-    } ) );
-
-
     const [ editingMainInputValue, setEditingMainInputValue ] =
         useState( undefined );
     const [ gridStartTimestamp, setGridStartTimestamp ] = useState( undefined );
@@ -280,7 +274,6 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             hasError       = { hasError }
             iconType       = "calendar"
             id             = { id }
-            inputRef       = { inputRef }
             isDisabled     = { isDisabled }
             isReadOnly     = { isReadOnly }
             onBlur         = { handleOnBlur }
@@ -308,6 +301,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             popperContainer = { popperContainer }
             popperOffset    = "S"
             popperPosition  = "bottom-start"
+            ref             = { ref }
             style           = { style }>
             { popperChildren }
         </PopperWrapper>

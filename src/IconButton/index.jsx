@@ -7,7 +7,7 @@
  *
  */
 
-import React                             from 'react';
+import React, { forwardRef }             from 'react';
 import PropTypes                         from 'prop-types';
 
 import { Icon }                          from '..';
@@ -19,10 +19,9 @@ const componentName = 'IconButton';
 
 const killFocus = e => e.preventDefault();
 
-const IconButton = props =>
+const IconButton = forwardRef( ( props, ref ) =>
 {
     const {
-        buttonRef,
         children,
         iconSize,
         iconType,
@@ -45,7 +44,7 @@ const IconButton = props =>
             disabled    = { isDisabled }
             id          = { id }
             onMouseDown = { !isFocusable ? killFocus : undefined }
-            ref         = { buttonRef }
+            ref         = { ref }
             style       = { style }
             tabIndex    = { isFocusable ? '0' : '-1' }
             type        = "button"
@@ -59,14 +58,10 @@ const IconButton = props =>
             </Icon>
         </button>
     );
-};
+} );
 
 IconButton.propTypes =
 {
-    /**
-     * Callback that receives a ref to the <button>: ( ref ) => { ... }
-     */
-    buttonRef     : PropTypes.func,
     /**
      *  extra CSS class name
      */
@@ -127,7 +122,6 @@ IconButton.propTypes =
 
 IconButton.defaultProps =
 {
-    buttonRef     : undefined,
     children      : undefined,
     className     : undefined,
     cssMap        : undefined,

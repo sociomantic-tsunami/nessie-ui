@@ -7,15 +7,15 @@
  *
  */
 
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React, { forwardRef }             from 'react';
+import PropTypes                         from 'prop-types';
 
-import { attachEvents, useThemeClasses }   from '../utils';
+import { attachEvents, useThemeClasses } from '../utils';
 
 
 const componentName = 'Grid';
 
-const Grid = props =>
+const Grid = forwardRef( ( props, ref ) =>
 {
     const {
         autoCols,
@@ -34,6 +34,7 @@ const Grid = props =>
         <div
             { ...attachEvents( props ) }
             className = { cssMap.main }
+            ref       = { ref }
             style     = { {
                 gridAutoColumns     : autoCols,
                 gridAutoRows        : autoRows,
@@ -45,7 +46,7 @@ const Grid = props =>
             { children }
         </div>
     );
-};
+} );
 
 Grid.propTypes =
 {

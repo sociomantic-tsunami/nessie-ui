@@ -10,6 +10,7 @@
 /* global document, addEventListener, removeEventListener */
 
 import React, {
+    forwardRef,
     useCallback,
     useEffect,
     useMemo,
@@ -21,7 +22,7 @@ import PropTypes                          from 'prop-types';
 
 const componentName = 'PopperWrapper';
 
-const PopperWrapper = ( props ) =>
+const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
 {
     const {
         children,
@@ -87,13 +88,16 @@ const PopperWrapper = ( props ) =>
         <Popper
             key       = { offset }
             placement = { popperPosition }
-            innerRef  = { ( ref ) => popperRef.current = ref }
+            innerRef  = { ref =>
+            {
+                popperRef.current = ref;
+            } }
             modifiers = { offset ? {
                 offset : {
                     offset : `0, ${offset}`,
                 },
             } : offset }>
-            { ( { ref, style, scheduleUpdate } ) =>
+            { ( { ref, style : popperStyle, scheduleUpdate } ) =>
             {
                 scheduleUpdateRef.current = scheduleUpdate;
 
@@ -103,7 +107,7 @@ const PopperWrapper = ( props ) =>
                         style = { matchRefWidth ? {
                             'width' : referenceRef.current
                                 .clientWidth,
-                            ...style,
+                            ...popperStyle,
                         } : style }>
                         { popper }
                     </div> );
@@ -115,7 +119,14 @@ const PopperWrapper = ( props ) =>
     return (
         <Manager>
             <Reference
-                innerRef  = { ( ref ) => referenceRef.current = ref }>
+                innerRef = { ref =>
+                {
+                    referenceRef.current = ref;
+                    if ( forwardedRef )
+                    {
+                        forwardedRef.current = ref;
+                    }
+                } }>
                 { ( { ref } ) => (
                     <div ref = { ref } style = { style }>
                         { children }
@@ -125,7 +136,7 @@ const PopperWrapper = ( props ) =>
             { isVisible && popup }
         </Manager>
     );
-};
+} );
 
 PopperWrapper.propTypes =
 {
