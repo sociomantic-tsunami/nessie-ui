@@ -17,7 +17,6 @@ import datePickerClasses          from './DatePicker/datePicker.css';
 import datePickerHeaderClasses    from './DatePicker/datePickerHeader.css';
 import datePickerItemClasses      from './DatePicker/datePickerItem.css';
 import gridClasses                from './Grid/grid.css';
-import gridItemClasses            from './GridItem/gridItem.css';
 import iconButtonClasses          from './IconButton/iconButton.css';
 import iconClasses                from './Icon/icon.css';
 import listBoxClasses             from './ListBox/listBox.css';
@@ -39,9 +38,10 @@ import tagInputClasses            from './TagInput/tagInput.css';
 import textClasses                from './Text/text.css';
 import textAreaClasses            from './TextArea/textArea.css';
 import textInputClasses           from './TextInput/textInput.css';
-import textInputWithIconClasses   from './TextInputWithIcon/textInputWithIcon.css';
-import timeInputClasses           from './DatePicker/timeInput.css';
-import tooltipClasses             from './Tooltip/tooltip.css';
+import textInputWithIconClasses
+    from './TextInputWithIcon/textInputWithIcon.css';
+import timeInputClasses from './DatePicker/timeInput.css';
+import tooltipClasses   from './Tooltip/tooltip.css';
 
 
 const classNames = {
@@ -115,15 +115,6 @@ const classNames = {
         main : cx.bind( gridClasses )( 'default' ),
         ...gridClasses,
     },
-    GridItem : props => ( {
-        main : cx.bind( gridItemClasses )(
-            'default',
-            `align__${props.align}`,
-            `justify__${props.justify}`,
-            props.className,
-        ),
-        ...gridItemClasses,
-    } ),
     Icon : props => ( {
         main : cx.bind( iconClasses )(
             'default',

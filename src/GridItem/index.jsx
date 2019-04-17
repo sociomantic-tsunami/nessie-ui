@@ -6,91 +6,81 @@
  * in the root directory of this source tree.
  *
  */
-
-import React                             from 'react';
-import PropTypes                         from 'prop-types';
-
-import { attachEvents, useThemeClasses } from '../utils';
-
+import { cloneElement, isValidElement } from 'react';
+import PropTypes                        from 'prop-types';
 
 const componentName = 'GridItem';
 
-const GridItem = props =>
+
+const GridItem = ( {
+    align,
+    children,
+    colSpan,
+    justify,
+    rowSpan,
+    style,
+    ...rest
+} ) =>
 {
-    const {
-        children,
-        colSpan,
-        rowSpan,
-        style,
-    } = props;
+    const newProps = {
+        style : {
+            alignSelf   : align,
+            justifySelf : justify,
+            ...colSpan && { gridColumn: `span ${colSpan}` },
+            ...rowSpan && { gridRow: `span ${rowSpan}` },
+            ...style,
+        },
+        ...rest,
+    };
 
-    const cssMap = useThemeClasses( componentName, props );
+    if ( typeof children === 'function' )
+    {
+        return children( newProps );
+    }
+    if ( isValidElement( children ) )
+    {
+        return cloneElement( children, newProps );
+    }
 
-    return (
-        <div
-            { ...attachEvents( props ) }
-            className = { cssMap.main }
-            style     = { {
-                gridColumn : `span ${colSpan}`,
-                gridRow    : `span ${rowSpan}`,
-                ...style,
-            } }>
-            { children }
-        </div>
-    );
+    return children || null;
 };
 
 GridItem.propTypes =
 {
     /**
-     * Vertical alignment of the GridItem content
+     * Block-axis (usually vertical) alignment of the item
      */
-    align : PropTypes.oneOf( [
-        'start',
-        'center',
-        'end',
-        'stretch',
-    ] ),
+    align    : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
     /**
-     *  GridItem content
+     *  Grid item content: react node or render function
      */
-    children  : PropTypes.node,
+    children : PropTypes.oneOfType( PropTypes.element, PropTypes.func ),
     /**
-     *  CSS class name
+     *  Grid column span: should be an integer > 0
      */
-    className : PropTypes.string,
+    colSpan  : PropTypes.number,
     /**
-     *  GridItem column span - should be an integer > 0
+     * Inline-axis (usually horizontal) alignment of the item
      */
-    colSpan   : PropTypes.number,
+    justify  : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
     /**
-     *  CSS class map
+     * Grid row span: should be an integer > 0
      */
-    cssMap    : PropTypes.objectOf( PropTypes.string ),
-    /**
-     * Horizontal alignment of the GridItem content
-     */
-    justify   : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
-    /**
-     * GridItem row span - should be an integer > 0
-     */
-    rowSpan   : PropTypes.number,
+    rowSpan  : PropTypes.number,
     /**
      *  Style overrides
      */
-    style     : PropTypes.objectOf( PropTypes.string ),
+    style    : PropTypes.objectOf( PropTypes.string ),
 };
 
 GridItem.defaultProps =
 {
-    align     : 'start',
-    children  : undefined,
-    className : undefined,
-    colSpan   : undefined,
-    cssMap    : undefined,
-    justify   : 'start',
-    rowSpan   : undefined,
-    style     : undefined,
+    align    : 'start',
+    children : undefined,
+    colSpan  : undefined,
+    justify  : 'start',
+    rowSpan  : undefined,
+    style    : undefined,
 };
 
 GridItem.displayName = componentName;
