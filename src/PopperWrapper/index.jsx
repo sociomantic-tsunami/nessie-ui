@@ -10,7 +10,9 @@
 /* global document, addEventListener, removeEventListener */
 
 import React, {
+    cloneElement,
     forwardRef,
+    isValidElement,
     useCallback,
     useEffect,
     useMemo,
@@ -36,31 +38,21 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
         style,
     } = props;
 
-    const referenceRef      = useRef();
-    const popperRef         = useRef();
-    const scheduleUpdateRef = useRef();
+    const referenceRef = useRef();
+    const popperRef    = useRef();
 
     const containerEl = useMemo( () => document.getElementById( container ),
         [ container ] );
 
-    const offset = useMemo( () =>
-        (
-            {
-                'S'    : '8px',
-                'M'    : '16px',
-                'L'    : '24px',
-                'XL'   : '32px',
-                'none' : undefined,
-            }[ popperOffset ]
-        ), [ popperOffset ] );
-
-    useEffect( () =>
-    {
-        if ( isVisible && scheduleUpdateRef.current )
+    const offset = useMemo( () => (
         {
-            scheduleUpdateRef.current();
-        }
-    }, [ isVisible, popperOffset ] );
+            'S'    : '8px',
+            'M'    : '16px',
+            'L'    : '24px',
+            'XL'   : '32px',
+            'none' : undefined,
+        }[ popperOffset ]
+    ), [ popperOffset ] );
 
     useEffect( () =>
     {
@@ -78,11 +70,48 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
     const handleClickOutSide = useCallback( ( e ) =>
     {
         if ( !( referenceRef.current.contains( e.target ) ||
-                popperRef.current.contains( e.target ) ) )
+          popperRef.current.contains( e.target ) ) )
         {
             onClickOutside();
         }
     }, [ onClickOutside ] );
+
+    const renderPopup = useCallback( ( { ref, style: popperStyle } ) =>
+    {
+        const popperProps = {
+            style : {
+                ...matchRefWidth &&
+                    { 'width': referenceRef.current.clientWidth },
+                ...popperStyle,
+            },
+            ref,
+        };
+        if ( typeof popper === 'function' )
+        {
+            return popper( popperProps );
+        }
+        if ( isValidElement( popper ) )
+        {
+            return cloneElement( popper, popperProps );
+        }
+        return children || null;
+    },
+    [ children, matchRefWidth, popper ] );
+
+    const renderReference = useCallback(  ( { ref } ) =>
+    {
+        const referenceProps = { ref, style };
+        if ( typeof children === 'function' )
+        {
+            return children( referenceProps );
+        }
+        if ( isValidElement( children ) )
+        {
+            return cloneElement( children, referenceProps );
+        }
+        return children || null;
+    },
+    [ children, style ] );
 
     let popup = popper && (
         <Popper
@@ -92,23 +121,9 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
             {
                 popperRef.current = ref;
             } }
-            modifiers = { offset ? {
-                offset : {
-                    offset : `0, ${offset}`,
-                },
-            } : offset }>
-            { ( { style : popperStyle, scheduleUpdate, ref } ) =>
-            {
-                scheduleUpdateRef.current = scheduleUpdate;
-                return popper( {
-                    style : matchRefWidth ?
-                        {
-                            'width' : referenceRef.current.clientWidth,
-                            ...popperStyle,
-                        } : popperStyle,
-                    ref,
-                } );
-            } }
+            modifiers = { offset ?
+                { offset: { offset: `0, ${offset}` } } : undefined }>
+            { renderPopup }
         </Popper>
     );
 
@@ -126,9 +141,7 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
                         forwardedRef.current = ref;
                     }
                 } }>
-                { ( { ref } ) => typeof children === 'function' &&
-                  children( { ref, style } )
-                }
+                { renderReference }
             </Reference>
             { isVisible && popup }
         </Manager>
