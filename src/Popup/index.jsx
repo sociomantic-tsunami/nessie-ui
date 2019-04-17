@@ -38,7 +38,6 @@ Popup.propTypes = {
     cssMap    : PropTypes.objectOf( PropTypes.string ),
     hasError  : PropTypes.bool,
     padding   : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
-    size      : PropTypes.oneOf( [ 'content', 'default' ] ),
     /**
      *  Style overrides
      */
@@ -51,8 +50,8 @@ Popup.defaultProps = {
     cssMap    : undefined,
     hasError  : false,
     padding   : 'none',
-    size      : 'default',
-    style     : undefined,
+
+    style : undefined,
 };
 
 Popup.displayName = componentName;
