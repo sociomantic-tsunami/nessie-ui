@@ -6,8 +6,8 @@
  * in the root directory of this source tree.
  *
  */
-import { cloneElement, isValidElement } from 'react';
-import PropTypes                        from 'prop-types';
+import React, { cloneElement, isValidElement } from 'react';
+import PropTypes                               from 'prop-types';
 
 const componentName = 'GridItem';
 
@@ -22,6 +22,8 @@ const GridItem = ( {
     ...rest
 } ) =>
 {
+    if ( !children ) return null;
+
     const newProps = {
         style : {
             alignSelf   : align,
@@ -42,7 +44,7 @@ const GridItem = ( {
         return cloneElement( children, newProps );
     }
 
-    return children || null;
+    return <div { ...newProps }>{children}</div>;
 };
 
 GridItem.propTypes =
@@ -75,10 +77,10 @@ GridItem.propTypes =
 
 GridItem.defaultProps =
 {
-    align    : 'start',
+    align    : undefined,
     children : undefined,
     colSpan  : undefined,
-    justify  : 'start',
+    justify  : undefined,
     rowSpan  : undefined,
     style    : undefined,
 };

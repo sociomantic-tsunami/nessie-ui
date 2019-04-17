@@ -78,8 +78,7 @@ Grid.propTypes =
      */
     autoColumns : PropTypes.string,
     /**
-     * Controls where to auto place new grid items if their place is
-     * undefined
+     * Controls placement of items outside the explicit grid
      */
     autoFlow    : PropTypes.oneOf( [ 'row', 'column' ] ),
     /**
@@ -95,7 +94,7 @@ Grid.propTypes =
      */
     className   : PropTypes.string,
     /**
-     *  Number of columns; or custom column template
+     *  Number of columns (integer > 0) or custom column template
      */
     columns     : PropTypes.oneOfType(
         PropTypes.number,
@@ -122,7 +121,7 @@ Grid.propTypes =
     justifyItems   : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
 
     /**
-     *  Number of rows; or custom row template
+     *  Number of rows (integer > 0) or custom row template
      */
     rows : PropTypes.oneOfType(
         PropTypes.number,
