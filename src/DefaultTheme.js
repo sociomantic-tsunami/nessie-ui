@@ -111,18 +111,10 @@ const classNames = {
         ),
         ...datePickerItemClasses,
     } ),
-    Grid : props => ( {
-        main : cx.bind( gridClasses )(
-            'default',
-            `align__${props.align}`,
-            `columnGap__${props.columnGap}`,
-            `flow__${props.autoFlow}`,
-            `justify__${props.justify}`,
-            `rowGap__${props.rowGap}`,
-            props.className,
-        ),
+    Grid : {
+        main : cx.bind( gridClasses )( 'default' ),
         ...gridClasses,
-    } ),
+    },
     GridItem : props => ( {
         main : cx.bind( gridItemClasses )(
             'default',
