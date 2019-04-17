@@ -25,6 +25,7 @@ import {
     Popup,
     PopperWrapper,
     ScrollBox,
+    Tag,
     Text,
 } from '..';
 
@@ -36,7 +37,6 @@ import {
     useThemeClasses,
 } from '../utils';
 import { addPrefix, prefixOptions, removePrefix } from './utils';
-import { buildTagsFromValues }                    from '../TagInput/utils';
 
 /**
  * gets the index of the option by the passed id
@@ -108,8 +108,8 @@ const optionsFormatted = ( filteredOptionsIds, originalOptions ) => (
 
 const useSelection = ( defaultValue, value, isMultiselect ) =>
 {
-    const validatedDefaultValue = isMultiselect ? castArray( defaultValue ) :
-        defaultValue;
+    const validatedDefaultValue = isMultiselect && defaultValue ?
+        castArray( defaultValue ) : defaultValue;
     const validatedValue = isMultiselect && value ? castArray( value ) : value;
 
     const [ selection, setSelection ] = useState( validatedDefaultValue );
@@ -281,7 +281,7 @@ const ComboBox = props =>
 
         if ( !isReadOnly && typeof onChange === 'function' )
         {
-            onChange( { id, newSelection } );
+            onChange( { id, value: newSelection } );
         }
 
         setIsOpen( false );
@@ -378,7 +378,18 @@ const ComboBox = props =>
                 }
             }
         }
-    }, [ filteredOptions, flatOptions, isOpen, activeOption, selection, isReadOnly, isMultiselect, onChange, setSelection, id ] );
+    }, [
+        filteredOptions,
+        flatOptions,
+        isOpen,
+        activeOption,
+        selection,
+        isReadOnly,
+        isMultiselect,
+        onChange,
+        setSelection,
+        id,
+    ] );
 
     const handleMouseOutOption = useCallback( () =>
     {
@@ -409,14 +420,15 @@ const ComboBox = props =>
 
     if ( isMultiselect )
     {
-        tags = buildTagsFromValues( selection );
-        tags = tags.map( tag => (
-            React.cloneElement( tag, {
-                ...tag.props,
-                isDisabled : isDisabled || tag.props.isDisabled,
-                isReadOnly : isReadOnly || tag.props.isReadOnly,
-                onClick    : handleClickClose,
-            } )
+        tags = selection && selection.map( itemId => (
+            <Tag
+                id = { itemId }
+                isDisabled = { isDisabled }
+                isReadOnly = { isReadOnly }
+                key = { itemId }
+                label = { getOption( itemId, flatOptions ).text }
+                onClick  = { handleClickClose }
+            />
         ) );
     }
 
