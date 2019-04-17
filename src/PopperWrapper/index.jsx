@@ -15,12 +15,14 @@ import React, {
     isValidElement,
     useCallback,
     useEffect,
-    useMemo,
     useRef,
-}                                         from 'react';
-import ReactDOM                           from 'react-dom';
-import { Manager, Reference, Popper }     from 'react-popper';
-import PropTypes                          from 'prop-types';
+}                                     from 'react';
+import ReactDOM                       from 'react-dom';
+import { Manager, Reference, Popper } from 'react-popper';
+import PropTypes                      from 'prop-types';
+
+import { useThemeVars }               from '../utils';
+
 
 const componentName = 'PopperWrapper';
 
@@ -41,18 +43,9 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
     const referenceRef = useRef();
     const popperRef    = useRef();
 
-    const containerEl = useMemo( () => document.getElementById( container ),
-        [ container ] );
+    const { spacing } = useThemeVars();
+    const offset = spacing[ popperOffset ];
 
-    const offset = useMemo( () => (
-        {
-            'S'    : '8px',
-            'M'    : '16px',
-            'L'    : '24px',
-            'XL'   : '32px',
-            'none' : undefined,
-        }[ popperOffset ]
-    ), [ popperOffset ] );
 
     useEffect( () =>
     {
@@ -127,6 +120,7 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
         </Popper>
     );
 
+    const containerEl = document.getElementById( container );
     popup = containerEl ? ReactDOM.createPortal( popup, containerEl ) : popup;
 
     return (
@@ -151,9 +145,9 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
 PopperWrapper.propTypes =
 {
     /**
-     *  Reference node render function
+     *  Reference node (render function or element)
      */
-    children       : PropTypes.func,
+    children       : PropTypes.oneOfType( PropTypes.func, PropTypes.element ),
     /**
      *  id of the DOM element used as container
      */
@@ -171,13 +165,13 @@ PopperWrapper.propTypes =
      */
     onClickOutside : PropTypes.func,
     /**
-     *  Popper content render function
+     *  Popper node (render function or element)
      */
-    popper         : PropTypes.func,
+    popper         : PropTypes.oneOfType( PropTypes.func, PropTypes.element ),
     /**
      *  Popper offset
      */
-    popperOffset   : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'none' ] ),
+    popperOffset   : PropTypes.oneOf( [ 's', 'm', 'l', 'xl', 'none' ] ),
     /**
      *  Popper position
      */

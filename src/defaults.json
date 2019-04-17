@@ -87,6 +87,10 @@
 		"children": "Popup content",
 		"padding": "M"
 	},
+	"PopperWrapper": {
+		"children": "{<Button label=\"Click me!\" />}",
+		"popper": "{<Popup padding=\"M\">Popup content</Popup>}"
+	},
   "ProgressBar": {
       "percentage": 20
   },
