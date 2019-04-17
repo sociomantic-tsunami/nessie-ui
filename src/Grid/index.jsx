@@ -49,10 +49,10 @@ const Grid = props =>
                 gridGap         : Array.isArray( gap ) ?
                     `${spacing[ gap[ 0 ] ]} ${spacing[ gap[ 1 ] ]}` :
                     spacing[ gap ],
-                gridTemplateColumns : typeof columns === 'number' ?
-                    `repeat( ${columns}, 1fr )` : columns,
-                gridTemplateRows : typeof columns === 'number' ?
-                    `repeat( ${rows}, 1fr )` : rows,
+                gridTemplateColumns : Array.isArray( columns ) ?
+                    columns.join( ' ' ) : `repeat( ${columns}, 1fr )`,
+                gridTemplateRows : Array.isArray( rows ) ?
+                    rows.join( ' ' ) : `repeat( ${rows}, 1fr )`,
                 justifyContent,
                 justifyItems,
                 ...style,
@@ -94,11 +94,12 @@ Grid.propTypes =
      */
     className   : PropTypes.string,
     /**
-     *  Number of columns (integer > 0) or custom column template
+     *  Number of columns (integer > 0) or array of column sizes (CSS length
+     *  strings)
      */
     columns     : PropTypes.oneOfType(
         PropTypes.number,
-        PropTypes.string,
+        PropTypes.arrayOf( PropTypes.string ),
     ),
     /**
      *  CSS class map
@@ -121,11 +122,12 @@ Grid.propTypes =
     justifyItems   : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
 
     /**
-     *  Number of rows (integer > 0) or custom row template
+     *  Number of rows (integer > 0) or array of column sizes (CSS length
+     *  strings)
      */
     rows : PropTypes.oneOfType(
         PropTypes.number,
-        PropTypes.string,
+        PropTypes.arrayOf( PropTypes.string ),
     ),
     /**
      *  Style overrides
