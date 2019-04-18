@@ -167,7 +167,6 @@ const classNames = {
             'default',
             { error: props.hasError },
             `padding__${props.padding}`,
-            `size__${props.size}`,
             props.className,
         ),
         ...popupClasses,

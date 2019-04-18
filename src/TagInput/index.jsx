@@ -9,11 +9,9 @@
 
 import React, {
     Children,
-    useState,
-    useRef,
-    useMemo,
-    useImperativeHandle,
     forwardRef,
+    useMemo,
+    useState,
 } from 'react';
 import PropTypes           from 'prop-types';
 import { escapeRegExp }    from 'lodash';
@@ -81,9 +79,6 @@ const componentName = 'TagInput';
 
 const TagInput = forwardRef( ( props, ref ) =>
 {
-    const inputRef = useRef();
-    const outerRef = useRef();
-
     const cssMap = useThemeClasses( componentName, props );
     const id = useId( componentName, props );
 
@@ -120,13 +115,6 @@ const TagInput = forwardRef( ( props, ref ) =>
     const value = useMemo( () => (
         ( Array.isArray( props.value ) && props.value ) || valueState
     ), [ props.value, valueState ] );
-
-    useImperativeHandle( ref, () => ( {
-        focus : () =>
-        {
-            inputRef.current.focus();
-        },
-    } ) );
 
     const enterNewTag = () =>
     {
@@ -317,55 +305,52 @@ const TagInput = forwardRef( ( props, ref ) =>
         } )
     ) );
 
-    const popperChildren = (
-        <label
-            { ...attachEvents( props ) }
-            className = { cssMap.main }
-            htmlFor   = { id }
-            ref       = { outerRef }
-            style     = { style }>
-            { items }
-            <input
-                className   = { cssMap.input }
-                disabled    = { isDisabled }
-                id          = { id }
-                onBlur      = { callMultiple(
-                    handleBlur,
-                    props.onBlur,
-                ) } // temporary fix
-                onChange    = { handleChangeInput }
-                onFocus     = { callMultiple(
-                    handleFocus,
-                    props.onFocus,
-                ) } // temporary fix
-                onKeyDown   = { callMultiple(
-                    handleKeyDown,
-                    props.onKeyDown,
-                ) } // temporary fix
-                placeholder = { placeholder }
-                readOnly    = { isReadOnly }
-                ref         = { inputRef }
-                type        = "text"
-                value       = { inputValue } />
-        </label>
-    );
-
-    const popperPopup = (
-        <Popup
-            hasError = { hasError }>
-            { dropdownContent }
-        </Popup>
-    );
-
     return (
         <PopperWrapper
             popperContainer = { popperContainer }
             isVisible       = { listBoxOptions.length > 0 && isOpen }
             matchRefWidth
-            popper          = { popperPopup }
+            popper          = { popperProps => (
+                <Popup
+                    hasError = { hasError }
+                    { ...popperProps }>
+                    { dropdownContent }
+                </Popup>
+            ) }
             popperOffset    = "S"
-            popperPosition  = "bottom">
-            { popperChildren }
+            popperPosition  = "bottom"
+            ref             = { ref }>
+            {  refProps => (
+                <label
+                    { ...attachEvents( props ) }
+                    className = { cssMap.main }
+                    htmlFor   = { id }
+                    style     = { style }
+                    { ...refProps }>
+                    { items }
+                    <input
+                        className   = { cssMap.input }
+                        disabled    = { isDisabled }
+                        id          = { id }
+                        onBlur      = { callMultiple(
+                            handleBlur,
+                            props.onBlur,
+                        ) } // temporary fix
+                        onChange    = { handleChangeInput }
+                        onFocus     = { callMultiple(
+                            handleFocus,
+                            props.onFocus,
+                        ) } // temporary fix
+                        onKeyDown   = { callMultiple(
+                            handleKeyDown,
+                            props.onKeyDown,
+                        ) } // temporary fix
+                        placeholder = { placeholder }
+                        readOnly    = { isReadOnly }
+                        type        = "text"
+                        value       = { inputValue } />
+                </label>
+            ) }
         </PopperWrapper>
     );
 } );

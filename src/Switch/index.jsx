@@ -7,8 +7,8 @@
  *
  */
 
-import React        from 'react';
-import PropTypes    from 'prop-types';
+import React, { forwardRef } from 'react';
+import PropTypes             from 'prop-types';
 
 import {
     attachEvents,
@@ -19,7 +19,7 @@ import {
 
 const componentName = 'Switch';
 
-const Switch = props =>
+const Switch = forwardRef( ( props, ref ) =>
 {
     const {
         isChecked,
@@ -36,13 +36,14 @@ const Switch = props =>
         <div
             { ...attachEvents( props ) }
             className = { cssMap.main }
+            ref       = { ref }
             style     = { style }>
             <input
                 checked        = { isChecked }
                 className      = { cssMap.input }
+                defaultChecked = { isDefaultChecked }
                 disabled       = { isDisabled }
                 id             = { id }
-                defaultChecked = { isDefaultChecked }
                 type           = "checkbox" />
             <label
                 aria-label = { label }
@@ -50,7 +51,7 @@ const Switch = props =>
                 htmlFor    = { id } />
         </div>
     );
-};
+} );
 
 Switch.propTypes =
 {

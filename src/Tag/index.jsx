@@ -7,17 +7,17 @@
  *
  */
 
-import React                       from 'react';
-import PropTypes                   from 'prop-types';
+import React, { forwardRef }      from 'react';
+import PropTypes                  from 'prop-types';
 
-import { IconButton, Text }        from '..';
+import { IconButton, Text }       from '..';
 
-import { useId, useThemeClasses }  from '../utils';
+import { useId, useThemeClasses } from '../utils';
 
 
 const componentName = 'Tag';
 
-const Tag = props =>
+const Tag = forwardRef( ( props, ref ) =>
 {
     const {
         children,
@@ -43,7 +43,7 @@ const Tag = props =>
     }
 
     return (
-        <div className = { cssMap.main } style = { style }>
+        <div className = { cssMap.main } ref = { ref } style = { style }>
             { labelText }
             <IconButton
                 className  = { cssMap.delete }
@@ -56,7 +56,7 @@ const Tag = props =>
                 } />
         </div>
     );
-};
+} );
 
 Tag.propTypes =
 {

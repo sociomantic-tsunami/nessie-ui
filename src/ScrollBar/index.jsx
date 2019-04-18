@@ -14,7 +14,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 
-import React, { useCallback }                   from 'react';
+import React, { forwardRef, useCallback }       from 'react';
 import PropTypes                                from 'prop-types';
 
 import { attachEvents, clamp, useThemeClasses } from '../utils';
@@ -22,7 +22,7 @@ import { attachEvents, clamp, useThemeClasses } from '../utils';
 
 const componentName = 'ScrollBar';
 
-const ScrollBar = props =>
+const ScrollBar = forwardRef( ( props, forwardedRef ) =>
 {
     const {
         onChange,
@@ -32,8 +32,8 @@ const ScrollBar = props =>
         scrollMax,
         scrollMin,
         scrollPos,
-        thumbSize,
         style,
+        thumbSize,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -102,7 +102,14 @@ const ScrollBar = props =>
             removeEventListener( 'mousemove', handleMouseMove );
             removeEventListener( 'mouseup', handleMouseUp );
         } );
-    }, [ isVertical, onChange, scrollLength, scrollMax, scrollMin, scrollPos ] );
+    }, [
+        isVertical,
+        onChange,
+        scrollLength,
+        scrollMax,
+        scrollMin,
+        scrollPos,
+    ] );
 
     return (
         <div
@@ -114,20 +121,27 @@ const ScrollBar = props =>
             aria-valuenow    = { scrollPos }
             className        = { cssMap.main }
             onClick          = { handleClick }
-            ref  = { trackRef }
-            role = "scrollbar"
-            style = { style }>
+            ref              = { ref =>
+            {
+                trackRef.current = ref;
+                if ( forwardedRef )
+                {
+                    forwardedRef.current = ref;
+                }
+            } }
+            role             = "scrollbar"
+            style            = { style }>
             <div
                 className   = { cssMap.thumb }
                 onMouseDown = { handleMouseDown }
-                ref   = { thumbRef }
-                style = { {
+                ref         = { thumbRef }
+                style       = { {
                     [ isVertical ? 'height' : 'width' ] : thumbSize,
                     [ isVertical ? 'top'    : 'left'  ] : thumbOffset,
                 } } />
         </div>
     );
-};
+} );
 
 ScrollBar.propTypes =
 {

@@ -7,15 +7,15 @@
  *
  */
 
-import React                   from 'react';
-import PropTypes               from 'prop-types';
+import React, { forwardRef } from 'react';
+import PropTypes             from 'prop-types';
 
-import { useThemeClasses }     from '../utils';
+import { useThemeClasses }   from '../utils';
 
 
 const componentName = 'Tab';
 
-const Tab = ( props ) =>
+const Tab = forwardRef( ( props, ref ) =>
 {
     const cssMap = useThemeClasses( componentName, props );
     const {
@@ -26,14 +26,15 @@ const Tab = ( props ) =>
 
     return (
         <div
-            className  = { cssMap.main }
             aria-label = { label }
+            className  = { cssMap.main }
+            ref        = { ref }
             role       = "tabpanel"
             style      = { style }>
             { children }
         </div>
     );
-};
+} );
 
 Tab.propTypes =
 {

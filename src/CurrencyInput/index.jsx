@@ -9,10 +9,10 @@
 
 /* global navigator */
 
-import React, { useState } from 'react';
-import PropTypes           from 'prop-types';
+import React, { forwardRef, useState } from 'react';
+import PropTypes                       from 'prop-types';
 
-import { TextInput }       from '..';
+import { TextInput }                   from '..';
 
 
 const currencyFormat = ( number, currency, language = navigator.language ) =>
@@ -24,7 +24,7 @@ const pattern = /[^0-9.-]/g;
 
 const componentName = 'CurrencyInput';
 
-const CurrencyInput = ( props ) =>
+const CurrencyInput = forwardRef( ( props, ref ) =>
 {
     const {
         currency,
@@ -66,14 +66,15 @@ const CurrencyInput = ( props ) =>
             autoComplete   = "off"
             autoCorrect    = "off"
             id             = { id }
-            spellCheck     = { false }
             onBlur         = { handleBlur }
             onChange       = { handleChange }
+            ref            = { ref }
+            spellCheck     = { false }
             style          = { style }
             value          = { currencyFormat( Number( value
                 .replace( pattern, '' ) ) || valueState, currency ) } />
     );
-};
+} );
 
 CurrencyInput.propTypes =
 {
@@ -183,9 +184,9 @@ CurrencyInput.defaultProps =
     onMouseOut   : undefined,
     onMouseOver  : undefined,
     placeholder  : undefined,
+    style        : undefined,
     textAlign    : 'left',
     value        : '',
-    style        : undefined,
 };
 
 CurrencyInput.displayName = componentName;

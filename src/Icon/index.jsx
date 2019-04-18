@@ -7,7 +7,7 @@
  *
  */
 
-import React                             from 'react';
+import React, { forwardRef }             from 'react';
 import PropTypes                         from 'prop-types';
 
 import { attachEvents, useThemeClasses } from '../utils';
@@ -15,7 +15,7 @@ import { attachEvents, useThemeClasses } from '../utils';
 
 const componentName = 'Icon';
 
-const Icon = props =>
+const Icon = forwardRef( ( props, ref ) =>
 {
     const {
         children,
@@ -31,12 +31,13 @@ const Icon = props =>
             { ...attachEvents( props ) }
             aria-label = { children || label }
             className  = { cssMap.main }
-            style = { style }>
+            ref        = { ref }
+            style      = { style }>
             { ( type !== 'none' ) &&
             <use xlinkHref = { `#nessie-${type}` } /> }
         </svg>
     );
-};
+} );
 
 Icon.propTypes =
 {

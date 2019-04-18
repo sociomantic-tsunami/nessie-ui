@@ -7,15 +7,15 @@
  *
  */
 
-import React               from 'react';
-import PropTypes           from 'prop-types';
+import React, { forwardRef } from 'react';
+import PropTypes             from 'prop-types';
 
-import { useThemeClasses } from '../utils';
+import { useThemeClasses }   from '../utils';
 
 
 const componentName = 'ProgressBar';
 
-const ProgressBar = ( props ) =>
+const ProgressBar = forwardRef( ( props, ref ) =>
 {
     const { percentage, style } = props;
 
@@ -30,7 +30,7 @@ const ProgressBar = ( props ) =>
             }
         </div>
     );
-};
+} );
 
 ProgressBar.propTypes =
 {

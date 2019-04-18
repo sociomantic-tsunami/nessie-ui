@@ -7,12 +7,8 @@
  *
  */
 
-import React, {
-    useImperativeHandle,
-    useRef,
-    forwardRef,
-}                   from 'react';
-import PropTypes    from 'prop-types';
+import React, { forwardRef } from 'react';
+import PropTypes             from 'prop-types';
 
 import {
     attachEvents,
@@ -25,13 +21,7 @@ const componentName = 'TextInput';
 
 const TextInput = forwardRef( ( props, ref ) =>
 {
-    const inputRef = useRef();
     const cssMap = useThemeClasses( componentName, props );
-
-    useImperativeHandle( ref, () => ( {
-        focus : () => inputRef.current.focus(),
-    } ) );
-
     const {
         aria,
         autoCapitalize,
@@ -61,7 +51,7 @@ const TextInput = forwardRef( ( props, ref ) =>
             id             = { id }
             placeholder    = { placeholder }
             readOnly       = { isReadOnly }
-            ref            = { inputRef }
+            ref            = { ref }
             spellCheck     = { spellCheck }
             style          = { style }
             type           = { type }

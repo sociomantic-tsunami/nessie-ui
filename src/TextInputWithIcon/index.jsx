@@ -7,17 +7,17 @@
  *
  */
 
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React, { forwardRef }             from 'react';
+import PropTypes                         from 'prop-types';
 
-import { attachEvents, useThemeClasses }   from '../utils';
+import { attachEvents, useThemeClasses } from '../utils';
 
-import { IconButton, TextInput }           from '..';
+import { IconButton, TextInput }         from '..';
 
 
 const componentName = 'TextInputWithIcon';
 
-const TextInputWithIcon = ( props ) =>
+const TextInputWithIcon = forwardRef( ( props, ref ) =>
 {
     const cssMap = useThemeClasses( componentName, props );
 
@@ -32,7 +32,6 @@ const TextInputWithIcon = ( props ) =>
         iconPosition,
         iconType,
         id,
-        inputRef,
         inputType,
         isDisabled,
         isReadOnly,
@@ -75,7 +74,7 @@ const TextInputWithIcon = ( props ) =>
                 onChange       = { onChangeInput }
                 onKeyDown      = { onKeyDownInput }
                 placeholder    = { placeholder }
-                ref            = { inputRef }
+                ref            = { ref }
                 spellcheck     = { spellCheck }
                 textAlign      = { alignText }
                 type           = { inputType }
@@ -91,7 +90,7 @@ const TextInputWithIcon = ( props ) =>
             }
         </div>
     );
-};
+} );
 
 TextInputWithIcon.propTypes =
 {
@@ -154,10 +153,6 @@ TextInputWithIcon.propTypes =
      *  Component id
      */
     id                   : PropTypes.string,
-    /**
-     *  Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef             : PropTypes.func,
     /**
      *  HTML input type
      */
@@ -242,7 +237,6 @@ TextInputWithIcon.defaultProps =
     iconPosition         : 'right',
     iconType             : 'none',
     id                   : undefined,
-    inputRef             : undefined,
     inputType            : 'text',
     isDisabled           : false,
     isReadOnly           : false,

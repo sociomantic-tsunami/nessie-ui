@@ -8,13 +8,13 @@
  */
 
 import React, {
-    useState,
-    useCallback,
     forwardRef,
-}                               from 'react';
-import PropTypes                from 'prop-types';
+    useCallback,
+    useState,
+}                            from 'react';
+import PropTypes             from 'prop-types';
 
-import { TextInputWithIcon }    from '..';
+import { TextInputWithIcon } from '..';
 
 
 const componentName = 'PasswordInput';
@@ -114,10 +114,6 @@ PasswordInput.propTypes =
      */
     id                   : PropTypes.string,
     /**
-     *  Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef             : PropTypes.func,
-    /**
      *  Display as disabled
      */
     isDisabled           : PropTypes.bool,
@@ -169,7 +165,6 @@ PasswordInput.defaultProps =
     iconButtonIsDisabled : undefined,
     iconPosition         : 'right',
     id                   : undefined,
-    inputRef             : undefined,
     isDisabled           : false,
     isReadOnly           : false,
     name                 : undefined,
