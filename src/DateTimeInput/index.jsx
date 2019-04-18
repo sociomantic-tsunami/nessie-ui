@@ -277,7 +277,7 @@ const DateTimeInput = forwardRef( ( props, ref ) =>
                 </Popup>
             ) }
             popperContainer = { popperContainer }
-            popperOffset    = "S"
+            popperOffset    = "s"
             popperPosition  = "bottom-start"
             ref             = { ref }
             style           = { style }>

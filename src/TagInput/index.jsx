@@ -317,7 +317,7 @@ const TagInput = forwardRef( ( props, ref ) =>
                     { dropdownContent }
                 </Popup>
             ) }
-            popperOffset    = "S"
+            popperOffset    = "s"
             popperPosition  = "bottom"
             ref             = { ref }>
             {  refProps => (
