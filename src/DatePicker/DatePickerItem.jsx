@@ -7,17 +7,17 @@
  *
  */
 
-import React                              from 'react';
-import PropTypes                          from 'prop-types';
+import React, { forwardRef }             from 'react';
+import PropTypes                         from 'prop-types';
 
-import { Text }                           from '..';
+import { Text }                          from '..';
 
-import { attachEvents, useThemeClasses }  from '../utils';
+import { attachEvents, useThemeClasses } from '../utils';
 
 
 const componentName = 'DatePickerItem';
 
-const DatePickerItem = props =>
+const DatePickerItem = forwardRef( ( props, ref ) =>
 {
     const cssMap = useThemeClasses( componentName, props );
 
@@ -38,13 +38,14 @@ const DatePickerItem = props =>
             aria-pressed = { isSelected }
             className    = { cssMap.main }
             disabled     = { isDisabled }
+            ref          = { ref }
             style        = { style }
             type         = "button"
             value        = { value }>
             <Text className = { cssMap.text }>{ children || label }</Text>
         </button>
     );
-};
+} );
 
 DatePickerItem.propTypes = {
     children   : PropTypes.node,
@@ -54,8 +55,8 @@ DatePickerItem.propTypes = {
     isSelected : PropTypes.bool,
     label      : PropTypes.string,
     onClick    : PropTypes.func,
-    value      : PropTypes.string,
     type       : PropTypes.oneOf( [ 'day', 'month' ] ),
+    value      : PropTypes.string,
     /**
      *  Style overrides
      */

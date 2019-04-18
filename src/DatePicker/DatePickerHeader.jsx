@@ -7,18 +7,18 @@
  *
  */
 
-import React                       from 'react';
-import PropTypes                   from 'prop-types';
+import React, { forwardRef } from 'react';
+import PropTypes             from 'prop-types';
 
-import { IconButton, Text }        from '..';
+import { IconButton, Text }  from '..';
 
-import TimeInput                   from './TimeInput';
-import { useThemeClasses }         from '../utils';
+import TimeInput             from './TimeInput';
+import { useThemeClasses }   from '../utils';
 
 
 const componentName = 'DatePickerHeader';
 
-const DatePickerHeader = props =>
+const DatePickerHeader = forwardRef( ( props, ref ) =>
 {
     const cssMap = useThemeClasses( componentName, props );
 
@@ -46,7 +46,7 @@ const DatePickerHeader = props =>
     } = props;
 
     return (
-        <div className = { cssMap.main } style = { style }>
+        <div className = { cssMap.main } ref = { ref } style = { style }>
             <div className = { cssMap.buttonsWrapper }>
                 <IconButton
                     className  = { cssMap.prev }
@@ -82,7 +82,7 @@ const DatePickerHeader = props =>
             }
         </div>
     );
-};
+} );
 
 DatePickerHeader.propTypes = {
     className         : PropTypes.string,

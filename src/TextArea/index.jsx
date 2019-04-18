@@ -7,10 +7,8 @@
  *
  */
 
-import React, {
-    useRef, useImperativeHandle, forwardRef,
-} from 'react';
-import PropTypes from 'prop-types';
+import React, { forwardRef } from 'react';
+import PropTypes             from 'prop-types';
 
 import {
     attachEvents,
@@ -24,12 +22,6 @@ const componentName = 'TextArea';
 const TextArea = forwardRef( ( props, ref ) =>
 {
     const cssMap = useThemeClasses( componentName, props );
-
-    const textAreaRef = useRef();
-
-    useImperativeHandle( ref, () => ( {
-        focus : () => textAreaRef.current.focus(),
-    } ) );
 
     const {
         aria,
@@ -60,7 +52,7 @@ const TextArea = forwardRef( ( props, ref ) =>
             id             = { id }
             placeholder    = { placeholder }
             readOnly       = { isReadOnly }
-            ref            = { textAreaRef }
+            ref            = { ref }
             rows           = { rows }
             spellCheck     = { spellCheck }
             style          = { style }

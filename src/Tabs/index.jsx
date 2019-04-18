@@ -7,17 +7,17 @@
  *
  */
 
-import React, { useState, useCallback }        from 'react';
-import PropTypes                               from 'prop-types';
+import React, { forwardRef, useState, useCallback } from 'react';
+import PropTypes                                    from 'prop-types';
 
-import { ScrollBox, TabButton }                from '..';
+import { ScrollBox, TabButton }                     from '..';
 
-import { attachEvents, useThemeClasses }       from '../utils';
+import { attachEvents, useThemeClasses }            from '../utils';
 
 
 const componentName = 'Tabs';
 
-const Tabs = ( props ) =>
+const Tabs = forwardRef( ( props, ref ) =>
 {
     const cssMap = useThemeClasses( componentName, props );
 
@@ -84,7 +84,8 @@ const Tabs = ( props ) =>
         <div
             { ...attachEvents( props ) }
             className = { cssMap.main }
-            style = { style }>
+            ref       = { ref }
+            style     = { style }>
             <div className = { cssMap.header }>
                 <ScrollBox
                     className = { cssMap.tabsContainer }
@@ -104,7 +105,7 @@ const Tabs = ( props ) =>
             </div>
         </div>
     );
-};
+} );
 
 Tabs.propTypes =
 {

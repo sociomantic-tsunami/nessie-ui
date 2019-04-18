@@ -10,18 +10,23 @@
 /* global document, addEventListener, removeEventListener */
 
 import React, {
+    cloneElement,
+    forwardRef,
+    isValidElement,
     useCallback,
     useEffect,
-    useMemo,
     useRef,
-}                                         from 'react';
-import ReactDOM                           from 'react-dom';
-import { Manager, Reference, Popper }     from 'react-popper';
-import PropTypes                          from 'prop-types';
+}                                     from 'react';
+import ReactDOM                       from 'react-dom';
+import { Manager, Reference, Popper } from 'react-popper';
+import PropTypes                      from 'prop-types';
+
+import { useThemeVars }               from '../utils';
+
 
 const componentName = 'PopperWrapper';
 
-const PopperWrapper = ( props ) =>
+const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
 {
     const {
         children,
@@ -35,31 +40,12 @@ const PopperWrapper = ( props ) =>
         style,
     } = props;
 
-    const referenceRef      = useRef();
-    const popperRef         = useRef();
-    const scheduleUpdateRef = useRef();
+    const referenceRef = useRef();
+    const popperRef    = useRef();
 
-    const containerEl = useMemo( () => document.getElementById( container ),
-        [ container ] );
+    const { spacing } = useThemeVars();
+    const offset = spacing[ popperOffset ];
 
-    const offset = useMemo( () =>
-        (
-            {
-                'S'    : '8px',
-                'M'    : '16px',
-                'L'    : '24px',
-                'XL'   : '32px',
-                'none' : undefined,
-            }[ popperOffset ]
-        ), [ popperOffset ] );
-
-    useEffect( () =>
-    {
-        if ( isVisible && scheduleUpdateRef.current )
-        {
-            scheduleUpdateRef.current();
-        }
-    }, [ isVisible, popperOffset ] );
 
     useEffect( () =>
     {
@@ -77,62 +63,91 @@ const PopperWrapper = ( props ) =>
     const handleClickOutSide = useCallback( ( e ) =>
     {
         if ( !( referenceRef.current.contains( e.target ) ||
-                popperRef.current.contains( e.target ) ) )
+          popperRef.current.contains( e.target ) ) )
         {
             onClickOutside();
         }
     }, [ onClickOutside ] );
 
-    let popup = (
+    const renderPopup = useCallback( ( { ref, style: popperStyle } ) =>
+    {
+        const popperProps = {
+            style : {
+                ...matchRefWidth &&
+                    { 'width': referenceRef.current.clientWidth },
+                ...popperStyle,
+            },
+            ref,
+        };
+        if ( typeof popper === 'function' )
+        {
+            return popper( popperProps );
+        }
+        if ( isValidElement( popper ) )
+        {
+            return cloneElement( popper, popperProps );
+        }
+        return children || null;
+    },
+    [ children, matchRefWidth, popper ] );
+
+    const renderReference = useCallback(  ( { ref } ) =>
+    {
+        const referenceProps = { ref, style };
+        if ( typeof children === 'function' )
+        {
+            return children( referenceProps );
+        }
+        if ( isValidElement( children ) )
+        {
+            return cloneElement( children, referenceProps );
+        }
+        return children || null;
+    },
+    [ children, style ] );
+
+    let popup = popper && (
         <Popper
             key       = { offset }
             placement = { popperPosition }
-            innerRef  = { ( ref ) => popperRef.current = ref }
-            modifiers = { offset ? {
-                offset : {
-                    offset : `0, ${offset}`,
-                },
-            } : offset }>
-            { ( { ref, style, scheduleUpdate } ) =>
+            innerRef  = { ref =>
             {
-                scheduleUpdateRef.current = scheduleUpdate;
-
-                return (
-                    <div
-                        ref   = { ref }
-                        style = { matchRefWidth ? {
-                            'width' : referenceRef.current
-                                .clientWidth,
-                            ...style,
-                        } : style }>
-                        { popper }
-                    </div> );
+                popperRef.current = ref;
             } }
-        </Popper> );
+            modifiers = { offset ?
+                { offset: { offset: `0, ${offset}` } } : undefined }>
+            { renderPopup }
+        </Popper>
+    );
 
+    const containerEl = document.getElementById( container );
     popup = containerEl ? ReactDOM.createPortal( popup, containerEl ) : popup;
 
     return (
         <Manager>
             <Reference
-                innerRef  = { ( ref ) => referenceRef.current = ref }>
-                { ( { ref } ) => (
-                    <div ref = { ref } style = { style }>
-                        { children }
-                    </div>
-                ) }
+                innerRef = { ref =>
+                {
+                    referenceRef.current = ref;
+                    if ( forwardedRef )
+                    {
+                        // eslint-disable-next-line no-param-reassign
+                        forwardedRef.current = ref;
+                    }
+                } }>
+                { renderReference }
             </Reference>
             { isVisible && popup }
         </Manager>
     );
-};
+} );
 
 PopperWrapper.propTypes =
 {
     /**
-     *  Reference node to attach popper
+     *  Reference node (render function or element)
      */
-    children       : PropTypes.node,
+    children       : PropTypes.oneOfType( PropTypes.func, PropTypes.element ),
     /**
      *  id of the DOM element used as container
      */
@@ -150,13 +165,13 @@ PopperWrapper.propTypes =
      */
     onClickOutside : PropTypes.func,
     /**
-     *  Popper content node
+     *  Popper node (render function or element)
      */
-    popper         : PropTypes.node,
+    popper         : PropTypes.oneOfType( PropTypes.func, PropTypes.element ),
     /**
      *  Popper offset
      */
-    popperOffset   : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'none' ] ),
+    popperOffset   : PropTypes.oneOf( [ 's', 'm', 'l', 'xl', 'none' ] ),
     /**
      *  Popper position
      */

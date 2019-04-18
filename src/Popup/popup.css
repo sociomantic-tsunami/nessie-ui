@@ -11,6 +11,7 @@
 
 .default
 {
+    width:      unset;
     min-width:  0;
     max-width:  none;
 
@@ -39,14 +40,4 @@
 .padding__L
 {
     padding:    30px;
-}
-
-.size__default
-{
-    width: 100%;
-}
-
-.size__content
-{
-    width: auto;
 }

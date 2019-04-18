@@ -10,6 +10,7 @@
 /* global document */
 
 import React, {
+    forwardRef,
     useCallback,
     useEffect,
     useMemo,
@@ -22,8 +23,8 @@ import { castArray, escapeRegExp }  from 'lodash';
 import {
     IconButton,
     ListBox,
-    Popup,
     PopperWrapper,
+    Popup,
     ScrollBox,
     Tag,
     Text,
@@ -131,7 +132,7 @@ const useSelection = ( defaultValue, value, isMultiselect ) =>
 
 const componentName = 'ComboBox';
 
-const ComboBox = props =>
+const ComboBox = forwardRef( ( props, ref ) =>
 {
     const cssMap = useThemeClasses( componentName, props );
     const id = useId( componentName, props );
@@ -140,7 +141,6 @@ const ComboBox = props =>
     const [ isOpen, setIsOpen ] = useState( undefined );
     const [ searchValue, setSearchValue ] = useState( undefined );
 
-    const inputRef = useRef( null );
     const scrollBoxRef = useRef( null );
 
     const {
@@ -221,8 +221,8 @@ const ComboBox = props =>
 
     const focus = useCallback( () =>
     {
-        inputRef.current.focus();
-    }, [] );
+        document.getElementById( id ).focus();
+    }, [ id ] );
 
     const handleFocus = useCallback( () =>
     {
@@ -379,16 +379,16 @@ const ComboBox = props =>
             }
         }
     }, [
+        activeOption,
         filteredOptions,
         flatOptions,
-        isOpen,
-        activeOption,
-        selection,
-        isReadOnly,
-        isMultiselect,
-        onChange,
-        setSelection,
         id,
+        isMultiselect,
+        isOpen,
+        isReadOnly,
+        onChange,
+        selection,
+        setSelection,
     ] );
 
     const handleMouseOutOption = useCallback( () =>
@@ -485,80 +485,78 @@ const ComboBox = props =>
         );
     }
 
-    const popperChildren = (
-        <label
-            { ...attachEvents( props ) }
-            className = { cssMap.main }
-            htmlFor   = { id }>
-            { tags }
-            <input
-                { ...mapAria( {
-                    activeDescendant :
-                        activeOption && addPrefix( activeOption, id ),
-                    autocomplete : 'list',
-                    expanded     : isOpen,
-                    hasPopup     : 'listbox',
-                    owns         : addPrefix( 'listbox', id ),
-                    role         : 'combobox',
-                } ) }
-                autoCapitalize = "off"
-                autoComplete   = "off"
-                autoCorrect    = "off"
-                className      = { cssMap.input }
-                disabled       = { isDisabled }
-                id             = { id }
-                onBlur         = { callMultiple(
-                    handleBlur,
-                    props.onBlur,
-                ) } // temporary fix
-                onChange       = { handleChangeInput }
-                onClick        = { callMultiple(
-                    handleClick,
-                    props.onClick,
-                ) } // temporary fix
-                onFocus        = { callMultiple(
-                    handleFocus,
-                    props.onFocus,
-                ) } // temporary fix
-                onKeyDown      = { callMultiple(
-                    handleKeyDown,
-                    props.onKeyDown,
-                ) } // temporary fix
-                placeholder    = { inputPlaceholder }
-                readOnly       = { !isSearchable || !isOpen }
-                ref            = { inputRef }
-                spellCheck     = { false }
-                value          = { ( isOpen && isSearchable ) ?
-                    searchValue : selectedText } />
-            <IconButton
-                className   = { cssMap.icon }
-                iconType    = { isOpen ? 'chevron-up' : 'chevron-down' }
-                isFocusable = { false }
-                onClick     = { handleClickIcon } />
-        </label>
-    );
-
-    const popperPopup = (
-        <Popup
-            hasError = { hasError }
-            padding  = { optionsToShow.length ? 'none' : 'S' }>
-            { dropdownContent }
-        </Popup>
-    );
-
     return (
         <PopperWrapper
             popperContainer = { popperContainer }
             isVisible       = { isOpen }
             matchRefWidth
-            popper          = { popperPopup }
+            popper          = { ( { ...popperProps } ) => (
+                <Popup
+                    { ...popperProps }
+                    hasError = { hasError }
+                    padding  = { optionsToShow.length ? 'none' : 'S' }>
+                    { dropdownContent }
+                </Popup>
+            ) }
             popperOffset    = "S"
             popperPosition  = "bottom"
+            ref             = { ref }
             style           = { style }>
-            { popperChildren }
+            { ( { ref: innerRef } ) => (
+                <label
+                    { ...attachEvents( props ) }
+                    className = { cssMap.main }
+                    htmlFor   = { id }
+                    ref       = { innerRef }>
+                    { tags }
+                    <input
+                        { ...mapAria( {
+                            activeDescendant :
+                              activeOption && addPrefix( activeOption, id ),
+                            autocomplete : 'list',
+                            expanded     : isOpen,
+                            hasPopup     : 'listbox',
+                            owns         : addPrefix( 'listbox', id ),
+                            role         : 'combobox',
+                        } ) }
+                        autoCapitalize = "off"
+                        autoComplete   = "off"
+                        autoCorrect    = "off"
+                        className      = { cssMap.input }
+                        disabled       = { isDisabled }
+                        id             = { id }
+                        onBlur         = { callMultiple(
+                            handleBlur,
+                            props.onBlur,
+                        ) } // temporary fix
+                        onChange       = { handleChangeInput }
+                        onClick        = { callMultiple(
+                            handleClick,
+                            props.onClick,
+                        ) } // temporary fix
+                        onFocus        = { callMultiple(
+                            handleFocus,
+                            props.onFocus,
+                        ) } // temporary fix
+                        onKeyDown      = { callMultiple(
+                            handleKeyDown,
+                            props.onKeyDown,
+                        ) } // temporary fix
+                        placeholder    = { inputPlaceholder }
+                        readOnly       = { !isSearchable || !isOpen }
+                        spellCheck     = { false }
+                        value          = { ( isOpen && isSearchable ) ?
+                            searchValue : selectedText } />
+                    <IconButton
+                        className   = { cssMap.icon }
+                        iconType    = { isOpen ? 'chevron-up' : 'chevron-down' }
+                        isFocusable = { false }
+                        onClick     = { handleClickIcon } />
+                </label>
+            ) }
         </PopperWrapper>
     );
-};
+} );
 
 ComboBox.propTypes =
 {

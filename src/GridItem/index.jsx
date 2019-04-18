@@ -7,7 +7,7 @@
  *
  */
 
-import React                             from 'react';
+import React, { forwardRef }             from 'react';
 import PropTypes                         from 'prop-types';
 
 import { attachEvents, useThemeClasses } from '../utils';
@@ -15,7 +15,7 @@ import { attachEvents, useThemeClasses } from '../utils';
 
 const componentName = 'GridItem';
 
-const GridItem = props =>
+const GridItem = forwardRef( ( props, ref ) =>
 {
     const {
         children,
@@ -30,6 +30,7 @@ const GridItem = props =>
         <div
             { ...attachEvents( props ) }
             className = { cssMap.main }
+            ref       = { ref }
             style     = { {
                 gridColumn : `span ${colSpan}`,
                 gridRow    : `span ${rowSpan}`,
@@ -38,7 +39,7 @@ const GridItem = props =>
             { children }
         </div>
     );
-};
+} );
 
 GridItem.propTypes =
 {

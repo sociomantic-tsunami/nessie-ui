@@ -8,9 +8,8 @@
  */
 
 import React, {
+    forwardRef,
     useCallback,
-    useImperativeHandle,
-    useRef,
     useState,
 } from 'react';
 import PropTypes            from 'prop-types';
@@ -129,15 +128,8 @@ const useTimestamp = ( defaultValue, value ) =>
 };
 
 
-const DateTimeInput = React.forwardRef( ( props, ref ) =>
+const DateTimeInput = forwardRef( ( props, ref ) =>
 {
-    const inputRef = useRef();
-
-    useImperativeHandle( ref, () => ( {
-        focus : () => inputRef.current.focus(),
-    } ) );
-
-
     const [ editingMainInputValue, setEditingMainInputValue ] =
         useState( undefined );
     const [ gridStartTimestamp, setGridStartTimestamp ] = useState( undefined );
@@ -271,45 +263,48 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             value            = { timestamp } />
     );
 
-    const popperChildren = (
-        <TextInputWithIcon
-            autoCapitalize = "off"
-            autoComplete   = "off"
-            autoCorrect    = "off"
-            className      = { className }
-            hasError       = { hasError }
-            iconType       = "calendar"
-            id             = { id }
-            inputRef       = { inputRef }
-            isDisabled     = { isDisabled }
-            isReadOnly     = { isReadOnly }
-            onBlur         = { handleOnBlur }
-            onChangeInput  = { handleChangeInput }
-            onClickIcon    = { handleClickIcon }
-            placeholder    = { inputPlaceholder }
-            spellCheck     = { false }
-            value          = { editingMainInputValue ||
-                formatDateTime( timestamp, format || setPrecision( mode ) )
-            } />
-    );
-
-    const popperPopup = (
-        <Popup
-            hasError = { hasError }>
-            { datePicker }
-        </Popup>
-    );
 
     return (
         <PopperWrapper
             isVisible       = { isOpen }
             onClickOutside  = { close }
-            popper          = { popperPopup }
+            popper          = { popperProps => (
+                <Popup
+                    hasError = { hasError }
+                    size     = "content"
+                    { ...popperProps }>
+                    { datePicker }
+                </Popup>
+            ) }
             popperContainer = { popperContainer }
             popperOffset    = "S"
             popperPosition  = "bottom-start"
+            ref             = { ref }
             style           = { style }>
-            { popperChildren }
+            { refProps => (
+                <TextInputWithIcon
+                    autoCapitalize = "off"
+                    autoComplete   = "off"
+                    autoCorrect    = "off"
+                    className      = { className }
+                    hasError       = { hasError }
+                    iconType       = "calendar"
+                    id             = { id }
+                    isDisabled     = { isDisabled }
+                    isReadOnly     = { isReadOnly }
+                    onBlur         = { handleOnBlur }
+                    onChangeInput  = { handleChangeInput }
+                    onClickIcon    = { handleClickIcon }
+                    placeholder    = { inputPlaceholder }
+                    spellCheck     = { false }
+                    value          = { editingMainInputValue ||
+                        formatDateTime(
+                            timestamp,
+                            format || setPrecision( mode ),
+                        )
+                    }
+                    { ...refProps } />
+            ) }
         </PopperWrapper>
     );
 } );

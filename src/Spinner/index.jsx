@@ -7,17 +7,17 @@
  *
  */
 
-import React               from 'react';
-import PropTypes           from 'prop-types';
+import React, { forwardRef } from 'react';
+import PropTypes             from 'prop-types';
 
-import { useThemeClasses } from '../utils';
+import { useThemeClasses }   from '../utils';
 
-import { Icon }            from '..';
+import { Icon }              from '..';
 
 
 const componentName = 'Spinner';
 
-const Spinner = ( props ) =>
+const Spinner = forwardRef( ( props, ref ) =>
 {
     const { size, style } = props;
 
@@ -26,12 +26,13 @@ const Spinner = ( props ) =>
     return (
         <Icon
             className = { cssMap.main }
-            type = "loader"
-            size = { size }
-            style = { style }
+            ref       = { ref }
+            size      = { size }
+            style     = { style }
+            type      = "loader"
         />
     );
-};
+} );
 
 Spinner.propTypes =
 {

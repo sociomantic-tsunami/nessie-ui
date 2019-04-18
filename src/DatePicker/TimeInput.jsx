@@ -7,18 +7,15 @@
  *
  */
 
-import React      from 'react';
-import PropTypes  from 'prop-types';
+import React, { forwardRef }                   from 'react';
+import PropTypes                               from 'prop-types';
 
-import {
-    createEventHandler,
-    useThemeClasses,
-} from '../utils';
+import { createEventHandler, useThemeClasses } from '../utils';
 
 
 const componentName = 'TimeInput';
 
-const TimeInput = props =>
+const TimeInput = forwardRef( ( props, ref ) =>
 {
     const cssMap = useThemeClasses( componentName, props );
 
@@ -40,7 +37,7 @@ const TimeInput = props =>
     } = props;
 
     return (
-        <div className = { cssMap.main } style = { style }>
+        <div className = { cssMap.main } ref = { ref } style = { style }>
             <input
                 className   = { cssMap.hour }
                 disabled    = { isDisabled || hourIsDisabled }
@@ -62,7 +59,7 @@ const TimeInput = props =>
                 value       = { minuteValue } />
         </div>
     );
-};
+} );
 
 TimeInput.propTypes =
 {

@@ -7,15 +7,15 @@
  *
  */
 
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React, { forwardRef }             from 'react';
+import PropTypes                         from 'prop-types';
 
-import { attachEvents, useThemeClasses }   from '../utils';
+import { attachEvents, useThemeClasses } from '../utils';
 
 
 const componentName = 'Modal';
 
-const Modal = ( props ) =>
+const Modal = forwardRef( ( props, ref ) =>
 {
     const handleClickOverlay = ( { target, currentTarget } ) =>
     {
@@ -35,16 +35,16 @@ const Modal = ( props ) =>
     return (
         <div
             { ...attachEvents( props, { onClick: false } ) }
-            onClick   = { handleClickOverlay }
             className = { cssMap.main }
-            style     = { style }
-        >
+            onClick   = { handleClickOverlay }
+            ref       = { ref }
+            style     = { style }>
             <div className = { cssMap.content }>
                 { children }
             </div>
         </div>
     );
-};
+} );
 
 Modal.propTypes =
 {

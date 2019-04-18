@@ -8,14 +8,10 @@
  */
 
 
-import React, {
-    useImperativeHandle,
-    useRef,
-    forwardRef,
-} from 'react';
-import PropTypes    from 'prop-types';
+import React, { forwardRef } from 'react';
+import PropTypes             from 'prop-types';
 
-import { Text }     from '..';
+import { Text }              from '..';
 
 import {
     attachEvents,
@@ -28,12 +24,6 @@ const componentName = 'Checkbox';
 
 const Checkbox = forwardRef( ( props, ref ) =>
 {
-    const checkBoxRef = useRef();
-
-    useImperativeHandle( ref, () => ( {
-        focus : () => checkBoxRef.current.focus(),
-    } ) );
-
     const {
         children,
         isChecked,
@@ -55,7 +45,7 @@ const Checkbox = forwardRef( ( props, ref ) =>
     }
 
     return (
-        <div className = { cssMap.main } style = { style }>
+        <div className = { cssMap.main } ref = { ref } style = { style }>
             <input
                 { ...attachEvents( props ) }
                 checked   = { isChecked }
