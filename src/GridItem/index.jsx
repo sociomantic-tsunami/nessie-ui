@@ -9,8 +9,8 @@
 import React, { cloneElement, isValidElement } from 'react';
 import PropTypes                               from 'prop-types';
 
-const componentName = 'GridItem';
 
+const componentName = 'GridItem';
 
 const GridItem = ( {
     align,
@@ -22,12 +22,12 @@ const GridItem = ( {
     ...rest
 } ) =>
 {
-    if ( !children ) return null;
+    if ( !children ) return;
 
-    const newProps = {
+    const childProps = {
         style : {
-            alignSelf   : align,
-            justifySelf : justify,
+            ...align && { alignSelf: align },
+            ...justify && { justifySelf: justify },
             ...colSpan && { gridColumn: `span ${colSpan}` },
             ...rowSpan && { gridRow: `span ${rowSpan}` },
             ...style,
@@ -37,14 +37,13 @@ const GridItem = ( {
 
     if ( typeof children === 'function' )
     {
-        return children( newProps );
+        return children( childProps );
     }
     if ( isValidElement( children ) )
     {
-        return cloneElement( children, newProps );
+        return cloneElement( children, childProps );
     }
-
-    return <div { ...newProps }>{children}</div>;
+    return <div { ...childProps }>{ children }</div>;
 };
 
 GridItem.propTypes =
@@ -54,9 +53,9 @@ GridItem.propTypes =
      */
     align    : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
     /**
-     *  Grid item content: react node or render function
+     *  Grid item content: React node or render function
      */
-    children : PropTypes.oneOfType( PropTypes.element, PropTypes.func ),
+    children : PropTypes.oneOfType( PropTypes.node, PropTypes.func ),
     /**
      *  Grid column span: should be an integer > 0
      */

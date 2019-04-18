@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2018-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -8,13 +8,6 @@
  */
 
 @import "../proto/base.css";
-
-:root
-{
-    --S:    8px;
-    --M:    16px;
-    --L:    24px;
-}
 
 .default
 {

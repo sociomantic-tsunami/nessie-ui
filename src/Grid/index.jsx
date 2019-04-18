@@ -7,7 +7,7 @@
  *
  */
 
-import React                                           from 'react';
+import React, { forwardRef }                           from 'react';
 import PropTypes                                       from 'prop-types';
 
 import { attachEvents, useThemeClasses, useThemeVars } from '../utils';
@@ -15,7 +15,7 @@ import { attachEvents, useThemeClasses, useThemeVars } from '../utils';
 
 const componentName = 'Grid';
 
-const Grid = props =>
+const Grid = forwardRef( ( props, ref ) =>
 {
     const {
         alignContent,
@@ -40,6 +40,7 @@ const Grid = props =>
         <div
             { ...attachEvents( props ) }
             className = { `${cssMap.main} ${className}` }
+            ref       = { ref }
             style     = { {
                 alignContent,
                 alignItems,
@@ -60,7 +61,7 @@ const Grid = props =>
             { children }
         </div>
     );
-};
+} );
 
 Grid.propTypes =
 {
