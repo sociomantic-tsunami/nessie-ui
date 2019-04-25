@@ -22,7 +22,7 @@ inside grid cells according to rules from container (Grid itself).
 A simple example:
 
 ```
-<Grid>
+<Grid columns={3}>
     <Label>...</Label>
     <TextInput>...</TextInput>
     <Button>...</Button>
@@ -69,13 +69,14 @@ size (`1fr`).
 The number should be an integer greater than 0 (zero).
 
 If you need more specific grid, you can specify a templates for the the
-`columns` and `rows` props in the form of an array of CSS size values.
+`templateColumns` and `templateRows` props in the form of a list of CSS size
+values.
 
 All props are accepting string values, so you can define your grid however you
 want, e.g.:
-- `["100px", "1fr", "auto", "200px"]` (creates a grid with 4 columns)
-- `["1fr", "3fr", "50%"]` (creates a grid with 3 columns)
-- `["repeat(7, 1fr)"]` (creates a grid with 7 equally wide columns)
+- `"100px 1fr auto 200px"` (creates a grid with 4 columns)
+- `"1fr 3fr 50%"` (creates a grid with 3 columns)
+- `"repeat(7, 1fr)"` (creates a grid with 7 equally wide columns)
 - etc.
 
 
@@ -86,7 +87,7 @@ grid items that you don't explicitly place on the grid - the auto-placement
 algorithm automatically places the items in the Grid. This property controls how
 the auto-placement algorithm works.
 
-The prop accepts one of four values:
+The prop accepts one of two values:
 - `"row"` - tells the auto-placement algorithm to fill in each row in turn,
 adding new rows as necessary (default)
 - `"column"` - tells the auto-placement algorithm to fill in each column in turn,
@@ -97,7 +98,7 @@ adding new columns as necessary
 
 `gap` is used for defining a space between columns and rows.
 
-The props accept one of four values: `"S"`, `"M"` (default), `"L"` and `"none"`
+The props accept one of four values: `"s"`, `"m"` (default), `"l"` and `"none"`
 (no gaps).
 
 If you pass a tuple (e.g `["s", "m"]`) the first value will be used as the row

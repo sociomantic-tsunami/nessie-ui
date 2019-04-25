@@ -31,6 +31,8 @@ const Grid = forwardRef( ( props, ref ) =>
         justifyItems,
         rows,
         style,
+        templateColumns,
+        templateRows,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -50,10 +52,9 @@ const Grid = forwardRef( ( props, ref ) =>
                 gridGap         : Array.isArray( gap ) ?
                     `${spacing[ gap[ 0 ] ]} ${spacing[ gap[ 1 ] ]}` :
                     spacing[ gap ],
-                gridTemplateColumns : Array.isArray( columns ) ?
-                    columns.join( ' ' ) : `repeat( ${columns}, 1fr )`,
-                gridTemplateRows : Array.isArray( rows ) ?
-                    rows.join( ' ' ) : `repeat( ${rows}, 1fr )`,
+                gridTemplateColumns : templateColumns ||
+                    `repeat( ${columns}, 1fr )`,
+                gridTemplateRows : templateRows ||  `repeat( ${rows}, 1fr )`,
                 justifyContent,
                 justifyItems,
                 ...style,
@@ -95,63 +96,74 @@ Grid.propTypes =
      */
     className   : PropTypes.string,
     /**
-     *  Number of columns (integer > 0) or array of column sizes (CSS length
-     *  strings)
+     *  Number of columns in explicit grid (integer > 0)
      */
-    columns     : PropTypes.oneOfType(
-        PropTypes.number,
-        PropTypes.arrayOf( PropTypes.string ),
-    ),
+    columns     : PropTypes.number,
     /**
      *  CSS class map
      */
-    cssMap : PropTypes.objectOf( PropTypes.string ),
+    cssMap      : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Gap between rows and/or columns
      */
-    gap    : PropTypes.oneOfType(
+    gap         : PropTypes.oneOfType(
         PropTypes.oneOf( [ 'none', 's', 'm', 'l' ] ),
         PropTypes.arrayOf( [ PropTypes.oneOf( [ 'none', 's', 'm', 'l' ] ) ] ),
     ),
     /**
      * Inline-axis (usually horizontal) alignment of the grid content
      */
-    justifyContent : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
+    justifyContent : PropTypes.oneOf( [
+        'start',
+        'center',
+        'end',
+        'stretch',
+    ] ),
     /**
      * Inline-axis (usually horizontal) alignment of the grid items
      */
-    justifyItems   : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
-
+    justifyItems : PropTypes.oneOf( [
+        'start',
+        'center',
+        'end',
+        'stretch',
+    ] ),
     /**
-     *  Number of rows (integer > 0) or array of column sizes (CSS length
-     *  strings)
+     *  Number of rows in explcit grid (integer > 0)
      */
-    rows : PropTypes.oneOfType(
-        PropTypes.number,
-        PropTypes.arrayOf( PropTypes.string ),
-    ),
+    rows            : PropTypes.number,
     /**
      *  Style overrides
      */
-    style : PropTypes.objectOf( PropTypes.string ),
+    style           : PropTypes.objectOf( PropTypes.string ),
+    /**
+     *  Column definitions for explicit grid
+     */
+    templateColumns : PropTypes.string,
+    /**
+     *  Row definitions for explicit grid
+     */
+    templateRows    : PropTypes.string,
 };
 
 Grid.defaultProps =
 {
-    alignContent   : undefined,
-    alignItems     : undefined,
-    autoColumns    : undefined,
-    autoFlow       : undefined,
-    autoRows       : undefined,
-    children       : undefined,
-    className      : undefined,
-    columns        : undefined,
-    cssMap         : undefined,
-    gap            : 'm',
-    justifyContent : undefined,
-    justifyItems   : undefined,
-    rows           : undefined,
-    style          : undefined,
+    alignContent    : undefined,
+    alignItems      : undefined,
+    autoColumns     : undefined,
+    autoFlow        : undefined,
+    autoRows        : undefined,
+    children        : undefined,
+    className       : undefined,
+    columns         : 1,
+    cssMap          : undefined,
+    gap             : 'm',
+    justifyContent  : undefined,
+    justifyItems    : undefined,
+    rows            : 1,
+    style           : undefined,
+    templateColumns : undefined,
+    templateRows    : undefined,
 };
 
 Grid.displayName = componentName;
