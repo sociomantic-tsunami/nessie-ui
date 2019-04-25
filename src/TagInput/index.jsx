@@ -13,16 +13,16 @@ import React, {
     useMemo,
     useState,
 } from 'react';
-import PropTypes           from 'prop-types';
-import { escapeRegExp }    from 'lodash';
+import PropTypes              from 'prop-types';
+import { escapeRegExp, uniq } from 'lodash';
 
 import {
     ListBox,
     ScrollBox,
 } from '..';
 
-import Popup               from '../Popup';
-import PopperWrapper       from '../PopperWrapper';
+import Popup         from '../Popup';
+import PopperWrapper from '../PopperWrapper';
 import {
     attachEvents,
     callMultiple,
@@ -127,7 +127,7 @@ const TagInput = forwardRef( ( props, ref ) =>
             );
 
             finalTags = finalTags.filter( item => typeof item !== 'undefined' );
-            finalTags = [ ...value, ...finalTags ];
+            finalTags = uniq( [ ...value, ...finalTags ] );
         }
         else
         {
