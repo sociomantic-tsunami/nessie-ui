@@ -120,11 +120,11 @@ const TagInput = forwardRef( ( props, ref ) =>
     {
         let finalTags = [];
 
-        if ( props.splitPattern )
+        if ( props.split )
         {
-            finalTags = inputValue.split(
-                new RegExp( props.splitPattern ),
-            ).map( singleValue => enterNewTag( singleValue ) );
+            finalTags = inputValue.split( props.split ).map(
+                singleValue => enterNewTag( singleValue ),
+            );
 
             finalTags = finalTags.filter( item => typeof item !== 'undefined' );
             finalTags = [ ...value, ...finalTags ];
@@ -423,17 +423,20 @@ TagInput.propTypes =
      */
     suggestions     : PropTypes.arrayOf( PropTypes.string ),
     /**
-     *  Regex Pattern to split tags from an unique value
+     *  String or Regex Pattern to split tags from an unique value
      */
-    splitPattern    : PropTypes.string,
+    split           : PropTypes.arrayOf( PropTypes.oneOfType( [
+        PropTypes.string,
+        PropTypes.instanceOf( RegExp ),
+    ] ) ),
     /**
      * Array of strings to build Tag components
      */
-    value           : PropTypes.arrayOf( PropTypes.string ),
+    value : PropTypes.arrayOf( PropTypes.string ),
     /**
      *  Style overrides
      */
-    style           : PropTypes.objectOf( PropTypes.string ),
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 TagInput.defaultProps =
@@ -451,7 +454,7 @@ TagInput.defaultProps =
     popperContainer : undefined,
     style           : undefined,
     suggestions     : undefined,
-    splitPattern    : undefined,
+    split           : undefined,
     value           : undefined,
 };
 
