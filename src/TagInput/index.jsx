@@ -116,41 +116,58 @@ const TagInput = forwardRef( ( props, ref ) =>
         ( Array.isArray( props.value ) && props.value ) || valueState
     ), [ props.value, valueState ] );
 
-    const enterNewTag = () =>
+    const enterTags = () =>
+    {
+        let finalTags = [];
+
+        if ( props.split )
+        {
+            finalTags = inputValue.split( props.split ).map(
+                singleValue => enterNewTag( singleValue ),
+            );
+
+            finalTags = finalTags.filter( item => typeof item !== 'undefined' );
+            finalTags = [ ...value, ...finalTags ];
+        }
+        else
+        {
+            finalTags = enterNewTag( inputValue );
+            finalTags = finalTags ?
+                [ ...value, enterNewTag( inputValue ) ] : value;
+        }
+
+        const { onChange } = props;
+        if ( typeof onChange === 'function' )
+        {
+            onChange( { value: finalTags } );
+        }
+
+        setActiveOption( undefined );
+        setFilteredOptionsState( filterOptions( finalTags ) );
+        setInputValue( '' );
+        setValueState( finalTags );
+    };
+
+    const enterNewTag = ( singleValue ) =>
     {
         let newTag;
 
-        if ( !value.find( tag => tag === inputValue ) )
+        if ( !value.find( tag => tag === singleValue ) )
         {
             if ( activeOption )
             {
-                const option =
-                    getOption( activeOption, filteredOptions );
+                const option = getOption( activeOption, filteredOptions );
 
                 newTag = value.indexOf( activeOption ) !== -1 ?
                     inputValue : option.text;
             }
-            else if ( inputValue )
+            else if ( singleValue )
             {
-                newTag = inputValue;
+                newTag = singleValue;
             }
         }
 
-        let newTags = value;
-        if ( newTag )
-        {
-            newTags = [ ...value, newTag ];
-
-            const { onChange } = props;
-            if ( typeof onChange === 'function' )
-            {
-                onChange( { value: newTags } );
-            }
-        }
-        setActiveOption( undefined );
-        setFilteredOptionsState( filterOptions( newTags ) );
-        setInputValue( '' );
-        setValueState( newTags );
+        return newTag;
     };
 
     const filterOptions = ( tags ) =>
@@ -160,7 +177,7 @@ const TagInput = forwardRef( ( props, ref ) =>
     const handleBlur = () =>
     {
         setIsOpen( false );
-        enterNewTag();
+        enterTags();
     };
 
     const handleChangeInput = ( e ) =>
@@ -235,7 +252,7 @@ const TagInput = forwardRef( ( props, ref ) =>
         }
         if ( key === 'Enter' )
         {
-            enterNewTag();
+            enterTags();
         }
         else if ( key === 'ArrowUp' || key === 'ArrowDown' )
         {
@@ -406,13 +423,20 @@ TagInput.propTypes =
      */
     suggestions     : PropTypes.arrayOf( PropTypes.string ),
     /**
+     *  String or Regex Pattern to split tags from an unique value
+     */
+    split           : PropTypes.arrayOf( PropTypes.oneOfType( [
+        PropTypes.string,
+        PropTypes.instanceOf( RegExp ),
+    ] ) ),
+    /**
      * Array of strings to build Tag components
      */
-    value           : PropTypes.arrayOf( PropTypes.string ),
+    value : PropTypes.arrayOf( PropTypes.string ),
     /**
      *  Style overrides
      */
-    style           : PropTypes.objectOf( PropTypes.string ),
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 TagInput.defaultProps =
@@ -430,6 +454,7 @@ TagInput.defaultProps =
     popperContainer : undefined,
     style           : undefined,
     suggestions     : undefined,
+    split           : undefined,
     value           : undefined,
 };
 
