@@ -175,6 +175,43 @@ const DatePicker = props =>
         return _.chunk( days, 7 );
     };
 
+    const weekMatrix = () =>
+    {
+        const startWeek = gridStartTimestamp;
+
+        if ( !startWeek ) return;
+
+        // first day of a month
+        const firstWeek = formatWeeks( gridStartTimestamp );
+        // last day of a month
+        const lastWeek = formatWeeks( $m( gridStartTimestamp )
+            .endOf( 'month' ).valueOf() );
+
+        const weeks = _.range( firstWeek, lastWeek ).map( weekIndex =>
+        {
+            const label = weekIndex;
+            const value = $m( firstWeek ).add( weekIndex, 'week' ).valueOf();
+
+            const isDisabled = !isUnitSelectable(
+                value,
+                'week',
+            );
+
+            const isCurrent = isTimestampEqual( value, Date.now(), 'day' );
+            const isSelected = _.isNumber( timestamp ) &&
+              isTimestampEqual( timestamp, value, 'day' );
+            return {
+                label,
+                value,
+                isCurrent,
+                isDisabled,
+                isSelected,
+            };
+        } );
+
+        return _.chunk( weeks, 1 );
+    };
+    console.log( weekMatrix() );
     const monthMatrix = () =>
     {
         const startYear = gridStartTimestamp;
@@ -360,6 +397,8 @@ const DatePicker = props =>
     const headers = type !== 'month' && DAY_LABELS;
 
     const items = type === 'month' ? monthMatrix() : dayMatrix();
+
+    const weeks = type === 'weeks' ? weekMatrix() : undefined;
 
     return (
         <div { ...attachEvents( restProps ) } className = { cssMap.main }>
