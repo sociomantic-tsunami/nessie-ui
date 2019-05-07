@@ -192,14 +192,12 @@ const DatePicker = props =>
             const label = weekIndex;
             const value = $m( firstWeek ).add( weekIndex, 'week' ).valueOf();
 
-            const isDisabled = !isUnitSelectable(
-                value,
-                'week',
-            );
+            const isCurrent = $m( timestamp ).week() === weekIndex;
+            const isDisabled = $m( timestamp ).week() > weekIndex;
 
-            const isCurrent = isTimestampEqual( value, Date.now(), 'day' );
             const isSelected = _.isNumber( timestamp ) &&
-              isTimestampEqual( timestamp, value, 'day' );
+              isTimestampEqual( timestamp, value, 'month' );
+
             return {
                 label,
                 value,
@@ -211,7 +209,7 @@ const DatePicker = props =>
 
         return _.chunk( weeks, 1 );
     };
-    console.log( weekMatrix() );
+    // console.log( weekMatrix() );
     const monthMatrix = () =>
     {
         const startYear = gridStartTimestamp;
