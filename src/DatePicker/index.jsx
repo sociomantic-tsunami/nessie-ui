@@ -177,39 +177,18 @@ const DatePicker = props =>
 
     const weekMatrix = () =>
     {
-        const startWeek = gridStartTimestamp;
+        const mappedDays = dayMatrix();
 
-        if ( !startWeek ) return;
-
-        // first day of a month
-        const firstWeek = formatWeeks( gridStartTimestamp );
-        // last day of a month
-        const lastWeek = formatWeeks( $m( gridStartTimestamp )
-            .endOf( 'month' ).valueOf() );
-
-        const weeks = _.range( firstWeek, lastWeek ).map( weekIndex =>
+        const weekDays = mappedDays.map( week =>
         {
-            const label = weekIndex;
-            const value = $m( firstWeek ).add( weekIndex, 'week' ).valueOf();
-
-            const isCurrent = $m( timestamp ).week() === weekIndex;
-            const isDisabled = $m( timestamp ).week() > weekIndex;
-
-            const isSelected = _.isNumber( timestamp ) &&
-              isTimestampEqual( timestamp, value, 'month' );
-
-            return {
-                label,
-                value,
-                isCurrent,
-                isDisabled,
-                isSelected,
-            };
+            const firstWeekday = week.find( weekDay => weekDay.value !== null );
+            const weekNumber = $m( firstWeekday.value ).week();
+            return { ...week, weekNumber };
         } );
-
-        return _.chunk( weeks, 1 );
+// console.log( weekDays );
+        return _.chunk( weekDays, 8 );
     };
-    // console.log( weekMatrix() );
+
     const monthMatrix = () =>
     {
         const startYear = gridStartTimestamp;
@@ -394,9 +373,19 @@ const DatePicker = props =>
 
     const headers = type !== 'month' && DAY_LABELS;
 
-    const items = type === 'month' ? monthMatrix() : dayMatrix();
+    let items;
 
-    const weeks = type === 'weeks' ? weekMatrix() : undefined;
+    switch ( type )
+    {
+    case 'month':
+        items = monthMatrix();
+        break;
+    case 'week':
+        items = weekMatrix();
+        break;
+    default:
+        items = dayMatrix();
+    }
 
     return (
         <div { ...attachEvents( restProps ) } className = { cssMap.main }>
@@ -481,7 +470,7 @@ DatePicker.propTypes = {
     onClickItem       : PropTypes.func,
     onClickNext       : PropTypes.func,
     onClickPrev       : PropTypes.func,
-    type              : PropTypes.oneOf( [ 'day', 'month' ] ),
+    type              : PropTypes.oneOf( [ 'day', 'week', 'month' ] ),
     value             : PropTypes.number,
 };
 
