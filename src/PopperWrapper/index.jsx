@@ -93,7 +93,7 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
 
     const renderReference = useCallback(  ( { ref } ) =>
     {
-        const referenceProps = { ref, style };
+        const referenceProps = { ref, ...style && { style } };
         if ( typeof children === 'function' )
         {
             return children( referenceProps );
