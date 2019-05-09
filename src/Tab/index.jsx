@@ -7,31 +7,34 @@
  *
  */
 
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React, { forwardRef } from 'react';
+import PropTypes             from 'prop-types';
 
-import { useThemeClasses }     from '../utils';
+import { useThemeClasses }   from '../utils';
 
 
 const componentName = 'Tab';
 
-const Tab = ( props ) =>
+const Tab = forwardRef( ( props, ref ) =>
 {
     const cssMap = useThemeClasses( componentName, props );
     const {
         children,
         label,
+        style,
     } = props;
 
     return (
         <div
-            className  = { cssMap.main }
             aria-label = { label }
-            role       = "tabpanel">
+            className  = { cssMap.main }
+            ref        = { ref }
+            role       = "tabpanel"
+            style      = { style }>
             { children }
         </div>
     );
-};
+} );
 
 Tab.propTypes =
 {
@@ -51,6 +54,10 @@ Tab.propTypes =
      *  Label to show in TabButton of this tab
      */
     label     : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style     : PropTypes.objectOf( PropTypes.string ),
 };
 
 Tab.defaultProps =
@@ -59,6 +66,7 @@ Tab.defaultProps =
     className : undefined,
     cssMap    : undefined,
     label     : undefined,
+    style     : undefined,
 };
 
 Tab.displayName = componentName;

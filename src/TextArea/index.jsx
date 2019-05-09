@@ -7,10 +7,8 @@
  *
  */
 
-import React, {
-    useRef, useImperativeHandle, forwardRef,
-} from 'react';
-import PropTypes from 'prop-types';
+import React, { forwardRef } from 'react';
+import PropTypes             from 'prop-types';
 
 import {
     attachEvents,
@@ -25,12 +23,6 @@ const TextArea = forwardRef( ( props, ref ) =>
 {
     const cssMap = useThemeClasses( componentName, props );
 
-    const textAreaRef = useRef();
-
-    useImperativeHandle( ref, () => ( {
-        focus : () => textAreaRef.current.focus(),
-    } ) );
-
     const {
         aria,
         autoCapitalize,
@@ -43,6 +35,7 @@ const TextArea = forwardRef( ( props, ref ) =>
         placeholder,
         rows,
         spellCheck,
+        style,
         value,
     } = props;
 
@@ -59,9 +52,10 @@ const TextArea = forwardRef( ( props, ref ) =>
             id             = { id }
             placeholder    = { placeholder }
             readOnly       = { isReadOnly }
-            ref            = { textAreaRef }
+            ref            = { ref }
             rows           = { rows }
             spellCheck     = { spellCheck }
+            style          = { style }
             value          = { value } />
     );
 } );
@@ -190,6 +184,10 @@ TextArea.propTypes =
      *  Input string value
      */
     value      : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style      : PropTypes.objectOf( PropTypes.string ),
 };
 
 TextArea.defaultProps =
@@ -218,6 +216,7 @@ TextArea.defaultProps =
     resize         : undefined,
     rows           : 2,
     spellCheck     : undefined,
+    style          : undefined,
     textAlign      : 'left',
     value          : undefined,
 };

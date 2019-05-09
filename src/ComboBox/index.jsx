@@ -10,6 +10,7 @@
 /* global document */
 
 import React, {
+    forwardRef,
     useCallback,
     useEffect,
     useMemo,
@@ -22,9 +23,10 @@ import { castArray, escapeRegExp }  from 'lodash';
 import {
     IconButton,
     ListBox,
-    Popup,
     PopperWrapper,
+    Popup,
     ScrollBox,
+    Tag,
     Text,
 } from '..';
 
@@ -36,7 +38,6 @@ import {
     useThemeClasses,
 } from '../utils';
 import { addPrefix, prefixOptions, removePrefix } from './utils';
-import { buildTagsFromValues }                    from '../TagInput/utils';
 
 /**
  * gets the index of the option by the passed id
@@ -108,8 +109,8 @@ const optionsFormatted = ( filteredOptionsIds, originalOptions ) => (
 
 const useSelection = ( defaultValue, value, isMultiselect ) =>
 {
-    const validatedDefaultValue = isMultiselect ? castArray( defaultValue ) :
-        defaultValue;
+    const validatedDefaultValue = isMultiselect && defaultValue ?
+        castArray( defaultValue ) : defaultValue;
     const validatedValue = isMultiselect && value ? castArray( value ) : value;
 
     const [ selection, setSelection ] = useState( validatedDefaultValue );
@@ -131,7 +132,7 @@ const useSelection = ( defaultValue, value, isMultiselect ) =>
 
 const componentName = 'ComboBox';
 
-const ComboBox = props =>
+const ComboBox = forwardRef( ( props, ref ) =>
 {
     const cssMap = useThemeClasses( componentName, props );
     const id = useId( componentName, props );
@@ -140,11 +141,9 @@ const ComboBox = props =>
     const [ isOpen, setIsOpen ] = useState( undefined );
     const [ searchValue, setSearchValue ] = useState( undefined );
 
-    const inputRef = useRef( null );
     const scrollBoxRef = useRef( null );
 
     const {
-        popperContainer,
         defaultValue,
         dropdownPlaceholder,
         hasError,
@@ -156,6 +155,8 @@ const ComboBox = props =>
         onChange,
         onChangeInput,
         options,
+        popperContainer,
+        style,
         value,
     } = props;
 
@@ -220,8 +221,8 @@ const ComboBox = props =>
 
     const focus = useCallback( () =>
     {
-        inputRef.current.focus();
-    }, [ inputRef.current ] );
+        document.getElementById( id ).focus();
+    }, [ id ] );
 
     const handleFocus = useCallback( () =>
     {
@@ -231,7 +232,7 @@ const ComboBox = props =>
         {
             setSearchValue( '' );
         }
-    }, [ isSearchable ] );
+    }, [ focus, isSearchable ] );
 
     const handleChangeInput = useCallback( ( e ) =>
     {
@@ -245,13 +246,13 @@ const ComboBox = props =>
         }
 
         setSearchValue( searchValueToUse );
-    }, [ flatOptions, onChangeInput ] );
+    }, [ onChangeInput ] );
 
     const handleClickIcon = useCallback( () =>
     {
         focus();
         setIsOpen( !isOpen );
-    }, [ isOpen ] );
+    }, [ focus, isOpen ] );
 
     const handleClick = useCallback( () =>
     {
@@ -280,14 +281,13 @@ const ComboBox = props =>
 
         if ( !isReadOnly && typeof onChange === 'function' )
         {
-            onChange( { id, newSelection } );
+            onChange( { id, value: newSelection } );
         }
 
         setIsOpen( false );
         setSearchValue( undefined );
         setSelection( newSelection );
-    }, [ id, isMultiselect, isReadOnly, flatOptions, selection,
-        onChange ] );
+    }, [ id, isReadOnly, selection, isMultiselect, onChange, setSelection ] );
 
     const handleClickClose = useCallback( ( { id : tagId } ) =>
     {
@@ -300,7 +300,7 @@ const ComboBox = props =>
 
         setSelection( newTags );
         setIsOpen( false );
-    }, [ selection, onChange ] );
+    }, [ selection, onChange, setSelection ] );
 
     const handleKeyDown = useCallback( ( e ) =>
     {
@@ -378,8 +378,18 @@ const ComboBox = props =>
                 }
             }
         }
-    }, [ flatOptions, isOpen, activeOption, selection,
-        isReadOnly, onChange ] );
+    }, [
+        activeOption,
+        filteredOptions,
+        flatOptions,
+        id,
+        isMultiselect,
+        isOpen,
+        isReadOnly,
+        onChange,
+        selection,
+        setSelection,
+    ] );
 
     const handleMouseOutOption = useCallback( () =>
     {
@@ -410,14 +420,15 @@ const ComboBox = props =>
 
     if ( isMultiselect )
     {
-        tags = buildTagsFromValues( selection );
-        tags = tags.map( tag => (
-            React.cloneElement( tag, {
-                ...tag.props,
-                isDisabled : isDisabled || tag.props.isDisabled,
-                isReadOnly : isReadOnly || tag.props.isReadOnly,
-                onClick    : handleClickClose,
-            } )
+        tags = selection && selection.map( itemId => (
+            <Tag
+                id = { itemId }
+                isDisabled = { isDisabled }
+                isReadOnly = { isReadOnly }
+                key = { itemId }
+                label = { getOption( itemId, flatOptions ).text }
+                onClick  = { handleClickClose }
+            />
         ) );
     }
 
@@ -474,79 +485,78 @@ const ComboBox = props =>
         );
     }
 
-    const popperChildren = (
-        <label
-            { ...attachEvents( props ) }
-            className = { cssMap.main }
-            htmlFor   = { id }>
-            { tags }
-            <input
-                { ...mapAria( {
-                    activeDescendant :
-                        activeOption && addPrefix( activeOption, id ),
-                    autocomplete : 'list',
-                    expanded     : isOpen,
-                    hasPopup     : 'listbox',
-                    owns         : addPrefix( 'listbox', id ),
-                    role         : 'combobox',
-                } ) }
-                autoCapitalize = "off"
-                autoComplete   = "off"
-                autoCorrect    = "off"
-                className      = { cssMap.input }
-                disabled       = { isDisabled }
-                id             = { id }
-                onBlur         = { callMultiple(
-                    handleBlur,
-                    props.onBlur,
-                ) } // temporary fix
-                onChange       = { handleChangeInput }
-                onClick        = { callMultiple(
-                    handleClick,
-                    props.onClick,
-                ) } // temporary fix
-                onFocus        = { callMultiple(
-                    handleFocus,
-                    props.onFocus,
-                ) } // temporary fix
-                onKeyDown      = { callMultiple(
-                    handleKeyDown,
-                    props.onKeyDown,
-                ) } // temporary fix
-                placeholder    = { inputPlaceholder }
-                readOnly       = { !isSearchable || !isOpen }
-                ref            = { inputRef }
-                spellCheck     = { false }
-                value          = { ( isOpen && isSearchable ) ?
-                    searchValue : selectedText } />
-            <IconButton
-                className   = { cssMap.icon }
-                iconType    = { isOpen ? 'chevron-up' : 'chevron-down' }
-                isFocusable = { false }
-                onClick     = { handleClickIcon } />
-        </label>
-    );
-
-    const popperPopup = (
-        <Popup
-            hasError = { hasError }
-            padding  = { optionsToShow.length ? 'none' : 'S' }>
-            { dropdownContent }
-        </Popup>
-    );
-
     return (
         <PopperWrapper
             popperContainer = { popperContainer }
             isVisible       = { isOpen }
             matchRefWidth
-            popper          = { popperPopup }
-            popperOffset    = "S"
-            popperPosition  = "bottom">
-            { popperChildren }
+            popper          = { ( { ...popperProps } ) => (
+                <Popup
+                    { ...popperProps }
+                    hasError = { hasError }
+                    padding  = { optionsToShow.length ? 'none' : 'S' }>
+                    { dropdownContent }
+                </Popup>
+            ) }
+            popperOffset    = "s"
+            popperPosition  = "bottom"
+            ref             = { ref }
+            style           = { style }>
+            { ( { ref: innerRef } ) => (
+                <label
+                    { ...attachEvents( props ) }
+                    className = { cssMap.main }
+                    htmlFor   = { id }
+                    ref       = { innerRef }>
+                    { tags }
+                    <input
+                        { ...mapAria( {
+                            activeDescendant :
+                              activeOption && addPrefix( activeOption, id ),
+                            autocomplete : 'list',
+                            expanded     : isOpen,
+                            hasPopup     : 'listbox',
+                            owns         : addPrefix( 'listbox', id ),
+                            role         : 'combobox',
+                        } ) }
+                        autoCapitalize = "off"
+                        autoComplete   = "off"
+                        autoCorrect    = "off"
+                        className      = { cssMap.input }
+                        disabled       = { isDisabled }
+                        id             = { id }
+                        onBlur         = { callMultiple(
+                            handleBlur,
+                            props.onBlur,
+                        ) } // temporary fix
+                        onChange       = { handleChangeInput }
+                        onClick        = { callMultiple(
+                            handleClick,
+                            props.onClick,
+                        ) } // temporary fix
+                        onFocus        = { callMultiple(
+                            handleFocus,
+                            props.onFocus,
+                        ) } // temporary fix
+                        onKeyDown      = { callMultiple(
+                            handleKeyDown,
+                            props.onKeyDown,
+                        ) } // temporary fix
+                        placeholder    = { inputPlaceholder }
+                        readOnly       = { !isSearchable || !isOpen }
+                        spellCheck     = { false }
+                        value          = { ( isOpen && isSearchable ) ?
+                            searchValue : selectedText } />
+                    <IconButton
+                        className   = { cssMap.icon }
+                        iconType    = { isOpen ? 'chevron-up' : 'chevron-down' }
+                        isFocusable = { false }
+                        onClick     = { handleClickIcon } />
+                </label>
+            ) }
         </PopperWrapper>
     );
-};
+} );
 
 ComboBox.propTypes =
 {
@@ -619,6 +629,10 @@ ComboBox.propTypes =
         PropTypes.string,
         PropTypes.arrayOf( PropTypes.string ),
     ),
+    /**
+     *  Style overrides
+     */
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 ComboBox.defaultProps =
@@ -638,6 +652,7 @@ ComboBox.defaultProps =
     onChangeInput       : undefined,
     options             : [],
     value               : undefined,
+    style               : undefined,
 };
 
 ComboBox.displayName = componentName;

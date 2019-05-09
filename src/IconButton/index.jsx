@@ -7,22 +7,21 @@
  *
  */
 
-import React                        from 'react';
-import PropTypes                    from 'prop-types';
+import React, { forwardRef }             from 'react';
+import PropTypes                         from 'prop-types';
 
-import { Icon }                     from '..';
+import { Icon }                          from '..';
 
-import { attachEvents, useThemeClasses }   from '../utils';
+import { attachEvents, useThemeClasses } from '../utils';
 
 
 const componentName = 'IconButton';
 
 const killFocus = e => e.preventDefault();
 
-const IconButton = props =>
+const IconButton = forwardRef( ( props, ref ) =>
 {
     const {
-        buttonRef,
         children,
         iconSize,
         iconType,
@@ -30,6 +29,7 @@ const IconButton = props =>
         isDisabled,
         isFocusable,
         label,
+        style,
         value,
     } = props;
 
@@ -44,7 +44,8 @@ const IconButton = props =>
             disabled    = { isDisabled }
             id          = { id }
             onMouseDown = { !isFocusable ? killFocus : undefined }
-            ref         = { buttonRef }
+            ref         = { ref }
+            style       = { style }
             tabIndex    = { isFocusable ? '0' : '-1' }
             type        = "button"
             value       = { value }>
@@ -57,14 +58,10 @@ const IconButton = props =>
             </Icon>
         </button>
     );
-};
+} );
 
 IconButton.propTypes =
 {
-    /**
-     * Callback that receives a ref to the <button>: ( ref ) => { ... }
-     */
-    buttonRef     : PropTypes.func,
     /**
      *  extra CSS class name
      */
@@ -117,11 +114,14 @@ IconButton.propTypes =
      *  HTML value attribute
      */
     value         : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style         : PropTypes.objectOf( PropTypes.string ),
 };
 
 IconButton.defaultProps =
 {
-    buttonRef     : undefined,
     children      : undefined,
     className     : undefined,
     cssMap        : undefined,
@@ -134,6 +134,7 @@ IconButton.defaultProps =
     label         : undefined,
     onClick       : undefined,
     role          : 'default',
+    style         : undefined,
     value         : undefined,
 };
 

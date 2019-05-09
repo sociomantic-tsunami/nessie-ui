@@ -7,28 +7,18 @@
  *
  */
 
-import React, {
-    useImperativeHandle,
-    useRef,
-    forwardRef,
-} from 'react';
-import PropTypes                    from 'prop-types';
+import React, { forwardRef }              from 'react';
+import PropTypes                          from 'prop-types';
 
-import { Icon, Spinner }            from '..';
+import { Icon, Spinner }                  from '..';
 
-import { attachEvents, useThemeClasses }   from '../utils';
+import { attachEvents, useThemeClasses }  from '../utils';
 
 
 const componentName = 'Button';
 
 const Button = forwardRef( ( props, ref ) =>
 {
-    const buttonRef = useRef();
-
-    useImperativeHandle( ref, () => ( {
-        focus : () => buttonRef.current.focus(),
-    } ) );
-
     const {
         children,
         iconType,
@@ -36,6 +26,7 @@ const Button = forwardRef( ( props, ref ) =>
         isDisabled,
         isLoading,
         label,
+        style,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -46,7 +37,8 @@ const Button = forwardRef( ( props, ref ) =>
             className = { cssMap.main }
             disabled  = { isDisabled }
             id        = { id }
-            ref       = { buttonRef }
+            ref       = { ref }
+            style     = { style }
             type      = "button">
             <div className = { cssMap.content }>
                 { ( iconType && iconType !== 'none' ) &&
@@ -129,6 +121,10 @@ Button.propTypes =
         'critical',
         'control',
     ] ),
+    /**
+     *  Style overrides
+     */
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 Button.defaultProps =
@@ -145,6 +141,7 @@ Button.defaultProps =
     onMouseOut   : undefined,
     onMouseOver  : undefined,
     role         : 'default',
+    style        : undefined,
 };
 
 export default Button;

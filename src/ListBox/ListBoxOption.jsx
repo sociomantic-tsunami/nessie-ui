@@ -11,10 +11,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React, { forwardRef } from 'react';
+import PropTypes             from 'prop-types';
 
-import { Icon, Text }   from '..';
+import { Icon, Text }        from '..';
 
 import {
     attachEvents,
@@ -26,7 +26,7 @@ import {
 
 const componentName = 'ListBoxOption';
 
-const ListBoxOption = props =>
+const ListBoxOption = forwardRef( ( props, ref ) =>
 {
     const {
         aria,
@@ -35,6 +35,7 @@ const ListBoxOption = props =>
         iconSize,
         iconType,
         isSelected,
+        style,
         text,
         value,
     } = props;
@@ -68,11 +69,13 @@ const ListBoxOption = props =>
             } ) }
             { ...mapAria( {
                 ...aria,
-                selected : isSelected,
                 role     : 'option',
+                selected : isSelected,
             } ) }
             className   = { cssMap.main }
-            id          = { id }>
+            id          = { id }
+            ref         = { ref }
+            style       = { style }>
             { ( iconType && iconType !== 'none' ) &&
                 <Icon
                     className = { cssMap.icon }
@@ -91,7 +94,7 @@ const ListBoxOption = props =>
             </div>
         </li>
     );
-};
+} );
 
 ListBoxOption.propTypes = {
     aria        : PropTypes.objectOf( PropTypes.string ),
@@ -110,6 +113,10 @@ ListBoxOption.propTypes = {
     onMouseOver : PropTypes.func,
     text        : PropTypes.string,
     value       : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style       : PropTypes.objectOf( PropTypes.string ),
 };
 
 ListBoxOption.defaultProps = {
@@ -127,6 +134,7 @@ ListBoxOption.defaultProps = {
     onClick     : undefined,
     onMouseOut  : undefined,
     onMouseOver : undefined,
+    style       : undefined,
     text        : undefined,
     value       : undefined,
 };

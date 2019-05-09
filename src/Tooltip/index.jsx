@@ -7,17 +7,17 @@
  *
  */
 
-import React                        from 'react';
-import PropTypes                    from 'prop-types';
+import React, { forwardRef }             from 'react';
+import PropTypes                         from 'prop-types';
 
-import { IconButton, Text }         from '..';
+import { IconButton, Text }              from '..';
 
-import { attachEvents, useThemeClasses }   from '../utils';
+import { attachEvents, useThemeClasses } from '../utils';
 
 
 const componentName = 'Tooltip';
 
-const Tooltip = props =>
+const Tooltip = forwardRef( ( props, ref ) =>
 {
     const {
         children,
@@ -25,6 +25,7 @@ const Tooltip = props =>
         isDismissible,
         message,
         onClickClose,
+        style,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -34,7 +35,9 @@ const Tooltip = props =>
             { ...attachEvents( props ) }
             className = { cssMap.main }
             id        = { id }
-            role      = "tooltip">
+            ref       = { ref }
+            role      = "tooltip"
+            style     = { style }>
             <div className = { cssMap.message }>
                 { children || ( typeof message === 'string' ?
                     <Text>{ message }</Text> : message )
@@ -52,7 +55,7 @@ const Tooltip = props =>
             }
         </div>
     );
-};
+} );
 
 Tooltip.propTypes =
 {
@@ -118,6 +121,10 @@ Tooltip.propTypes =
         'promoted',
         'warning',
     ] ),
+    /**
+     *  Style overrides
+     */
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 Tooltip.defaultProps =
@@ -133,6 +140,7 @@ Tooltip.defaultProps =
     onMouseOut    : undefined,
     onMouseOver   : undefined,
     role          : 'default',
+    style         : undefined,
 };
 
 Tooltip.displayName = componentName;

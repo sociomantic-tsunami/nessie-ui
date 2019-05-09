@@ -7,18 +7,15 @@
  *
  */
 
-import React      from 'react';
-import PropTypes  from 'prop-types';
+import React, { forwardRef }                   from 'react';
+import PropTypes                               from 'prop-types';
 
-import {
-    createEventHandler,
-    useThemeClasses,
-} from '../utils';
+import { createEventHandler, useThemeClasses } from '../utils';
 
 
 const componentName = 'TimeInput';
 
-const TimeInput = props =>
+const TimeInput = forwardRef( ( props, ref ) =>
 {
     const cssMap = useThemeClasses( componentName, props );
 
@@ -36,10 +33,11 @@ const TimeInput = props =>
         minuteValue,
         onChangeHour,
         onChangeMinute,
+        style,
     } = props;
 
     return (
-        <div className = { cssMap.main }>
+        <div className = { cssMap.main } ref = { ref } style = { style }>
             <input
                 className   = { cssMap.hour }
                 disabled    = { isDisabled || hourIsDisabled }
@@ -61,7 +59,7 @@ const TimeInput = props =>
                 value       = { minuteValue } />
         </div>
     );
-};
+} );
 
 TimeInput.propTypes =
 {
@@ -80,6 +78,10 @@ TimeInput.propTypes =
     minuteValue       : PropTypes.string,
     onChangeHour      : PropTypes.func,
     onChangeMinute    : PropTypes.func,
+    /**
+     *  Style overrides
+     */
+    style             : PropTypes.objectOf( PropTypes.string ),
 };
 
 TimeInput.defaultProps =
@@ -99,6 +101,7 @@ TimeInput.defaultProps =
     minuteValue       : undefined,
     onChangeHour      : undefined,
     onChangeMinute    : undefined,
+    style             : undefined,
 };
 
 TimeInput.displayName = componentName;

@@ -8,13 +8,13 @@
  */
 
 import React, {
-    useState,
-    useCallback,
     forwardRef,
-}                               from 'react';
-import PropTypes                from 'prop-types';
+    useCallback,
+    useState,
+}                            from 'react';
+import PropTypes             from 'prop-types';
 
-import { TextInputWithIcon }    from '..';
+import { TextInputWithIcon } from '..';
 
 
 const componentName = 'PasswordInput';
@@ -30,6 +30,7 @@ const PasswordInput = forwardRef( ( props, ref ) =>
     const {
         id,
         onClickIcon,
+        style,
     } = props;
 
     const handleClickIcon = useCallback( ( payload, e ) =>
@@ -67,7 +68,8 @@ const PasswordInput = forwardRef( ( props, ref ) =>
             inputType      = { passwordIsVisible ? 'text' : 'password' }
             onClickIcon    = { handleClickIcon }
             ref            = { ref }
-            spellCheck     = { false } />
+            spellCheck     = { false }
+            style          = { style } />
     );
 } );
 
@@ -112,10 +114,6 @@ PasswordInput.propTypes =
      */
     id                   : PropTypes.string,
     /**
-     *  Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef             : PropTypes.func,
-    /**
      *  Display as disabled
      */
     isDisabled           : PropTypes.bool,
@@ -151,6 +149,10 @@ PasswordInput.propTypes =
      *  Input string value
      */
     value                : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style                : PropTypes.objectOf( PropTypes.string ),
 };
 
 PasswordInput.defaultProps =
@@ -163,7 +165,6 @@ PasswordInput.defaultProps =
     iconButtonIsDisabled : undefined,
     iconPosition         : 'right',
     id                   : undefined,
-    inputRef             : undefined,
     isDisabled           : false,
     isReadOnly           : false,
     name                 : undefined,
@@ -171,6 +172,7 @@ PasswordInput.defaultProps =
     onClickIcon          : undefined,
     passwordIsVisible    : false,
     placeholder          : undefined,
+    style                : undefined,
     textAlign            : 'auto',
     value                : undefined,
 };

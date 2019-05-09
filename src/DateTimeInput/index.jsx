@@ -8,9 +8,8 @@
  */
 
 import React, {
+    forwardRef,
     useCallback,
-    useImperativeHandle,
-    useRef,
     useState,
 } from 'react';
 import PropTypes            from 'prop-types';
@@ -136,15 +135,8 @@ const useTimestamp = ( defaultValue, value ) =>
 };
 
 
-const DateTimeInput = React.forwardRef( ( props, ref ) =>
+const DateTimeInput = forwardRef( ( props, ref ) =>
 {
-    const inputRef = useRef();
-
-    useImperativeHandle( ref, () => ( {
-        focus : () => inputRef.current.focus(),
-    } ) );
-
-
     const [ editingMainInputValue, setEditingMainInputValue ] =
         useState( undefined );
     const [ gridStartTimestamp, setGridStartTimestamp ] = useState( undefined );
@@ -250,7 +242,6 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
 
     const {
         className,
-        popperContainer,
         format,
         hasError,
         id,
@@ -261,6 +252,8 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         min,
         mode,
         onChange,
+        popperContainer,
+        style,
     } = props;
 
     let datePickerType = 'day';
@@ -288,44 +281,48 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             value            = { timestamp } />
     );
 
-    const popperChildren = (
-        <TextInputWithIcon
-            autoCapitalize = "off"
-            autoComplete   = "off"
-            autoCorrect    = "off"
-            className      = { className }
-            hasError       = { hasError }
-            iconType       = "calendar"
-            id             = { id }
-            inputRef       = { inputRef }
-            isDisabled     = { isDisabled }
-            isReadOnly     = { isReadOnly }
-            onBlur         = { handleOnBlur }
-            onChangeInput  = { handleChangeInput }
-            onClickIcon    = { handleClickIcon }
-            placeholder    = { inputPlaceholder }
-            spellCheck     = { false }
-            value          = { editingMainInputValue ||
-                formatDateTime( timestamp, format || setPrecision( mode ) )
-            } />
-    );
-
-    const popperPopup = (
-        <Popup
-            hasError = { hasError }>
-            { datePicker }
-        </Popup>
-    );
 
     return (
         <PopperWrapper
-            popperContainer = { popperContainer }
             isVisible       = { isOpen }
             onClickOutside  = { close }
-            popper          = { popperPopup }
-            popperOffset    = "S"
-            popperPosition  = "bottom-start">
-            { popperChildren }
+            popper          = { popperProps => (
+                <Popup
+                    hasError = { hasError }
+                    size     = "content"
+                    { ...popperProps }>
+                    { datePicker }
+                </Popup>
+            ) }
+            popperContainer = { popperContainer }
+            popperOffset    = "s"
+            popperPosition  = "bottom-start"
+            ref             = { ref }
+            style           = { style }>
+            { refProps => (
+                <TextInputWithIcon
+                    autoCapitalize = "off"
+                    autoComplete   = "off"
+                    autoCorrect    = "off"
+                    className      = { className }
+                    hasError       = { hasError }
+                    iconType       = "calendar"
+                    id             = { id }
+                    isDisabled     = { isDisabled }
+                    isReadOnly     = { isReadOnly }
+                    onBlur         = { handleOnBlur }
+                    onChangeInput  = { handleChangeInput }
+                    onClickIcon    = { handleClickIcon }
+                    placeholder    = { inputPlaceholder }
+                    spellCheck     = { false }
+                    value          = { editingMainInputValue ||
+                        formatDateTime(
+                            timestamp,
+                            format || setPrecision( mode ),
+                        )
+                    }
+                    { ...refProps } />
+            ) }
         </PopperWrapper>
     );
 } );
@@ -393,13 +390,16 @@ DateTimeInput.propTypes =
      *  Selected timestamp
      */
     value    : PropTypes.number,
+    /**
+     *  Style overrides
+     */
+    style    : PropTypes.objectOf( PropTypes.string ),
 };
 
 DateTimeInput.defaultProps =
 {
     className        : undefined,
     defaultValue     : undefined,
-    popperContainer  : undefined,
     format           : undefined,
     hasError         : false,
     id               : undefined,
@@ -410,6 +410,8 @@ DateTimeInput.defaultProps =
     min              : undefined,
     mode             : 'default',
     onChange         : undefined,
+    popperContainer  : undefined,
+    style            : undefined,
     value            : undefined,
 };
 

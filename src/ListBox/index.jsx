@@ -10,7 +10,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 
-import React                           from 'react';
+import React, { forwardRef }           from 'react';
 import PropTypes                       from 'prop-types';
 
 import { buildOptions, updateOptions } from './utils';
@@ -24,7 +24,7 @@ import {
 
 const componentName = 'ListBox';
 
-const ListBox = props =>
+const ListBox = forwardRef( ( props, ref ) =>
 {
     const {
         aria,
@@ -38,6 +38,7 @@ const ListBox = props =>
         onMouseOverOption,
         options,
         selection,
+        style,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -60,6 +61,8 @@ const ListBox = props =>
             className   = { cssMap.main }
             id          = { id }
             onMouseDown = { !isFocusable ? killFocus : undefined }
+            ref         = { ref }
+            style       = { style }
             tabIndex    = { isFocusable ? '0' : '-1' }>
             { updateOptions(
                 children || buildOptions( options ),
@@ -73,7 +76,7 @@ const ListBox = props =>
             ) }
         </ul>
     );
-};
+} );
 
 ListBox.propTypes = {
     aria              : PropTypes.objectOf( PropTypes.string ),
@@ -116,6 +119,10 @@ ListBox.propTypes = {
         PropTypes.string,
         PropTypes.arrayOf( PropTypes.string ),
     ] ),
+    /**
+     *  Style overrides
+     */
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 ListBox.defaultProps = {
@@ -132,6 +139,7 @@ ListBox.defaultProps = {
     onMouseOverOption : undefined,
     options           : undefined,
     selection         : undefined,
+    style             : undefined,
 };
 
 ListBox.displayName = componentName;

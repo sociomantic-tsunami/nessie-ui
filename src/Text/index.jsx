@@ -7,23 +7,23 @@
  *
  */
 
-import React                      from 'react';
-import PropTypes                  from 'prop-types';
+import React, { forwardRef }             from 'react';
+import PropTypes                         from 'prop-types';
 
 import { attachEvents, useThemeClasses } from '../utils';
 
 
 const componentName = 'Text';
 
-const Text = props =>
+const Text = forwardRef( ( props, ref ) =>
 {
     const {
         children,
         color,
         letterSpacing,
         lineHeight,
+        style,
         text,
-        textRef,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -32,12 +32,14 @@ const Text = props =>
         <div
             { ...attachEvents( props ) }
             className = { cssMap.main }
-            ref       = { textRef }
-            style     = { { color, letterSpacing, lineHeight } }>
+            ref       = { ref }
+            style     = { {
+                color, letterSpacing, lineHeight, ...style,
+            } }>
             { children || text }
         </div>
     );
-};
+} );
 
 Text.propTypes =
 {
@@ -109,10 +111,6 @@ Text.propTypes =
      */
     textAlign : PropTypes.oneOf( [ 'left', 'center', 'right' ] ),
     /**
-     *  Callback that receives ref to the text div: ref => ...
-     */
-    textRef   : PropTypes.func,
-    /**
      *  Style to apply to text
      */
     variant   : PropTypes.oneOf( [
@@ -127,6 +125,10 @@ Text.propTypes =
         'ExtraBold',
         'ExtraBoldIt',
     ] ),
+    /**
+     *  Style overrides
+     */
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 Text.defaultProps =
@@ -142,9 +144,9 @@ Text.defaultProps =
     overflowIsHidden : false,
     role             : 'default',
     size             : 'M',
+    style            : undefined,
     text             : undefined,
     textAlign        : undefined,
-    textRef          : undefined,
     variant          : 'Regular',
 };
 

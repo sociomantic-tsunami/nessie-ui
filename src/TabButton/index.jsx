@@ -8,11 +8,11 @@
  */
 
 import React, {
+    forwardRef,
     useImperativeHandle,
     useRef,
-    forwardRef,
 } from 'react';
-import PropTypes                  from 'prop-types';
+import PropTypes                         from 'prop-types';
 
 import { attachEvents, useThemeClasses } from '../utils';
 
@@ -21,20 +21,12 @@ const componentName = 'TabButton';
 
 const TabButton = forwardRef( ( props, ref ) =>
 {
-    const tabButtonRef = useRef();
-
-    useImperativeHandle( ref, () => ( {
-        focus : () =>
-        {
-            tabButtonRef.current.focus();
-        },
-    } ) );
-
     const cssMap = useThemeClasses( componentName, props );
 
     const {
         isDisabled,
         label,
+        style,
         subtitle,
         tabIndex,
     } = props;
@@ -46,8 +38,9 @@ const TabButton = forwardRef( ( props, ref ) =>
             } ) }
             className = { cssMap.main }
             disabled  = { isDisabled }
-            ref       = { tabButtonRef }
+            ref       = { ref }
             role      = "tab"
+            style     = { style }
             type      = "button">
             <div className = { cssMap.content }>
                 <div className = { cssMap.label }>
@@ -97,6 +90,10 @@ TabButton.propTypes =
      *  Index of this tab
      */
     tabIndex   : PropTypes.number,
+    /**
+     *  Style overrides
+     */
+    style      : PropTypes.objectOf( PropTypes.string ),
 };
 
 TabButton.defaultProps =
@@ -109,6 +106,7 @@ TabButton.defaultProps =
     onClick    : undefined,
     subtitle   : undefined,
     tabIndex   : 0,
+    style      : undefined,
 };
 
 TabButton.displayName = componentName;

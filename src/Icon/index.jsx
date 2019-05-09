@@ -7,19 +7,20 @@
  *
  */
 
-import React                      from 'react';
-import PropTypes                  from 'prop-types';
+import React, { forwardRef }             from 'react';
+import PropTypes                         from 'prop-types';
 
 import { attachEvents, useThemeClasses } from '../utils';
 
 
 const componentName = 'Icon';
 
-const Icon = props =>
+const Icon = forwardRef( ( props, ref ) =>
 {
     const {
         children,
         label,
+        style,
         type,
     } = props;
 
@@ -29,12 +30,14 @@ const Icon = props =>
         <svg
             { ...attachEvents( props ) }
             aria-label = { children || label }
-            className  = { cssMap.main }>
+            className  = { cssMap.main }
+            ref        = { ref }
+            style      = { style }>
             { ( type !== 'none' ) &&
             <use xlinkHref = { `#nessie-${type}` } /> }
         </svg>
     );
-};
+} );
 
 Icon.propTypes =
 {
@@ -66,11 +69,15 @@ Icon.propTypes =
     /**
      *  Icon size
      */
-    size : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
+    size  : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
     /**
      *  Icon to show (see https://feathericons.com/)
      */
-    type : PropTypes.string,
+    type  : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 Icon.defaultProps =
@@ -81,6 +88,7 @@ Icon.defaultProps =
     label     : undefined,
     role      : 'default',
     size      : 'S',
+    style     : undefined,
     type      : 'none',
 };
 

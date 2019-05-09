@@ -7,18 +7,18 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React, { forwardRef } from 'react';
+import PropTypes             from 'prop-types';
 
-import { IconButton, Text } from '..';
+import { IconButton, Text }  from '..';
 
-import TimeInput            from './TimeInput';
-import { useThemeClasses }         from '../utils';
+import TimeInput             from './TimeInput';
+import { useThemeClasses }   from '../utils';
 
 
 const componentName = 'DatePickerHeader';
 
-const DatePickerHeader = props =>
+const DatePickerHeader = forwardRef( ( props, ref ) =>
 {
     const cssMap = useThemeClasses( componentName, props );
 
@@ -41,11 +41,12 @@ const DatePickerHeader = props =>
         onClickNext,
         onClickPrev,
         prevIsDisabled,
+        style,
         year,
     } = props;
 
     return (
-        <div className = { cssMap.main }>
+        <div className = { cssMap.main } ref = { ref } style = { style }>
             <div className = { cssMap.buttonsWrapper }>
                 <IconButton
                     className  = { cssMap.prev }
@@ -81,7 +82,7 @@ const DatePickerHeader = props =>
             }
         </div>
     );
-};
+} );
 
 DatePickerHeader.propTypes = {
     className         : PropTypes.string,
@@ -105,6 +106,10 @@ DatePickerHeader.propTypes = {
     onClickPrev       : PropTypes.func,
     prevIsDisabled    : PropTypes.bool,
     year              : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style             : PropTypes.objectOf( PropTypes.string ),
 };
 
 DatePickerHeader.defaultProps = {
@@ -128,6 +133,7 @@ DatePickerHeader.defaultProps = {
     onClickNext       : undefined,
     onClickPrev       : undefined,
     prevIsDisabled    : undefined,
+    style             : undefined,
     year              : undefined,
 };
 

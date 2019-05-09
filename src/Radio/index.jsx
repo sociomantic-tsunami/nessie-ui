@@ -20,9 +20,9 @@ import {
 } from '../utils';
 
 
-const componentName = 'Checkbox';
+const componentName = 'Radio';
 
-const Checkbox = forwardRef( ( props, ref ) =>
+const Radio = forwardRef( ( props, ref ) =>
 {
     const {
         children,
@@ -31,6 +31,7 @@ const Checkbox = forwardRef( ( props, ref ) =>
         isDisabled,
         label,
         style,
+        value,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -41,7 +42,7 @@ const Checkbox = forwardRef( ( props, ref ) =>
     if ( typeof labelContent === 'string' )
     {
         labelContent =
-            <Text className = { cssMap.labelText }>{ labelContent }</Text>;
+            <Text>{ labelContent }</Text>;
     }
 
     return (
@@ -53,7 +54,8 @@ const Checkbox = forwardRef( ( props, ref ) =>
                 defaultChecked = { isDefaultChecked }
                 disabled  = { isDisabled }
                 id        = { id }
-                type      =  "checkbox" />
+                type      =  "radio"
+                value     = { value } />
             <label className = { cssMap.label } htmlFor = { id }>
                 { labelContent &&
                     <span className = { cssMap.labelContent }>
@@ -66,7 +68,7 @@ const Checkbox = forwardRef( ( props, ref ) =>
 } );
 
 
-Checkbox.propTypes =
+Radio.propTypes =
 {
     /**
      *  Label content (React node; overrides label prop)
@@ -116,9 +118,13 @@ Checkbox.propTypes =
      *  Style overrides
      */
     style            : PropTypes.objectOf( PropTypes.string ),
+    /**
+     *  Radio value
+     */
+    value            : PropTypes.string,
 };
 
-Checkbox.defaultProps =
+Radio.defaultProps =
 {
     children         : undefined,
     className        : undefined,
@@ -132,8 +138,9 @@ Checkbox.defaultProps =
     onChange         : undefined,
     onClick          : undefined,
     style            : undefined,
+    value            : undefined,
 };
 
-Checkbox.displayName = componentName;
+Radio.displayName = componentName;
 
-export default Checkbox;
+export default Radio;

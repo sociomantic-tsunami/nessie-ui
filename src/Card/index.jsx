@@ -7,26 +7,30 @@
  *
  */
 
-import React                      from 'react';
-import PropTypes                  from 'prop-types';
+import React, { forwardRef }             from 'react';
+import PropTypes                         from 'prop-types';
 
 import { attachEvents, useThemeClasses } from '../utils';
 
 
 const componentName = 'Card';
 
-const Card = props =>
+const Card = forwardRef( ( props, ref ) =>
 {
-    const { children } = props;
+    const { children, style } = props;
 
     const cssMap = useThemeClasses( componentName, props );
 
     return (
-        <div { ...attachEvents( props ) } className = { cssMap.main }>
+        <div
+            { ...attachEvents( props ) }
+            className = { cssMap.main }
+            ref       = { ref }
+            style     = { style }>
             { children }
         </div>
     );
-};
+} );
 
 Card.propTypes =
 {
@@ -56,6 +60,10 @@ Card.propTypes =
             'XXL',
         ] ) ),
     ] ),
+    /**
+     *  Style overrides
+     */
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 Card.defaultProps =
@@ -64,6 +72,7 @@ Card.defaultProps =
     className : undefined,
     cssMap    : undefined,
     padding   : 'M',
+    style     : undefined,
 };
 
 Card.displayName = componentName;

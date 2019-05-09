@@ -14,15 +14,15 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 
-import React, { useCallback }            from 'react';
-import PropTypes                         from 'prop-types';
+import React, { forwardRef, useCallback }       from 'react';
+import PropTypes                                from 'prop-types';
 
 import { attachEvents, clamp, useThemeClasses } from '../utils';
 
 
 const componentName = 'ScrollBar';
 
-const ScrollBar = props =>
+const ScrollBar = forwardRef( ( props, forwardedRef ) =>
 {
     const {
         onChange,
@@ -32,6 +32,7 @@ const ScrollBar = props =>
         scrollMax,
         scrollMin,
         scrollPos,
+        style,
         thumbSize,
     } = props;
 
@@ -101,7 +102,14 @@ const ScrollBar = props =>
             removeEventListener( 'mousemove', handleMouseMove );
             removeEventListener( 'mouseup', handleMouseUp );
         } );
-    }, [ isVertical, onChange, scrollLength, thumbRef, trackRef ] );
+    }, [
+        isVertical,
+        onChange,
+        scrollLength,
+        scrollMax,
+        scrollMin,
+        scrollPos,
+    ] );
 
     return (
         <div
@@ -113,19 +121,27 @@ const ScrollBar = props =>
             aria-valuenow    = { scrollPos }
             className        = { cssMap.main }
             onClick          = { handleClick }
-            ref  = { trackRef }
-            role = "scrollbar">
+            ref              = { ref =>
+            {
+                trackRef.current = ref;
+                if ( forwardedRef )
+                {
+                    forwardedRef.current = ref;
+                }
+            } }
+            role             = "scrollbar"
+            style            = { style }>
             <div
                 className   = { cssMap.thumb }
                 onMouseDown = { handleMouseDown }
-                ref   = { thumbRef }
-                style = { {
+                ref         = { thumbRef }
+                style       = { {
                     [ isVertical ? 'height' : 'width' ] : thumbSize,
                     [ isVertical ? 'top'    : 'left'  ] : thumbOffset,
                 } } />
         </div>
     );
-};
+} );
 
 ScrollBar.propTypes =
 {
@@ -169,6 +185,10 @@ ScrollBar.propTypes =
      *  Scroll thumb size (CSS unit)
      */
     thumbSize    : PropTypes.string,
+    /**
+     *  Style overrides
+     */
+    style        : PropTypes.objectOf( PropTypes.string ),
 };
 
 ScrollBar.defaultProps =
@@ -182,6 +202,7 @@ ScrollBar.defaultProps =
     scrollMax    : 0,
     scrollMin    : 0,
     scrollPos    : 0,
+    style        : undefined,
     thumbSize    : '20px',
 };
 

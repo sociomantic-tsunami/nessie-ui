@@ -7,15 +7,15 @@
  *
  */
 
-import React                        from 'react';
-import PropTypes                    from 'prop-types';
+import React, { forwardRef }             from 'react';
+import PropTypes                         from 'prop-types';
 
-import { attachEvents, useThemeClasses }   from '../utils';
+import { attachEvents, useThemeClasses } from '../utils';
 
 
 const componentName = 'Modal';
 
-const Modal = ( props ) =>
+const Modal = forwardRef( ( props, ref ) =>
 {
     const handleClickOverlay = ( { target, currentTarget } ) =>
     {
@@ -28,21 +28,23 @@ const Modal = ( props ) =>
         }
     };
 
-    const { children } = props;
+    const { children, style } = props;
 
     const cssMap = useThemeClasses( componentName, props );
 
     return (
         <div
             { ...attachEvents( props, { onClick: false } ) }
+            className = { cssMap.main }
             onClick   = { handleClickOverlay }
-            className = { cssMap.main }>
+            ref       = { ref }
+            style     = { style }>
             <div className = { cssMap.content }>
                 { children }
             </div>
         </div>
     );
-};
+} );
 
 Modal.propTypes =
 {
@@ -62,6 +64,10 @@ Modal.propTypes =
      *  Overlay onClick callback function
      */
     onClickOverlay : PropTypes.func,
+    /**
+     *  Style overrides
+     */
+    style          : PropTypes.objectOf( PropTypes.string ),
 };
 
 Modal.defaultProps =
@@ -70,6 +76,7 @@ Modal.defaultProps =
     className      : undefined,
     cssMap         : undefined,
     onClickOverlay : undefined,
+    style          : undefined,
 };
 
 Modal.displayName = componentName;

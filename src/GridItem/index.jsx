@@ -7,20 +7,21 @@
  *
  */
 
-import React                      from 'react';
-import PropTypes                  from 'prop-types';
+import React, { forwardRef }             from 'react';
+import PropTypes                         from 'prop-types';
 
 import { attachEvents, useThemeClasses } from '../utils';
 
 
 const componentName = 'GridItem';
 
-const GridItem = props =>
+const GridItem = forwardRef( ( props, ref ) =>
 {
     const {
         children,
         colSpan,
         rowSpan,
+        style,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -29,14 +30,16 @@ const GridItem = props =>
         <div
             { ...attachEvents( props ) }
             className = { cssMap.main }
+            ref       = { ref }
             style     = { {
                 gridColumn : `span ${colSpan}`,
                 gridRow    : `span ${rowSpan}`,
+                ...style,
             } }>
             { children }
         </div>
     );
-};
+} );
 
 GridItem.propTypes =
 {
@@ -73,6 +76,10 @@ GridItem.propTypes =
      * GridItem row span - should be an integer > 0
      */
     rowSpan   : PropTypes.number,
+    /**
+     *  Style overrides
+     */
+    style     : PropTypes.objectOf( PropTypes.string ),
 };
 
 GridItem.defaultProps =
@@ -84,6 +91,7 @@ GridItem.defaultProps =
     cssMap    : undefined,
     justify   : 'start',
     rowSpan   : undefined,
+    style     : undefined,
 };
 
 GridItem.displayName = componentName;

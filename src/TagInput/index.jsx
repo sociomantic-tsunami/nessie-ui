@@ -9,22 +9,20 @@
 
 import React, {
     Children,
-    useState,
-    useRef,
-    useMemo,
-    useImperativeHandle,
     forwardRef,
+    useMemo,
+    useState,
 } from 'react';
-import PropTypes           from 'prop-types';
-import { escapeRegExp }    from 'lodash';
+import PropTypes              from 'prop-types';
+import { escapeRegExp, uniq } from 'lodash';
 
 import {
     ListBox,
     ScrollBox,
 } from '..';
 
-import Popup               from '../Popup';
-import PopperWrapper       from '../PopperWrapper';
+import Popup         from '../Popup';
+import PopperWrapper from '../PopperWrapper';
 import {
     attachEvents,
     callMultiple,
@@ -81,9 +79,6 @@ const componentName = 'TagInput';
 
 const TagInput = forwardRef( ( props, ref ) =>
 {
-    const inputRef = useRef();
-    const outerRef = useRef();
-
     const cssMap = useThemeClasses( componentName, props );
     const id = useId( componentName, props );
 
@@ -94,6 +89,7 @@ const TagInput = forwardRef( ( props, ref ) =>
         isDisabled,
         isReadOnly,
         placeholder,
+        style,
     } = props;
 
 
@@ -120,48 +116,58 @@ const TagInput = forwardRef( ( props, ref ) =>
         ( Array.isArray( props.value ) && props.value ) || valueState
     ), [ props.value, valueState ] );
 
-    useImperativeHandle( ref, () => ( {
-        focus : () =>
-        {
-            inputRef.current.focus();
-        },
-    } ) );
+    const enterTags = () =>
+    {
+        let finalTags = [];
 
-    const enterNewTag = () =>
+        if ( props.split )
+        {
+            finalTags = inputValue.split( props.split ).map(
+                singleValue => enterNewTag( singleValue ),
+            );
+
+            finalTags = finalTags.filter( item => typeof item !== 'undefined' );
+            finalTags = uniq( [ ...value, ...finalTags ] );
+        }
+        else
+        {
+            finalTags = enterNewTag( inputValue );
+            finalTags = finalTags ?
+                [ ...value, enterNewTag( inputValue ) ] : value;
+        }
+
+        const { onChange } = props;
+        if ( typeof onChange === 'function' )
+        {
+            onChange( { value: finalTags } );
+        }
+
+        setActiveOption( undefined );
+        setFilteredOptionsState( filterOptions( finalTags ) );
+        setInputValue( '' );
+        setValueState( finalTags );
+    };
+
+    const enterNewTag = ( singleValue ) =>
     {
         let newTag;
 
-        if ( !value.find( tag => tag === inputValue ) )
+        if ( !value.find( tag => tag === singleValue ) )
         {
             if ( activeOption )
             {
-                const option =
-                    getOption( activeOption, filteredOptions );
+                const option = getOption( activeOption, filteredOptions );
 
                 newTag = value.indexOf( activeOption ) !== -1 ?
                     inputValue : option.text;
             }
-            else if ( inputValue )
+            else if ( singleValue )
             {
-                newTag = inputValue;
+                newTag = singleValue;
             }
         }
 
-        let newTags = value;
-        if ( newTag )
-        {
-            newTags = [ ...value, newTag ];
-
-            const { onChange } = props;
-            if ( typeof onChange === 'function' )
-            {
-                onChange( { value: newTags } );
-            }
-        }
-        setActiveOption( undefined );
-        setFilteredOptionsState( filterOptions( newTags ) );
-        setInputValue( '' );
-        setValueState( newTags );
+        return newTag;
     };
 
     const filterOptions = ( tags ) =>
@@ -171,7 +177,7 @@ const TagInput = forwardRef( ( props, ref ) =>
     const handleBlur = () =>
     {
         setIsOpen( false );
-        enterNewTag();
+        enterTags();
     };
 
     const handleChangeInput = ( e ) =>
@@ -246,7 +252,7 @@ const TagInput = forwardRef( ( props, ref ) =>
         }
         if ( key === 'Enter' )
         {
-            enterNewTag();
+            enterTags();
         }
         else if ( key === 'ArrowUp' || key === 'ArrowDown' )
         {
@@ -316,54 +322,52 @@ const TagInput = forwardRef( ( props, ref ) =>
         } )
     ) );
 
-    const popperChildren = (
-        <label
-            { ...attachEvents( props ) }
-            className = { cssMap.main }
-            htmlFor   = { id }
-            ref       = { outerRef }>
-            { items }
-            <input
-                className   = { cssMap.input }
-                disabled    = { isDisabled }
-                id          = { id }
-                onBlur      = { callMultiple(
-                    handleBlur,
-                    props.onBlur,
-                ) } // temporary fix
-                onChange    = { handleChangeInput }
-                onFocus     = { callMultiple(
-                    handleFocus,
-                    props.onFocus,
-                ) } // temporary fix
-                onKeyDown   = { callMultiple(
-                    handleKeyDown,
-                    props.onKeyDown,
-                ) } // temporary fix
-                placeholder = { placeholder }
-                readOnly    = { isReadOnly }
-                ref         = { inputRef }
-                type        = "text"
-                value       = { inputValue } />
-        </label>
-    );
-
-    const popperPopup = (
-        <Popup
-            hasError = { hasError }>
-            { dropdownContent }
-        </Popup>
-    );
-
     return (
         <PopperWrapper
             popperContainer = { popperContainer }
             isVisible       = { listBoxOptions.length > 0 && isOpen }
             matchRefWidth
-            popper          = { popperPopup }
-            popperOffset    = "S"
-            popperPosition  = "bottom">
-            { popperChildren }
+            popper          = { popperProps => (
+                <Popup
+                    hasError = { hasError }
+                    { ...popperProps }>
+                    { dropdownContent }
+                </Popup>
+            ) }
+            popperOffset    = "s"
+            popperPosition  = "bottom"
+            ref             = { ref }>
+            {  refProps => (
+                <label
+                    { ...attachEvents( props ) }
+                    className = { cssMap.main }
+                    htmlFor   = { id }
+                    style     = { style }
+                    { ...refProps }>
+                    { items }
+                    <input
+                        className   = { cssMap.input }
+                        disabled    = { isDisabled }
+                        id          = { id }
+                        onBlur      = { callMultiple(
+                            handleBlur,
+                            props.onBlur,
+                        ) } // temporary fix
+                        onChange    = { handleChangeInput }
+                        onFocus     = { callMultiple(
+                            handleFocus,
+                            props.onFocus,
+                        ) } // temporary fix
+                        onKeyDown   = { callMultiple(
+                            handleKeyDown,
+                            props.onKeyDown,
+                        ) } // temporary fix
+                        placeholder = { placeholder }
+                        readOnly    = { isReadOnly }
+                        type        = "text"
+                        value       = { inputValue } />
+                </label>
+            ) }
         </PopperWrapper>
     );
 } );
@@ -419,16 +423,26 @@ TagInput.propTypes =
      */
     suggestions     : PropTypes.arrayOf( PropTypes.string ),
     /**
+     *  String or Regex Pattern to split tags from an unique value
+     */
+    split           : PropTypes.arrayOf( PropTypes.oneOfType( [
+        PropTypes.string,
+        PropTypes.instanceOf( RegExp ),
+    ] ) ),
+    /**
      * Array of strings to build Tag components
      */
-    value           : PropTypes.arrayOf( PropTypes.string ),
+    value : PropTypes.arrayOf( PropTypes.string ),
+    /**
+     *  Style overrides
+     */
+    style : PropTypes.objectOf( PropTypes.string ),
 };
 
 TagInput.defaultProps =
 {
     children        : undefined,
     className       : undefined,
-    popperContainer : undefined,
     cssMap          : undefined,
     defaultValue    : undefined,
     hasError        : false,
@@ -437,7 +451,10 @@ TagInput.defaultProps =
     isReadOnly      : false,
     onChange        : undefined,
     placeholder     : undefined,
+    popperContainer : undefined,
+    style           : undefined,
     suggestions     : undefined,
+    split           : undefined,
     value           : undefined,
 };
 

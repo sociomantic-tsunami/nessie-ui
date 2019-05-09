@@ -7,23 +7,24 @@
  *
  */
 
-import React, { useState, useCallback } from 'react';
-import PropTypes                        from 'prop-types';
+import React, { forwardRef, useState, useCallback } from 'react';
+import PropTypes                                    from 'prop-types';
 
-import { ScrollBox, TabButton }         from '..';
+import { ScrollBox, TabButton }                     from '..';
 
-import { attachEvents, useThemeClasses }       from '../utils';
+import { attachEvents, useThemeClasses }            from '../utils';
 
 
 const componentName = 'Tabs';
 
-const Tabs = ( props ) =>
+const Tabs = forwardRef( ( props, ref ) =>
 {
     const cssMap = useThemeClasses( componentName, props );
 
     const {
         children,
         secondaryControls,
+        style,
     } = props;
 
     const [ activeTabIndexState,
@@ -61,7 +62,7 @@ const Tabs = ( props ) =>
                 onChange( { activeTabIndex: tabIndex } );
             }
         }
-    }, [ onClickTab, onChange, activeTabIndexState ] );
+    }, [ onClickTab, onChange ] );
     const tabButtons = tabs.map( ( tab, tabIndex ) =>
     {
         const { isDisabled, label } = tab.props;
@@ -80,7 +81,11 @@ const Tabs = ( props ) =>
     } );
 
     return (
-        <div { ...attachEvents( props ) } className = { cssMap.main }>
+        <div
+            { ...attachEvents( props ) }
+            className = { cssMap.main }
+            ref       = { ref }
+            style     = { style }>
             <div className = { cssMap.header }>
                 <ScrollBox
                     className = { cssMap.tabsContainer }
@@ -100,7 +105,7 @@ const Tabs = ( props ) =>
             </div>
         </div>
     );
-};
+} );
 
 Tabs.propTypes =
 {
@@ -146,6 +151,10 @@ Tabs.propTypes =
      *  Secondary controls to add to tabs header
      */
     secondaryControls : PropTypes.node,
+    /**
+     *  Style overrides
+     */
+    style             : PropTypes.objectOf( PropTypes.string ),
 };
 
 Tabs.defaultProps =
@@ -158,6 +167,7 @@ Tabs.defaultProps =
     onClickTab        : undefined,
     padding           : [ 'none', 'M' ],
     secondaryControls : undefined,
+    style             : undefined,
 };
 
 Tabs.displayName = componentName;

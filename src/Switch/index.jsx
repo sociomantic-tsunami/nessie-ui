@@ -7,8 +7,8 @@
  *
  */
 
-import React        from 'react';
-import PropTypes    from 'prop-types';
+import React, { forwardRef } from 'react';
+import PropTypes             from 'prop-types';
 
 import {
     attachEvents,
@@ -19,13 +19,14 @@ import {
 
 const componentName = 'Switch';
 
-const Switch = props =>
+const Switch = forwardRef( ( props, ref ) =>
 {
     const {
         isChecked,
         isDefaultChecked,
         isDisabled,
         label,
+        style,
     } = props;
 
     const cssMap = useThemeClasses( componentName, props );
@@ -34,13 +35,15 @@ const Switch = props =>
     return (
         <div
             { ...attachEvents( props ) }
-            className = { cssMap.main }>
+            className = { cssMap.main }
+            ref       = { ref }
+            style     = { style }>
             <input
                 checked        = { isChecked }
                 className      = { cssMap.input }
+                defaultChecked = { isDefaultChecked }
                 disabled       = { isDisabled }
                 id             = { id }
-                defaultChecked = { isDefaultChecked }
                 type           = "checkbox" />
             <label
                 aria-label = { label }
@@ -48,7 +51,7 @@ const Switch = props =>
                 htmlFor    = { id } />
         </div>
     );
-};
+} );
 
 Switch.propTypes =
 {
@@ -100,6 +103,10 @@ Switch.propTypes =
      *  onMouseOver callback function: () => { ... }
      */
     onMouseOver      : PropTypes.func,
+    /**
+     *  Style overrides
+     */
+    style            : PropTypes.objectOf( PropTypes.string ),
 };
 
 Switch.defaultProps =
@@ -116,6 +123,7 @@ Switch.defaultProps =
     onFocus          : undefined,
     onMouseOut       : undefined,
     onMouseOver      : undefined,
+    style            : undefined,
 };
 
 Switch.displayName = componentName;
