@@ -75,19 +75,6 @@ function formatMinutes( timestamp )
     return $m( timestamp ).format( 'mm' );
 }
 
-/**
- * Timestamp conversion to week number
- *
- * @param {Number}  timestamp timestamp
- *
- * @return {String} week number
- */
-function formatWeeks( timestamp )
-{
-    if ( !_.isNumber( timestamp ) ) return '';
-    return $m( timestamp ).week();
-}
-
 
 const useTimestamp = ( defaultValue = Date.now(), value ) =>
 {
@@ -186,6 +173,7 @@ const DatePicker = props =>
                 weekDay.isDisabled === false );
 
             let isDisabledWeek = true;
+            let isSelectedWeek = false;
 
             if ( week.find( weekDay => weekDay.isDisabled === false &&
                 weekDay.value !== null ) )
@@ -193,10 +181,16 @@ const DatePicker = props =>
                 isDisabledWeek = false;
             }
 
+            if ( week.find( weekDay => weekDay.isSelected === true ) )
+            {
+                isSelectedWeek = true;
+            }
+
             const weekNumber = {
                 label      : $m( firstWeekday.value ).week(),
-                value      : currrentDay.value || firstWeekday.value,
+                isSelectedWeek,
                 isDisabled : isDisabledWeek,
+                value      : currrentDay.value || firstWeekday.value,
             };
 
             return [ weekNumber, ...week ];

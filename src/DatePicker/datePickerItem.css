@@ -77,6 +77,15 @@
     }
 }
 
+.selectedWeek,
+.selectedWeek.fakeHovered,
+.selectedWeek:focus,
+.selectedWeek:hover
+{
+    border-color:   var( --PC-BLUE--L90 );
+    background:     var( --PC-BLUE--L90 );
+}
+
 
 .disabled,
 .disabled.fakeHovered,
