@@ -28,6 +28,7 @@ const componentName = 'DateTimeInput';
 
 const DISPLAY_FORMATTING = {
     month  : 'YYYY/MM',
+    week   : 'YYYY/MM/DD WW',
     day    : 'YYYY/MM/DD',
     hour   : 'YYYY/MM/DD HH:00',
     minute : 'YYYY/MM/DD HH:mm',
@@ -98,15 +99,21 @@ function formatDateTime( timestamp, precision )
  */
 function setPrecision( mode )
 {
-    let format = 'minute';
+    let format;
 
-    if ( mode === 'date' )
+    switch ( mode )
     {
+    case 'date':
         format = 'day';
-    }
-    else if ( mode === 'month' )
-    {
+        break;
+    case 'week':
+        format = 'week';
+        break;
+    case 'month':
         format = 'month';
+        break;
+    default:
+        format = 'minute';
     }
 
     return DISPLAY_FORMATTING[ format ];
