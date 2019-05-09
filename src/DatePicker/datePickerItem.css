@@ -43,7 +43,8 @@
     }
 }
 
-.type__day
+.type__day,
+.type__week
 {
     height:             var( --spacing-4 );
     width:              var( --spacing-4 );

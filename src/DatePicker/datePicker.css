@@ -11,7 +11,7 @@
 
 .default
 {
-    width:          320px;
+    width:  auto;
 
     .calendarHeader
     {

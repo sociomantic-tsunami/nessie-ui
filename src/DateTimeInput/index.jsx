@@ -256,6 +256,17 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
         onChange,
     } = props;
 
+    let datePickerType = 'day';
+
+    if ( mode === 'week' )
+    {
+        datePickerType = 'week';
+    }
+    else if ( mode === 'month' )
+    {
+        datePickerType = 'month';
+    }
+
     const datePicker = (
         <DatePicker
             hasTimeInput     = { mode === 'default' }
@@ -266,7 +277,7 @@ const DateTimeInput = React.forwardRef( ( props, ref ) =>
             minuteIsReadOnly = { !canEditHourOrMinute() }
             mode             = { mode }
             onChange         = { handleChange }
-            type             = { mode === 'month' ? 'month' : 'day' }
+            type             = { datePickerType }
             value            = { timestamp } />
     );
 

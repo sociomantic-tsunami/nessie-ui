@@ -182,11 +182,15 @@ const DatePicker = props =>
         const weekDays = mappedDays.map( week =>
         {
             const firstWeekday = week.find( weekDay => weekDay.value !== null );
-            const weekNumber = $m( firstWeekday.value ).week();
-            return { ...week, weekNumber };
+            const weekNumber = {
+                label : $m( firstWeekday.value ).week(),
+                value : firstWeekday.value,
+            };
+
+            return [ weekNumber, ...week ];
         } );
-// console.log( weekDays );
-        return _.chunk( weekDays, 8 );
+
+        return weekDays;
     };
 
     const monthMatrix = () =>
@@ -416,6 +420,13 @@ const DatePicker = props =>
                     { headers &&
                         <thead className = { cssMap.calendarHeader }>
                             <tr>
+                                { type === 'week' && (
+                                    <th key = "week">
+                                        <span title = "week">
+                                          Week
+                                        </span>
+                                    </th>
+                                ) }
                                 { headers.map( ( header, i ) =>
                                     <th key = { i }>
                                         <span title = { header.title }>
