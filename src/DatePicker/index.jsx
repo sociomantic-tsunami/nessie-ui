@@ -182,9 +182,21 @@ const DatePicker = props =>
         const weekDays = mappedDays.map( week =>
         {
             const firstWeekday = week.find( weekDay => weekDay.value !== null );
+            const currrentDay = week.find( weekDay =>
+                weekDay.isDisabled === false );
+
+            let isDisabledWeek = true;
+
+            if ( week.find( weekDay => weekDay.isDisabled === false &&
+                weekDay.value !== null ) )
+            {
+                isDisabledWeek = false;
+            }
+
             const weekNumber = {
-                label : $m( firstWeekday.value ).week(),
-                value : firstWeekday.value,
+                label      : $m( firstWeekday.value ).week(),
+                value      : currrentDay.value,
+                isDisabled : isDisabledWeek,
             };
 
             return [ weekNumber, ...week ];
@@ -394,7 +406,7 @@ const DatePicker = props =>
     return (
         <div { ...attachEvents( restProps ) } className = { cssMap.main }>
             <DatePickerHeader
-                hasTimeInput      = { hasTimeInput }
+                hasTimeInput      = { type === 'day' && hasTimeInput }
                 hourIsDisabled    = { hourIsDisabled }
                 hourIsReadOnly    = { hourIsReadOnly }
                 hourPlaceholder   = { hourPlaceholder }
