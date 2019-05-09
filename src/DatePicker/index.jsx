@@ -195,7 +195,7 @@ const DatePicker = props =>
 
             const weekNumber = {
                 label      : $m( firstWeekday.value ).week(),
-                value      : currrentDay.value,
+                value      : currrentDay.value || firstWeekday.value,
                 isDisabled : isDisabledWeek,
             };
 
