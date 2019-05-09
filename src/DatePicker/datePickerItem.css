@@ -43,7 +43,8 @@
     }
 }
 
-.type__day
+.type__day,
+.type__week
 {
     height:             var( --spacing-4 );
     width:              var( --spacing-4 );
@@ -74,6 +75,15 @@
         color:       var( --PC-WHITE );
         font-weight: 700;
     }
+}
+
+.selectedWeek,
+.selectedWeek.fakeHovered,
+.selectedWeek:focus,
+.selectedWeek:hover
+{
+    border-color:   var( --PC-BLUE--L90 );
+    background:     var( --PC-BLUE--L90 );
 }
 
 

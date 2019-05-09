@@ -103,8 +103,9 @@ const classNames = {
         main : cx.bind( datePickerItemClasses )(
             'default',
             {
-                disabled : props.isDisabled,
-                selected : props.isSelected,
+                disabled     : props.isDisabled,
+                selected     : props.isSelected,
+                selectedWeek : props.isSelectedWeek,
             },
             `type__${props.type}`,
             props.className,
