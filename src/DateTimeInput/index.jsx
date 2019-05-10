@@ -27,7 +27,7 @@ const componentName = 'DateTimeInput';
 
 const DISPLAY_FORMATTING = {
     month  : 'YYYY/MM',
-    week   : 'YYYY/MM/DD WW',
+    week   : 'YYYY/MM/DD ww',
     day    : 'YYYY/MM/DD',
     hour   : 'YYYY/MM/DD HH:00',
     minute : 'YYYY/MM/DD HH:mm',
@@ -46,48 +46,6 @@ function now()
     return new Date().getTime();
 }
 
-/**
- * returns utc of the timestamp passed
- *
- * @param {Number} timestamp passed
- *
- * @return {Number} UTC timestamp
- */
-function $m( timestamp )
-{
-    return moment( timestamp ).utc();
-}
-
-/**
- * Human date ( input value ) conversion to timestamp,
- * returns current timestamp if invalid input value
- *
- * @param {String}  inputValue human readable date
- * @param {Number}  timestamp current timestamp
- * @param {String}  format date format
- *
- * @return {Number} timestamp
- */
-function tryParseInputValue( inputValue, timestamp, format = DEFAULT_FORMAT )
-{
-    if ( !inputValue ) return null;
-
-    return moment.utc( inputValue, format ).valueOf() || timestamp;
-}
-
-/**
- * Timestamp conversion to Human date
- *
- * @param {Number}  timestamp timestamp
- * @param {String}  precision precision for formatting
- *
- * @return {String} human readable date
- */
-function formatDateTime( timestamp, precision )
-{
-    if ( !_.isNumber( timestamp ) ) return String( timestamp || '' );
-    return $m( timestamp ).format( precision );
-}
 
 /**
  * set precision for formatting and comparing
@@ -137,6 +95,7 @@ const useTimestamp = ( defaultValue, value ) =>
 
 const DateTimeInput = forwardRef( ( props, ref ) =>
 {
+    const { moment } = props;
     const [ editingMainInputValue, setEditingMainInputValue ] =
         useState( undefined );
     const [ gridStartTimestamp, setGridStartTimestamp ] = useState( undefined );
@@ -147,6 +106,52 @@ const DateTimeInput = forwardRef( ( props, ref ) =>
 
     const isOpen = Boolean( gridStartTimestamp );
 
+    /**
+     * returns utc of the timestamp passed
+     *
+     * @param {Number} timestamp passed
+     *
+     * @return {Number} UTC timestamp
+     */
+    function $m( timestamp )
+    {
+        return moment( timestamp ).utc();
+    }
+
+    /**
+     * Human date ( input value ) conversion to timestamp,
+     * returns current timestamp if invalid input value
+     *
+     * @param {String}  inputValue human readable date
+     * @param {Number}  timestamp current timestamp
+     * @param {String}  format date format
+     *
+     * @return {Number} timestamp
+     */
+    function tryParseInputValue(
+        inputValue,
+        timestamp,
+        format = DEFAULT_FORMAT,
+    )
+    {
+        if ( !inputValue ) return null;
+
+        return moment.utc( inputValue, format ).valueOf() || timestamp;
+    }
+
+    /**
+     * Timestamp conversion to Human date
+     *
+     * @param {Number}  timestamp timestamp
+     * @param {String}  precision precision for formatting
+     *
+     * @return {String} human readable date
+     */
+    function formatDateTime( timestamp, precision )
+    {
+        if ( !_.isNumber( timestamp ) ) return String( timestamp || '' );
+        return $m( timestamp ).format( precision );
+    }
 
     const handleClickIcon = useCallback( () =>
     {
@@ -184,7 +189,14 @@ const DateTimeInput = forwardRef( ( props, ref ) =>
 
         setEditingMainInputValue( !value ? undefined : value );
         setTimestamp( !value ? undefined : newTimestamp );
-    }, [ props.format, props.max, props.min, setTimestamp, timestamp ] );
+    }, [
+        props.format,
+        props.max,
+        props.min,
+        setTimestamp,
+        timestamp,
+        tryParseInputValue,
+    ] );
 
 
     const handleOnBlur = useCallback( () =>
@@ -230,7 +242,7 @@ const DateTimeInput = forwardRef( ( props, ref ) =>
         setGridStartTimestamp( $m( newTimestamp )
             .startOf( props.mode === 'month' ? 'year' : 'month' )
             .valueOf() );
-    }, [ props, timestamp ] );
+    }, [ $m, props, timestamp ] );
 
 
     const close = useCallback( () =>
@@ -269,6 +281,7 @@ const DateTimeInput = forwardRef( ( props, ref ) =>
 
     const datePicker = (
         <DatePicker
+            moment           = { moment }
             hasTimeInput     = { mode === 'default' }
             hourIsReadOnly   = { !canEditHourOrMinute() }
             isDisabled       = { isDisabled }
@@ -413,6 +426,7 @@ DateTimeInput.defaultProps =
     popperContainer  : undefined,
     style            : undefined,
     value            : undefined,
+    moment,
 };
 
 DateTimeInput.displayName = componentName;

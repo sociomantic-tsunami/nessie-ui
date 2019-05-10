@@ -12,68 +12,9 @@ import PropTypes                         from 'prop-types';
 import moment                            from 'moment';
 import _                                 from 'lodash';
 
-import copy                              from './copy.json';
 import DatePickerItem                    from './DatePickerItem';
 import DatePickerHeader                  from './DatePickerHeader';
 import { attachEvents, useThemeClasses } from '../utils';
-
-
-const DAY_LABELS = _.range( 0, 7 ).map( day => ( {
-    label : copy.dayHeaders[ day ],
-} ) );
-
-
-/**
- * returns utc of the timestamp passed
- *
- * @param {Number} timestamp passed
- *
- * @return {Number} UTC timestamp
- */
-function $m( timestamp )
-{
-    return moment( timestamp ).utc();
-}
-
-/**
- * checks if 2 timestamp are equal
- *
- * @param {Number}  ts1 timestamp
- * @param {Number}  ts2 timestamp
- * @param {String}  precision precision to compare
- *
- * @return {Boolean}
- */
-function isTimestampEqual( ts1, ts2, precision )
-{
-    return $m( ts1 ).isSame( $m( ts2 ), precision );
-}
-
-/**
- * Timestamp conversion to Human time ( hours )
- *
- * @param {Number}  timestamp timestamp
- *
- * @return {String} human readable time ( hours )
- */
-function formatHours( timestamp )
-{
-    if ( !_.isNumber( timestamp ) ) return '';
-    return $m( timestamp ).format( 'HH' );
-}
-
-/**
- * Timestamp conversion to Human time ( minutes )
- *
- * @param {Number}  timestamp timestamp
- *
- * @return {String} human readable time ( minutes )
- */
-function formatMinutes( timestamp )
-{
-    if ( !_.isNumber( timestamp ) ) return '';
-    return $m( timestamp ).format( 'mm' );
-}
 
 
 const useTimestamp = ( defaultValue = Date.now(), value ) =>
@@ -96,6 +37,59 @@ const componentName = 'DatePicker';
 
 const DatePicker = forwardRef( ( props, ref ) =>
 {
+    const { moment } = props;
+    /**
+     * returns utc of the timestamp passed
+     *
+     * @param {Number} timestamp passed
+     *
+     * @return {Number} UTC timestamp
+     */
+    function $m( timestamp )
+    {
+        return moment( timestamp ).utc();
+    }
+
+    /**
+     * checks if 2 timestamp are equal
+     *
+     * @param {Number}  ts1 timestamp
+     * @param {Number}  ts2 timestamp
+     * @param {String}  precision precision to compare
+     *
+     * @return {Boolean}
+     */
+    function isTimestampEqual( ts1, ts2, precision )
+    {
+        return $m( ts1 ).isSame( $m( ts2 ), precision );
+    }
+
+    /**
+     * Timestamp conversion to Human time ( hours )
+     *
+     * @param {Number}  timestamp timestamp
+     *
+     * @return {String} human readable time ( hours )
+     */
+    function formatHours( timestamp )
+    {
+        if ( !_.isNumber( timestamp ) ) return '';
+        return $m( timestamp ).format( 'HH' );
+    }
+
+    /**
+     * Timestamp conversion to Human time ( minutes )
+     *
+     * @param {Number}  timestamp timestamp
+     *
+     * @return {String} human readable time ( minutes )
+     */
+    function formatMinutes( timestamp )
+    {
+        if ( !_.isNumber( timestamp ) ) return '';
+        return $m( timestamp ).format( 'mm' );
+    }
+
     const [ timestamp, setTimestamp ] = useTimestamp(
         props.defaultValue,
         props.value,
@@ -131,7 +125,7 @@ const DatePicker = forwardRef( ( props, ref ) =>
 
         if ( !startMonth ) return;
 
-        const offset = ( $m( startMonth ).weekday() + 6 ) % 7;
+        const offset = $m( startMonth ).weekday() % 7;
         const daysInMonth = $m( startMonth ).daysInMonth();
 
         const days = _.range( -offset, daysInMonth ).map( dayIndex =>
@@ -169,7 +163,7 @@ const DatePicker = forwardRef( ( props, ref ) =>
         const weekDays = mappedDays.map( week =>
         {
             const firstWeekday = week.find( weekDay => weekDay.value !== null );
-            const currrentDay = week.find( weekDay =>
+            const currentDay = week.find( weekDay =>
                 weekDay.isDisabled === false );
 
             let isDisabledWeek = true;
@@ -190,7 +184,7 @@ const DatePicker = forwardRef( ( props, ref ) =>
                 label      : $m( firstWeekday.value ).week(),
                 isSelectedWeek,
                 isDisabled : isDisabledWeek,
-                value      : currrentDay.value || firstWeekday.value,
+                value      : currentDay ? currentDay.value : firstWeekday.value,
             };
 
             return [ weekNumber, ...week ];
@@ -207,7 +201,7 @@ const DatePicker = forwardRef( ( props, ref ) =>
 
         const months = _.range( 0, 12 ).map( month =>
         {
-            const label = copy.shortMonths[ month ];
+            const label = moment().month( month ).format( 'MMM' );
             const value = $m( startYear ).add( month, 'month' ).valueOf();
 
             const isDisabled = !isUnitSelectable( value, 'month' );
@@ -228,7 +222,7 @@ const DatePicker = forwardRef( ( props, ref ) =>
     };
 
 
-    const monthLabel = copy.months[ $m( gridStartTimestamp ).month() ];
+    const monthLabel = $m( gridStartTimestamp ).format( 'MMMM' );
 
     const yearLabel = $m( gridStartTimestamp ).year().toString();
 
@@ -382,7 +376,9 @@ const DatePicker = forwardRef( ( props, ref ) =>
         ...restProps
     } = props;
 
-    const headers = type !== 'month' && DAY_LABELS;
+    const headers = type !== 'month' && _.range( 0, 7 ).map( day => ( {
+        label : moment().weekday( day ).format( 'ddd' ),
+    } ) );
 
     let items;
 
@@ -528,6 +524,7 @@ DatePicker.defaultProps = {
     style             : undefined,
     type              : 'day',
     value             : undefined,
+    moment,
 };
 
 DatePicker.displayName = componentName;
