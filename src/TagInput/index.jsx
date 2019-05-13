@@ -112,9 +112,18 @@ const TagInput = forwardRef( ( props, ref ) =>
             filteredOptionsState || options
         ), [ options, filteredOptionsState ] );
 
-    const value = useMemo( () => (
-        ( Array.isArray( props.value ) && props.value ) || valueState
-    ), [ props.value, valueState ] );
+    const value = useMemo( () =>
+    {
+        if ( Array.isArray( props.value ) )
+        {
+            return props.value;
+        }
+        if ( props.value === '' ||  props.value === null )
+        {
+            return [];
+        }
+        return valueState;
+    }, [ props.value, valueState ] );
 
     const enterTags = () =>
     {
