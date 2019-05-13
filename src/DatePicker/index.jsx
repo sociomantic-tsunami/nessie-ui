@@ -373,6 +373,7 @@ const DatePicker = forwardRef( ( props, ref ) =>
         onChange,
         style,
         type,
+        weekLabel,
         ...restProps
     } = props;
 
@@ -430,7 +431,7 @@ const DatePicker = forwardRef( ( props, ref ) =>
                                 { type === 'week' && (
                                     <th key = "week">
                                         <span title = "week">
-                                          Week
+                                            { weekLabel }
                                         </span>
                                     </th>
                                 ) }
@@ -490,6 +491,7 @@ DatePicker.propTypes = {
     onClickPrev       : PropTypes.func,
     type              : PropTypes.oneOf( [ 'day', 'week', 'month' ] ),
     value             : PropTypes.number,
+    weekLabel         : PropTypes.string,
     /**
      *  Style overrides
      */
@@ -524,6 +526,7 @@ DatePicker.defaultProps = {
     style             : undefined,
     type              : 'day',
     value             : undefined,
+    weekLabel         : 'week',
     moment,
 };
 

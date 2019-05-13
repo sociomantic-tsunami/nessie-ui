@@ -272,6 +272,7 @@ const DateTimeInput = forwardRef( ( props, ref ) =>
         onChange,
         popperContainer,
         style,
+        weekLabel,
     } = props;
 
     let datePickerType = 'day';
@@ -297,7 +298,8 @@ const DateTimeInput = forwardRef( ( props, ref ) =>
             mode             = { mode }
             onChange         = { handleChange }
             type             = { datePickerType }
-            value            = { timestamp } />
+            value            = { timestamp }
+            weekLabel        = { weekLabel } />
     );
 
 
@@ -404,15 +406,19 @@ DateTimeInput.propTypes =
     /**
      *  Change callback: ( { value } ) => ...
      */
-    onChange : PropTypes.func,
+    onChange  : PropTypes.func,
     /**
      *  Selected timestamp
      */
-    value    : PropTypes.number,
+    value     : PropTypes.number,
+    /**
+     *  Week label when mode=week
+     */
+    weekLabel : PropTypes.string,
     /**
      *  Style overrides
      */
-    style    : PropTypes.objectOf( PropTypes.string ),
+    style     : PropTypes.objectOf( PropTypes.string ),
 };
 
 DateTimeInput.defaultProps =
@@ -432,6 +438,7 @@ DateTimeInput.defaultProps =
     popperContainer  : undefined,
     style            : undefined,
     value            : undefined,
+    weekLabel        : 'week',
     moment,
 };
 
