@@ -187,9 +187,15 @@ const DateTimeInput = forwardRef( ( props, ref ) =>
             newTimestamp = props.max;
         }
 
+        if ( typeof onChange === 'function' )
+        {
+            onChange( newTimestamp );
+        }
+
         setEditingMainInputValue( !value ? undefined : value );
         setTimestamp( !value ? undefined : newTimestamp );
     }, [
+        onChange,
         props.format,
         props.max,
         props.min,
