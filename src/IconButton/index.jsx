@@ -30,7 +30,7 @@ const IconButton = forwardRef( ( props, ref ) =>
         isFocusable,
         label,
         style,
-        svgStyle,
+        iconStyle,
         value,
     } = props;
 
@@ -54,7 +54,7 @@ const IconButton = forwardRef( ( props, ref ) =>
                 className  = { cssMap.icon }
                 isDisabled = { isDisabled }
                 size       = { iconSize }
-                style      = { svgStyle }
+                style      = { iconStyle }
                 type       = { iconType }>
                 { children || label }
             </Icon>
@@ -123,7 +123,7 @@ IconButton.propTypes =
     /**
      *  SVG tyle overrides
      */
-    svgStyle      : PropTypes.objectOf( PropTypes.string ),
+    iconStyle     : PropTypes.objectOf( PropTypes.string ),
 };
 
 IconButton.defaultProps =
@@ -141,7 +141,7 @@ IconButton.defaultProps =
     onClick       : undefined,
     role          : 'default',
     style         : undefined,
-    svgStyle      : undefined,
+    iconStyle     : undefined,
     value         : undefined,
 };
 
