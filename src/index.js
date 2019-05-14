@@ -7,38 +7,39 @@
  *
  */
 
-import Button            from './Button';
-import Card              from './Card';
-import Checkbox          from './Checkbox';
-import CurrencyInput     from './CurrencyInput';
-import ComboBox          from './ComboBox';
-import DatePicker        from './DatePicker';
-import DateTimeInput     from './DateTimeInput';
-import Grid              from './Grid';
-import GridItem          from './GridItem';
-import Icon              from './Icon';
-import IconButton        from './IconButton';
-import ListBox           from './ListBox';
-import Modal             from './Modal';
-import PasswordInput     from './PasswordInput';
-import Popup             from './Popup';
-import PopperWrapper     from './PopperWrapper';
-import ProgressBar       from './ProgressBar';
-import ScrollBar         from './ScrollBar';
-import ScrollBox         from './ScrollBox';
-import Spinner           from './Spinner';
-import Switch            from './Switch';
-import Tab               from './Tab';
-import TabButton         from './TabButton';
-import Tabs              from './Tabs';
-import Tag               from './Tag';
-import TagInput          from './TagInput';
-import Text              from './Text';
-import TextArea          from './TextArea';
-import TextInput         from './TextInput';
-import TextInputWithIcon from './TextInputWithIcon';
-import Tooltip           from './Tooltip';
-import Radio             from './Radio';
+import Button                      from './Button';
+import Card                        from './Card';
+import Checkbox                    from './Checkbox';
+import CurrencyInput               from './CurrencyInput';
+import ComboBox                    from './ComboBox';
+import DatePicker                  from './DatePicker';
+import DateTimeInput               from './DateTimeInput';
+import Grid                        from './Grid';
+import GridItem                    from './GridItem';
+import Icon                        from './Icon';
+import IconButton                  from './IconButton';
+import ListBox                     from './ListBox';
+import Modal                       from './Modal';
+import PasswordInput               from './PasswordInput';
+import Popup                       from './Popup';
+import PopperWrapper               from './PopperWrapper';
+import ProgressBar                 from './ProgressBar';
+import ScrollBar                   from './ScrollBar';
+import ScrollBox                   from './ScrollBox';
+import Spinner                     from './Spinner';
+import Switch                      from './Switch';
+import Tab                         from './Tab';
+import TabButton                   from './TabButton';
+import Tabs                        from './Tabs';
+import Tag                         from './Tag';
+import TagInput                    from './TagInput';
+import Text                        from './Text';
+import TextArea                    from './TextArea';
+import TextInput                   from './TextInput';
+import TextInputWithIcon           from './TextInputWithIcon';
+import Tooltip                     from './Tooltip';
+import Radio                       from './Radio';
+import ValuedTextInput             from './ValuedTextInput';
 
 export default {
     Button,
@@ -73,6 +74,7 @@ export default {
     TextInputWithIcon,
     Tooltip,
     Radio,
+    ValuedTextInput,
 };
 
 export {
@@ -108,6 +110,7 @@ export {
     TextInputWithIcon,
     Tooltip,
     Radio,
+    ValuedTextInput,
 };
 
 // Theming
