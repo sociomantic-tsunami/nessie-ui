@@ -49,8 +49,7 @@
         width:                      auto;
 
         border:                     var( --borderWidth ) solid var( --PC-GREY--L70 );
-        border-bottom-left-radius:  2px;
-        border-top-left-radius:     2px;
+
         padding:                    0 var( --spacing-2 );
 
         background:                 var( --PC-WHITE );
@@ -109,7 +108,8 @@
     {
         margin-right:   -1px;
         border-right:   none;
-
+        border-bottom-left-radius:  2px;
+        border-top-left-radius:     2px;
         &::before
         {
             display:    none;
@@ -129,6 +129,8 @@
     {
         margin-left:    -3px;
         border-left:    none;
+        border-bottom-right-radius: 2px;
+        border-top-right-radius: 2px;
 
         &::after
         {
