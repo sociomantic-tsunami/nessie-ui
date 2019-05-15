@@ -89,33 +89,6 @@ const ValuedTextInput = forwardRef( ( props, ref ) =>
 ValuedTextInput.propTypes =
 {
     /**
-     *  ARIA properties
-     */
-    aria : PropTypes.objectOf( PropTypes.oneOfType( [
-        PropTypes.bool,
-        PropTypes.number,
-        PropTypes.string,
-    ] ) ),
-    /**
-     *  HTML attribute controlling input auto capitalize
-     */
-    autoCapitalize : PropTypes.oneOf( [
-        'on',
-        'off',
-        'none',
-        'sentences',
-        'words',
-        'characters',
-    ] ),
-    /**
-     *  HTML attribute controlling input auto complete
-     */
-    autoComplete          : PropTypes.string,
-    /**
-     *  HTML attribute controlling input auto correct (Safari-specific)
-     */
-    autoCorrect           : PropTypes.oneOf( [ 'on', 'off' ] ),
-    /**
      *  Extra CSS class name
      */
     className             : PropTypes.string,
@@ -239,10 +212,6 @@ ValuedTextInput.propTypes =
 
 ValuedTextInput.defaultProps =
 {
-    aria                  : undefined,
-    autoCapitalize        : undefined,
-    autoComplete          : undefined,
-    autoCorrect           : undefined,
     className             : undefined,
     cssMap                : undefined,
     defaultValue          : undefined,
