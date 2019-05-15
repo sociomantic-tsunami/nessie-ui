@@ -27,7 +27,8 @@ const ValuedTextInput = forwardRef( ( props, ref ) =>
         textAlign,
         onFocus,
         onBlur,
-        valueLabel = '%',
+        value,
+        valueLabel,
         valueLabelPosition,
     } = props;
 
@@ -62,7 +63,7 @@ const ValuedTextInput = forwardRef( ( props, ref ) =>
     return (
         <div
             { ...props }
-            className   = { cssMap.main }
+            className   = { `${cssMap.main} ${isFocused && cssMap.fakeHovered}` }
             onMouseOut  = { onMouseOut }
             onMouseOver = { onMouseOver }
             ref = { ref }>
@@ -73,7 +74,8 @@ const ValuedTextInput = forwardRef( ( props, ref ) =>
                     id           = { id }
                     onBlur       = { handleBlur }
                     onFocus      = { handleFocus }
-                    textAlign    = { alignText } />
+                    textAlign    = { alignText }
+                    value        = { value } />
                 <label
                     className = { cssMap.valueLabel }
                     htmlFor   = { id }>
@@ -221,6 +223,10 @@ ValuedTextInput.propTypes =
      *  Input text alignment
      */
     textAlign             : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+    /**
+     *  Input string value
+     */
+    value                 : PropTypes.string,
     /**
      * Value label text
      */

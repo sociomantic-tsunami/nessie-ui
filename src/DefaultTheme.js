@@ -358,7 +358,7 @@ const classNames = {
         main : cx.bind( valuedTextInputClasses )(
             'default',
             {
-                fakeHovered : props.forceHover || props.isFocused,
+                fakeHovered : props.forceHover,
                 disabled    : props.isDisabled,
                 error       : props.hasError,
             },
