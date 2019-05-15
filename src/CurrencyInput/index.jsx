@@ -29,7 +29,8 @@ const currencyFormat = (
 };
 
 
-const parseValue = value => Number( value.replace( /[^0-9.-]/g, '' ) );
+const parseValue = value => ( value ?
+    Number( value.replace( /[^0-9.-]/g, '' ) ) : null );
 
 const useValueState = ( defaultValue, value ) =>
 {
