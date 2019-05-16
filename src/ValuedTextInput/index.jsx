@@ -217,7 +217,7 @@ ValuedTextInput.defaultProps =
     spellCheck         : undefined,
     textAlign          : 'auto',
     value              : undefined,
-    valueLabel         : '%',
+    valueLabel         : undefined,
     valueLabelPosition : 'left',
 };
 
