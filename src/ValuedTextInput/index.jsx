@@ -7,13 +7,13 @@
  *
  */
 
-import React, { useState, forwardRef }              from 'react';
-import PropTypes                                    from 'prop-types';
+import React, { useState, forwardRef }                            from 'react';
+import PropTypes                                                  from 'prop-types';
 
 
-import { TextInput }                                from '..';
+import { TextInput }                                              from '..';
 
-import { useThemeClasses }                          from '../utils';
+import { attachEvents, useThemeClasses }                          from '../utils';
 
 
 const componentName = 'valuedTextInput';
@@ -24,6 +24,7 @@ const ValuedTextInput = forwardRef( ( props, ref ) =>
         onMouseOut,
         onMouseOver,
         id,
+        isDisabled,
         textAlign,
         onBlur,
         onChange,
@@ -64,7 +65,8 @@ const ValuedTextInput = forwardRef( ( props, ref ) =>
 
     return (
         <div
-            className   = { `${cssMap.main} ${isFocused && cssMap.fakeHovered}` }
+            className   = {
+                `${cssMap.main} ${isFocused && cssMap.fakeHovered}` }
             onMouseOut  = { onMouseOut }
             onMouseOver = { onMouseOver }
             ref = { ref }>
@@ -72,6 +74,7 @@ const ValuedTextInput = forwardRef( ( props, ref ) =>
                 <TextInput
                     className    = { cssMap.input }
                     id           = { id }
+                    isDisabled   = { isDisabled }
                     onBlur       = { handleBlur }
                     onChange     = { onChange }
                     onFocus      = { handleFocus }
@@ -127,10 +130,6 @@ ValuedTextInput.propTypes =
      */
     isReadOnly         : PropTypes.bool,
     /**
-     *  HTML name attribute
-     */
-    name               : PropTypes.string,
-    /**
      *  Blur callback function
      */
     onBlur             : PropTypes.func,
@@ -171,10 +170,6 @@ ValuedTextInput.propTypes =
      */
     placeholder        : PropTypes.string,
     /**
-     *  HTML attribute controlling input spell check
-     */
-    spellCheck         : PropTypes.bool,
-    /**
      *  Input text alignment
      */
     textAlign          : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
@@ -203,7 +198,6 @@ ValuedTextInput.defaultProps =
     inputRef           : undefined,
     isDisabled         : false,
     isReadOnly         : false,
-    name               : undefined,
     onBlur             : undefined,
     onChange           : undefined,
     onClick            : undefined,
@@ -214,7 +208,6 @@ ValuedTextInput.defaultProps =
     onMouseOut         : undefined,
     onMouseOver        : undefined,
     placeholder        : undefined,
-    spellCheck         : undefined,
     textAlign          : 'auto',
     value              : undefined,
     valueLabel         : undefined,
