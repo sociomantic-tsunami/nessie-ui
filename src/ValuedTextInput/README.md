@@ -6,6 +6,6 @@ A Nessie ValuedTextInput is a text input with label and value inset into the inp
 Example Usage
 -------------
 
-    <ValuedTextInput label       = "How much?"
-                     value       = "Euro"
+    <ValuedTextInput valueLabel  = "%"
+                     valueLabelPosition = "right"
                      placeholder = "52.5"/>

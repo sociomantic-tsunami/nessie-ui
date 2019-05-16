@@ -25,8 +25,10 @@ const ValuedTextInput = forwardRef( ( props, ref ) =>
         onMouseOver,
         id,
         textAlign,
-        onFocus,
         onBlur,
+        onChange,
+        onFocus,
+        placeholder,
         value,
         valueLabel,
         valueLabelPosition,
@@ -62,19 +64,19 @@ const ValuedTextInput = forwardRef( ( props, ref ) =>
 
     return (
         <div
-            { ...props }
             className   = { `${cssMap.main} ${isFocused && cssMap.fakeHovered}` }
             onMouseOut  = { onMouseOut }
             onMouseOver = { onMouseOver }
             ref = { ref }>
             <div className = { cssMap.container }>
                 <TextInput
-                    { ...props }
                     className    = { cssMap.input }
                     id           = { id }
                     onBlur       = { handleBlur }
+                    onChange     = { onChange }
                     onFocus      = { handleFocus }
                     textAlign    = { alignText }
+                    placeholder  = { placeholder }
                     value        = { value } />
                 <label
                     className = { cssMap.valueLabel }
@@ -91,156 +93,132 @@ ValuedTextInput.propTypes =
     /**
      *  Extra CSS class name
      */
-    className             : PropTypes.string,
+    className          : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap                : PropTypes.objectOf( PropTypes.string ),
+    cssMap             : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Initial input string value
      */
-    defaultValue          : PropTypes.string,
-    /**
-     *  Tooltip message text (string or JSX)
-     */
-    errorMessage          : PropTypes.node,
-    /**
-     *  Error Tooltip is displayed
-     */
-    errorMessageIsVisible : PropTypes.bool,
-    /**
-    *   Error message position relative to the icon
-    */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+    defaultValue       : PropTypes.string,
     /**
      *  Display as hover when required from another component
      */
-    forceHover            : PropTypes.bool,
+    forceHover         : PropTypes.bool,
     /**
      *  Display as error/invalid
      */
-    hasError              : PropTypes.bool,
+    hasError           : PropTypes.bool,
     /**
      *  HTML id attribute
      */
-    id                    : PropTypes.string,
+    id                 : PropTypes.string,
     /**
      *  Callback that receives the native <input>: ( ref ) => { ... }
      */
-    inputRef              : PropTypes.func,
+    inputRef           : PropTypes.func,
     /**
      *  Display as disabled
      */
-    isDisabled            : PropTypes.bool,
+    isDisabled         : PropTypes.bool,
     /**
      *  Display as read-only
      */
-    isReadOnly            : PropTypes.bool,
-    /**
-     *  Label text (string or JSX node)
-     */
-    label                 : PropTypes.node,
-    /**
-     *  Label position
-     */
-    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+    isReadOnly         : PropTypes.bool,
     /**
      *  HTML name attribute
      */
-    name                  : PropTypes.string,
+    name               : PropTypes.string,
     /**
      *  Blur callback function
      */
-    onBlur                : PropTypes.func,
+    onBlur             : PropTypes.func,
     /**
      *  Input change callback function
      */
-    onChange              : PropTypes.func,
+    onChange           : PropTypes.func,
     /**
      *  Input click callback function
      */
-    onClick               : PropTypes.func,
+    onClick            : PropTypes.func,
     /**
      *  Focus callback function
      */
-    onFocus               : PropTypes.func,
+    onFocus            : PropTypes.func,
     /**
      *  Key down callback function
      */
-    onKeyDown             : PropTypes.func,
+    onKeyDown          : PropTypes.func,
     /**
      *  Key press callback function
      */
-    onKeyPress            : PropTypes.func,
+    onKeyPress         : PropTypes.func,
     /**
      *  Key up callback function
      */
-    onKeyUp               : PropTypes.func,
+    onKeyUp            : PropTypes.func,
     /**
      *  Mouse out callback function
      */
-    onMouseOut            : PropTypes.func,
+    onMouseOut         : PropTypes.func,
     /**
      *  Mouse over  callback function
      */
-    onMouseOver           : PropTypes.func,
+    onMouseOver        : PropTypes.func,
     /**
      *  Placeholder text
      */
-    placeholder           : PropTypes.string,
+    placeholder        : PropTypes.string,
     /**
      *  HTML attribute controlling input spell check
      */
-    spellCheck            : PropTypes.bool,
+    spellCheck         : PropTypes.bool,
     /**
      *  Input text alignment
      */
-    textAlign             : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+    textAlign          : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
     /**
      *  Input string value
      */
-    value                 : PropTypes.string,
+    value              : PropTypes.string,
     /**
      * Value label text
      */
-    valueLabel            : PropTypes.string,
+    valueLabel         : PropTypes.string,
     /**
      * Position of the value label
      */
-    valueLabelPosition    : PropTypes.oneOf( [ 'left', 'right' ] ),
+    valueLabelPosition : PropTypes.oneOf( [ 'left', 'right' ] ),
 };
 
 ValuedTextInput.defaultProps =
 {
-    className             : undefined,
-    cssMap                : undefined,
-    defaultValue          : undefined,
-    errorMessage          : undefined,
-    errorMessageIsVisible : false,
-    errorMessagePosition  : 'top',
-    forceHover            : false,
-    hasError              : false,
-    id                    : undefined,
-    inputRef              : undefined,
-    isDisabled            : false,
-    isReadOnly            : false,
-    label                 : undefined,
-    labelPosition         : 'top',
-    name                  : undefined,
-    onBlur                : undefined,
-    onChange              : undefined,
-    onClick               : undefined,
-    onFocus               : undefined,
-    onKeyDown             : undefined,
-    onKeyPress            : undefined,
-    onKeyUp               : undefined,
-    onMouseOut            : undefined,
-    onMouseOver           : undefined,
-    placeholder           : undefined,
-    spellCheck            : undefined,
-    textAlign             : 'auto',
-    valueLabel            : undefined,
-    valueLabelPosition    : 'left',
+    className          : undefined,
+    cssMap             : undefined,
+    defaultValue       : undefined,
+    forceHover         : false,
+    hasError           : false,
+    id                 : undefined,
+    inputRef           : undefined,
+    isDisabled         : false,
+    isReadOnly         : false,
+    name               : undefined,
+    onBlur             : undefined,
+    onChange           : undefined,
+    onClick            : undefined,
+    onFocus            : undefined,
+    onKeyDown          : undefined,
+    onKeyPress         : undefined,
+    onKeyUp            : undefined,
+    onMouseOut         : undefined,
+    onMouseOver        : undefined,
+    placeholder        : undefined,
+    spellCheck         : undefined,
+    textAlign          : 'auto',
+    value              : undefined,
+    valueLabel         : '%',
+    valueLabelPosition : 'left',
 };
 
 export default ValuedTextInput;

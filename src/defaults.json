@@ -128,5 +128,8 @@
 	},
 	"Tooltip": {
 		"message": "Pro tip!"
+	},
+	"ValuedTextInput": {
+		"valueLabel": "%"
 	}
 }
