@@ -7,13 +7,13 @@
  *
  */
 
-import React, { useState, forwardRef }                            from 'react';
-import PropTypes                                                  from 'prop-types';
+import React, { useState, forwardRef }                     from 'react';
+import PropTypes                                           from 'prop-types';
 
 
-import { TextInput }                                              from '..';
+import { TextInput }                                       from '..';
 
-import { attachEvents, useThemeClasses }                          from '../utils';
+import { useThemeClasses }                                 from '../utils';
 
 
 const componentName = 'valuedTextInput';
