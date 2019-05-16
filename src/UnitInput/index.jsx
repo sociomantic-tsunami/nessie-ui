@@ -128,14 +128,6 @@ UnitInput.propTypes =
      */
     onFocus            : PropTypes.func,
     /**
-     *  Mouse out callback function
-     */
-    onMouseOut         : PropTypes.func,
-    /**
-     *  Mouse over  callback function
-     */
-    onMouseOver        : PropTypes.func,
-    /**
      *  Placeholder text
      */
     placeholder        : PropTypes.string,
@@ -168,8 +160,6 @@ UnitInput.defaultProps =
     onChange           : undefined,
     onClick            : undefined,
     onFocus            : undefined,
-    onMouseOut         : undefined,
-    onMouseOver        : undefined,
     placeholder        : undefined,
     textAlign          : 'auto',
     value              : undefined,
