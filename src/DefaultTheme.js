@@ -43,7 +43,7 @@ import textInputWithIconClasses
     from './TextInputWithIcon/textInputWithIcon.css';
 import timeInputClasses            from './DatePicker/timeInput.css';
 import tooltipClasses              from './Tooltip/tooltip.css';
-import valuedTextInputClasses      from './ValuedTextInput/valuedTextInput.css';
+import unitInputClasses            from './UnitInput/unitInput.css';
 
 
 const classNames = {
@@ -355,8 +355,8 @@ const classNames = {
         ),
         ...tooltipClasses,
     } ),
-    valuedTextInput : props => ( {
-        main : cx.bind( valuedTextInputClasses )(
+    unitInput : props => ( {
+        main : cx.bind( unitInputClasses )(
             'default',
             {
                 fakeHovered : props.forceHover,
@@ -366,7 +366,7 @@ const classNames = {
             `position__${props.valueLabelPosition}`,
             props.className,
         ),
-        ...valuedTextInputClasses,
+        ...unitInputClasses,
     } ),
 };
 

@@ -129,7 +129,7 @@
 	"Tooltip": {
 		"message": "Pro tip!"
 	},
-	"ValuedTextInput": {
+	"UnitInput": {
 		"valueLabel": "%"
 	}
 }

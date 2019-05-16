@@ -39,7 +39,7 @@ import TextInput                   from './TextInput';
 import TextInputWithIcon           from './TextInputWithIcon';
 import Tooltip                     from './Tooltip';
 import Radio                       from './Radio';
-import ValuedTextInput             from './ValuedTextInput';
+import UnitInput                   from './UnitInput';
 
 export default {
     Button,
@@ -74,7 +74,7 @@ export default {
     TextInputWithIcon,
     Tooltip,
     Radio,
-    ValuedTextInput,
+    UnitInput,
 };
 
 export {
@@ -110,7 +110,7 @@ export {
     TextInputWithIcon,
     Tooltip,
     Radio,
-    ValuedTextInput,
+    UnitInput,
 };
 
 // Theming

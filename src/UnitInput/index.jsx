@@ -16,13 +16,12 @@ import { TextInput }                                       from '..';
 import { useThemeClasses }                                 from '../utils';
 
 
-const componentName = 'valuedTextInput';
-const ValuedTextInput = forwardRef( ( props, ref ) =>
+const componentName = 'unitInput';
+const UnitInput = forwardRef( ( props, ref ) =>
 {
     const [ isFocused, setIsFocused ] = useState( false );
     const {
-        onMouseOut,
-        onMouseOver,
+        hasError,
         id,
         isDisabled,
         textAlign,
@@ -67,14 +66,13 @@ const ValuedTextInput = forwardRef( ( props, ref ) =>
         <div
             className   = {
                 `${cssMap.main} ${isFocused && cssMap.fakeHovered}` }
-            onMouseOut  = { onMouseOut }
-            onMouseOver = { onMouseOver }
             ref = { ref }>
             <div className = { cssMap.container }>
                 <TextInput
                     className    = { cssMap.input }
                     id           = { id }
                     isDisabled   = { isDisabled }
+                    hasError     = { hasError }
                     onBlur       = { handleBlur }
                     onChange     = { onChange }
                     onFocus      = { handleFocus }
@@ -91,20 +89,12 @@ const ValuedTextInput = forwardRef( ( props, ref ) =>
     );
 } );
 
-ValuedTextInput.propTypes =
+UnitInput.propTypes =
 {
     /**
      *  Extra CSS class name
      */
     className          : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap             : PropTypes.objectOf( PropTypes.string ),
-    /**
-     *  Initial input string value
-     */
-    defaultValue       : PropTypes.string,
     /**
      *  Display as hover when required from another component
      */
@@ -118,17 +108,9 @@ ValuedTextInput.propTypes =
      */
     id                 : PropTypes.string,
     /**
-     *  Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef           : PropTypes.func,
-    /**
      *  Display as disabled
      */
     isDisabled         : PropTypes.bool,
-    /**
-     *  Display as read-only
-     */
-    isReadOnly         : PropTypes.bool,
     /**
      *  Blur callback function
      */
@@ -145,18 +127,6 @@ ValuedTextInput.propTypes =
      *  Focus callback function
      */
     onFocus            : PropTypes.func,
-    /**
-     *  Key down callback function
-     */
-    onKeyDown          : PropTypes.func,
-    /**
-     *  Key press callback function
-     */
-    onKeyPress         : PropTypes.func,
-    /**
-     *  Key up callback function
-     */
-    onKeyUp            : PropTypes.func,
     /**
      *  Mouse out callback function
      */
@@ -187,24 +157,17 @@ ValuedTextInput.propTypes =
     valueLabelPosition : PropTypes.oneOf( [ 'left', 'right' ] ),
 };
 
-ValuedTextInput.defaultProps =
+UnitInput.defaultProps =
 {
     className          : undefined,
-    cssMap             : undefined,
-    defaultValue       : undefined,
     forceHover         : false,
     hasError           : false,
     id                 : undefined,
-    inputRef           : undefined,
     isDisabled         : false,
-    isReadOnly         : false,
     onBlur             : undefined,
     onChange           : undefined,
     onClick            : undefined,
     onFocus            : undefined,
-    onKeyDown          : undefined,
-    onKeyPress         : undefined,
-    onKeyUp            : undefined,
     onMouseOut         : undefined,
     onMouseOver        : undefined,
     placeholder        : undefined,
@@ -214,4 +177,4 @@ ValuedTextInput.defaultProps =
     valueLabelPosition : 'left',
 };
 
-export default ValuedTextInput;
+export default UnitInput;
