@@ -7,41 +7,43 @@
  *
  */
 
-import cx                         from 'classnames/bind';
+import cx                          from 'classnames/bind';
 
-import buttonClasses              from './Button/button.css';
-import cardClasses                from './Card/card.css';
-import checkboxClasses            from './Checkbox/checkbox.css';
-import comboBoxClasses            from './ComboBox/comboBox.css';
-import datePickerClasses          from './DatePicker/datePicker.css';
-import datePickerHeaderClasses    from './DatePicker/datePickerHeader.css';
-import datePickerItemClasses      from './DatePicker/datePickerItem.css';
-import gridClasses                from './Grid/grid.css';
-import gridItemClasses            from './GridItem/gridItem.css';
-import iconButtonClasses          from './IconButton/iconButton.css';
-import iconClasses                from './Icon/icon.css';
-import listBoxClasses             from './ListBox/listBox.css';
-import listBoxOptionClasses       from './ListBox/listBoxOption.css';
-import listBoxOptionGroupClasses  from './ListBox/listBoxOptionGroup.css';
-import modalClasses               from './Modal/modal.css';
-import popupClasses               from './Popup/popup.css';
-import progressBarClasses         from './ProgressBar/progressBar.css';
-import radioClasses               from './Radio/radio.css';
-import scrollBarClasses           from './ScrollBar/scrollBar.css';
-import scrollBoxClasses           from './ScrollBox/scrollBox.css';
-import spinnerClasses             from './Spinner/spinner.css';
-import switchClasses              from './Switch/switch.css';
-import tabButtonClasses           from './TabButton/tabButton.css';
-import tabClasses                 from './Tab/tab.css';
-import tabsClasses                from './Tabs/tabs.css';
-import tagClasses                 from './Tag/tag.css';
-import tagInputClasses            from './TagInput/tagInput.css';
-import textClasses                from './Text/text.css';
-import textAreaClasses            from './TextArea/textArea.css';
-import textInputClasses           from './TextInput/textInput.css';
-import textInputWithIconClasses   from './TextInputWithIcon/textInputWithIcon.css';
-import timeInputClasses           from './DatePicker/timeInput.css';
-import tooltipClasses             from './Tooltip/tooltip.css';
+import buttonClasses               from './Button/button.css';
+import cardClasses                 from './Card/card.css';
+import checkboxClasses             from './Checkbox/checkbox.css';
+import comboBoxClasses             from './ComboBox/comboBox.css';
+import datePickerClasses           from './DatePicker/datePicker.css';
+import datePickerHeaderClasses     from './DatePicker/datePickerHeader.css';
+import datePickerItemClasses       from './DatePicker/datePickerItem.css';
+import gridClasses                 from './Grid/grid.css';
+import gridItemClasses             from './GridItem/gridItem.css';
+import iconButtonClasses           from './IconButton/iconButton.css';
+import iconClasses                 from './Icon/icon.css';
+import listBoxClasses              from './ListBox/listBox.css';
+import listBoxOptionClasses        from './ListBox/listBoxOption.css';
+import listBoxOptionGroupClasses   from './ListBox/listBoxOptionGroup.css';
+import modalClasses                from './Modal/modal.css';
+import popupClasses                from './Popup/popup.css';
+import progressBarClasses          from './ProgressBar/progressBar.css';
+import radioClasses                from './Radio/radio.css';
+import scrollBarClasses            from './ScrollBar/scrollBar.css';
+import scrollBoxClasses            from './ScrollBox/scrollBox.css';
+import spinnerClasses              from './Spinner/spinner.css';
+import switchClasses               from './Switch/switch.css';
+import tabButtonClasses            from './TabButton/tabButton.css';
+import tabClasses                  from './Tab/tab.css';
+import tabsClasses                 from './Tabs/tabs.css';
+import tagClasses                  from './Tag/tag.css';
+import tagInputClasses             from './TagInput/tagInput.css';
+import textClasses                 from './Text/text.css';
+import textAreaClasses             from './TextArea/textArea.css';
+import textInputClasses            from './TextInput/textInput.css';
+import textInputWithIconClasses
+    from './TextInputWithIcon/textInputWithIcon.css';
+import timeInputClasses            from './DatePicker/timeInput.css';
+import tooltipClasses              from './Tooltip/tooltip.css';
+import unitInputClasses            from './UnitInput/unitInput.css';
 
 
 const classNames = {
@@ -352,6 +354,19 @@ const classNames = {
             props.className,
         ),
         ...tooltipClasses,
+    } ),
+    unitInput : props => ( {
+        main : cx.bind( unitInputClasses )(
+            'default',
+            {
+                fakeHovered : props.forceHover,
+                disabled    : props.isDisabled,
+                error       : props.hasError,
+            },
+            `position__${props.valueLabelPosition}`,
+            props.className,
+        ),
+        ...unitInputClasses,
     } ),
 };
 
