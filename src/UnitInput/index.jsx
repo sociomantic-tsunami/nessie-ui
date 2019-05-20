@@ -16,7 +16,7 @@ import { TextInput }                                       from '..';
 import { useThemeClasses }                                 from '../utils';
 
 
-const componentName = 'unitInput';
+const componentName = 'UnitInput';
 const UnitInput = forwardRef( ( props, ref ) =>
 {
     const [ isFocused, setIsFocused ] = useState( false );
