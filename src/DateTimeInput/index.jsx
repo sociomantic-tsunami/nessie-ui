@@ -27,6 +27,7 @@ const componentName = 'DateTimeInput';
 
 const DISPLAY_FORMATTING = {
     month  : 'YYYY/MM',
+    week   : 'YYYY/MM/DD WW',
     day    : 'YYYY/MM/DD',
     hour   : 'YYYY/MM/DD HH:00',
     minute : 'YYYY/MM/DD HH:mm',
@@ -97,15 +98,21 @@ function formatDateTime( timestamp, precision )
  */
 function setPrecision( mode )
 {
-    let format = 'minute';
+    let format;
 
-    if ( mode === 'date' )
+    switch ( mode )
     {
+    case 'date':
         format = 'day';
-    }
-    else if ( mode === 'month' )
-    {
+        break;
+    case 'week':
+        format = 'week';
+        break;
+    case 'month':
         format = 'month';
+        break;
+    default:
+        format = 'minute';
     }
 
     return DISPLAY_FORMATTING[ format ];
@@ -249,6 +256,17 @@ const DateTimeInput = forwardRef( ( props, ref ) =>
         style,
     } = props;
 
+    let datePickerType = 'day';
+
+    if ( mode === 'week' )
+    {
+        datePickerType = 'week';
+    }
+    else if ( mode === 'month' )
+    {
+        datePickerType = 'month';
+    }
+
     const datePicker = (
         <DatePicker
             hasTimeInput     = { mode === 'default' }
@@ -259,7 +277,7 @@ const DateTimeInput = forwardRef( ( props, ref ) =>
             minuteIsReadOnly = { !canEditHourOrMinute() }
             mode             = { mode }
             onChange         = { handleChange }
-            type             = { mode === 'month' ? 'month' : 'day' }
+            type             = { datePickerType }
             value            = { timestamp } />
     );
 
@@ -277,7 +295,7 @@ const DateTimeInput = forwardRef( ( props, ref ) =>
                 </Popup>
             ) }
             popperContainer = { popperContainer }
-            popperOffset    = "S"
+            popperOffset    = "s"
             popperPosition  = "bottom-start"
             ref             = { ref }
             style           = { style }>
@@ -358,19 +376,24 @@ DateTimeInput.propTypes =
     /**
      *  Picker mode
      */
-    mode             : PropTypes.oneOf( [ 'default', 'date', 'month' ] ),
+    mode             : PropTypes.oneOf( [
+        'default',
+        'date',
+        'week',
+        'month',
+    ] ),
     /**
      *  Change callback: ( { value } ) => ...
      */
-    onChange         : PropTypes.func,
+    onChange : PropTypes.func,
     /**
      *  Selected timestamp
      */
-    value            : PropTypes.number,
+    value    : PropTypes.number,
     /**
      *  Style overrides
      */
-    style            : PropTypes.objectOf( PropTypes.string ),
+    style    : PropTypes.objectOf( PropTypes.string ),
 };
 
 DateTimeInput.defaultProps =

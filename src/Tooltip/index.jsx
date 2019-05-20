@@ -7,17 +7,17 @@
  *
  */
 
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React, { forwardRef }             from 'react';
+import PropTypes                         from 'prop-types';
 
-import { IconButton, Text }                from '..';
+import { IconButton, Text }              from '..';
 
-import { attachEvents, useThemeClasses }   from '../utils';
+import { attachEvents, useThemeClasses } from '../utils';
 
 
 const componentName = 'Tooltip';
 
-const Tooltip = props =>
+const Tooltip = forwardRef( ( props, ref ) =>
 {
     const {
         children,
@@ -35,6 +35,7 @@ const Tooltip = props =>
             { ...attachEvents( props ) }
             className = { cssMap.main }
             id        = { id }
+            ref       = { ref }
             role      = "tooltip"
             style     = { style }>
             <div className = { cssMap.message }>
@@ -54,7 +55,7 @@ const Tooltip = props =>
             }
         </div>
     );
-};
+} );
 
 Tooltip.propTypes =
 {

@@ -54,7 +54,7 @@ const Grid = forwardRef( ( props, ref ) =>
                     spacing[ gap ],
                 gridTemplateColumns : templateColumns ||
                     `repeat( ${columns}, 1fr )`,
-                gridTemplateRows : templateRows ||  `repeat( ${rows}, 1fr )`,
+                gridTemplateRows : templateRows || `repeat( ${rows}, 1fr )`,
                 justifyContent,
                 justifyItems,
                 ...style,

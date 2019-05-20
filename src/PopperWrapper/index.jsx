@@ -87,13 +87,13 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
         {
             return cloneElement( popper, popperProps );
         }
-        return children || null;
+        return <div { ...popperProps }>{ children }</div>;
     },
     [ children, matchRefWidth, popper ] );
 
     const renderReference = useCallback(  ( { ref } ) =>
     {
-        const referenceProps = { ref, style };
+        const referenceProps = { ref, ...style && { style } };
         if ( typeof children === 'function' )
         {
             return children( referenceProps );
@@ -102,7 +102,7 @@ const PopperWrapper = forwardRef( ( props, forwardedRef ) =>
         {
             return cloneElement( children, referenceProps );
         }
-        return children || null;
+        return <div { ...referenceProps }>{ children }</div>;
     },
     [ children, style ] );
 

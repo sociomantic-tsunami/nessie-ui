@@ -162,6 +162,43 @@ const DatePicker = forwardRef( ( props, ref ) =>
         return _.chunk( days, 7 );
     };
 
+    const weekMatrix = () =>
+    {
+        const mappedDays = dayMatrix();
+
+        const weekDays = mappedDays.map( week =>
+        {
+            const firstWeekday = week.find( weekDay => weekDay.value !== null );
+            const currrentDay = week.find( weekDay =>
+                weekDay.isDisabled === false );
+
+            let isDisabledWeek = true;
+            let isSelectedWeek = false;
+
+            if ( week.find( weekDay => weekDay.isDisabled === false &&
+                weekDay.value !== null ) )
+            {
+                isDisabledWeek = false;
+            }
+
+            if ( week.find( weekDay => weekDay.isSelected === true ) )
+            {
+                isSelectedWeek = true;
+            }
+
+            const weekNumber = {
+                label      : $m( firstWeekday.value ).week(),
+                isSelectedWeek,
+                isDisabled : isDisabledWeek,
+                value      : currrentDay.value || firstWeekday.value,
+            };
+
+            return [ weekNumber, ...week ];
+        } );
+
+        return weekDays;
+    };
+
     const monthMatrix = () =>
     {
         const startYear = gridStartTimestamp;
@@ -347,7 +384,19 @@ const DatePicker = forwardRef( ( props, ref ) =>
 
     const headers = type !== 'month' && DAY_LABELS;
 
-    const items = type === 'month' ? monthMatrix() : dayMatrix();
+    let items;
+
+    switch ( type )
+    {
+    case 'month':
+        items = monthMatrix();
+        break;
+    case 'week':
+        items = weekMatrix();
+        break;
+    default:
+        items = dayMatrix();
+    }
 
     return (
         <div
@@ -356,7 +405,7 @@ const DatePicker = forwardRef( ( props, ref ) =>
             ref       = { ref }
             style     = { style }>
             <DatePickerHeader
-                hasTimeInput      = { hasTimeInput }
+                hasTimeInput      = { type === 'day' && hasTimeInput }
                 hourIsDisabled    = { hourIsDisabled }
                 hourIsReadOnly    = { hourIsReadOnly }
                 hourPlaceholder   = { hourPlaceholder }
@@ -382,6 +431,13 @@ const DatePicker = forwardRef( ( props, ref ) =>
                     { headers &&
                         <thead className = { cssMap.calendarHeader }>
                             <tr>
+                                { type === 'week' && (
+                                    <th key = "week">
+                                        <span title = "week">
+                                          Week
+                                        </span>
+                                    </th>
+                                ) }
                                 { headers.map( ( header, i ) =>
                                     <th key = { i }>
                                         <span title = { header.title }>
@@ -436,7 +492,7 @@ DatePicker.propTypes = {
     onClickItem       : PropTypes.func,
     onClickNext       : PropTypes.func,
     onClickPrev       : PropTypes.func,
-    type              : PropTypes.oneOf( [ 'day', 'month' ] ),
+    type              : PropTypes.oneOf( [ 'day', 'week', 'month' ] ),
     value             : PropTypes.number,
     /**
      *  Style overrides

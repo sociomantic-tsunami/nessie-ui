@@ -15,48 +15,74 @@ import PropTypes                       from 'prop-types';
 import { TextInput }                   from '..';
 
 
-const currencyFormat = ( number, currency, language = navigator.language ) =>
-    number.toLocaleString( language, currency ?
-        { style: 'currency', currency } : {} );
+const currencyFormat = (
+    number,
+    currency = 'USD',
+    language = navigator.language,
+) =>
+{
+    if ( typeof number === 'number' )
+    {
+        return number.toLocaleString( language, currency ?
+            { style: 'currency', currency } : {} );
+    }
+};
 
-const pattern = /[^0-9.-]/g;
+
+const parseValue = value => ( value ?
+    Number( value.replace( /[^0-9.-]/g, '' ) ) : null );
+
+const useValueState = ( defaultValue, value ) =>
+{
+    const [ valueState, setValueState ] = useState( defaultValue );
+    return [ typeof value === 'number' ? value : valueState, setValueState ];
+};
 
 
 const componentName = 'CurrencyInput';
 
-const CurrencyInput = forwardRef( ( props, ref ) =>
+const CurrencyInput = forwardRef( ( {
+    currency,
+    defaultValue,
+    id,
+    onBlur,
+    onChange,
+    style,
+    value,
+    ...restProps
+}, ref ) =>
 {
-    const {
-        currency,
-        defaultValue,
-        id,
-        style,
-        value,
-        ...restProps
-    } = props;
+    const [ isFocused, setIsFocused ] = useState( false );
+    const [ valueState, setValueState ] = useValueState( defaultValue, value );
+    const formattedValue = currencyFormat( valueState, currency );
+    const [ editingValue, setEditingValue ] = useState( formattedValue );
 
-    const [ valueState, setValue ] = useState( defaultValue );
+    const handleFocus = () =>
+    {
+        setEditingValue( formattedValue );
+        setIsFocused( true );
+    };
 
     const handleBlur = () =>
     {
-        const newVal = Number( String( valueState ).replace( pattern, '' ) );
+        const newValue = parseValue( editingValue );
 
-        setValue( newVal );
-
-        if ( typeof props.onBlur === 'function' )
+        if ( typeof onBlur === 'function' )
         {
-            props.onBlur( { } );
+            onBlur();
+        }
+        if ( typeof onChange === 'function' )
+        {
+            onChange( { value: newValue } );
         }
 
-        if ( typeof props.onChange === 'function' )
-        {
-            props.onChange( { value: newVal } );
-        }
+        setValueState( newValue );
+        setIsFocused( false );
     };
 
-    const handleChange = ( { value: scopedValue } ) =>
+    const handleChange = ( { value: newValue } ) =>
     {
-        setValue( scopedValue );
+        setEditingValue( newValue );
     };
 
     return (
@@ -68,11 +94,11 @@ const CurrencyInput = forwardRef( ( props, ref ) =>
             id             = { id }
             onBlur         = { handleBlur }
             onChange       = { handleChange }
+            onFocus        = { handleFocus }
             ref            = { ref }
             spellCheck     = { false }
             style          = { style }
-            value          = { currencyFormat( Number( value
-                .replace( pattern, '' ) ) || valueState, currency ) } />
+            value          = { isFocused ? editingValue : formattedValue } />
     );
 } );
 
@@ -91,9 +117,9 @@ CurrencyInput.propTypes =
      */
     currency     : PropTypes.oneOf( [ 'USD', 'EUR', 'GBP' ] ),
     /**
-     *  Default input string value
+     *  Default currency value (number)
      */
-    defaultValue : PropTypes.string,
+    defaultValue : PropTypes.number,
     /**
      *  Display as error/invalid
      */
@@ -155,9 +181,9 @@ CurrencyInput.propTypes =
      */
     textAlign    : PropTypes.oneOf( [ 'left', 'right' ] ),
     /**
-     *  Input string value
+     *  Currency value (number)
      */
-    value        : PropTypes.string,
+    value        : PropTypes.number,
     /**
      *  Style overrides
      */
@@ -169,7 +195,7 @@ CurrencyInput.defaultProps =
     className    : undefined,
     cssMap       : undefined,
     currency     : undefined,
-    defaultValue : '',
+    defaultValue : undefined,
     hasError     : false,
     id           : undefined,
     isDisabled   : false,
@@ -186,7 +212,7 @@ CurrencyInput.defaultProps =
     placeholder  : undefined,
     style        : undefined,
     textAlign    : 'left',
-    value        : '',
+    value        : undefined,
 };
 
 CurrencyInput.displayName = componentName;
