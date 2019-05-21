@@ -498,7 +498,7 @@ const ComboBox = forwardRef( ( props, ref ) =>
             popperContainer = { popperContainer }
             isVisible       = { isOpen }
             matchRefWidth
-            popper          = { ( { ...popperProps } ) => (
+            popper          = { popperProps => (
                 <Popup
                     { ...popperProps }
                     hasError = { hasError }
@@ -508,14 +508,14 @@ const ComboBox = forwardRef( ( props, ref ) =>
             ) }
             popperOffset    = "s"
             popperPosition  = "bottom"
-            ref             = { ref }
-            style           = { style }>
+            ref             = { ref }>
             { ( { ref: innerRef } ) => (
                 <label
                     { ...attachEvents( props ) }
                     className = { cssMap.main }
                     htmlFor   = { id }
-                    ref       = { innerRef }>
+                    ref       = { innerRef }
+                    style     = { style }>
                     { tags }
                     <input
                         { ...mapAria( {
