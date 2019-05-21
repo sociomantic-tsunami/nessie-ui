@@ -10,11 +10,12 @@
 
 import React, { forwardRef } from 'react';
 import PropTypes             from 'prop-types';
+import useUncontrolled       from 'uncontrollable/hook';
 
 import { Text }              from '..';
 
 import {
-    attachEvents,
+    attachEvents as handleAllEvents,
     useId,
     useThemeClasses,
 } from '../utils';
@@ -24,20 +25,19 @@ const componentName = 'Checkbox';
 
 const Checkbox = forwardRef( ( props, ref ) =>
 {
+    const id = useId( componentName, props );
+    const cssMap = useThemeClasses( componentName, props );
     const {
         children,
         isChecked,
-        isDefaultChecked,
         isDisabled,
         label,
         style,
-    } = props;
+        ...restProps
+    } = useUncontrolled( props, { isChecked: 'onChange' } );
 
-    const cssMap = useThemeClasses( componentName, props );
-    const id = useId( componentName, props );
 
     let labelContent = children || label;
-
     if ( typeof labelContent === 'string' )
     {
         labelContent =
@@ -45,12 +45,14 @@ const Checkbox = forwardRef( ( props, ref ) =>
     }
 
     return (
-        <div className = { cssMap.main } ref = { ref } style = { style }>
+        <div
+            { ...handleAllEvents( restProps ) }
+            className = { cssMap.main }
+            ref       = { ref }
+            style     = { style }>
             <input
-                { ...attachEvents( props ) }
                 checked   = { isChecked }
                 className = { cssMap.input }
-                defaultChecked = { isDefaultChecked }
                 disabled  = { isDisabled }
                 id        = { id }
                 type      =  "checkbox" />
@@ -81,6 +83,10 @@ Checkbox.propTypes =
      */
     cssMap           : PropTypes.objectOf( PropTypes.string ),
     /**
+     *  Display as checked by default (uncontrolled input)
+     */
+    defaultIsChecked : PropTypes.bool,
+    /**
      *  Display as error/invalid
      */
     hasError         : PropTypes.bool,
@@ -92,10 +98,6 @@ Checkbox.propTypes =
      *  Display as checked (controlled input)
      */
     isChecked        : PropTypes.bool,
-    /**
-     *  Display as checked by default (uncontrolled input)
-     */
-    isDefaultChecked : PropTypes.bool,
     /**
      *  Display as disabled
      */
@@ -123,10 +125,10 @@ Checkbox.defaultProps =
     children         : undefined,
     className        : undefined,
     cssMap           : undefined,
+    defaultIsChecked : undefined,
     hasError         : false,
     id               : undefined,
     isChecked        : undefined,
-    isDefaultChecked : undefined,
     isDisabled       : false,
     label            : undefined,
     onChange         : undefined,

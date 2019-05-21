@@ -9,12 +9,13 @@
 
 import React, { forwardRef } from 'react';
 import PropTypes             from 'prop-types';
+import useUncontrolled       from 'uncontrollable/hook';
 
 import {
-    attachEvents,
+    attachEvents as handleAllEvents,
     mapAria,
     useThemeClasses,
-} from '../utils';
+}  from '../utils';
 
 
 const componentName = 'TextInput';
@@ -27,7 +28,6 @@ const TextInput = forwardRef( ( props, ref ) =>
         autoCapitalize,
         autoComplete,
         autoCorrect,
-        defaultValue,
         id,
         isDisabled,
         isReadOnly,
@@ -36,17 +36,17 @@ const TextInput = forwardRef( ( props, ref ) =>
         style,
         type,
         value,
-    } = props;
+        ...restProps
+    } = useUncontrolled( props, { value: 'onChange' } );
 
     return (
         <input
             { ...mapAria( aria ) }
-            { ...attachEvents( props ) }
+            { ...handleAllEvents( restProps ) }
             autoCapitalize = { autoCapitalize }
             autoComplete   = { autoComplete }
             autoCorrect    = { autoCorrect }
             className      = { cssMap.main }
-            defaultValue   = { defaultValue }
             disabled       = { isDisabled }
             id             = { id }
             placeholder    = { placeholder }
