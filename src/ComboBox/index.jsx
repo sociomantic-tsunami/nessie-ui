@@ -58,8 +58,8 @@ const getIndex = ( id, options = [] ) => (
  *
  * @return {Object} option Object.
  */
-const getOption = ( id, options = [] ) => (
-    options.find( opt => opt.id === id ) );
+const getOption = ( id, options = [] ) =>
+    options.find( opt => opt.id === id );
 
 /**
  * normalize array of options or value
@@ -418,18 +418,26 @@ const ComboBox = forwardRef( ( props, ref ) =>
 
     let tags;
 
-    if ( isMultiselect )
+    if ( isMultiselect && selection )
     {
-        tags = selection && selection.map( itemId => (
-            <Tag
-                id = { itemId }
-                isDisabled = { isDisabled }
-                isReadOnly = { isReadOnly }
-                key = { itemId }
-                label = { getOption( itemId, flatOptions ).text }
-                onClick  = { handleClickClose }
-            />
-        ) );
+        tags = selection.reduce( ( result, itemId ) =>
+        {
+            const currentOption = getOption( itemId, flatOptions );
+            if ( currentOption )
+            {
+                result.push(
+                    <Tag
+                        id = { itemId }
+                        isDisabled = { isDisabled }
+                        isReadOnly = { isReadOnly }
+                        key = { itemId }
+                        label = { currentOption.text }
+                        onClick  = { handleClickClose }
+                    />,
+                );
+            }
+            return result;
+        }, [] );
     }
 
     let optionsToShow = normalizeOptions( options ) || [];
