@@ -337,7 +337,7 @@ const classNames = {
         ),
         ...tooltipClasses,
     } ),
-    unitInput : props => ( {
+    UnitInput : props => ( {
         main : cx.bind( unitInputClasses )(
             'default',
             {
