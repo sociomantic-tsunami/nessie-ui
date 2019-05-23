@@ -9,138 +9,128 @@
 
 @import "../proto/base.css";
 
-:root
-{
-    --dotSize:   calc( var( --spacing-3 ) / 2 );
-    --dotOffset: calc( var( --dotSize ) / 2 );
+:root {
+  --dotSize: calc(var(--spacing-3) / 2);
+  --dotOffset: calc(var(--dotSize) / 2);
 }
 
-.default
-{
-     padding-top: var(--spacing-1);
-     padding-bottom: var(--spacing-1);
+.default {
+  padding-top: var(--spacing-1);
+  padding-bottom: var(--spacing-1);
 
-     width: auto;
+  width: auto;
 
-    .label::before,
-    .label::after
-    {
-        border-radius:  50%;
-    }
+  .label::before,
+  .label::after {
+    border-radius: 50%;
+  }
 
+  .input:checked + .label::after {
+    display: block;
 
-    .input:checked + .label::after
-    {
-        display:    block;
+    top: var(--dotOffset);
+    left: var(--dotOffset);
 
-        top:        var(--dotOffset );
-        left:       var(--dotOffset );
+    width: var(--dotSize);
+    height: var(--dotSize);
 
-        width:      var( --dotSize );
-        height:     var( --dotSize );
+    background: var(--PC-BLUE);
+  }
+  .label /* ‘label’ is the styled checkbox/radio */
+ {
+    display: flex;
+    align-items: center;
 
-        background: var( --PC-BLUE );
-    }
-    .label /* ‘label’ is the styled checkbox/radio */
-   {
-      display: flex;
-      align-items: center;
+    position: relative;
 
+    height: var(--spacing-3);
+
+    cursor: pointer;
+
+    &::before {
+      content: "";
+
+      display: block;
       position: relative;
 
+      box-sizing: border-box;
+      width: var(--spacing-3);
       height: var(--spacing-3);
 
-      cursor: pointer;
+      border: 1px solid var(--PC-BLUE--L55);
 
-      &::before {
-        content: "";
-
-        display: block;
-        position: relative;
-
-        box-sizing: border-box;
-        width: var(--spacing-3);
-        height: var(--spacing-3);
-
-        border: 1px solid var(--PC-BLUE--L55);
-        
-
-        background: var(--PC-WHITE);
-      }
-
-      &::after {
-        content: "";
-
-        display: none;
-        position: absolute;
-
-        top: 0;
-        left: 0;
-
-        width: var(--spacing-3);
-        height: var(--spacing-3);
-      }
+      background: var(--PC-WHITE);
     }
 
-    .labelContent {
-      display: block;
-      margin-left: var(--spacing-1);
-    }
+    &::after {
+      content: "";
 
-    .labelText {
-      @extend %Nessie-SemiBold;
-      color: var(--PC-GREY--D15);
-    }
-
-    .input:checked + .label::before,
-    .input:focus + .label::before,
-    &.fakeHovered .label::before {
-      border-color: var(--PC-BLUE);
-    }
-
-    .input:focus + .label::before,
-    &.fakeHovered .label::before {
-      box-shadow: 0 0 0 2px color(var(--PC-BLUE) a(30%));
-    }
-    .input /* the (hidden) native input */
-   {
+      display: none;
       position: absolute;
-      left: -9999px;
+
+      top: 0;
+      left: 0;
+
+      width: var(--spacing-3);
+      height: var(--spacing-3);
     }
+  }
+
+  .labelContent {
+    display: block;
+    margin-left: var(--spacing-1);
+  }
+
+  .labelText {
+    @extend %Nessie-SemiBold;
+    color: var(--PC-GREY--D15);
+  }
+
+  .input:checked + .label::before,
+  .input:focus + .label::before,
+  &.fakeHovered .label::before {
+    border-color: var(--PC-BLUE);
+  }
+
+  .input:focus + .label::before,
+  &.fakeHovered .label::before {
+    box-shadow: 0 0 0 2px color(var(--PC-BLUE) a(30%));
+  }
+  .input /* the (hidden) native input */
+ {
+    position: absolute;
+    left: -9999px;
+  }
 }
 
-.error
-{
-    .input:checked + .label::after
-    {
-        background: var( --PC-RED );
-    }
-    .label::before {
-      border: 1px solid var(--PC-RED) !important;
-    }
+.error {
+  .input:checked + .label::after {
+    background: var(--PC-RED);
+  }
+  .label::before {
+    border: 1px solid var(--PC-RED) !important;
+  }
 
-    .input:focus + .label::before,
-    &.fakeHovered .label::before {
-      box-shadow: 0 0 0 2px color(var(--PC-RED) a(30%));
-    }
+  .input:focus + .label::before,
+  &.fakeHovered .label::before {
+    box-shadow: 0 0 0 2px color(var(--PC-RED) a(30%));
+  }
 }
 
-.disabled
-{
-    .labelText {
-      color: var(--PC-GREY--L70);
-    }
+.disabled {
+  .labelText {
+    color: var(--PC-GREY--L70);
+  }
 
-    .input:checked + .label::after
-    {
-        background: var( --PC-GREY--L70 );
-    }
+  .input:checked + .label::after {
+    background: var(--PC-GREY--L70);
+  }
 
-    .label {
-      cursor: default;
+  .label {
+    cursor: default;
 
-      &::before {
-        border-color: var(--PC-GREY--L70) !important;
-      }
+    &::before {
+      border-color: var(--PC-GREY--L70) !important;
     }
+  }
 }

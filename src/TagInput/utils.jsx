@@ -7,10 +7,9 @@
  *
  */
 
-import React   from 'react';
+import React from "react";
 
-import { Tag } from '../index';
-
+import { Tag } from "../index";
 
 /**
  * ## buildTagsFromValues
@@ -21,19 +20,20 @@ import { Tag } from '../index';
  * @return  {Array.<ReactElement>}
  *
  */
-function buildTagsFromValues( values = [] )
-{
-    return values.map( value =>
-    {
-        const props = typeof value === 'object' ? value : {
-            id    : value,
-            label : value,
-            key   : value,
-            value,
-        };
+function buildTagsFromValues(values = []) {
+  return values.map(value => {
+    const props =
+      typeof value === "object"
+        ? value
+        : {
+            id: value,
+            label: value,
+            key: value,
+            value
+          };
 
-        return <Tag { ...props } />;
-    } );
+    return <Tag {...props} />;
+  });
 }
 
 export { buildTagsFromValues };

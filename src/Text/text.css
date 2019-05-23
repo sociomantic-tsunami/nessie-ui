@@ -9,185 +9,150 @@
 
 @import "../proto/base.css";
 
-.default
-{
-    width:          auto;
-    text-transform: none;
-    line-height:    var( --line-height-m );
+.default {
+  width: auto;
+  text-transform: none;
+  line-height: var(--line-height-m);
 
-    .default
-    {
-        display:    inline;
-        position:   static;
+  .default {
+    display: inline;
+    position: static;
+  }
+
+  a:any-link {
+    color: var(--PC-BLUE);
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
     }
-
-    a:any-link
-    {
-        color:                  var( --PC-BLUE );
-        text-decoration:        underline;
-
-        &:hover
-        {
-            text-decoration:    none;
-        }
-    }
+  }
 }
 
-.overflowHidden
-{
-    overflow:       hidden;
-    overflow-wrap:  normal;
-    text-overflow:  ellipsis;
+.overflowHidden {
+  overflow: hidden;
+  overflow-wrap: normal;
+  text-overflow: ellipsis;
 }
 
-.noWrap
-{
-    white-space:    nowrap;
+.noWrap {
+  white-space: nowrap;
 }
 
-.allCaps
-{
-    text-transform: uppercase;
+.allCaps {
+  text-transform: uppercase;
 }
 
 /* ROLES */
-.role__default
-{
-    color:                  inherit;
+.role__default {
+  color: inherit;
 }
 
-.role__critical
-{
-    color:                  var( --PC-RED );
+.role__critical {
+  color: var(--PC-RED);
 }
 
-.role__link
-{
-    color:                  var( --PC-BLUE );
-    text-decoration:        underline;
+.role__link {
+  color: var(--PC-BLUE);
+  text-decoration: underline;
 
-    &:hover
-    {
-        text-decoration:    none;
-        cursor:             pointer;
-    }
+  &:hover {
+    text-decoration: none;
+    cursor: pointer;
+  }
 }
 
-.role__promoted
-{
-    color:                  var( --PC-GREEN );
+.role__promoted {
+  color: var(--PC-GREEN);
 }
 
-.role__subtle
-{
-    color:                  var( --PC-GREY--D5 );
+.role__subtle {
+  color: var(--PC-GREY--D5);
 }
-
 
 /* SIZES */
-.size__XXS
-{
-    font-size:  var( --typo-1 );
+.size__XXS {
+  font-size: var(--typo-1);
 }
 
-.size__XS
-{
-    font-size:  11px;
+.size__XS {
+  font-size: 11px;
 }
 
-.size__S
-{
-    font-size:  var( --typo-2 );
+.size__S {
+  font-size: var(--typo-2);
 }
 
-.size__M
-{
-    font-size:  var( --typo-3 );
+.size__M {
+  font-size: var(--typo-3);
 }
 
-.size__L
-{
-    font-size:  var( --typo-4 );
+.size__L {
+  font-size: var(--typo-4);
 }
 
-.size__XL
-{
-    font-size:  var( --typo-5 );
+.size__XL {
+  font-size: var(--typo-5);
 }
 
-.size__XXL
-{
-    font-size:  var( --typo-6 );
+.size__XXL {
+  font-size: var(--typo-6);
 }
 
-.size__XXXL
-{
-    font-size:  22px;
+.size__XXXL {
+  font-size: 22px;
 }
 
 /* STYLE */
-.variant__Light
-{
-    @extend %Nessie-Light;
+.variant__Light {
+  @extend %Nessie-Light;
 }
 
-.variant__LightIt
-{
-    @extend %Nessie-LightIt;
+.variant__LightIt {
+  @extend %Nessie-LightIt;
 }
 
-.variant__Regular
-{
-    @extend %Nessie-Regular;
+.variant__Regular {
+  @extend %Nessie-Regular;
 }
 
-.variant__RegularIt
-{
-    @extend %Nessie-RegularIt;
+.variant__RegularIt {
+  @extend %Nessie-RegularIt;
 }
 
-.variant__SemiBold
-{
-    @extend %Nessie-SemiBold;
+.variant__SemiBold {
+  @extend %Nessie-SemiBold;
 }
 
-.variant__SemiBoldIt
-{
-    @extend %Nessie-SemiBoldIt;
+.variant__SemiBoldIt {
+  @extend %Nessie-SemiBoldIt;
 }
 
-.variant__Bold
-{
-    @extend %Nessie-Bold;
+.variant__Bold {
+  @extend %Nessie-Bold;
 }
 
-.variant__BoldIt
-{
-    @extend %Nessie-BoldIt;
+.variant__BoldIt {
+  @extend %Nessie-BoldIt;
 }
 
-.variant__ExtraBold
-{
-    @extend %Nessie-ExtraBold;
+.variant__ExtraBold {
+  @extend %Nessie-ExtraBold;
 }
 
-.variant__ExtraBoldIt
-{
-    @extend %Nessie-ExtraBoldIt;
+.variant__ExtraBoldIt {
+  @extend %Nessie-ExtraBoldIt;
 }
 
 /* TEXT ALIGN */
-.textAlign__left
-{
-    text-align: left;
+.textAlign__left {
+  text-align: left;
 }
 
-.textAlign__center
-{
-    text-align: center;
+.textAlign__center {
+  text-align: center;
 }
 
-.textAlign__right
-{
-    text-align: right;
+.textAlign__right {
+  text-align: right;
 }

@@ -7,97 +7,84 @@
  *
  */
 
-@import '../proto/base.css';
+@import "../proto/base.css";
 
-.default
-{
-    display:            inline-block;
+.default {
+  display: inline-block;
 
-    padding:            0;
-    border:             1px solid transparent;
+  padding: 0;
+  border: 1px solid transparent;
 
-    background:         var( --PC-WHITE );
+  background: var(--PC-WHITE);
 
-    cursor:             pointer;
+  cursor: pointer;
 
-    .text
-    {
-        color:                  var( --PC-GREY--D15 );
-        font-variant-numeric:   lining-nums tabular-nums;
-        font-size:              var( --typo-3 );
-        line-height:            var( --line-height-s );
-    }
+  .text {
+    color: var(--PC-GREY--D15);
+    font-variant-numeric: lining-nums tabular-nums;
+    font-size: var(--typo-3);
+    line-height: var(--line-height-s);
+  }
 
-    &.fakeHovered,
-    &:hover
-    {
-        border-color:   var( --PC-BLUE--L90 );
-        background:     var( --PC-BLUE--L90 );
-    }
+  &.fakeHovered,
+  &:hover {
+    border-color: var(--PC-BLUE--L90);
+    background: var(--PC-BLUE--L90);
+  }
 
-    &:focus
-    {
-        outline:        none;
-        border-color:   var( --PC-BLUE );
-        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
-    }
+  &:focus {
+    outline: none;
+    border-color: var(--PC-BLUE);
+    box-shadow: 0 0 0 2px color(var(--PC-BLUE) a(30%));
+  }
 }
 
 .type__day,
-.type__week
-{
-    height:             var( --spacing-4 );
-    width:              var( --spacing-4 );
-    min-width:          var( --spacing-4 ); /* IE fix */
-    border-radius:      50%;
-    margin:             4px;
+.type__week {
+  height: var(--spacing-4);
+  width: var(--spacing-4);
+  min-width: var(--spacing-4); /* IE fix */
+  border-radius: 50%;
+  margin: 4px;
 }
 
-.type__month
-{
-    height:                 42px;
-    width:                  68px;
-    border-radius:          3px;
-    margin:                 1px;
+.type__month {
+  height: 42px;
+  width: 68px;
+  border-radius: 3px;
+  margin: 1px;
 }
-
 
 .selected,
 .selected.fakeHovered,
 .selected:focus,
-.selected:hover
-{
-    border-color:   var( --PC-BLUE );
-    background:     var( --PC-BLUE );
+.selected:hover {
+  border-color: var(--PC-BLUE);
+  background: var(--PC-BLUE);
 
-    .text
-    {
-        color:       var( --PC-WHITE );
-        font-weight: 700;
-    }
+  .text {
+    color: var(--PC-WHITE);
+    font-weight: 700;
+  }
 }
 
 .selectedWeek,
 .selectedWeek.fakeHovered,
 .selectedWeek:focus,
-.selectedWeek:hover
-{
-    border-color:   var( --PC-BLUE--L90 );
-    background:     var( --PC-BLUE--L90 );
+.selectedWeek:hover {
+  border-color: var(--PC-BLUE--L90);
+  background: var(--PC-BLUE--L90);
 }
-
 
 .disabled,
 .disabled.fakeHovered,
 .disabled:focus,
-.disabled:hover
-{
-    border-color:   var( --PC-GREY--L90 );
-    background:     var( --PC-GREY--L90 );
-    cursor:         default;
+.disabled:hover {
+  border-color: var(--PC-GREY--L90);
+  background: var(--PC-GREY--L90);
+  cursor: default;
 
-    .text
-    {
-        color:      var( --PC-GREY--L70 );
-    }
+  .text {
+    color: var(--PC-GREY--L70);
+  }
 }

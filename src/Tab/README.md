@@ -1,11 +1,9 @@
-Component Description
----------------------
+## Component Description
 
 A Nessie Tab is a basic wrapper to manage the content of Nessie Tabs.
 
-Example Usage
--------------
+## Example Usage
 
-	<Tab label="Tab title text">
-	    <div>Tab content goes here</div>
-	</Tab>
+    <Tab label="Tab title text">
+        <div>Tab content goes here</div>
+    </Tab>

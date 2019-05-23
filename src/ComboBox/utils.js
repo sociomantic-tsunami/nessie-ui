@@ -7,7 +7,6 @@
  *
  */
 
-
 /**
  * ## addPrefix
  * Adds a prefix to a string or array of strings
@@ -18,14 +17,12 @@
  * @return  {String}
  *
  */
-function addPrefix( str, prefix )
-{
-    if ( Array.isArray( str ) )
-    {
-        return str.map( s => addPrefix( s, prefix ) );
-    }
+function addPrefix(str, prefix) {
+  if (Array.isArray(str)) {
+    return str.map(s => addPrefix(s, prefix));
+  }
 
-    return ( str && prefix ) ? `${prefix}-${str}` : str;
+  return str && prefix ? `${prefix}-${str}` : str;
 }
 
 /**
@@ -38,25 +35,22 @@ function addPrefix( str, prefix )
  * @return  {Array}
  *
  */
-function prefixOptions( options = [], prefix )
-{
-    return options.map( ( option = {} ) =>
-    {
-        if ( option.header )
-        {
-            const { options: groupOptions } = option;
+function prefixOptions(options = [], prefix) {
+  return options.map((option = {}) => {
+    if (option.header) {
+      const { options: groupOptions } = option;
 
-            return {
-                ...option,
-                options : prefixOptions( groupOptions, prefix ),
-            };
-        }
+      return {
+        ...option,
+        options: prefixOptions(groupOptions, prefix)
+      };
+    }
 
-        return {
-            ...option,
-            id : addPrefix( option.id, prefix ),
-        };
-    } );
+    return {
+      ...option,
+      id: addPrefix(option.id, prefix)
+    };
+  });
 }
 
 /**
@@ -69,9 +63,8 @@ function prefixOptions( options = [], prefix )
  * @return  {String}
  *
  */
-function removePrefix( str, prefix )
-{
-    return ( str && prefix ) ? str.replace( `${prefix}-`, '' ) : str;
+function removePrefix(str, prefix) {
+  return str && prefix ? str.replace(`${prefix}-`, "") : str;
 }
 
 export { addPrefix, prefixOptions, removePrefix };

@@ -7,12 +7,11 @@
  *
  */
 
-import { useContext, useMemo }  from 'react';
+import { useContext, useMemo } from "react";
 
-import ThemeContext             from '../Theming/ThemeContext';
+import ThemeContext from "../Theming/ThemeContext";
 
-import { generateId }           from '.';
-
+import { generateId } from ".";
 
 /**
  * Builds class names from theme
@@ -22,13 +21,13 @@ import { generateId }           from '.';
  *
  * @return {Object} cssMap containing component's styles
  */
-export function useThemeClasses( displayName, props )
-{
-    const { classNames } = useContext( ThemeContext );
-    const { [ displayName ] : cssMap } = classNames;
+export function useThemeClasses(displayName, props) {
+  const { classNames } = useContext(ThemeContext);
+  const { [displayName]: cssMap } = classNames;
 
-    return props.cssMap ||
-           ( typeof cssMap === 'function' ? cssMap( props ) : cssMap );
+  return (
+    props.cssMap || (typeof cssMap === "function" ? cssMap(props) : cssMap)
+  );
 }
 
 /**
@@ -36,11 +35,9 @@ export function useThemeClasses( displayName, props )
  *
  * @return {Object} Theme variables
  */
-export function useThemeVars()
-{
-    return useContext( ThemeContext ).variables;
+export function useThemeVars() {
+  return useContext(ThemeContext).variables;
 }
-
 
 /**
  * Builds ID for given component
@@ -50,10 +47,9 @@ export function useThemeVars()
  *
  * @return {String} generated ID
  */
-export function useId( displayName, props )
-{
-    return useMemo(
-        () => props.id || generateId( displayName ),
-        [ displayName, props.id ],
-    );
+export function useId(displayName, props) {
+  return useMemo(() => props.id || generateId(displayName), [
+    displayName,
+    props.id
+  ]);
 }

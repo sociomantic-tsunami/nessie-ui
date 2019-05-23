@@ -9,108 +9,81 @@
 
 @import "../proto/base.css";
 
-:root
-{
-    --S:    8px;
-    --M:    16px;
-    --L:    24px;
+:root {
+  --S: 8px;
+  --M: 16px;
+  --L: 24px;
 }
 
-.default
-{
-    display:    grid;
+.default {
+  display: grid;
 }
 
-
-.flow__row
-{
-    grid-auto-flow: row;
+.flow__row {
+  grid-auto-flow: row;
 }
-.flow__col
-{
-    grid-auto-flow: column;
+.flow__col {
+  grid-auto-flow: column;
 }
 
-
-.align__start
-{
-    align-items: start;
+.align__start {
+  align-items: start;
 }
 
-.align__center
-{
-    align-items: center;
+.align__center {
+  align-items: center;
 }
 
-.align__end
-{
-    align-items: end;
+.align__end {
+  align-items: end;
 }
 
-.align__stretch
-{
-    align-items: stretch;
+.align__stretch {
+  align-items: stretch;
 }
 
-
-.justify__start
-{
-    justify-items: start;
+.justify__start {
+  justify-items: start;
 }
 
-.justify__center
-{
-    justify-items: center;
+.justify__center {
+  justify-items: center;
 }
 
-.justify__end
-{
-    justify-items: end;
+.justify__end {
+  justify-items: end;
 }
 
-.justify__stretch
-{
-    justify-items: stretch;
+.justify__stretch {
+  justify-items: stretch;
 }
 
-
-.columnGap__none
-{
-    grid-column-gap: 0;
+.columnGap__none {
+  grid-column-gap: 0;
 }
-.columnGap__S
-{
-    grid-column-gap: var( --S );
+.columnGap__S {
+  grid-column-gap: var(--S);
 }
-.columnGap__M
-{
-    grid-column-gap: var( --M );
+.columnGap__M {
+  grid-column-gap: var(--M);
 }
-.columnGap__L
-{
-    grid-column-gap: var( --L );
+.columnGap__L {
+  grid-column-gap: var(--L);
 }
 
-
-.rowGap__none
-{
-    grid-row-gap: 0;
+.rowGap__none {
+  grid-row-gap: 0;
 }
-.rowGap__S
-{
-    grid-row-gap: var( --S );
+.rowGap__S {
+  grid-row-gap: var(--S);
 }
-.rowGap__M
-{
-    grid-row-gap: var( --M );
+.rowGap__M {
+  grid-row-gap: var(--M);
 }
-.rowGap__L
-{
-    grid-row-gap: var( --L );
+.rowGap__L {
+  grid-row-gap: var(--L);
 }
 
-
-.hasFullWidth
-{
-    width:      100%;
+.hasFullWidth {
+  width: 100%;
 }

@@ -9,147 +9,116 @@
 
 @import "../proto/base.css";
 
-.default
-{
-    .header
-    {
-        display:        flex;
-        align-items:    flex-end;
-        max-width:      100%;
-        border-bottom:  solid 1px var( --PC-GREY--L70 );
+.default {
+  .header {
+    display: flex;
+    align-items: flex-end;
+    max-width: 100%;
+    border-bottom: solid 1px var(--PC-GREY--L70);
 
-        & > *
-        {
-            margin-bottom:  0;
-        }
+    & > * {
+      margin-bottom: 0;
     }
+  }
 
-    .tabsContainer
-    {
-        flex:           auto;
-        margin-bottom:  -1px;
+  .tabsContainer {
+    flex: auto;
+    margin-bottom: -1px;
+  }
+
+  .tabs {
+    display: flex;
+
+    & > * {
+      flex: none;
+      margin-bottom: 0;
+      margin-right: var(--spacing-2);
+
+      &:last-child {
+        margin-right: 0;
+      }
     }
+  }
 
-    .tabs
-    {
-        display:    flex;
+  .secondaryControls {
+    flex: none;
+    margin-left: var(--spacing-2);
+    margin-bottom: var(--spacing-2);
+  }
 
-        & > *
-        {
-            flex:           none;
-            margin-bottom:  0;
-            margin-right:   var( --spacing-2 );
-
-            &:last-child
-            {
-                margin-right: 0;
-            }
-        }
-    }
-
-    .secondaryControls
-    {
-        flex:           none;
-        margin-left:    var( --spacing-2 );
-        margin-bottom:  var( --spacing-2 );
-    }
-
-    .content
-    {
-        /* nothing to do here */
-    }
+  .content {
+    /* nothing to do here */
+  }
 }
-
 
 /* padding X */
-.paddingX__S
-{
-    .content
-    {
-        padding-left:   var( --spacing-1 );
-        padding-right:  var( --spacing-1 );
-    }
+.paddingX__S {
+  .content {
+    padding-left: var(--spacing-1);
+    padding-right: var(--spacing-1);
+  }
 }
 
-.paddingX__M
-{
-    .content
-    {
-        padding-left:   var( --spacing-2 );
-        padding-right:  var( --spacing-2 );
-    }
+.paddingX__M {
+  .content {
+    padding-left: var(--spacing-2);
+    padding-right: var(--spacing-2);
+  }
 }
 
-.paddingX__L
-{
-    .content
-    {
-        padding-left:   var( --spacing-3 );
-        padding-right:  var( --spacing-3 );
-    }
+.paddingX__L {
+  .content {
+    padding-left: var(--spacing-3);
+    padding-right: var(--spacing-3);
+  }
 }
 
-.paddingX__XL
-{
-    .content
-    {
-        padding-left:   var( --spacing-4 );
-        padding-right:  var( --spacing-4 );
-    }
+.paddingX__XL {
+  .content {
+    padding-left: var(--spacing-4);
+    padding-right: var(--spacing-4);
+  }
 }
 
-.paddingX__XXL
-{
-    .content
-    {
-        padding-left:   var( --spacing-5 );
-        padding-right:  var( --spacing-5 );
-    }
+.paddingX__XXL {
+  .content {
+    padding-left: var(--spacing-5);
+    padding-right: var(--spacing-5);
+  }
 }
-
 
 /* padding Y */
-.paddingY__S
-{
-    .content
-    {
-        padding-top:     var( --spacing-1 );
-        padding-bottom:  var( --spacing-1 );
-    }
+.paddingY__S {
+  .content {
+    padding-top: var(--spacing-1);
+    padding-bottom: var(--spacing-1);
+  }
 }
 
-.paddingY__M
-{
-    .content
-    {
-        padding-top:     var( --spacing-2 );
-        padding-bottom:  var( --spacing-2 );
-    }
+.paddingY__M {
+  .content {
+    padding-top: var(--spacing-2);
+    padding-bottom: var(--spacing-2);
+  }
 }
 
-.paddingY__L
-{
-    .content
-    {
-        padding-top:     var( --spacing-3 );
-        padding-bottom:  var( --spacing-3 );
-    }
+.paddingY__L {
+  .content {
+    padding-top: var(--spacing-3);
+    padding-bottom: var(--spacing-3);
+  }
 }
 
-.paddingY__XL
-{
-    .content
-    {
-        padding-top:     var( --spacing-4 );
-        padding-bottom:  var( --spacing-4 );
-    }
+.paddingY__XL {
+  .content {
+    padding-top: var(--spacing-4);
+    padding-bottom: var(--spacing-4);
+  }
 }
 
-.paddingY__XXL
-{
-    .content
-    {
-        padding-top:     var( --spacing-5 );
-        padding-bottom:  var( --spacing-5 );
-    }
+.paddingY__XXL {
+  .content {
+    padding-top: var(--spacing-5);
+    padding-bottom: var(--spacing-5);
+  }
 }

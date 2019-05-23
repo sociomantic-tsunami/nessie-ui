@@ -9,152 +9,132 @@
 
 @import "../proto/base.css";
 
-:root
-{
-    --inputHeight:          40px;
+:root {
+  --inputHeight: 40px;
 
-    --trackWidth:           40px;
-    --trackHeight:          16px;
+  --trackWidth: 40px;
+  --trackHeight: 16px;
 
-    --borderWidth:          2px;
+  --borderWidth: 2px;
 
-    --circleSize:           25px;
-    --circleOffset:         4px;
+  --circleSize: 25px;
+  --circleOffset: 4px;
 
-    --backgroundTransition: background-color 0.2s ease-in-out;
-    --circleTransition:     background-color 0.2s ease-in-out, left 0.25s cubic-bezier( 0.215, 0.61, 0.355, 1 );
+  --backgroundTransition: background-color 0.2s ease-in-out;
+  --circleTransition: background-color 0.2s ease-in-out,
+    left 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.default
-{
-    display:            flex;
-    align-items:        center;
-    justify-content:    center;
+.default {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  width: calc(var(--trackWidth) + (var(--circleOffset) * 2));
+  height: var(--inputHeight);
 
-    width:              calc( var( --trackWidth ) + ( var( --circleOffset ) * 2 ) );
-    height:             var( --inputHeight );
+  .input {
+    position: absolute;
+    left: -9999px;
 
-    .input
-    {
-        position:   absolute;
-        left:       -9999px;
+    &:focus {
+      & + .label {
+        outline: none;
 
-        &:focus
-        {
-            & + .label
-            {
-                outline:        none;
+        border: 1px solid var(--PC-BLUE);
+        box-shadow: 0 0 0 2px color(var(--PC-BLUE) a(30%));
 
-                border:         1px solid var( --PC-BLUE );
-                box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
-
-                &::before
-                {
-                    border-color:   var( --PC-BLUE );
-                    box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
-                }
-            }
+        &::before {
+          border-color: var(--PC-BLUE);
+          box-shadow: 0 0 0 2px color(var(--PC-BLUE) a(30%));
         }
+      }
     }
+  }
 
-    .label
-    {
-        display:        flex;
+  .label {
+    display: flex;
 
-        width:          var( --trackWidth );
-        height:         var( --trackHeight );
+    width: var(--trackWidth);
+    height: var(--trackHeight);
 
-        border-radius:  calc( var( --trackHeight ) / 2 );
+    border-radius: calc(var(--trackHeight) / 2);
 
-        background:     var( --PC-GREY--L10 );
+    background: var(--PC-GREY--L10);
 
-        cursor:         pointer;
-        transition:     var( --backgroundTransition );
+    cursor: pointer;
+    transition: var(--backgroundTransition);
 
-        &::before
-        {
-            content:        '';
+    &::before {
+      content: "";
 
-            display:        block;
-            position:       absolute;
+      display: block;
+      position: absolute;
 
-            box-sizing:     border-box;
+      box-sizing: border-box;
 
-            top:            50%;
-            left:           0;
-            transform:      translateY( -50% );
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
 
-            width:          var( --circleSize );
-            height:         var( --circleSize );
+      width: var(--circleSize);
+      height: var(--circleSize);
 
-            border-radius:  100%;
-            border-style:   solid;
-            border-width:   var( --borderWidth );
-            border-color:   var( --PC-GREY );
+      border-radius: 100%;
+      border-style: solid;
+      border-width: var(--borderWidth);
+      border-color: var(--PC-GREY);
 
-            background:     var( --PC-WHITE );
+      background: var(--PC-WHITE);
 
-            transition:     var( --circleTransition );
-        }
+      transition: var(--circleTransition);
     }
+  }
 
-    .input:checked + .label
-    {
-        background: var( --PC-BLUE--L10 );
-        transition: var( --backgroundTransition );
+  .input:checked + .label {
+    background: var(--PC-BLUE--L10);
+    transition: var(--backgroundTransition);
 
-        &::before
-        {
-            left:           calc( 100% - var( --circleSize ) );
-            border-color:   var( --PC-BLUE );
-        }
+    &::before {
+      left: calc(100% - var(--circleSize));
+      border-color: var(--PC-BLUE);
     }
+  }
 }
 
-.disabled
-{
-    .label
-    {
-        cursor:     default;
-        background: var( --PC-GREY--L40 );
+.disabled {
+  .label {
+    cursor: default;
+    background: var(--PC-GREY--L40);
 
-        &::before
-        {
-            border-color: var( --PC-GREY--L40 );
-        }
+    &::before {
+      border-color: var(--PC-GREY--L40);
+    }
+  }
+
+  .input:checked + .label {
+    background: var(--PC-BLUE--L55);
+
+    &::before {
+      border-color: var(--PC-BLUE--L55);
+    }
+  }
+
+  :hover {
+    .label {
+      background: var(--PC-GREY--L55);
+
+      &::before {
+        border-color: var(--PC-GREY--L40);
+      }
     }
 
-    .input:checked + .label
-    {
-        background: var( --PC-BLUE--L55 );
+    input:checked + .label {
+      background: var(--PC-BLUE--L55);
 
-        &::before
-        {
-            border-color: var( --PC-BLUE--L55 );
-        }
+      &::before {
+        border-color: var(--PC-BLUE--L40);
+      }
     }
-
-    :hover,
-    {
-        .label
-        {
-            background: var( --PC-GREY--L55 );
-
-            &::before
-            {
-                border-color: var( --PC-GREY--L40 );
-            }
-        }
-
-        input:checked + .label
-        {
-            background: var( --PC-BLUE--L55 );
-
-            &::before
-            {
-                border-color: var( --PC-BLUE--L40 );
-            }
-        }
-    }
+  }
 }

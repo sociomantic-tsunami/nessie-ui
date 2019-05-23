@@ -7,16 +7,13 @@
  *
  */
 
-@keyframes defaultSpinnerRingRotate
-{
-    to
-    {
-        transform: rotate(360deg);
-    }
+@keyframes defaultSpinnerRingRotate {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.default
-{
-    max-width: none;
-    animation: defaultSpinnerRingRotate .8s infinite ease-in-out;
+.default {
+  max-width: none;
+  animation: defaultSpinnerRingRotate 0.8s infinite ease-in-out;
 }

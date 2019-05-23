@@ -9,61 +9,49 @@
 
 @import "../proto/definitions/variables.css";
 
+.default {
+  display: block;
+  position: relative;
 
-.default
-{
-    display:            block;
-    position:           relative;
-
-    stroke:             currentColor;
-    stroke-width:       2;
-    stroke-linecap:     round;
-    stroke-linejoin:    round;
-    fill:               none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }
 
-
-.size__S
-{
-    width:  var( --spacing-3 );
-    height: var( --spacing-3 );
+.size__S {
+  width: var(--spacing-3);
+  height: var(--spacing-3);
 }
 
-.size__M
-{
-    width:  var( --spacing-4 );
-    height: var( --spacing-4 );
+.size__M {
+  width: var(--spacing-4);
+  height: var(--spacing-4);
 }
 
-.size__L
-{
-    width:  var( --spacing-5 );
-    height: var( --spacing-5 );
+.size__L {
+  width: var(--spacing-5);
+  height: var(--spacing-5);
 }
 
-.size__XL
-{
-    width:  var( --spacing-6 );
-    height: var( --spacing-6 );
+.size__XL {
+  width: var(--spacing-6);
+  height: var(--spacing-6);
 }
 
-
-.role__default
-{
-    color:  inherit;
+.role__default {
+  color: inherit;
 }
 
-.role__critical
-{
-    color:  var( --PC-RED );
+.role__critical {
+  color: var(--PC-RED);
 }
 
-.role__promoted
-{
-    color:  var( --PC-GREEN );
+.role__promoted {
+  color: var(--PC-GREEN);
 }
 
-.role__warning
-{
-    color:  var( --PC-ORANGE );
+.role__warning {
+  color: var(--PC-ORANGE);
 }

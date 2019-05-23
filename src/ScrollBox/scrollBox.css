@@ -9,297 +9,265 @@
 
 @import "../proto/base.css";
 
-:root
-{
-    --scrollBarThickness:   5px;
+:root {
+  --scrollBarThickness: 5px;
 }
 
-.default
-{
-    overflow:   hidden;
+.default {
+  overflow: hidden;
 
-    .inner
-    {
-        /* creates stacking context */
-        position:   relative;
-        z-index:    0;
+  .inner {
+    /* creates stacking context */
+    position: relative;
+    z-index: 0;
 
-        width:      100%;
-        height:     100%;
-        overflow:   scroll;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
 
-        /* force webkit scrollbars to be always visible on macOS */
-        &::-webkit-scrollbar
-        {
-            visibility: visible;
-        }
+    /* force webkit scrollbars to be always visible on macOS */
+    &::-webkit-scrollbar {
+      visibility: visible;
     }
+  }
 
-    .scrollBarHorizontal
-    {
-        position:   absolute;
-        bottom:     0;
-        left:       0;
-    }
+  .scrollBarHorizontal {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 
-    .scrollBarVertical
-    {
-        position:   absolute;
-        top:        0;
-        right:      0;
-    }
+  .scrollBarVertical {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }
 
-.scroll__horizontal
-{
-    .inner
-    {
-        overflow-x:             scroll;
-        overflow-y:             hidden;
-        overscroll-behavior-x:  contain;
-    }
+.scroll__horizontal {
+  .inner {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+  }
 }
 
-.scroll__vertical
-{
-    .inner
-    {
-        overflow-x:             hidden;
-        overflow-y:             scroll;
-        overscroll-behavior-y:  contain;
-    }
+.scroll__vertical {
+  .inner {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    overscroll-behavior-y: contain;
+  }
 }
 
-.scroll__both
-{
-    .scrollBarHorizontal
-    {
-        width:  calc( 100% - var( --scrollBarThickness ) );
-    }
+.scroll__both {
+  .scrollBarHorizontal {
+    width: calc(100% - var(--scrollBarThickness));
+  }
 
-    .scrollBarVertical
-    {
-        height: calc( 100% - var( --scrollBarThickness ) );
-    }
+  .scrollBarVertical {
+    height: calc(100% - var(--scrollBarThickness));
+  }
 }
 
-.scrollIndicatorVariant__circle
-{
-    .iconDown,
-    .iconLeft,
-    .iconRight,
-    .iconUp
-    {
-        position:       absolute;
-        border-radius:  50%;
-        padding:        var( --spacing-1 );
-        background:     var( --PC-BLUE );
-        opacity:        0.4;
+.scrollIndicatorVariant__circle {
+  .iconDown,
+  .iconLeft,
+  .iconRight,
+  .iconUp {
+    position: absolute;
+    border-radius: 50%;
+    padding: var(--spacing-1);
+    background: var(--PC-BLUE);
+    opacity: 0.4;
 
-        &:hover,
-        &:focus
-        {
-            opacity:    1;
-            svg
-            {
-                color:  var( --PC-WHITE );
-            }
-        }
-        svg
-        {
-            color:  var( --PC-WHITE );
-        }
+    &:hover,
+    &:focus {
+      opacity: 1;
+      svg {
+        color: var(--PC-WHITE);
+      }
     }
+    svg {
+      color: var(--PC-WHITE);
+    }
+  }
 
-    .iconDown
-    {
-        bottom:     var( --spacing-1 );
-        left:       calc( 50% );
-        transform:  translateX( -50% );
-    }
+  .iconDown {
+    bottom: var(--spacing-1);
+    left: calc(50%);
+    transform: translateX(-50%);
+  }
 
-    .iconLeft
-    {
-        top:        calc( 50% );
-        left:       var( --spacing-1 );
-        transform:  translateY( -50% );
-    }
+  .iconLeft {
+    top: calc(50%);
+    left: var(--spacing-1);
+    transform: translateY(-50%);
+  }
 
-    .iconRight
-    {
-        top:        calc( 50% );
-        right:      var( --spacing-1 );
-        transform:  translateY( -50% );
-    }
+  .iconRight {
+    top: calc(50%);
+    right: var(--spacing-1);
+    transform: translateY(-50%);
+  }
 
-    .iconUp
-    {
-        top:        var( --spacing-1 );
-        left:       calc( 50% );
-        transform:  translateX( -50% );
-    }
+  .iconUp {
+    top: var(--spacing-1);
+    left: calc(50%);
+    transform: translateX(-50%);
+  }
 }
 
-.scrollIndicatorVariant__gradient
-{
-    .iconDown,
-    .iconLeft,
-    .iconRight,
-    .iconUp
-    {
-        position:         absolute;
-        background-color: transparent;
+.scrollIndicatorVariant__gradient {
+  .iconDown,
+  .iconLeft,
+  .iconRight,
+  .iconUp {
+    position: absolute;
+    background-color: transparent;
 
-        svg
-        {
-            color:  var( --PC-GREY--D5 );
-        }
-
-        &::before
-        {
-            content:        "";
-            display:        block;
-            position:       absolute;
-            pointer-events: none;
-        }
-
-        &:focus
-        {
-            &::after
-            {
-                border-color: transparent;
-                box-shadow: none;
-            }
-        }
+    svg {
+      color: var(--PC-GREY--D5);
     }
 
-    .iconDown
-    {
-        bottom:     0;
-        left:       0;
-        width:      100%;
-
-        &::before
-        {
-            bottom:     0;
-            width:      100%;
-            height:     var( --spacing-9 );
-
-            background: linear-gradient(to top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
-        }
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      pointer-events: none;
     }
 
-    .iconLeft
-    {
-        top:        0;
-        left:       0;
-        height:     100%;
-
-        &::before
-        {
-            top:       0;
-            left:      0;
-            height:    100%;
-            width:     var( --spacing-9 );
-
-            background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
-        }
+    &:focus {
+      &::after {
+        border-color: transparent;
+        box-shadow: none;
+      }
     }
+  }
 
-    .iconRight
-    {
-        top:        0;
-        right:      0;
-        height:     100%;
+  .iconDown {
+    bottom: 0;
+    left: 0;
+    width: 100%;
 
-        &::before
-        {
-            top:        0;
-            right:      0;
-            height:     100%;
-            width:      var( --spacing-9 );
+    &::before {
+      bottom: 0;
+      width: 100%;
+      height: var(--spacing-9);
 
-            background: linear-gradient(to left, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
-        }
+      background: linear-gradient(
+        to top,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
     }
+  }
 
-    .iconUp
-    {
-        top:        0;
-        left:       0;
-        width:      100%;
+  .iconLeft {
+    top: 0;
+    left: 0;
+    height: 100%;
 
-        &::before
-        {
-            top:        0;
-            width:      100%;
-            height:     var( --spacing-9 );
+    &::before {
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: var(--spacing-9);
 
-            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
-        }
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
     }
+  }
+
+  .iconRight {
+    top: 0;
+    right: 0;
+    height: 100%;
+
+    &::before {
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: var(--spacing-9);
+
+      background: linear-gradient(
+        to left,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    }
+  }
+
+  .iconUp {
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    &::before {
+      top: 0;
+      width: 100%;
+      height: var(--spacing-9);
+
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    }
+  }
 }
-
 
 /* padding X */
-.paddingX__S .content
-{
-    padding-left:   var( --spacing-1 );
-    padding-right:  var( --spacing-1 );
+.paddingX__S .content {
+  padding-left: var(--spacing-1);
+  padding-right: var(--spacing-1);
 }
 
-.paddingX__M .content
-{
-    padding-left:   var( --spacing-2 );
-    padding-right:  var( --spacing-2 );
+.paddingX__M .content {
+  padding-left: var(--spacing-2);
+  padding-right: var(--spacing-2);
 }
 
-.paddingX__L .content
-{
-    padding-left:   var( --spacing-3 );
-    padding-right:  var( --spacing-3 );
+.paddingX__L .content {
+  padding-left: var(--spacing-3);
+  padding-right: var(--spacing-3);
 }
 
-.paddingX__XL .content
-{
-    padding-left:   var( --spacing-4 );
-    padding-right:  var( --spacing-4 );
+.paddingX__XL .content {
+  padding-left: var(--spacing-4);
+  padding-right: var(--spacing-4);
 }
 
-.paddingX__XXL .content
-{
-    padding-left:   var( --spacing-5 );
-    padding-right:  var( --spacing-5 );
+.paddingX__XXL .content {
+  padding-left: var(--spacing-5);
+  padding-right: var(--spacing-5);
 }
-
 
 /* padding Y */
-.paddingY__S .content
-{
-    padding-top:     var( --spacing-1 );
-    padding-bottom:  var( --spacing-1 );
+.paddingY__S .content {
+  padding-top: var(--spacing-1);
+  padding-bottom: var(--spacing-1);
 }
 
-.paddingY__M .content
-{
-    padding-top:     var( --spacing-2 );
-    padding-bottom:  var( --spacing-2 );
+.paddingY__M .content {
+  padding-top: var(--spacing-2);
+  padding-bottom: var(--spacing-2);
 }
 
-.paddingY__L .content
-{
-    padding-top:     var( --spacing-3 );
-    padding-bottom:  var( --spacing-3 );
+.paddingY__L .content {
+  padding-top: var(--spacing-3);
+  padding-bottom: var(--spacing-3);
 }
 
-.paddingY__XL .content
-{
-    padding-top:     var( --spacing-4 );
-    padding-bottom:  var( --spacing-4 );
+.paddingY__XL .content {
+  padding-top: var(--spacing-4);
+  padding-bottom: var(--spacing-4);
 }
 
-.paddingY__XXL .content
-{
-    padding-top:     var( --spacing-5 );
-    padding-bottom:  var( --spacing-5 );
+.paddingY__XXL .content {
+  padding-top: var(--spacing-5);
+  padding-bottom: var(--spacing-5);
 }

@@ -9,59 +9,50 @@
 
 @import "../proto/base.css";
 
-:root
-{
-    --iconSize:     24px;
-    --borderWidth:  1px;
+:root {
+  --iconSize: 24px;
+  --borderWidth: 1px;
 
-    --iconOffset:   calc( var( --spacing-1 ) + var( --borderWidth ) );
-    --inputPadding: calc( var( --iconSize ) + ( 2 * var( --spacing-1 ) ) +
-        var( --borderWidth ) );
+  --iconOffset: calc(var(--spacing-1) + var(--borderWidth));
+  --inputPadding: calc(
+    var(--iconSize) + (2 * var(--spacing-1)) + var(--borderWidth)
+  );
 }
 
-.default
-{
-    display:        flex;
-    flex-direction: row;
-    align-items:    center;
+.default {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-    .icon
-    {
-        position:   absolute;
-        top:        50%;
-        margin-top: calc( -1 * ( var( --iconSize ) / 2 ) );
-    }
+  .icon {
+    position: absolute;
+    top: 50%;
+    margin-top: calc(-1 * (var(--iconSize) / 2));
+  }
 
-    .input
-    {
-        flex:           1 1 auto;
-        min-width:      0;
-        margin-bottom:  0;
-    }
+  .input {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-bottom: 0;
+  }
 }
 
-.position__left
-{
-    .input
-    {
-        padding-left:   var( --inputPadding );
-    }
+.position__left {
+  .input {
+    padding-left: var(--inputPadding);
+  }
 
-    .icon
-    {
-        left:   var( --iconOffset );
-    }
+  .icon {
+    left: var(--iconOffset);
+  }
 }
 
-.position__right
-{
-    .input
-    {
-        padding-right:  var( --inputPadding );
-    }
+.position__right {
+  .input {
+    padding-right: var(--inputPadding);
+  }
 
-    .icon
-    {
-        right:  var( --iconOffset );
-    }
+  .icon {
+    right: var(--iconOffset);
+  }
 }
