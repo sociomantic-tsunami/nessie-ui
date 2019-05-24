@@ -8,14 +8,14 @@
  */
 
 export {
-    attachEvents,
-    buildDisplayName,
-    callMultiple,
-    clamp,
-    createEventHandler,
-    generateId,
-    killFocus,
-    mapAria,
-} from './utils';
+  attachEvents,
+  buildDisplayName,
+  callMultiple,
+  clamp,
+  createEventHandler,
+  generateId,
+  killFocus,
+  mapAria
+} from "./utils";
 
-export { useId, useThemeClasses, useThemeVars } from './customHooks';
+export { useId, useThemeClasses, useThemeVars } from "./customHooks";

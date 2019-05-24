@@ -9,13 +9,12 @@
 
 @import "./definitions/variables.css";
 
-.default
-{
-    position:       relative;
-    margin:         0;
+.default {
+  position: relative;
+  margin: 0;
 
-    box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0; /* in case this is a flexbox child */
 }

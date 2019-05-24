@@ -7,51 +7,50 @@
  *
  */
 
-import React, { forwardRef }             from 'react';
-import PropTypes                         from 'prop-types';
+import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
 
-import { attachEvents, useThemeClasses } from '../utils';
+import { attachEvents, useThemeClasses } from "../utils";
 
+const componentName = "Popup";
 
-const componentName = 'Popup';
+const Popup = forwardRef((props, ref) => {
+  const { children, style } = props;
 
-const Popup = forwardRef( ( props, ref ) =>
-{
-    const { children, style } = props;
+  const cssMap = useThemeClasses(componentName, props);
 
-    const cssMap = useThemeClasses( componentName, props );
-
-    return (
-        <div
-            { ...attachEvents( props ) }
-            className = { cssMap.main }
-            ref       = { ref }
-            style     = { style }>
-            { children }
-        </div>
-    );
-} );
+  return (
+    <div
+      {...attachEvents(props)}
+      className={cssMap.main}
+      ref={ref}
+      style={style}
+    >
+      {children}
+    </div>
+  );
+});
 
 Popup.propTypes = {
-    children  : PropTypes.node,
-    className : PropTypes.string,
-    cssMap    : PropTypes.objectOf( PropTypes.string ),
-    hasError  : PropTypes.bool,
-    padding   : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
-    /**
-     *  Style overrides
-     */
-    style     : PropTypes.objectOf( PropTypes.string ),
+  children: PropTypes.node,
+  className: PropTypes.string,
+  cssMap: PropTypes.objectOf(PropTypes.string),
+  hasError: PropTypes.bool,
+  padding: PropTypes.oneOf(["none", "S", "M", "L"]),
+  /**
+   *  Style overrides
+   */
+  style: PropTypes.objectOf(PropTypes.string)
 };
 
 Popup.defaultProps = {
-    children  : undefined,
-    className : undefined,
-    cssMap    : undefined,
-    hasError  : false,
-    padding   : 'none',
+  children: undefined,
+  className: undefined,
+  cssMap: undefined,
+  hasError: false,
+  padding: "none",
 
-    style : undefined,
+  style: undefined
 };
 
 Popup.displayName = componentName;

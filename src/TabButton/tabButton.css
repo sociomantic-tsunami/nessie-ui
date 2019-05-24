@@ -9,100 +9,89 @@
 
 @import "../proto/base.css";
 
-.default
-{
-    appearance:     none !important;
+.default {
+  appearance: none !important;
 
-    display:        table; /* flex doesn’t work here */
+  display: table; /* flex doesn’t work here */
 
-    width:          auto;
-    height:         auto;
+  width: auto;
+  height: auto;
 
-    padding:        0;
+  padding: 0;
 
-    border:         none;
-    border-radius:  2px;
+  border: none;
+  border-radius: 2px;
 
-    background:     transparent;
-    cursor:         pointer;
+  background: transparent;
+  cursor: pointer;
 
-    @extend %Nessie-Bold;
+  @extend %Nessie-Bold;
 
-    color:          var( --PC-GREY--L70 );
-    text-transform: none;
+  color: var(--PC-GREY--L70);
+  text-transform: none;
 
-    .content
-    {
-        /* Firefox doesn’t properly support flex directly
+  .content {
+    /* Firefox doesn’t properly support flex directly
          * on button so we need to set it here
          */
-        display:            flex;
-        justify-content:    center;
-        align-items:        center;
-        box-sizing:         border-box;
-        height:             40px;
-        text-align:         center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    height: 40px;
+    text-align: center;
 
-        min-width:          0;
-        margin:             0;
-        padding:            0;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
 
-        border:             1px solid transparent;
-        border-radius:      0 0 2px;
+    border: 1px solid transparent;
+    border-radius: 0 0 2px;
+  }
+
+  .label {
+    @extend %Nessie-Bold;
+
+    padding-left: var(--spacing-1);
+    padding-right: var(--spacing-1);
+    margin-bottom: -1px;
+
+    font-size: var(--typo-3);
+    line-height: var(--line-height-s);
+    letter-spacing: 0.5px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .subtitle {
+    font-weight: normal;
+    text-transform: initial;
+  }
+
+  &:focus {
+    outline: none;
+
+    .content {
+      border: 1px solid var(--PC-BLUE);
+      box-shadow: 0 0 0 2px color(var(--PC-BLUE) a(30%));
     }
-
-    .label
-    {
-        @extend %Nessie-Bold;
-
-        padding-left:   var( --spacing-1 );
-        padding-right:  var( --spacing-1 );
-        margin-bottom:  -1px;
-
-        font-size:      var( --typo-3 );
-        line-height:    var( --line-height-s );
-        letter-spacing: 0.5px;
-
-        overflow:       hidden;
-        text-overflow:  ellipsis;
-        white-space:    nowrap;
-
-    }
-
-    .subtitle
-    {
-        font-weight: 	normal;
-        text-transform: initial;
-    }
-
-    &:focus
-    {
-        outline:    none;
-
-        .content
-        {
-            border:     1px solid var( --PC-BLUE );
-            box-shadow: 0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
-        }
-    }
+  }
 }
 
-.active
-{
-    color:          var( --PC-BLUE );
-    margin-bottom:  0;
-    pointer-events: none;
-    cursor:         default;
+.active {
+  color: var(--PC-BLUE);
+  margin-bottom: 0;
+  pointer-events: none;
+  cursor: default;
 
-    .content
-    {
-        border-bottom-color:   var( --PC-BLUE );
-    }
+  .content {
+    border-bottom-color: var(--PC-BLUE);
+  }
 }
 
-
-.disabled
-{
-    cursor:         default;
-    pointer-events: none;
+.disabled {
+  cursor: default;
+  pointer-events: none;
 }

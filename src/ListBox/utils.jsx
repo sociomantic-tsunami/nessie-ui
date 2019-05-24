@@ -7,11 +7,10 @@
  *
  */
 
-import React, { Children, cloneElement }    from 'react';
+import React, { Children, cloneElement } from "react";
 
-import ListBoxOption                        from './ListBoxOption';
-import ListBoxOptionGroup                   from './ListBoxOptionGroup';
-
+import ListBoxOption from "./ListBoxOption";
+import ListBoxOptionGroup from "./ListBoxOptionGroup";
 
 /**
  * ## isSelectedOption
@@ -23,17 +22,14 @@ import ListBoxOptionGroup                   from './ListBoxOptionGroup';
  * @return  {Boolean}
  *
  */
-function isSelectedOption( option, selection )
-{
-    if ( !( option || selection ) )
-    {
-        return false;
-    }
-    if ( Array.isArray( selection ) )
-    {
-        return selection.indexOf( option.props.id ) > -1;
-    }
-    return option.props.id === selection;
+function isSelectedOption(option, selection) {
+  if (!(option || selection)) {
+    return false;
+  }
+  if (Array.isArray(selection)) {
+    return selection.indexOf(option.props.id) > -1;
+  }
+  return option.props.id === selection;
 }
 
 /**
@@ -45,37 +41,24 @@ function isSelectedOption( option, selection )
  * @return  {Array}
  *
  */
-function buildOptions( options = [] )
-{
-    return options.map( ( option = {} ) =>
-    {
-        if ( typeof option === 'object' )
-        {
-            if ( option.header )
-            {
-                const { options: groupOptions, ...groupProps } = option;
-
-                return (
-                    <ListBoxOptionGroup
-                        { ...groupProps }
-                        key = { option.header }>
-                        { buildOptions( groupOptions ) }
-                    </ListBoxOptionGroup>
-                );
-            }
-
-            return (
-                <ListBoxOption { ...option } key = { option.id } />
-            );
-        }
+function buildOptions(options = []) {
+  return options.map((option = {}) => {
+    if (typeof option === "object") {
+      if (option.header) {
+        const { options: groupOptions, ...groupProps } = option;
 
         return (
-            <ListBoxOption
-                id   = { option }
-                key  = { option }
-                text = { option } />
+          <ListBoxOptionGroup {...groupProps} key={option.header}>
+            {buildOptions(groupOptions)}
+          </ListBoxOptionGroup>
         );
-    } );
+      }
+
+      return <ListBoxOption {...option} key={option.id} />;
+    }
+
+    return <ListBoxOption id={option} key={option} text={option} />;
+  });
 }
 
 /**
@@ -88,32 +71,26 @@ function buildOptions( options = [] )
  * @return  {Array}
  *
  */
-const updateOptions = ( options = [], props ) =>
-{
-    if ( !props )
-    {
-        return options;
+const updateOptions = (options = [], props) => {
+  if (!props) {
+    return options;
+  }
+
+  return Children.toArray(options).map((option = {}) => {
+    if (option.props.header) {
+      return cloneElement(option, {
+        children: updateOptions(option.props.children, props)
+      });
     }
 
-    return Children.toArray( options ).map( ( option = {} ) =>
-    {
-        if ( option.props.header )
-        {
-            return cloneElement( option, {
-                children : updateOptions( option.props.children, props ),
-            } );
-        }
-
-        return cloneElement( option, {
-            isActive : props.activeOption &&
-                ( option.props.id === props.activeOption ),
-            onClick     : props.onClickOption,
-            onMouseOut  : props.onMouseOutOption,
-            onMouseOver : props.onMouseOverOption,
-            isSelected  : props.selection &&
-                isSelectedOption( option, props.selection ),
-        } );
-    } );
+    return cloneElement(option, {
+      isActive: props.activeOption && option.props.id === props.activeOption,
+      onClick: props.onClickOption,
+      onMouseOut: props.onMouseOutOption,
+      onMouseOver: props.onMouseOverOption,
+      isSelected: props.selection && isSelectedOption(option, props.selection)
+    });
+  });
 };
 
 export { buildOptions, isSelectedOption, updateOptions };

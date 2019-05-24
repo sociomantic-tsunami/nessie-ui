@@ -9,38 +9,28 @@
 
 @import "../proto/base.css";
 
-
-.align__start
-{
-    align-self: start;
+.align__start {
+  align-self: start;
 }
-.align__center
-{
-    align-self: center;
+.align__center {
+  align-self: center;
 }
-.align__end
-{
-    align-self: end;
+.align__end {
+  align-self: end;
 }
-.align__stretch
-{
-    align-self: stretch;
+.align__stretch {
+  align-self: stretch;
 }
 
-
-.justify__start
-{
-    justify-self: start;
+.justify__start {
+  justify-self: start;
 }
-.justify__center
-{
-    justify-self: center;
+.justify__center {
+  justify-self: center;
 }
-.justify__end
-{
-    justify-self: end;
+.justify__end {
+  justify-self: end;
 }
-.justify__stretch
-{
-    justify-self: stretch;
+.justify__stretch {
+  justify-self: stretch;
 }

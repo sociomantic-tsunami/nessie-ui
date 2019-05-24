@@ -7,101 +7,99 @@
  *
  */
 
-import React, { forwardRef }                   from 'react';
-import PropTypes                               from 'prop-types';
+import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
 
-import { createEventHandler, useThemeClasses } from '../utils';
+import { createEventHandler, useThemeClasses } from "../utils";
 
+const componentName = "TimeInput";
 
-const componentName = 'TimeInput';
+const TimeInput = forwardRef((props, ref) => {
+  const cssMap = useThemeClasses(componentName, props);
 
-const TimeInput = forwardRef( ( props, ref ) =>
-{
-    const cssMap = useThemeClasses( componentName, props );
+  const {
+    hourIsDisabled,
+    hourIsReadOnly,
+    hourPlaceholder,
+    hourValue,
+    id,
+    isDisabled,
+    isReadOnly,
+    minuteIsDisabled,
+    minuteIsReadOnly,
+    minutePlaceholder,
+    minuteValue,
+    onChangeHour,
+    onChangeMinute,
+    style
+  } = props;
 
-    const {
-        hourIsDisabled,
-        hourIsReadOnly,
-        hourPlaceholder,
-        hourValue,
-        id,
-        isDisabled,
-        isReadOnly,
-        minuteIsDisabled,
-        minuteIsReadOnly,
-        minutePlaceholder,
-        minuteValue,
-        onChangeHour,
-        onChangeMinute,
-        style,
-    } = props;
+  return (
+    <div className={cssMap.main} ref={ref} style={style}>
+      <input
+        className={cssMap.hour}
+        disabled={isDisabled || hourIsDisabled}
+        id={`${id}-hour`}
+        onChange={createEventHandler(onChangeHour)}
+        placeholder={hourPlaceholder}
+        readOnly={isReadOnly || hourIsReadOnly}
+        type="text"
+        value={hourValue}
+      />
+      <span>:</span>
+      <input
+        className={cssMap.min}
+        disabled={isDisabled || minuteIsDisabled}
+        id={`${id}-minute`}
+        onChange={createEventHandler(onChangeMinute)}
+        placeholder={minutePlaceholder}
+        readOnly={isReadOnly || minuteIsReadOnly}
+        type="text"
+        value={minuteValue}
+      />
+    </div>
+  );
+});
 
-    return (
-        <div className = { cssMap.main } ref = { ref } style = { style }>
-            <input
-                className   = { cssMap.hour }
-                disabled    = { isDisabled || hourIsDisabled }
-                id          = { `${id}-hour` }
-                onChange    = { createEventHandler( onChangeHour ) }
-                placeholder = { hourPlaceholder }
-                readOnly    = { isReadOnly || hourIsReadOnly }
-                type        = "text"
-                value       = { hourValue } />
-            <span>:</span>
-            <input
-                className   = { cssMap.min }
-                disabled    = { isDisabled || minuteIsDisabled }
-                id          = { `${id}-minute` }
-                onChange    = { createEventHandler( onChangeMinute ) }
-                placeholder = { minutePlaceholder }
-                readOnly    = { isReadOnly || minuteIsReadOnly }
-                type        = "text"
-                value       = { minuteValue } />
-        </div>
-    );
-} );
-
-TimeInput.propTypes =
-{
-    className         : PropTypes.string,
-    cssMap            : PropTypes.objectOf( PropTypes.string ),
-    hourIsDisabled    : PropTypes.bool,
-    hourIsReadOnly    : PropTypes.bool,
-    hourPlaceholder   : PropTypes.string,
-    hourValue         : PropTypes.string,
-    id                : PropTypes.string,
-    isDisabled        : PropTypes.bool,
-    isReadOnly        : PropTypes.bool,
-    minuteIsDisabled  : PropTypes.bool,
-    minuteIsReadOnly  : PropTypes.bool,
-    minutePlaceholder : PropTypes.string,
-    minuteValue       : PropTypes.string,
-    onChangeHour      : PropTypes.func,
-    onChangeMinute    : PropTypes.func,
-    /**
-     *  Style overrides
-     */
-    style             : PropTypes.objectOf( PropTypes.string ),
+TimeInput.propTypes = {
+  className: PropTypes.string,
+  cssMap: PropTypes.objectOf(PropTypes.string),
+  hourIsDisabled: PropTypes.bool,
+  hourIsReadOnly: PropTypes.bool,
+  hourPlaceholder: PropTypes.string,
+  hourValue: PropTypes.string,
+  id: PropTypes.string,
+  isDisabled: PropTypes.bool,
+  isReadOnly: PropTypes.bool,
+  minuteIsDisabled: PropTypes.bool,
+  minuteIsReadOnly: PropTypes.bool,
+  minutePlaceholder: PropTypes.string,
+  minuteValue: PropTypes.string,
+  onChangeHour: PropTypes.func,
+  onChangeMinute: PropTypes.func,
+  /**
+   *  Style overrides
+   */
+  style: PropTypes.objectOf(PropTypes.string)
 };
 
-TimeInput.defaultProps =
-{
-    className         : undefined,
-    cssMap            : undefined,
-    hourIsDisabled    : false,
-    hourIsReadOnly    : false,
-    hourPlaceholder   : 'HH',
-    hourValue         : undefined,
-    id                : undefined,
-    isDisabled        : false,
-    isReadOnly        : false,
-    minuteIsDisabled  : false,
-    minuteIsReadOnly  : false,
-    minutePlaceholder : 'mm',
-    minuteValue       : undefined,
-    onChangeHour      : undefined,
-    onChangeMinute    : undefined,
-    style             : undefined,
+TimeInput.defaultProps = {
+  className: undefined,
+  cssMap: undefined,
+  hourIsDisabled: false,
+  hourIsReadOnly: false,
+  hourPlaceholder: "HH",
+  hourValue: undefined,
+  id: undefined,
+  isDisabled: false,
+  isReadOnly: false,
+  minuteIsDisabled: false,
+  minuteIsReadOnly: false,
+  minutePlaceholder: "mm",
+  minuteValue: undefined,
+  onChangeHour: undefined,
+  onChangeMinute: undefined,
+  style: undefined
 };
 
 TimeInput.displayName = componentName;

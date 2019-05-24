@@ -5,7 +5,6 @@ them. A listbox that allows a single option to be chosen is a single-select
 listbox; one that allows multiple options to be selected is a multi-select
 listbox.
 
-
 ## Example Usage
 
 ```

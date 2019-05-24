@@ -6,6 +6,7 @@ if you want to use the Icon component, or any other component that uses icons.
 ## Example Usage
 
 You should create a separate ReactDOM mount point for SpriteMap, e.g:
+
 ```
 <html>
     <head>

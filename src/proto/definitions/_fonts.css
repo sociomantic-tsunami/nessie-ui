@@ -11,91 +11,80 @@
 //    $FONT DEFINITIONS
 //------------------------------------*/
 
-%Nessie-Regular
-{
-    font-family: Nessie, sans-serif;
-    font-weight: 400;
-    font-style: normal;
+%Nessie-Regular {
+  font-family: Nessie, sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-%Nessie-RegularIt
-{
-    font-family: Nessie, sans-serif;
-    font-weight: 400;
-    font-style: italic;
+%Nessie-RegularIt {
+  font-family: Nessie, sans-serif;
+  font-weight: 400;
+  font-style: italic;
 }
 
-%Nessie-SemiBold
-{
-    font-family: Nessie, sans-serif;
-    font-weight: 600;
-    font-style: normal;
+%Nessie-SemiBold {
+  font-family: Nessie, sans-serif;
+  font-weight: 600;
+  font-style: normal;
 }
 
-%Nessie-SemiBoldIt
-{
-    font-family: Nessie, sans-serif;
-    font-weight: 600;
-    font-style: italic;
+%Nessie-SemiBoldIt {
+  font-family: Nessie, sans-serif;
+  font-weight: 600;
+  font-style: italic;
 }
 
-%Nessie-Bold
-{
-    font-family: Nessie, sans-serif;
-    font-weight: 700;
-    font-style: normal;
+%Nessie-Bold {
+  font-family: Nessie, sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
-%Nessie-BoldIt
-{
-    font-family: Nessie, sans-serif;
-    font-weight: 700;
-    font-style: italic;
+%Nessie-BoldIt {
+  font-family: Nessie, sans-serif;
+  font-weight: 700;
+  font-style: italic;
 }
 
-%Nessie-ExtraBold
-{
-    font-family: Nessie, sans-serif;
-    font-weight: 800;
-    font-style: normal;
+%Nessie-ExtraBold {
+  font-family: Nessie, sans-serif;
+  font-weight: 800;
+  font-style: normal;
 }
 
-%Nessie-ExtraBoldIt
-{
-    font-family: Nessie, sans-serif;
-    font-weight: 800;
-    font-style: italic;
+%Nessie-ExtraBoldIt {
+  font-family: Nessie, sans-serif;
+  font-weight: 800;
+  font-style: italic;
 }
 
-%Nessie-Light
-{
-    font-family: Nessie, sans-serif;
-    font-weight: 300;
-    font-style: normal;
+%Nessie-Light {
+  font-family: Nessie, sans-serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
-%Nessie-LightIt
-{
-    font-family: Nessie, sans-serif;
-    font-weight: 300;
-    font-style: italic;
+%Nessie-LightIt {
+  font-family: Nessie, sans-serif;
+  font-weight: 300;
+  font-style: italic;
 }
 
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-    --typo-1:           10px;
-    --typo-2:           12px;
-    --typo-3:           14px;
-    --typo-4:           16px;
-    --typo-5:           18px;
-    --typo-6:           20px;
-    --typo-7:           24px;
+:root {
+  /*  TYPOGRAPHY SIZES */
+  --typo-1: 10px;
+  --typo-2: 12px;
+  --typo-3: 14px;
+  --typo-4: 16px;
+  --typo-5: 18px;
+  --typo-6: 20px;
+  --typo-7: 24px;
 
-    --line-height-xs:   14px;
-    --line-height-s:    16px;
-    --line-height-m:    24px;
-    --line-height-l:    32px;
-    --line-height-xl:   40px;
-    --line-height-xxl:  48px;
+  --line-height-xs: 14px;
+  --line-height-s: 16px;
+  --line-height-m: 24px;
+  --line-height-l: 32px;
+  --line-height-xl: 40px;
+  --line-height-xxl: 48px;
 }

@@ -9,145 +9,117 @@
 
 @import "../proto/base.css";
 
-
-:root
-{
-    --sqrt2: 1.4142135623730951; /* Math.sqrt( 2 ) */
+:root {
+  --sqrt2: 1.4142135623730951; /* Math.sqrt( 2 ) */
 }
 
+.default {
+  appearance: none !important;
 
-.default
-{
-    appearance:         none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    display:            flex;
-    align-items:        center;
-    justify-content:    center;
+  width: auto;
 
-    width:              auto;
+  margin: 0;
+  padding: 0;
+  border: none;
 
-    margin:             0;
-    padding:            0;
-    border:             none;
+  background: transparent;
+  cursor: pointer;
 
-    background:         transparent;
-    cursor:             pointer;
+  .icon {
+    flex: none;
+  }
 
-    .icon
-    {
-        flex:   none;
+  &:focus {
+    outline: none;
+
+    &::after {
+      content: "";
+      display: block;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+
+      width: calc(100% * var(--sqrt2));
+      height: calc(100% * var(--sqrt2));
+
+      border-radius: 50%;
     }
-
-    &:focus
-    {
-        outline:    none;
-
-        &::after
-        {
-            content:        '';
-            display:        block;
-
-            position:       absolute;
-            top:            50%;
-            left:           50%;
-            transform:      translateX( -50% ) translateY( -50% );
-
-            width:          calc( 100% * var( --sqrt2 ) );
-            height:         calc( 100% * var( --sqrt2 ) );
-
-            border-radius:  50%;
-        }
-    }
+  }
 }
 
+.role__default {
+  .icon {
+    color: var(--PC-GREY--D25);
+  }
 
-.role__default
-{
-    .icon
-    {
-        color:  var( --PC-GREY--D25 );
+  &:hover,
+  &:focus,
+  &.fakeHovered {
+    .icon {
+      color: var(--PC-BLUE);
     }
+  }
 
-    &:hover,
-    &:focus,
-    &.fakeHovered
-    {
-        .icon
-        {
-            color:  var( --PC-BLUE );
-        }
-    }
-
-    &:focus::after
-    {
-        border:     1px solid var( --PC-BLUE );
-        box-shadow: 0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
-    }
+  &:focus::after {
+    border: 1px solid var(--PC-BLUE);
+    box-shadow: 0 0 0 2px color(var(--PC-BLUE) a(30%));
+  }
 }
 
-.role__inverted
-{
-    .icon
-    {
-        color:  var( --PC-WHITE );
-    }
+.role__inverted {
+  .icon {
+    color: var(--PC-WHITE);
+  }
 
-    &:hover,
-    &:focus,
-    &.fakeHovered
-    {
-        .icon
-        {
-            color:  var( --PC-WHITE );
-        }
+  &:hover,
+  &:focus,
+  &.fakeHovered {
+    .icon {
+      color: var(--PC-WHITE);
     }
+  }
 
-    &:focus::after
-    {
-        box-shadow:     0 0 0 2px color( var( --PC-WHITE ) a( 30% ) );
-    }
+  &:focus::after {
+    box-shadow: 0 0 0 2px color(var(--PC-WHITE) a(30%));
+  }
 }
 
+.background {
+  border: 1px solid transparent;
+  border-radius: 50%;
+  padding: calc(var(--spacing-1) - 1px);
 
-.background
-{
-    border:         1px solid transparent;
-    border-radius:  50%;
-    padding:        calc( var( --spacing-1 ) - 1px );
+  background: var(--PC-WHITE);
+  opacity: 0.9;
 
-    background:     var( --PC-WHITE );
-    opacity:        0.9;
+  &:focus {
+    border-color: var(--PC-BLUE);
+    box-shadow: 0 0 0 2px color(var(--PC-BLUE) a(30%));
 
-    &:focus
-    {
-        border-color:   var( --PC-BLUE );
-        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
-
-        &::after
-        {
-            display:    none;
-        }
+    &::after {
+      display: none;
     }
+  }
 }
 
+.disabled {
+  cursor: default;
+  pointer-events: none;
 
-.disabled
-{
-    cursor:         default;
-    pointer-events: none;
-
-    &.role__default
-    {
-        .icon
-        {
-            color:  var( --PC-GREY--L70 );
-        }
+  &.role__default {
+    .icon {
+      color: var(--PC-GREY--L70);
     }
-    &.role__inverted
-    {
-        .icon
-        {
-            color:  var( --PC-BLUE--L25 );
-        }
+  }
+  &.role__inverted {
+    .icon {
+      color: var(--PC-BLUE--L25);
     }
+  }
 }

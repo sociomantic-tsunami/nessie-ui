@@ -2,7 +2,6 @@
 
 An on/off switch.
 
-
 ## Example Usage
 
 ```

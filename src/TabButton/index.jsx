@@ -7,106 +7,89 @@
  *
  */
 
-import React, {
-    forwardRef,
-    useImperativeHandle,
-    useRef,
-} from 'react';
-import PropTypes                         from 'prop-types';
+import React, { forwardRef, useImperativeHandle, useRef } from "react";
+import PropTypes from "prop-types";
 
-import { attachEvents, useThemeClasses } from '../utils';
+import { attachEvents, useThemeClasses } from "../utils";
 
+const componentName = "TabButton";
 
-const componentName = 'TabButton';
+const TabButton = forwardRef((props, ref) => {
+  const cssMap = useThemeClasses(componentName, props);
 
-const TabButton = forwardRef( ( props, ref ) =>
-{
-    const cssMap = useThemeClasses( componentName, props );
+  const { isDisabled, label, style, subtitle, tabIndex } = props;
 
-    const {
-        isDisabled,
-        label,
-        style,
-        subtitle,
-        tabIndex,
-    } = props;
+  return (
+    <button
+      {...attachEvents(props, {
+        onClick: { tabIndex }
+      })}
+      className={cssMap.main}
+      disabled={isDisabled}
+      ref={ref}
+      role="tab"
+      style={style}
+      type="button"
+    >
+      <div className={cssMap.content}>
+        <div className={cssMap.label}>
+          {label}
+          {subtitle && <span className={cssMap.subtitle}>{subtitle}</span>}
+        </div>
+      </div>
+    </button>
+  );
+});
 
-    return (
-        <button
-            { ...attachEvents( props, {
-                onClick : { tabIndex },
-            } ) }
-            className = { cssMap.main }
-            disabled  = { isDisabled }
-            ref       = { ref }
-            role      = "tab"
-            style     = { style }
-            type      = "button">
-            <div className = { cssMap.content }>
-                <div className = { cssMap.label }>
-                    { label }
-                    { subtitle &&
-                        <span className = { cssMap.subtitle }>
-                            { subtitle }
-                        </span>
-                    }
-                </div>
-            </div>
-        </button>
-    );
-} );
-
-TabButton.propTypes =
-{
-    /**
-     *  Extra CSS class name
-     */
-    className  : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap     : PropTypes.objectOf( PropTypes.string ),
-    /**
-     *  Display as active
-     */
-    isActive   : PropTypes.bool,
-    /**
-     *  Display as disabled
-     */
-    isDisabled : PropTypes.bool,
-    /**
-     *  Label text
-     */
-    label      : PropTypes.string,
-    /**
-     *  Click callback function: ( { tabIndex } ) => ...
-     */
-    onClick    : PropTypes.func,
-    /**
-     * Subtitle text
-     */
-    subtitle   : PropTypes.string,
-    /**
-     *  Index of this tab
-     */
-    tabIndex   : PropTypes.number,
-    /**
-     *  Style overrides
-     */
-    style      : PropTypes.objectOf( PropTypes.string ),
+TabButton.propTypes = {
+  /**
+   *  Extra CSS class name
+   */
+  className: PropTypes.string,
+  /**
+   *  CSS class map
+   */
+  cssMap: PropTypes.objectOf(PropTypes.string),
+  /**
+   *  Display as active
+   */
+  isActive: PropTypes.bool,
+  /**
+   *  Display as disabled
+   */
+  isDisabled: PropTypes.bool,
+  /**
+   *  Label text
+   */
+  label: PropTypes.string,
+  /**
+   *  Click callback function: ( { tabIndex } ) => ...
+   */
+  onClick: PropTypes.func,
+  /**
+   * Subtitle text
+   */
+  subtitle: PropTypes.string,
+  /**
+   *  Index of this tab
+   */
+  tabIndex: PropTypes.number,
+  /**
+   *  Style overrides
+   */
+  style: PropTypes.objectOf(PropTypes.string)
 };
 
-TabButton.defaultProps =
-{
-    className  : undefined,
-    cssMap     : undefined,
-    isActive   : false,
-    isDisabled : false,
-    label      : undefined,
-    onClick    : undefined,
-    subtitle   : undefined,
-    tabIndex   : 0,
-    style      : undefined,
+TabButton.defaultProps = {
+  className: undefined,
+  cssMap: undefined,
+  isActive: false,
+  isDisabled: false,
+  label: undefined,
+  onClick: undefined,
+  subtitle: undefined,
+  tabIndex: 0,
+  style: undefined
 };
 
 TabButton.displayName = componentName;
