@@ -86,6 +86,11 @@
         fill:   var( --PC-BLUE );
     }
 
+    &__approved-green
+    {
+        fill:   var( --PC-GREEN );
+    }
+
     &__declined,
     &__ended,
     &__deactivated
@@ -93,7 +98,8 @@
         fill:   var( --PC-GREY--L40 );
     }
 
-    &__error
+    &__error,
+    &__removed
     {
         fill:   var( --PC-RED );
     }
@@ -101,6 +107,11 @@
     &__info
     {
         fill:   var( --PC-BLUE );
+    }
+
+    &__info-edit
+    {
+        fill:   var( --PC-ORANGE );
     }
 
     &__paused
@@ -133,6 +144,7 @@
         add,
         alert,
         approved,
+        approved-green,
         arrow-down,
         arrow-up,
         arrow,
@@ -146,6 +158,7 @@
         dashboard,
         deactivated,
         declined,
+        removed,
         delete,
         down,
         download,
@@ -158,6 +171,7 @@
         graph,
         hide,
         info,
+        info-edit,
         inspect,
         left,
         lightbulb,
