@@ -870,12 +870,17 @@ template {
         fill:   #19a2e2;
     }
 
+:not(.icon__theme__button).icon__type__approved-green
+    {
+        fill:   #1bbab0;
+    }
+
 :not(.icon__theme__button).icon__type__declined, :not(.icon__theme__button).icon__type__ended, :not(.icon__theme__button).icon__type__deactivated
     {
         fill:   #98a8bc;
     }
 
-:not(.icon__theme__button).icon__type__error
+:not(.icon__theme__button).icon__type__error, :not(.icon__theme__button).icon__type__removed
     {
         fill:   #ff5460;
     }
@@ -883,6 +888,11 @@ template {
 :not(.icon__theme__button).icon__type__info
     {
         fill:   #19a2e2;
+    }
+
+:not(.icon__theme__button).icon__type__info-edit
+    {
+        fill:   #ff965a;
     }
 
 :not(.icon__theme__button).icon__type__paused
@@ -927,6 +937,11 @@ template {
     }
 
 .icon__type__approved
+    {
+        /* generate placehodler classnames */
+    }
+
+.icon__type__approved-green
     {
         /* generate placehodler classnames */
     }
@@ -996,6 +1011,11 @@ template {
         /* generate placehodler classnames */
     }
 
+.icon__type__removed
+    {
+        /* generate placehodler classnames */
+    }
+
 .icon__type__delete
     {
         /* generate placehodler classnames */
@@ -1052,6 +1072,11 @@ template {
     }
 
 .icon__type__info
+    {
+        /* generate placehodler classnames */
+    }
+
+.icon__type__info-edit
     {
         /* generate placehodler classnames */
     }
