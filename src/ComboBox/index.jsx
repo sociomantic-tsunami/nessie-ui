@@ -488,6 +488,7 @@ const ComboBox = forwardRef((props, ref) => {
           <IconButton
             className={cssMap.icon}
             iconType={isOpen ? "chevron-up" : "chevron-down"}
+            isDisabled={isDisabled}
             isFocusable={false}
             onClick={handleClickIcon}
           />
