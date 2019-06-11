@@ -17,7 +17,6 @@ import datePickerClasses from "./DatePicker/datePicker.css";
 import datePickerHeaderClasses from "./DatePicker/datePickerHeader.css";
 import datePickerItemClasses from "./DatePicker/datePickerItem.css";
 import gridClasses from "./Grid/grid.css";
-import gridItemClasses from "./GridItem/gridItem.css";
 import iconButtonClasses from "./IconButton/iconButton.css";
 import iconClasses from "./Icon/icon.css";
 import listBoxClasses from "./ListBox/listBox.css";
@@ -114,27 +113,10 @@ const classNames = {
     ),
     ...datePickerItemClasses
   }),
-  Grid: props => ({
-    main: cx.bind(gridClasses)(
-      "default",
-      `align__${props.align}`,
-      `columnGap__${props.columnGap}`,
-      `flow__${props.autoFlow}`,
-      `justify__${props.justify}`,
-      `rowGap__${props.rowGap}`,
-      props.className
-    ),
+  Grid: {
+    main: cx.bind(gridClasses)("default"),
     ...gridClasses
-  }),
-  GridItem: props => ({
-    main: cx.bind(gridItemClasses)(
-      "default",
-      `align__${props.align}`,
-      `justify__${props.justify}`,
-      props.className
-    ),
-    ...gridItemClasses
-  }),
+  },
   Icon: props => ({
     main: cx.bind(iconClasses)(
       "default",

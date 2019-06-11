@@ -10,34 +10,50 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-import { attachEvents, useThemeClasses } from "../utils";
+import { attachEvents, useThemeClasses, useThemeVars } from "../utils";
 
 const componentName = "Grid";
 
 const Grid = forwardRef((props, ref) => {
   const {
-    autoCols,
+    alignContent,
+    alignItems,
+    autoColumns,
+    autoFlow,
     autoRows,
     children,
+    className,
     columns,
-    customColumns,
-    customRows,
+    gap,
+    justifyContent,
+    justifyItems,
     rows,
-    style
+    style,
+    templateColumns,
+    templateRows
   } = props;
 
   const cssMap = useThemeClasses(componentName, props);
+  const { spacing } = useThemeVars();
 
   return (
     <div
       {...attachEvents(props)}
-      className={cssMap.main}
+      className={`${cssMap.main} ${className}`}
       ref={ref}
       style={{
-        gridAutoColumns: autoCols,
+        alignContent,
+        alignItems,
+        gridAutoColumns: autoColumns,
+        gridAutoFlow: autoFlow,
         gridAutoRows: autoRows,
-        gridTemplateColumns: customColumns || `repeat( ${columns}, 1fr )`,
-        gridTemplateRows: customRows || `repeat( ${rows}, 1fr )`,
+        gridGap: Array.isArray(gap)
+          ? `${spacing[gap[0]]} ${spacing[gap[1]]}`
+          : spacing[gap],
+        gridTemplateColumns: templateColumns || `repeat( ${columns}, 1fr )`,
+        gridTemplateRows: templateRows || `repeat( ${rows}, 1fr )`,
+        justifyContent,
+        justifyItems,
         ...style
       }}
     >
@@ -48,24 +64,28 @@ const Grid = forwardRef((props, ref) => {
 
 Grid.propTypes = {
   /**
-   * Vertical alignment of the grid items
+   * Block-axis (usually vertical) alignment of the grid content
    */
-  align: PropTypes.oneOf(["start", "center", "end", "stretch"]),
+  alignContent: PropTypes.oneOf(["start", "center", "end", "stretch"]),
   /**
-   * Defines the size of implicitly set columns
+   * Block-axis (usually vertical) alignment of the grid items
    */
-  autoCols: PropTypes.string,
+  alignItems: PropTypes.oneOf(["start", "center", "end", "stretch"]),
+
   /**
-   * Controls where to auto place new grid items if their place is
-   * undefined
+   * Defines the size of implicit grid columns
    */
-  autoFlow: PropTypes.oneOf(["row", "col"]),
+  autoColumns: PropTypes.string,
   /**
-   * Defines the size of implicitly set rows
+   * Controls placement of items outside the explicit grid
+   */
+  autoFlow: PropTypes.oneOf(["row", "column"]),
+  /**
+   * Defines the size of implicit grid rows
    */
   autoRows: PropTypes.string,
   /**
-   *  Grid content (Columns)
+   *  Grid content
    */
   children: PropTypes.node,
   /**
@@ -73,11 +93,7 @@ Grid.propTypes = {
    */
   className: PropTypes.string,
   /**
-   *  Column gap
-   */
-  columnGap: PropTypes.oneOf(["none", "S", "M", "L"]),
-  /**
-   *  Number of columns - should be an integer > 0
+   *  Number of columns in explicit grid (integer > 0)
    */
   columns: PropTypes.number,
   /**
@@ -85,47 +101,55 @@ Grid.propTypes = {
    */
   cssMap: PropTypes.objectOf(PropTypes.string),
   /**
-   *  Custom sizes of columns
+   *  Gap between rows and/or columns
    */
-  customColumns: PropTypes.string,
+  gap: PropTypes.oneOfType(
+    PropTypes.oneOf(["none", "s", "m", "l"]),
+    PropTypes.arrayOf([PropTypes.oneOf(["none", "s", "m", "l"])])
+  ),
   /**
-   *  Custom sizes of rows
+   * Inline-axis (usually horizontal) alignment of the grid content
    */
-  customRows: PropTypes.string,
+  justifyContent: PropTypes.oneOf(["start", "center", "end", "stretch"]),
   /**
-   * Horizontal alignment of the grid items
+   * Inline-axis (usually horizontal) alignment of the grid items
    */
-  justify: PropTypes.oneOf(["start", "center", "end", "stretch"]),
+  justifyItems: PropTypes.oneOf(["start", "center", "end", "stretch"]),
   /**
-   *  Row gap
-   */
-  rowGap: PropTypes.oneOf(["none", "S", "M", "L"]),
-  /**
-   *  Number of rows - should be an integer > 0
+   *  Number of rows in explcit grid (integer > 0)
    */
   rows: PropTypes.number,
   /**
    *  Style overrides
    */
-  style: PropTypes.objectOf(PropTypes.string)
+  style: PropTypes.objectOf(PropTypes.string),
+  /**
+   *  Column definitions for explicit grid
+   */
+  templateColumns: PropTypes.string,
+  /**
+   *  Row definitions for explicit grid
+   */
+  templateRows: PropTypes.string
 };
 
 Grid.defaultProps = {
-  align: "stretch",
-  autoCols: undefined,
-  autoFlow: "row",
+  alignContent: undefined,
+  alignItems: undefined,
+  autoColumns: undefined,
+  autoFlow: undefined,
   autoRows: undefined,
   children: undefined,
   className: undefined,
-  columnGap: "M",
-  columns: undefined,
+  columns: 1,
   cssMap: undefined,
-  customColumns: undefined,
-  customRows: undefined,
-  justify: "stretch",
-  rowGap: "M",
-  rows: undefined,
-  style: undefined
+  gap: "m",
+  justifyContent: undefined,
+  justifyItems: undefined,
+  rows: 1,
+  style: undefined,
+  templateColumns: undefined,
+  templateRows: undefined
 };
 
 Grid.displayName = componentName;

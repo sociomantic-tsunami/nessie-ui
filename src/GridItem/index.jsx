@@ -6,62 +6,58 @@
  * in the root directory of this source tree.
  *
  */
-
-import React, { forwardRef } from "react";
+import React, { cloneElement, forwardRef, isValidElement } from "react";
 import PropTypes from "prop-types";
-
-import { attachEvents, useThemeClasses } from "../utils";
 
 const componentName = "GridItem";
 
-const GridItem = forwardRef((props, ref) => {
-  const { children, colSpan, rowSpan, style } = props;
+const GridItem = forwardRef(
+  (
+    { align, children, colSpan, justify, rowSpan, style, ...restProps },
+    ref
+  ) => {
+    if (!children) return;
 
-  const cssMap = useThemeClasses(componentName, props);
-
-  return (
-    <div
-      {...attachEvents(props)}
-      className={cssMap.main}
-      ref={ref}
-      style={{
-        gridColumn: `span ${colSpan}`,
-        gridRow: `span ${rowSpan}`,
+    const childProps = {
+      style: {
+        ...(align && { alignSelf: align }),
+        ...(justify && { justifySelf: justify }),
+        ...(colSpan && { gridColumn: `span ${colSpan}` }),
+        ...(rowSpan && { gridRow: `span ${rowSpan}` }),
         ...style
-      }}
-    >
-      {children}
-    </div>
-  );
-});
+      },
+      ...restProps
+    };
+
+    if (typeof children === "function") {
+      return children(childProps);
+    }
+    if (isValidElement(children)) {
+      return cloneElement(children, childProps);
+    }
+    return <div {...childProps}>{children}</div>;
+  }
+);
 
 GridItem.propTypes = {
   /**
-   * Vertical alignment of the GridItem content
+   * Block-axis (usually vertical) alignment of the item
    */
   align: PropTypes.oneOf(["start", "center", "end", "stretch"]),
   /**
-   *  GridItem content
+   *  Grid item content: React node or render function
    */
-  children: PropTypes.node,
+  children: PropTypes.oneOfType(PropTypes.node, PropTypes.func),
   /**
-   *  CSS class name
-   */
-  className: PropTypes.string,
-  /**
-   *  GridItem column span - should be an integer > 0
+   *  Grid column span: should be an integer > 0
    */
   colSpan: PropTypes.number,
   /**
-   *  CSS class map
-   */
-  cssMap: PropTypes.objectOf(PropTypes.string),
-  /**
-   * Horizontal alignment of the GridItem content
+   * Inline-axis (usually horizontal) alignment of the item
    */
   justify: PropTypes.oneOf(["start", "center", "end", "stretch"]),
   /**
-   * GridItem row span - should be an integer > 0
+   * Grid row span: should be an integer > 0
    */
   rowSpan: PropTypes.number,
   /**
@@ -71,12 +67,10 @@ GridItem.propTypes = {
 };
 
 GridItem.defaultProps = {
-  align: "start",
+  align: undefined,
   children: undefined,
-  className: undefined,
   colSpan: undefined,
-  cssMap: undefined,
-  justify: "start",
+  justify: undefined,
   rowSpan: undefined,
   style: undefined
 };
