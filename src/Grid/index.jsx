@@ -22,7 +22,6 @@ const Grid = forwardRef((props, ref) => {
     autoFlow,
     autoRows,
     children,
-    className,
     columns,
     gap,
     justifyContent,
@@ -39,7 +38,7 @@ const Grid = forwardRef((props, ref) => {
   return (
     <div
       {...attachEvents(props)}
-      className={`${cssMap.main} ${className}`}
+      className={cssMap.main}
       ref={ref}
       style={{
         alignContent,
@@ -50,8 +49,11 @@ const Grid = forwardRef((props, ref) => {
         gridGap: Array.isArray(gap)
           ? `${spacing[gap[0]]} ${spacing[gap[1]]}`
           : spacing[gap],
-        gridTemplateColumns: templateColumns || `repeat( ${columns}, 1fr )`,
-        gridTemplateRows: templateRows || `repeat( ${rows}, 1fr )`,
+        gridTemplateColumns:
+          templateColumns ||
+          (columns ? `repeat( ${columns}, 1fr )` : undefined),
+        gridTemplateRows:
+          templateRows || (rows ? `repeat( ${rows}, 1fr )` : undefined),
         justifyContent,
         justifyItems,
         ...style
@@ -141,12 +143,12 @@ Grid.defaultProps = {
   autoRows: undefined,
   children: undefined,
   className: undefined,
-  columns: 1,
+  columns: undefined,
   cssMap: undefined,
   gap: "m",
   justifyContent: undefined,
   justifyItems: undefined,
-  rows: 1,
+  rows: undefined,
   style: undefined,
   templateColumns: undefined,
   templateRows: undefined
