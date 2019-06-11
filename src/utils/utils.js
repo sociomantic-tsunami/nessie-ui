@@ -7,7 +7,7 @@
  *
  */
 
-import eventsList from './eventsList';
+import eventsList from "./eventsList";
 
 /**
  * callMultiple( props )
@@ -17,12 +17,10 @@ import eventsList from './eventsList';
  *
  * @return  {Function}    event handler
  */
-function callMultiple( ...callbacks )
-{
-    return function eventHandler( ...args )
-    {
-        callbacks.forEach( cb => typeof cb === 'function' && cb( ...args ) );
-    };
+function callMultiple(...callbacks) {
+  return function eventHandler(...args) {
+    callbacks.forEach(cb => typeof cb === "function" && cb(...args));
+  };
 }
 
 /**
@@ -35,30 +33,24 @@ function callMultiple( ...callbacks )
  *
  * @return  {Object}    event handlers
  */
-function attachEvents( props, customizers = {} )
-{
-    const handlers = {};
-    Object.entries( props ).forEach( ( [ propName, propValue ] ) =>
-    {
-        if ( eventsList.includes( propName ) )
-        {
-            handlers[ propName ] =
-                createEventHandler( propValue, customizers[ propName ] );
-        }
-    } );
-    return handlers;
+function attachEvents(props, customizers = {}) {
+  const handlers = {};
+  Object.entries(props).forEach(([propName, propValue]) => {
+    if (eventsList.includes(propName)) {
+      handlers[propName] = createEventHandler(propValue, customizers[propName]);
+    }
+  });
+  return handlers;
 }
 
-const buildDisplayName = ( WrapperComponent, WrappedComponent ) =>
-{
-    const wrapperComponentName = getComponentName( WrapperComponent );
-    const wrappedComponentName = getComponentName( WrappedComponent );
+const buildDisplayName = (WrapperComponent, WrappedComponent) => {
+  const wrapperComponentName = getComponentName(WrapperComponent);
+  const wrappedComponentName = getComponentName(WrappedComponent);
 
-    return `${wrapperComponentName}(${wrappedComponentName})`;
+  return `${wrapperComponentName}(${wrappedComponentName})`;
 };
 
-const clamp = ( val, min, max ) => Math.min( Math.max( val, min ), max );
-
+const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
 
 /**
  * createEventHandler( func, payload )
@@ -77,133 +69,112 @@ const clamp = ( val, min, max ) => Math.min( Math.max( val, min ), max );
  *
  * @return  {Function}
  */
-function createEventHandler( func, customizer )
-{
-    if ( customizer === false )
-    {
-        return; // explicitly disabled; do nothing!
-    }
+function createEventHandler(func, customizer) {
+  if (customizer === false) {
+    return; // explicitly disabled; do nothing!
+  }
 
-    let payload = null;
-    let defaultAction = null;
+  let payload = null;
+  let defaultAction = null;
 
-    if ( Array.isArray( customizer ) ) // custom payload *and* default action
-    {
-        ( [ payload, defaultAction ] = customizer );
-    }
-    else if ( typeof customizer === 'object' ) // custom payload only
-    {
-        payload = customizer;
-    }
-    else if ( typeof customizer === 'function' ) // default action only
-    {
-        defaultAction = customizer;
-    }
+  if (Array.isArray(customizer)) {
+    // custom payload *and* default action
+    [payload, defaultAction] = customizer;
+  } else if (typeof customizer === "object") {
+    // custom payload only
+    payload = customizer;
+  } else if (typeof customizer === "function") {
+    // default action only
+    defaultAction = customizer;
+  }
 
-    if ( typeof func !== 'function' ) // no consumer event handler
-    {
-        return defaultAction;
-    }
+  if (typeof func !== "function") {
+    // no consumer event handler
+    return defaultAction;
+  }
 
-    // construct standardized payload for consumer’s handler...
-    return function eventHandler( e )
-    {
-        const {
-            currentTarget, relatedTarget, target, type,
-        } = e;
+  // construct standardized payload for consumer’s handler...
+  return function eventHandler(e) {
+    const { currentTarget, relatedTarget, target, type } = e;
 
-        const eventPayload = {
-            preventNessieDefault()
-            {
-                e.preventDefault();
-            },
-        };
-
-        e.stopPropagation(); // (TODO: find a way to flag event as “handled” without stopping propagation!)
-
-        if ( [ 'blur', 'focus', 'mouseout', 'mouseover' ].includes( type ) &&
-            currentTarget.contains( relatedTarget ) )
-        {
-            return; // don't fire when mouse/focus moves between descendants
-        }
-        if ( [ 'keyup', 'keydown', 'keypress' ].includes( type ) )
-        {
-            eventPayload.key = e.key;
-        }
-        else if ( type === 'change' )
-        {
-            const inputType = target.getAttribute( 'type' );
-            if ( inputType === 'checkbox' )
-            {
-                eventPayload.isChecked = target.checked;
-            }
-            else
-            {
-                eventPayload.value = target.value;
-            }
-        }
-        else if ( type === 'scroll' )
-        {
-            if ( currentTarget !== target )
-            {
-                return; // only fire for current target
-            }
-
-            eventPayload.scroll = [ target.scrollLeft, target.scrollTop ];
-        }
-
-        // invoke consumer’s event handler
-        func( { ...eventPayload, ...payload }, ...arguments );
-
-        if ( defaultAction && !e.defaultPrevented )
-        {
-            defaultAction( e ); // perform default action
-        }
+    const eventPayload = {
+      preventNessieDefault() {
+        e.preventDefault();
+      }
     };
+
+    e.stopPropagation(); // (TODO: find a way to flag event as “handled” without stopping propagation!)
+
+    if (
+      ["blur", "focus", "mouseout", "mouseover"].includes(type) &&
+      currentTarget.contains(relatedTarget)
+    ) {
+      return; // don't fire when mouse/focus moves between descendants
+    }
+    if (["keyup", "keydown", "keypress"].includes(type)) {
+      eventPayload.key = e.key;
+    } else if (type === "change") {
+      const inputType = target.getAttribute("type");
+      if (inputType === "checkbox") {
+        eventPayload.isChecked = target.checked;
+      } else {
+        eventPayload.value = target.value;
+      }
+    } else if (type === "scroll") {
+      if (currentTarget !== target) {
+        return; // only fire for current target
+      }
+
+      eventPayload.scroll = [target.scrollLeft, target.scrollTop];
+    }
+
+    // invoke consumer’s event handler
+    func({ ...eventPayload, ...payload }, ...arguments);
+
+    if (defaultAction && !e.defaultPrevented) {
+      defaultAction(e); // perform default action
+    }
+  };
 }
 
-const getComponentName = Comp => Comp.displayName || Comp.name || 'Component';
+const getComponentName = Comp => Comp.displayName || Comp.name || "Component";
 
 const generateId = componentName =>
-    `${componentName}${Math.floor( ( Math.random() * 9e15 ) + 1e15 )}`;
+  `${componentName}${Math.floor(Math.random() * 9e15 + 1e15)}`;
 
 const killFocus = e => e.preventDefault();
 
-const mapAria = ( ariaObj = {} ) =>
-{
-    const res = { role: ariaObj.role };
+const mapAria = (ariaObj = {}) => {
+  const res = { role: ariaObj.role };
 
-    Object.keys( ariaObj ).forEach( key =>
-    {
-        const value = ariaObj[ key ];
-        if ( key !== 'role' && value )
-        {
-            res[ `aria-${key.toLowerCase()}` ] = ariaObj[ key ].toString();
-        }
-    } );
+  Object.keys(ariaObj).forEach(key => {
+    const value = ariaObj[key];
+    if (key !== "role" && value) {
+      res[`aria-${key.toLowerCase()}`] = ariaObj[key].toString();
+    }
+  });
 
-    return res;
+  return res;
 };
 
-
 export {
-    attachEvents,
-    buildDisplayName,
-    callMultiple,
-    clamp,
-    createEventHandler,
-    generateId,
-    killFocus,
-    mapAria,
+  attachEvents,
+  buildDisplayName,
+  callMultiple,
+  clamp,
+  createEventHandler,
+  generateId,
+  killFocus,
+  mapAria
 };
 
 export default {
-    attachEvents,
-    buildDisplayName,
-    callMultiple,
-    clamp,
-    createEventHandler,
-    generateId,
-    killFocus,
-    mapAria,
+  attachEvents,
+  buildDisplayName,
+  callMultiple,
+  clamp,
+  createEventHandler,
+  generateId,
+  killFocus,
+  mapAria
 };

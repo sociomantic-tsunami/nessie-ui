@@ -7,89 +7,75 @@
  *
  */
 
-import React, { forwardRef }             from 'react';
-import PropTypes                         from 'prop-types';
+import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
 
-import { attachEvents, useThemeClasses } from '../utils';
+import { attachEvents, useThemeClasses } from "../utils";
 
+const componentName = "Icon";
 
-const componentName = 'Icon';
+const Icon = forwardRef((props, ref) => {
+  const { children, label, style, type } = props;
 
-const Icon = forwardRef( ( props, ref ) =>
-{
-    const {
-        children,
-        label,
-        style,
-        type,
-    } = props;
+  const cssMap = useThemeClasses(componentName, props);
 
-    const cssMap = useThemeClasses( componentName, props );
+  return (
+    <svg
+      {...attachEvents(props)}
+      aria-label={children || label}
+      className={cssMap.main}
+      ref={ref}
+      style={style}
+    >
+      {type !== "none" && <use xlinkHref={`#nessie-${type}`} />}
+    </svg>
+  );
+});
 
-    return (
-        <svg
-            { ...attachEvents( props ) }
-            aria-label = { children || label }
-            className  = { cssMap.main }
-            ref        = { ref }
-            style      = { style }>
-            { ( type !== 'none' ) &&
-            <use xlinkHref = { `#nessie-${type}` } /> }
-        </svg>
-    );
-} );
-
-Icon.propTypes =
-{
-    /**
-     * Icon label (overrides label prop)
-     */
-    children  : PropTypes.string,
-    /**
-     *  CSS class name
-     */
-    className : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap    : PropTypes.objectOf( PropTypes.string ),
-    /**
-     * Icon label
-     */
-    label     : PropTypes.string,
-    /**
-     *  Icon role
-     */
-    role      : PropTypes.oneOf( [
-        'default',
-        'critical',
-        'promoted',
-        'warning',
-    ] ),
-    /**
-     *  Icon size
-     */
-    size  : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
-    /**
-     *  Icon to show (see https://feathericons.com/)
-     */
-    type  : PropTypes.string,
-    /**
-     *  Style overrides
-     */
-    style : PropTypes.objectOf( PropTypes.string ),
+Icon.propTypes = {
+  /**
+   * Icon label (overrides label prop)
+   */
+  children: PropTypes.string,
+  /**
+   *  CSS class name
+   */
+  className: PropTypes.string,
+  /**
+   *  CSS class map
+   */
+  cssMap: PropTypes.objectOf(PropTypes.string),
+  /**
+   * Icon label
+   */
+  label: PropTypes.string,
+  /**
+   *  Icon role
+   */
+  role: PropTypes.oneOf(["default", "critical", "promoted", "warning"]),
+  /**
+   *  Icon size
+   */
+  size: PropTypes.oneOf(["S", "M", "L", "XL"]),
+  /**
+   *  Icon to show (see https://feathericons.com/)
+   */
+  type: PropTypes.string,
+  /**
+   *  Style overrides
+   */
+  style: PropTypes.objectOf(PropTypes.string)
 };
 
-Icon.defaultProps =
-{
-    children  : undefined,
-    className : undefined,
-    cssMap    : undefined,
-    label     : undefined,
-    role      : 'default',
-    size      : 'S',
-    style     : undefined,
-    type      : 'none',
+Icon.defaultProps = {
+  children: undefined,
+  className: undefined,
+  cssMap: undefined,
+  label: undefined,
+  role: "default",
+  size: "S",
+  style: undefined,
+  type: "none"
 };
 
 Icon.displayName = componentName;

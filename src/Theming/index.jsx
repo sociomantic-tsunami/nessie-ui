@@ -8,18 +8,18 @@
  */
 /* eslint-disable react/prop-types */
 
-import React        from 'react';
-import { merge }    from 'lodash';
+import React from "react";
+import { merge } from "lodash";
 
-import DefaultTheme from '../DefaultTheme';
-import ThemeContext from './ThemeContext';
+import DefaultTheme from "../DefaultTheme";
+import ThemeContext from "./ThemeContext";
 
-const { Consumer : ThemeConsumer, Provider } = ThemeContext;
+const { Consumer: ThemeConsumer, Provider } = ThemeContext;
 
 const ThemeProvider = props => (
-    <Provider value = {  merge( {}, DefaultTheme, props.value ) }>
-        {props.children}
-    </Provider>
+  <Provider value={merge({}, DefaultTheme, props.value)}>
+    {props.children}
+  </Provider>
 );
 
 export { ThemeConsumer, ThemeProvider };

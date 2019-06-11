@@ -1,10 +1,8 @@
-Component Description
----------------------
+## Component Description
 
 A Nessie IconButton is a Icon inside a HTML `<button type="button">` element.
 
-Example Usage
--------------
+## Example Usage
 
     <IconButton iconType="arrow-right">
         Next page

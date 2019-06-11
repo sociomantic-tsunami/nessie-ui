@@ -17,6 +17,7 @@ it ( as long as `container` prop keeps its default value ).
 
 `children` and `popper` can be used as render props (i.e. functions that return
 a React element) as follows:
+
 ```
 <PopperWrapper
     popper = { popperProps => <MyPopupComponent {...popperProps} /> }>
@@ -27,6 +28,7 @@ a React element) as follows:
 ```
 
 or as React elements as follows:
+
 ```
 <PopperWrapper
     popper = { <MyPopupComponent /> }>
@@ -40,6 +42,7 @@ inject the required props into the `children` and `popper`.**
 ## Example Usage
 
 Using render props:
+
 ```
 <PopperWrapper
     popper = { popperProps => (
@@ -55,6 +58,7 @@ Using render props:
 ```
 
 Using elements:
+
 ```
 <PopperWrapper
     popper         = { <Popup>Popup content</Popup> }

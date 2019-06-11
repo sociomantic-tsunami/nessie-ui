@@ -7,76 +7,69 @@
  *
  */
 
-import React, { forwardRef }             from 'react';
-import PropTypes                         from 'prop-types';
+import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
 
-import { attachEvents, useThemeClasses } from '../utils';
+import { attachEvents, useThemeClasses } from "../utils";
 
+const componentName = "Modal";
 
-const componentName = 'Modal';
+const Modal = forwardRef((props, ref) => {
+  const handleClickOverlay = ({ target, currentTarget }) => {
+    if (target !== currentTarget) return;
 
-const Modal = forwardRef( ( props, ref ) =>
-{
-    const handleClickOverlay = ( { target, currentTarget } ) =>
-    {
-        if ( target !== currentTarget ) return;
+    const { onClickOverlay } = props;
+    if (onClickOverlay) {
+      onClickOverlay();
+    }
+  };
 
-        const { onClickOverlay } = props;
-        if ( onClickOverlay )
-        {
-            onClickOverlay();
-        }
-    };
+  const { children, style } = props;
 
-    const { children, style } = props;
+  const cssMap = useThemeClasses(componentName, props);
 
-    const cssMap = useThemeClasses( componentName, props );
+  return (
+    <div
+      {...attachEvents(props, { onClick: false })}
+      className={cssMap.main}
+      onClick={handleClickOverlay}
+      ref={ref}
+      style={style}
+    >
+      <div className={cssMap.content}>{children}</div>
+    </div>
+  );
+});
 
-    return (
-        <div
-            { ...attachEvents( props, { onClick: false } ) }
-            className = { cssMap.main }
-            onClick   = { handleClickOverlay }
-            ref       = { ref }
-            style     = { style }>
-            <div className = { cssMap.content }>
-                { children }
-            </div>
-        </div>
-    );
-} );
-
-Modal.propTypes =
-{
-    /**
-     *  Dialog Content
-     */
-    children       : PropTypes.node,
-    /**
-     *  Extra CSS class name
-     */
-    className      : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap         : PropTypes.objectOf( PropTypes.string ),
-    /**
-     *  Overlay onClick callback function
-     */
-    onClickOverlay : PropTypes.func,
-    /**
-     *  Style overrides
-     */
-    style          : PropTypes.objectOf( PropTypes.string ),
+Modal.propTypes = {
+  /**
+   *  Dialog Content
+   */
+  children: PropTypes.node,
+  /**
+   *  Extra CSS class name
+   */
+  className: PropTypes.string,
+  /**
+   *  CSS class map
+   */
+  cssMap: PropTypes.objectOf(PropTypes.string),
+  /**
+   *  Overlay onClick callback function
+   */
+  onClickOverlay: PropTypes.func,
+  /**
+   *  Style overrides
+   */
+  style: PropTypes.objectOf(PropTypes.string)
 };
 
-Modal.defaultProps =
-{
-    children       : undefined,
-    className      : undefined,
-    cssMap         : undefined,
-    onClickOverlay : undefined,
-    style          : undefined,
+Modal.defaultProps = {
+  children: undefined,
+  className: undefined,
+  cssMap: undefined,
+  onClickOverlay: undefined,
+  style: undefined
 };
 
 Modal.displayName = componentName;

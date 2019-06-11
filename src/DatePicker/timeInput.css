@@ -7,70 +7,64 @@
  *
  */
 
-@import '../proto/definitions/variables.css';
+@import "../proto/definitions/variables.css";
 
-.default
-{
-    display:            inline-block;
-    position:           relative;
+.default {
+  display: inline-block;
+  position: relative;
 
-    font-size:          var( --typo-1 );
-    line-height:        var( --line-height-s );
-    text-align:         right;
+  font-size: var(--typo-1);
+  line-height: var(--line-height-s);
+  text-align: right;
 
-    vertical-align:     bottom;
+  vertical-align: bottom;
 
-    width:              50%;
+  width: 50%;
 
-    box-sizing:         border-box;
+  box-sizing: border-box;
 
-    &:hover,
-    &.fakeHovered
-    {
-        border-color:   var( --PC-BLUE );
+  &:hover,
+  &.fakeHovered {
+    border-color: var(--PC-BLUE);
+  }
+
+  .hour,
+  .min {
+    box-sizing: border-box;
+    width: 36px;
+    height: 24px;
+    padding: 0;
+
+    border: none;
+    border-radius: 2px;
+
+    @extend %Nessie-Regular;
+    text-align: center;
+    line-height: var(--line-height-s);
+    font-size: 13px;
+    color: var(--PC-WHITE);
+
+    background-color: var(--PC-BLUE--D5);
+
+    &:focus {
+      box-shadow: 0 0 0 2px color(var(--PC-WHITE) a(30%));
+      outline: none;
     }
 
-    .hour,
-    .min
-    {
-        box-sizing:         border-box;
-        width:              36px;
-        height:             24px;
-        padding:            0;
-
-        border:             none;
-        border-radius:      2px;
-
-        @extend %Nessie-Regular;
-        text-align:         center;
-        line-height:        var( --line-height-s );
-        font-size:          13px;
-        color:              var( --PC-WHITE );
-
-        background-color:   var( --PC-BLUE--D5 );
-
-        &:focus
-        {
-            box-shadow:     0 0 0 2px color( var( --PC-WHITE ) a( 30% ) );
-            outline:        none;
-        }
-
-        &::placeholder
-        {
-            line-height:    var( --line-height-s );
-            font-size:      13px;
-            font-weight:    300;
-            color:          var( --PC-WHITE );
-        }
+    &::placeholder {
+      line-height: var(--line-height-s);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--PC-WHITE);
     }
+  }
 
-    span
-    {
-        user-select:        none;
-        line-height:        var( --line-height-s );
-        font-size:          13px;
-        color:              var( --PC-WHITE );
-        margin:             0 3px;
-        display:            inline-block;
-    }
+  span {
+    user-select: none;
+    line-height: var(--line-height-s);
+    font-size: 13px;
+    color: var(--PC-WHITE);
+    margin: 0 3px;
+    display: inline-block;
+  }
 }

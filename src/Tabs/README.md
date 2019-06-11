@@ -1,10 +1,8 @@
-Component Description
----------------------
+## Component Description
 
 A Nessie Tabs is a Nessie Tab's group.
 
-Example Usage
--------------
+## Example Usage
 
     <Tabs>
         <Tab label="Dashboard">

@@ -7,134 +7,135 @@
  *
  */
 
-import React, { forwardRef } from 'react';
-import PropTypes             from 'prop-types';
+import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
 
-import { IconButton, Text }  from '..';
+import { IconButton, Text } from "..";
 
-import TimeInput             from './TimeInput';
-import { useThemeClasses }   from '../utils';
+import TimeInput from "./TimeInput";
+import { useThemeClasses } from "../utils";
 
+const componentName = "DatePickerHeader";
 
-const componentName = 'DatePickerHeader';
+const DatePickerHeader = forwardRef((props, ref) => {
+  const cssMap = useThemeClasses(componentName, props);
 
-const DatePickerHeader = forwardRef( ( props, ref ) =>
-{
-    const cssMap = useThemeClasses( componentName, props );
+  const {
+    hasTimeInput,
+    hourIsDisabled,
+    hourIsReadOnly,
+    hourPlaceholder,
+    hourValue,
+    isDisabled,
+    isReadOnly,
+    minuteIsDisabled,
+    minuteIsReadOnly,
+    minutePlaceholder,
+    minuteValue,
+    month,
+    nextIsDisabled,
+    onChangeHour,
+    onChangeMinute,
+    onClickNext,
+    onClickPrev,
+    prevIsDisabled,
+    style,
+    year
+  } = props;
 
-    const {
-        hasTimeInput,
-        hourIsDisabled,
-        hourIsReadOnly,
-        hourPlaceholder,
-        hourValue,
-        isDisabled,
-        isReadOnly,
-        minuteIsDisabled,
-        minuteIsReadOnly,
-        minutePlaceholder,
-        minuteValue,
-        month,
-        nextIsDisabled,
-        onChangeHour,
-        onChangeMinute,
-        onClickNext,
-        onClickPrev,
-        prevIsDisabled,
-        style,
-        year,
-    } = props;
-
-    return (
-        <div className = { cssMap.main } ref = { ref } style = { style }>
-            <div className = { cssMap.buttonsWrapper }>
-                <IconButton
-                    className  = { cssMap.prev }
-                    iconType   = "arrow-left"
-                    isDisabled = { isDisabled || prevIsDisabled }
-                    onClick    = { onClickPrev }
-                    role       = "inverted" />
-                <IconButton
-                    className  = { cssMap.next }
-                    iconType   = "arrow-right"
-                    isDisabled = { isDisabled || nextIsDisabled }
-                    onClick    = { onClickNext }
-                    role       = "inverted" />
-            </div>
-            <Text className = { cssMap.date }>
-                { month }
-                <span className = { cssMap.year }> { year } </span>
-            </Text>
-            { hasTimeInput &&
-                <TimeInput
-                    hourIsDisabled    = { hourIsDisabled }
-                    hourIsReadOnly    = { hourIsReadOnly }
-                    hourPlaceholder   = { hourPlaceholder }
-                    hourValue         = { hourValue }
-                    isDisabled        = { isDisabled }
-                    isReadOnly        = { isReadOnly }
-                    minuteIsDisabled  = { minuteIsDisabled }
-                    minuteIsReadOnly  = { minuteIsReadOnly }
-                    minutePlaceholder = { minutePlaceholder }
-                    minuteValue       = { minuteValue }
-                    onChangeHour      = { onChangeHour }
-                    onChangeMinute    = { onChangeMinute } />
-            }
-        </div>
-    );
-} );
+  return (
+    <div className={cssMap.main} ref={ref} style={style}>
+      <div className={cssMap.buttonsWrapper}>
+        <IconButton
+          className={cssMap.prev}
+          iconType="arrow-left"
+          isDisabled={isDisabled || prevIsDisabled}
+          onClick={onClickPrev}
+          role="inverted"
+        />
+        <IconButton
+          className={cssMap.next}
+          iconType="arrow-right"
+          isDisabled={isDisabled || nextIsDisabled}
+          onClick={onClickNext}
+          role="inverted"
+        />
+      </div>
+      <Text className={cssMap.date}>
+        {month}
+        <span className={cssMap.year}> {year} </span>
+      </Text>
+      {hasTimeInput && (
+        <TimeInput
+          hourIsDisabled={hourIsDisabled}
+          hourIsReadOnly={hourIsReadOnly}
+          hourPlaceholder={hourPlaceholder}
+          hourValue={hourValue}
+          isDisabled={isDisabled}
+          isReadOnly={isReadOnly}
+          minuteIsDisabled={minuteIsDisabled}
+          minuteIsReadOnly={minuteIsReadOnly}
+          minutePlaceholder={minutePlaceholder}
+          minuteValue={minuteValue}
+          onChangeHour={onChangeHour}
+          onChangeMinute={onChangeMinute}
+        />
+      )}
+    </div>
+  );
+});
 
 DatePickerHeader.propTypes = {
-    className         : PropTypes.string,
-    cssMap            : PropTypes.objectOf( PropTypes.string ),
-    hasTimeInput      : PropTypes.bool,
-    hourIsDisabled    : PropTypes.bool,
-    hourIsReadOnly    : PropTypes.bool,
-    hourPlaceholder   : PropTypes.string,
-    hourValue         : PropTypes.string,
-    isDisabled        : PropTypes.bool,
-    isReadOnly        : PropTypes.bool,
-    minuteIsDisabled  : PropTypes.bool,
-    minuteIsReadOnly  : PropTypes.bool,
-    minutePlaceholder : PropTypes.string,
-    minuteValue       : PropTypes.string,
-    month             : PropTypes.string,
-    nextIsDisabled    : PropTypes.bool,
-    onChangeHour      : PropTypes.func,
-    onChangeMinute    : PropTypes.func,
-    onClickNext       : PropTypes.func,
-    onClickPrev       : PropTypes.func,
-    prevIsDisabled    : PropTypes.bool,
-    year              : PropTypes.string,
-    /**
-     *  Style overrides
-     */
-    style             : PropTypes.objectOf( PropTypes.string ),
+  className: PropTypes.string,
+  cssMap: PropTypes.objectOf(PropTypes.string),
+  hasTimeInput: PropTypes.bool,
+  hourIsDisabled: PropTypes.bool,
+  hourIsReadOnly: PropTypes.bool,
+  hourPlaceholder: PropTypes.string,
+  hourValue: PropTypes.string,
+  isDisabled: PropTypes.bool,
+  isReadOnly: PropTypes.bool,
+  minuteIsDisabled: PropTypes.bool,
+  minuteIsReadOnly: PropTypes.bool,
+  minutePlaceholder: PropTypes.string,
+  minuteValue: PropTypes.string,
+  month: PropTypes.string,
+  nextIsDisabled: PropTypes.bool,
+  onChangeHour: PropTypes.func,
+  onChangeMinute: PropTypes.func,
+  onClickNext: PropTypes.func,
+  onClickPrev: PropTypes.func,
+  prevIsDisabled: PropTypes.bool,
+  year: PropTypes.string,
+  /**
+   *  Style overrides
+   */
+  style: PropTypes.objectOf(PropTypes.string)
 };
 
 DatePickerHeader.defaultProps = {
-    className         : undefined,
-    cssMap            : undefined,
-    hasTimeInput      : true,
-    hourIsDisabled    : false,
-    hourIsReadOnly    : false,
-    hourPlaceholder   : undefined,
-    hourValue         : undefined,
-    isDisabled        : undefined,
-    isReadOnly        : undefined,
-    minuteIsDisabled  : false,
-    minuteIsReadOnly  : false,
-    minutePlaceholder : undefined,
-    minuteValue       : undefined,
-    month             : undefined,
-    nextIsDisabled    : undefined,
-    onChangeHour      : undefined,
-    onChangeMinute    : undefined,
-    onClickNext       : undefined,
-    onClickPrev       : undefined,
-    prevIsDisabled    : undefined,
-    style             : undefined,
-    year              : undefined,
+  className: undefined,
+  cssMap: undefined,
+  hasTimeInput: true,
+  hourIsDisabled: false,
+  hourIsReadOnly: false,
+  hourPlaceholder: undefined,
+  hourValue: undefined,
+  isDisabled: undefined,
+  isReadOnly: undefined,
+  minuteIsDisabled: false,
+  minuteIsReadOnly: false,
+  minutePlaceholder: undefined,
+  minuteValue: undefined,
+  month: undefined,
+  nextIsDisabled: undefined,
+  onChangeHour: undefined,
+  onChangeMinute: undefined,
+  onClickNext: undefined,
+  onClickPrev: undefined,
+  prevIsDisabled: undefined,
+  style: undefined,
+  year: undefined
 };
 
 DatePickerHeader.displayName = componentName;

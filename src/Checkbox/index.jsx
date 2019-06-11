@@ -7,131 +7,118 @@
  *
  */
 
+import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
 
-import React, { forwardRef } from 'react';
-import PropTypes             from 'prop-types';
+import { Text } from "..";
 
-import { Text }              from '..';
+import { attachEvents, useId, useThemeClasses } from "../utils";
 
-import {
-    attachEvents,
-    useId,
-    useThemeClasses,
-} from '../utils';
+const componentName = "Checkbox";
 
+const Checkbox = forwardRef((props, ref) => {
+  const {
+    children,
+    isChecked,
+    isDefaultChecked,
+    isDisabled,
+    label,
+    style
+  } = props;
 
-const componentName = 'Checkbox';
+  const cssMap = useThemeClasses(componentName, props);
+  const id = useId(componentName, props);
 
-const Checkbox = forwardRef( ( props, ref ) =>
-{
-    const {
-        children,
-        isChecked,
-        isDefaultChecked,
-        isDisabled,
-        label,
-        style,
-    } = props;
+  let labelContent = children || label;
 
-    const cssMap = useThemeClasses( componentName, props );
-    const id = useId( componentName, props );
+  if (typeof labelContent === "string") {
+    labelContent = <Text className={cssMap.labelText}>{labelContent}</Text>;
+  }
 
-    let labelContent = children || label;
+  return (
+    <div className={cssMap.main} ref={ref} style={style}>
+      <input
+        {...attachEvents(props)}
+        checked={isChecked}
+        className={cssMap.input}
+        defaultChecked={isDefaultChecked}
+        disabled={isDisabled}
+        id={id}
+        type="checkbox"
+      />
+      <label className={cssMap.label} htmlFor={id}>
+        {labelContent && (
+          <span className={cssMap.labelContent}>{labelContent}</span>
+        )}
+      </label>
+    </div>
+  );
+});
 
-    if ( typeof labelContent === 'string' )
-    {
-        labelContent =
-            <Text className = { cssMap.labelText }>{ labelContent }</Text>;
-    }
-
-    return (
-        <div className = { cssMap.main } ref = { ref } style = { style }>
-            <input
-                { ...attachEvents( props ) }
-                checked   = { isChecked }
-                className = { cssMap.input }
-                defaultChecked = { isDefaultChecked }
-                disabled  = { isDisabled }
-                id        = { id }
-                type      =  "checkbox" />
-            <label className = { cssMap.label } htmlFor = { id }>
-                { labelContent &&
-                    <span className = { cssMap.labelContent }>
-                        { labelContent }
-                    </span>
-                }
-            </label>
-        </div>
-    );
-} );
-
-
-Checkbox.propTypes =
-{
-    /**
-     *  Label content (React node; overrides label prop)
-     */
-    children         : PropTypes.node,
-    /**
-     *  Extra CSS class name
-     */
-    className        : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap           : PropTypes.objectOf( PropTypes.string ),
-    /**
-     *  Display as error/invalid
-     */
-    hasError         : PropTypes.bool,
-    /**
-     *  Component id
-     */
-    id               : PropTypes.string,
-    /**
-     *  Display as checked (controlled input)
-     */
-    isChecked        : PropTypes.bool,
-    /**
-     *  Display as checked by default (uncontrolled input)
-     */
-    isDefaultChecked : PropTypes.bool,
-    /**
-     *  Display as disabled
-     */
-    isDisabled       : PropTypes.bool,
-    /**
-     *  Label content (string)
-     */
-    label            : PropTypes.string,
-    /**
-     *  change callback prop
-     */
-    onChange         : PropTypes.func,
-    /**
-     *  click callback prop
-     */
-    onClick          : PropTypes.func,
-    /**
-     *  Style overrides
-     */
-    style            : PropTypes.objectOf( PropTypes.string ),
+Checkbox.propTypes = {
+  /**
+   *  Label content (React node; overrides label prop)
+   */
+  children: PropTypes.node,
+  /**
+   *  Extra CSS class name
+   */
+  className: PropTypes.string,
+  /**
+   *  CSS class map
+   */
+  cssMap: PropTypes.objectOf(PropTypes.string),
+  /**
+   *  Display as error/invalid
+   */
+  hasError: PropTypes.bool,
+  /**
+   *  Component id
+   */
+  id: PropTypes.string,
+  /**
+   *  Display as checked (controlled input)
+   */
+  isChecked: PropTypes.bool,
+  /**
+   *  Display as checked by default (uncontrolled input)
+   */
+  isDefaultChecked: PropTypes.bool,
+  /**
+   *  Display as disabled
+   */
+  isDisabled: PropTypes.bool,
+  /**
+   *  Label content (string)
+   */
+  label: PropTypes.string,
+  /**
+   *  change callback prop
+   */
+  onChange: PropTypes.func,
+  /**
+   *  click callback prop
+   */
+  onClick: PropTypes.func,
+  /**
+   *  Style overrides
+   */
+  style: PropTypes.objectOf(PropTypes.string)
 };
 
-Checkbox.defaultProps =
-{
-    children         : undefined,
-    className        : undefined,
-    cssMap           : undefined,
-    hasError         : false,
-    id               : undefined,
-    isChecked        : undefined,
-    isDefaultChecked : undefined,
-    isDisabled       : false,
-    label            : undefined,
-    onChange         : undefined,
-    onClick          : undefined,
-    style            : undefined,
+Checkbox.defaultProps = {
+  children: undefined,
+  className: undefined,
+  cssMap: undefined,
+  hasError: false,
+  id: undefined,
+  isChecked: undefined,
+  isDefaultChecked: undefined,
+  isDisabled: false,
+  label: undefined,
+  onChange: undefined,
+  onClick: undefined,
+  style: undefined
 };
 
 Checkbox.displayName = componentName;

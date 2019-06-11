@@ -1,135 +1,146 @@
 {
-	"Button" :
-    {
-        "label" : "Click me!"
-    },
-	"ComboBox": {
-		"dropdownPlaceholder": "No Results",
-		"options": [{
-			"header": "Section 1",
-			"options": [{
-				"id": "option1",
-				"text": "Option 1"
-			}, {
-				"id": "option2",
-				"text": "Option 2"
-			}]
-		}, {
-			"header": "Section 2",
-			"options": [{
-				"id": "option3",
-				"text": "Option 3"
-			}, {
-				"id": "option4",
-				"text": "Option 4"
-			}]
-		}, {
-			"id": "option5",
-			"text": "Option 5"
-		}, {
-			"id": "option6",
-			"text": "Option 6"
-		}]
-	},
-	"CurrencyInput" :
-    {
-        "currency" : "USD"
-    },
-	"Grid": {
-		"children": "{<GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem>}"
-	},
-	"GridItem": {
-		"children": "{<Text>Grid Item dummy text</Text>}"
-	},
-	"Icon": {
-		"type": "star"
-	},
-	"IconButton": {
-		"iconType": "plus",
-		"label": "Add"
-	},
-	"ListBox": {
-		"options": [{
-				"text": "Option"
-			},
-			{
-				"text": "Option with description",
-				"value": "value2",
-				"description": "Option description"
-			},
-			{
-				"text": "Disabled option",
-				"value": "value3",
-				"isDisabled": true
-			},
-			{
-				"header": "Subsection 1",
-				"options": [{
-						"text": "Subsection option 1"
-					},
-					{
-						"text": "Subsection option 2"
-					},
-					{
-						"text": "Subsection option with really, really, long text and a long description",
-						"description": "Option description is also really, really, long",
-						"value": "value12"
-					}
-				]
-			}
-		]
-	},
-	"PasswordInput": {
-		"label": "Tell me your secrets",
-		"errorMessage": "Please enter a dark secret"
-	},
-	"Popup": {
-		"children": "Popup content",
-		"padding": "M"
-	},
-	"PopperWrapper": {
-		"children": "{<Button label=\"Click me!\" />}",
-		"popper": "{<Popup padding=\"M\">Popup content</Popup>}"
-	},
-  "ProgressBar": {
-      "percentage": 20
+  "Button": {
+    "label": "Click me!"
   },
-	"ScrollBar": {
-		"scrollMax": 100
-	},
-	"ScrollBox": {
-		"children": "{<Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid>}",
-		"contentWidth": "150%",
-		"height": "100px"
-	},
-	"Tab": {
-		"label": "Tab title text",
-		"children": "{<Text>Tab content goes here</Text>}"
-	},
-	"TabButton": {
-		"label": "Tab title",
-		"subtitle": "Something subtitly"
-	},
-	"Tabs": {
-		"children": "{<Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab><Tab label=\"Русский\">привет!</Tab>}"
-	},
-	"TagInput": {
-		"suggestions":["hello","bye","morgen"]
-	},
-	"TextArea": {
-		"placeholder": "Enter text....",
-		"resize": "none"
-	},
-	"TextInputWithIcon": {
-		"label": "Name",
-		"inputPlaceholder": "name",
-		"inputType": "text",
-		"iconType": "star"
-	},
-	"Tooltip": {
-		"message": "Pro tip!"
-	},
-	"UnitInput": {
-		"valueLabel": "%"
-	}
+  "ComboBox": {
+    "dropdownPlaceholder": "No Results",
+    "options": [
+      {
+        "header": "Section 1",
+        "options": [
+          {
+            "id": "option1",
+            "text": "Option 1"
+          },
+          {
+            "id": "option2",
+            "text": "Option 2"
+          }
+        ]
+      },
+      {
+        "header": "Section 2",
+        "options": [
+          {
+            "id": "option3",
+            "text": "Option 3"
+          },
+          {
+            "id": "option4",
+            "text": "Option 4"
+          }
+        ]
+      },
+      {
+        "id": "option5",
+        "text": "Option 5"
+      },
+      {
+        "id": "option6",
+        "text": "Option 6"
+      }
+    ]
+  },
+  "CurrencyInput": {
+    "currency": "USD"
+  },
+  "Grid": {
+    "children": "{<GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem>}"
+  },
+  "GridItem": {
+    "children": "{<Text>Grid Item dummy text</Text>}"
+  },
+  "Icon": {
+    "type": "star"
+  },
+  "IconButton": {
+    "iconType": "plus",
+    "label": "Add"
+  },
+  "ListBox": {
+    "options": [
+      {
+        "text": "Option"
+      },
+      {
+        "text": "Option with description",
+        "value": "value2",
+        "description": "Option description"
+      },
+      {
+        "text": "Disabled option",
+        "value": "value3",
+        "isDisabled": true
+      },
+      {
+        "header": "Subsection 1",
+        "options": [
+          {
+            "text": "Subsection option 1"
+          },
+          {
+            "text": "Subsection option 2"
+          },
+          {
+            "text": "Subsection option with really, really, long text and a long description",
+            "description": "Option description is also really, really, long",
+            "value": "value12"
+          }
+        ]
+      }
+    ]
+  },
+  "PasswordInput": {
+    "label": "Tell me your secrets",
+    "errorMessage": "Please enter a dark secret"
+  },
+  "Popup": {
+    "children": "Popup content",
+    "padding": "M"
+  },
+  "PopperWrapper": {
+    "children": "{<Button label=\"Click me!\" />}",
+    "popper": "{<Popup padding=\"M\">Popup content</Popup>}"
+  },
+  "ProgressBar": {
+    "percentage": 20
+  },
+  "ScrollBar": {
+    "scrollMax": 100
+  },
+  "ScrollBox": {
+    "children": "{<Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid><Grid autoFlow=\"col\"><GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem></Grid>}",
+    "contentWidth": "150%",
+    "height": "100px"
+  },
+  "Tab": {
+    "label": "Tab title text",
+    "children": "{<Text>Tab content goes here</Text>}"
+  },
+  "TabButton": {
+    "label": "Tab title",
+    "subtitle": "Something subtitly"
+  },
+  "Tabs": {
+    "children": "{<Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab><Tab label=\"Русский\">привет!</Tab>}"
+  },
+  "TagInput": {
+    "suggestions": ["hello", "bye", "morgen"]
+  },
+  "TextArea": {
+    "placeholder": "Enter text....",
+    "resize": "none"
+  },
+  "TextInputWithIcon": {
+    "label": "Name",
+    "inputPlaceholder": "name",
+    "inputType": "text",
+    "iconType": "star"
+  },
+  "Tooltip": {
+    "message": "Pro tip!"
+  },
+  "UnitInput": {
+    "valueLabel": "%"
+  }
 }

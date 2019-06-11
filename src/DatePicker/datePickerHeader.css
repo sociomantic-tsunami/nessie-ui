@@ -7,62 +7,56 @@
  *
  */
 
-@import '../proto/definitions/variables.css';
+@import "../proto/definitions/variables.css";
 
-.default
-{
-    position:                   relative;
+.default {
+  position: relative;
 
-    padding-top:                var( --spacing-3 );
-    padding-right:              var( --spacing-3 );
-    padding-bottom:             var( --spacing-2 );
-    padding-left:               var( --spacing-3 );
+  padding-top: var(--spacing-3);
+  padding-right: var(--spacing-3);
+  padding-bottom: var(--spacing-2);
+  padding-left: var(--spacing-3);
 
-    background-color:           var( --PC-BLUE );
+  background-color: var(--PC-BLUE);
 
-    border-top-left-radius:     2px;
-    border-top-right-radius:    2px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
 
-    .date
-    {
+  .date {
+    @extend %Nessie-Light;
+    color: var(--PC-WHITE);
+    font-size: 22px;
+    line-height: var(--line-height-m);
 
-        @extend %Nessie-Light;
-        color:          var( --PC-WHITE );
-        font-size:      22px;
-        line-height:    var( --line-height-m );
+    margin-bottom: 0;
+    margin-top: var(--spacing-2);
+    padding-top: var(--spacing-3);
+    position: relative;
 
-        margin-bottom:  0;
-        margin-top:     var( --spacing-2 );
-        padding-top:    var( --spacing-3 );
-        position:       relative;
+    display: inline-block;
+    width: 50%;
+  }
 
-        display:        inline-block;
-        width:          50%;
-    }
+  .year {
+    @extend %Nessie-Bold;
+    font-size: 13px;
+    line-height: var(--line-height-s);
 
-    .year
-    {
-        @extend %Nessie-Bold;
-        font-size:      13px;
-        line-height:    var( --line-height-s );
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 
-        position:       absolute;
-        top:            0;
-        left:           0;
-    }
+  .buttonsWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+  }
 
-    .buttonsWrapper
-    {
-        display:            flex;
-        justify-content:    space-between;
-        align-items:        center;
-        align-content:      center;
-    }
-
-    .prev,
-    .next
-    {
-        width:  var( --spacing-3 );
-        height: var( --spacing-3 );
-    }
+  .prev,
+  .next {
+    width: var(--spacing-3);
+    height: var(--spacing-3);
+  }
 }

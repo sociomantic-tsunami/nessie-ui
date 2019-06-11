@@ -9,7 +9,6 @@
 
 @import "../proto/base.css";
 
-.default
-{
-    display:    grid;
+.default {
+  display: grid;
 }
