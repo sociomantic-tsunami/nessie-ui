@@ -113,10 +113,10 @@ const classNames = {
     ),
     ...datePickerItemClasses
   }),
-  Grid: {
-    main: cx.bind(gridClasses)("default"),
+  Grid: props => ({
+    main: cx.bind(gridClasses)("default", props.className),
     ...gridClasses
-  },
+  }),
   Icon: props => ({
     main: cx.bind(iconClasses)(
       "default",
