@@ -15,22 +15,22 @@ import { attachEvents, useThemeClasses } from "../utils";
 const componentName = "Modal";
 
 const Modal = forwardRef((props, ref) => {
-  const handleClickOverlay = ({ target, currentTarget }) => {
-    if (target !== currentTarget) return;
+  const { children, onClick, onClickOverlay, style, ...restProps } = props;
 
-    const { onClickOverlay } = props;
-    if (onClickOverlay) {
+  const handleClickOverlay = e => {
+    if (typeof onClick === "function") {
+      onClick(e);
+    }
+    if (onClickOverlay && e.target === e.currentTarget) {
       onClickOverlay();
     }
   };
-
-  const { children, style } = props;
 
   const cssMap = useThemeClasses(componentName, props);
 
   return (
     <div
-      {...attachEvents(props, { onClick: false })}
+      {...attachEvents(restProps)}
       className={cssMap.main}
       onClick={handleClickOverlay}
       ref={ref}
