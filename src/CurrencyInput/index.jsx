@@ -11,6 +11,7 @@
 
 import React, { forwardRef, useState } from "react";
 import PropTypes from "prop-types";
+import useUncontrolled from "uncontrollable/hook";
 
 import { TextInput } from "..";
 
@@ -30,73 +31,60 @@ const currencyFormat = (
 const parseValue = value =>
   value ? Number(value.replace(/[^0-9.-]/g, "")) : null;
 
-const useValueState = (defaultValue, value) => {
-  const [valueState, setValueState] = useState(defaultValue);
-  return [typeof value === "number" ? value : valueState, setValueState];
-};
-
 const componentName = "CurrencyInput";
 
-const CurrencyInput = forwardRef(
-  (
-    {
-      currency,
-      defaultValue,
-      id,
-      onBlur,
-      onChange,
-      style,
-      value,
-      ...restProps
-    },
-    ref
-  ) => {
-    const [isFocused, setIsFocused] = useState(false);
-    const [valueState, setValueState] = useValueState(defaultValue, value);
-    const formattedValue = currencyFormat(valueState, currency);
-    const [editingValue, setEditingValue] = useState(formattedValue);
+const CurrencyInput = forwardRef((props, ref) => {
+  const {
+    currency,
+    id,
+    onBlur,
+    onChange,
+    onFocus,
+    style,
+    value,
+    ...restProps
+  } = useUncontrolled(props, { value: "onChange" });
+  const formattedValue = currencyFormat(value, currency);
+  const [editingValue, setEditingValue] = useState(formattedValue);
+  const [isFocused, setIsFocused] = useState(false);
 
-    const handleFocus = () => {
-      setEditingValue(formattedValue);
-      setIsFocused(true);
-    };
+  const handleFocus = () => {
+    if (typeof onBlur === "function") {
+      onFocus();
+    }
+    setEditingValue(formattedValue);
+    setIsFocused(true);
+  };
 
-    const handleBlur = () => {
-      const newValue = parseValue(editingValue);
+  const handleBlur = () => {
+    if (typeof onBlur === "function") {
+      onBlur();
+    }
+    setIsFocused(false);
+  };
 
-      if (typeof onBlur === "function") {
-        onBlur();
-      }
-      if (typeof onChange === "function") {
-        onChange({ value: newValue });
-      }
+  const handleChange = newValue => {
+    setEditingValue(newValue);
+    onChange(parseValue(editingValue));
+  };
 
-      setValueState(newValue);
-      setIsFocused(false);
-    };
-
-    const handleChange = ({ value: newValue }) => {
-      setEditingValue(newValue);
-    };
-
-    return (
-      <TextInput
-        {...restProps}
-        autoCapitalize="off"
-        autoComplete="off"
-        autoCorrect="off"
-        id={id}
-        onBlur={handleBlur}
-        onChange={handleChange}
-        onFocus={handleFocus}
-        ref={ref}
-        spellCheck={false}
-        style={style}
-        value={isFocused ? editingValue : formattedValue}
-      />
-    );
-  }
-);
+  return (
+    <TextInput
+      {...restProps}
+      autoCapitalize="off"
+      autoComplete="off"
+      autoCorrect="off"
+      id={id}
+      onBlur={handleBlur}
+      onChange={handleChange}
+      onFocus={handleFocus}
+      ref={ref}
+      spellCheck={false}
+      style={style}
+      value={isFocused ? editingValue : formattedValue}
+    />
+  );
+});
 
 CurrencyInput.propTypes = {
   /**
