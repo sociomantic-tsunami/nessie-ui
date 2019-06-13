@@ -228,15 +228,15 @@ const ScrollBox = forwardRef((props, ref) => {
         <ScrollBar
           className={cssMap.scrollBarHorizontal}
           key="horizontal"
-          onClickTrack={handleClickTrackX}
           onChange={handleChangeX}
-          onThumbDragStart={onThumbDragStartX}
+          onClickTrack={handleClickTrackX}
           onThumbDragEnd={onThumbDragEndX}
+          onThumbDragStart={onThumbDragStartX}
           orientation="horizontal"
-          scrollPos={dimensions.scrollLeft}
+          scrollMax={dimensions.scrollWidth - dimensions.clientWidth}
           thumbSize={`${(dimensions.clientWidth / dimensions.scrollWidth) *
             100}%`}
-          scrollMax={dimensions.scrollWidth - dimensions.clientWidth}
+          value={dimensions.scrollLeft}
         />
       );
     }
@@ -248,16 +248,16 @@ const ScrollBox = forwardRef((props, ref) => {
         <ScrollBar
           className={cssMap.scrollBarVertical}
           key="vertical"
-          onClickTrack={handleClickTrackY}
+          length={`${dimensions.clientHeight}px`}
           onChange={handleChangeY}
-          onThumbDragStart={onThumbDragStartY}
+          onClickTrack={handleClickTrackY}
           onThumbDragEnd={onThumbDragEndY}
+          onThumbDragStart={onThumbDragStartY}
           orientation="vertical"
-          scrollPos={dimensions.scrollTop}
+          scrollMax={dimensions.scrollHeight - dimensions.clientHeight}
           thumbSize={`${(dimensions.clientHeight / dimensions.scrollHeight) *
             100}%`}
-          scrollMax={dimensions.scrollHeight - dimensions.clientHeight}
-          length={`${dimensions.clientHeight}px`}
+          value={dimensions.scrollTop}
         />
       );
     }
