@@ -9,20 +9,32 @@
 
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
+import useUncontrolled from "uncontrollable/hook";
 
-import { attachEvents, useId, useThemeClasses } from "../utils";
+import {
+  attachEvents as handleAllEvents,
+  useId,
+  useThemeClasses
+} from "../utils";
 
 const componentName = "Switch";
 
 const Switch = forwardRef((props, ref) => {
-  const { isChecked, isDefaultChecked, isDisabled, label, style } = props;
+  const {
+    isChecked,
+    isDisabled,
+    label,
+    onChange,
+    style,
+    ...restProps
+  } = useUncontrolled(props, { isChecked: "onChange" });
 
   const cssMap = useThemeClasses(componentName, props);
   const id = useId(componentName, props);
 
   return (
     <div
-      {...attachEvents(props)}
+      {...handleAllEvents(restProps)}
       className={cssMap.main}
       ref={ref}
       style={style}
@@ -30,9 +42,13 @@ const Switch = forwardRef((props, ref) => {
       <input
         checked={isChecked}
         className={cssMap.input}
-        defaultChecked={isDefaultChecked}
         disabled={isDisabled}
         id={id}
+        onChange={
+          onChange
+            ? ({ target: { checked: newValue } }) => onChange(newValue)
+            : undefined
+        }
         type="checkbox"
       />
       <label aria-label={label} className={cssMap.label} htmlFor={id} />
@@ -50,6 +66,10 @@ Switch.propTypes = {
    */
   cssMap: PropTypes.objectOf(PropTypes.string),
   /**
+   *  Display as checked by default (uncontrolled input)
+   */
+  defaultIsChecked: PropTypes.bool,
+  /**
    * HTML id attribute
    */
   id: PropTypes.string,
@@ -57,10 +77,7 @@ Switch.propTypes = {
    *  Display as checked/“on”
    */
   isChecked: PropTypes.bool,
-  /**
-   *  Display as checked by default (uncontrolled input)
-   */
-  isDefaultChecked: PropTypes.bool,
+
   /**
    *  Display as disabled
    */
@@ -98,9 +115,9 @@ Switch.propTypes = {
 Switch.defaultProps = {
   className: undefined,
   cssMap: undefined,
+  defaultIsChecked: undefined,
   id: undefined,
   isChecked: undefined,
-  isDefaultChecked: undefined,
   isDisabled: false,
   label: undefined,
   onBlur: undefined,
