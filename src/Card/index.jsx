@@ -7,72 +7,62 @@
  *
  */
 
-import React, { forwardRef }             from 'react';
-import PropTypes                         from 'prop-types';
+import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
 
-import { attachEvents, useThemeClasses } from '../utils';
+import { attachEvents, useThemeClasses } from "../utils";
 
+const componentName = "Card";
 
-const componentName = 'Card';
+const Card = forwardRef((props, ref) => {
+  const { children, style } = props;
 
-const Card = forwardRef( ( props, ref ) =>
-{
-    const { children, style } = props;
+  const cssMap = useThemeClasses(componentName, props);
 
-    const cssMap = useThemeClasses( componentName, props );
+  return (
+    <div
+      {...attachEvents(props)}
+      className={cssMap.main}
+      ref={ref}
+      style={style}
+    >
+      {children}
+    </div>
+  );
+});
 
-    return (
-        <div
-            { ...attachEvents( props ) }
-            className = { cssMap.main }
-            ref       = { ref }
-            style     = { style }>
-            { children }
-        </div>
-    );
-} );
-
-Card.propTypes =
-{
-    /**
-     *  Module content
-     */
-    children  : PropTypes.node,
-    /**
-     *  Extra CSS class name
-     */
-    className : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap    : PropTypes.objectOf( PropTypes.string ),
-    /**
-    *   Card padding
-    */
-    padding   : PropTypes.oneOfType( [
-        PropTypes.oneOf( [ 'none', 'S', 'M', 'L', 'XL', 'XXL' ] ),
-        PropTypes.arrayOf( PropTypes.oneOf( [
-            'none',
-            'S',
-            'M',
-            'L',
-            'XL',
-            'XXL',
-        ] ) ),
-    ] ),
-    /**
-     *  Style overrides
-     */
-    style : PropTypes.objectOf( PropTypes.string ),
+Card.propTypes = {
+  /**
+   *  Module content
+   */
+  children: PropTypes.node,
+  /**
+   *  Extra CSS class name
+   */
+  className: PropTypes.string,
+  /**
+   *  CSS class map
+   */
+  cssMap: PropTypes.objectOf(PropTypes.string),
+  /**
+   *   Card padding
+   */
+  padding: PropTypes.oneOfType([
+    PropTypes.oneOf(["none", "S", "M", "L", "XL", "XXL"]),
+    PropTypes.arrayOf(PropTypes.oneOf(["none", "S", "M", "L", "XL", "XXL"]))
+  ]),
+  /**
+   *  Style overrides
+   */
+  style: PropTypes.objectOf(PropTypes.string)
 };
 
-Card.defaultProps =
-{
-    children  : undefined,
-    className : undefined,
-    cssMap    : undefined,
-    padding   : 'M',
-    style     : undefined,
+Card.defaultProps = {
+  children: undefined,
+  className: undefined,
+  cssMap: undefined,
+  padding: "M",
+  style: undefined
 };
 
 Card.displayName = componentName;

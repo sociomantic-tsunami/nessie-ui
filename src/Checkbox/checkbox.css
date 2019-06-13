@@ -9,145 +9,125 @@
 
 @import "../proto/base.css";
 
+.default {
+  padding-top: var(--spacing-1);
+  padding-bottom: var(--spacing-1);
 
-.default
-{
-    padding-top:    var( --spacing-1 );
-    padding-bottom: var( --spacing-1 );
+  width: auto;
 
-    width:          auto;
+  .input /* the (hidden) native input */
+ {
+    position: absolute;
+    left: -9999px;
+  }
 
-    .input /* the (hidden) native input */
-    {
-        position:   absolute;
-        left:       -9999px;
+  .input:checked + .label {
+    &::before {
+      background: var(--PC-BLUE);
     }
 
-    .input:checked + .label
-    {
-        &::before
-        {
-            background: var( --PC-BLUE );
-        }
+    &::after {
+      display: block;
 
-        &::after
-        {
-            display:                block;
+      background: url("./images/check.svg");
+      background-position: center;
+      background-size: var(--spacing-3);
+      background-repeat: no-repeat;
+    }
+  }
 
-            background:             url( './images/check.svg' );
-            background-position:    center;
-            background-size:        var( --spacing-3 );
-            background-repeat:      no-repeat;
-        }
+  .label /* ‘label’ is the styled checkbox/radio */
+ {
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    height: var(--spacing-3);
+
+    cursor: pointer;
+
+    &::before {
+      content: "";
+
+      display: block;
+      position: relative;
+
+      box-sizing: border-box;
+      width: var(--spacing-3);
+      height: var(--spacing-3);
+
+      border: 1px solid var(--PC-BLUE--L55);
+      border-radius: 2px;
+
+      background: var(--PC-WHITE);
     }
 
-    .label /* ‘label’ is the styled checkbox/radio */
-    {
-        display:        flex;
-        align-items:    center;
+    &::after {
+      content: "";
 
-        position:       relative;
+      display: none;
+      position: absolute;
 
-        height:         var( --spacing-3 );
+      top: 0;
+      left: 0;
 
-        cursor:         pointer;
-
-        &::before
-        {
-            content:        '';
-
-            display:        block;
-            position:       relative;
-
-            box-sizing:     border-box;
-            width:          var( --spacing-3 );
-            height:         var( --spacing-3 );
-
-            border:         1px solid var( --PC-BLUE--L55 );
-            border-radius:  2px;
-
-            background:     var( --PC-WHITE );
-        }
-
-        &::after
-        {
-            content:    '';
-
-            display:    none;
-            position:   absolute;
-
-            top:        0;
-            left:       0;
-
-            width:      var( --spacing-3 );
-            height:     var( --spacing-3 );
-        }
+      width: var(--spacing-3);
+      height: var(--spacing-3);
     }
+  }
 
-    .labelContent
-    {
-        display:        block;
-        margin-left:    var( --spacing-1 );
-    }
+  .labelContent {
+    display: block;
+    margin-left: var(--spacing-1);
+  }
 
-    .labelText
-    {
-        @extend %Nessie-SemiBold;
-        color:  var( --PC-GREY--D15 );
-    }
+  .labelText {
+    @extend %Nessie-SemiBold;
+    color: var(--PC-GREY--D15);
+  }
 
-    .input:checked + .label::before,
-    .input:focus + .label::before,
-    &.fakeHovered .label::before
-    {
-        border-color:   var( --PC-BLUE );
-    }
+  .input:checked + .label::before,
+  .input:focus + .label::before,
+  &.fakeHovered .label::before {
+    border-color: var(--PC-BLUE);
+  }
 
-    .input:focus + .label::before,
-    &.fakeHovered .label::before
-    {
-        box-shadow: 0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
-    }
+  .input:focus + .label::before,
+  &.fakeHovered .label::before {
+    box-shadow: 0 0 0 2px color(var(--PC-BLUE) a(30%));
+  }
 }
 
-.error
-{
-    .label::before
-    {
-        border: 1px solid var( --PC-RED ) !important;
-    }
+.error {
+  .label::before {
+    border: 1px solid var(--PC-RED) !important;
+  }
 
-    .input:checked + .label::before
-    {
-        background: var( --PC-RED );
-    }
+  .input:checked + .label::before {
+    background: var(--PC-RED);
+  }
 
-    .input:focus + .label::before,
-    &.fakeHovered .label::before
-    {
-        box-shadow: 0 0 0 2px color( var( --PC-RED ) a( 30% ) );
-    }
+  .input:focus + .label::before,
+  &.fakeHovered .label::before {
+    box-shadow: 0 0 0 2px color(var(--PC-RED) a(30%));
+  }
 }
 
-.disabled
-{
-    .label
-    {
-        cursor: default;
+.disabled {
+  .label {
+    cursor: default;
 
-        &::before
-        {
-            border-color:   var( --PC-GREY--L70 ) !important;
-        }
+    &::before {
+      border-color: var(--PC-GREY--L70) !important;
     }
+  }
 
-    .input:checked + .label::before
-    {
-        background:   var( --PC-GREY--L70 );
-    }
+  .input:checked + .label::before {
+    background: var(--PC-GREY--L70);
+  }
 
-    .labelText
-    {
-        color:  var( --PC-GREY--L70 );
-    }
+  .labelText {
+    color: var(--PC-GREY--L70);
+  }
 }

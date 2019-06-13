@@ -10,286 +10,237 @@
 @import "../proto/definitions/variables.css";
 @import "../proto/definitions/_fonts.css";
 
+:root {
+  --tooltipBorderRadius: 4px;
+  --tooltipBorderWidth: 1px;
+  --tooltipBoxShadow: 0 2px 8px color(var(--PC-GREY) a(50%));
+  --tooltipMaxWidth: 360px;
+  --tooltipOffset: var(--spacing-2);
+  --tooltipPadding: var(--spacing-2);
 
-:root
-{
-    --tooltipBorderRadius:  4px;
-    --tooltipBorderWidth:   1px;
-    --tooltipBoxShadow:     0 2px 8px  color( var( --PC-GREY ) a( 50% ) );
-    --tooltipMaxWidth:      360px;
-    --tooltipOffset:        var( --spacing-2 );
-    --tooltipPadding:       var( --spacing-2 );
+  --messageLineHeight: var(--line-height-m);
 
-    --messageLineHeight:    var( --line-height-m );
-
-    --arrowSize:            10px;
-    --arrowOffset: /* center the arrow to the first line of message text */
-        calc( var( --tooltipPadding ) + ( var( --messageLineHeight ) / 2 ) );
+  --arrowSize: 10px;
+  --arrowOffset: /* center the arrow to the first line of message text */ calc(
+    var(--tooltipPadding) + (var(--messageLineHeight) / 2)
+  );
 }
 
+.default {
+  visibility: visible;
+  position: relative;
+  display: inline-block;
 
+  box-sizing: border-box;
+  min-width: var(--tooltipMinSize);
+  min-height: var(--tooltipMinSize);
+  max-width: var(--tooltipMaxWidth);
 
+  border: var(--tooltipBorderWidth) solid;
+  border-radius: var(--tooltipBorderRadius);
+  box-shadow: var(--tooltipBoxShadow);
 
-.default
-{
-    visibility:     visible;
-    position:       relative;
-    display:        inline-block;
+  padding: var(--spacing-2);
 
-    box-sizing:     border-box;
-    min-width:      var( --tooltipMinSize );
-    min-height:     var( --tooltipMinSize);
-    max-width:      var( --tooltipMaxWidth );
+  text-align: left;
 
-    border:         var( --tooltipBorderWidth ) solid;
-    border-radius:  var( --tooltipBorderRadius );
-    box-shadow:     var( --tooltipBoxShadow );
+  &::before /* hover area */
+ {
+    content: "";
+    position: absolute;
+    display: block;
+  }
 
-    padding:        var( --spacing-2 );
+  &::after /* arrow */
+ {
+    content: "";
+    display: block;
+    position: absolute;
 
-    text-align:     left;
+    box-sizing: inherit;
+    width: var(--arrowSize);
+    height: var(--arrowSize);
 
-    &::before /* hover area */
-    {
-        content:    "";
-        position:   absolute;
-        display:    block;
+    border: inherit;
+    border-top-color: transparent;
+    border-left-color: transparent;
+
+    background: inherit;
+  }
+
+  .message {
+    min-height: var(--messageLineHeight);
+    min-width: var(--messageLineHeight);
+
+    line-height: var(--messageLineHeight);
+
+    @extend %Nessie-SemiBold;
+    color: var(--PC-WHITE);
+    overflow-wrap: break-word;
+    text-transform: none;
+
+    a:any-link {
+      color: inherit !important;
+      text-decoration: underline;
     }
+  }
 
-    &::after /* arrow */
-    {
-        content:                "";
-        display:                block;
-        position:               absolute;
-
-        box-sizing:             inherit;
-        width:                  var( --arrowSize );
-        height:                 var( --arrowSize );
-
-        border:                 inherit;
-        border-top-color:       transparent;
-        border-left-color:      transparent;
-
-        background:             inherit;
-    }
-
-
-    .message
-    {
-        min-height:     var( --messageLineHeight );
-        min-width:      var( --messageLineHeight );
-
-        line-height:    var( --messageLineHeight );
-
-        @extend %Nessie-SemiBold;
-        color:          var( --PC-WHITE );
-        overflow-wrap:  break-word;
-        text-transform: none;
-
-        a:any-link
-        {
-            color:              inherit !important;
-            text-decoration:    underline;
-        }
-    }
-
-    .close
-    {
-        position:   absolute;
-        top:        var( --spacing-2 );
-        right:      var( --spacing-2 );
-    }
+  .close {
+    position: absolute;
+    top: var(--spacing-2);
+    right: var(--spacing-2);
+  }
 }
 
-
-.dismissible
-{
-    padding-right:  var( --spacing-6 );
+.dismissible {
+  padding-right: var(--spacing-6);
 }
-
 
 .arrowPosition__top,
 .arrowPosition__topLeft,
 .arrowPosition__topRight,
 .arrowPosition__bottom,
 .arrowPosition__bottomLeft,
-.arrowPosition__bottomRight
-{
-    &::before
-    {
-        left:   0;
-        right:  0;
-        height: var( --tooltipOffset );
-    }
+.arrowPosition__bottomRight {
+  &::before {
+    left: 0;
+    right: 0;
+    height: var(--tooltipOffset);
+  }
 }
 
 .arrowPosition__top,
 .arrowPosition__topLeft,
-.arrowPosition__topRight
-{
-    &::before,
-    &::after
-    {
-        bottom: calc( 100% + var( --tooltipBorderWidth ) );
-    }
+.arrowPosition__topRight {
+  &::before,
+  &::after {
+    bottom: calc(100% + var(--tooltipBorderWidth));
+  }
 
-    &::after
-    {
-        transform:  translateX( -50% ) translateY( 50% ) rotate( 225deg );
-    }
+  &::after {
+    transform: translateX(-50%) translateY(50%) rotate(225deg);
+  }
 }
 
 .arrowPosition__bottom,
 .arrowPosition__bottomLeft,
-.arrowPosition__bottomRight
-{
-    &::before,
-    &::after
-    {
-        top:    calc( 100% + var( --tooltipBorderWidth ) );
-    }
+.arrowPosition__bottomRight {
+  &::before,
+  &::after {
+    top: calc(100% + var(--tooltipBorderWidth));
+  }
 
-    &::after
-    {
-        transform:  translateX( -50% ) translateY( -50% ) rotate( 45deg );
-    }
+  &::after {
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  }
 }
 
 .arrowPosition__top,
-.arrowPosition__bottom
-{
-    &::after
-    {
-        left:   50%;
-    }
+.arrowPosition__bottom {
+  &::after {
+    left: 50%;
+  }
 }
 
 .arrowPosition__topLeft,
-.arrowPosition__bottomLeft
-{
-    &::after
-    {
-        left:   var( --arrowOffset );
-    }
+.arrowPosition__bottomLeft {
+  &::after {
+    left: var(--arrowOffset);
+  }
 }
 
 .arrowPosition__topRight,
-.arrowPosition__bottomRight
-{
-    &::after
-    {
-        left:  calc( 100% - var( --arrowOffset ) );
-    }
+.arrowPosition__bottomRight {
+  &::after {
+    left: calc(100% - var(--arrowOffset));
+  }
 }
-
 
 .arrowPosition__left,
 .arrowPosition__leftTop,
 .arrowPosition__leftBottom,
-.arrowPosition__right
-.arrowPosition__rightTop,
-.arrowPosition__rightBottom
-{
-    &::before
-    {
-        top:    0;
-        bottom: 0;
-        width:  var( --tooltipOffset );
-    }
+.arrowPosition__right .arrowPosition__rightTop,
+.arrowPosition__rightBottom {
+  &::before {
+    top: 0;
+    bottom: 0;
+    width: var(--tooltipOffset);
+  }
 }
 
 .arrowPosition__left,
 .arrowPosition__leftTop,
-.arrowPosition__leftBottom
-{
-    &::before,
-    &::after
-    {
-        right:  calc( 100% + var( --tooltipBorderWidth ) );
-    }
+.arrowPosition__leftBottom {
+  &::before,
+  &::after {
+    right: calc(100% + var(--tooltipBorderWidth));
+  }
 }
 
 .arrowPosition__right,
 .arrowPosition__rightTop,
-.arrowPosition__rightBottom
-{
-    &::before,
-    &::after
-    {
-        left:   calc( 100% + var( --tooltipBorderWidth ) );
-    }
+.arrowPosition__rightBottom {
+  &::before,
+  &::after {
+    left: calc(100% + var(--tooltipBorderWidth));
+  }
 }
 
 .arrowPosition__left,
-.arrowPosition__right
-{
-    &::after
-    {
-        top:   50%;
-    }
+.arrowPosition__right {
+  &::after {
+    top: 50%;
+  }
 }
 
 .arrowPosition__left,
 .arrowPosition__leftTop,
-.arrowPosition__leftBottom
-{
-    &::after
-    {
-        right:      100%;
-        transform:  translateX( 50% ) translateY( -50% ) rotate( 135deg );
-    }
+.arrowPosition__leftBottom {
+  &::after {
+    right: 100%;
+    transform: translateX(50%) translateY(-50%) rotate(135deg);
+  }
 }
 
 .arrowPosition__right,
 .arrowPosition__rightTop,
-.arrowPosition__rightBottom
-{
-    &::after
-    {
-        left:       100%;
-        transform:  translateX( -50% ) translateY( -50% ) rotate( 320deg );
-    }
+.arrowPosition__rightBottom {
+  &::after {
+    left: 100%;
+    transform: translateX(-50%) translateY(-50%) rotate(320deg);
+  }
 }
 
 .arrowPosition__leftTop,
-.arrowPosition__rightTop
-{
-    &::after
-    {
-        top:    var( --arrowOffset );
-    }
+.arrowPosition__rightTop {
+  &::after {
+    top: var(--arrowOffset);
+  }
 }
 
 .arrowPosition__leftBottom,
-.arrowPosition__rightBottom
-{
-    &::after
-    {
-        top:    calc( 100% - var( --arrowOffset ) );
-    }
+.arrowPosition__rightBottom {
+  &::after {
+    top: calc(100% - var(--arrowOffset));
+  }
 }
 
-
-.role__default
-{
-    background:     var( --PC-GREY--D45 );
-    border-color:   var( --PC-GREY--D75 );
+.role__default {
+  background: var(--PC-GREY--D45);
+  border-color: var(--PC-GREY--D75);
 }
 
-.role__critical
-{
-    background:     var( --PC-RED );
-    border-color:   var( --PC-RED--D15 );
+.role__critical {
+  background: var(--PC-RED);
+  border-color: var(--PC-RED--D15);
 }
 
-.role__promoted
-{
-    background:     var( --PC-GREEN );
-    border-color:   var( --PC-GREEN--D15 );
+.role__promoted {
+  background: var(--PC-GREEN);
+  border-color: var(--PC-GREEN--D15);
 }
 
-.role__warning
-{
-    background:     var( --PC-ORANGE );
-    border-color:   var( --PC-ORANGE--D15 );
+.role__warning {
+  background: var(--PC-ORANGE);
+  border-color: var(--PC-ORANGE--D15);
 }

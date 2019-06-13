@@ -9,33 +9,30 @@
 
 @import "../proto/base.css";
 
-.default
-{
-    height:                     8px;
-    border-radius:              20px;
-    background-color:           color( var( --PC-BLUE ) a( 35% ) );
+.default {
+  height: 8px;
+  border-radius: 20px;
+  background-color: color(var(--PC-BLUE) a(35%));
 }
 
-.fill
-{
-    display:                    block;
-    position:                   absolute;
-    left:                       4px;
-    height:                     100%;
-    max-width:                  calc( 100% - 4px );
-    background-color:           var( --PC-BLUE );
-    border-top-right-radius:    20px;
-    border-bottom-right-radius: 20px;
+.fill {
+  display: block;
+  position: absolute;
+  left: 4px;
+  height: 100%;
+  max-width: calc(100% - 4px);
+  background-color: var(--PC-BLUE);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 
-    &:before
-    {
-        content:                "";
-        display:                block;
-        position:               relative;
-        left:                   -4px;
-        width:                  8px;
-        height:                 8px;
-        background-color:       var( --PC-BLUE );
-        border-radius:          50%;
-    }
+  &:before {
+    content: "";
+    display: block;
+    position: relative;
+    left: -4px;
+    width: 8px;
+    height: 8px;
+    background-color: var(--PC-BLUE);
+    border-radius: 50%;
+  }
 }

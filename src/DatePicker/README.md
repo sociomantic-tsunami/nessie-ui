@@ -2,7 +2,6 @@
 
 A date and/or month picker.
 
-
 ## Example Usage
 
 ```

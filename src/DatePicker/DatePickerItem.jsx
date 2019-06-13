@@ -7,73 +7,65 @@
  *
  */
 
-import React, { forwardRef }             from 'react';
-import PropTypes                         from 'prop-types';
+import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
 
-import { Text }                          from '..';
+import { Text } from "..";
 
-import { attachEvents, useThemeClasses } from '../utils';
+import { attachEvents, useThemeClasses } from "../utils";
 
+const componentName = "DatePickerItem";
 
-const componentName = 'DatePickerItem';
+const DatePickerItem = forwardRef((props, ref) => {
+  const cssMap = useThemeClasses(componentName, props);
 
-const DatePickerItem = forwardRef( ( props, ref ) =>
-{
-    const cssMap = useThemeClasses( componentName, props );
+  const { children, isDisabled, isSelected, label, style, value } = props;
 
-    const {
-        children,
-        isDisabled,
-        isSelected,
-        label,
-        style,
-        value,
-    } = props;
-
-    return (
-        <button
-            { ...attachEvents( props, {
-                onClick : { value },
-            } ) }
-            aria-pressed = { isSelected }
-            className    = { cssMap.main }
-            disabled     = { isDisabled }
-            ref          = { ref }
-            style        = { style }
-            type         = "button"
-            value        = { value }>
-            <Text className = { cssMap.text }>{ children || label }</Text>
-        </button>
-    );
-} );
+  return (
+    <button
+      {...attachEvents(props, {
+        onClick: { value }
+      })}
+      aria-pressed={isSelected}
+      className={cssMap.main}
+      disabled={isDisabled}
+      ref={ref}
+      style={style}
+      type="button"
+      value={value}
+    >
+      <Text className={cssMap.text}>{children || label}</Text>
+    </button>
+  );
+});
 
 DatePickerItem.propTypes = {
-    children   : PropTypes.node,
-    className  : PropTypes.string,
-    cssMap     : PropTypes.objectOf( PropTypes.string ),
-    isDisabled : PropTypes.bool,
-    isSelected : PropTypes.bool,
-    label      : PropTypes.string,
-    onClick    : PropTypes.func,
-    type       : PropTypes.oneOf( [ 'day', 'month' ] ),
-    value      : PropTypes.string,
-    /**
-     *  Style overrides
-     */
-    style      : PropTypes.objectOf( PropTypes.string ),
+  children: PropTypes.node,
+  className: PropTypes.string,
+  cssMap: PropTypes.objectOf(PropTypes.string),
+  isDisabled: PropTypes.bool,
+  isSelected: PropTypes.bool,
+  label: PropTypes.string,
+  onClick: PropTypes.func,
+  type: PropTypes.oneOf(["day", "month"]),
+  value: PropTypes.string,
+  /**
+   *  Style overrides
+   */
+  style: PropTypes.objectOf(PropTypes.string)
 };
 
 DatePickerItem.defaultProps = {
-    children   : undefined,
-    className  : undefined,
-    cssMap     : undefined,
-    isDisabled : false,
-    isSelected : false,
-    label      : undefined,
-    onClick    : undefined,
-    style      : undefined,
-    type       : 'day',
-    value      : undefined,
+  children: undefined,
+  className: undefined,
+  cssMap: undefined,
+  isDisabled: false,
+  isSelected: false,
+  label: undefined,
+  onClick: undefined,
+  style: undefined,
+  type: "day",
+  value: undefined
 };
 
 DatePickerItem.displayName = componentName;

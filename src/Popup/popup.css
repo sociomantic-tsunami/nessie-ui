@@ -7,37 +7,32 @@
  *
  */
 
-@import '../proto/base.css';
+@import "../proto/base.css";
 
-.default
-{
-    width:      unset;
-    min-width:  0;
-    max-width:  none;
+.default {
+  width: unset;
+  min-width: 0;
+  max-width: none;
 
-    border:     1px solid color( var( --PC-GREY ) a(12%) );
+  border: 1px solid color(var(--PC-GREY) a(12%));
 
-    box-shadow: var( --boxShadow );
+  box-shadow: var(--boxShadow);
 
-    background: var( --PC-WHITE );
+  background: var(--PC-WHITE);
 
-    border-radius: 2px;
+  border-radius: 2px;
 }
 
-.error
-{
-    border-color:   var( --PC-RED );
+.error {
+  border-color: var(--PC-RED);
 }
 
-.padding__S
-{
-    padding:    10px;
+.padding__S {
+  padding: 10px;
 }
-.padding__M
-{
-    padding:    20px;
+.padding__M {
+  padding: 20px;
 }
-.padding__L
-{
-    padding:    30px;
+.padding__L {
+  padding: 30px;
 }

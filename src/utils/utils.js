@@ -7,7 +7,7 @@
  *
  */
 
-import eventsList from './eventsList';
+import eventsList from "./eventsList";
 
 /**
  * callMultiple( props )
@@ -17,12 +17,10 @@ import eventsList from './eventsList';
  *
  * @return  {Function}    event handler
  */
-function callMultiple( ...callbacks )
-{
-    return function eventHandler( ...args )
-    {
-        callbacks.forEach( cb => typeof cb === 'function' && cb( ...args ) );
-    };
+function callMultiple(...callbacks) {
+  return function eventHandler(...args) {
+    callbacks.forEach(cb => typeof cb === "function" && cb(...args));
+  };
 }
 
 /**
@@ -34,29 +32,23 @@ function callMultiple( ...callbacks )
  *
  * @return  {Object}    event handlers
  */
-function attachEvents( props )
-{
-    return Object.entries( props )
-        .reduce( ( result, [ propName, propValue ] ) =>
-        {
-            if ( eventsList.includes( propName ) )
-            {
-                result[ propName ] = createEventHandler( propValue );
-            }
-            return result;
-        }, {} );
+function attachEvents(props) {
+  return Object.entries(props).reduce((result, [propName, propValue]) => {
+    if (eventsList.includes(propName)) {
+      result[propName] = createEventHandler(propValue);
+    }
+    return result;
+  }, {});
 }
 
-const buildDisplayName = ( WrapperComponent, WrappedComponent ) =>
-{
-    const wrapperComponentName = getComponentName( WrapperComponent );
-    const wrappedComponentName = getComponentName( WrappedComponent );
+const buildDisplayName = (WrapperComponent, WrappedComponent) => {
+  const wrapperComponentName = getComponentName(WrapperComponent);
+  const wrappedComponentName = getComponentName(WrappedComponent);
 
-    return `${wrapperComponentName}(${wrappedComponentName})`;
+  return `${wrapperComponentName}(${wrappedComponentName})`;
 };
 
-const clamp = ( val, min, max ) => Math.min( Math.max( val, min ), max );
-
+const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
 
 /**
  * createEventHandler( func, payload )
@@ -72,96 +64,65 @@ const clamp = ( val, min, max ) => Math.min( Math.max( val, min ), max );
  *
  * @return  {Function}
  */
-function createEventHandler( func )
-{
-    if ( typeof func !== 'function' )
-    {
-        return;
+function createEventHandler(func) {
+  if (typeof func !== "function") {
+    return;
+  }
+
+  // construct standardized payload for consumer’s handler...
+  return function eventHandler(e) {
+    const { currentTarget, relatedTarget, type } = e;
+
+    if (
+      ["blur", "focus", "mouseout", "mouseover"].includes(type) &&
+      currentTarget.contains(relatedTarget)
+    ) {
+      return; // don't fire when mouse/focus moves between descendants
     }
 
-    // construct standardized payload for consumer’s handler...
-    return function eventHandler( e )
-    {
-        const {
-            currentTarget,
-            relatedTarget,
-            target,
-            type,
-        } = e;
-
-        let eventPayload;
-
-        e.stopPropagation(); // (TODO: find a way to flag event as “handled” without stopping propagation!)
-
-        if ( [ 'blur', 'focus', 'mouseout', 'mouseover' ].includes( type ) &&
-            currentTarget.contains( relatedTarget ) )
-        {
-            return; // don't fire when mouse/focus moves between descendants
-        }
-        if ( type === 'change' )
-        {
-            const inputType = target.getAttribute( 'type' );
-            if ( inputType === 'checkbox' || inputType === 'radio' )
-            {
-                eventPayload = target.checked;
-            }
-            else
-            {
-                eventPayload = target.value;
-            }
-        }
-        else if ( type === 'scroll' )
-        {
-            eventPayload = [ target.scrollLeft, target.scrollTop ];
-        }
-
-        // invoke consumer’s event handler
-        func( eventPayload, ...arguments );
-    };
+    // invoke consumer’s event handler
+    func(...arguments);
+  };
 }
 
-const getComponentName = Comp => Comp.displayName || Comp.name || 'Component';
+const getComponentName = Comp => Comp.displayName || Comp.name || "Component";
 
 const generateId = componentName =>
-    `${componentName}${Math.floor( ( Math.random() * 9e15 ) + 1e15 )}`;
+  `${componentName}${Math.floor(Math.random() * 9e15 + 1e15)}`;
 
 const killFocus = e => e.preventDefault();
 
-const mapAria = ( ariaObj = {} ) =>
-{
-    const res = { role: ariaObj.role };
+const mapAria = (ariaObj = {}) => {
+  const res = { role: ariaObj.role };
 
-    Object.keys( ariaObj ).forEach( key =>
-    {
-        const value = ariaObj[ key ];
-        if ( key !== 'role' && value )
-        {
-            res[ `aria-${key.toLowerCase()}` ] = ariaObj[ key ].toString();
-        }
-    } );
+  Object.keys(ariaObj).forEach(key => {
+    const value = ariaObj[key];
+    if (key !== "role" && value) {
+      res[`aria-${key.toLowerCase()}`] = ariaObj[key].toString();
+    }
+  });
 
-    return res;
+  return res;
 };
 
-
 export {
-    attachEvents,
-    buildDisplayName,
-    callMultiple,
-    clamp,
-    createEventHandler,
-    generateId,
-    killFocus,
-    mapAria,
+  attachEvents,
+  buildDisplayName,
+  callMultiple,
+  clamp,
+  createEventHandler,
+  generateId,
+  killFocus,
+  mapAria
 };
 
 export default {
-    attachEvents,
-    buildDisplayName,
-    callMultiple,
-    clamp,
-    createEventHandler,
-    generateId,
-    killFocus,
-    mapAria,
+  attachEvents,
+  buildDisplayName,
+  callMultiple,
+  clamp,
+  createEventHandler,
+  generateId,
+  killFocus,
+  mapAria
 };

@@ -7,42 +7,36 @@
  *
  */
 
-import React     from 'react';
-import PropTypes from 'prop-types';
-import { icons } from 'feather-icons';
+import React from "react";
+import PropTypes from "prop-types";
+import { icons } from "feather-icons";
 
-
-const SpriteMap = ( { id = 'nessie' } ) => (
-    <svg
-        display = "none"
-        height  = "0"
-        width   = "0"
-        xmlns   = "http://www.w3.org/2000/svg">
-        <defs>
-            { Object.values( icons ).map( ( { name, contents } ) => (
-                <symbol
-                    dangerouslySetInnerHTML = { { __html: contents } }
-                    id                      = { `${id}-${name}` }
-                    key                     = { name }
-                    viewBox                 = "0 0 24 24" />
-            ) ) }
-        </defs>
-    </svg>
+const SpriteMap = ({ id = "nessie" }) => (
+  <svg display="none" height="0" width="0" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      {Object.values(icons).map(({ name, contents }) => (
+        <symbol
+          dangerouslySetInnerHTML={{ __html: contents }}
+          id={`${id}-${name}`}
+          key={name}
+          viewBox="0 0 24 24"
+        />
+      ))}
+    </defs>
+  </svg>
 );
 
-SpriteMap.propTypes =
-{
-    /**
-     *  Component id
-     */
-    id : PropTypes.string,
+SpriteMap.propTypes = {
+  /**
+   *  Component id
+   */
+  id: PropTypes.string
 };
 
-SpriteMap.defaultProps =
-{
-    id : undefined,
+SpriteMap.defaultProps = {
+  id: undefined
 };
 
-SpriteMap.displayName = 'SpriteMap';
+SpriteMap.displayName = "SpriteMap";
 
 export default SpriteMap;
