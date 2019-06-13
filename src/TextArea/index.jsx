@@ -9,8 +9,13 @@
 
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
+import useUncontrolled from "uncontrollable/hook";
 
-import { attachEvents, mapAria, useThemeClasses } from "../utils";
+import {
+  attachEvents as handleAllEvents,
+  mapAria,
+  useThemeClasses
+} from "../utils";
 
 const componentName = "TextArea";
 
@@ -26,17 +31,19 @@ const TextArea = forwardRef((props, ref) => {
     id,
     isDisabled,
     isReadOnly,
+    onChange,
     placeholder,
     rows,
     spellCheck,
     style,
-    value
-  } = props;
+    value,
+    ...restProps
+  } = useUncontrolled(props, { value: "onChange" });
 
   return (
     <textarea
       {...mapAria(aria)}
-      {...attachEvents(props)}
+      {...handleAllEvents(restProps)}
       autoCapitalize={autoCapitalize}
       autoComplete={autoComplete}
       autoCorrect={autoCorrect}
@@ -44,6 +51,11 @@ const TextArea = forwardRef((props, ref) => {
       defaultValue={defaultValue}
       disabled={isDisabled}
       id={id}
+      onChange={
+        onChange
+          ? ({ target: { value: newValue } }) => onChange(newValue)
+          : undefined
+      }
       placeholder={placeholder}
       readOnly={isReadOnly}
       ref={ref}
