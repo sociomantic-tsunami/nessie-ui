@@ -48,7 +48,11 @@ const TextInput = forwardRef((props, ref) => {
       className={cssMap.main}
       disabled={isDisabled}
       id={id}
-      onChange={onChange}
+      onChange={
+        onChange
+          ? ({ target: { value: newValue } }) => onChange(newValue)
+          : undefined
+      }
       placeholder={placeholder}
       readOnly={isReadOnly}
       ref={ref}

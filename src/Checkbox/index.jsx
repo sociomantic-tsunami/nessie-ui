@@ -45,9 +45,13 @@ const Checkbox = forwardRef((props, ref) => {
         {...handleAllEvents(restProps)}
         checked={isChecked}
         className={cssMap.input}
-        onChange={onChange}
         disabled={isDisabled}
         id={id}
+        onChange={
+          onChange
+            ? ({ target: { checked: newValue } }) => onChange(newValue)
+            : undefined
+        }
         type="checkbox"
       />
       <label className={cssMap.label} htmlFor={id}>
