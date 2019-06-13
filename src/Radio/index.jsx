@@ -9,10 +9,15 @@
 
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
+import useUncontrolled from "uncontrollable/hook";
 
 import { Text } from "..";
 
-import { attachEvents, useId, useThemeClasses } from "../utils";
+import {
+  attachEvents as handleAllEvents,
+  useId,
+  useThemeClasses
+} from "../utils";
 
 const componentName = "Radio";
 
@@ -20,12 +25,13 @@ const Radio = forwardRef((props, ref) => {
   const {
     children,
     isChecked,
-    isDefaultChecked,
     isDisabled,
     label,
+    onChange,
     style,
-    value
-  } = props;
+    value,
+    ...restProps
+  } = useUncontrolled(props, { isChecked: "onChange" });
 
   const cssMap = useThemeClasses(componentName, props);
   const id = useId(componentName, props);
@@ -39,10 +45,9 @@ const Radio = forwardRef((props, ref) => {
   return (
     <div className={cssMap.main} ref={ref} style={style}>
       <input
-        {...attachEvents(props)}
+        {...handleAllEvents(restProps)}
         checked={isChecked}
         className={cssMap.input}
-        defaultChecked={isDefaultChecked}
         disabled={isDisabled}
         id={id}
         type="radio"
@@ -71,6 +76,10 @@ Radio.propTypes = {
    */
   cssMap: PropTypes.objectOf(PropTypes.string),
   /**
+   *  Display as checked by default (uncontrolled input)
+   */
+  defaultIsChecked: PropTypes.bool,
+  /**
    *  Display as error/invalid
    */
   hasError: PropTypes.bool,
@@ -82,10 +91,6 @@ Radio.propTypes = {
    *  Display as checked (controlled input)
    */
   isChecked: PropTypes.bool,
-  /**
-   *  Display as checked by default (uncontrolled input)
-   */
-  isDefaultChecked: PropTypes.bool,
   /**
    *  Display as disabled
    */
@@ -116,10 +121,10 @@ Radio.defaultProps = {
   children: undefined,
   className: undefined,
   cssMap: undefined,
+  defaultIsChecked: undefined,
   hasError: false,
   id: undefined,
   isChecked: undefined,
-  isDefaultChecked: undefined,
   isDisabled: false,
   label: undefined,
   onChange: undefined,
