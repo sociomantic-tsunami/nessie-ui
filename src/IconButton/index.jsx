@@ -29,16 +29,15 @@ const IconButton = forwardRef((props, ref) => {
     label,
     style,
     iconStyle,
-    value
+    value,
+    ...restProps
   } = props;
 
   const cssMap = useThemeClasses(componentName, props);
 
   return (
     <button
-      {...attachEvents(props, {
-        onClick: { value }
-      })}
+      {...attachEvents(restProps)}
       className={cssMap.main}
       disabled={isDisabled}
       id={id}
@@ -47,7 +46,6 @@ const IconButton = forwardRef((props, ref) => {
       style={style}
       tabIndex={isFocusable ? "0" : "-1"}
       type="button"
-      value={value}
     >
       <Icon
         className={cssMap.icon}

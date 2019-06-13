@@ -44,7 +44,6 @@ const Tabs = forwardRef((props, ref) => {
         key={label || index}
         label={label}
         onClick={() => onChange(index)}
-        value={index}
       />
     );
   });

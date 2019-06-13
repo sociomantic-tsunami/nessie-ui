@@ -27,7 +27,6 @@ const TextArea = forwardRef((props, ref) => {
     autoCapitalize,
     autoComplete,
     autoCorrect,
-    defaultValue,
     id,
     isDisabled,
     isReadOnly,
@@ -48,7 +47,6 @@ const TextArea = forwardRef((props, ref) => {
       autoComplete={autoComplete}
       autoCorrect={autoCorrect}
       className={cssMap.main}
-      defaultValue={defaultValue}
       disabled={isDisabled}
       id={id}
       onChange={

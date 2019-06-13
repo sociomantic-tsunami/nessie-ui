@@ -51,7 +51,6 @@ const Radio = forwardRef((props, ref) => {
         disabled={isDisabled}
         id={id}
         type="radio"
-        value={value}
       />
       <label className={cssMap.label} htmlFor={id}>
         {labelContent && (
