@@ -14,14 +14,19 @@ import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
 import { buildOptions, updateOptions } from "./utils";
-import { attachEvents, killFocus, mapAria, useThemeClasses } from "../utils";
+import {
+  attachEvents as handleAllEvents,
+  killFocus,
+  mapAria,
+  useThemeClasses
+} from "../utils";
 
 const componentName = "ListBox";
 
 const ListBox = forwardRef((props, ref) => {
   const {
-    aria,
     activeOption,
+    aria,
     children,
     id,
     isFocusable,
@@ -30,20 +35,16 @@ const ListBox = forwardRef((props, ref) => {
     onMouseOutOption,
     onMouseOverOption,
     options,
-    selection,
-    style
+    style,
+    value,
+    ...restProps
   } = props;
 
   const cssMap = useThemeClasses(componentName, props);
 
-  let realSelection = selection;
-
-  if (Array.isArray(selection)) {
-    realSelection = isMultiselect ? selection : selection[0];
-  }
   return (
     <ul
-      {...attachEvents(props)}
+      {...handleAllEvents(restProps)}
       {...mapAria({
         ...aria,
         activeDescendant: isFocusable ? activeOption : null,
@@ -62,7 +63,7 @@ const ListBox = forwardRef((props, ref) => {
         onClickOption,
         onMouseOutOption,
         onMouseOverOption,
-        selection: realSelection
+        value
       })}
     </ul>
   );
@@ -105,7 +106,7 @@ ListBox.propTypes = {
    *  onMouseOverOption callback function ( e ) => { ... }
    */
   onMouseOverOption: PropTypes.func,
-  selection: PropTypes.oneOfType([
+  value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),
@@ -128,8 +129,8 @@ ListBox.defaultProps = {
   onMouseOutOption: undefined,
   onMouseOverOption: undefined,
   options: undefined,
-  selection: undefined,
-  style: undefined
+  style: undefined,
+  value: undefined
 };
 
 ListBox.displayName = componentName;

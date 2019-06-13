@@ -16,7 +16,12 @@ import PropTypes from "prop-types";
 
 import { Icon, Text } from "..";
 
-import { attachEvents, mapAria, useId, useThemeClasses } from "../utils";
+import {
+  attachEvents as handleAllEvents,
+  mapAria,
+  useId,
+  useThemeClasses
+} from "../utils";
 
 const componentName = "ListBoxOption";
 
@@ -28,9 +33,13 @@ const ListBoxOption = forwardRef((props, ref) => {
     iconSize,
     iconType,
     isSelected,
+    onClick,
+    onMouseOut,
+    onMouseOver,
     style,
     text,
-    value
+    value,
+    ...restProps
   } = props;
 
   const cssMap = useThemeClasses(componentName, props);
@@ -56,11 +65,10 @@ const ListBoxOption = forwardRef((props, ref) => {
 
   return (
     <li
-      {...attachEvents(props, {
-        onClick: { id },
-        onMouseOut: { id },
-        onMouseOver: { id }
-      })}
+      {...handleAllEvents(restProps)}
+      onClick={onClick ? () => onClick(id) : undefined}
+      onMouseEnter={onMouseOver ? () => onMouseOver(id) : undefined}
+      onMouseLeave={onMouseOut ? () => onMouseOut(id) : undefined}
       {...mapAria({
         ...aria,
         role: "option",

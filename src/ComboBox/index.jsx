@@ -19,6 +19,7 @@ import React, {
 } from "react";
 import PropTypes from "prop-types";
 import { castArray, escapeRegExp } from "lodash";
+import useUncontrolled from "uncontrollable/hook";
 
 import {
   IconButton,
@@ -31,7 +32,7 @@ import {
 } from "..";
 
 import {
-  attachEvents,
+  attachEvents as handleAllEvents,
   callMultiple,
   mapAria,
   useId,
@@ -100,27 +101,6 @@ const optionsFormatted = (filteredOptionsIds, originalOptions) =>
     return formattedOptions;
   }, []);
 
-const useSelection = (defaultValue, value, isMultiselect) => {
-  const validatedDefaultValue =
-    isMultiselect && defaultValue ? castArray(defaultValue) : defaultValue;
-  const validatedValue = isMultiselect && value ? castArray(value) : value;
-
-  const [selection, setSelection] = useState(validatedDefaultValue);
-
-  const validatedSelection =
-    isMultiselect && typeof selection !== "undefined"
-      ? castArray(selection)
-      : selection;
-
-  const setter = newValue => {
-    if (!value) {
-      setSelection(newValue);
-    }
-  };
-
-  return [validatedValue || validatedSelection, setter];
-};
-
 const componentName = "ComboBox";
 
 const ComboBox = forwardRef((props, ref) => {
@@ -134,7 +114,6 @@ const ComboBox = forwardRef((props, ref) => {
   const scrollBoxRef = useRef(null);
 
   const {
-    defaultValue,
     dropdownPlaceholder,
     hasError,
     inputPlaceholder,
@@ -147,14 +126,9 @@ const ComboBox = forwardRef((props, ref) => {
     options,
     popperContainer,
     style,
-    value
-  } = props;
-
-  const [selection, setSelection] = useSelection(
-    defaultValue,
     value,
-    isMultiselect
-  );
+    ...restProps
+  } = useUncontrolled(props, { value: "onChange" });
 
   const flatOptions = useMemo(
     () => normalizeOptions(options).flatMap(o => o.options || o),
@@ -215,16 +189,12 @@ const ComboBox = forwardRef((props, ref) => {
   }, [focus, isSearchable]);
 
   const handleChangeInput = useCallback(
-    e => {
-      e.stopPropagation();
-
-      const searchValueToUse = (e.target.value || "").toLowerCase();
-
+    ({ target: { value: newValue } }) => {
       if (typeof onChangeInput === "function") {
-        onChangeInput({ value: e.target.value }, e);
+        onChangeInput(newValue);
       }
 
-      setSearchValue(searchValueToUse);
+      setSearchValue(newValue.toLowerCase());
     },
     [onChangeInput]
   );
@@ -239,44 +209,36 @@ const ComboBox = forwardRef((props, ref) => {
   }, []);
 
   const handleClickOption = useCallback(
-    ({ id: optId }) => {
+    optId => {
       const unprefixedId = removePrefix(optId, id);
 
-      let newSelection = !isReadOnly ? unprefixedId : selection;
+      let newSelection = !isReadOnly ? unprefixedId : value;
 
       if (isMultiselect) {
-        if (selection) {
-          newSelection = selection.includes(unprefixedId)
-            ? selection.filter(item => item !== unprefixedId)
-            : [...selection, unprefixedId];
+        if (value) {
+          newSelection = value.includes(unprefixedId)
+            ? value.filter(item => item !== unprefixedId)
+            : [...value, unprefixedId];
         } else {
           newSelection = [unprefixedId];
         }
       }
 
-      if (!isReadOnly && typeof onChange === "function") {
-        onChange({ id, value: newSelection });
-      }
-
       setIsOpen(false);
       setSearchValue(undefined);
-      setSelection(newSelection);
+      onChange(newSelection);
     },
-    [id, isReadOnly, selection, isMultiselect, onChange, setSelection]
+    [id, isMultiselect, isReadOnly, onChange, value]
   );
 
   const handleClickClose = useCallback(
-    ({ id: tagId }) => {
-      const newTags = selection.filter(tag => tag !== tagId);
+    tagId => {
+      const newTags = value.filter(tag => tag !== tagId);
 
-      if (typeof onChange === "function") {
-        onChange({ value: newTags });
-      }
-
-      setSelection(newTags);
+      onChange(newTags);
       setIsOpen(false);
     },
-    [selection, onChange, setSelection]
+    [onChange, value]
   );
 
   const handleKeyDown = useCallback(
@@ -292,7 +254,7 @@ const ComboBox = forwardRef((props, ref) => {
           const minIndex = 0;
           const maxIndex = optionsToUse.length - 1;
 
-          let activeIndex = getIndex(activeOption || selection, optionsToUse);
+          let activeIndex = getIndex(activeOption || value, optionsToUse);
 
           activeIndex =
             key === "ArrowUp"
@@ -312,10 +274,10 @@ const ComboBox = forwardRef((props, ref) => {
           let newSelection;
 
           if (activeOption && isMultiselect) {
-            if (selection) {
-              newSelection = selection.includes(activeOption)
-                ? selection.filter(item => item !== activeOption)
-                : [...selection, activeOption];
+            if (value) {
+              newSelection = value.includes(activeOption)
+                ? value.filter(item => item !== activeOption)
+                : [...value, activeOption];
             } else {
               newSelection = [activeOption];
             }
@@ -328,11 +290,7 @@ const ComboBox = forwardRef((props, ref) => {
           setSearchValue(undefined);
 
           if (newSelection) {
-            if (typeof onChange === "function") {
-              onChange({ id, newSelection });
-            }
-
-            setSelection(newSelection);
+            onChange(newSelection);
           }
         }
       }
@@ -341,13 +299,11 @@ const ComboBox = forwardRef((props, ref) => {
       activeOption,
       filteredOptions,
       flatOptions,
-      id,
       isMultiselect,
       isOpen,
       isReadOnly,
       onChange,
-      selection,
-      setSelection
+      value
     ]
   );
 
@@ -356,12 +312,12 @@ const ComboBox = forwardRef((props, ref) => {
   }, []);
 
   const handleMouseOverOption = useCallback(
-    ({ id: optId }) => {
+    optId => {
       const unprefixedId = removePrefix(optId, id);
 
       setActiveOption(getOption(unprefixedId, flatOptions).id);
     },
-    [id, flatOptions]
+    [flatOptions, id]
   );
 
   const handleBlur = useCallback(() => {
@@ -370,13 +326,13 @@ const ComboBox = forwardRef((props, ref) => {
     setSearchValue(undefined);
   }, []);
 
-  const selectedOption = getOption(selection, flatOptions);
+  const selectedOption = getOption(value, flatOptions);
   const selectedText = selectedOption ? selectedOption.text : "";
 
   let tags;
 
-  if (isMultiselect && selection) {
-    tags = selection.reduce((result, itemId) => {
+  if (isMultiselect && value) {
+    tags = value.reduce((result, itemId) => {
       const currentOption = getOption(itemId, flatOptions);
       if (currentOption) {
         result.push(
@@ -417,10 +373,10 @@ const ComboBox = forwardRef((props, ref) => {
           onMouseOutOption={handleMouseOutOption}
           onMouseOverOption={handleMouseOverOption}
           options={prefixOptions(optionsToShow, id)}
-          selection={
-            isMultiselect && selection
-              ? selection.map(optId => addPrefix(optId, id))
-              : addPrefix(selection, id)
+          value={
+            isMultiselect && value
+              ? value.map(optId => addPrefix(optId, id))
+              : addPrefix(value, id)
           }
         />
       </ScrollBox>
@@ -453,7 +409,7 @@ const ComboBox = forwardRef((props, ref) => {
     >
       {({ ref: innerRef }) => (
         <label
-          {...attachEvents(props)}
+          {...handleAllEvents(restProps)}
           className={cssMap.main}
           htmlFor={id}
           ref={innerRef}
@@ -575,7 +531,6 @@ ComboBox.propTypes = {
 
 ComboBox.defaultProps = {
   className: undefined,
-  popperContainer: undefined,
   defaultValue: undefined,
   dropdownPlaceholder: "No results to show",
   hasError: false,
@@ -588,8 +543,9 @@ ComboBox.defaultProps = {
   onChange: undefined,
   onChangeInput: undefined,
   options: [],
-  value: undefined,
-  style: undefined
+  popperContainer: undefined,
+  style: undefined,
+  value: undefined
 };
 
 ComboBox.displayName = componentName;
