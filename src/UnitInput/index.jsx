@@ -9,10 +9,11 @@
 
 import React, { useState, forwardRef } from "react";
 import PropTypes from "prop-types";
+import useUncontrolled from "uncontrollable/hook";
 
 import { TextInput } from "..";
 
-import { useThemeClasses } from "../utils";
+import { attachEvents as handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "UnitInput";
 const UnitInput = forwardRef((props, ref) => {
@@ -28,8 +29,9 @@ const UnitInput = forwardRef((props, ref) => {
     placeholder,
     value,
     valueLabel,
-    valueLabelPosition
-  } = props;
+    valueLabelPosition,
+    ...restProps
+  } = useUncontrolled(props, { isChecked: "onChange" });
 
   const handleFocus = e => {
     setIsFocused(true);
@@ -55,6 +57,7 @@ const UnitInput = forwardRef((props, ref) => {
 
   return (
     <div
+      {...handleAllEvents(restProps)}
       className={`${cssMap.main} ${isFocused && cssMap.fakeHovered}`}
       ref={ref}
     >
@@ -65,7 +68,11 @@ const UnitInput = forwardRef((props, ref) => {
           isDisabled={isDisabled}
           hasError={hasError}
           onBlur={handleBlur}
-          onChange={onChange}
+          onChange={
+            onChange
+              ? ({ target: { value: newValue } }) => onChange(newValue)
+              : undefined
+          }
           onFocus={handleFocus}
           textAlign={alignText}
           placeholder={placeholder}
