@@ -7,53 +7,35 @@
  *
  */
 
-import React, { forwardRef, useCallback, useState } from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
+import useUncontrolled from "uncontrollable/hook";
 
 import { TextInputWithIcon } from "..";
 
 const componentName = "PasswordInput";
 
 const PasswordInput = forwardRef((props, ref) => {
-  const [passwordIsVisibleState, setPasswordIsVisibleState] = useState(false);
-
-  const passwordIsVisible = props.passwordIsVisible || passwordIsVisibleState;
-
-  const { id, onClickIcon, style } = props;
-
-  const handleClickIcon = useCallback(
-    (payload, e) => {
-      let nessieDefaultPrevented = false;
-
-      if (typeof onClickIcon === "function") {
-        onClickIcon(
-          {
-            id,
-            preventNessieDefault() {
-              nessieDefaultPrevented = true;
-            }
-          },
-          e
-        );
-      }
-
-      if (!nessieDefaultPrevented) {
-        setPasswordIsVisibleState(!passwordIsVisibleState);
-      }
-    },
-    [id, onClickIcon, passwordIsVisibleState]
-  );
+  const {
+    id,
+    onToggleVisible,
+    passwordIsVisible,
+    style,
+    ...restProps
+  } = useUncontrolled(props, {
+    passwordIsVisible: "onToggleVisible"
+  });
 
   return (
     <TextInputWithIcon
-      {...props}
+      {...restProps}
       autoCapitalize="off"
       autoComplete="off"
       autoCorrect="off"
       iconType={passwordIsVisible ? "eye-off" : "eye"}
       id={id}
       inputType={passwordIsVisible ? "text" : "password"}
-      onClickIcon={handleClickIcon}
+      onToggleVisible={() => onToggleVisible(!passwordIsVisible)}
       ref={ref}
       spellCheck={false}
       style={style}
@@ -78,6 +60,10 @@ PasswordInput.propTypes = {
    *  CSS class map
    */
   cssMap: PropTypes.objectOf(PropTypes.string),
+  /**
+   *  Default password visiblity (when uncontrolled)
+   */
+  defaultPasswordIsVisible: PropTypes.string,
   /**
    *  Default input string value
    */
@@ -117,7 +103,7 @@ PasswordInput.propTypes = {
   /**
    *  Icon click callback function
    */
-  onClickIcon: PropTypes.func,
+  onToggleVisible: PropTypes.func,
   /**
    *  Show password as plain text
    */
@@ -144,6 +130,7 @@ PasswordInput.defaultProps = {
   aria: undefined,
   className: undefined,
   cssMap: undefined,
+  defaultPasswordIsVisible: false,
   defaultValue: undefined,
   hasError: false,
   iconButtonIsDisabled: undefined,
@@ -153,8 +140,8 @@ PasswordInput.defaultProps = {
   isReadOnly: false,
   name: undefined,
   onChangeInput: undefined,
-  onClickIcon: undefined,
-  passwordIsVisible: false,
+  onToggleVisible: undefined,
+  passwordIsVisible: undefined,
   placeholder: undefined,
   style: undefined,
   textAlign: "auto",
