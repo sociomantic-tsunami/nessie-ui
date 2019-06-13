@@ -9,13 +9,19 @@
 
 import React, { Children, forwardRef, useMemo, useState } from "react";
 import PropTypes from "prop-types";
+import useUncontrolled from "uncontrollable/hook";
 import { escapeRegExp, uniq } from "lodash";
 
 import { ListBox, ScrollBox } from "..";
 
 import Popup from "../Popup";
 import PopperWrapper from "../PopperWrapper";
-import { attachEvents, callMultiple, useId, useThemeClasses } from "../utils";
+import {
+  attachEvents as handleAllEvents,
+  callMultiple,
+  useId,
+  useThemeClasses
+} from "../utils";
 import { buildTagsFromValues } from "./utils";
 import { addPrefix } from "../ComboBox/utils";
 
@@ -66,21 +72,21 @@ const TagInput = forwardRef((props, ref) => {
 
   const {
     children,
-    popperContainer,
     hasError,
     isDisabled,
     isReadOnly,
+    onChange,
     placeholder,
-    style
-  } = props;
+    popperContainer,
+    style,
+    value,
+    ...restProps
+  } = useUncontrolled(props, { value: "onChange" });
 
   const [activeOption, setActiveOption] = useState(undefined);
   const [filteredOptionsState, setFilteredOptionsState] = useState(undefined);
   const [inputValue, setInputValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [valueState, setValueState] = useState(
-    Array.isArray(props.defaultValue) ? props.defaultValue : []
-  );
 
   const options = useMemo(() => normalizeOptions(props.suggestions) || [], [
     props.suggestions
@@ -90,16 +96,6 @@ const TagInput = forwardRef((props, ref) => {
     options,
     filteredOptionsState
   ]);
-
-  const value = useMemo(() => {
-    if (Array.isArray(props.value)) {
-      return props.value;
-    }
-    if (props.value === "" || props.value === null) {
-      return [];
-    }
-    return valueState;
-  }, [props.value, valueState]);
 
   const enterTags = () => {
     let finalTags = [];
@@ -116,15 +112,10 @@ const TagInput = forwardRef((props, ref) => {
       finalTags = finalTags ? [...value, enterNewTag(inputValue)] : value;
     }
 
-    const { onChange } = props;
-    if (typeof onChange === "function") {
-      onChange({ value: finalTags });
-    }
-
     setActiveOption(undefined);
     setFilteredOptionsState(filterOptions(finalTags));
     setInputValue("");
-    setValueState(finalTags);
+    onChange(finalTags);
   };
 
   const enterNewTag = singleValue => {
@@ -151,46 +142,34 @@ const TagInput = forwardRef((props, ref) => {
     enterTags();
   };
 
-  const handleChangeInput = e => {
-    e.stopPropagation();
-    const { value: scopedValue } = e.target;
-    const filteredOptionsScoped = options.filter(({ text }) =>
-      text.match(new RegExp(escapeRegExp(scopedValue), "i"))
+  const handleChangeInput = ({ target: { value: newValue } }) => {
+    const newFilteredOptions = options.filter(({ text }) =>
+      text.match(new RegExp(escapeRegExp(newValue), "i"))
     );
 
-    const activeOptionScoped =
-      scopedValue && filteredOptionsScoped.length
-        ? filteredOptionsScoped[0].id
+    const newActiveOption =
+      newValue && newFilteredOptions.length
+        ? newFilteredOptions[0].id
         : undefined;
 
-    setActiveOption(activeOptionScoped);
-    setFilteredOptionsState(filteredOptionsScoped);
-    setInputValue(scopedValue);
+    setActiveOption(newActiveOption);
+    setFilteredOptionsState(newFilteredOptions);
+    setInputValue(newValue);
   };
 
-  const handleClickClose = ({ id: scopedId }) => {
-    const newTags = value.filter(tag => tag !== scopedId);
-
-    const { onChange } = props;
-    if (typeof onChange === "function") {
-      onChange({ value: newTags });
-    }
-
-    setValueState(newTags);
+  const handleClickClose = optId => {
+    const newTags = value.filter(tag => tag !== optId);
+    onChange(newTags);
     setFilteredOptionsState(filterOptions(newTags));
   };
 
-  const handleClickOption = ({ id: scopedId }) => {
-    const option = getOption(scopedId, filteredOptions);
+  const handleClickOption = optId => {
+    const option = getOption(optId, filteredOptions);
     const newTags = [...value, option.text];
-    const { onChange } = props;
-    if (typeof onChange === "function") {
-      onChange({ value: newTags });
-    }
     setActiveOption(undefined);
     setFilteredOptionsState(filterOptions(newTags));
     setInputValue("");
-    setValueState(newTags);
+    onChange(newTags);
   };
 
   const handleFocus = () => {
@@ -201,17 +180,11 @@ const TagInput = forwardRef((props, ref) => {
     const { key } = e;
 
     if (key === "Backspace") {
-      let newTags = value;
       if (!inputValue) {
-        newTags = value.slice(0, -1);
-
-        const { onChange } = props;
-        if (typeof onChange === "function") {
-          onChange({ value: newTags });
-        }
+        const newTags = value.slice(0, -1);
+        onChange(newTags);
+        setFilteredOptionsState(filterOptions(newTags));
       }
-      setValueState(newTags);
-      setFilteredOptionsState(filterOptions(newTags));
     }
     if (key === "Enter") {
       enterTags();
@@ -240,8 +213,8 @@ const TagInput = forwardRef((props, ref) => {
     setActiveOption(undefined);
   };
 
-  const handleMouseOverOption = ({ id: scopedId }) => {
-    setActiveOption(scopedId);
+  const handleMouseOverOption = optId => {
+    setActiveOption(optId);
   };
 
   const listBoxOptions = filteredOptions.reduce((result, opt) => {
@@ -294,7 +267,7 @@ const TagInput = forwardRef((props, ref) => {
     >
       {refProps => (
         <label
-          {...attachEvents(props)}
+          {...handleAllEvents(restProps)}
           className={cssMap.main}
           htmlFor={id}
           style={style}
@@ -389,7 +362,7 @@ TagInput.defaultProps = {
   children: undefined,
   className: undefined,
   cssMap: undefined,
-  defaultValue: undefined,
+  defaultValue: [],
   hasError: false,
   id: undefined,
   isDisabled: false,

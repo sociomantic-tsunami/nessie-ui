@@ -41,7 +41,7 @@ const Tag = forwardRef((props, ref) => {
         iconType="x"
         isDisabled={isDisabled}
         isReadOnly={isReadOnly}
-        onClick={() => onClick && onClick({ id })}
+        onClick={onClick}
       />
     </div>
   );
