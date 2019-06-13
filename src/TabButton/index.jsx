@@ -7,7 +7,7 @@
  *
  */
 
-import React, { forwardRef, useImperativeHandle, useRef } from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
 import { attachEvents, useThemeClasses } from "../utils";
@@ -17,13 +17,11 @@ const componentName = "TabButton";
 const TabButton = forwardRef((props, ref) => {
   const cssMap = useThemeClasses(componentName, props);
 
-  const { isDisabled, label, style, subtitle, tabIndex } = props;
+  const { isDisabled, label, style, subtitle } = props;
 
   return (
     <button
-      {...attachEvents(props, {
-        onClick: { tabIndex }
-      })}
+      {...attachEvents(props)}
       className={cssMap.main}
       disabled={isDisabled}
       ref={ref}
@@ -87,9 +85,9 @@ TabButton.defaultProps = {
   isDisabled: false,
   label: undefined,
   onClick: undefined,
+  style: undefined,
   subtitle: undefined,
-  tabIndex: 0,
-  style: undefined
+  tabIndex: 0
 };
 
 TabButton.displayName = componentName;

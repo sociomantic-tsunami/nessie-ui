@@ -7,72 +7,51 @@
  *
  */
 
-import React, { forwardRef, useState, useCallback } from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
+import useUncontolled from "uncontrollable/hook";
 
 import { ScrollBox, TabButton } from "..";
 
-import { attachEvents, useThemeClasses } from "../utils";
+import { attachEvents as handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "Tabs";
 
 const Tabs = forwardRef((props, ref) => {
   const cssMap = useThemeClasses(componentName, props);
 
-  const { children, secondaryControls, style } = props;
-
-  const [activeTabIndexState, setActiveTabIndexState] = useState(0);
-
-  const activeTabIndex = props.activeTabIndex || activeTabIndexState;
+  const {
+    children,
+    onChange,
+    secondaryControls,
+    style,
+    value,
+    ...restProps
+  } = useUncontolled(props, {
+    value: "onChange"
+  });
 
   const tabs = React.Children.toArray(children);
 
-  const { onClickTab, onChange } = props;
-  const handleClickTab = useCallback(
-    ({ tabIndex }, e) => {
-      let nessieDefaultPrevented = false;
-
-      if (typeof onClickTab === "function") {
-        onClickTab(
-          {
-            preventNessieDefault() {
-              nessieDefaultPrevented = true;
-            },
-            tabIndex
-          },
-          e
-        );
-      }
-
-      if (!nessieDefaultPrevented) {
-        setActiveTabIndexState(tabIndex);
-        if (typeof onChange === "function") {
-          onChange({ activeTabIndex: tabIndex });
-        }
-      }
-    },
-    [onClickTab, onChange]
-  );
-  const tabButtons = tabs.map((tab, tabIndex) => {
+  const tabButtons = tabs.map((tab, index) => {
     const { isDisabled, label } = tab.props;
-    const isActive = activeTabIndex === tabIndex;
+    const isActive = value === index;
 
     return (
       <TabButton
         isActive={isActive}
         isDisabled={isDisabled || isActive}
-        key={label || tabIndex}
+        key={label || index}
         label={label}
-        onClick={!props.activeTabIndex ? handleClickTab : null}
-        tabIndex={tabIndex}
-        value={tabIndex}
+        onClick={() => onChange(index)}
+        value={index}
       />
     );
   });
 
   return (
     <div
-      {...attachEvents(props)}
+      {...handleAllEvents(restProps)}
       className={cssMap.main}
       ref={ref}
       style={style}
@@ -85,16 +64,12 @@ const Tabs = forwardRef((props, ref) => {
           <div className={cssMap.secondaryControls}>{secondaryControls}</div>
         )}
       </div>
-      <div className={cssMap.content}>{tabs[activeTabIndex]}</div>
+      <div className={cssMap.content}>{tabs[value]}</div>
     </div>
   );
 });
 
 Tabs.propTypes = {
-  /**
-   *  The active tab index
-   */
-  activeTabIndex: PropTypes.number,
   /**
    *  A set of <Tab> components
    */
@@ -108,13 +83,13 @@ Tabs.propTypes = {
    */
   cssMap: PropTypes.objectOf(PropTypes.string),
   /**
-   *  Change callback function: ( { activeTabIndex } ) => ...
+   *  Default tab index (when uncontrolled)
+   */
+  defaultValue: PropTypes.number,
+  /**
+   *  Change callback function: ( newValue ) => ...
    */
   onChange: PropTypes.func,
-  /**
-   *  Click tab callback function: ( { tabIndex } ) => ...
-   */
-  onClickTab: PropTypes.func,
   /**
    *   Tab padding
    */
@@ -129,19 +104,23 @@ Tabs.propTypes = {
   /**
    *  Style overrides
    */
-  style: PropTypes.objectOf(PropTypes.string)
+  style: PropTypes.objectOf(PropTypes.string),
+  /**
+   *  The active tab index
+   */
+  value: PropTypes.number
 };
 
 Tabs.defaultProps = {
-  activeTabIndex: undefined,
   children: undefined,
+  defaultValue: 0,
   className: undefined,
   cssMap: undefined,
   onChange: undefined,
-  onClickTab: undefined,
   padding: ["none", "M"],
   secondaryControls: undefined,
-  style: undefined
+  style: undefined,
+  value: undefined
 };
 
 Tabs.displayName = componentName;
