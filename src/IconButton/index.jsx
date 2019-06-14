@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
 
 import { Icon } from "..";
 
-import { attachEvents, useThemeClasses } from "../utils";
+import { handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "IconButton";
 
@@ -37,7 +37,7 @@ const IconButton = forwardRef((props, ref) => {
 
   return (
     <button
-      {...attachEvents(restProps)}
+      {...handleAllEvents(restProps)}
       className={cssMap.main}
       disabled={isDisabled}
       id={id}

@@ -17,11 +17,7 @@ import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import useUncontrolled from "uncontrollable/hook";
 
-import {
-  attachEvents as handleAllEvents,
-  clamp,
-  useThemeClasses
-} from "../utils";
+import { handleAllEvents, clamp, useThemeClasses } from "../utils";
 
 const componentName = "ScrollBar";
 

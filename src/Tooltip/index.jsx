@@ -12,18 +12,26 @@ import PropTypes from "prop-types";
 
 import { IconButton, Text } from "..";
 
-import { attachEvents, useThemeClasses } from "../utils";
+import { handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "Tooltip";
 
 const Tooltip = forwardRef((props, ref) => {
-  const { children, id, isDismissible, message, onClickClose, style } = props;
+  const {
+    children,
+    id,
+    isDismissible,
+    message,
+    onClickClose,
+    style,
+    ...restProps
+  } = props;
 
   const cssMap = useThemeClasses(componentName, props);
 
   return (
     <div
-      {...attachEvents(props)}
+      {...handleAllEvents(restProps)}
       className={cssMap.main}
       id={id}
       ref={ref}

@@ -11,11 +11,7 @@ import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import useUncontrolled from "uncontrollable/hook";
 
-import {
-  attachEvents as handleAllEvents,
-  mapAria,
-  useThemeClasses
-} from "../utils";
+import { handleAllEvents, mapAria, useThemeClasses } from "../utils";
 
 const componentName = "TextInput";
 

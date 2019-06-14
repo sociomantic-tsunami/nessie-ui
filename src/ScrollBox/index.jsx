@@ -18,7 +18,7 @@ import PropTypes from "prop-types";
 import { isEqual } from "lodash";
 
 import { IconButton, ScrollBar } from "../index";
-import { useThemeClasses } from "../utils";
+import { handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "ScrollBox";
 
@@ -67,7 +67,8 @@ const ScrollBox = forwardRef((props, ref) => {
     scrollBarsAreVisible,
     scrollBoxRef,
     scrollIndicatorVariant,
-    style
+    style,
+    ...restProps
   } = props;
 
   const cssMap = useThemeClasses(componentName, props);
@@ -284,6 +285,7 @@ const ScrollBox = forwardRef((props, ref) => {
 
   return (
     <div
+      {...handleAllEvents(restProps)}
       className={cssMap.main}
       onMouseEnter={onMouseOver}
       onMouseLeave={onMouseOut}

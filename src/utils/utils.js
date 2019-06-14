@@ -24,7 +24,7 @@ function callMultiple(...callbacks) {
 }
 
 /**
- * attachEvents( props )
+ * handleAllEvents( props )
  *
  * Returns a set of Nessie standardized event handlers based on props provided
  *
@@ -32,7 +32,7 @@ function callMultiple(...callbacks) {
  *
  * @return  {Object}    event handlers
  */
-function attachEvents(props) {
+function handleAllEvents(props) {
   return Object.entries(props).reduce((result, [propName, propValue]) => {
     if (eventsList.includes(propName)) {
       result[propName] = createEventHandler(propValue);
@@ -106,7 +106,7 @@ const mapAria = (ariaObj = {}) => {
 };
 
 export {
-  attachEvents,
+  handleAllEvents,
   buildDisplayName,
   callMultiple,
   clamp,
@@ -117,7 +117,7 @@ export {
 };
 
 export default {
-  attachEvents,
+  handleAllEvents,
   buildDisplayName,
   callMultiple,
   clamp,

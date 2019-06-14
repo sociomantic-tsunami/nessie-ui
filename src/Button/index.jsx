@@ -12,18 +12,27 @@ import PropTypes from "prop-types";
 
 import { Icon, Spinner } from "..";
 
-import { attachEvents, useThemeClasses } from "../utils";
+import { handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "Button";
 
 const Button = forwardRef((props, ref) => {
-  const { children, iconType, id, isDisabled, isLoading, label, style } = props;
+  const {
+    children,
+    iconType,
+    id,
+    isDisabled,
+    isLoading,
+    label,
+    style,
+    ...restProps
+  } = props;
 
   const cssMap = useThemeClasses(componentName, props);
 
   return (
     <button
-      {...attachEvents(props)}
+      {...handleAllEvents(restProps)}
       className={cssMap.main}
       disabled={isDisabled}
       id={id}

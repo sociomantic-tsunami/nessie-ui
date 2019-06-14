@@ -16,12 +16,7 @@ import PropTypes from "prop-types";
 
 import { Icon, Text } from "..";
 
-import {
-  attachEvents as handleAllEvents,
-  mapAria,
-  useId,
-  useThemeClasses
-} from "../utils";
+import { handleAllEvents, mapAria, useId, useThemeClasses } from "../utils";
 
 const componentName = "ListBoxOption";
 

@@ -10,17 +10,21 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-import { useThemeClasses } from "../utils";
+import { handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "ProgressBar";
 
 const ProgressBar = forwardRef((props, ref) => {
-  const { percentage, style } = props;
+  const { percentage, style, ...restProps } = props;
 
   const cssMap = useThemeClasses(componentName, props);
 
   return (
-    <div className={cssMap.default} style={style}>
+    <div
+      {...handleAllEvents(restProps)}
+      className={cssMap.default}
+      style={style}
+    >
       {percentage > 0 && (
         <div style={{ width: `${percentage}%` }} className={cssMap.fill} />
       )}

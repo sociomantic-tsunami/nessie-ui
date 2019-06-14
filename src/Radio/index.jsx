@@ -13,11 +13,7 @@ import useUncontrolled from "uncontrollable/hook";
 
 import { Text } from "..";
 
-import {
-  attachEvents as handleAllEvents,
-  useId,
-  useThemeClasses
-} from "../utils";
+import { handleAllEvents, useId, useThemeClasses } from "../utils";
 
 const componentName = "Radio";
 

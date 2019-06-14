@@ -10,18 +10,18 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-import { attachEvents, useThemeClasses } from "../utils";
+import { handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "Card";
 
 const Card = forwardRef((props, ref) => {
-  const { children, style } = props;
+  const { children, style, ...restProps } = props;
 
   const cssMap = useThemeClasses(componentName, props);
 
   return (
     <div
-      {...attachEvents(props)}
+      {...handleAllEvents(restProps)}
       className={cssMap.main}
       ref={ref}
       style={style}

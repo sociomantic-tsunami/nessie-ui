@@ -10,7 +10,7 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-import { attachEvents, useThemeClasses } from "../utils";
+import { handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "Modal";
 
@@ -30,7 +30,7 @@ const Modal = forwardRef((props, ref) => {
 
   return (
     <div
-      {...attachEvents(restProps)}
+      {...handleAllEvents(restProps)}
       className={cssMap.main}
       onClick={handleClickOverlay}
       ref={ref}

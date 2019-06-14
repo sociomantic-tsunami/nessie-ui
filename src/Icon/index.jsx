@@ -10,18 +10,18 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-import { attachEvents, useThemeClasses } from "../utils";
+import { handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "Icon";
 
 const Icon = forwardRef((props, ref) => {
-  const { children, label, style, type } = props;
+  const { children, label, style, type, ...restProps } = props;
 
   const cssMap = useThemeClasses(componentName, props);
 
   return (
     <svg
-      {...attachEvents(props)}
+      {...handleAllEvents(restProps)}
       aria-label={children || label}
       className={cssMap.main}
       ref={ref}

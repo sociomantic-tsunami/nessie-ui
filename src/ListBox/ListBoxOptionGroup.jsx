@@ -12,17 +12,18 @@ import PropTypes from "prop-types";
 
 import { Text } from "..";
 
-import { mapAria, useThemeClasses } from "../utils";
+import { handleAllEvents, mapAria, useThemeClasses } from "../utils";
 
 const componentName = "ListBoxOptionGroup";
 
 const ListBoxOptionGroup = forwardRef((props, ref) => {
-  const { aria, children, header, options, style } = props;
+  const { aria, children, header, options, style, ...restProps } = props;
 
   const cssMap = useThemeClasses(componentName, props);
 
   return (
     <li
+      {...handleAllEvents(restProps)}
       {...mapAria({ ...aria, role: "none" })}
       className={cssMap.main}
       ref={ref}

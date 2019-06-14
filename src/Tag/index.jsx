@@ -17,7 +17,15 @@ import { useId, useThemeClasses } from "../utils";
 const componentName = "Tag";
 
 const Tag = forwardRef((props, ref) => {
-  const { children, isDisabled, isReadOnly, label, onClick, style } = props;
+  const {
+    children,
+    isDisabled,
+    isReadOnly,
+    label,
+    onClick,
+    style,
+    ...restProps
+  } = props;
 
   const cssMap = useThemeClasses(componentName, props);
   const id = useId(componentName, props);
@@ -33,7 +41,12 @@ const Tag = forwardRef((props, ref) => {
   }
 
   return (
-    <div className={cssMap.main} ref={ref} style={style}>
+    <div
+      {...handleAllEvents(restProps)}
+      className={cssMap.main}
+      ref={ref}
+      style={style}
+    >
       {labelText}
       <IconButton
         className={cssMap.delete}

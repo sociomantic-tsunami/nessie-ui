@@ -13,7 +13,7 @@ import useUncontrolled from "uncontrollable/hook";
 
 import { TextInput } from "..";
 
-import { attachEvents as handleAllEvents, useThemeClasses } from "../utils";
+import { handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "UnitInput";
 const UnitInput = forwardRef((props, ref) => {

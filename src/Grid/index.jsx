@@ -10,7 +10,7 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-import { attachEvents, useThemeClasses, useThemeVars } from "../utils";
+import { handleAllEvents, useThemeClasses, useThemeVars } from "../utils";
 
 const componentName = "Grid";
 
@@ -29,7 +29,8 @@ const Grid = forwardRef((props, ref) => {
     rows,
     style,
     templateColumns,
-    templateRows
+    templateRows,
+    ...restProps
   } = props;
 
   const cssMap = useThemeClasses(componentName, props);
@@ -37,7 +38,7 @@ const Grid = forwardRef((props, ref) => {
 
   return (
     <div
-      {...attachEvents(props)}
+      {...handleAllEvents(restProps)}
       className={cssMap.main}
       ref={ref}
       style={{

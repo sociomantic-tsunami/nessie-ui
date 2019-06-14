@@ -17,7 +17,7 @@ import { ListBox, ScrollBox } from "..";
 import Popup from "../Popup";
 import PopperWrapper from "../PopperWrapper";
 import {
-  attachEvents as handleAllEvents,
+  handleAllEvents,
   callMultiple,
   useId,
   useThemeClasses

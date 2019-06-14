@@ -32,7 +32,7 @@ import {
 } from "..";
 
 import {
-  attachEvents as handleAllEvents,
+  handleAllEvents,
   callMultiple,
   mapAria,
   useId,

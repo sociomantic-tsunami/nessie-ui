@@ -10,18 +10,18 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-import { attachEvents, useThemeClasses } from "../utils";
+import { handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "TabButton";
 
 const TabButton = forwardRef((props, ref) => {
   const cssMap = useThemeClasses(componentName, props);
 
-  const { isDisabled, label, style, subtitle } = props;
+  const { isDisabled, label, style, subtitle, ...restProps } = props;
 
   return (
     <button
-      {...attachEvents(props)}
+      {...handleAllEvents(restProps)}
       className={cssMap.main}
       disabled={isDisabled}
       ref={ref}

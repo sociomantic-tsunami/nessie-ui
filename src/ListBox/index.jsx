@@ -14,12 +14,7 @@ import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
 import { buildOptions, updateOptions } from "./utils";
-import {
-  attachEvents as handleAllEvents,
-  killFocus,
-  mapAria,
-  useThemeClasses
-} from "../utils";
+import { handleAllEvents, killFocus, mapAria, useThemeClasses } from "../utils";
 
 const componentName = "ListBox";
 

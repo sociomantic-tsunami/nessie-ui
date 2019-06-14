@@ -13,7 +13,7 @@ import useUncontolled from "uncontrollable/hook";
 
 import { ScrollBox, TabButton } from "..";
 
-import { attachEvents as handleAllEvents, useThemeClasses } from "../utils";
+import { handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "Tabs";
 

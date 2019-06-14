@@ -10,16 +10,17 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-import { useThemeClasses } from "../utils";
+import { handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "Tab";
 
 const Tab = forwardRef((props, ref) => {
   const cssMap = useThemeClasses(componentName, props);
-  const { children, label, style } = props;
+  const { children, label, style, ...restProps } = props;
 
   return (
     <div
+      {...handleAllEvents(restProps)}
       aria-label={label}
       className={cssMap.main}
       ref={ref}

@@ -10,7 +10,7 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-import { attachEvents, useThemeClasses } from "../utils";
+import { handleAllEvents, useThemeClasses } from "../utils";
 
 import { IconButton, TextInput } from "..";
 
@@ -41,7 +41,8 @@ const TextInputWithIcon = forwardRef((props, ref) => {
     spellCheck,
     style,
     textAlign,
-    value
+    value,
+    ...restProps
   } = props;
 
   let alignText = textAlign;
@@ -52,7 +53,7 @@ const TextInputWithIcon = forwardRef((props, ref) => {
   }
 
   return (
-    <div {...attachEvents(props)} className={cssMap.main} style={style}>
+    <div {...handleAllEvents(restProps)} className={cssMap.main} style={style}>
       <TextInput
         aria={aria}
         autocapitalize={autoCapitalize}

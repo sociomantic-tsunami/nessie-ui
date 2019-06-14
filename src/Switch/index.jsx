@@ -11,11 +11,7 @@ import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import useUncontrolled from "uncontrollable/hook";
 
-import {
-  attachEvents as handleAllEvents,
-  useId,
-  useThemeClasses
-} from "../utils";
+import { handleAllEvents, useId, useThemeClasses } from "../utils";
 
 const componentName = "Switch";
 

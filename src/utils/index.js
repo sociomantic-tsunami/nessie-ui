@@ -8,7 +8,7 @@
  */
 
 export {
-  attachEvents,
+  handleAllEvents,
   buildDisplayName,
   callMultiple,
   clamp,
