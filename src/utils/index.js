@@ -9,12 +9,10 @@
 
 export {
   buildDisplayName,
-  callMultiple,
   clamp,
+  createChangeHandler,
   generateId,
   handleAllEvents,
-  createChangeHandler,
-  killFocus,
   mapAria
 } from "./utils";
 

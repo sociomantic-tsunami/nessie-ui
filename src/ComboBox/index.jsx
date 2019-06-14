@@ -34,7 +34,6 @@ import {
 import {
   handleAllEvents,
   createChangeHandler,
-  callMultiple,
   mapAria,
   useId,
   useThemeClasses
@@ -421,13 +420,13 @@ const ComboBox = forwardRef((props, ref) => {
             className={cssMap.input}
             disabled={isDisabled}
             id={id}
-            onBlur={callMultiple(handleBlur, props.onBlur)} // temporary fix
+            onBlur={handleBlur}
             onChange={createChangeHandler(onChangeInput, newValue =>
               newValue.toLowerCase()
             )}
-            onClick={callMultiple(handleClick, props.onClick)} // temporary fix
-            onFocus={callMultiple(handleFocus, props.onFocus)} // temporary fix
-            onKeyDown={callMultiple(handleKeyDown, props.onKeyDown)} // temporary fix
+            onClick={handleClick}
+            onFocus={handleFocus}
+            onKeyDown={handleKeyDown}
             placeholder={inputPlaceholder}
             readOnly={!isSearchable || !isOpen}
             spellCheck={false}

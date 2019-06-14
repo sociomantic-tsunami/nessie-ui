@@ -19,7 +19,6 @@ import PopperWrapper from "../PopperWrapper";
 import {
   handleAllEvents,
   createChangeHandler,
-  callMultiple,
   useId,
   useThemeClasses
 } from "../utils";

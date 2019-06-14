@@ -10,21 +10,6 @@
 import eventsList from "./eventsList";
 
 /**
- * callMultiple( ...callbacks )
- *
- * Creates and event handler that calls multiple callbacks, one after the other.
- *
- * @param   {...[Function]} callbacks event callbacks
- *
- * @return  {Function}      event handler
- */
-function callMultiple(...callbacks) {
-  return function eventHandler(...args) {
-    callbacks.forEach(cb => typeof cb === "function" && cb(...args));
-  };
-}
-
-/**
  * createChangeHandler( ...callbacks )
  *
  * Creates an onChange handler that calls one or more callbacks with the changed
@@ -34,7 +19,7 @@ function callMultiple(...callbacks) {
  *
  * @return  {Function}      event handler
  */
-function createChangeHandler(...callbacks) {
+export function createChangeHandler(...callbacks) {
   return function changeHandler({ target: { type, value, checked } }) {
     const newValue = type === "checkox" ? checked : value;
     callbacks.forEach(cb => typeof cb === "function" && cb(newValue));
@@ -50,7 +35,7 @@ function createChangeHandler(...callbacks) {
  *
  * @return  {Object}    event handlers
  */
-function handleAllEvents(props) {
+export function handleAllEvents(props) {
   return Object.entries(props).reduce((result, [propName, propValue]) => {
     if (eventsList.includes(propName)) {
       result[propName] = createEventHandler(propValue);
@@ -59,14 +44,14 @@ function handleAllEvents(props) {
   }, {});
 }
 
-const buildDisplayName = (WrapperComponent, WrappedComponent) => {
+export const buildDisplayName = (WrapperComponent, WrappedComponent) => {
   const wrapperComponentName = getComponentName(WrapperComponent);
   const wrappedComponentName = getComponentName(WrappedComponent);
 
   return `${wrapperComponentName}(${wrappedComponentName})`;
 };
 
-const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
+export const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
 
 /**
  * createEventHandler( func, payload )
@@ -82,7 +67,7 @@ const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
  *
  * @return  {Function}
  */
-function createEventHandler(func) {
+export function createEventHandler(func) {
   if (typeof func !== "function") {
     return;
   }
@@ -103,44 +88,21 @@ function createEventHandler(func) {
   };
 }
 
-const getComponentName = Comp => Comp.displayName || Comp.name || "Component";
+export const getComponentName = Comp =>
+  Comp.displayName || Comp.name || "Component";
 
-const generateId = componentName =>
+export const generateId = componentName =>
   `${componentName}${Math.floor(Math.random() * 9e15 + 1e15)}`;
 
-const killFocus = e => e.preventDefault();
-
-const mapAria = (ariaObj = {}) => {
-  const res = { role: ariaObj.role };
+export const mapAria = (ariaObj = {}) => {
+  const ariaProps = { role: ariaObj.role };
 
   Object.keys(ariaObj).forEach(key => {
     const value = ariaObj[key];
     if (key !== "role" && value) {
-      res[`aria-${key.toLowerCase()}`] = ariaObj[key].toString();
+      ariaProps[`aria-${key.toLowerCase()}`] = ariaObj[key].toString();
     }
   });
 
-  return res;
-};
-
-export {
-  createChangeHandler,
-  handleAllEvents,
-  buildDisplayName,
-  callMultiple,
-  clamp,
-  generateId,
-  killFocus,
-  mapAria
-};
-
-export default {
-  createChangeHandler,
-  handleAllEvents,
-  buildDisplayName,
-  callMultiple,
-  clamp,
-  generateId,
-  killFocus,
-  mapAria
+  return ariaProps;
 };
