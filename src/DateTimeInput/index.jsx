@@ -7,211 +7,22 @@
  *
  */
 
-import React, { forwardRef, useCallback, useState } from "react";
+import React, { forwardRef, useState } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import _ from "lodash";
+import useUncontrolled from "uncontrollable/hook";
 
-import { DatePicker } from "..";
+import { DatePicker, PopperWrapper, Popup, TextInputWithIcon } from "..";
 
-import TextInputWithIcon from "../TextInputWithIcon";
-import Popup from "../Popup";
-import PopperWrapper from "../PopperWrapper";
-
-const componentName = "DateTimeInput";
-
-const DISPLAY_FORMATTING = {
-  month: "YYYY/MM",
-  week: "YYYY/MM/DD ww",
-  day: "YYYY/MM/DD",
+const FORMATS = {
+  minute: "YYYY/MM/DD HH:mm",
   hour: "YYYY/MM/DD HH:00",
-  minute: "YYYY/MM/DD HH:mm"
-};
-
-const DEFAULT_FORMAT = "YYYY/M/D H:m";
-
-/**
- * returns the timestamp of the current moment
- *
- * @return {Number} timestamp
- */
-function now() {
-  return new Date().getTime();
-}
-
-/**
- * set precision for formatting and comparing
- *
- * @param {String}  mode  date time input mode
- *
- * @return {String} date / time format
- */
-function setPrecision(mode) {
-  let format;
-
-  switch (mode) {
-    case "date":
-      format = "day";
-      break;
-    case "week":
-      format = "week";
-      break;
-    case "month":
-      format = "month";
-      break;
-    default:
-      format = "minute";
-  }
-
-  return DISPLAY_FORMATTING[format];
-}
-
-const useTimestamp = (defaultValue, value) => {
-  const [timestamp, setTimestamp] = useState(defaultValue);
-
-  const setter = newValue => {
-    if (value === undefined) {
-      setTimestamp(newValue);
-    }
-  };
-
-  return [value || timestamp, setter];
+  day: "YYYY/MM/DD",
+  week: "YYYY/MM/DD ww",
+  month: "YYYY/MM"
 };
 
 const DateTimeInput = forwardRef((props, ref) => {
-  const { moment } = props;
-  const [editingMainInputValue, setEditingMainInputValue] = useState(undefined);
-  const [gridStartTimestamp, setGridStartTimestamp] = useState(undefined);
-  const [timestamp, setTimestamp] = useTimestamp(
-    props.defaultValue,
-    props.value
-  );
-
-  const isOpen = Boolean(gridStartTimestamp);
-
-  /**
-   * returns utc of the timestamp passed
-   *
-   * @param {Number} timestamp passed
-   *
-   * @return {Number} UTC timestamp
-   */
-  function $m(timestamp) {
-    return moment(timestamp).utc();
-  }
-
-  /**
-   * Human date ( input value ) conversion to timestamp,
-   * returns current timestamp if invalid input value
-   *
-   * @param {String}  inputValue human readable date
-   * @param {Number}  timestamp current timestamp
-   * @param {String}  format date format
-   *
-   * @return {Number} timestamp
-   */
-  function tryParseInputValue(inputValue, timestamp, format = DEFAULT_FORMAT) {
-    if (!inputValue) return null;
-
-    return moment.utc(inputValue, format).valueOf() || timestamp;
-  }
-
-  /**
-   * Timestamp conversion to Human date
-   *
-   * @param {Number}  timestamp timestamp
-   * @param {String}  precision precision for formatting
-   *
-   * @return {String} human readable date
-   */
-  function formatDateTime(timestamp, precision) {
-    if (!_.isNumber(timestamp)) return String(timestamp || "");
-    return $m(timestamp).format(precision);
-  }
-
-  const handleClickIcon = useCallback(() => {
-    if (isOpen) {
-      close();
-    } else {
-      open();
-    }
-  }, [close, isOpen, open]);
-
-  const handleChangeInput = useCallback(
-    ({ value }) => {
-      const trimmed = value.replace(/\s+/g, " ");
-      const min = props.min || now();
-
-      let newTimestamp = tryParseInputValue(trimmed, timestamp, props.format);
-
-      if (newTimestamp < min) {
-        newTimestamp = min;
-      }
-
-      if (props.max && newTimestamp > props.max) {
-        newTimestamp = props.max;
-      }
-
-      if (typeof onChange === "function") {
-        onChange(newTimestamp);
-      }
-
-      setEditingMainInputValue(!value ? undefined : value);
-      setTimestamp(!value ? undefined : newTimestamp);
-    },
-    [
-      onChange,
-      props.format,
-      props.max,
-      props.min,
-      setTimestamp,
-      timestamp,
-      tryParseInputValue
-    ]
-  );
-
-  const handleOnBlur = useCallback(() => {
-    if (!gridStartTimestamp) {
-      purgeEdits();
-    }
-  }, [gridStartTimestamp, purgeEdits]);
-
-  const handleChange = ({ value }) => {
-    if (typeof onChange === "function") {
-      onChange(value);
-    }
-
-    setTimestamp(value);
-  };
-
-  const canEditHourOrMinute = useCallback(() => _.isNumber(timestamp), [
-    timestamp
-  ]);
-
-  const purgeEdits = useCallback(() => {
-    setEditingMainInputValue(undefined);
-  }, []);
-
-  const open = useCallback(() => {
-    const { min } = props;
-    let newTimestamp;
-
-    newTimestamp = _.isNumber(timestamp) ? timestamp : now();
-
-    newTimestamp = _.isNumber(min) && min > timestamp ? min : timestamp;
-
-    setGridStartTimestamp(
-      $m(newTimestamp)
-        .startOf(props.mode === "month" ? "year" : "month")
-        .valueOf()
-    );
-  }, [$m, props, timestamp]);
-
-  const close = useCallback(() => {
-    purgeEdits();
-    setGridStartTimestamp(null);
-  }, [purgeEdits]);
-
   const {
     className,
     format,
@@ -220,47 +31,66 @@ const DateTimeInput = forwardRef((props, ref) => {
     inputPlaceholder,
     isDisabled,
     isReadOnly,
-    max,
     min,
+    max,
     mode,
+    moment,
     onChange,
     popperContainer,
     style,
-    weekLabel
-  } = props;
+    value,
+    weekLabel,
+    ...restProps
+  } = useUncontrolled(props, { value: "onChange" });
 
-  let datePickerType = "day";
+  const [editingInputValue, setEditingInputValue] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
-  if (mode === "week") {
-    datePickerType = "week";
-  } else if (mode === "month") {
-    datePickerType = "month";
-  }
+  const open = () => {
+    setIsOpen(true);
+    setEditingInputValue("");
+  };
 
-  const datePicker = (
-    <DatePicker
-      moment={moment}
-      hasTimeInput={mode === "default"}
-      hourIsReadOnly={!canEditHourOrMinute()}
-      isDisabled={isDisabled}
-      max={max}
-      min={min}
-      minuteIsReadOnly={!canEditHourOrMinute()}
-      mode={mode}
-      onChange={handleChange}
-      type={datePickerType}
-      value={timestamp}
-      weekLabel={weekLabel}
-    />
-  );
+  const close = () => {
+    setIsOpen(false);
+    setEditingInputValue("");
+  };
+
+  const handleChangeInput = newInputValue => {
+    let newValue = newInputValue
+      ? moment(newInputValue, format || FORMATS[format]).valueOf() || value
+      : undefined;
+
+    const minOrNow = props.min || new Date().getTime();
+    if (newValue < minOrNow) {
+      newValue = minOrNow;
+    }
+    if (max && newValue > max) {
+      newValue = max;
+    }
+
+    setEditingInputValue(newInputValue);
+    onChange(newValue);
+  };
 
   return (
     <PopperWrapper
+      {...restProps}
       isVisible={isOpen}
       onClickOutside={close}
       popper={popperProps => (
         <Popup hasError={hasError} size="content" {...popperProps}>
-          {datePicker}
+          <DatePicker
+            isDisabled={isDisabled}
+            max={max}
+            min={min}
+            mode={mode}
+            moment={moment}
+            onChange={onChange}
+            type={mode === "week" || mode === "month" ? mode : "day"}
+            value={value}
+            weekLabel={weekLabel}
+          />
         </Popup>
       )}
       popperContainer={popperContainer}
@@ -280,14 +110,14 @@ const DateTimeInput = forwardRef((props, ref) => {
           id={id}
           isDisabled={isDisabled}
           isReadOnly={isReadOnly}
-          onBlur={handleOnBlur}
+          onBlur={close}
           onChangeInput={handleChangeInput}
-          onClickIcon={handleClickIcon}
+          onClickIcon={() => (isOpen ? close() : open())}
           placeholder={inputPlaceholder}
           spellCheck={false}
           value={
-            editingMainInputValue ||
-            formatDateTime(timestamp, format || setPrecision(mode))
+            editingInputValue ||
+            (value && moment(value).format(format || FORMATS[mode]))
           }
           {...refProps}
         />
@@ -344,7 +174,7 @@ DateTimeInput.propTypes = {
   /**
    *  Picker mode
    */
-  mode: PropTypes.oneOf(["default", "date", "week", "month"]),
+  mode: PropTypes.oneOf(["minute", "hour", "day", "week", "month"]),
   /**
    *  Change callback: ( { value } ) => ...
    */
@@ -374,15 +204,15 @@ DateTimeInput.defaultProps = {
   isReadOnly: false,
   max: undefined,
   min: undefined,
-  mode: "default",
+  mode: "minute",
+  moment,
   onChange: undefined,
   popperContainer: undefined,
   style: undefined,
   value: undefined,
-  weekLabel: "week",
-  moment
+  weekLabel: "week"
 };
 
-DateTimeInput.displayName = componentName;
+DateTimeInput.displayName = "DateTimeInput";
 
 export default DateTimeInput;
