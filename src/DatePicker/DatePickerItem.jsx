@@ -12,27 +12,32 @@ import PropTypes from "prop-types";
 
 import { Text } from "..";
 
-import { attachEvents, useThemeClasses } from "../utils";
+import { handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "DatePickerItem";
 
 const DatePickerItem = forwardRef((props, ref) => {
   const cssMap = useThemeClasses(componentName, props);
 
-  const { children, isDisabled, isSelected, label, style, value } = props;
+  const {
+    children,
+    isDisabled,
+    isSelected,
+    label,
+    style,
+    value,
+    ...restProps
+  } = props;
 
   return (
     <button
-      {...attachEvents(props, {
-        onClick: { value }
-      })}
+      {...handleAllEvents(restProps)}
       aria-pressed={isSelected}
       className={cssMap.main}
       disabled={isDisabled}
       ref={ref}
       style={style}
       type="button"
-      value={value}
     >
       <Text className={cssMap.text}>{children || label}</Text>
     </button>

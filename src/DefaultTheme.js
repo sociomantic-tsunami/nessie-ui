@@ -106,9 +106,10 @@ const classNames = {
       {
         disabled: props.isDisabled,
         selected: props.isSelected,
-        selectedWeek: props.isSelectedWeek
+        selectedWeek: props.isSelectedWeek,
+        today: props.isToday
       },
-      `type__${props.type}`,
+      props.type && `type__${props.type}`,
       props.className
     ),
     ...datePickerItemClasses

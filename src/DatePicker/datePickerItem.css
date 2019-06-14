@@ -26,7 +26,6 @@
     line-height: var(--line-height-s);
   }
 
-  &.fakeHovered,
   &:hover {
     border-color: var(--PC-BLUE--L90);
     background: var(--PC-BLUE--L90);
@@ -55,8 +54,17 @@
   margin: 1px;
 }
 
+.today,
+.today:focus,
+.today:hover,
+.selectedWeek,
+.selectedWeek:focus,
+.selectedWeek:hover {
+  border-color: var(--PC-BLUE--L90);
+  background: var(--PC-BLUE--L90);
+}
+
 .selected,
-.selected.fakeHovered,
 .selected:focus,
 .selected:hover {
   border-color: var(--PC-BLUE);
@@ -68,16 +76,7 @@
   }
 }
 
-.selectedWeek,
-.selectedWeek.fakeHovered,
-.selectedWeek:focus,
-.selectedWeek:hover {
-  border-color: var(--PC-BLUE--L90);
-  background: var(--PC-BLUE--L90);
-}
-
 .disabled,
-.disabled.fakeHovered,
 .disabled:focus,
 .disabled:hover {
   border-color: var(--PC-GREY--L90);
