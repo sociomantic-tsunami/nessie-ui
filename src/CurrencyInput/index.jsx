@@ -15,58 +15,24 @@ import useUncontrolled from "uncontrollable/hook";
 
 import { TextInput } from "..";
 
-const currencyFormat = (
-  number,
-  currency = "USD",
-  language = navigator.language
-) => {
-  if (typeof number === "number") {
-    return number.toLocaleString(
-      language,
-      currency ? { style: "currency", currency } : {}
-    );
-  }
+const format = (num, currency = "USD", language = navigator.language) => {
+  if (typeof num !== "number") return "";
+
+  return num.toLocaleString(
+    language,
+    currency ? { style: "currency", currency } : {}
+  );
 };
 
-const parseValue = value =>
-  value ? Number(value.replace(/[^0-9.-]/g, "")) : null;
-
-const componentName = "CurrencyInput";
+const parse = str => (str ? Number(str.replace(/[^0-9.-]/g, "")) : undefined);
 
 const CurrencyInput = forwardRef((props, ref) => {
-  const {
-    currency,
-    id,
-    onBlur,
-    onChange,
-    onFocus,
-    style,
-    value,
-    ...restProps
-  } = useUncontrolled(props, { value: "onChange" });
-  const formattedValue = currencyFormat(value, currency);
-  const [editingValue, setEditingValue] = useState(formattedValue);
-  const [isFocused, setIsFocused] = useState(false);
+  const { currency, onBlur, onChange, value, ...restProps } = useUncontrolled(
+    props,
+    { value: "onChange" }
+  );
 
-  const handleFocus = () => {
-    if (typeof onBlur === "function") {
-      onFocus();
-    }
-    setEditingValue(formattedValue);
-    setIsFocused(true);
-  };
-
-  const handleBlur = () => {
-    if (typeof onBlur === "function") {
-      onBlur();
-    }
-    setIsFocused(false);
-  };
-
-  const handleChange = newValue => {
-    setEditingValue(newValue);
-    onChange(parseValue(editingValue));
-  };
+  const [editingValue, setEditingValue] = useState(null);
 
   return (
     <TextInput
@@ -74,14 +40,19 @@ const CurrencyInput = forwardRef((props, ref) => {
       autoCapitalize="off"
       autoComplete="off"
       autoCorrect="off"
-      id={id}
-      onBlur={handleBlur}
-      onChange={handleChange}
-      onFocus={handleFocus}
+      onBlur={() => {
+        if (typeof onBlur === "function") {
+          onBlur();
+        }
+        setEditingValue(null);
+      }}
+      onChange={newValue => {
+        setEditingValue(newValue);
+        onChange(parse(newValue));
+      }}
       ref={ref}
       spellCheck={false}
-      style={style}
-      value={isFocused ? editingValue : formattedValue}
+      value={editingValue || format(value, currency)}
     />
   );
 });
@@ -197,6 +168,6 @@ CurrencyInput.defaultProps = {
   value: undefined
 };
 
-CurrencyInput.displayName = componentName;
+CurrencyInput.displayName = "CurrencyInput";
 
 export default CurrencyInput;
