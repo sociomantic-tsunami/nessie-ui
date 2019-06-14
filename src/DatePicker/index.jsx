@@ -22,15 +22,17 @@ const componentName = "DatePicker";
 const DatePicker = forwardRef((props, ref) => {
   const cssMap = useThemeClasses(componentName, props);
   const {
-    hasTimeInput,
     hourIsDisabled,
     hourIsReadOnly,
     hourPlaceholder,
     isDisabled,
     isReadOnly,
+    max,
+    min,
     minuteIsDisabled,
     minuteIsReadOnly,
     minutePlaceholder,
+    mode,
     moment,
     onChange,
     style,
@@ -41,58 +43,52 @@ const DatePicker = forwardRef((props, ref) => {
   } = useUncontrolled(props, { value: "onChange" });
 
   const [gridStartState, setGridStartState] = useState(null);
-  const [hourValue, setHourValue] = useState(undefined);
-  const [minuteValue, setMinuteValue] = useState(undefined);
+  const [editingHourValue, setEditingHourValue] = useState(undefined);
+  const [editingMinuteValue, setEditingMinuteValue] = useState(undefined);
 
-  const $m = timestamp => moment(timestamp).utc();
+  const now = () => moment().valueOf();
 
   const isTimestampEqual = (ts1, ts2, precision) =>
-    $m(ts1).isSame($m(ts2), precision);
+    moment(ts1).isSame(moment(ts2), precision);
 
   const formatHours = timestamp => {
     if (!_.isNumber(timestamp)) return "";
-    return $m(timestamp).format("HH");
+    return moment(timestamp).format("HH");
   };
 
   const formatMinutes = timestamp => {
     if (!_.isNumber(timestamp)) return "";
-    return $m(timestamp).format("mm");
+    return moment(timestamp).format("mm");
   };
 
   const gridStartTimestamp =
     gridStartState ||
-    $m(value)
-      .startOf(props.type === "month" ? "year" : "month")
+    moment(value)
+      .startOf(mode === "month" ? "year" : "month")
       .valueOf();
 
-  const isUnitSelectable = (itemTimestamp, unit) => {
-    const { max } = props;
-    const min = props.min || Date.now();
-
-    if (itemTimestamp > max) return false;
-
-    return $m(itemTimestamp).add(1, unit) > min;
-  };
+  const isUnitSelectable = timestamp =>
+    timestamp >= (min || now()) && timestamp <= (max || Infinity);
 
   const dayMatrix = () => {
     const startMonth = gridStartTimestamp;
 
     if (!startMonth) return;
 
-    const offset = $m(startMonth).weekday() % 7;
-    const daysInMonth = $m(startMonth).daysInMonth();
+    const offset = moment(startMonth).weekday() % 7;
+    const daysInMonth = moment(startMonth).daysInMonth();
 
     const days = _.range(-offset, daysInMonth).map(dayIndex => {
       const hasDate = dayIndex >= 0 && dayIndex < daysInMonth;
       const label = hasDate ? String(dayIndex + 1) : "";
       const dayValue = hasDate
-        ? $m(startMonth)
+        ? moment(startMonth)
             .add(dayIndex, "day")
             .valueOf()
         : null;
 
       const isDisabled = hasDate && !isUnitSelectable(dayValue, "day");
-      const isToday = hasDate && isTimestampEqual(dayValue, Date.now(), "day");
+      const isToday = hasDate && isTimestampEqual(dayValue, now(), "day");
       const isSelected =
         hasDate &&
         _.isNumber(value) &&
@@ -126,7 +122,7 @@ const DatePicker = forwardRef((props, ref) => {
       );
 
       const weekNumber = {
-        label: $m(firstWeekday.value).week(),
+        label: moment(firstWeekday.value).week(),
         isSelectedWeek,
         isDisabled: isDisabledWeek,
         value: currentDay ? currentDay.value : firstWeekday.value
@@ -147,7 +143,7 @@ const DatePicker = forwardRef((props, ref) => {
       const label = moment()
         .month(month)
         .format("MMM");
-      const value = $m(startYear)
+      const value = moment(startYear)
         .add(month, "month")
         .valueOf();
 
@@ -170,8 +166,8 @@ const DatePicker = forwardRef((props, ref) => {
 
   const canGotoNext = () => {
     const { max } = props;
-    const nextGridStart = $m(gridStartTimestamp)
-      .add(1, props.type === "month" ? "year" : "month")
+    const nextGridStart = moment(gridStartTimestamp)
+      .add(1, mode === "month" ? "year" : "month")
       .valueOf();
 
     return !_.isNumber(max) || nextGridStart <= max;
@@ -179,11 +175,11 @@ const DatePicker = forwardRef((props, ref) => {
 
   const canGoToPrev = () => {
     const min = props.min || Date.now();
-    const prevGridStart = $m(gridStartTimestamp)
-      .add(-1, props.type === "month" ? "year" : "month")
+    const prevGridStart = moment(gridStartTimestamp)
+      .add(-1, mode === "month" ? "year" : "month")
       .valueOf();
-    const endOfPrev = $m(prevGridStart)
-      .add(1, props.type === "month" ? "year" : "month")
+    const endOfPrev = moment(prevGridStart)
+      .add(1, mode === "month" ? "year" : "month")
       .valueOf();
 
     return !_.isNumber(min) || endOfPrev > min;
@@ -193,8 +189,8 @@ const DatePicker = forwardRef((props, ref) => {
     if (!canGotoNext()) return;
 
     setGridStartState(
-      $m(gridStartTimestamp)
-        .add(1, props.type === "month" ? "year" : "month")
+      moment(gridStartTimestamp)
+        .add(1, mode === "month" ? "year" : "month")
         .valueOf()
     );
   };
@@ -203,60 +199,30 @@ const DatePicker = forwardRef((props, ref) => {
     if (!canGoToPrev()) return;
 
     setGridStartState(
-      $m(gridStartTimestamp)
-        .add(-1, props.type === "month" ? "year" : "month")
+      moment(gridStartTimestamp)
+        .add(-1, mode === "month" ? "year" : "month")
         .valueOf()
     );
   };
 
-  const handleChangeHour = newValue => {
-    const trimmed = newValue.trim().replace(/\s+/g, " ");
-    let digits = Number(trimmed);
+  const handleChangeHour = newInputValue => {
+    const hour = _.clamp(Number(newInputValue), 0, 23);
+    const newTimestamp = moment(value)
+      .set("hour", hour)
+      .valueOf();
 
-    setHourValue(newValue);
-
-    if (/^\d\d?$/.test(trimmed) && digits >= 0 && digits <= 23) {
-      const newTimestamp = $m(newValue)
-        .set("hour", digits)
-        .valueOf();
-
-      onChange(newTimestamp);
-    } else {
-      digits = _.isNumber(newValue) && $m(newValue).hour();
-
-      if (!_.isNaN(digits)) {
-        const newTimestamp = $m(newValue)
-          .set("hour", digits)
-          .valueOf();
-
-        onChange(newTimestamp);
-      }
-    }
+    onChange(newTimestamp || value);
+    setEditingHourValue(newInputValue);
   };
 
-  const handleChangeMinute = newValue => {
-    const trimmed = newValue.trim().replace(/\s+/g, " ");
-    let digits = Number(trimmed);
+  const handleChangeMinute = newInputValue => {
+    const minute = _.clamp(Number(newInputValue), 0, 59);
+    const newTimestamp = moment(value)
+      .set("minute", minute)
+      .valueOf();
 
-    setMinuteValue(newValue);
-
-    if (/^\d\d?$/.test(trimmed) && digits >= 0 && digits <= 59) {
-      const newTimestamp = $m(newValue)
-        .set("minute", digits)
-        .valueOf();
-
-      onChange(newTimestamp);
-    } else {
-      digits = _.isNumber(newValue) && $m(newValue).minute();
-
-      if (!_.isNaN(digits)) {
-        const newTimestamp = $m(newValue)
-          .set("minute", digits)
-          .valueOf();
-
-        onChange(newTimestamp);
-      }
-    }
+    onChange(newTimestamp || value);
+    setEditingMinuteValue(newInputValue);
   };
 
   let items;
@@ -279,35 +245,35 @@ const DatePicker = forwardRef((props, ref) => {
       style={style}
     >
       <DatePickerHeader
-        hasTimeInput={type === "day" && hasTimeInput}
+        hasTimeInput={["minute", "hour"].includes(mode)}
         hourIsDisabled={hourIsDisabled}
         hourIsReadOnly={hourIsReadOnly}
         hourPlaceholder={hourPlaceholder}
-        hourValue={hourValue || formatHours(value)}
+        hourValue={editingHourValue || formatHours(value)}
         isDisabled={isDisabled}
         isReadOnly={isReadOnly}
         minuteIsDisabled={minuteIsDisabled}
         minuteIsReadOnly={minuteIsReadOnly}
         minutePlaceholder={minutePlaceholder}
-        minuteValue={minuteValue || formatMinutes(value)}
-        month={$m(gridStartTimestamp).format("MMMM")}
+        minuteValue={editingMinuteValue || formatMinutes(value)}
+        month={moment(gridStartTimestamp).format("MMMM")}
         nextIsDisabled={!canGotoNext()}
         onChangeHour={handleChangeHour}
         onChangeMinute={handleChangeMinute}
         onClickNext={handleClickNext}
         onClickPrev={handleClickPrev}
         prevIsDisabled={!canGoToPrev()}
-        year={$m(gridStartTimestamp)
+        year={moment(gridStartTimestamp)
           .year()
           .toString()}
       />
 
       {items && (
         <table className={cssMap.calendar}>
-          {type !== "month" && (
+          {mode !== "month" && (
             <thead className={cssMap.calendarHeader}>
               <tr>
-                {type === "week" && (
+                {mode === "week" && (
                   <th>
                     <span>{weekLabel}</span>
                   </th>
@@ -333,8 +299,12 @@ const DatePicker = forwardRef((props, ref) => {
                     {item.value && (
                       <DatePickerItem
                         {...item}
-                        onClick={() => onChange(item.value)}
-                        type={type}
+                        onClick={() => {
+                          onChange(item.value);
+                          setEditingMinuteValue("");
+                          setEditingHourValue("");
+                        }}
+                        type={mode === "month" ? "month" : "day"}
                       />
                     )}
                   </td>
@@ -352,31 +322,19 @@ DatePicker.propTypes = {
   className: PropTypes.string,
   cssMap: PropTypes.objectOf(PropTypes.string),
   defaultValue: PropTypes.number,
-  hasTimeInput: PropTypes.bool,
-  headers: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
-  hourIsDisabled: PropTypes.bool,
   hourIsReadOnly: PropTypes.bool,
   hourPlaceholder: PropTypes.string,
-  hourValue: PropTypes.string,
   isDisabled: PropTypes.bool,
   isReadOnly: PropTypes.bool,
   max: PropTypes.number,
   min: PropTypes.number,
-  minuteIsDisabled: PropTypes.bool,
-  minuteIsReadOnly: PropTypes.bool,
   minutePlaceholder: PropTypes.string,
-  minuteValue: PropTypes.string,
+  mode: PropTypes.oneOf(["minute", "hour", "day", "week", "month"]),
   onChange: PropTypes.func,
-  onChangeHour: PropTypes.func,
-  onChangeMinute: PropTypes.func,
-  onClickItem: PropTypes.func,
-  onClickNext: PropTypes.func,
-  onClickPrev: PropTypes.func,
   /**
    *  Style overrides
    */
   style: PropTypes.objectOf(PropTypes.string),
-  type: PropTypes.oneOf(["day", "week", "month"]),
   value: PropTypes.number,
   weekLabel: PropTypes.string
 };
@@ -385,29 +343,16 @@ DatePicker.defaultProps = {
   className: undefined,
   cssMap: undefined,
   defaultValue: undefined,
-  hasTimeInput: true,
-  headers: undefined,
-  hourIsDisabled: false,
-  hourIsReadOnly: false,
   hourPlaceholder: undefined,
-  hourValue: undefined,
   isDisabled: false,
   isReadOnly: false,
   max: undefined,
   min: undefined,
-  minuteIsDisabled: false,
-  minuteIsReadOnly: false,
   minutePlaceholder: undefined,
-  minuteValue: undefined,
+  mode: "minute",
   moment,
   onChange: undefined,
-  onChangeHour: undefined,
-  onChangeMinute: undefined,
-  onClickItem: undefined,
-  onClickNext: undefined,
-  onClickPrev: undefined,
   style: undefined,
-  type: "day",
   value: undefined,
   weekLabel: "week"
 };
