@@ -33,6 +33,7 @@ import {
 
 import {
   handleAllEvents,
+  createChangeHandler,
   callMultiple,
   mapAria,
   useId,
@@ -187,17 +188,6 @@ const ComboBox = forwardRef((props, ref) => {
       setSearchValue("");
     }
   }, [focus, isSearchable]);
-
-  const handleChangeInput = useCallback(
-    ({ target: { value: newValue } }) => {
-      if (typeof onChangeInput === "function") {
-        onChangeInput(newValue);
-      }
-
-      setSearchValue(newValue.toLowerCase());
-    },
-    [onChangeInput]
-  );
 
   const handleClickIcon = useCallback(() => {
     focus();
@@ -432,7 +422,9 @@ const ComboBox = forwardRef((props, ref) => {
             disabled={isDisabled}
             id={id}
             onBlur={callMultiple(handleBlur, props.onBlur)} // temporary fix
-            onChange={handleChangeInput}
+            onChange={createChangeHandler(onChangeInput, newValue =>
+              newValue.toLowerCase()
+            )}
             onClick={callMultiple(handleClick, props.onClick)} // temporary fix
             onFocus={callMultiple(handleFocus, props.onFocus)} // temporary fix
             onKeyDown={callMultiple(handleKeyDown, props.onKeyDown)} // temporary fix

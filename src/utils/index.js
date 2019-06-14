@@ -8,12 +8,12 @@
  */
 
 export {
-  handleAllEvents,
   buildDisplayName,
   callMultiple,
   clamp,
-  createEventHandler,
   generateId,
+  handleAllEvents,
+  createChangeHandler,
   killFocus,
   mapAria
 } from "./utils";

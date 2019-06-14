@@ -13,7 +13,12 @@ import useUncontrolled from "uncontrollable/hook";
 
 import { Text } from "..";
 
-import { handleAllEvents, useId, useThemeClasses } from "../utils";
+import {
+  handleAllEvents,
+  createChangeHandler,
+  useId,
+  useThemeClasses
+} from "../utils";
 
 const componentName = "Checkbox";
 
@@ -43,11 +48,7 @@ const Checkbox = forwardRef((props, ref) => {
         className={cssMap.input}
         disabled={isDisabled}
         id={id}
-        onChange={
-          onChange
-            ? ({ target: { checked: newValue } }) => onChange(newValue)
-            : undefined
-        }
+        onChange={createChangeHandler(onChange)}
         type="checkbox"
       />
       <label className={cssMap.label} htmlFor={id}>

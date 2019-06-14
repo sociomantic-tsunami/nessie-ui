@@ -18,6 +18,7 @@ import Popup from "../Popup";
 import PopperWrapper from "../PopperWrapper";
 import {
   handleAllEvents,
+  createChangeHandler,
   callMultiple,
   useId,
   useThemeClasses
@@ -76,6 +77,7 @@ const TagInput = forwardRef((props, ref) => {
     isDisabled,
     isReadOnly,
     onChange,
+    onChangeInput,
     placeholder,
     popperContainer,
     style,
@@ -142,7 +144,7 @@ const TagInput = forwardRef((props, ref) => {
     enterTags();
   };
 
-  const handleChangeInput = ({ target: { value: newValue } }) => {
+  const handleChangeInput = newValue => {
     const newFilteredOptions = options.filter(({ text }) =>
       text.match(new RegExp(escapeRegExp(newValue), "i"))
     );
@@ -278,10 +280,10 @@ const TagInput = forwardRef((props, ref) => {
             className={cssMap.input}
             disabled={isDisabled}
             id={id}
-            onBlur={callMultiple(handleBlur, props.onBlur)} // temporary fix
-            onChange={handleChangeInput}
-            onFocus={callMultiple(handleFocus, props.onFocus)} // temporary fix
-            onKeyDown={callMultiple(handleKeyDown, props.onKeyDown)} // temporary fix
+            onBlur={handleBlur}
+            onChange={createChangeHandler(handleChangeInput, onChangeInput)}
+            onFocus={handleFocus}
+            onKeyDown={handleKeyDown}
             placeholder={placeholder}
             readOnly={isReadOnly}
             type="text"

@@ -11,7 +11,12 @@ import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import useUncontrolled from "uncontrollable/hook";
 
-import { handleAllEvents, useId, useThemeClasses } from "../utils";
+import {
+  handleAllEvents,
+  createChangeHandler,
+  useId,
+  useThemeClasses
+} from "../utils";
 
 const componentName = "Switch";
 
@@ -40,11 +45,7 @@ const Switch = forwardRef((props, ref) => {
         className={cssMap.input}
         disabled={isDisabled}
         id={id}
-        onChange={
-          onChange
-            ? ({ target: { checked: newValue } }) => onChange(newValue)
-            : undefined
-        }
+        onChange={createChangeHandler(onChange)}
         type="checkbox"
       />
       <label aria-label={label} className={cssMap.label} htmlFor={id} />

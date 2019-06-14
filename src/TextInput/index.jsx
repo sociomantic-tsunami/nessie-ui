@@ -11,7 +11,12 @@ import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import useUncontrolled from "uncontrollable/hook";
 
-import { handleAllEvents, mapAria, useThemeClasses } from "../utils";
+import {
+  handleAllEvents,
+  createChangeHandler,
+  mapAria,
+  useThemeClasses
+} from "../utils";
 
 const componentName = "TextInput";
 
@@ -44,11 +49,7 @@ const TextInput = forwardRef((props, ref) => {
       className={cssMap.main}
       disabled={isDisabled}
       id={id}
-      onChange={
-        onChange
-          ? ({ target: { value: newValue } }) => onChange(newValue)
-          : undefined
-      }
+      onChange={createChangeHandler(onChange)}
       placeholder={placeholder}
       readOnly={isReadOnly}
       ref={ref}

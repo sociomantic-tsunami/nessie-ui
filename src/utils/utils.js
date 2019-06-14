@@ -10,12 +10,13 @@
 import eventsList from "./eventsList";
 
 /**
- * callMultiple( props )
+ * callMultiple( ...callbacks )
  *
- * A temporary helper function that callls multiple callbacks, one after
- * the other.
+ * Creates and event handler that calls multiple callbacks, one after the other.
  *
- * @return  {Function}    event handler
+ * @param   {...[Function]} callbacks event callbacks
+ *
+ * @return  {Function}      event handler
  */
 function callMultiple(...callbacks) {
   return function eventHandler(...args) {
@@ -24,11 +25,28 @@ function callMultiple(...callbacks) {
 }
 
 /**
+ * createChangeHandler( ...callbacks )
+ *
+ * Creates an onChange handler that calls one or more callbacks with the changed
+ * value.
+ *
+ * @param   {...[Function]} callbacks event callbacks
+ *
+ * @return  {Function}      event handler
+ */
+function createChangeHandler(...callbacks) {
+  return function changeHandler({ target: { type, value, checked } }) {
+    const newValue = type === "checkox" ? checked : value;
+    callbacks.forEach(cb => typeof cb === "function" && cb(newValue));
+  };
+}
+
+/**
  * handleAllEvents( props )
  *
  * Returns a set of Nessie standardized event handlers based on props provided
  *
- * @param   {Object}    props   component props
+ * @param   {Object}    props   componenet props
  *
  * @return  {Object}    event handlers
  */
@@ -106,22 +124,22 @@ const mapAria = (ariaObj = {}) => {
 };
 
 export {
+  createChangeHandler,
   handleAllEvents,
   buildDisplayName,
   callMultiple,
   clamp,
-  createEventHandler,
   generateId,
   killFocus,
   mapAria
 };
 
 export default {
+  createChangeHandler,
   handleAllEvents,
   buildDisplayName,
   callMultiple,
   clamp,
-  createEventHandler,
   generateId,
   killFocus,
   mapAria

@@ -13,7 +13,11 @@ import useUncontrolled from "uncontrollable/hook";
 
 import { TextInput } from "..";
 
-import { handleAllEvents, useThemeClasses } from "../utils";
+import {
+  handleAllEvents,
+  createChangeHandler,
+  useThemeClasses
+} from "../utils";
 
 const componentName = "UnitInput";
 const UnitInput = forwardRef((props, ref) => {
@@ -68,11 +72,7 @@ const UnitInput = forwardRef((props, ref) => {
           isDisabled={isDisabled}
           hasError={hasError}
           onBlur={handleBlur}
-          onChange={
-            onChange
-              ? ({ target: { value: newValue } }) => onChange(newValue)
-              : undefined
-          }
+          onChange={createChangeHandler(onChange)}
           onFocus={handleFocus}
           textAlign={alignText}
           placeholder={placeholder}
