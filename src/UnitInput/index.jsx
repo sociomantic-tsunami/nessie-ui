@@ -6,25 +6,21 @@
  * in the root directory of this source tree.
  *
  */
-
-import React, { useState, forwardRef } from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import useUncontrolled from "uncontrollable/hook";
 
 import { TextInput } from "..";
 
-import {
-  handleAllEvents,
-  createChangeHandler,
-  useThemeClasses
-} from "../utils";
+import { handleAllEvents, useId, useThemeClasses } from "../utils";
 
 const componentName = "UnitInput";
+
 const UnitInput = forwardRef((props, ref) => {
-  const [isFocused, setIsFocused] = useState(false);
+  const id = useId(componentName, props);
+  const cssMap = useThemeClasses(componentName, props);
   const {
     hasError,
-    id,
     isDisabled,
     textAlign,
     onBlur,
@@ -37,45 +33,22 @@ const UnitInput = forwardRef((props, ref) => {
     ...restProps
   } = useUncontrolled(props, { isChecked: "onChange" });
 
-  const handleFocus = e => {
-    setIsFocused(true);
-    if (onFocus) {
-      onFocus(e);
-    }
-  };
-
-  const handleBlur = e => {
-    setIsFocused(false);
-    if (onBlur) {
-      onBlur(e);
-    }
-  };
-
   let alignText = textAlign;
-
   if (textAlign === "auto") {
     alignText = valueLabelPosition === "left" ? "right" : "left";
   }
 
-  const cssMap = useThemeClasses(componentName, props);
-
   return (
-    <div
-      {...handleAllEvents(restProps)}
-      className={`${cssMap.main} ${isFocused && cssMap.fakeHovered}`}
-      ref={ref}
-    >
+    <div {...handleAllEvents(restProps)} className={cssMap.main} ref={ref}>
       <div className={cssMap.container}>
         <TextInput
           className={cssMap.input}
+          hasError={hasError}
           id={id}
           isDisabled={isDisabled}
-          hasError={hasError}
-          onBlur={handleBlur}
-          onChange={createChangeHandler(onChange)}
-          onFocus={handleFocus}
-          textAlign={alignText}
+          onChange={onChange}
           placeholder={placeholder}
+          textAlign={alignText}
           value={value}
         />
         <label className={cssMap.valueLabel} htmlFor={id}>
@@ -91,10 +64,6 @@ UnitInput.propTypes = {
    *  Extra CSS class name
    */
   className: PropTypes.string,
-  /**
-   *  Display as hover when required from another component
-   */
-  forceHover: PropTypes.bool,
   /**
    *  Display as error/invalid
    */
@@ -147,7 +116,6 @@ UnitInput.propTypes = {
 
 UnitInput.defaultProps = {
   className: undefined,
-  forceHover: false,
   hasError: false,
   id: undefined,
   isDisabled: false,

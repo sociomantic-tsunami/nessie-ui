@@ -1,9 +1,9 @@
 ## Component Description
 
-A Nessie UnitInput is a text input with label and value inset into the input.
+A text input with a label inset.
 
 ## Example Usage
 
-    <UnitInput valueLabel  = "%"
-                     valueLabelPosition = "right"
-                     placeholder = "52.5"/>
+```
+<UnitInput value="52.5" valueLabel="%" valueLabelPosition="right" />
+```

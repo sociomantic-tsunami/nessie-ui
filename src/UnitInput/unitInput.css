@@ -79,6 +79,17 @@
       right: 0;
     }
   }
+
+  &:focus-within {
+    .container {
+      box-shadow: 0 0 0 2px color(var(--PC-BLUE) a(30%));
+    }
+
+    .input,
+    .valueLabel {
+      border-color: var(--PC-BLUE);
+    }
+  }
 }
 
 .position__left {
@@ -118,20 +129,6 @@
   }
 }
 
-.fakeHovered {
-  .container {
-    box-shadow: 0 0 0 2px color(var(--PC-BLUE) a(30%));
-  }
-
-  .input {
-    border-color: var(--PC-BLUE);
-  }
-
-  .valueLabel {
-    border-color: var(--PC-BLUE);
-  }
-}
-
 .error {
   .valueLabel {
     border-color: var(--PC-RED);
@@ -147,15 +144,29 @@
     box-shadow: none !important;
   }
 
-  &.fakeHovered .container {
-    box-shadow: 0 0 0 2px color(var(--PC-RED) a(30%));
+  &:focus-within {
+    .container {
+      box-shadow: 0 0 0 2px color(var(--PC-RED) a(30%));
+    }
+
+    .input,
+    .valueLabel {
+      border-color: var(--PC-RED);
+    }
   }
 }
 
 .disabled,
 .disabled:hover {
+  .valueLabel {
+    &::before,
+    &::after {
+      background: var(--PC-GREY--L70);
+    }
+  }
   .valueLabel,
   .input {
+    color: var(--PC-GREY--D5);
     background: var(--PC-GREY--L90);
     border-color: var(--PC-GREY--L70);
     pointer-events: none;
