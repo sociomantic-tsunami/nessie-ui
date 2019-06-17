@@ -13,7 +13,7 @@ import useUncontrolled from "uncontrollable/hook";
 
 import {
   handleAllEvents,
-  createChangeHandler,
+  callWithValue,
   useId,
   useThemeClasses
 } from "../utils";
@@ -21,6 +21,9 @@ import {
 const componentName = "Switch";
 
 const Switch = forwardRef((props, ref) => {
+  const cssMap = useThemeClasses(componentName, props);
+  const id = useId(componentName, props);
+
   const {
     isChecked,
     isDisabled,
@@ -29,9 +32,6 @@ const Switch = forwardRef((props, ref) => {
     style,
     ...restProps
   } = useUncontrolled(props, { isChecked: "onChange" });
-
-  const cssMap = useThemeClasses(componentName, props);
-  const id = useId(componentName, props);
 
   return (
     <div
@@ -45,7 +45,7 @@ const Switch = forwardRef((props, ref) => {
         className={cssMap.input}
         disabled={isDisabled}
         id={id}
-        onChange={createChangeHandler(onChange)}
+        onChange={callWithValue(onChange)}
         type="checkbox"
       />
       <label aria-label={label} className={cssMap.label} htmlFor={id} />

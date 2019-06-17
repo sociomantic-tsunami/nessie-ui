@@ -13,11 +13,19 @@ import useUncontrolled from "uncontrollable/hook";
 
 import { Text } from "..";
 
-import { handleAllEvents, useId, useThemeClasses } from "../utils";
+import {
+  callWithValue,
+  handleAllEvents,
+  useId,
+  useThemeClasses
+} from "../utils";
 
 const componentName = "Radio";
 
 const Radio = forwardRef((props, ref) => {
+  const cssMap = useThemeClasses(componentName, props);
+  const id = useId(componentName, props);
+
   const {
     children,
     isChecked,
@@ -29,9 +37,6 @@ const Radio = forwardRef((props, ref) => {
     ...restProps
   } = useUncontrolled(props, { isChecked: "onChange" });
 
-  const cssMap = useThemeClasses(componentName, props);
-  const id = useId(componentName, props);
-
   let labelContent = children || label;
 
   if (typeof labelContent === "string") {
@@ -39,9 +44,14 @@ const Radio = forwardRef((props, ref) => {
   }
 
   return (
-    <div className={cssMap.main} ref={ref} style={style}>
+    <div
+      {...handleAllEvents(restProps)}
+      className={cssMap.main}
+      ref={ref}
+      style={style}
+    >
       <input
-        {...handleAllEvents(restProps)}
+        onChange={callWithValue(onChange)}
         checked={isChecked}
         className={cssMap.input}
         disabled={isDisabled}

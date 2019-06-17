@@ -13,7 +13,7 @@ import useUncontrolled from "uncontrollable/hook";
 
 import {
   handleAllEvents,
-  createChangeHandler,
+  callWithValue,
   mapAria,
   useThemeClasses
 } from "../utils";
@@ -49,7 +49,7 @@ const TextInput = forwardRef((props, ref) => {
       className={cssMap.main}
       disabled={isDisabled}
       id={id}
-      onChange={createChangeHandler(onChange)}
+      onChange={callWithValue(onChange)}
       placeholder={placeholder}
       readOnly={isReadOnly}
       ref={ref}

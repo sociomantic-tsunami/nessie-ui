@@ -15,7 +15,7 @@ import { Text } from "..";
 
 import {
   handleAllEvents,
-  createChangeHandler,
+  callWithValue,
   useId,
   useThemeClasses
 } from "../utils";
@@ -48,7 +48,7 @@ const Checkbox = forwardRef((props, ref) => {
         className={cssMap.input}
         disabled={isDisabled}
         id={id}
-        onChange={createChangeHandler(onChange)}
+        onChange={callWithValue(onChange)}
         type="checkbox"
       />
       <label className={cssMap.label} htmlFor={id}>

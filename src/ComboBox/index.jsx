@@ -18,7 +18,7 @@ import React, {
   useState
 } from "react";
 import PropTypes from "prop-types";
-import { castArray, escapeRegExp } from "lodash";
+import { escapeRegExp } from "lodash";
 import useUncontrolled from "uncontrollable/hook";
 
 import {
@@ -33,7 +33,7 @@ import {
 
 import {
   handleAllEvents,
-  createChangeHandler,
+  callWithValue,
   mapAria,
   useId,
   useThemeClasses
@@ -421,7 +421,7 @@ const ComboBox = forwardRef((props, ref) => {
             disabled={isDisabled}
             id={id}
             onBlur={handleBlur}
-            onChange={createChangeHandler(onChangeInput, newValue =>
+            onChange={callWithValue(onChangeInput, newValue =>
               newValue.toLowerCase()
             )}
             onClick={handleClick}

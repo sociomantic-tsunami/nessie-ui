@@ -8,9 +8,8 @@
  */
 
 export {
-  buildDisplayName,
-  clamp,
-  createChangeHandler,
+  callAll,
+  callWithValue,
   generateId,
   handleAllEvents,
   mapAria

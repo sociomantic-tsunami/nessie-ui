@@ -10,13 +10,12 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-import { createChangeHandler, useThemeClasses } from "../utils";
+import { callWithValue, useThemeClasses } from "../utils";
 
 const componentName = "TimeInput";
 
 const TimeInput = forwardRef((props, ref) => {
   const cssMap = useThemeClasses(componentName, props);
-
   const {
     hourIsDisabled,
     hourIsReadOnly,
@@ -40,7 +39,7 @@ const TimeInput = forwardRef((props, ref) => {
         className={cssMap.hour}
         disabled={isDisabled || hourIsDisabled}
         id={`${id}-hour`}
-        onChange={createChangeHandler(onChangeHour)}
+        onChange={callWithValue(onChangeHour)}
         placeholder={hourPlaceholder}
         readOnly={isReadOnly || hourIsReadOnly}
         type="text"
@@ -51,7 +50,7 @@ const TimeInput = forwardRef((props, ref) => {
         className={cssMap.min}
         disabled={isDisabled || minuteIsDisabled}
         id={`${id}-minute`}
-        onChange={createChangeHandler(onChangeMinute)}
+        onChange={callWithValue(onChangeMinute)}
         placeholder={minutePlaceholder}
         readOnly={isReadOnly || minuteIsReadOnly}
         type="text"

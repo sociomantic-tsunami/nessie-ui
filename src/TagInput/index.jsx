@@ -18,7 +18,7 @@ import Popup from "../Popup";
 import PopperWrapper from "../PopperWrapper";
 import {
   handleAllEvents,
-  createChangeHandler,
+  callWithValue,
   useId,
   useThemeClasses
 } from "../utils";
@@ -280,7 +280,7 @@ const TagInput = forwardRef((props, ref) => {
             disabled={isDisabled}
             id={id}
             onBlur={handleBlur}
-            onChange={createChangeHandler(handleChangeInput, onChangeInput)}
+            onChange={callWithValue(handleChangeInput, onChangeInput)}
             onFocus={handleFocus}
             onKeyDown={handleKeyDown}
             placeholder={placeholder}

@@ -10,29 +10,22 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-import { handleAllEvents, useThemeClasses } from "../utils";
+import { callAll, handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "Modal";
 
 const Modal = forwardRef((props, ref) => {
+  const cssMap = useThemeClasses(componentName, props);
   const { children, onClick, onClickOverlay, style, ...restProps } = props;
 
-  const handleClickOverlay = e => {
-    if (typeof onClick === "function") {
-      onClick(e);
-    }
-    if (onClickOverlay && e.target === e.currentTarget) {
-      onClickOverlay();
-    }
-  };
-
-  const cssMap = useThemeClasses(componentName, props);
+  const handleClickOverlay = e =>
+    onClickOverlay && e.target === e.currentTarget && onClickOverlay();
 
   return (
     <div
       {...handleAllEvents(restProps)}
       className={cssMap.main}
-      onClick={handleClickOverlay}
+      onClick={callAll(onClick, handleClickOverlay)}
       ref={ref}
       style={style}
     >
