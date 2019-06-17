@@ -19,6 +19,7 @@ const GridItem = forwardRef(
     if (!children) return;
 
     const childProps = {
+      ref,
       style: {
         ...(align && { alignSelf: align }),
         ...(justify && { justifySelf: justify }),
