@@ -27,7 +27,7 @@ export function callAll(...callbacks) {
  */
 export function callWithValue(...callbacks) {
   return function handler({ target: { type, value, checked } }) {
-    const newValue = type === "checkox" ? checked : value;
+    const newValue = ["checkbox", "radio"].includes(type) ? checked : value;
     callbacks.forEach(cb => typeof cb === "function" && cb(newValue));
   };
 }

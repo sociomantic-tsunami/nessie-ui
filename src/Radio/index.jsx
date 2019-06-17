@@ -34,7 +34,6 @@ const Radio = forwardRef((props, ref) => {
     onChange,
     onClick,
     style,
-    value,
     ...restProps
   } = useUncontrolled(props, { isChecked: "onChange" });
 
@@ -116,11 +115,7 @@ Radio.propTypes = {
   /**
    *  Style overrides
    */
-  style: PropTypes.objectOf(PropTypes.string),
-  /**
-   *  Radio value
-   */
-  value: PropTypes.string
+  style: PropTypes.objectOf(PropTypes.string)
 };
 
 Radio.defaultProps = {
@@ -135,8 +130,7 @@ Radio.defaultProps = {
   label: undefined,
   onChange: undefined,
   onClick: undefined,
-  style: undefined,
-  value: undefined
+  style: undefined
 };
 
 Radio.displayName = componentName;
