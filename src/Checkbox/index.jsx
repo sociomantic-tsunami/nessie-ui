@@ -31,6 +31,7 @@ const Checkbox = forwardRef((props, ref) => {
     isDisabled,
     label,
     onChange,
+    onClick,
     style,
     ...restProps
   } = useUncontrolled(props, { isChecked: "onChange" });
@@ -55,7 +56,7 @@ const Checkbox = forwardRef((props, ref) => {
         onChange={callWithValue(onChange)}
         type="checkbox"
       />
-      <label className={cssMap.label} htmlFor={id}>
+      <label className={cssMap.label} htmlFor={id} onClick={onClick}>
         {labelContent && (
           <span className={cssMap.labelContent}>{labelContent}</span>
         )}

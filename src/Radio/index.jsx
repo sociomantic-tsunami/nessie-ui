@@ -32,6 +32,7 @@ const Radio = forwardRef((props, ref) => {
     isDisabled,
     label,
     onChange,
+    onClick,
     style,
     value,
     ...restProps
@@ -58,7 +59,7 @@ const Radio = forwardRef((props, ref) => {
         onChange={callWithValue(onChange)}
         type="radio"
       />
-      <label className={cssMap.label} htmlFor={id}>
+      <label className={cssMap.label} htmlFor={id} onClick={onClick}>
         {labelContent && (
           <span className={cssMap.labelContent}>{labelContent}</span>
         )}

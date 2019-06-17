@@ -29,6 +29,7 @@ const Switch = forwardRef((props, ref) => {
     isDisabled,
     label,
     onChange,
+    onClick,
     style,
     ...restProps
   } = useUncontrolled(props, { isChecked: "onChange" });
@@ -48,7 +49,12 @@ const Switch = forwardRef((props, ref) => {
         onChange={callWithValue(onChange)}
         type="checkbox"
       />
-      <label aria-label={label} className={cssMap.label} htmlFor={id} />
+      <label
+        aria-label={label}
+        className={cssMap.label}
+        htmlFor={id}
+        onClick={onClick}
+      />
     </div>
   );
 });
