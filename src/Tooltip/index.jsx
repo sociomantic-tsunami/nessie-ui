@@ -17,6 +17,7 @@ import { handleAllEvents, useThemeClasses } from "../utils";
 const componentName = "Tooltip";
 
 const Tooltip = forwardRef((props, ref) => {
+  const cssMap = useThemeClasses(componentName, props);
   const {
     children,
     id,
@@ -26,8 +27,6 @@ const Tooltip = forwardRef((props, ref) => {
     style,
     ...restProps
   } = props;
-
-  const cssMap = useThemeClasses(componentName, props);
 
   return (
     <div

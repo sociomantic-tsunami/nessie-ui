@@ -17,9 +17,8 @@ import { Icon } from "..";
 const componentName = "Spinner";
 
 const Spinner = forwardRef((props, ref) => {
-  const { size, style, ...restProps } = props;
-
   const cssMap = useThemeClasses(componentName, props);
+  const { size, style, ...restProps } = props;
 
   return (
     <Icon

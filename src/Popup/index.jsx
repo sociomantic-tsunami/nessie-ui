@@ -15,9 +15,8 @@ import { handleAllEvents, useThemeClasses } from "../utils";
 const componentName = "Popup";
 
 const Popup = forwardRef((props, ref) => {
-  const { children, style, ...restProps } = props;
-
   const cssMap = useThemeClasses(componentName, props);
+  const { children, style, ...restProps } = props;
 
   return (
     <div

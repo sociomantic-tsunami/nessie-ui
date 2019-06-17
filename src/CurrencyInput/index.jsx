@@ -14,6 +14,7 @@ import PropTypes from "prop-types";
 import useUncontrolled from "uncontrollable/hook";
 
 import { TextInput } from "..";
+import { callAll } from "../utils";
 
 const format = (num, currency = "USD", language = navigator.language) => {
   if (typeof num !== "number") return "";
@@ -33,6 +34,7 @@ const CurrencyInput = forwardRef((props, ref) => {
   );
 
   const [editingValue, setEditingValue] = useState(null);
+  const handleBlur = () => setEditingValue(null);
 
   return (
     <TextInput
@@ -40,12 +42,7 @@ const CurrencyInput = forwardRef((props, ref) => {
       autoCapitalize="off"
       autoComplete="off"
       autoCorrect="off"
-      onBlur={() => {
-        if (typeof onBlur === "function") {
-          onBlur();
-        }
-        setEditingValue(null);
-      }}
+      onBlur={callAll(onBlur, handleBlur)}
       onChange={newValue => {
         setEditingValue(newValue);
         onChange(parse(newValue));

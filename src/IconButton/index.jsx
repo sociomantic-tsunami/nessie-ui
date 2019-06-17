@@ -12,28 +12,28 @@ import PropTypes from "prop-types";
 
 import { Icon } from "..";
 
-import { handleAllEvents, useThemeClasses } from "../utils";
+import { callAll, handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "IconButton";
 
 const killFocus = e => e.preventDefault();
 
 const IconButton = forwardRef((props, ref) => {
+  const cssMap = useThemeClasses(componentName, props);
   const {
     children,
     iconSize,
+    iconStyle,
     iconType,
     id,
     isDisabled,
     isFocusable,
     label,
+    onMouseDown,
     style,
-    iconStyle,
     value,
     ...restProps
   } = props;
-
-  const cssMap = useThemeClasses(componentName, props);
 
   return (
     <button
@@ -41,7 +41,7 @@ const IconButton = forwardRef((props, ref) => {
       className={cssMap.main}
       disabled={isDisabled}
       id={id}
-      onMouseDown={!isFocusable ? killFocus : undefined}
+      onMouseDown={callAll(onMouseDown, !isFocusable && killFocus)}
       ref={ref}
       style={style}
       tabIndex={isFocusable ? "0" : "-1"}

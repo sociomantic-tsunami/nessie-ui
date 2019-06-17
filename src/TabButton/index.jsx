@@ -16,7 +16,6 @@ const componentName = "TabButton";
 
 const TabButton = forwardRef((props, ref) => {
   const cssMap = useThemeClasses(componentName, props);
-
   const { isDisabled, label, style, subtitle, ...restProps } = props;
 
   return (

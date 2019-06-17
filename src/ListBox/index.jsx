@@ -14,13 +14,14 @@ import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
 import { buildOptions, updateOptions } from "./utils";
-import { handleAllEvents, mapAria, useThemeClasses } from "../utils";
+import { callAll, handleAllEvents, mapAria, useThemeClasses } from "../utils";
 
 const killFocus = e => e.preventDefault();
 
 const componentName = "ListBox";
 
 const ListBox = forwardRef((props, ref) => {
+  const cssMap = useThemeClasses(componentName, props);
   const {
     activeOption,
     aria,
@@ -29,6 +30,7 @@ const ListBox = forwardRef((props, ref) => {
     isFocusable,
     isMultiselect,
     onClickOption,
+    onMouseDown,
     onMouseOutOption,
     onMouseOverOption,
     options,
@@ -36,8 +38,6 @@ const ListBox = forwardRef((props, ref) => {
     value,
     ...restProps
   } = props;
-
-  const cssMap = useThemeClasses(componentName, props);
 
   return (
     <ul
@@ -50,7 +50,7 @@ const ListBox = forwardRef((props, ref) => {
       })}
       className={cssMap.main}
       id={id}
-      onMouseDown={!isFocusable ? killFocus : undefined}
+      onMouseDown={callAll(onMouseDown, !isFocusable && killFocus)}
       ref={ref}
       style={style}
       tabIndex={isFocusable ? "0" : "-1"}

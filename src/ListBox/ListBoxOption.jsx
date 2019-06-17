@@ -21,6 +21,9 @@ import { handleAllEvents, mapAria, useId, useThemeClasses } from "../utils";
 const componentName = "ListBoxOption";
 
 const ListBoxOption = forwardRef((props, ref) => {
+  const cssMap = useThemeClasses(componentName, props);
+  const id = useId(componentName, props);
+
   const {
     aria,
     children,
@@ -36,9 +39,6 @@ const ListBoxOption = forwardRef((props, ref) => {
     value,
     ...restProps
   } = props;
-
-  const cssMap = useThemeClasses(componentName, props);
-  const id = useId(componentName, props);
 
   let label;
 

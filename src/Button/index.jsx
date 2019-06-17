@@ -17,6 +17,7 @@ import { handleAllEvents, useThemeClasses } from "../utils";
 const componentName = "Button";
 
 const Button = forwardRef((props, ref) => {
+  const cssMap = useThemeClasses(componentName, props);
   const {
     children,
     iconType,
@@ -27,8 +28,6 @@ const Button = forwardRef((props, ref) => {
     style,
     ...restProps
   } = props;
-
-  const cssMap = useThemeClasses(componentName, props);
 
   return (
     <button

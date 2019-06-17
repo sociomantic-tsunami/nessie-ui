@@ -17,9 +17,8 @@ import { handleAllEvents, mapAria, useThemeClasses } from "../utils";
 const componentName = "ListBoxOptionGroup";
 
 const ListBoxOptionGroup = forwardRef((props, ref) => {
-  const { aria, children, header, options, style, ...restProps } = props;
-
   const cssMap = useThemeClasses(componentName, props);
+  const { aria, children, header, options, style, ...restProps } = props;
 
   return (
     <li

@@ -15,6 +15,7 @@ import { handleAllEvents, useThemeClasses } from "../utils";
 const componentName = "Text";
 
 const Text = forwardRef((props, ref) => {
+  const cssMap = useThemeClasses(componentName, props);
   const {
     children,
     color,
@@ -24,8 +25,6 @@ const Text = forwardRef((props, ref) => {
     text,
     ...restProps
   } = props;
-
-  const cssMap = useThemeClasses(componentName, props);
 
   return (
     <div

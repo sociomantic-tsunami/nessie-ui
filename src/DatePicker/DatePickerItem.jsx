@@ -18,7 +18,6 @@ const componentName = "DatePickerItem";
 
 const DatePickerItem = forwardRef((props, ref) => {
   const cssMap = useThemeClasses(componentName, props);
-
   const {
     children,
     isDisabled,

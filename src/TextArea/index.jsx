@@ -13,7 +13,7 @@ import useUncontrolled from "uncontrollable/hook";
 
 import {
   handleAllEvents,
-  createChangeHandler,
+  callWithValue,
   mapAria,
   useThemeClasses
 } from "../utils";
@@ -22,7 +22,6 @@ const componentName = "TextArea";
 
 const TextArea = forwardRef((props, ref) => {
   const cssMap = useThemeClasses(componentName, props);
-
   const {
     aria,
     autoCapitalize,
@@ -50,7 +49,7 @@ const TextArea = forwardRef((props, ref) => {
       className={cssMap.main}
       disabled={isDisabled}
       id={id}
-      onChange={createChangeHandler(onChange)}
+      onChange={callWithValue(onChange)}
       placeholder={placeholder}
       readOnly={isReadOnly}
       ref={ref}

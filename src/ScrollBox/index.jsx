@@ -23,6 +23,8 @@ import { handleAllEvents, useThemeClasses } from "../utils";
 const componentName = "ScrollBox";
 
 const ScrollBox = forwardRef((props, ref) => {
+  const cssMap = useThemeClasses(componentName, props);
+
   const [dimensions, setDimensions] = useState({
     clientHeight: null,
     clientWidth: null,
@@ -70,8 +72,6 @@ const ScrollBox = forwardRef((props, ref) => {
     style,
     ...restProps
   } = props;
-
-  const cssMap = useThemeClasses(componentName, props);
 
   const handleClickScrollButton = useCallback(
     (dir, e) => {

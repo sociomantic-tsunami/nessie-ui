@@ -19,7 +19,6 @@ const componentName = "Tabs";
 
 const Tabs = forwardRef((props, ref) => {
   const cssMap = useThemeClasses(componentName, props);
-
   const {
     children,
     onChange,
@@ -27,9 +26,7 @@ const Tabs = forwardRef((props, ref) => {
     style,
     value,
     ...restProps
-  } = useUncontolled(props, {
-    value: "onChange"
-  });
+  } = useUncontolled(props, { value: "onChange" });
 
   const tabs = React.Children.toArray(children);
 

@@ -15,9 +15,8 @@ import { handleAllEvents, useThemeClasses } from "../utils";
 const componentName = "ProgressBar";
 
 const ProgressBar = forwardRef((props, ref) => {
-  const { percentage, style, ...restProps } = props;
-
   const cssMap = useThemeClasses(componentName, props);
+  const { percentage, style, ...restProps } = props;
 
   return (
     <div

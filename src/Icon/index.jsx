@@ -15,9 +15,8 @@ import { handleAllEvents, useThemeClasses } from "../utils";
 const componentName = "Icon";
 
 const Icon = forwardRef((props, ref) => {
-  const { children, label, style, type, ...restProps } = props;
-
   const cssMap = useThemeClasses(componentName, props);
+  const { children, label, style, type, ...restProps } = props;
 
   return (
     <svg

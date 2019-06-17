@@ -51,11 +51,11 @@ const Radio = forwardRef((props, ref) => {
       style={style}
     >
       <input
-        onChange={callWithValue(onChange)}
         checked={isChecked}
         className={cssMap.input}
         disabled={isDisabled}
         id={id}
+        onChange={callWithValue(onChange)}
         type="radio"
       />
       <label className={cssMap.label} htmlFor={id}>

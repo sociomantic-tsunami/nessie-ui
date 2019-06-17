@@ -41,9 +41,13 @@ const Checkbox = forwardRef((props, ref) => {
   }
 
   return (
-    <div className={cssMap.main} ref={ref} style={style}>
+    <div
+      {...handleAllEvents(restProps)}
+      className={cssMap.main}
+      ref={ref}
+      style={style}
+    >
       <input
-        {...handleAllEvents(restProps)}
         checked={isChecked}
         className={cssMap.input}
         disabled={isDisabled}

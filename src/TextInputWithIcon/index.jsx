@@ -18,7 +18,6 @@ const componentName = "TextInputWithIcon";
 
 const TextInputWithIcon = forwardRef((props, ref) => {
   const cssMap = useThemeClasses(componentName, props);
-
   const {
     aria,
     autoCapitalize,

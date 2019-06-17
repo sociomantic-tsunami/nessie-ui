@@ -12,11 +12,13 @@ import PropTypes from "prop-types";
 
 import { IconButton, Text } from "..";
 
-import { useId, useThemeClasses } from "../utils";
+import { handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "Tag";
 
 const Tag = forwardRef((props, ref) => {
+  const cssMap = useThemeClasses(componentName, props);
+
   const {
     children,
     isDisabled,
@@ -26,9 +28,6 @@ const Tag = forwardRef((props, ref) => {
     style,
     ...restProps
   } = props;
-
-  const cssMap = useThemeClasses(componentName, props);
-  const id = useId(componentName, props);
 
   let labelText = children || label;
 
@@ -74,10 +73,6 @@ Tag.propTypes = {
    */
   cssMap: PropTypes.objectOf(PropTypes.string),
   /**
-   *  Component id
-   */
-  id: PropTypes.string,
-  /**
    *  Display as disabled
    */
   isDisabled: PropTypes.bool,
@@ -103,7 +98,6 @@ Tag.defaultProps = {
   children: undefined,
   className: undefined,
   cssMap: undefined,
-  id: undefined,
   isDisabled: false,
   isReadOnly: false,
   label: undefined,

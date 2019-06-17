@@ -16,14 +16,17 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import useUncontrolled from "uncontrollable/hook";
+import { clamp } from "lodash";
 
-import { handleAllEvents, clamp, useThemeClasses } from "../utils";
+import { callAll, handleAllEvents, useThemeClasses } from "../utils";
 
 const componentName = "ScrollBar";
 
 const ScrollBar = forwardRef((props, forwardedRef) => {
+  const cssMap = useThemeClasses(componentName, props);
   const {
     onChange,
+    onClick,
     onClickTrack,
     orientation,
     scrollBoxId,
@@ -35,7 +38,6 @@ const ScrollBar = forwardRef((props, forwardedRef) => {
     ...restProps
   } = useUncontrolled(props, { value: "onChange" });
 
-  const cssMap = useThemeClasses(componentName, props);
   const isVertical = orientation === "vertical";
   const scrollLength = Math.abs(scrollMax - scrollMin);
   const thumbOffset = `calc( ${value /
@@ -100,7 +102,7 @@ const ScrollBar = forwardRef((props, forwardedRef) => {
       aria-valuemin={scrollMin}
       aria-valuenow={value}
       className={cssMap.main}
-      onClick={handleClick}
+      onClick={callAll(onClick, handleClick)}
       ref={ref => {
         trackRef.current = ref;
         if (forwardedRef) {
