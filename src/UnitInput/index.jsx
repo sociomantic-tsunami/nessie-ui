@@ -24,15 +24,13 @@ const UnitInput = forwardRef((props, ref) => {
     hasError,
     isDisabled,
     textAlign,
-    onBlur,
     onChange,
-    onFocus,
     placeholder,
     value,
     valueLabel,
     valueLabelPosition,
     ...restProps
-  } = useUncontrolled(props, { isChecked: "onChange" });
+  } = useUncontrolled(props, { value: "onChange" });
 
   let alignText = textAlign;
   if (textAlign === "auto") {
