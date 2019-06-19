@@ -164,10 +164,13 @@ const DatePicker = forwardRef((props, ref) => {
       }
 
       const weekNumber = {
-        label: $m(firstWeekday.value).week(),
+        label: String($m(firstWeekday.value).week()),
         isSelectedWeek,
         isDisabled: isDisabledWeek,
-        value: currentDay ? currentDay.value : firstWeekday.value
+        value:
+          currentDay && currentDay.value !== null
+            ? currentDay.value
+            : firstWeekday.value
       };
 
       return [weekNumber, ...week];
