@@ -218,7 +218,7 @@ const ComboBox = forwardRef((props, ref) => {
     e => {
       e.stopPropagation();
 
-      const searchValueToUse = (e.target.value || "").toLowerCase();
+      const searchValueToUse = e.target.value || "";
 
       if (typeof onChangeInput === "function") {
         onChangeInput({ value: e.target.value }, e);
