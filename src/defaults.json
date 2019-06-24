@@ -41,9 +41,7 @@
       }
     ]
   },
-  "CurrencyInput": {
-    "currency": "USD"
-  },
+  "CurrencyInput": {},
   "Grid": {
     "children": "{<GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem>}"
   },
