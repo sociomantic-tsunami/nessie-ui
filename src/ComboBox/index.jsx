@@ -329,7 +329,7 @@ const ComboBox = forwardRef((props, ref) => {
 
           if (newSelection) {
             if (typeof onChange === "function") {
-              onChange({ id, newSelection });
+              onChange({ id, value: newSelection });
             }
 
             setSelection(newSelection);
