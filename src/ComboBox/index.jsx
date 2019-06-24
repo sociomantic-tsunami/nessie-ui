@@ -279,63 +279,77 @@ const ComboBox = forwardRef((props, ref) => {
     [selection, onChange, setSelection]
   );
 
-  const handleKeyDown = e => {
-    const { key } = e;
+  const handleKeyDown = useCallback(
+    e => {
+      const { key } = e;
 
-    if (key === "ArrowUp" || key === "ArrowDown") {
-      e.preventDefault();
+      if (key === "ArrowUp" || key === "ArrowDown") {
+        e.preventDefault();
 
-      const optionsToUse = filteredOptions || flatOptions;
+        const optionsToUse = filteredOptions || flatOptions;
 
-      if (isOpen && optionsToUse.length) {
-        const minIndex = 0;
-        const maxIndex = optionsToUse.length - 1;
+        if (isOpen && optionsToUse.length) {
+          const minIndex = 0;
+          const maxIndex = optionsToUse.length - 1;
 
-        let activeIndex = getIndex(activeOption || selection, optionsToUse);
+          let activeIndex = getIndex(activeOption || selection, optionsToUse);
 
-        activeIndex =
-          key === "ArrowUp"
-            ? Math.max(activeIndex - 1, minIndex)
-            : Math.min(activeIndex + 1, maxIndex);
+          activeIndex =
+            key === "ArrowUp"
+              ? Math.max(activeIndex - 1, minIndex)
+              : Math.min(activeIndex + 1, maxIndex);
 
-        setActiveOption(optionsToUse[activeIndex].id);
-      }
-
-      setIsOpen(true);
-    } else if (key === "Escape") {
-      setActiveOption(undefined);
-      setIsOpen(false);
-      setSearchValue(undefined);
-    } else if (key === "Enter") {
-      if (!isReadOnly) {
-        let newSelection;
-
-        if (activeOption && isMultiselect) {
-          if (selection) {
-            newSelection = selection.includes(activeOption)
-              ? selection.filter(item => item !== activeOption)
-              : [...selection, activeOption];
-          } else {
-            newSelection = [activeOption];
-          }
-        } else {
-          newSelection = activeOption;
+          setActiveOption(optionsToUse[activeIndex].id);
         }
 
+        setIsOpen(true);
+      } else if (key === "Escape") {
         setActiveOption(undefined);
-        setIsOpen(!isOpen);
+        setIsOpen(false);
         setSearchValue(undefined);
+      } else if (key === "Enter") {
+        if (!isReadOnly) {
+          let newSelection;
 
-        if (newSelection) {
-          if (typeof onChange === "function") {
-            onChange({ id, newSelection });
+          if (activeOption && isMultiselect) {
+            if (selection) {
+              newSelection = selection.includes(activeOption)
+                ? selection.filter(item => item !== activeOption)
+                : [...selection, activeOption];
+            } else {
+              newSelection = [activeOption];
+            }
+          } else {
+            newSelection = activeOption;
           }
 
-          setSelection(newSelection);
+          setActiveOption(undefined);
+          setIsOpen(!isOpen);
+          setSearchValue(undefined);
+
+          if (newSelection) {
+            if (typeof onChange === "function") {
+              onChange({ id, newSelection });
+            }
+
+            setSelection(newSelection);
+          }
         }
       }
-    }
-  };
+    },
+    [
+      activeOption,
+      filteredOptions,
+      flatOptions,
+      id,
+      isMultiselect,
+      isOpen,
+      isReadOnly,
+      onChange,
+      selection,
+      setSelection
+    ]
+  );
 
   const handleMouseOutOption = useCallback(() => {
     setActiveOption(undefined);
