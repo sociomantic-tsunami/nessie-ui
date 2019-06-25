@@ -109,7 +109,7 @@ const ComboBox = forwardRef((props, ref) => {
 
   const [stateActiveOption, setActiveOption] = useState(undefined);
   const [isOpen, setIsOpen] = useState(undefined);
-  const [searchValue, setSearchValue] = useState(undefined);
+  const [inputValue, setInputValue] = useState(undefined);
 
   const scrollBoxRef = useRef(null);
 
@@ -137,19 +137,19 @@ const ComboBox = forwardRef((props, ref) => {
 
   const filteredOptions = useMemo(
     () =>
-      searchValue &&
+      inputValue &&
       flatOptions.filter(({ text }) =>
-        text.match(new RegExp(escapeRegExp(searchValue), "i"))
+        text.match(new RegExp(escapeRegExp(inputValue), "i"))
       ),
-    [flatOptions, searchValue]
+    [flatOptions, inputValue]
   );
 
   const activeOption = useMemo(
     () =>
-      searchValue && filteredOptions.length
+      inputValue && filteredOptions.length
         ? filteredOptions[0].id
         : stateActiveOption,
-    [filteredOptions, searchValue, stateActiveOption]
+    [filteredOptions, inputValue, stateActiveOption]
   );
 
   useEffect(() => {
@@ -184,7 +184,7 @@ const ComboBox = forwardRef((props, ref) => {
     focus();
 
     if (isSearchable) {
-      setSearchValue("");
+      setInputValue("");
     }
   }, [focus, isSearchable]);
 
@@ -214,7 +214,7 @@ const ComboBox = forwardRef((props, ref) => {
       }
 
       setIsOpen(false);
-      setSearchValue(undefined);
+      setInputValue(undefined);
       onChange(newSelection);
     },
     [id, isMultiselect, isReadOnly, onChange, value]
@@ -257,7 +257,7 @@ const ComboBox = forwardRef((props, ref) => {
       } else if (key === "Escape") {
         setActiveOption(undefined);
         setIsOpen(false);
-        setSearchValue(undefined);
+        setInputValue(undefined);
       } else if (key === "Enter") {
         if (!isReadOnly) {
           let newSelection;
@@ -276,7 +276,7 @@ const ComboBox = forwardRef((props, ref) => {
 
           setActiveOption(undefined);
           setIsOpen(!isOpen);
-          setSearchValue(undefined);
+          setInputValue(undefined);
 
           if (newSelection) {
             onChange(newSelection);
@@ -312,7 +312,7 @@ const ComboBox = forwardRef((props, ref) => {
   const handleBlur = useCallback(() => {
     setIsOpen(false);
     setActiveOption(undefined);
-    setSearchValue(undefined);
+    setInputValue(undefined);
   }, []);
 
   const selectedOption = getOption(value, flatOptions);
@@ -422,7 +422,7 @@ const ComboBox = forwardRef((props, ref) => {
             id={id}
             onBlur={handleBlur}
             onChange={callWithValue(onChangeInput, newValue =>
-              newValue.toLowerCase()
+              setInputValue(newValue)
             )}
             onClick={handleClick}
             onFocus={handleFocus}
@@ -430,7 +430,7 @@ const ComboBox = forwardRef((props, ref) => {
             placeholder={inputPlaceholder}
             readOnly={!isSearchable || !isOpen}
             spellCheck={false}
-            value={isOpen && isSearchable ? searchValue : selectedText}
+            value={isOpen && isSearchable ? inputValue : selectedText}
           />
           <IconButton
             className={cssMap.icon}
