@@ -14,21 +14,25 @@ import PropTypes from "prop-types";
 
 import { TextInput } from "..";
 
-const currencyFormat = (
-  number,
-  currency = "USD",
-  language = navigator.language
-) => {
+const currencyFormat = (number, currency, language = navigator.language) => {
   if (typeof number === "number") {
     return number.toLocaleString(
       language,
-      currency ? { style: "currency", currency } : {}
+      currency ? { style: "currency", currency } : { maximumFractionDigits: 2 }
     );
   }
 };
 
 const parseValue = value =>
-  value ? Number(value.replace(/[^0-9.-]/g, "")) : null;
+  value
+    ? Number(
+        value
+          .replace(/[^0-9.-]/g, "")
+          .replace(".", "PLACEHOLDER")
+          .replace(/\.\d+/g, "")
+          .replace("PLACEHOLDER", ".")
+      )
+    : null;
 
 const useValueState = (defaultValue, value) => {
   const [valueState, setValueState] = useState(defaultValue);
