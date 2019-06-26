@@ -61,11 +61,11 @@ const DateTimeInput = forwardRef((props, ref) => {
       ? moment(newInputValue, format || FORMATS[format]).valueOf() || value
       : undefined;
 
-    const minOrNow = props.min || new Date().getTime();
+    const minOrNow = typeof min === "number" ? min : Date.now();
     if (newValue < minOrNow) {
       newValue = minOrNow;
     }
-    if (max && newValue > max) {
+    if (typeof max === "number" && newValue > max) {
       newValue = max;
     }
 

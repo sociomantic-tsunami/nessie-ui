@@ -67,8 +67,10 @@ const DatePicker = forwardRef((props, ref) => {
       .startOf(mode === "month" ? "year" : "month")
       .valueOf();
 
-  const isUnitSelectable = timestamp =>
-    timestamp >= (min || now()) && timestamp <= (max || Infinity);
+  const isUnitSelectable = timestamp => {
+    const minOrNow = typeof min === "number" ? min : Date.now();
+    return timestamp >= minOrNow && timestamp <= (max || Infinity);
+  };
 
   const dayMatrix = () => {
     const startMonth = gridStartTimestamp;
@@ -168,16 +170,18 @@ const DatePicker = forwardRef((props, ref) => {
   };
 
   const canGotoNext = () => {
-    const { max } = props;
+    if (typeof max !== "number") return true;
+
+    const maxOrInfinity = typeof max === "number" ? max : Infinity;
     const nextGridStart = moment(gridStartTimestamp)
       .add(1, mode === "month" ? "year" : "month")
       .valueOf();
 
-    return !_.isNumber(max) || nextGridStart <= max;
+    return nextGridStart <= maxOrInfinity;
   };
 
   const canGoToPrev = () => {
-    const min = props.min || Date.now();
+    const minOrNow = typeof min === "number" ? min : Date.now();
     const prevGridStart = moment(gridStartTimestamp)
       .add(-1, mode === "month" ? "year" : "month")
       .valueOf();
@@ -185,7 +189,7 @@ const DatePicker = forwardRef((props, ref) => {
       .add(1, mode === "month" ? "year" : "month")
       .valueOf();
 
-    return !_.isNumber(min) || endOfPrev > min;
+    return endOfPrev > minOrNow;
   };
 
   const handleClickNext = () => {
