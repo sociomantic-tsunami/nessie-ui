@@ -18,7 +18,9 @@ const currencyFormat = (number, currency, language = navigator.language) => {
   if (typeof number === "number") {
     return number.toLocaleString(
       language,
-      currency ? { style: "currency", currency } : { maximumFractionDigits: 2 }
+      currency
+        ? { style: "currency", currency }
+        : { maximumFractionDigits: 2, minimumFractionDigits: 2 }
     );
   }
 };
