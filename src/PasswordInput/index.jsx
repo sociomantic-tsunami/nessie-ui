@@ -13,8 +13,6 @@ import useUncontrolled from "uncontrollable/hook";
 
 import { TextInputWithIcon } from "..";
 
-const componentName = "PasswordInput";
-
 const PasswordInput = forwardRef((props, ref) => {
   const {
     id,
@@ -35,7 +33,7 @@ const PasswordInput = forwardRef((props, ref) => {
       iconType={passwordIsVisible ? "eye-off" : "eye"}
       id={id}
       inputType={passwordIsVisible ? "text" : "password"}
-      onToggleVisible={() => onToggleVisible(!passwordIsVisible)}
+      onClickIcon={() => onToggleVisible(!passwordIsVisible)}
       ref={ref}
       spellCheck={false}
       style={style}
@@ -43,7 +41,7 @@ const PasswordInput = forwardRef((props, ref) => {
   );
 });
 
-PasswordInput.displayComponent = componentName;
+PasswordInput.displayComponent = "PasswordInput";
 
 PasswordInput.propTypes = {
   /**
@@ -63,7 +61,7 @@ PasswordInput.propTypes = {
   /**
    *  Default password visiblity (when uncontrolled)
    */
-  defaultPasswordIsVisible: PropTypes.string,
+  defaultPasswordIsVisible: PropTypes.bool,
   /**
    *  Default input string value
    */
