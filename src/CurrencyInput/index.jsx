@@ -16,16 +16,32 @@ import useUncontrolled from "uncontrollable/hook";
 import { TextInput } from "..";
 import { callAll } from "../utils";
 
-const format = (num, currency = "USD", language = navigator.language) => {
+const format = (num, currency, language = navigator.language) => {
   if (typeof num !== "number") return "";
-
-  return num.toLocaleString(
-    language,
-    currency ? { style: "currency", currency } : {}
-  );
+  let formatted;
+  try {
+    formatted = num.toLocaleString(
+      language,
+      currency
+        ? { style: "currency", currency }
+        : { maximumFractionDigits: 2, minimumFractionDigits: 2 }
+    );
+  } catch (e) {
+    console.error(e);
+  }
+  return formatted;
 };
 
-const parse = str => (str ? Number(str.replace(/[^0-9.-]/g, "")) : undefined);
+const parse = str =>
+  str
+    ? Number(
+        str
+          .replace(/[^0-9.-]/g, "")
+          .replace(".", "PLACEHOLDER")
+          .replace(/\.\d+/g, "")
+          .replace("PLACEHOLDER", ".")
+      )
+    : undefined;
 
 const CurrencyInput = forwardRef((props, ref) => {
   const { currency, onBlur, onChange, value, ...restProps } = useUncontrolled(
