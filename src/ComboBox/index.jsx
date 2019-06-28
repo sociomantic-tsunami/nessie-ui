@@ -395,14 +395,14 @@ const ComboBox = forwardRef((props, ref) => {
       popperOffset="s"
       popperPosition="bottom"
       ref={ref}
+      style={style}
     >
-      {({ ref: innerRef }) => (
+      {refProps => (
         <label
           {...handleAllEvents(restProps)}
           className={cssMap.main}
           htmlFor={id}
-          ref={innerRef}
-          style={style}
+          {...refProps}
         >
           {tags}
           <input

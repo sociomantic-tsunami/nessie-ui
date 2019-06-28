@@ -265,13 +265,13 @@ const TagInput = forwardRef((props, ref) => {
       popperOffset="s"
       popperPosition="bottom"
       ref={ref}
+      style={style}
     >
       {refProps => (
         <label
           {...handleAllEvents(restProps)}
           className={cssMap.main}
           htmlFor={id}
-          style={style}
           {...refProps}
         >
           {items}
