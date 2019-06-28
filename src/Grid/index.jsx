@@ -107,8 +107,8 @@ Grid.propTypes = {
    *  Gap between rows and/or columns
    */
   gap: PropTypes.oneOfType(
-    PropTypes.oneOf(["none", "s", "m", "l"]),
-    PropTypes.arrayOf([PropTypes.oneOf(["none", "s", "m", "l"])])
+    PropTypes.oneOf(["none", "s", "m", "l", "xl"]),
+    PropTypes.arrayOf([PropTypes.oneOf(["none", "s", "m", "l", "xl"])])
   ),
   /**
    * Inline-axis (usually horizontal) alignment of the grid content
