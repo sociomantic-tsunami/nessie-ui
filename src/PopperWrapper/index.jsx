@@ -107,6 +107,7 @@ const PopperWrapper = forwardRef((props, forwardedRef) => {
       key={offset}
       placement={popperPosition}
       innerRef={ref => {
+        if (popper.ref) popper.ref.current = ref;
         popperRef.current = ref;
       }}
       modifiers={offset ? { offset: { offset: `0, ${offset}` } } : undefined}
@@ -122,6 +123,7 @@ const PopperWrapper = forwardRef((props, forwardedRef) => {
     <Manager>
       <Reference
         innerRef={ref => {
+          if (children.ref) children.ref.current = ref;
           referenceRef.current = ref;
           if (forwardedRef) {
             // eslint-disable-next-line no-param-reassign
