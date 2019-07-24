@@ -34,6 +34,7 @@ const Modal = forwardRef((props, ref) => {
       className={cssMap.main}
       onClick={handleClickOverlay}
       ref={ref}
+      role="dialog"
       style={style}
     >
       <div className={cssMap.content}>{children}</div>
