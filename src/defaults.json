@@ -6,38 +6,38 @@
     "dropdownPlaceholder": "No Results",
     "options": [
       {
-        "header": "Section 1",
+        "header": "Fruit",
         "options": [
           {
             "id": "option1",
-            "text": "Option 1"
+            "text": "Apple"
           },
           {
             "id": "option2",
-            "text": "Option 2"
+            "text": "Orange"
           }
         ]
       },
       {
-        "header": "Section 2",
+        "header": "Veggies",
         "options": [
           {
             "id": "option3",
-            "text": "Option 3"
+            "text": "Broccoli "
           },
           {
             "id": "option4",
-            "text": "Option 4"
+            "text": "Carrot"
           }
         ]
       },
       {
         "id": "option5",
-        "text": "Option 5"
+        "text": "Bockwurst mit Pommes"
       },
       {
         "id": "option6",
-        "text": "Option 6"
+        "text": "Döner Kebap"
       }
     ]
   },

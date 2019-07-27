@@ -76,7 +76,7 @@ const updateOptions = (options = [], props) => {
     return options;
   }
 
-  return Children.toArray(options).map((option = {}) => {
+  return Children.toArray(options).map((option = {}, index) => {
     if (option.props.header) {
       return cloneElement(option, {
         children: updateOptions(option.props.children, props)
@@ -84,11 +84,15 @@ const updateOptions = (options = [], props) => {
     }
 
     return cloneElement(option, {
-      isActive: props.activeOption && option.props.id === props.activeOption,
-      onClick: props.onClickOption,
-      onMouseOut: props.onMouseOutOption,
-      onMouseOver: props.onMouseOverOption,
-      isSelected: props.selection && isSelectedOption(option, props.selection)
+      ...(props.activeOption && {
+        isActive: option.props.id === props.activeOption
+      }),
+      ...(props.onClickOption && { onClick: props.onClickOption }),
+      ...(props.onMouseOutOption && { onMouseOut: props.onMouseOutOption }),
+      ...(props.onMouseOverOption && { onMouseOver: props.onMouseOverOption }),
+      ...(props.value && {
+        isSelected: props.value && isSelectedOption(option, props.value)
+      })
     });
   });
 };

@@ -37,7 +37,7 @@ const Tag = forwardRef((props, ref) => {
       {labelText}
       <button
         className={cssMap.delete}
-        onClick={() => onClick && onClick({ id })}
+        onClick={onClick ? e => onClick({ id }, e) : undefined}
       >
         <Icon type="x" size="XXS" />
       </button>
