@@ -218,6 +218,7 @@ const DateTimeInput = forwardRef((props, ref) => {
     hasError,
     id,
     inputPlaceholder,
+    inputIsReadOnly,
     isDisabled,
     isReadOnly,
     max,
@@ -280,7 +281,7 @@ const DateTimeInput = forwardRef((props, ref) => {
           iconType="calendar"
           id={id}
           isDisabled={isDisabled}
-          isReadOnly={isReadOnly}
+          isReadOnly={inputIsReadOnly || isReadOnly}
           onBlur={handleOnBlur}
           onChangeInput={handleChangeInput}
           onClickIcon={handleClickIcon}
@@ -327,6 +328,10 @@ DateTimeInput.propTypes = {
    */
   inputPlaceholder: PropTypes.string,
   /**
+   *  Display input as read-only
+   */
+  inputIsReadOnly: PropTypes.bool,
+  /**
    *  Display as disabled
    */
   isDisabled: PropTypes.bool,
@@ -370,6 +375,7 @@ DateTimeInput.defaultProps = {
   format: undefined,
   hasError: false,
   id: undefined,
+  inputIsReadOnly: false,
   inputPlaceholder: undefined,
   isDisabled: false,
   isReadOnly: false,
