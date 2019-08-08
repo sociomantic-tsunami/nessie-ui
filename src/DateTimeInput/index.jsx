@@ -243,6 +243,7 @@ const DateTimeInput = forwardRef((props, ref) => {
       hasTimeInput={mode === "default"}
       hourIsReadOnly={!canEditHourOrMinute()}
       isDisabled={isDisabled}
+      isReadOnly={isReadOnly}
       max={max}
       min={min}
       minuteIsReadOnly={!canEditHourOrMinute()}

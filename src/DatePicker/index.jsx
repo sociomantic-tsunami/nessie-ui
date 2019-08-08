@@ -423,7 +423,7 @@ const DatePicker = forwardRef((props, ref) => {
                     {item.value && (
                       <DatePickerItem
                         {...item}
-                        onClick={handleClickItem}
+                        onClick={!isReadOnly ? handleClickItem : undefined}
                         type={type}
                       />
                     )}
