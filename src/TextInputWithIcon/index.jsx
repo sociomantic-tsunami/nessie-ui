@@ -27,6 +27,7 @@ const TextInputWithIcon = forwardRef((props, ref) => {
     defaultValue,
     hasError,
     iconButtonIsDisabled,
+    iconLabel,
     iconPosition,
     iconType,
     id,
@@ -81,6 +82,7 @@ const TextInputWithIcon = forwardRef((props, ref) => {
           iconType={iconType}
           isDisabled={isDisabled || iconButtonIsDisabled}
           isFocusable={false}
+          label={iconLabel}
           onClick={onClickIcon}
         />
       )}
@@ -134,6 +136,10 @@ TextInputWithIcon.propTypes = {
    *  Display Button icon as disabled
    */
   iconButtonIsDisabled: PropTypes.bool,
+  /**
+   *  Label of the icon
+   */
+  iconLabel: PropTypes.string,
   /**
    *  Alignment of the icon
    */
@@ -226,6 +232,7 @@ TextInputWithIcon.defaultProps = {
   defaultValue: undefined,
   hasError: false,
   iconButtonIsDisabled: false,
+  iconLabel: undefined,
   iconPosition: "right",
   iconType: "none",
   id: undefined,
