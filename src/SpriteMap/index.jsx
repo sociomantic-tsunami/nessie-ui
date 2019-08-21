@@ -12,13 +12,13 @@ import ThemeContext from "../Theming/ThemeContext";
 import PropTypes from "prop-types";
 
 const SpriteMap = ({ id = "nessie" }) => {
-  const iconsObject = useContext(ThemeContext).icons;
+  const { icons } = useContext(ThemeContext);
   return (
     <svg display="none" height="0" width="0" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        {Object.keys(iconsObject).map((key, index) => (
+        {Object.keys(icons).map((key, index) => (
           <symbol
-            dangerouslySetInnerHTML={{ __html: iconsObject[key] }}
+            dangerouslySetInnerHTML={{ __html: icons[key] }}
             id={`${id}-${key}`}
             key={key}
             viewBox="0 0 24 24"
