@@ -7,24 +7,27 @@
  *
  */
 
-import React from "react";
+import React, { useContext } from "react";
+import ThemeContext from "../Theming/ThemeContext";
 import PropTypes from "prop-types";
-import { icons } from "feather-icons";
 
-const SpriteMap = ({ id = "nessie" }) => (
-  <svg display="none" height="0" width="0" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      {Object.values(icons).map(({ name, contents }) => (
-        <symbol
-          dangerouslySetInnerHTML={{ __html: contents }}
-          id={`${id}-${name}`}
-          key={name}
-          viewBox="0 0 24 24"
-        />
-      ))}
-    </defs>
-  </svg>
-);
+const SpriteMap = ({ id = "nessie" }) => {
+  const { icons } = useContext(ThemeContext);
+  return (
+    <svg display="none" height="0" width="0" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        {Object.keys(icons).map((key, index) => (
+          <symbol
+            dangerouslySetInnerHTML={{ __html: icons[key] }}
+            id={`${id}-${key}`}
+            key={key}
+            viewBox="0 0 24 24"
+          />
+        ))}
+      </defs>
+    </svg>
+  );
+};
 
 SpriteMap.propTypes = {
   /**

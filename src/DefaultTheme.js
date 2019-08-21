@@ -42,6 +42,7 @@ import textInputWithIconClasses from "./TextInputWithIcon/textInputWithIcon.css"
 import timeInputClasses from "./DatePicker/timeInput.css";
 import tooltipClasses from "./Tooltip/tooltip.css";
 import unitInputClasses from "./UnitInput/unitInput.css";
+import icons from "feather-icons/dist/icons.json";
 
 const classNames = {
   Button: props => ({
@@ -538,4 +539,4 @@ const variables = {
   }
 };
 
-export default { classNames, variables };
+export default { classNames, variables, icons };
