@@ -12,14 +12,13 @@ import PropTypes from "prop-types";
 
 import { TextInput } from "..";
 
-import { useThemeClasses } from "../utils";
+import { useId, useThemeClasses } from "../utils";
 
 const componentName = "UnitInput";
 const UnitInput = forwardRef((props, ref) => {
   const [isFocused, setIsFocused] = useState(false);
   const {
     hasError,
-    id,
     isDisabled,
     textAlign,
     onBlur,
@@ -30,6 +29,8 @@ const UnitInput = forwardRef((props, ref) => {
     valueLabel,
     valueLabelPosition
   } = props;
+
+  const id = useId(componentName, props);
 
   const handleFocus = e => {
     setIsFocused(true);
