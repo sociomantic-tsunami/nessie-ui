@@ -27,7 +27,7 @@ const Spinner = forwardRef((props, ref) => {
       ref={ref}
       size={size}
       style={style}
-      type="loader"
+      type="loading"
     />
   );
 });
