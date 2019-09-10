@@ -352,7 +352,7 @@ const DatePicker = forwardRef((props, ref) => {
     _.range(0, 7).map(day => ({
       label: moment()
         .weekday(day)
-        .format("ddd")
+        .format("dd")
     }));
 
   let items;
