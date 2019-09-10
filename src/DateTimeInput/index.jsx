@@ -312,7 +312,7 @@ DateTimeInput.propTypes = {
    */
   defaultValue: PropTypes.number,
   /**
-   *  Default timestamp value
+   *  Disable defined weekdays (locale aware)
    */
   disableDayOfWeek: PropTypes.arrayOf(PropTypes.number),
   /**
