@@ -44,6 +44,9 @@
   "CurrencyInput": {
     "currency": "USD"
   },
+  "DatePicker": {
+    "disableDayOfWeek": [0, 1, 3, 4, 5, 6]
+  },
   "Grid": {
     "children": "{<GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem>}"
   },
