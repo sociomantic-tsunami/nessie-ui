@@ -214,6 +214,7 @@ const DateTimeInput = forwardRef((props, ref) => {
 
   const {
     className,
+    disableDayOfWeek,
     format,
     hasError,
     id,
@@ -242,6 +243,7 @@ const DateTimeInput = forwardRef((props, ref) => {
   const datePicker = (
     <DatePicker
       moment={moment}
+      disableDayOfWeek={disableDayOfWeek}
       hasTimeInput={mode === "default"}
       hourIsReadOnly={!canEditHourOrMinute()}
       isDisabled={isDisabled}
@@ -309,6 +311,10 @@ DateTimeInput.propTypes = {
    *  Default timestamp value
    */
   defaultValue: PropTypes.number,
+  /**
+   *  Default timestamp value
+   */
+  disableDayOfWeek: PropTypes.arrayOf(PropTypes.number),
   /**
    *  id of the DOM element used as container for popup datepicker
    */
@@ -378,6 +384,7 @@ DateTimeInput.propTypes = {
 DateTimeInput.defaultProps = {
   className: undefined,
   defaultValue: undefined,
+  disableDayOfWeek: undefined,
   format: undefined,
   hasError: false,
   id: undefined,

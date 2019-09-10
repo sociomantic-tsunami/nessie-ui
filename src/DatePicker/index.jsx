@@ -105,7 +105,7 @@ const DatePicker = forwardRef((props, ref) => {
     return $m(itemTimestamp).add(1, unit) > min;
   };
 
-  const dayMatrix = () => {
+  const dayMatrix = disableDayOfWeek => {
     const startMonth = gridStartTimestamp;
 
     if (!startMonth) return;
@@ -122,7 +122,10 @@ const DatePicker = forwardRef((props, ref) => {
             .valueOf()
         : null;
 
-      const isDisabled = hasDate && !isUnitSelectable(value, "day");
+      const disabledDay =
+        disableDayOfWeek && !disableDayOfWeek.includes($m(value).weekday());
+      const isDisabled =
+        hasDate && !isUnitSelectable(value, "day") && !disabledDay;
 
       const isCurrent = hasDate && isTimestampEqual(value, Date.now(), "day");
       const isSelected =
@@ -141,8 +144,8 @@ const DatePicker = forwardRef((props, ref) => {
     return _.chunk(days, 7);
   };
 
-  const weekMatrix = () => {
-    const mappedDays = dayMatrix();
+  const weekMatrix = disableDayOfWeek => {
+    const mappedDays = dayMatrix(disableDayOfWeek);
 
     const weekDays = mappedDays.map(week => {
       const firstWeekday = week.find(weekDay => weekDay.value !== null);
@@ -331,6 +334,7 @@ const DatePicker = forwardRef((props, ref) => {
   };
 
   const {
+    disableDayOfWeek,
     hasTimeInput,
     hourIsDisabled,
     hourIsReadOnly,
@@ -362,10 +366,10 @@ const DatePicker = forwardRef((props, ref) => {
       items = monthMatrix();
       break;
     case "week":
-      items = weekMatrix();
+      items = weekMatrix(disableDayOfWeek);
       break;
     default:
-      items = dayMatrix();
+      items = dayMatrix(disableDayOfWeek);
   }
 
   return (
@@ -442,6 +446,7 @@ DatePicker.propTypes = {
   className: PropTypes.string,
   cssMap: PropTypes.objectOf(PropTypes.string),
   defaultValue: PropTypes.number,
+  disableDayOfWeek: PropTypes.arrayOf(PropTypes.number),
   headers: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   hourIsDisabled: PropTypes.bool,
   hourIsReadOnly: PropTypes.bool,
@@ -475,6 +480,7 @@ DatePicker.defaultProps = {
   className: undefined,
   cssMap: undefined,
   defaultValue: undefined,
+  disableDayOfWeek: undefined,
   hasTimeInput: true,
   headers: undefined,
   hourIsDisabled: false,
