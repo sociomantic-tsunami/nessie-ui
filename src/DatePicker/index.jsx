@@ -125,7 +125,7 @@ const DatePicker = forwardRef((props, ref) => {
       const disabledDay =
         disableDayOfWeek && disableDayOfWeek.includes($m(value).weekday());
       const isDisabled =
-        hasDate && !isUnitSelectable(value, "day") && disabledDay;
+        hasDate && (!isUnitSelectable(value, "day") || disabledDay);
 
       const isCurrent = hasDate && isTimestampEqual(value, Date.now(), "day");
       const isSelected =
