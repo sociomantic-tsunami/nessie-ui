@@ -105,7 +105,7 @@ const DatePicker = forwardRef((props, ref) => {
     return $m(itemTimestamp).add(1, unit) > min;
   };
 
-  const dayMatrix = disableDayOfWeek => {
+  const dayMatrix = (disableDayOfWeek = []) => {
     const startMonth = gridStartTimestamp;
 
     if (!startMonth) return;
