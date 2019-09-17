@@ -116,7 +116,11 @@ Button.propTypes = {
   /**
    *  Style overrides
    */
-  style: PropTypes.objectOf(PropTypes.string)
+  style: PropTypes.objectOf(PropTypes.string),
+  /**
+   *  Button type
+   */
+  type: PropTypes.objectOf(PropTypes.string)
 };
 
 Button.defaultProps = {
@@ -132,7 +136,8 @@ Button.defaultProps = {
   onMouseOut: undefined,
   onMouseOver: undefined,
   role: "default",
-  style: undefined
+  style: undefined,
+  type: undefined
 };
 
 export default Button;
