@@ -17,7 +17,16 @@ import { attachEvents, useThemeClasses } from "../utils";
 const componentName = "Button";
 
 const Button = forwardRef((props, ref) => {
-  const { children, iconType, id, isDisabled, isLoading, label, style } = props;
+  const {
+    children,
+    iconType,
+    id,
+    isDisabled,
+    isLoading,
+    label,
+    style,
+    type
+  } = props;
 
   const cssMap = useThemeClasses(componentName, props);
 
@@ -29,7 +38,7 @@ const Button = forwardRef((props, ref) => {
       id={id}
       ref={ref}
       style={style}
-      type="button"
+      type={type || "button"}
     >
       <div className={cssMap.content}>
         {iconType && iconType !== "none" && (
