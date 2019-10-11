@@ -54,6 +54,8 @@ const classNames = {
       },
       `iconPosition__${props.iconPosition}`,
       `role__${props.role}`,
+      `variant__${props.variant}`,
+      `size__${props.size}`,
       props.className
     ),
     ...buttonClasses

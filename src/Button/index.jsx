@@ -29,7 +29,6 @@ const Button = forwardRef((props, ref) => {
   } = props;
 
   const cssMap = useThemeClasses(componentName, props);
-
   return (
     <button
       {...attachEvents(props)}
@@ -106,13 +105,20 @@ Button.propTypes = {
    *  Role/style
    */
   role: PropTypes.oneOf([
-    "default",
-    "secondary",
-    "subtle",
-    "promoted",
-    "critical",
-    "control"
+    "primary", //filled
+    "secondary", //outlined
+    "promoted", //success
+    "critical", //danger
+    "control" //clear
   ]),
+  /**
+   *  Variant
+   */
+  variant: PropTypes.oneOf(["filled", "outlined", "clear"]),
+  /**
+   *  Variant
+   */
+  size: PropTypes.oneOf(["large", "default", "small"]),
   /**
    *  Style overrides
    */
@@ -135,7 +141,9 @@ Button.defaultProps = {
   onClick: undefined,
   onMouseOut: undefined,
   onMouseOver: undefined,
-  role: "default",
+  role: "primary",
+  variant: "filled",
+  size: "default",
   style: undefined,
   type: undefined
 };

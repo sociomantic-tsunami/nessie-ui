@@ -88,23 +88,43 @@
   }
 }
 
-.role__default {
-  background: var(--PC-BLUE);
-  color: var(--PC-WHITE);
-
-  .icon {
+.role__primary {
+  &.variant__filled {
+    background: var(--PC-BLUE);
     color: var(--PC-WHITE);
-  }
 
-  &.fakeHovered,
-  &:hover {
-    background: var(--PC-BLUE--L10);
-    color: var(--PC-WHITE);
-  }
+    .icon {
+      color: var(--PC-WHITE);
+    }
 
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px color(var(--PC-BLUE) a(30%));
+    &:hover {
+      background: var(--PC-BLUE--L10);
+      color: var(--PC-WHITE);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px color(var(--PC-BLUE) a(30%));
+    }
+  }
+  &.variant__outlined {
+    background: var(--PC-WHITE);
+    color: var(--PC-BLUE);
+    border: 2px solid var(--PC-BLUE);
+
+    &:hover {
+      background: var(--PC-BLUE);
+      color: var(--PC-WHITE);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--PC-BLUE--L60);
+    }
+
+    .icon {
+      color: var(--PC-GREY--L25);
+    }
   }
 }
 
@@ -112,7 +132,6 @@
   background: var(--PC-GREY--L90);
   color: var(--PC-GREY--L25);
 
-  &.fakeHovered,
   &:hover {
     background: var(--PC-GREY--L75);
     color: var(--PC-GREY--L25);
@@ -136,7 +155,6 @@
     color: var(--PC-WHITE);
   }
 
-  &.fakeHovered,
   &:hover {
     background: var(--PC-GREEN--L10);
     color: var(--PC-WHITE);
@@ -156,7 +174,6 @@
     color: var(--PC-WHITE);
   }
 
-  &.fakeHovered,
   &:hover {
     background: var(--PC-RED--L10);
     color: var(--PC-WHITE);
@@ -187,7 +204,6 @@
     color: var(--PC-BLUE);
   }
 
-  &.fakeHovered,
   &:hover {
     .content {
       background-color: var(--PC-BLUE);
@@ -230,7 +246,6 @@
     color: var(--PC-GREY--D15);
   }
 
-  &.fakeHovered,
   &:hover {
     color: var(--PC-BLUE);
 
