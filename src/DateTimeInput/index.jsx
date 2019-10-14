@@ -268,7 +268,7 @@ const DateTimeInput = forwardRef((props, ref) => {
           {datePicker}
         </Popup>
       )}
-      popperContainer={popperContainer}
+      container={popperContainer}
       popperOffset="s"
       popperPosition="bottom-start"
       ref={ref}

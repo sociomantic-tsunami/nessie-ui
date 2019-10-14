@@ -280,7 +280,7 @@ const TagInput = forwardRef((props, ref) => {
 
   return (
     <PopperWrapper
-      popperContainer={popperContainer}
+      container={popperContainer}
       isVisible={listBoxOptions.length > 0 && isOpen}
       matchRefWidth
       popper={popperProps => (
