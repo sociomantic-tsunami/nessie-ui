@@ -104,13 +104,7 @@ Button.propTypes = {
   /**
    *  Role/style
    */
-  role: PropTypes.oneOf([
-    "primary", //filled
-    "secondary", //outlined
-    "promoted", //success
-    "critical", //danger
-    "control" //clear
-  ]),
+  role: PropTypes.oneOf(["primary", "success", "danger", "info"]),
   /**
    *  Variant
    */
