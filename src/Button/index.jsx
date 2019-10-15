@@ -112,7 +112,7 @@ Button.propTypes = {
   /**
    *  Variant
    */
-  size: PropTypes.oneOf(["small", "large"]),
+  size: PropTypes.oneOf(["S", "L"]),
   /**
    *  Style overrides
    */
