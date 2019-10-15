@@ -108,11 +108,11 @@ Button.propTypes = {
   /**
    *  Variant
    */
-  variant: PropTypes.oneOf(["filled", "outlined", "clear"]),
+  variant: PropTypes.oneOf(["filled", "outlined", "clear", "icon"]),
   /**
    *  Variant
    */
-  size: PropTypes.oneOf(["large", "default", "small"]),
+  size: PropTypes.oneOf(["small", "large"]),
   /**
    *  Style overrides
    */
@@ -137,7 +137,7 @@ Button.defaultProps = {
   onMouseOver: undefined,
   role: "primary",
   variant: "filled",
-  size: "default",
+  size: undefined,
   style: undefined,
   type: undefined
 };
