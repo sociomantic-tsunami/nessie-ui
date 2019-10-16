@@ -127,7 +127,7 @@ Button.defaultProps = {
   children: undefined,
   cssMap: undefined,
   iconPosition: "left",
-  iconType: "none",
+  iconType: undefined,
   id: undefined,
   isDisabled: false,
   isLoading: false,
