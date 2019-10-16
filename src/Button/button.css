@@ -392,59 +392,59 @@
 .disabled {
   &.role__primary {
     &.variant__filled {
-      background: var(--PC-GREY--L50);
+      background: var(--PC-GREY--L55);
     }
     &.variant__outlined {
-      color: var(--PC-GREY--L50);
-      border-color: var(--PC-GREY--L50);
+      color: var(--PC-GREY--L55);
+      border-color: var(--PC-GREY--L55);
     }
     &.variant__clear,
     &.variant__icon {
-      color: var(--PC-GREY--L50);
+      color: var(--PC-GREY--L55);
     }
   }
 
   &.role__danger {
     &.variant__filled {
-      background: var(--PC-RED--L50);
+      background: var(--PC-RED--L55);
     }
 
     &.variant__outlined {
-      color: var(--PC-RED--L50);
-      border-color: var(--PC-RED--L50);
+      color: var(--PC-RED--L55);
+      border-color: var(--PC-RED--L55);
     }
     &.variant__clear,
     &.variant__icon {
-      color: var(--PC-RED--L50);
+      color: var(--PC-RED--L55);
     }
   }
 
   &.role__success {
     &.variant__filled {
-      background: var(--PC-GREEN--L50);
+      background: var(--PC-GREEN--L55);
     }
 
     &.variant__outlined {
-      color: var(--PC-GREEN--L50);
-      border-color: var(--PC-GREEN--L50);
+      color: var(--PC-GREEN--L55);
+      border-color: var(--PC-GREEN--L55);
     }
     &.variant__clear,
     &.variant__icon {
-      color: var(--PC-GREEN--L50);
+      color: var(--PC-GREEN--L55);
     }
   }
   &.role__info {
     &.variant__filled {
-      background: var(--PC-BLUE--L50);
+      background: var(--PC-BLUE--L55);
     }
 
     &.variant__outlined {
-      color: var(--PC-BLUE--L50);
-      border-color: var(--PC-BLUE--L50);
+      color: var(--PC-BLUE--L55);
+      border-color: var(--PC-BLUE--L55);
     }
     &.variant__clear,
     &.variant__icon {
-      color: var(--PC-BLUE--L50);
+      color: var(--PC-BLUE--L55);
     }
   }
 }
