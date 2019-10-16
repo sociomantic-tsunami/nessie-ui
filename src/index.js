@@ -17,6 +17,7 @@ import DateTimeInput from "./DateTimeInput";
 import Grid from "./Grid";
 import GridItem from "./GridItem";
 import Icon from "./Icon";
+import IconButton from "./IconButton";
 import ListBox from "./ListBox";
 import Modal from "./Modal";
 import PasswordInput from "./PasswordInput";
@@ -51,6 +52,7 @@ export default {
   Grid,
   GridItem,
   Icon,
+  IconButton,
   ListBox,
   Modal,
   PasswordInput,
@@ -86,6 +88,7 @@ export {
   Grid,
   GridItem,
   Icon,
+  IconButton,
   ListBox,
   Modal,
   PasswordInput,
