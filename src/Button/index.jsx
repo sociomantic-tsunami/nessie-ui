@@ -25,13 +25,15 @@ const Button = forwardRef((props, ref) => {
     isLoading,
     label,
     style,
-    type
+    type,
+    variant
   } = props;
 
   const cssMap = useThemeClasses(componentName, props);
   return (
     <button
       {...attachEvents(props)}
+      aria-label={variant === "icon" ? children || label : undefined}
       className={cssMap.main}
       disabled={isDisabled}
       id={id}
