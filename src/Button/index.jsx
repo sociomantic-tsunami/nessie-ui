@@ -25,16 +25,13 @@ const Button = forwardRef((props, ref) => {
     isLoading,
     label,
     style,
-    type,
-    variant
+    type
   } = props;
 
   const cssMap = useThemeClasses(componentName, props);
-
   return (
     <button
       {...attachEvents(props)}
-      aria-label={variant === "icon" ? children || label : undefined}
       className={cssMap.main}
       disabled={isDisabled}
       id={id}
@@ -46,9 +43,7 @@ const Button = forwardRef((props, ref) => {
         {iconType && iconType !== "none" && (
           <Icon className={cssMap.icon} size="S" type={iconType} />
         )}
-        {variant !== "icon" && (
-          <div className={cssMap.label}>{children || label}</div>
-        )}
+        <div className={cssMap.label}>{children || label}</div>
       </div>
       {isLoading && !isDisabled && (
         <div className={cssMap.loadingOverlay}>
@@ -109,14 +104,15 @@ Button.propTypes = {
   /**
    *  Role/style
    */
-  role: PropTypes.oneOf([
-    "default",
-    "secondary",
-    "subtle",
-    "promoted",
-    "critical",
-    "control"
-  ]),
+  role: PropTypes.oneOf(["primary", "success", "danger", "info"]),
+  /**
+   *  Variant
+   */
+  variant: PropTypes.oneOf(["filled", "outlined", "clear", "icon"]),
+  /**
+   *  Variant
+   */
+  size: PropTypes.oneOf(["S", "L"]),
   /**
    *  Style overrides
    */
@@ -131,7 +127,7 @@ Button.defaultProps = {
   children: undefined,
   cssMap: undefined,
   iconPosition: "left",
-  iconType: "none",
+  iconType: undefined,
   id: undefined,
   isDisabled: false,
   isLoading: false,
@@ -139,7 +135,9 @@ Button.defaultProps = {
   onClick: undefined,
   onMouseOut: undefined,
   onMouseOver: undefined,
-  role: "default",
+  role: "primary",
+  variant: "filled",
+  size: undefined,
   style: undefined,
   type: undefined
 };
