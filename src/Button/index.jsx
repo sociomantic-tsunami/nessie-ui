@@ -45,7 +45,9 @@ const Button = forwardRef((props, ref) => {
         {iconType && iconType !== "none" && (
           <Icon className={cssMap.icon} size="S" type={iconType} />
         )}
-        <div className={cssMap.label}>{children || label}</div>
+        {variant !== "icon" && (
+          <div className={cssMap.label}>{children || label}</div>
+        )}
       </div>
       {isLoading && !isDisabled && (
         <div className={cssMap.loadingOverlay}>
@@ -114,7 +116,7 @@ Button.propTypes = {
   /**
    *  Variant
    */
-  size: PropTypes.oneOf(["S", "L"]),
+  size: PropTypes.oneOf(["s", "m", "l"]),
   /**
    *  Style overrides
    */
@@ -139,7 +141,7 @@ Button.defaultProps = {
   onMouseOver: undefined,
   role: "primary",
   variant: "filled",
-  size: undefined,
+  size: "m",
   style: undefined,
   type: undefined
 };
