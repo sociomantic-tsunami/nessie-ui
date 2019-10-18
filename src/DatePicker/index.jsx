@@ -98,10 +98,11 @@ const DatePicker = forwardRef((props, ref) => {
 
   const isUnitSelectable = (itemTimestamp, unit) => {
     const { max } = props;
-    const min = props.min || Date.now();
 
     if (itemTimestamp > max) return false;
     if (props.min === null) return true;
+
+    const min = props.min || Date.now();
 
     return $m(itemTimestamp).add(1, unit) > min;
   };
@@ -229,6 +230,8 @@ const DatePicker = forwardRef((props, ref) => {
   };
 
   const canGotoPrev = () => {
+    if (props.min === null) return true;
+
     const min = props.min || Date.now();
     const prevGridStart = $m(gridStartTimestamp)
       .add(-1, props.type === "month" ? "year" : "month")
@@ -236,7 +239,7 @@ const DatePicker = forwardRef((props, ref) => {
     const endOfPrev = $m(prevGridStart)
       .add(1, props.type === "month" ? "year" : "month")
       .valueOf();
-    if (props.min === null) return true;
+
     return !_.isNumber(min) || endOfPrev > min;
   };
 
