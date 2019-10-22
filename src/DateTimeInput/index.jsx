@@ -139,17 +139,24 @@ const DateTimeInput = forwardRef((props, ref) => {
 
   const handleChangeInput = useCallback(
     ({ value }) => {
-      const trimmed = value.replace(/\s+/g, " ");
-      const min = props.min || now();
+      const trimmedValue = value.replace(/\s+/g, " ");
+      let newTimestamp = tryParseInputValue(
+        trimmedValue,
+        timestamp,
+        props.format
+      );
 
-      let newTimestamp = tryParseInputValue(trimmed, timestamp, props.format);
+      if (newTimestamp !== null) {
+        if (props.min !== null) {
+          const min = props.min || now();
+          if (newTimestamp < min) {
+            newTimestamp = min;
+          }
+        }
 
-      if (newTimestamp < min) {
-        newTimestamp = min;
-      }
-
-      if (props.max && newTimestamp > props.max) {
-        newTimestamp = props.max;
+        if (props.max && newTimestamp > props.max) {
+          newTimestamp = props.max;
+        }
       }
 
       if (typeof onChange === "function") {
