@@ -82,6 +82,12 @@ const PopperWrapper = forwardRef((props, forwardedRef) => {
         return popper(popperProps);
       }
       if (isValidElement(popper)) {
+        if (popper.props.style) {
+          popperProps.style = {
+            ...popperProps.style,
+            ...popper.props.style
+          };
+        }
         return cloneElement(popper, popperProps);
       }
       return <div {...popperProps}>{children}</div>;
