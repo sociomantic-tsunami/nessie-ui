@@ -112,7 +112,13 @@ Button.propTypes = {
   /**
    *  Variant
    */
-  variant: PropTypes.oneOf(["filled", "outlined", "clear", "icon"]),
+  variant: PropTypes.oneOf([
+    "filled",
+    "outlined",
+    "clear",
+    "icon",
+    "contained"
+  ]),
   /**
    *  Variant
    */
