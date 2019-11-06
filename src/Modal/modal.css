@@ -28,9 +28,7 @@
 
   .content {
     box-sizing: border-box;
-    width: 500px;
-
-    padding: var(--spacing-3);
+    width: 540px;
     border: 1px solid color(var(--PC-GREY) a(12%));
     border-radius: 4px;
     box-shadow: var(--boxShadow);
