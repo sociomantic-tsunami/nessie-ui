@@ -26,6 +26,7 @@ const TextArea = forwardRef((props, ref) => {
     id,
     isDisabled,
     isReadOnly,
+    maxLength,
     placeholder,
     rows,
     spellCheck,
@@ -44,6 +45,7 @@ const TextArea = forwardRef((props, ref) => {
       defaultValue={defaultValue}
       disabled={isDisabled}
       id={id}
+      maxLength={maxLength}
       placeholder={placeholder}
       readOnly={isReadOnly}
       ref={ref}
@@ -109,6 +111,10 @@ TextArea.propTypes = {
    *  Display as read-only
    */
   isReadOnly: PropTypes.bool,
+  /**
+   *  max length for the text area
+   */
+  maxLength: PropTypes.number,
   /**
    *  Blur callback function
    */
@@ -187,6 +193,7 @@ TextArea.defaultProps = {
   id: undefined,
   isDisabled: false,
   isReadOnly: false,
+  maxLength: undefined,
   onBlur: undefined,
   onChange: undefined,
   onClick: undefined,
