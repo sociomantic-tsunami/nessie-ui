@@ -25,6 +25,7 @@ const TextInput = forwardRef((props, ref) => {
     id,
     isDisabled,
     isReadOnly,
+    maxLength,
     placeholder,
     spellCheck,
     style,
@@ -43,6 +44,7 @@ const TextInput = forwardRef((props, ref) => {
       defaultValue={defaultValue}
       disabled={isDisabled}
       id={id}
+      maxLength={maxLength}
       placeholder={placeholder}
       readOnly={isReadOnly}
       ref={ref}
@@ -108,6 +110,10 @@ TextInput.propTypes = {
    *  Display as read-only
    */
   isReadOnly: PropTypes.bool,
+  /**
+   *  max length for the text input
+   */
+  maxLength: PropTypes.number,
   /**
    *  Blur callback function
    */
@@ -182,6 +188,7 @@ TextInput.defaultProps = {
   id: undefined,
   isDisabled: false,
   isReadOnly: false,
+  maxLength: undefined,
   onBlur: undefined,
   onChange: undefined,
   onClick: undefined,
