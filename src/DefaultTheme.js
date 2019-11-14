@@ -251,7 +251,8 @@ const classNames = {
   Tag: props => ({
     main: cx.bind(tagClasses)(
       "default",
-      { disabled: props.isDisabled },
+      { disabled: props.isDisabled, readOnly: props.isReadOnly },
+      `role__${props.role}`,
       props.className
     ),
     ...tagClasses

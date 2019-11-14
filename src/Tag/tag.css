@@ -17,33 +17,82 @@
   height: var(--line-height-l);
 
   padding-left: var(--spacing-2);
-
-  background: var(--PC-BLUE--L90);
-
   border-radius: 2px;
 
-  .label {
-    @extend %Nessie-SemiBold;
+  font: var(--Body-4);
 
+  .label {
     letter-spacing: 0.4px;
     white-space: nowrap;
-    color: var(--PC-BLUE);
   }
 
   .delete {
+    padding: var(--spacing-1);
     margin-left: var(--spacing-1);
-    margin-right: var(--spacing-1);
-
-    svg {
-      color: var(--PC-BLUE);
-    }
+    cursor: pointer;
   }
 }
 
 .disabled {
-  background: var(--PC-GREY--L90);
+  background: var(--PC-GREY--L80);
+  color: var(--PC-GREY--L20);
+  pointer-events: none;
+}
 
-  .label {
-    color: var(--PC-GREY--L40);
+.readOnly {
+  pointer-events: none;
+}
+
+.role__primary {
+  background: var(--PC-SKY_BLUE--L80);
+  color: var(--PC-DEEP_PURPLE);
+
+  .delete {
+    &:hover {
+      background-color: var(--PC-SKY_BLUE--L60);
+    }
+    &:focus {
+      background-color: var(--PC-SKY_BLUE--L60);
+      outline: none;
+      box-shadow: 0 0 0 2px var(--PC-SKY_BLUE--L70);
+    }
+  }
+}
+
+.role__danger {
+  background: var(--PC-RED--L80);
+  color: var(--PC-RED);
+
+  .delete {
+    svg {
+      fill: var(--PC-RED);
+    }
+    &:hover {
+      background-color: var(--PC-RED--L60);
+    }
+    &:focus {
+      background-color: var(--PC-RED--L60);
+      outline: none;
+      box-shadow: 0 0 0 2px var(--PC-RED--L70);
+    }
+  }
+}
+
+.role__warning {
+  background: var(--PC-YELLOW);
+  color: var(--PC-YELLOW--D50);
+
+  .delete {
+    svg {
+      fill: var(--PC-YELLOW--D50);
+    }
+    &:hover {
+      background-color: var(--PC-YELLOW--D10);
+    }
+    &:focus {
+      background-color: var(--PC-YELLOW--D10);
+      outline: none;
+      box-shadow: 0 0 0 2px var(--PC-YELLOW--D20);
+    }
   }
 }
