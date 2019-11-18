@@ -35,9 +35,12 @@ const Tag = forwardRef((props, ref) => {
   return (
     <div className={cssMap.main} ref={ref} style={style}>
       {labelText}
-      <div className={cssMap.delete} onClick={() => onClick && onClick({ id })}>
+      <button
+        className={cssMap.delete}
+        onClick={() => onClick && onClick({ id })}
+      >
         <Icon type="x" size="XXS" />
-      </div>
+      </button>
     </div>
   );
 });

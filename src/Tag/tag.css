@@ -34,6 +34,8 @@
     padding: var(--spacing-1);
     margin-left: calc(var(--spacing-1) / 2);
     cursor: pointer;
+    border: 0;
+    background: var(--PC-BLUE--L90);
 
     &:hover {
       background-color: var(--PC-BLUE--L55);
