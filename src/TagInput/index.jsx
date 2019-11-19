@@ -92,6 +92,9 @@ const TagInput = forwardRef((props, ref) => {
   ]);
 
   const value = useMemo(() => {
+    if (children && children.length) {
+      return children.map(({ props }) => props.label);
+    }
     if (Array.isArray(props.value)) {
       return props.value;
     }
@@ -99,7 +102,7 @@ const TagInput = forwardRef((props, ref) => {
       return [];
     }
     return valueState;
-  }, [props.value, valueState]);
+  }, [children, props.value, valueState]);
 
   const enterTags = () => {
     let finalTags = [];
