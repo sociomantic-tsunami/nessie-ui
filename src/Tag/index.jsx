@@ -10,14 +10,14 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-import { IconButton, Text } from "..";
+import { Icon, Text } from "..";
 
 import { useId, useThemeClasses } from "../utils";
 
 const componentName = "Tag";
 
 const Tag = forwardRef((props, ref) => {
-  const { children, isDisabled, isReadOnly, label, onClick, style } = props;
+  const { children, label, onClick, style } = props;
 
   const cssMap = useThemeClasses(componentName, props);
   const id = useId(componentName, props);
@@ -35,14 +35,12 @@ const Tag = forwardRef((props, ref) => {
   return (
     <div className={cssMap.main} ref={ref} style={style}>
       {labelText}
-      <IconButton
+      <button
         className={cssMap.delete}
-        iconSize="S"
-        iconType="x"
-        isDisabled={isDisabled}
-        isReadOnly={isReadOnly}
         onClick={() => onClick && onClick({ id })}
-      />
+      >
+        <Icon type="x" size="XXS" />
+      </button>
     </div>
   );
 });
@@ -81,6 +79,10 @@ Tag.propTypes = {
    */
   onClick: PropTypes.func,
   /**
+   *  Role/style
+   */
+  role: PropTypes.oneOf(["primary", "danger", "warning"]),
+  /**
    *  Style overrides
    */
   style: PropTypes.objectOf(PropTypes.string)
@@ -95,6 +97,7 @@ Tag.defaultProps = {
   isReadOnly: false,
   label: undefined,
   onClick: undefined,
+  role: "primary",
   style: undefined
 };
 

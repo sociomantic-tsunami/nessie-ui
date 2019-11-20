@@ -31,19 +31,32 @@
   }
 
   .delete {
-    margin-left: var(--spacing-1);
-    margin-right: var(--spacing-1);
+    padding: var(--spacing-1);
+    margin-left: calc(var(--spacing-1) / 2);
+    cursor: pointer;
+    border: 0;
+    background: var(--PC-BLUE--L90);
 
-    svg {
-      color: var(--PC-BLUE);
+    &:hover {
+      background-color: var(--PC-BLUE--L55);
+    }
+    &:focus {
+      background-color: var(--PC-BLUE--L55);
+      outline: none;
+      box-shadow: 0 0 0 2px color(var(--PC-BLUE) a(30%));
     }
   }
 }
 
 .disabled {
   background: var(--PC-GREY--L90);
+  pointer-events: none;
 
   .label {
     color: var(--PC-GREY--L40);
   }
+}
+
+.readOnly {
+  pointer-events: none;
 }

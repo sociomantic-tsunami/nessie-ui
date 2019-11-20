@@ -19,6 +19,10 @@
   stroke-linejoin: round;
   fill: none;
 }
+.size__XXS {
+  width: var(--spacing-2);
+  height: var(--spacing-2);
+}
 
 .size__S {
   width: var(--spacing-3);
