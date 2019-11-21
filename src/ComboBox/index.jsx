@@ -480,7 +480,7 @@ const ComboBox = forwardRef((props, ref) => {
             onClick={callMultiple(handleClick, props.onClick)} // temporary fix
             onFocus={callMultiple(handleFocus, props.onFocus)} // temporary fix
             onKeyDown={callMultiple(handleKeyDown, props.onKeyDown)} // temporary fix
-            placeholder={inputPlaceholder}
+            placeholder={tags && tags.length ? undefined : inputPlaceholder}
             readOnly={!isSearchable || !isOpen}
             spellCheck={false}
             value={isOpen && isSearchable ? searchValue : selectedText}
