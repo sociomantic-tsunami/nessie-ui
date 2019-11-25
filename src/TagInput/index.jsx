@@ -312,7 +312,7 @@ const TagInput = forwardRef((props, ref) => {
             onChange={handleChangeInput}
             onFocus={callMultiple(handleFocus, props.onFocus)} // temporary fix
             onKeyDown={callMultiple(handleKeyDown, props.onKeyDown)} // temporary fix
-            placeholder={placeholder}
+            placeholder={items && items.length ? undefined : placeholder}
             readOnly={isReadOnly}
             type="text"
             value={inputValue}
