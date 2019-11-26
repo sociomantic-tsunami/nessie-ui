@@ -265,9 +265,9 @@ const ComboBox = forwardRef((props, ref) => {
     [id, isReadOnly, selection, isMultiselect, onChange, setSelection]
   );
 
-  const handleClickClose = useCallback(
-    ({ id: tagId }) => {
-      const newTags = selection.filter(tag => tag !== tagId);
+  const handleClickDelete = useCallback(
+    tagValue => {
+      const newTags = selection.filter(tag => tag !== tagValue);
 
       if (typeof onChange === "function") {
         onChange({ value: newTags });
@@ -381,13 +381,14 @@ const ComboBox = forwardRef((props, ref) => {
       if (currentOption) {
         result.push(
           <Tag
-            id={itemId}
             isDisabled={isDisabled}
             isReadOnly={isReadOnly}
             key={itemId}
-            label={currentOption.text}
-            onClick={handleClickClose}
-          />
+            onClickDelete={handleClickDelete}
+            value={itemId}
+          >
+            {currentOption.text}
+          </Tag>
         );
       }
       return result;
