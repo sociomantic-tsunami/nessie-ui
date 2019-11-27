@@ -45,9 +45,11 @@ const ComboBox = forwardRef((props, ref) => {
     isMultiselect,
     isReadOnly,
     isSearchable,
+    onBlur,
     onChange,
     onChangeInput,
     onClick,
+    onFocus,
     options: rawOptions,
     popperContainer,
     style,
@@ -296,9 +298,9 @@ const ComboBox = forwardRef((props, ref) => {
           {...refProps}
           {...attachEvents(restProps)}
           className={cssMap.main}
-          onBlur={() => dispatch({ type: "blur" })}
+          onBlur={callMultiple(onBlur, () => dispatch({ type: "blur" }))}
           onClick={callMultiple(onClick, () => toggle(true))}
-          onFocus={() => dispatch({ type: "focus" })}
+          onFocus={callMultiple(onFocus, () => dispatch({ type: "focus" }))}
         >
           {isMultiselect &&
             selectedOptions.map(option => (
