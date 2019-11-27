@@ -278,7 +278,7 @@ const ComboBox = forwardRef((props, ref) => {
 
   return (
     <PopperWrapper
-      popperContainer={popperContainer}
+      container={popperContainer}
       isVisible={state.isOpen}
       matchRefWidth
       popper={popperProps => (
