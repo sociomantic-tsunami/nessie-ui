@@ -238,7 +238,9 @@ const ComboBox = forwardRef((props, ref) => {
           result.push({ ...opt, options: filteredOptions });
         }
       } else {
-        const index = state.matchedOptions.indexOf(opt);
+        const index = state.matchedOptions.findIndex(
+          ({ id: optId }) => opt.id === optId
+        );
         if (index > -1) {
           result.push({
             ...opt,
