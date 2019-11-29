@@ -217,14 +217,14 @@ const ComboBox = forwardRef((props, ref) => {
   };
   const clickOption = optId => {
     if (!isReadOnly) {
-      onChange({ value: changeValue(optId) });
+      onChange(changeValue(optId));
     }
     dispatch({ type: "clickOption", payload: optId });
     document.getElementById(id).focus();
   };
   const enter = () => {
     if (!isReadOnly && activeOption) {
-      onChange({ value: changeValue(activeOption.id) });
+      onChange(changeValue(activeOption.id));
     }
     dispatch({ type: "enter" });
   };
@@ -430,11 +430,11 @@ ComboBox.propTypes = {
    */
   isSearchable: PropTypes.bool,
   /**
-   *  Change callback: ( { value } ) => ...
+   *  Change callback: value => ...
    */
   onChange: PropTypes.func,
   /**
-   *  Input field change callback: ( { value } ) => ...
+   *  Input field change callback: e => ...
    */
   onChangeInput: PropTypes.func,
   /*
