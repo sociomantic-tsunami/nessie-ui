@@ -70,7 +70,7 @@ const PopperWrapper = forwardRef((props, forwardedRef) => {
   );
 
   const renderPopup = useCallback(
-    ({ ref, style: popperStyle }) => {
+    ({ ref, style: popperStyle, ...restProps }) => {
       const popperProps = {
         style: {
           ...(matchRefWidth && { width: referenceRef.current.clientWidth }),
@@ -79,7 +79,7 @@ const PopperWrapper = forwardRef((props, forwardedRef) => {
         ref
       };
       if (typeof popper === "function") {
-        return popper(popperProps);
+        return popper({ ...popperProps, ...restProps });
       }
       if (isValidElement(popper)) {
         if (popper.props.style) {

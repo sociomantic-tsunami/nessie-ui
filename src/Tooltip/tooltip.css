@@ -97,11 +97,11 @@
 }
 
 .arrowPosition__top,
-.arrowPosition__topLeft,
-.arrowPosition__topRight,
+.arrowPosition__top-start,
+.arrowPosition__top-end,
 .arrowPosition__bottom,
-.arrowPosition__bottomLeft,
-.arrowPosition__bottomRight {
+.arrowPosition__bottom-start,
+.arrowPosition__bottom-end {
   &::before {
     left: 0;
     right: 0;
@@ -110,8 +110,8 @@
 }
 
 .arrowPosition__top,
-.arrowPosition__topLeft,
-.arrowPosition__topRight {
+.arrowPosition__top-start,
+.arrowPosition__top-end {
   &::before,
   &::after {
     bottom: calc(100% + var(--tooltipBorderWidth));
@@ -123,8 +123,8 @@
 }
 
 .arrowPosition__bottom,
-.arrowPosition__bottomLeft,
-.arrowPosition__bottomRight {
+.arrowPosition__bottom-start,
+.arrowPosition__bottom-end {
   &::before,
   &::after {
     top: calc(100% + var(--tooltipBorderWidth));
@@ -142,25 +142,25 @@
   }
 }
 
-.arrowPosition__topLeft,
-.arrowPosition__bottomLeft {
+.arrowPosition__top-start,
+.arrowPosition__bottom-start {
   &::after {
     left: var(--arrowOffset);
   }
 }
 
-.arrowPosition__topRight,
-.arrowPosition__bottomRight {
+.arrowPosition__top-end,
+.arrowPosition__bottom-end {
   &::after {
     left: calc(100% - var(--arrowOffset));
   }
 }
 
 .arrowPosition__left,
-.arrowPosition__leftTop,
-.arrowPosition__leftBottom,
-.arrowPosition__right .arrowPosition__rightTop,
-.arrowPosition__rightBottom {
+.arrowPosition__left-start,
+.arrowPosition__left-end,
+.arrowPosition__right .arrowPosition__right-start,
+.arrowPosition__right-end {
   &::before {
     top: 0;
     bottom: 0;
@@ -169,8 +169,8 @@
 }
 
 .arrowPosition__left,
-.arrowPosition__leftTop,
-.arrowPosition__leftBottom {
+.arrowPosition__left-start,
+.arrowPosition__left-end {
   &::before,
   &::after {
     right: calc(100% + var(--tooltipBorderWidth));
@@ -178,8 +178,8 @@
 }
 
 .arrowPosition__right,
-.arrowPosition__rightTop,
-.arrowPosition__rightBottom {
+.arrowPosition__right-start,
+.arrowPosition__right-end {
   &::before,
   &::after {
     left: calc(100% + var(--tooltipBorderWidth));
@@ -194,8 +194,8 @@
 }
 
 .arrowPosition__left,
-.arrowPosition__leftTop,
-.arrowPosition__leftBottom {
+.arrowPosition__left-start,
+.arrowPosition__left-end {
   &::after {
     right: 100%;
     transform: translateX(50%) translateY(-50%) rotate(135deg);
@@ -203,23 +203,23 @@
 }
 
 .arrowPosition__right,
-.arrowPosition__rightTop,
-.arrowPosition__rightBottom {
+.arrowPosition__right-start,
+.arrowPosition__right-end {
   &::after {
     left: 100%;
     transform: translateX(-50%) translateY(-50%) rotate(320deg);
   }
 }
 
-.arrowPosition__leftTop,
-.arrowPosition__rightTop {
+.arrowPosition__left-start,
+.arrowPosition__right-start {
   &::after {
     top: var(--arrowOffset);
   }
 }
 
-.arrowPosition__leftBottom,
-.arrowPosition__rightBottom {
+.arrowPosition__left-end,
+.arrowPosition__right-end {
   &::after {
     top: calc(100% - var(--arrowOffset));
   }
