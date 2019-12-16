@@ -82,6 +82,12 @@ const CurrencyInput = forwardRef(
     };
 
     const handleChange = ({ value: newValue }) => {
+      if (
+        typeof onChange === "function" &&
+        parseValue(newValue) !== valueState
+      ) {
+        onChange({ value: newValue });
+      }
       setEditingValue(newValue);
     };
 

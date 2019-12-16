@@ -7,7 +7,7 @@
  *
  */
 
-import React from "react";
+import React, { useMemo, useState } from "react";
 
 import { Tag } from "../index";
 
@@ -20,20 +20,36 @@ import { Tag } from "../index";
  * @return  {Array.<ReactElement>}
  *
  */
-function buildTagsFromValues(values = []) {
+export function buildTagsFromValues(values = []) {
   return values.map(value => {
-    const props =
-      typeof value === "object"
-        ? value
-        : {
-            id: value,
-            label: value,
-            key: value,
-            value
-          };
+    const props = typeof value === "object" ? value : { value: value };
 
-    return <Tag {...props} />;
+    return <Tag {...props} key={props.value} />;
   });
 }
 
-export { buildTagsFromValues };
+export function useValueState({ children, defaultValue, onChange, value }) {
+  const [state, setState] = useState(defaultValue || []);
+
+  const result = useMemo(() => {
+    if (children) {
+      return children.map(child => child.props.value);
+    }
+    if (Array.isArray(value)) {
+      return value.map(item => (typeof item === "object" ? item.value : item));
+    }
+    if (value === "" || value === null) {
+      return [];
+    }
+    return state;
+  }, [children, value, state]);
+
+  const handleChange = newValue => {
+    if (typeof onChange === "function") {
+      onChange({ value: newValue });
+    }
+    setState(newValue);
+  };
+
+  return [result, handleChange];
+}
