@@ -55,17 +55,17 @@ Tooltip.propTypes = {
    */
   arrowPosition: PropTypes.oneOf([
     "top",
-    "topLeft",
-    "topRight",
+    "top-start",
+    "top-end",
     "bottom",
-    "bottomLeft",
-    "bottomRight",
+    "bottom-start",
+    "bottom-end",
     "left",
-    "leftTop",
-    "leftBottom",
+    "left-start",
+    "left-end",
     "right",
-    "rightTop",
-    "rightBottom"
+    "right-start",
+    "right-end"
   ]),
   /**
    *  Tooltip message (JSX node; overrides message prop)
