@@ -24,6 +24,11 @@
   height: var(--spacing-2);
 }
 
+.size__XS {
+  width: calc(var(--spacing-3) - 4px);
+  height: calc(var(--spacing-3) - 4px);
+}
+
 .size__S {
   width: var(--spacing-3);
   height: var(--spacing-3);
