@@ -93,7 +93,7 @@ const TagInput = forwardRef((props, ref) => {
           setInputValue(e.target.value);
         }}
         onKeyDown={callMultiple(handleKeyDownInput, onKeyDown)}
-        placeholder={placeholder}
+        placeholder={tags && tags.length ? undefined : placeholder}
         readOnly={isReadOnly}
         type="text"
         value={inputValue}
