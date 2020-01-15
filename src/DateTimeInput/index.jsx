@@ -290,6 +290,7 @@ const DateTimeInput = forwardRef((props, ref) => {
           hasError={hasError}
           iconLabel={inputIconLabel}
           iconType="calendar"
+          iconSize="XS"
           id={id}
           isDisabled={isDisabled}
           isReadOnly={inputIsReadOnly || isReadOnly}

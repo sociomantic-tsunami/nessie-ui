@@ -30,6 +30,7 @@ const TextInputWithIcon = forwardRef((props, ref) => {
     iconLabel,
     iconPosition,
     iconType,
+    iconSize,
     id,
     inputType,
     isDisabled,
@@ -80,6 +81,7 @@ const TextInputWithIcon = forwardRef((props, ref) => {
           className={cssMap.icon}
           hasError={hasError}
           iconType={iconType}
+          iconSize={iconSize}
           isDisabled={isDisabled || iconButtonIsDisabled}
           isFocusable={false}
           label={iconLabel}
@@ -148,6 +150,10 @@ TextInputWithIcon.propTypes = {
    *  Icon type to display (see https://feathericons.com/)
    */
   iconType: PropTypes.string,
+  /**
+   *  Icon size
+   */
+  iconSize: PropTypes.oneOf(["XXS", "XS", "S", "M", "L", "XL"]),
   /**
    *  Component id
    */
@@ -235,6 +241,7 @@ TextInputWithIcon.defaultProps = {
   iconLabel: undefined,
   iconPosition: "right",
   iconType: "none",
+  iconSize: "XS",
   id: undefined,
   inputType: "text",
   isDisabled: false,
