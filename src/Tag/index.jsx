@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2020 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -15,7 +15,7 @@ import { Icon, Text } from "..";
 import { useThemeClasses } from "../utils";
 
 const Tag = forwardRef((props, ref) => {
-  const { children, label, onClickDelete, style, value } = props;
+  const { children, isDisabled, label, onClickDelete, style, value } = props;
 
   const cssMap = useThemeClasses(Tag.displayName, props);
 
@@ -26,6 +26,7 @@ const Tag = forwardRef((props, ref) => {
       </Text>
       <button
         className={cssMap.delete}
+        disabled={isDisabled}
         onClick={onClickDelete ? () => onClickDelete(value) : undefined}
       >
         <Icon type="x" size="XXS" />
